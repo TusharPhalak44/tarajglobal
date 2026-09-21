@@ -59,3 +59,4 @@ server/uploads/*
 *.temp
 video.mp4 
 client/public/video.mp4 
+client/public/side video.mp4 
