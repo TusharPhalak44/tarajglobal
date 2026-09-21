@@ -1,0 +1,347 @@
+/* ==========================================================================
+   COMPACT ENTERPRISE PARTNERSHIPS SECTION (MARQUEE SHOWCASE)
+   Wide Master Card • Single Continuous Flow • Dynamic Glow & Laser Beams
+   ========================================================================== */
+
+.compact-partnerships-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* ── Section Hairline Laser Dividers ─────────────────────────────────────── */
+.section-laser-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  z-index: 20;
+  transition: background-color 0.4s ease;
+}
+
+.light .section-laser-divider,
+:root:not(.dark) .section-laser-divider {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.section-laser-top {
+  top: 0;
+}
+
+.section-laser-bottom {
+  bottom: 0;
+}
+
+.laser-beam {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 280px;
+  filter: drop-shadow(0 0 8px currentColor);
+  animation: compactCyberLaser 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.laser-beam-cyan {
+  color: #00A6FF;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 166, 255, 0.9) 50%, rgba(56, 189, 248, 0.7) 80%, transparent 100%);
+}
+
+.laser-beam-amber {
+  color: #FF6D00;
+  animation-delay: 4s;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 109, 0, 0.9) 50%, rgba(251, 146, 60, 0.7) 80%, transparent 100%);
+}
+
+@keyframes compactCyberLaser {
+  0% {
+    left: -300px;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* ── Expansive Compact Marquee Master Card ───────────────────────────────── */
+.compact-marquee-card {
+  position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Dark Mode Master Card */
+.dark .compact-marquee-card {
+  background: rgba(18, 24, 38, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.55),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Light Mode Master Card */
+.light .compact-marquee-card,
+:root:not(.dark) .compact-marquee-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.06),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* ── Card Ambient Perimeter Glow ─────────────────────────────────────────── */
+.card-ambient-perimeter {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid transparent;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 1px;
+}
+
+.dark .card-ambient-perimeter {
+  background: linear-gradient(135deg, rgba(0, 166, 255, 0.3) 0%, transparent 40%, rgba(255, 109, 0, 0.25) 100%);
+}
+
+.light .card-ambient-perimeter,
+:root:not(.dark) .card-ambient-perimeter {
+  background: linear-gradient(135deg, rgba(0, 166, 255, 0.35) 0%, transparent 40%, rgba(255, 109, 0, 0.2) 100%);
+}
+
+/* ── Edge Fade Overlays (Seamless Vignette Mask) ─────────────────────────── */
+.marquee-fade-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.marquee-fade-left {
+  left: 0;
+}
+
+.marquee-fade-right {
+  right: 0;
+}
+
+.dark .marquee-fade-left {
+  background: linear-gradient(90deg, rgba(18, 24, 38, 0.98) 0%, transparent 100%);
+}
+
+.dark .marquee-fade-right {
+  background: linear-gradient(270deg, rgba(18, 24, 38, 0.98) 0%, transparent 100%);
+}
+
+.light .marquee-fade-left,
+:root:not(.dark) .marquee-fade-left {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, transparent 100%);
+}
+
+.light .marquee-fade-right,
+:root:not(.dark) .marquee-fade-right {
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.98) 0%, transparent 100%);
+}
+
+/* ── Single Continuous Marquee Line Engine ───────────────────────────────── */
+.marquee-track-container {
+  display: flex;
+  overflow: visible;
+  user-select: none;
+  gap: 1.25rem;
+  width: 100%;
+  padding: 6px 0;
+}
+
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.25rem;
+  min-width: 100%;
+  will-change: transform;
+  padding: 14px 0;
+}
+
+.marquee-animate-single {
+  animation: singleLineMarquee 26s linear infinite;
+}
+
+@keyframes singleLineMarquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Continuous non-stop scrolling: Keep marquee scrolling even when hovered */
+.compact-marquee-card:hover .marquee-animate-single,
+.marquee-track-container:hover .marquee-animate-single,
+.marquee-wrapper:hover .marquee-animate-single {
+  animation-play-state: running;
+}
+
+/* ── Individual Logo Pill Card ───────────────────────────────────────────── */
+.compact-logo-pill {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  min-width: 185px;
+  padding: 0 1.75rem;
+  border-radius: 18px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Dark Mode Pill */
+.dark .compact-logo-pill {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Light Mode Pill */
+.light .compact-logo-pill,
+:root:not(.dark) .compact-logo-pill {
+  background: rgba(0, 0, 0, 0.025);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* Pill Hover Interaction */
+.compact-logo-pill:hover {
+  z-index: 25;
+  transform: scale(1.06);
+}
+
+.dark .compact-logo-pill:hover {
+  background: rgba(18, 24, 38, 0.96);
+  border: 1.5px solid #00A6FF;
+  box-shadow: 0 0 20px 2px rgba(0, 166, 255, 0.4),
+              0 8px 26px rgba(0, 166, 255, 0.25),
+              inset 0 0 14px 0 rgba(0, 166, 255, 0.12);
+}
+
+.light .compact-logo-pill:hover,
+:root:not(.dark) .compact-logo-pill:hover {
+  background: #ffffff;
+  border: 1.5px solid #00A6FF;
+  box-shadow: 0 0 18px 2px rgba(0, 166, 255, 0.3),
+              0 8px 24px rgba(0, 166, 255, 0.18);
+}
+
+/* ── Logo Image Presentation ────────────────────────────────────────────── */
+.compact-logo-img {
+  max-height: 44px;
+  max-width: 145px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: grayscale(12%);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.light .compact-logo-img,
+:root:not(.dark) .compact-logo-img {
+  opacity: 0.88;
+  filter: grayscale(8%);
+}
+
+.compact-logo-pill:hover .compact-logo-img {
+  opacity: 1 !important;
+  filter: grayscale(0%) brightness(1.1) contrast(1.05) !important;
+}
+
+@media (max-width: 1024px) {
+  .marquee-fade-overlay {
+    width: 50px;
+  }
+}
+
+@media (max-width: 640px) {
+  .compact-marquee-card {
+    padding: 1.75rem 0.75rem;
+    border-radius: 20px;
+  }
+
+  .compact-logo-pill {
+    height: 64px;
+    min-width: 140px;
+    padding: 0 1rem;
+    border-radius: 14px;
+  }
+
+  .compact-logo-img {
+    max-height: 34px;
+    max-width: 105px;
+  }
+
+  .marquee-fade-overlay {
+    width: 35px;
+  }
+}
+
+@media (max-width: 360px) {
+  .compact-logo-pill {
+    height: 56px;
+    min-width: 120px;
+    padding: 0 0.75rem;
+  }
+
+  .compact-logo-img {
+    max-height: 28px;
+    max-width: 90px;
+  }
+
+  .marquee-fade-overlay {
+    width: 20px;
+  }
+}
+
+/* ── Accessibility: Reduced Motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .laser-beam,
+  .marquee-track {
+    animation: none !important;
+  }
+
+  .compact-logo-pill {
+    transition: none !important;
+  }
+
+  .compact-logo-pill:hover {
+    transform: none !important;
+  }
+
+  .compact-logo-img {
+    opacity: 1 !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}

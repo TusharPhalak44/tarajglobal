@@ -1,0 +1,174 @@
+/* ==========================================================================
+   ELEVATED ENTERPRISE FOOTER STYLES
+   Laser Beams • Atmospheric Floating Orbs • Interactive Micro-Interactions
+   Full Dark Mode & Light Mode Theme Support
+   ========================================================================== */
+
+.footer-master-root {
+  position: relative;
+  width: 100%;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* ── Top Laser Divider ───────────────────────────────────────────────────── */
+.footer-laser-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.light .footer-laser-divider,
+:root:not(.dark) .footer-laser-divider {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.footer-laser-beam {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 320px;
+  filter: drop-shadow(0 0 10px currentColor);
+  animation: footerLaserMove 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.footer-laser-cyan {
+  color: #00A6FF;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 166, 255, 0.95) 50%, rgba(56, 189, 248, 0.8) 80%, transparent 100%);
+}
+
+.footer-laser-amber {
+  color: #FF6D00;
+  animation-delay: 4.5s;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 109, 0, 0.95) 50%, rgba(251, 146, 60, 0.8) 80%, transparent 100%);
+}
+
+@keyframes footerLaserMove {
+  0% {
+    left: -350px;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* ── Ambient Background Orbs & Mesh ──────────────────────────────────────── */
+.footer-orb-cyan {
+  animation: footerOrbPulseCyan 10s ease-in-out infinite alternate;
+}
+
+.footer-orb-amber {
+  animation: footerOrbPulseAmber 12s ease-in-out infinite alternate;
+}
+
+@keyframes footerOrbPulseCyan {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(30px, 20px) scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes footerOrbPulseAmber {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-35px, -20px) scale(0.95);
+    opacity: 0.6;
+  }
+}
+
+.footer-mesh-grid {
+  background-image: 
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
+}
+
+/* ── Pre-Footer Action Card ──────────────────────────────────────────────── */
+.footer-cta-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .footer-cta-card {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.light .footer-cta-card,
+:root:not(.dark) .footer-cta-card {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.footer-cta-card:hover {
+  border-color: rgba(0, 166, 255, 0.35);
+}
+
+/* ── Interactive Office Location Cards ───────────────────────────────────── */
+.footer-office-card {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.footer-office-card:hover {
+  transform: translateY(-2px);
+}
+
+.dark .footer-office-card:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 20px -4px rgba(0, 166, 255, 0.15);
+}
+
+.light .footer-office-card:hover,
+:root:not(.dark) .footer-office-card:hover {
+  background-color: #FFFFFF;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Link Hover Effects ──────────────────────────────────────────────────── */
+.footer-nav-link {
+  position: relative;
+}
+
+.footer-nav-link:hover {
+  font-weight: 500;
+}
+
+/* ── Accessibility: Reduced Motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .footer-laser-beam,
+  .footer-orb-cyan,
+  .footer-orb-amber {
+    animation: none !important;
+  }
+
+  .footer-cta-card,
+  .footer-office-card,
+  .footer-nav-link {
+    transition: none !important;
+  }
+
+  .footer-office-card:hover {
+    transform: none !important;
+  }
+}

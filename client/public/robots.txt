@@ -1,0 +1,15 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin, private, and internal auth endpoints
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /api/
+Disallow: /api/*
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+
+# Sitemap location
+Sitemap: https://tarajglobal.com/sitemap.xml

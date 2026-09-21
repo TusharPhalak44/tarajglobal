@@ -1,0 +1,176 @@
+.embla {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .embla {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .embla {
+    max-width: 350px;
+  }
+}
+
+.embla__container {
+  display: flex;
+  gap: 24px;
+  padding: 60px 0;
+  user-select: none;
+  align-items: center;
+}
+
+.embla__slide {
+  flex: 0 0 auto;
+  width: 320px;
+  height: 420px;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  perspective: 1000px;
+  opacity: 0.5;
+  scale: 0.85;
+}
+
+@media (max-width: 1024px) {
+  .embla__slide {
+    width: 280px;
+    height: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .embla__slide {
+    width: 100%;
+    max-width: 260px;
+    height: 360px;
+  }
+}
+
+.embla__slide.active {
+  opacity: 1;
+  scale: 1;
+  z-index: 10;
+}
+
+.agent-card {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: var(--surface);
+  border-radius: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.embla__slide.active .agent-card {
+  box-shadow: 0 35px 60px -15px rgba(0, 166, 255, 0.3);
+}
+
+.agent-card:hover {
+  transform: translateY(-8px);
+}
+
+.agent-card-image {
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+@media (max-width: 1024px) {
+  .agent-card-image {
+    height: 140px;
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .agent-card-image {
+    height: 120px;
+    font-size: 36px;
+  }
+}
+
+.agent-card-content {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+@media (prefers-color-scheme: dark) {
+  .agent-card-title {
+    color: #ffffff;
+  }
+}
+
+.dark .agent-card-title {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .agent-card-title {
+    font-size: 20px;
+  }
+}
+
+.agent-card-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .agent-card-description {
+    color: #cccccc;
+  }
+}
+
+.dark .agent-card-description {
+  color: #cccccc;
+}
+
+@media (max-width: 768px) {
+  .agent-card-description {
+    font-size: 13px;
+  }
+}
+
+.agent-card-cta {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #00A6FF 0%, #FF6D00 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.agent-card-cta:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 166, 255, 0.3);
+}

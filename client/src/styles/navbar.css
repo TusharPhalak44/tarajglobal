@@ -1,0 +1,89 @@
+/* Navbar Styles */
+
+.navbar-glass {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.navbar-link {
+  position: relative;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+.navbar-link.active::after {
+  width: 100%;
+}
+
+/* Mobile Menu Animation */
+.mobile-menu-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mobile-menu-content {
+  background-color: white;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown Animation */
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+
+/* Navbar Transition */
+.navbar-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Logo Animation */
+.logo-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effects */
+.navbar-button {
+  transition: all 0.3s ease;
+}
+
+.navbar-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Menu Item */
+.mobile-menu-item {
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-item:hover {
+  background-color: #f3f4f6;
+}
+
+.mobile-menu-item.active {
+  background-color: #0ea5e9;
+  color: white;
+}
