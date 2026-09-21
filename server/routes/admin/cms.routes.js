@@ -1,10 +1,33 @@
 import express from 'express'
+import multer from 'multer'
+import path from 'path'
+import fs from 'fs'
 import { body } from 'express-validator'
 import { validate } from '../../middleware/validation.middleware.js'
 import { checkPermission, hasAnyPermission } from '../../middleware/permission.middleware.js'
 import * as cmsController from '../../controllers/admin/cms.controller.js'
 
 const router = express.Router()
+
+// Multer for client logo uploads
+const clientLogoStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = 'uploads/clients'
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+    cb(null, dir)
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname))
+  }
+})
+const clientLogoUpload = multer({
+  storage: clientLogoStorage,
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const ok = /jpeg|jpg|png|webp|svg|gif/.test(path.extname(file.originalname).toLowerCase())
+    ok ? cb(null, true) : cb(new Error('Only image files allowed'))
+  }
+})
 
 // ==================== NAVBAR ROUTES ====================
 
@@ -189,5 +212,26 @@ router.put('/clients/reorder', [
   checkPermission('cms.edit'),
   body('items').isArray().withMessage('Items must be an array')
 ], validate, cmsController.reorderClients)
+
+// @route   POST /api/admin/cms/clients/upload-logo
+// @desc    Upload a client logo image
+// @access  Private
+router.post('/clients/upload-logo', clientLogoUpload.single('logo'), (req, res) => {
+  if (!req.file) return res.status(400).json({ success: false, message: 'No file uploaded' })
+  const publicUrl = '/uploads/clients/' + req.file.filename
+  res.json({ success: true, url: publicUrl, filename: req.file.filename })
+})
+
+// ==================== CLIENT SECTION SETTINGS ROUTES ====================
+
+// @route   GET /api/admin/cms/clients-section
+// @desc    Get client section settings
+// @access  Private
+router.get('/clients-section', cmsController.getClientSectionSettings)
+
+// @route   PUT /api/admin/cms/clients-section
+// @desc    Update client section settings
+// @access  Private
+router.put('/clients-section', cmsController.updateClientSectionSettings)
 
 export default router

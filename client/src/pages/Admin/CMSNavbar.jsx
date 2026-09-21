@@ -24,9 +24,12 @@ import {
   Phone,
   Mail,
   ArrowRight,
-  Menu
+  Menu,
+  ArrowUp,
+  ArrowDown
 } from 'lucide-react'
 import { adminAPI } from '@api'
+import TGAnimatedLogo from '../../components/layout/PremiumNavbar/TGAnimatedLogo'
 
 const CMSNavbar = () => {
   const [loading, setLoading] = useState(true)
@@ -49,6 +52,7 @@ const CMSNavbar = () => {
   const [logoText, setLogoText] = useState('Taraj Global')
   const [logoAlt, setLogoAlt] = useState('Taraj Global - B2B Growth & Lead Generation Agency')
   const [headerVisible, setHeaderVisible] = useState(true)
+  const [showLogoText, setShowLogoText] = useState(false)
   const [logoPreview, setLogoPreview] = useState('')
   const [logoSaving, setLogoSaving] = useState(false)
   const fileInputRef = useRef(null)
@@ -78,6 +82,7 @@ const CMSNavbar = () => {
       setLogoText(data.logo_text || 'Taraj Global')
       setLogoAlt(data.logo_alt || 'Taraj Global - B2B Growth & Lead Generation Agency')
       setHeaderVisible(data.header_visible !== false)
+      setShowLogoText(data.show_logo_text === true || data.show_logo_text === '1' || data.show_logo_text === 'true')
     } catch (error) {
       console.error('Failed to fetch logo settings:', error)
     }
@@ -134,7 +139,8 @@ const CMSNavbar = () => {
         logo_url: logoUrl,
         logo_text: logoText,
         logo_alt: logoAlt,
-        header_visible: headerVisible
+        header_visible: headerVisible,
+        show_logo_text: showLogoText
       })
       const data = res.data?.data || res.data || {}
       if (data.logo_url) {
@@ -143,11 +149,54 @@ const CMSNavbar = () => {
       }
       notifyNavbarUpdated()
       showMessage('success', 'Header branding & logo updated successfully! Changes reflect on the website.')
+      await fetchLogoSettings()
     } catch (error) {
       console.error('Failed to save logo:', error)
       showMessage('error', error.response?.data?.message || 'Failed to save logo settings')
     } finally {
       setLogoSaving(false)
+    }
+  }
+
+  // Instant one-click toggle for Brand Name Text Beside Image
+  const handleToggleShowLogoText = async () => {
+    const nextState = !showLogoText
+    setShowLogoText(nextState)
+    try {
+      await adminAPI.updateLogo({
+        logo_url: logoUrl,
+        logo_text: logoText,
+        logo_alt: logoAlt,
+        header_visible: headerVisible,
+        show_logo_text: nextState
+      })
+      notifyNavbarUpdated()
+      showMessage('success', `Brand name text "${logoText || 'Taraj Global'}" is now ${nextState ? 'ON (Visible beside image)' : 'OFF (Hidden)'}`)
+    } catch (error) {
+      console.error('Failed to toggle brand text visibility:', error)
+      setShowLogoText(!nextState)
+      showMessage('error', 'Failed to update brand text visibility')
+    }
+  }
+
+  // Instant one-click toggle for Top Announcement Bar
+  const handleToggleHeaderVisible = async () => {
+    const nextState = !headerVisible
+    setHeaderVisible(nextState)
+    try {
+      await adminAPI.updateLogo({
+        logo_url: logoUrl,
+        logo_text: logoText,
+        logo_alt: logoAlt,
+        header_visible: nextState,
+        show_logo_text: showLogoText
+      })
+      notifyNavbarUpdated()
+      showMessage('success', `Top Announcement Bar is now ${nextState ? 'ON (Enabled)' : 'OFF (Disabled)'}`)
+    } catch (error) {
+      console.error('Failed to toggle announcement bar:', error)
+      setHeaderVisible(!nextState)
+      showMessage('error', 'Failed to update announcement bar visibility')
     }
   }
 
@@ -159,7 +208,9 @@ const CMSNavbar = () => {
       if ('BroadcastChannel' in window) {
         const bc = new BroadcastChannel('taraj_cms_channel')
         bc.postMessage({ type: 'NAVBAR_UPDATED' })
-        bc.close()
+        setTimeout(() => {
+          try { bc.close() } catch (_) {}
+        }, 1000)
       }
     } catch (_) {}
   }
@@ -169,7 +220,34 @@ const CMSNavbar = () => {
     setLogoPreview('/middle.png')
     setLogoText('Taraj Global')
     setLogoAlt('Taraj Global - B2B Growth & Lead Generation Agency')
+    setShowLogoText(false)
     showMessage('success', 'Logo reset to default template. Click "Save Header & Logo" to apply.')
+  }
+
+  const handleUseCircleEmblem = () => {
+    setLogoUrl('/circle.png')
+    setLogoPreview('/circle.png')
+    showMessage('success', 'Switched to signature animated circle emblem. Click "Save Header & Logo" to apply.')
+  }
+
+  const handleUseAnimatedLogo = async () => {
+    setLogoUrl('/OnlyTG- 3.png')
+    setLogoPreview('/OnlyTG- 3.png')
+    setShowLogoText(true)
+    try {
+      await adminAPI.updateLogo({
+        logo_url: '/OnlyTG- 3.png',
+        logo_text: logoText || 'Taraj Global',
+        logo_alt: logoAlt,
+        header_visible: headerVisible,
+        show_logo_text: true
+      })
+      notifyNavbarUpdated()
+      showMessage('success', 'Switched to Animated SVG Logo! Changes are live on the website.')
+    } catch (err) {
+      console.error('Failed to set animated logo:', err)
+      showMessage('error', 'Failed to update logo')
+    }
   }
 
   // Modal openers
@@ -265,6 +343,34 @@ const CMSNavbar = () => {
     } catch (error) {
       console.error('Failed to delete item:', error)
       showMessage('error', error.response?.data?.message || 'Failed to delete item')
+    }
+  }
+
+  // Move item up or down in order
+  const handleMoveItem = async (item, direction, section = 'navbar') => {
+    const list = safeNavbarItems.filter(i => (i.section || 'navbar') === section)
+    const index = list.findIndex(i => i.id === item.id)
+    if (index === -1) return
+    if (direction === 'up' && index === 0) return
+    if (direction === 'down' && index === list.length - 1) return
+
+    const targetIndex = direction === 'up' ? index - 1 : index + 1
+    const targetItem = list[targetIndex]
+
+    const updatedItems = list.map(i => {
+      if (i.id === item.id) return { id: i.id, display_order: targetItem.display_order }
+      if (i.id === targetItem.id) return { id: i.id, display_order: item.display_order }
+      return { id: i.id, display_order: i.display_order }
+    })
+
+    try {
+      await adminAPI.reorderNavbarItems({ items: updatedItems })
+      notifyNavbarUpdated()
+      showMessage('success', `Moved "${item.label}" ${direction}`)
+      fetchNavbarItems()
+    } catch (error) {
+      console.error('Failed to reorder items:', error)
+      showMessage('error', 'Failed to reorder item')
     }
   }
 
@@ -436,10 +542,19 @@ const CMSNavbar = () => {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={handleResetDefaultLogo}
-                className="text-xs text-text-muted hover:text-text-primary px-3 py-1.5 rounded-lg border border-border hover:bg-background transition-colors"
+                onClick={handleUseAnimatedLogo}
+                className="flex items-center gap-1.5 text-xs text-primary bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-lg border border-primary/30 transition-all cursor-pointer font-semibold shadow-xs"
+                title="Switch to the high-performance animated SVG emblem"
               >
-                Reset to Default
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span>Use Animated SVG Logo</span>
+              </button>
+              <button
+                type="button"
+                onClick={handleResetDefaultLogo}
+                className="text-xs text-text-muted hover:text-text-primary px-3 py-1.5 rounded-lg border border-border hover:bg-background transition-colors cursor-pointer"
+              >
+                Reset to Default Logo
               </button>
             </div>
           </div>
@@ -454,14 +569,7 @@ const CMSNavbar = () => {
 
                 <div className="w-full h-32 rounded-xl bg-slate-900/40 border border-border/80 flex items-center justify-center p-4 relative overflow-hidden group">
                   {logoPreview ? (
-                    <img
-                      src={logoPreview}
-                      alt={logoAlt || 'Preview'}
-                      className="max-h-20 max-w-full object-contain transition-transform group-hover:scale-105 drop-shadow-md"
-                      onError={() => {
-                        showMessage('error', 'Unable to load image from current URL')
-                      }}
-                    />
+                    <TGAnimatedLogo logoUrl={logoPreview} alt={logoAlt || 'Preview'} />
                   ) : (
                     <span className="text-xs text-text-muted font-mono">No logo specified</span>
                   )}
@@ -470,6 +578,9 @@ const CMSNavbar = () => {
                 <div className="text-center">
                   <p className="text-sm font-semibold text-text-primary">{logoText || 'Taraj Global'}</p>
                   <p className="text-xs text-text-muted truncate max-w-xs mt-0.5">{logoUrl || '/middle.png'}</p>
+                  <p className="text-[11px] text-[#00A6FF] font-medium mt-1">
+                    {logoUrl && logoUrl !== '/circle.png' ? '✓ Replaces circle emblem in header' : '✓ Using signature animated emblem'}
+                  </p>
                 </div>
 
                 {/* Upload Button */}
@@ -542,28 +653,85 @@ const CMSNavbar = () => {
                 </div>
 
                 {/* Top Header Bar Visibility Toggle */}
-                <div className="p-4 rounded-xl bg-background border border-border flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-text-primary">Top Announcement & Header Bar</span>
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${headerVisible ? 'bg-emerald-500/15 text-emerald-400' : 'bg-slate-500/20 text-slate-400'}`}>
-                        {headerVisible ? 'Enabled' : 'Disabled'}
+                <div className="p-4 sm:p-5 rounded-2xl bg-background border border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:border-primary/40 shadow-xs">
+                  <div className="space-y-1 max-w-xl">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-sm font-bold text-text-primary">Top Announcement & Header Bar</span>
+                      <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-wider transition-colors ${
+                        headerVisible 
+                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' 
+                          : 'bg-slate-500/20 text-slate-400 border border-slate-500/30'
+                      }`}>
+                        {headerVisible ? 'ON • Enabled' : 'OFF • Disabled'}
                       </span>
                     </div>
-                    <p className="text-xs text-text-secondary">
+                    <p className="text-xs text-text-secondary leading-relaxed">
                       Show top announcement / contact bar above the navbar when active header items exist.
                     </p>
                   </div>
 
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={headerVisible}
-                      onChange={(e) => setHeaderVisible(e.target.checked)}
-                      className="sr-only peer"
-                    />
-                    <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                  </label>
+                  {/* Interactive ON / OFF Toggle Button */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleToggleHeaderVisible}
+                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-xl text-xs font-black transition-all duration-200 cursor-pointer select-none shadow-sm ${
+                        headerVisible
+                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/25 shadow-emerald-500/10'
+                          : 'bg-slate-800/80 text-slate-300 border border-slate-700 hover:bg-slate-700/80'
+                      }`}
+                      title={headerVisible ? 'Click to turn OFF (Disable announcement bar)' : 'Click to turn ON (Enable announcement bar)'}
+                    >
+                      <span className={`w-2 h-2 rounded-full transition-colors ${headerVisible ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`} />
+                      <span className="tracking-wide uppercase font-mono">{headerVisible ? 'ON' : 'OFF'}</span>
+
+                      {/* Slider Track and Thumb */}
+                      <div className={`w-9 h-5 rounded-full p-0.5 transition-colors duration-200 flex items-center ${headerVisible ? 'bg-emerald-500' : 'bg-slate-600'}`}>
+                        <div className={`w-4 h-4 rounded-full bg-white transition-transform duration-200 shadow-md ${headerVisible ? 'translate-x-4' : 'translate-x-0'}`} />
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Brand Text Next to Logo Toggle */}
+                <div className="p-4 sm:p-5 rounded-2xl bg-background border border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:border-primary/40 shadow-xs">
+                  <div className="space-y-1 max-w-xl">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-sm font-bold text-text-primary">Display Brand Name Text Beside Image</span>
+                      <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-wider transition-colors ${
+                        showLogoText 
+                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' 
+                          : 'bg-slate-500/20 text-slate-400 border border-slate-500/30'
+                      }`}>
+                        {showLogoText ? 'ON • Visible' : 'OFF • Hidden'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      Show &ldquo;<span className="text-primary font-bold">{logoText || 'Taraj Global'}</span>&rdquo; text next to the header image. Keep disabled if your uploaded logo image already includes the name.
+                    </p>
+                  </div>
+
+                  {/* Interactive ON / OFF Toggle Button */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleToggleShowLogoText}
+                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-xl text-xs font-black transition-all duration-200 cursor-pointer select-none shadow-sm ${
+                        showLogoText
+                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/25 shadow-emerald-500/10'
+                          : 'bg-slate-800/80 text-slate-300 border border-slate-700 hover:bg-slate-700/80'
+                      }`}
+                      title={showLogoText ? 'Click to turn OFF (Hide text beside logo)' : 'Click to turn ON (Display text beside logo)'}
+                    >
+                      <span className={`w-2 h-2 rounded-full transition-colors ${showLogoText ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`} />
+                      <span className="tracking-wide uppercase font-mono">{showLogoText ? 'ON' : 'OFF'}</span>
+
+                      {/* Slider Track and Thumb */}
+                      <div className={`w-9 h-5 rounded-full p-0.5 transition-colors duration-200 flex items-center ${showLogoText ? 'bg-emerald-500' : 'bg-slate-600'}`}>
+                        <div className={`w-4 h-4 rounded-full bg-white transition-transform duration-200 shadow-md ${showLogoText ? 'translate-x-4' : 'translate-x-0'}`} />
+                      </div>
+                    </button>
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-end pt-2">
@@ -663,11 +831,27 @@ const CMSNavbar = () => {
                         </button>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                        <div className="flex items-center justify-end gap-1">
+                          <button
+                            type="button"
+                            onClick={() => handleMoveItem(item, 'up', 'header')}
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            title="Move Up"
+                          >
+                            <ArrowUp className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleMoveItem(item, 'down', 'header')}
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            title="Move Down"
+                          >
+                            <ArrowDown className="w-3.5 h-3.5" />
+                          </button>
                           <button
                             type="button"
                             onClick={() => handleEditItem(item)}
-                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Edit Header Item"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -675,7 +859,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleDeleteItem(item)}
-                            className="p-2 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
                             title="Delete Header Item"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -781,11 +965,27 @@ const CMSNavbar = () => {
                         </button>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                        <div className="flex items-center justify-end gap-1">
+                          <button
+                            type="button"
+                            onClick={() => handleMoveItem(item, 'up', 'navbar')}
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            title="Move Up"
+                          >
+                            <ArrowUp className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleMoveItem(item, 'down', 'navbar')}
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            title="Move Down"
+                          >
+                            <ArrowDown className="w-3.5 h-3.5" />
+                          </button>
                           <button
                             type="button"
                             onClick={() => handleEditItem(item)}
-                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Edit Navbar Item"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -793,7 +993,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleDeleteItem(item)}
-                            className="p-2 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
                             title="Delete Navbar Item"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -946,25 +1146,17 @@ const CMSNavbar = () => {
 
                 {/* ── Simulated Main Navbar Bar ──────────────────────────────── */}
                 <div className="h-[76px] px-4 sm:px-6 bg-[#070B14]/90 backdrop-blur-xl border-b border-white/10 flex items-center justify-between gap-3 relative">
-                  {/* Left: Emblem & Brand Logo */}
+                  {/* Left: Brand Logo / Header Image */}
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full border border-[#00A6FF]/40 bg-[#00A6FF]/10 flex items-center justify-center relative shadow-sm group">
-                      <img
-                        src="/circle.png"
-                        alt="Emblem"
-                        className="w-7 h-7 object-contain"
-                        onError={(e) => {
-                          e.target.style.display = 'none'
-                        }}
-                      />
-                    </div>
+                    <TGAnimatedLogo
+                      logoUrl={logoPreview}
+                      alt={logoAlt || logoText || 'Header Logo'}
+                    />
 
-                    {logoPreview && (
-                      <img
-                        src={logoPreview}
-                        alt={logoAlt || logoText}
-                        className="h-9 w-auto max-w-[130px] sm:max-w-[170px] object-contain"
-                      />
+                    {showLogoText && logoText && (
+                      <span className="inline-block font-extrabold text-sm sm:text-base tracking-tight text-white font-display">
+                        {logoText}
+                      </span>
                     )}
                   </div>
 

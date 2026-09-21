@@ -23,6 +23,7 @@ import {
   Database
 } from 'lucide-react'
 import { useTheme } from '@context/ThemeContext'
+import TGAnimatedLogo from './TGAnimatedLogo'
 
 const menuItems = [
   { index: '01', name: 'Home', path: '/', icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
@@ -128,7 +129,7 @@ const itemVariants = {
   },
 }
 
-export const FullscreenMenu = ({ isOpen, onClose, logoUrl, navLinks = [] }) => {
+export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = [] }) => {
   const [hovered, setHovered] = useState(null)
   const [isServicesExpanded, setIsServicesExpanded] = useState(false)
   const { theme } = useTheme()
@@ -208,12 +209,16 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, navLinks = [] }) => {
             {/* ── HEADER: BRAND + GLOBAL PORTAL ───────────────────────── */}
             <div className="relative z-10 flex items-center justify-between px-5 sm:px-7 py-4 sm:py-5 border-b border-slate-100 dark:border-white/10 flex-shrink-0 bg-slate-50/60 dark:bg-white/[0.02]">
               <div className="flex items-center gap-3">
-                <Link to="/" onClick={onClose} className="group">
-                  <img
-                    src={logoUrl || "/OnlyTG- 3.png"}
-                    alt="Taraj Global"
-                    className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                <Link to="/" onClick={onClose} className="group flex items-center gap-2.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0">
+                  <TGAnimatedLogo
+                    logoUrl={logoUrl}
+                    alt={logoText || "Taraj Global"}
                   />
+                  {logoText && (
+                    <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white font-display">
+                      {logoText}
+                    </span>
+                  )}
                 </Link>
                 <div className="pl-3 border-l border-slate-200 dark:border-white/10">
                   <span className="text-[10px] font-mono font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase flex items-center gap-1.5">

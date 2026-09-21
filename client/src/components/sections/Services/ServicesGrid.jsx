@@ -179,6 +179,8 @@ const ServicesGrid = () => {
                 <motion.div
                   className="absolute inset-0 backface-hidden"
                   style={{ backfaceVisibility: 'hidden' }}
+                  animate={{ opacity: isCardFlipped ? 0 : 1 }}
+                  transition={{ duration: 0.25 }}
                 >
                   <div className="relative w-full rounded-[28px] sm:rounded-[40px] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.45)] min-h-[380px] sm:min-h-[420px] md:min-h-[460px]">
                     <img
@@ -216,8 +218,11 @@ const ServicesGrid = () => {
                   className="absolute inset-0 backface-hidden"
                   style={{ 
                     backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)'
+                    transform: 'rotateY(180deg)',
+                    pointerEvents: isCardFlipped ? 'auto' : 'none'
                   }}
+                  animate={{ opacity: isCardFlipped ? 1 : 0 }}
+                  transition={{ duration: 0.25 }}
                 >
                   <div className="relative p-5 sm:p-8 md:p-10 lg:p-11 rounded-[28px] sm:rounded-[40px] border-2 border-primary/30 dark:border-primary/50 bg-surface/95 dark:bg-surface/90 backdrop-blur-xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col justify-between min-h-[380px] sm:min-h-[420px] md:min-h-[460px] overflow-hidden">
                     {/* Mobile Flip Back Indicator */}

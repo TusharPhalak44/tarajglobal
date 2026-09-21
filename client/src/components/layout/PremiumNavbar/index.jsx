@@ -25,148 +25,7 @@ import HamburgerButton from './HamburgerButton'
 import FullscreenMenu from './FullscreenMenu'
 import SearchModal from './SearchModal'
 import { SectionLaserDivider } from '@components/animations'
-
-// ── 1. SIGNATURE ANIMATED CIRCLE EMBLEM (KEPT FULL & INTACT) ─────────────────
-const TDesign = () => {
-  return (
-    <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center shrink-0">
-      {/* Outer rotating ring with continuous conic gradient */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-      >
-        <div
-          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full"
-          style={{
-            background: 'conic-gradient(from 0deg, #00A6FF, #FF6D00, #00A6FF)',
-            padding: '2px'
-          }}
-        >
-          <div className="w-full h-full rounded-full bg-white dark:bg-[#070B14] transition-colors" />
-        </div>
-      </motion.div>
-
-      {/* Dashed counter-rotating ring */}
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-      >
-        <div className="w-11 h-11 sm:w-13 sm:h-13 border-2 border-dashed border-[#00A6FF]/50 dark:border-[#00A6FF]/60 rounded-full" />
-      </motion.div>
-
-      {/* Pulsing glow rings (Casual/Ambient Animation) */}
-      {[...Array(2)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          animate={{
-            scale: [1, 1.35, 1],
-            opacity: [0.25, 0, 0.25]
-          }}
-          transition={{
-            duration: 2.8,
-            repeat: Infinity,
-            delay: i * 0.9,
-            ease: 'easeOut'
-          }}
-        >
-          <div
-            className="rounded-full"
-            style={{
-              width: '45px',
-              height: '45px',
-              background: `radial-gradient(circle, rgba(0, 166, 255, ${0.35 - i * 0.1}) 0%, transparent 70%)`
-            }}
-          />
-        </motion.div>
-      ))}
-
-      {/* Orbiting particles */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1.5 h-1.5 rounded-full pointer-events-none shadow-sm"
-          style={{
-            background: i % 2 === 0 ? '#00A6FF' : '#FF6D00',
-            left: '50%',
-            top: '50%',
-            transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateX(30px)`
-          }}
-          animate={{
-            rotate: 360
-          }}
-          transition={{
-            duration: 8 + i * 0.5,
-            repeat: Infinity,
-            ease: 'linear'
-          }}
-        />
-      ))}
-
-      {/* Center circle emblem with spring hover & casual floating */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        whileHover={{
-          scale: 1.15,
-          rotate: [0, -8, 8, 0]
-        }}
-        whileTap={{ scale: 0.92 }}
-        transition={{
-          type: 'spring',
-          stiffness: 280,
-          damping: 18
-        }}
-        className="relative z-10 flex items-center justify-center cursor-pointer"
-      >
-        <motion.img
-          src="/circle.png"
-          alt="Taraj Global Emblem"
-          className="w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-md"
-          animate={{
-            y: [0, -3, 0],
-            scale: [1, 1.03, 1]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-        />
-      </motion.div>
-
-      {/* Sparkle micro-particles on hover */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        whileHover={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-      >
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-[#00A6FF] rounded-full"
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1.2, 0]
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              delay: i * 0.2,
-              ease: 'easeOut'
-            }}
-            style={{
-              left: `${25 + i * 18}%`,
-              top: `${20 + (i % 2) * 35}%`
-            }}
-          />
-        ))}
-      </motion.div>
-    </div>
-  )
-}
+import TGAnimatedLogo from './TGAnimatedLogo'
 
 // ── 2. SERVICES MEGA MENU DATA (PRESERVING 100% CONTENT) ───────────────────────
 const SERVICES_DATA = [
@@ -283,7 +142,8 @@ export const PremiumNavbar = () => {
     logo_url: '/middle.png',
     logo_text: 'Taraj Global',
     logo_alt: 'Taraj Global - B2B Growth & Lead Generation Agency',
-    header_visible: true
+    header_visible: true,
+    show_logo_text: false
   })
   const [headerItems, setHeaderItems] = useState([])
   const [navLinks, setNavLinks] = useState([
@@ -299,10 +159,12 @@ export const PremiumNavbar = () => {
   const fetchNavbarData = useCallback(() => {
     cmsAPI.getLogo()
       .then(res => {
-        if (res.data?.data) {
+        const data = res.data?.data || res.data
+        if (data) {
           setLogoData(prev => ({
             ...prev,
-            ...res.data.data
+            ...data,
+            show_logo_text: data.show_logo_text === true || data.show_logo_text === 1 || data.show_logo_text === '1' || data.show_logo_text === 'true'
           }))
         }
       })
@@ -310,8 +172,9 @@ export const PremiumNavbar = () => {
 
     cmsAPI.getNavbarItems()
       .then(res => {
-        if (res.data?.data && Array.isArray(res.data.data)) {
-          const allItems = res.data.data
+        const raw = res.data?.data || res.data
+        if (Array.isArray(raw)) {
+          const allItems = raw
           const headers = allItems.filter(item => item.section === 'header' && (item.is_active === 1 || item.is_active === true))
           const navs = allItems.filter(item => (item.section === 'navbar' || !item.section) && (item.is_active === 1 || item.is_active === true))
           setHeaderItems(headers)
@@ -422,15 +285,25 @@ export const PremiumNavbar = () => {
 
         <div className="relative max-w-[1600px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
-          {/* ── 1. LEFT: SIGNATURE CIRCLE EMBLEM ─────────────────────────── */}
+          {/* ── 1. LEFT: CMS HEADER LOGO / BRANDING ─────────────────────────── */}
           <div className="flex items-center">
             <Link
               to="/"
-              className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] rounded-2xl group cursor-pointer"
-              aria-label={logoData.logo_alt || "Taraj Global Home"}
+              className="flex items-center gap-2.5 sm:gap-3.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0 group cursor-pointer select-none"
+              aria-label={logoData.logo_alt || logoData.logo_text || "Taraj Global Home"}
             >
-              {/* User's exact circle emblem */}
-              <TDesign />
+              {/* Ultra-premium animated SVG TG Emblem / Logo */}
+              <TGAnimatedLogo
+                logoUrl={logoData.logo_url}
+                alt={logoData.logo_alt || logoData.logo_text || "Taraj Global Logo"}
+              />
+
+              {/* Dynamic CMS Brand Name Text (only if toggled on in CMS or with emblem) */}
+              {logoData.show_logo_text && logoData.logo_text && (
+                <span className="inline-block font-extrabold text-sm sm:text-base md:text-lg tracking-tight text-slate-900 dark:text-white leading-tight font-display group-hover:text-[#00A6FF] transition-colors whitespace-nowrap">
+                  {logoData.logo_text}
+                </span>
+              )}
             </Link>
           </div>
 
@@ -693,6 +566,7 @@ export const PremiumNavbar = () => {
         isOpen={isMenuOpen}
         onClose={closeMenu}
         logoUrl={logoData.logo_url}
+        logoText={logoData.logo_text}
         navLinks={navLinks}
       />
     </>

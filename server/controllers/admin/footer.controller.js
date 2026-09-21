@@ -4,6 +4,37 @@ import FooterLink from '../../models/FooterLink.js'
 import FooterSocialLink from '../../models/FooterSocialLink.js'
 import FooterOffices from '../../models/FooterOffices.js'
 import FooterContactItems from '../../models/FooterContactItems.js'
+import fs from 'fs'
+import path from 'path'
+
+// Helper to save base64 data image to disk in uploads/media and return relative URL
+const saveImageIfBase64 = (imageData) => {
+  if (!imageData || typeof imageData !== 'string') return imageData
+  if (!imageData.startsWith('data:image/')) return imageData
+
+  try {
+    const uploadDir = 'uploads/media'
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true })
+    }
+
+    const matches = imageData.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/)
+    if (!matches || matches.length !== 3) return imageData
+
+    const mimeType = matches[1]
+    const base64Data = matches[2]
+    const ext = mimeType.split('/')[1] || 'png'
+    const cleanExt = ext === 'jpeg' ? 'jpg' : ext.split('+')[0]
+    const filename = `footer-logo-${Date.now()}.${cleanExt}`
+    const filePath = path.join(uploadDir, filename)
+
+    fs.writeFileSync(filePath, Buffer.from(base64Data, 'base64'))
+    return `/uploads/media/${filename}`
+  } catch (err) {
+    console.error('Failed to save base64 image:', err)
+    return imageData
+  }
+}
 
 // ==================== FOOTER SETTINGS CONTROLLERS ====================
 
@@ -29,11 +60,15 @@ export const getFooterSettings = async (req, res) => {
 // @route   PUT /api/admin/footer/settings
 export const updateFooterSettings = async (req, res) => {
   try {
-    const result = await FooterSettings.update(req.body)
+    const data = { ...req.body }
+    if (data.logo_url && data.logo_url.startsWith('data:image/')) {
+      data.logo_url = saveImageIfBase64(data.logo_url)
+    }
+    const result = await FooterSettings.update(data)
     res.json({
       success: true,
       message: 'Footer settings updated successfully',
-      data: req.body
+      data
     })
   } catch (error) {
     console.error('Error updating footer settings:', error)

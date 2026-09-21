@@ -89,12 +89,12 @@ export const adminAPI = {
   deleteSEO: (entityType, entityId) => api.delete(`/admin/seo/${entityType}/${entityId}`),
 
   // CMS - Navbar
-  getNavbarItems: () => api.get('/admin/cms/navbar'),
+  getNavbarItems: () => api.get('/admin/cms/navbar', { params: { _t: Date.now() } }),
   createNavbarItem: (data) => api.post('/admin/cms/navbar', data),
   updateNavbarItem: (id, data) => api.put(`/admin/cms/navbar/${id}`, data),
   deleteNavbarItem: (id) => api.delete(`/admin/cms/navbar/${id}`),
   reorderNavbarItems: (data) => api.put('/admin/cms/navbar/reorder', data),
-  getLogo: () => api.get('/admin/cms/logo'),
+  getLogo: () => api.get('/admin/cms/logo', { params: { _t: Date.now() } }),
   updateLogo: (data) => api.put('/admin/cms/logo', data),
 
   // CMS - Footer Links
@@ -147,4 +147,11 @@ export const adminAPI = {
   updateClient: (id, data) => api.put(`/admin/cms/clients/${id}`, data),
   deleteClient: (id) => api.delete(`/admin/cms/clients/${id}`),
   reorderClients: (data) => api.put('/admin/cms/clients/reorder', data),
+  uploadClientLogo: (formData) => api.post('/admin/cms/clients/upload-logo', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+
+  // CMS - Client Section Settings
+  getClientSectionSettings: () => api.get('/admin/cms/clients-section'),
+  updateClientSectionSettings: (data) => api.put('/admin/cms/clients-section', data),
 }

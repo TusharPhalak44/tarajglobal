@@ -1,24 +1,63 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { AnimatedSectionBackground } from '@components/animations'
 import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { cmsAPI } from '@api/cms.api'
 import './OurClients.css'
 
-// ── 6 PARTNER LOGOS ─────────────────────────────────────────────────────────
-const PARTNER_LOGOS = [
-  { id: 'mitel', name: 'Mitel', src: '/mitel.png', alt: 'Mitel' },
-  { id: 'vonage', name: 'Vonage', src: '/Vonage.png', alt: 'Vonage' },
-  { id: 'ringcentral', name: 'RingCentral', src: '/ringcentral.png', alt: 'RingCentral' },
-  { id: 'avaya', name: 'AVAYA', src: '/Avaya.webp', alt: 'AVAYA' },
-  { id: 'microsoft', name: 'Microsoft', src: '/micro.png', alt: 'Microsoft' },
-  { id: 'oracle', name: 'Oracle', src: '/ora.png', alt: 'Oracle' },
+// ── HARDCODED FALLBACK (shown while loading) ─────────────────────────────────
+const FALLBACK_LOGOS = [
+  { id: 'mitel', client_name: 'Mitel', logo_path: '/mitel.png' },
+  { id: 'vonage', client_name: 'Vonage', logo_path: '/Vonage.png' },
+  { id: 'ringcentral', client_name: 'RingCentral', logo_path: '/ringcentral.png' },
+  { id: 'avaya', client_name: 'AVAYA', logo_path: '/Avaya.webp' },
+  { id: 'microsoft', client_name: 'Microsoft', logo_path: '/micro.png' },
+  { id: 'oracle', client_name: 'Oracle', logo_path: '/ora.png' },
 ]
 
-// ── REPEATED ARRAY FOR UNBROKEN SEAMLESS INFINITE LOOP ───────────────────────
-const MARQUEE_ITEMS = [...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS]
+const FALLBACK_SETTINGS = {
+  eyebrow: 'GLOBAL PARTNERSHIPS',
+  title_white: 'TRUSTED BY',
+  title_gradient: 'LEADING B2B BRANDS',
+  subtitle: 'Building demand with the technology ecosystem trusted by modern enterprises.',
+  is_visible: true,
+}
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''
+const resolveImg = (path) => {
+  if (!path) return ''
+  if (path.startsWith('http') || path.startsWith('//')) return path
+  if (path.startsWith('/uploads/')) return `${BASE_URL}${path}`
+  return path
+}
 
 export const OurClients = () => {
   const prefersReducedMotion = useReducedMotion()
+  const [logos, setLogos] = useState(FALLBACK_LOGOS)
+  const [settings, setSettings] = useState(FALLBACK_SETTINGS)
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const [clientsRes, settingsRes] = await Promise.all([
+          cmsAPI.getClients(),
+          cmsAPI.getClientSectionSettings(),
+        ])
+        const rawClients = clientsRes.data?.data || clientsRes.data || []
+        if (Array.isArray(rawClients) && rawClients.length > 0) setLogos(rawClients)
+        if (settingsRes.data?.data) setSettings(settingsRes.data.data)
+      } catch (err) {
+        // silently fall back to hardcoded defaults
+        console.warn('OurClients: CMS fetch failed, using defaults', err)
+      }
+    }
+    load()
+  }, [])
+
+  // If admin hid the section, render nothing
+  if (!settings.is_visible) return null
+
+  const MARQUEE_ITEMS = [...logos, ...logos, ...logos, ...logos]
 
   return (
     <section
@@ -57,7 +96,7 @@ export const OurClients = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
             </span>
             <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.22em] text-[#00A6FF] uppercase">
-              GLOBAL PARTNERSHIPS
+              {settings.eyebrow}
             </span>
           </motion.div>
 
@@ -71,23 +110,25 @@ export const OurClients = () => {
             className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.12] mb-2.5 font-heading"
           >
             <span className="text-slate-900 dark:text-white mr-2 sm:mr-3">
-              TRUSTED BY
+              {settings.title_white}
             </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00]">
-              LEADING B2B BRANDS
+              {settings.title_gradient}
             </span>
           </motion.h2>
 
           {/* Supporting Text */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.5, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xs sm:text-sm lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl font-normal"
-          >
-            Building demand with the technology ecosystem trusted by modern enterprises.
-          </motion.p>
+          {settings.subtitle && (
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.5, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+              className="text-xs sm:text-sm lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl font-normal"
+            >
+              {settings.subtitle}
+            </motion.p>
+          )}
         </div>
 
         {/* ── EXPANSIVE WIDE CARD WITH SINGLE CONTINUOUS MARQUEE LINE ───────── */}
@@ -114,8 +155,8 @@ export const OurClients = () => {
                 {MARQUEE_ITEMS.map((logo, idx) => (
                   <div key={`single-${logo.id}-${idx}`} className="compact-logo-pill group/pill">
                     <img
-                      src={logo.src}
-                      alt={logo.alt}
+                      src={resolveImg(logo.logo_path || logo.src)}
+                      alt={logo.client_name || logo.alt || logo.name}
                       className="compact-logo-img"
                       loading="eager"
                       decoding="async"
@@ -127,8 +168,8 @@ export const OurClients = () => {
                 {MARQUEE_ITEMS.map((logo, idx) => (
                   <div key={`single-clone-${logo.id}-${idx}`} className="compact-logo-pill group/pill">
                     <img
-                      src={logo.src}
-                      alt={logo.alt}
+                      src={resolveImg(logo.logo_path || logo.src)}
+                      alt={logo.client_name || logo.alt || logo.name}
                       className="compact-logo-img"
                       loading="eager"
                       decoding="async"

@@ -39,4 +39,9 @@ router.get('/footer-social-links', cmsController.getActiveFooterSocialLinks)
 // @access  Public
 router.get('/clients', cmsController.getActiveClients)
 
+// @route   GET /api/cms/clients-section
+// @desc    Get client section settings
+// @access  Public
+router.get('/clients-section', cmsController.getClientSectionSettings)
+
 export default router

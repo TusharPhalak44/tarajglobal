@@ -41,6 +41,7 @@ const saveImageIfBase64 = (imageData) => {
 // @route   GET /api/admin/cms/navbar
 export const getAllNavbarItems = async (req, res) => {
   try {
+    res.set('Cache-Control', 'no-cache, no-store, must-revalidate')
     const items = await NavbarItem.getAll()
     res.json({
       success: true,
@@ -243,13 +244,19 @@ export const getLogo = async (req, res) => {
     )
     const headerVisible = headerRows.length > 0 ? headerRows[0].value === '1' || headerRows[0].value === 'true' : true
 
+    const [showTextRows] = await db.execute(
+      "SELECT value FROM settings WHERE key_name = 'cms_show_logo_text'"
+    )
+    const showLogoText = showTextRows.length > 0 ? (showTextRows[0].value === '1' || showTextRows[0].value === 'true') : false
+
     res.json({
       success: true,
       data: {
         logo_url: logoUrl,
         logo_text: logoText,
         logo_alt: logoAlt,
-        header_visible: headerVisible
+        header_visible: headerVisible,
+        show_logo_text: showLogoText
       }
     })
   } catch (error) {
@@ -265,7 +272,7 @@ export const getLogo = async (req, res) => {
 // @route   PUT /api/admin/cms/logo
 export const updateLogo = async (req, res) => {
   try {
-    let { logo_url, logo_text, logo_alt, header_visible } = req.body
+    let { logo_url, logo_text, logo_alt, header_visible, show_logo_text } = req.body
 
     // Save image if base64 data URL
     if (logo_url && logo_url.startsWith('data:image/')) {
@@ -341,14 +348,45 @@ export const updateLogo = async (req, res) => {
       }
     }
 
+    if (show_logo_text !== undefined) {
+      const showVal = show_logo_text ? '1' : '0'
+      const [existingShow] = await db.execute(
+        "SELECT id FROM settings WHERE key_name = 'cms_show_logo_text'"
+      )
+      if (existingShow.length > 0) {
+        await db.execute(
+          "UPDATE settings SET value = ? WHERE key_name = 'cms_show_logo_text'",
+          [showVal]
+        )
+      } else {
+        await db.execute(
+          "INSERT INTO settings (key_name, value, description) VALUES ('cms_show_logo_text', ?, 'Display brand text beside header logo image')",
+          [showVal]
+        )
+      }
+    }
+
+    // Fetch latest complete settings to return in response
+    const [urlRows] = await db.execute("SELECT value FROM settings WHERE key_name = 'cms_logo_url'")
+    const finalLogoUrl = urlRows.length > 0 ? urlRows[0].value : '/middle.png'
+    const [txtRows] = await db.execute("SELECT value FROM settings WHERE key_name = 'cms_logo_text'")
+    const finalLogoText = txtRows.length > 0 ? txtRows[0].value : 'Taraj Global'
+    const [altRows] = await db.execute("SELECT value FROM settings WHERE key_name = 'cms_logo_alt'")
+    const finalLogoAlt = altRows.length > 0 ? altRows[0].value : 'Taraj Global - B2B Growth & Lead Generation Agency'
+    const [hdrRows] = await db.execute("SELECT value FROM settings WHERE key_name = 'cms_header_visible'")
+    const finalHeaderVisible = hdrRows.length > 0 ? hdrRows[0].value === '1' || hdrRows[0].value === 'true' : true
+    const [shwRows] = await db.execute("SELECT value FROM settings WHERE key_name = 'cms_show_logo_text'")
+    const finalShowLogoText = shwRows.length > 0 ? shwRows[0].value === '1' || shwRows[0].value === 'true' : false
+
     res.json({
       success: true,
       message: 'Header and Logo updated successfully',
       data: {
-        logo_url,
-        logo_text,
-        logo_alt,
-        header_visible: header_visible !== undefined ? !!header_visible : true
+        logo_url: finalLogoUrl,
+        logo_text: finalLogoText,
+        logo_alt: finalLogoAlt,
+        header_visible: finalHeaderVisible,
+        show_logo_text: finalShowLogoText
       }
     })
   } catch (error) {
@@ -941,5 +979,67 @@ export const reorderClients = async (req, res) => {
       success: false,
       message: 'Failed to reorder clients: ' + error.message
     })
+  }
+}
+
+// ==================== CLIENT SECTION SETTINGS ====================
+
+// @desc    Get client section settings (public or admin)
+// @route   GET /api/cms/clients-section  |  GET /api/admin/cms/clients-section
+export const getClientSectionSettings = async (req, res) => {
+  try {
+    const keys = [
+      'cms_clients_eyebrow',
+      'cms_clients_title_white',
+      'cms_clients_title_gradient',
+      'cms_clients_subtitle',
+      'cms_clients_visible',
+    ]
+    const [rows] = await db.execute(
+      `SELECT key_name, value FROM settings WHERE key_name IN (${keys.map(() => '?').join(',')})`,
+      keys
+    )
+    const map = Object.fromEntries(rows.map(r => [r.key_name, r.value]))
+    res.json({
+      success: true,
+      data: {
+        eyebrow: map['cms_clients_eyebrow'] ?? 'GLOBAL PARTNERSHIPS',
+        title_white: map['cms_clients_title_white'] ?? 'TRUSTED BY',
+        title_gradient: map['cms_clients_title_gradient'] ?? 'LEADING B2B BRANDS',
+        subtitle: map['cms_clients_subtitle'] ?? 'Building demand with the technology ecosystem trusted by modern enterprises.',
+        is_visible: map['cms_clients_visible'] !== '0',
+      }
+    })
+  } catch (error) {
+    console.error('Error fetching client section settings:', error)
+    res.status(500).json({ success: false, message: 'Failed to fetch client section settings' })
+  }
+}
+
+// @desc    Update client section settings
+// @route   PUT /api/admin/cms/clients-section
+export const updateClientSectionSettings = async (req, res) => {
+  try {
+    const { eyebrow, title_white, title_gradient, subtitle, is_visible } = req.body
+    const updates = [
+      ['cms_clients_eyebrow', eyebrow],
+      ['cms_clients_title_white', title_white],
+      ['cms_clients_title_gradient', title_gradient],
+      ['cms_clients_subtitle', subtitle],
+      ['cms_clients_visible', is_visible !== undefined ? (is_visible ? '1' : '0') : null],
+    ]
+    for (const [key, value] of updates) {
+      if (value !== undefined && value !== null) {
+        await db.execute(
+          `INSERT INTO settings (key_name, value) VALUES (?, ?)
+           ON DUPLICATE KEY UPDATE value = VALUES(value), updated_at = CURRENT_TIMESTAMP`,
+          [key, String(value)]
+        )
+      }
+    }
+    res.json({ success: true, message: 'Client section settings updated successfully' })
+  } catch (error) {
+    console.error('Error updating client section settings:', error)
+    res.status(500).json({ success: false, message: 'Failed to update client section settings' })
   }
 }
