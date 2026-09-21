@@ -95,3 +95,4 @@ See the `docs/` folder for detailed documentation.
 ## License
 
 Proprietary - Taraj Global
+"# tarajglobal" 
