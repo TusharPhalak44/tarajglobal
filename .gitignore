@@ -57,3 +57,5 @@ server/uploads/*
 # Temporary files
 *.tmp
 *.temp
+video.mp4 
+client/public/video.mp4 
