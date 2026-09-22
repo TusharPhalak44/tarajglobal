@@ -19,4 +19,7 @@ export const publicAPI = {
   
   // Contact
   bookMeeting: (data) => api.post('/contact/meeting', data),
+
+  // Career Gallery
+  getCareerGallery: () => api.get('/career-gallery'),
 }

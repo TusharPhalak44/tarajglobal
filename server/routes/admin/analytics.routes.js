@@ -62,8 +62,8 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
         SELECT
           (SELECT COUNT(*) FROM authors) as total_authors,
           (SELECT COUNT(*) FROM categories) as total_categories,
-          (SELECT COUNT(*) FROM tags WHERE status = 'active') as total_tags,
-          (SELECT COUNT(*) FROM media WHERE status = 'active') as total_media
+          (SELECT COUNT(*) FROM tags) as total_tags,
+          (SELECT COUNT(*) FROM media) as total_media
       `)
       if (result[0]) contentStats = result[0]
     } catch (e) { 
@@ -72,7 +72,7 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
       try {
         const [authors] = await db.execute('SELECT COUNT(*) as count FROM authors')
         const [categories] = await db.execute('SELECT COUNT(*) as count FROM categories')
-        const [media] = await db.execute('SELECT COUNT(*) as count FROM media WHERE status = ?', ['active'])
+        const [media] = await db.execute('SELECT COUNT(*) as count FROM media')
         contentStats = {
           total_authors: authors[0]?.count || 0,
           total_categories: categories[0]?.count || 0,

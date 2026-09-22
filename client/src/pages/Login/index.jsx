@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle, Loader2 } from 'lucide-react'
@@ -10,6 +10,12 @@ function Login() {
   const navigate = useNavigate()
   const { login } = useAuth()
   const { theme } = useTheme()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [])
 
   const [form, setForm] = useState({ email: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
@@ -65,7 +71,7 @@ function Login() {
   return (
     <>
       <SEO title="Admin Login | Taraj Global" noIndex={true} />
-      <div className="w-full max-w-md mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24">
+      <div className="w-full max-w-md mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24 min-h-[calc(100vh-280px)] flex flex-col justify-center">
       {/* Logo */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}

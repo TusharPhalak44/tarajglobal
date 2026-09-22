@@ -5,7 +5,7 @@ class FooterSocialLink {
     const { platform, icon, url, is_visible, sort_order } = linkData
     const [result] = await db.execute(
       'INSERT INTO footer_social_links (platform, icon, url, is_visible, sort_order) VALUES (?, ?, ?, ?, ?)',
-      [platform, icon, url, is_visible !== false ? 1 : 0, sort_order || 0]
+      [platform, icon, url, is_visible == 0 || is_visible === 'false' ? 0 : 1, sort_order || 0]
     )
     return result.insertId
   }
@@ -32,7 +32,7 @@ class FooterSocialLink {
     const { platform, icon, url, is_visible, sort_order } = linkData
     const [result] = await db.execute(
       'UPDATE footer_social_links SET platform = ?, icon = ?, url = ?, is_visible = ?, sort_order = ? WHERE id = ?',
-      [platform, icon, url, is_visible !== false ? 1 : 0, sort_order !== undefined ? sort_order : 0, id]
+      [platform, icon, url, is_visible == 0 || is_visible === 'false' ? 0 : 1, sort_order !== undefined ? sort_order : 0, id]
     )
     return result.affectedRows > 0
   }

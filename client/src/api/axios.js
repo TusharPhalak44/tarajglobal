@@ -11,8 +11,8 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
-    // Only add token for admin routes, not for public API calls
-    if (token && config.url.includes('/admin')) {
+    // Add token for admin routes and authenticated endpoints
+    if (token && (config.url.includes('/admin') || config.url.includes('/career-gallery') || config.url.includes('/upload'))) {
       config.headers.Authorization = `Bearer ${token}`
     }
     return config

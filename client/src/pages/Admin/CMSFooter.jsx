@@ -22,8 +22,8 @@ const CMSFooter = () => {
       setLoading(true)
       console.log('Fetching footer data...')
       const [linksRes, socialRes] = await Promise.all([
-        adminAPI.getFooterLinks(),
-        adminAPI.getFooterSocialLinks()
+        adminAPI.getCMSFooterLinks(),
+        adminAPI.getCMSFooterSocialLinks()
       ])
       console.log('Footer data received:', { links: linksRes.data, social: socialRes.data })
       
@@ -72,10 +72,10 @@ const CMSFooter = () => {
       }
 
       if (editingLink.id) {
-        await adminAPI.updateFooterLink(editingLink.id, editingLink)
+        await adminAPI.updateCMSFooterLink(editingLink.id, editingLink)
         showMessage('success', 'Footer link updated successfully')
       } else {
-        await adminAPI.createFooterLink(editingLink)
+        await adminAPI.createCMSFooterLink(editingLink)
         showMessage('success', 'Footer link created successfully')
       }
       setShowLinkModal(false)
@@ -94,7 +94,7 @@ const CMSFooter = () => {
     if (!window.confirm('Are you sure you want to delete this footer link?')) return
     
     try {
-      await adminAPI.deleteFooterLink(id)
+      await adminAPI.deleteCMSFooterLink(id)
       showMessage('success', 'Footer link deleted successfully')
       fetchFooterData()
     } catch (error) {
@@ -125,10 +125,10 @@ const CMSFooter = () => {
       }
 
       if (editingSocial.id) {
-        await adminAPI.updateFooterSocialLink(editingSocial.id, editingSocial)
+        await adminAPI.updateCMSFooterSocialLink(editingSocial.id, editingSocial)
         showMessage('success', 'Social link updated successfully')
       } else {
-        await adminAPI.createFooterSocialLink(editingSocial)
+        await adminAPI.createCMSFooterSocialLink(editingSocial)
         showMessage('success', 'Social link created successfully')
       }
       setShowSocialModal(false)
@@ -147,7 +147,7 @@ const CMSFooter = () => {
     if (!window.confirm('Are you sure you want to delete this social link?')) return
     
     try {
-      await adminAPI.deleteFooterSocialLink(id)
+      await adminAPI.deleteCMSFooterSocialLink(id)
       showMessage('success', 'Social link deleted successfully')
       fetchFooterData()
     } catch (error) {

@@ -54,6 +54,7 @@ const AdminLayout = () => {
     { icon: Users, label: 'Users', path: '/admin/users' },
     { icon: LayoutTemplate, label: 'Header & Navbar', path: '/admin/cms/navbar' },
     { icon: Footprints, label: 'Footer Management', path: '/admin/footer' },
+    { icon: Image, label: 'Career Gallery', path: '/admin/career-gallery' },
     { icon: UsersIcon, label: 'Our Clients', path: '/admin/cms/clients' },
     { icon: Globe, label: 'SEO', path: '/admin/seo' },
     { icon: Building, label: 'Leads', path: '/admin/leads' },

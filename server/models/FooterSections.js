@@ -20,7 +20,7 @@ class FooterSections {
     const { title, section_type, is_visible, sort_order } = sectionData
     const [result] = await db.execute(
       'INSERT INTO footer_sections (title, section_type, is_visible, sort_order) VALUES (?, ?, ?, ?)',
-      [title, section_type || 'links', is_visible !== false ? 1 : 0, sort_order || 0]
+      [title, section_type || 'links', is_visible == 0 || is_visible === 'false' ? 0 : 1, sort_order || 0]
     )
     return result.insertId
   }
@@ -29,7 +29,7 @@ class FooterSections {
     const { title, section_type, is_visible, sort_order } = sectionData
     const [result] = await db.execute(
       'UPDATE footer_sections SET title = ?, section_type = ?, is_visible = ?, sort_order = ? WHERE id = ?',
-      [title, section_type, is_visible !== false ? 1 : 0, sort_order || 0, id]
+      [title, section_type, is_visible == 0 || is_visible === 'false' ? 0 : 1, sort_order || 0, id]
     )
     return result.affectedRows > 0
   }

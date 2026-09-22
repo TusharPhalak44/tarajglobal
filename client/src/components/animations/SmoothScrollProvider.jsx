@@ -128,17 +128,25 @@ export const SmoothScrollProvider = ({ children }) => {
         refreshScrollTrigger()
       }, 150)
       return () => clearTimeout(timer)
-    } else {
-      // Standard page navigation: reset scroll to top immediately
+      // Standard page navigation: reset scroll to top immediately across window & Lenis
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+
       if (lenisRef.current) {
         lenisRef.current.scrollTo(0, { immediate: true })
-      } else {
-        window.scrollTo(0, 0)
+        lenisRef.current.resize()
       }
 
-      // Allow DOM & Framer Motion transitions to settle, then refresh ScrollTrigger
-      const t1 = setTimeout(() => refreshScrollTrigger(), 100)
-      const t2 = setTimeout(() => refreshScrollTrigger(), 450)
+      // Allow DOM & Framer Motion transitions to settle, then refresh ScrollTrigger & Lenis
+      const t1 = setTimeout(() => {
+        if (lenisRef.current) lenisRef.current.resize()
+        refreshScrollTrigger()
+      }, 100)
+      const t2 = setTimeout(() => {
+        if (lenisRef.current) lenisRef.current.resize()
+        refreshScrollTrigger()
+      }, 350)
 
       return () => {
         clearTimeout(t1)

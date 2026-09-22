@@ -98,18 +98,18 @@ export const adminAPI = {
   updateLogo: (data) => api.put('/admin/cms/logo', data),
 
   // CMS - Footer Links
-  getFooterLinks: () => api.get('/admin/cms/footer-links'),
-  createFooterLink: (data) => api.post('/admin/cms/footer-links', data),
-  updateFooterLink: (id, data) => api.put(`/admin/cms/footer-links/${id}`, data),
-  deleteFooterLink: (id) => api.delete(`/admin/cms/footer-links/${id}`),
-  reorderFooterLinks: (data) => api.put('/admin/cms/footer-links/reorder', data),
+  getCMSFooterLinks: () => api.get('/admin/cms/footer-links'),
+  createCMSFooterLink: (data) => api.post('/admin/cms/footer-links', data),
+  updateCMSFooterLink: (id, data) => api.put(`/admin/cms/footer-links/${id}`, data),
+  deleteCMSFooterLink: (id) => api.delete(`/admin/cms/footer-links/${id}`),
+  reorderCMSFooterLinks: (data) => api.put('/admin/cms/footer-links/reorder', data),
 
   // CMS - Footer Social Links
-  getFooterSocialLinks: () => api.get('/admin/cms/footer-social-links'),
-  createFooterSocialLink: (data) => api.post('/admin/cms/footer-social-links', data),
-  updateFooterSocialLink: (id, data) => api.put(`/admin/cms/footer-social-links/${id}`, data),
-  deleteFooterSocialLink: (id) => api.delete(`/admin/cms/footer-social-links/${id}`),
-  reorderFooterSocialLinks: (data) => api.put('/admin/cms/footer-social-links/reorder', data),
+  getCMSFooterSocialLinks: () => api.get('/admin/cms/footer-social-links'),
+  createCMSFooterSocialLink: (data) => api.post('/admin/cms/footer-social-links', data),
+  updateCMSFooterSocialLink: (id, data) => api.put(`/admin/cms/footer-social-links/${id}`, data),
+  deleteCMSFooterSocialLink: (id) => api.delete(`/admin/cms/footer-social-links/${id}`),
+  reorderCMSFooterSocialLinks: (data) => api.put('/admin/cms/footer-social-links/reorder', data),
 
   // ==================== FOOTER MANAGEMENT ====================
   getFooterSettings: () => api.get('/admin/footer/settings'),

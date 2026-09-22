@@ -4,7 +4,7 @@ class NavbarItem {
   static async create(itemData) {
     const [result] = await db.execute(
       'INSERT INTO navbar_items (section, label, url, parent_id, display_order, is_active) VALUES (?, ?, ?, ?, ?, ?)',
-      [itemData.section || 'navbar', itemData.label, itemData.url, itemData.parent_id || null, itemData.display_order || 0, itemData.is_active !== false ? 1 : 0]
+      [itemData.section || 'navbar', itemData.label, itemData.url, itemData.parent_id || null, itemData.display_order || 0, itemData.is_active == 0 || itemData.is_active === 'false' ? 0 : 1]
     )
     return result.insertId
   }

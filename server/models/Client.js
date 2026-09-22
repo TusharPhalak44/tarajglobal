@@ -4,7 +4,7 @@ class Client {
   static async create(clientData) {
     const [result] = await db.execute(
       'INSERT INTO clients (client_name, logo_path, website_url, display_order, is_active) VALUES (?, ?, ?, ?, ?)',
-      [clientData.client_name, clientData.logo_path, clientData.website_url || null, clientData.display_order || 0, clientData.is_active !== false ? 1 : 0]
+      [clientData.client_name, clientData.logo_path, clientData.website_url || null, clientData.display_order || 0, clientData.is_active == 0 || clientData.is_active === 'false' ? 0 : 1]
     )
     return result.insertId
   }
@@ -30,7 +30,7 @@ class Client {
   static async update(id, clientData) {
     const [result] = await db.execute(
       'UPDATE clients SET client_name = ?, logo_path = ?, website_url = ?, display_order = ?, is_active = ? WHERE id = ?',
-      [clientData.client_name, clientData.logo_path, clientData.website_url || null, clientData.display_order || 0, clientData.is_active !== false ? 1 : 0, id]
+      [clientData.client_name, clientData.logo_path, clientData.website_url || null, clientData.display_order || 0, clientData.is_active == 0 || clientData.is_active === 'false' ? 0 : 1, id]
     )
     return result.affectedRows > 0
   }

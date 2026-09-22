@@ -82,7 +82,7 @@ router.get('/links/section/:sectionId', footerController.getFooterLinksBySection
 router.post('/links', [
   body('section_id').isInt().withMessage('Section ID must be an integer'),
   body('label').trim().notEmpty().withMessage('Label is required'),
-  body('url').trim().notEmpty().withMessage('URL is required'),
+  body('url').optional().trim(),
   body('link_type').optional().isIn(['internal', 'external', 'custom_action']),
   body('target').optional().isIn(['_self', '_blank']),
   body('custom_action').optional().trim(),
@@ -96,7 +96,7 @@ router.post('/links', [
 router.put('/links/:id', [
   body('section_id').optional().isInt(),
   body('label').optional().trim().notEmpty(),
-  body('url').optional().trim().notEmpty(),
+  body('url').optional().trim(),
   body('link_type').optional().isIn(['internal', 'external', 'custom_action']),
   body('target').optional().isIn(['_self', '_blank']),
   body('custom_action').optional().trim(),

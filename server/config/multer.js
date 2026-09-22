@@ -2,6 +2,8 @@ import multer from 'multer'
 import path from 'path'
 import 'dotenv/config'
 
+import fs from 'fs'
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let uploadPath = 'uploads/images'
@@ -12,6 +14,11 @@ const storage = multer.diskStorage({
       uploadPath = 'uploads/documents'
     } else {
       uploadPath = 'uploads/temp'
+    }
+    
+    // Ensure the directory exists
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true })
     }
     
     cb(null, uploadPath)

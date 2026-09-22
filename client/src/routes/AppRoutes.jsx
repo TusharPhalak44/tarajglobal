@@ -57,6 +57,7 @@ import CMSNavbar from '@pages/Admin/CMSNavbar'
 import CMSFooter from '@pages/Admin/CMSFooter'
 import CMSOurClients from '@pages/Admin/CMSOurClients'
 import FooterManagement from '@pages/Admin/FooterManagement'
+import CareerGallery from '@pages/Admin/CareerGallery/index.jsx'
 
 function AppRoutes() {
   return (
@@ -95,11 +96,7 @@ function AppRoutes() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="cookies" element={<CookiePolicy />} />
-      </Route>
-
-      {/* Auth Routes */}
-      <Route path="/login" element={<MainLayout />}>
-        <Route index element={<Login />} />
+        <Route path="login" element={<Login />} />
       </Route>
 
       {/* Admin Routes */}
@@ -127,6 +124,7 @@ function AppRoutes() {
         <Route path="cms/navbar" element={<CMSNavbar />} />
         <Route path="cms/footer" element={<CMSFooter />} />
         <Route path="cms/clients" element={<CMSOurClients />} />
+        <Route path="career-gallery" element={<CareerGallery />} />
         <Route path="footer" element={<FooterManagement />} />
       </Route>
 

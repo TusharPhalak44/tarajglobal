@@ -21,8 +21,8 @@ class FooterSettings {
           company_description || null,
           short_description || null,
           logo_url || null,
-          is_logo_visible !== false ? 1 : 0,
-          is_description_visible !== false ? 1 : 0,
+          is_logo_visible == 0 || is_logo_visible === 'false' ? 0 : 1,
+          is_description_visible == 0 || is_description_visible === 'false' ? 0 : 1,
           copyright_text || 'Copyright © {year} Taraj Global. All Rights Reserved.',
           existing[0].id
         ]
@@ -37,8 +37,8 @@ class FooterSettings {
           company_description || null,
           short_description || null,
           logo_url || null,
-          is_logo_visible !== false ? 1 : 0,
-          is_description_visible !== false ? 1 : 0,
+          is_logo_visible == 0 || is_logo_visible === 'false' ? 0 : 1,
+          is_description_visible == 0 || is_description_visible === 'false' ? 0 : 1,
           copyright_text || 'Copyright © {year} Taraj Global. All Rights Reserved.'
         ]
       )

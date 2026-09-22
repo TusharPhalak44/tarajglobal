@@ -12,7 +12,7 @@ class FooterLink {
         link_type || 'internal',
         target || '_self',
         custom_action || null,
-        is_visible !== false ? 1 : 0,
+        is_visible == 0 || is_visible === 'false' ? 0 : 1,
         sort_order || 0
       ]
     )
@@ -56,7 +56,7 @@ class FooterLink {
         link_type || 'internal',
         target || '_self',
         custom_action || null,
-        is_visible !== false ? 1 : 0,
+        is_visible == 0 || is_visible === 'false' ? 0 : 1,
         sort_order !== undefined ? sort_order : 0,
         id
       ]

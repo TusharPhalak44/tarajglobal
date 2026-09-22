@@ -38,7 +38,6 @@ import {
   MessageSquare,
   ArrowUpRight
 } from 'lucide-react'
-import { ALBUMS_DATA } from './data/albumsData'
 import { AlbumModal } from './components/AlbumModal'
 import ChatBot from '@components/chatbot/ChatBot'
 import SEO from '@components/common/SEO'
@@ -1082,7 +1081,20 @@ function Careers() {
   }
 
   // Culture Gallery Albums (20-25 photos each: RnR, Birthday, Trip, Office Life, Festivals, Summits)
-  const galleryPhotos = ALBUMS_DATA
+  const [galleryPhotos, setGalleryPhotos] = useState([])
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const response = await publicAPI.getCareerGallery()
+        const backendGallery = Array.isArray(response?.data?.data) ? response.data.data : []
+        setGalleryPhotos(backendGallery)
+      } catch (err) {
+        console.warn('Failed to fetch gallery events:', err)
+      }
+    }
+    fetchGallery()
+  }, [])
 
   const filteredPhotos = galleryPhotos
 

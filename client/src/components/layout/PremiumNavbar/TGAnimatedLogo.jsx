@@ -181,14 +181,7 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
             <stop offset="100%" stopColor="#0066FF" />
           </linearGradient>
 
-          {/* Diagonal Glass Sheen Mask for TG Letters */}
-          <linearGradient id="sheenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
-            <stop offset="45%" stopColor="#FFFFFF" stopOpacity="0.05" />
-            <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.85" />
-            <stop offset="55%" stopColor="#FFFFFF" stopOpacity="0.05" />
-            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-          </linearGradient>
+
         </defs>
 
         {/* ── 3. BLUE HALF-CIRCLE ARC: SHOWS 1ST (ONE BY ONE) & STAYS VISIBLE ── */}
@@ -296,6 +289,15 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
           id="tg-monogram"
           style={{ originX: '430px', originY: '420px' }}
           filter="url(#tgMonogramGlow)"
+          animate={{
+            y: [0, -2, 0]
+          }}
+          transition={{
+            duration: 3.6,
+
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
         >
           {/* Orange "T" with Metallic Gradient */}
           {PATHS.tLetter.map((p, i) => (
@@ -313,38 +315,6 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
             fill="url(#gGradient)"
             fillRule="evenodd"
           />
-
-          {/* Subtle Continuous Breathing Float on the combined monogram */}
-          <motion.g
-            animate={{
-              y: [0, -2, 0]
-            }}
-            transition={{
-              duration: 3.6,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          >
-            {/* Metallic Glass Sheen Wave (sweeps across T and G continuously every 3.8s) */}
-            <motion.rect
-              x="0"
-              y="200"
-              width="280"
-              height="400"
-              fill="url(#sheenGradient)"
-              transform="rotate(-25 450 400)"
-              animate={{
-                x: [-300, 950]
-              }}
-              transition={{
-                duration: 2.0,
-                repeat: Infinity,
-                repeatDelay: 3.8,
-                ease: [0.4, 0, 0.2, 1]
-              }}
-              className="pointer-events-none opacity-85"
-            />
-          </motion.g>
         </motion.g>
       </svg>
     </motion.div>
