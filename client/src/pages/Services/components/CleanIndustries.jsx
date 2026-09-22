@@ -84,7 +84,7 @@ export default function CleanIndustries() {
             return (
               <Link
                 key={industry.name}
-                to="/industries"
+                to="/services"
                 onMouseEnter={() => setHoveredIdx(index)}
                 onMouseLeave={() => setHoveredIdx(null)}
                 className="group relative flex items-center justify-between p-5 sm:p-6 rounded-xl border transition-all duration-200"

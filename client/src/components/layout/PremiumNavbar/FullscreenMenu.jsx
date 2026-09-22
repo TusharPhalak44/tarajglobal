@@ -29,10 +29,9 @@ const menuItems = [
   { index: '01', name: 'Home', path: '/', icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
   { index: '02', name: 'About Us', path: '/about', icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
   { index: '03', name: 'Services', path: '/services', icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
-  { index: '04', name: 'Industries', path: '/industries', icon: Layers, desc: 'Sector-specific demand generation', color: '#10B981' },
-  { index: '05', name: 'Careers', path: '/careers', icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
-  { index: '06', name: 'Blogs', path: '/blog', icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
-  { index: '07', name: 'Contact Us', path: '/contact', icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },
+  { index: '04', name: 'Careers', path: '/careers', icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
+  { index: '05', name: 'Blogs', path: '/blog', icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
+  { index: '06', name: 'Contact Us', path: '/contact', icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },
 ]
 
 const SERVICES_SUBGROUPS = [
@@ -139,7 +138,6 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
     '/': { icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
     '/about': { icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
     '/services': { icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
-    '/industries': { icon: Layers, desc: 'Sector-specific demand generation', color: '#10B981' },
     '/careers': { icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
     '/blog': { icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
     '/contact': { icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },

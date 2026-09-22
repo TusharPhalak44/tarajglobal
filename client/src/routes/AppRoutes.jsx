@@ -9,7 +9,6 @@ import Home from '@pages/Home'
 import About from '@pages/About'
 import Services from '@pages/Services'
 import ServiceDetails from '@pages/ServiceDetails'
-import Industries from '@pages/Industries'
 import Blog from '@pages/Blog'
 import BlogDetails from '@pages/BlogDetails'
 import Careers from '@pages/Careers'
@@ -23,7 +22,6 @@ import B2bAppointmentSetting from '@pages/B2bAppointmentSetting'
 import B2bEmailMarketing from '@pages/B2bEmailMarketing'
 import DemandFlowBridge from '@pages/DemandFlowBridge'
 import Abm from '@pages/Abm'
-import ContentSyndicationNew from '@pages/ContentSyndicationNew'
 import WebinarServices from '@pages/WebinarServices'
 import LeadNurturing from '@pages/LeadNurturing'
 import DemandGeneration from '@pages/DemandGeneration'
@@ -70,7 +68,6 @@ function AppRoutes() {
         <Route path="about" element={<About />} />
         <Route path="services" element={<Services />} />
         <Route path="services/:id" element={<ServiceDetails />} />
-        <Route path="industries" element={<Industries />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogDetails />} />
         <Route path="careers" element={<Careers />} />

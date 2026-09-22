@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, CheckCircle2, ShieldCheck, Zap, BarChart3, Database, Calendar, Layers, Activity, Radio } from 'lucide-react'
 import { useTheme } from '@context/ThemeContext'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import CyberButton from './CyberButton'
 
 const PIPELINE_STEPS = [

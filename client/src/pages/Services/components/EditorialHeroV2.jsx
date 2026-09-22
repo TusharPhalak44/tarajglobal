@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useTheme } from '@context/ThemeContext'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import TarajButton from './TarajButton'
 
 // 5 Network Nodes: Data → Decision Makers → Engagement → Opportunities → Pipeline

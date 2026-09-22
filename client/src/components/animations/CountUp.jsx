@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useInView } from 'framer-motion'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * CountUp

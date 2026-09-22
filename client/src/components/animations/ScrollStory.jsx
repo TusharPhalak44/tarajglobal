@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { gsap, ScrollTrigger } from '../../animations/gsap'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { gsap, ScrollTrigger } from '@animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * ScrollStory

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useTheme } from '@context/ThemeContext'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import { Sparkles, ShieldCheck } from 'lucide-react'
 
 // Kinetic Counter Component

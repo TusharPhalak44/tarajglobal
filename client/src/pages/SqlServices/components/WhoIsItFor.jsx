@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
-import { gsap, ScrollTrigger } from '../../../animations/gsap'
+import { gsap, ScrollTrigger } from '@animations/gsap'
 
 const AUDIENCES = [
   {

@@ -29,10 +29,9 @@ async function init() {
         ('navbar', 'Home', '/', NULL, 1, 1),
         ('navbar', 'About Us', '/about', NULL, 2, 1),
         ('navbar', 'Services', '/services', NULL, 3, 1),
-        ('navbar', 'Industries', '/industries', NULL, 4, 1),
-        ('navbar', 'Career', '/careers', NULL, 5, 1),
-        ('navbar', 'Blogs', '/blog', NULL, 6, 1),
-        ('navbar', 'Contact Us', '/contact', NULL, 7, 1)
+        ('navbar', 'Career', '/careers', NULL, 4, 1),
+        ('navbar', 'Blogs', '/blog', NULL, 5, 1),
+        ('navbar', 'Contact Us', '/contact', NULL, 6, 1)
       `)
       console.log('Seeded default navbar_items successfully')
     } else {

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * ParallaxImage

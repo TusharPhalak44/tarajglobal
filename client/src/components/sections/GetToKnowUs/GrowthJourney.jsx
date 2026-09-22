@@ -18,7 +18,7 @@ import {
   Zap,
   CheckCircle2
 } from 'lucide-react'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * AnimatedCounter

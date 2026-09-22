@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Activity, ShieldCheck, CheckCircle2, Target, CalendarCheck } from 'lucide-react'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 // ── 4 REAL-TIME PIPELINE ACTIVITY EVENTS ────────────────────────────────────
 const ACTIVITY_STREAM = [

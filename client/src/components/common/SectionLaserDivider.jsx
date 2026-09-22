@@ -1,5 +1,5 @@
 import React from 'react'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * SectionLaserDivider

@@ -349,7 +349,7 @@ router.post('/', [
   body('message').trim().notEmpty().withMessage('Message is required')
 ], validate, async (req, res) => {
   try {
-    const { name, email, phone, subject, message } = req.body
+    const { name, email, phone, subject, message, company } = req.body
     
     // Save to contacts table (for leads management)
     const insertQuery = `
@@ -358,26 +358,25 @@ router.post('/', [
         email,
         phone,
         company,
+        subject,
         message,
         status,
         source,
         page_url,
         created_at,
         updated_at
-      ) VALUES (?, ?, ?, ?, ?, 'new', 'contact_form', ?, NOW(), NOW())
+      ) VALUES (?, ?, ?, ?, ?, ?, 'new', 'contact_form', ?, NOW(), NOW())
     `
     
     const [result] = await db.execute(insertQuery, [
       name,
       email,
       phone || '',
+      company || '',
       subject || '',
       message,
       req.headers.referer || req.headers.origin || '/'
     ])
-    
-    // Also save to Contact model for backward compatibility
-    const insertId = await Contact.create({ name, email, phone: phone || '', subject: subject || '', message })
     
     // Notify admins about new lead
     try {
@@ -389,7 +388,7 @@ router.post('/', [
     res.status(201).json({ 
       success: true, 
       message: 'Your message has been received. We\'ll be in touch shortly.', 
-      id: insertId,
+      id: result.insertId,
       leadId: result.insertId
     })
   } catch (error) {

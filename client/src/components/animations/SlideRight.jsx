@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { slideRightVariants } from '../../animations/variants'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { slideRightVariants } from '@animations/variants'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * Reusable SlideRight animation component (slides from left to right)

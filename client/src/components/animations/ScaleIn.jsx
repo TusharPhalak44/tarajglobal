@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { scaleInVariants } from '../../animations/variants'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { scaleInVariants } from '@animations/variants'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * Reusable ScaleIn animation component

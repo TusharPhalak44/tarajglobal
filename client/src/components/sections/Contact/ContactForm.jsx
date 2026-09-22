@@ -20,7 +20,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react'
 import { contactAPI } from '@api/contact.api'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import './Contact.css'
 
 const SERVICE_TAGS = [

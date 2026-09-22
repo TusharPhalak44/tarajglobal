@@ -4,7 +4,7 @@ import { Terminal, Shield, Zap, Sparkles } from 'lucide-react'
 import { GrowthStageSelector } from './GrowthStageSelector'
 import { IntelligenceVisualization } from './IntelligenceVisualization'
 import { GrowthMetrics } from './GrowthMetrics'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * IntelligenceConsole

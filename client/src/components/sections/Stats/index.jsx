@@ -8,9 +8,9 @@ import {
   Cpu
 } from 'lucide-react'
 import { AnimatedSectionBackground, SectionLaserDivider } from '@components/animations'
-import { gsap, ScrollTrigger } from '../../../animations/gsap'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
-import { useTheme } from '../../../context/ThemeContext'
+import { gsap, ScrollTrigger } from '@animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
+import { useTheme } from '@context/ThemeContext'
 
 /**
  * EngineCounter

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion, useScroll } from 'framer-motion'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * ScrollProgress

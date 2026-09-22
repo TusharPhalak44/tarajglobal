@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Target, Sparkles, Activity } from 'lucide-react'
-import { gsap, ScrollTrigger } from '../../../animations/gsap'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { gsap, ScrollTrigger } from '@animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * GrowthSignalField

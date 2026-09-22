@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { fadeInVariants } from '../../animations/variants'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { fadeInVariants } from '@animations/variants'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * Reusable FadeIn animation component

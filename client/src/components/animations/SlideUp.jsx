@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { slideUpVariants } from '../../animations/variants'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { slideUpVariants } from '@animations/variants'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * Reusable SlideUp animation component

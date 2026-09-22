@@ -21,7 +21,7 @@ const db = await mysql.createConnection({
 })
 
 try {
-  const sqlPath = path.join(__dirname, '../../..', 'database', 'tarajglobal.sql')
+  const sqlPath = path.join(__dirname, '../schema/tarajglobal.sql')
   const sql = fs.readFileSync(sqlPath, 'utf8')
   await db.query(sql)
   console.log('✅ Migrations ran successfully.')

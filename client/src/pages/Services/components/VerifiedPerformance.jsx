@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ShieldCheck, TrendingUp, Award, BarChart3, CheckCircle2, Zap, ArrowRight, Activity } from 'lucide-react'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import { useTheme } from '@context/ThemeContext'
 import CyberButton from './CyberButton'
 

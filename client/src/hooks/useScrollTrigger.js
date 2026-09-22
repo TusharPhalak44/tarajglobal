@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ScrollTrigger } from '../animations/gsap'
+import { ScrollTrigger } from '@animations/gsap'
 
 /**
  * Hook to automatically refresh ScrollTrigger on dependency changes or lifecycle events

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, useInView, animate } from 'framer-motion'
 import { Activity, ShieldCheck, TrendingUp, Target, Database, CheckCircle2, Zap, Lock } from 'lucide-react'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * AnimatedMetricNumber

@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState, useCallback } from 'react'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import { useLocation } from 'react-router-dom'
-import { LenisContext } from '../../hooks/useLenis'
-import { connectLenisWithGSAP, refreshScrollTrigger } from '../../animations/gsap'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { LenisContext } from '@hooks/useLenis'
+import { connectLenisWithGSAP, refreshScrollTrigger } from '@animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * Global SmoothScrollProvider

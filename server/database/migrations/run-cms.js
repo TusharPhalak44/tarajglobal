@@ -22,7 +22,7 @@ const db = await mysql.createConnection({
 })
 
 try {
-  const sqlPath = path.join(__dirname, '../../../database/migrations/001_create_cms_tables.sql')
+  const sqlPath = path.join(__dirname, '001_create_cms_tables.sql')
   const sql = fs.readFileSync(sqlPath, 'utf8')
   await db.query(sql)
   console.log('✅ CMS migration ran successfully.')

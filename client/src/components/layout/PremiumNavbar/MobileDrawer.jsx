@@ -173,21 +173,6 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                 </AnimatePresence>
               </div>
 
-              {/* Industries */}
-              <NavLink
-                to="/industries"
-                onClick={onClose}
-                className={({ isActive }) =>
-                  `flex items-center justify-between p-3 rounded-xl font-bold text-sm transition-colors ${isActive
-                    ? 'bg-sky-500/10 text-[#00A6FF]'
-                    : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`
-                }
-              >
-                <span>Industries</span>
-                <ChevronRight size={15} className="text-slate-400" />
-              </NavLink>
-
               {/* About Us */}
               <NavLink
                 to="/about"

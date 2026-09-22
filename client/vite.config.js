@@ -17,12 +17,9 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, './src/utils'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@context': path.resolve(__dirname, './src/context'),
-      '@config': path.resolve(__dirname, './src/config'),
-      '@constants': path.resolve(__dirname, './src/constants'),
-      '@services': path.resolve(__dirname, './src/services'),
-      '@store': path.resolve(__dirname, './src/store'),
       '@styles': path.resolve(__dirname, './src/styles'),
       '@seo': path.resolve(__dirname, './src/seo'),
+      '@animations': path.resolve(__dirname, './src/animations'),
     },
   }),
   server: {

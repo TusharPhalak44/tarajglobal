@@ -16,7 +16,7 @@ import {
   Layers,
   ArrowRight
 } from 'lucide-react'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * Stage 01 Display:

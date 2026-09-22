@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import gsap from '../animations/gsap'
+import gsap from '@animations/gsap'
 
 /**
  * Safe React hook for running GSAP animations with automatic lifecycle cleanup

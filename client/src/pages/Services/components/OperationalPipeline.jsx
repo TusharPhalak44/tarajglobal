@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Target, Search, Send, ShieldCheck, CalendarCheck, CheckCircle2, ArrowRight, ArrowLeft, Terminal, Cpu } from 'lucide-react'
 import { useTheme } from '@context/ThemeContext'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import CyberButton from './CyberButton'
 
 const STAGES = [

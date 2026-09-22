@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { staggerContainerVariants } from '../../animations/variants'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { staggerContainerVariants } from '@animations/variants'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 /**
  * Reusable StaggerContainer component

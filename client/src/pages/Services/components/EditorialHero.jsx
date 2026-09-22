@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { StarButton } from '@components/ui/StarButton'
 import { useTheme } from '@context/ThemeContext'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 const SERVICE_INDEX = [
   { num: '01', title: 'DEMAND GENERATION', link: '/demand-generation' },

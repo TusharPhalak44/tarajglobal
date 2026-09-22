@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useTheme } from '@context/ThemeContext'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import { MagneticPrimaryButton, OutlineSecondaryButton } from './GrowthJourneyButtons'
 import { Building2, UserCheck, Zap, ShieldCheck, Target, ArrowDown } from 'lucide-react'
 

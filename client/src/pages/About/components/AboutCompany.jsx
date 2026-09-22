@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
-import { gsap, ScrollTrigger, refreshScrollTrigger } from '../../../animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
+import { gsap, ScrollTrigger, refreshScrollTrigger } from '@animations/gsap'
 import {
   Users,
   Target,

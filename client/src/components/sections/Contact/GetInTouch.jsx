@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import AnimatedGoldWave from './AnimatedGoldWave'
 import './Contact.css'
 

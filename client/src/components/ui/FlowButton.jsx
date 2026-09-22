@@ -1,22 +1,16 @@
-'use client';
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-
-export interface FlowButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text?: string;
-  variant?: 'default' | 'dark' | 'secondary' | 'primary';
-}
+import React from 'react'
+import { ArrowRight } from 'lucide-react'
 
 export function FlowButton({
-  text = "Modern Button",
-  variant = "default",
-  className = "",
+  text = 'Modern Button',
+  variant = 'default',
+  className = '',
   onClick,
-  type = "button",
+  type = 'button',
   ...props
-}: FlowButtonProps) {
-  const isPrimary = variant === 'primary';
-  const isSecondaryOrDark = variant === 'dark' || variant === 'secondary';
+}) {
+  const isPrimary = variant === 'primary'
+  const isSecondaryOrDark = variant === 'dark' || variant === 'secondary'
 
   return (
     <button
@@ -31,7 +25,7 @@ export function FlowButton({
       } ${className}`}
       {...props}
     >
-      {/* Left arrow (arr-2) flies in from the left on hover */}
+      {/* Left arrow flies in from the left on hover */}
       <ArrowRight
         className={`absolute w-3.5 h-3.5 left-[-25%] fill-none z-[9] group-hover:left-3.5 group-hover:stroke-white transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
           isPrimary
@@ -56,7 +50,7 @@ export function FlowButton({
         }`}
       />
 
-      {/* Right arrow (arr-1) flies out to the right on hover */}
+      {/* Right arrow flies out to the right on hover */}
       <ArrowRight
         className={`absolute w-3.5 h-3.5 right-3.5 fill-none z-[9] group-hover:right-[-25%] group-hover:stroke-white transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
           isPrimary
@@ -65,7 +59,7 @@ export function FlowButton({
         }`}
       />
     </button>
-  );
+  )
 }
 
-export default FlowButton;
+export default FlowButton

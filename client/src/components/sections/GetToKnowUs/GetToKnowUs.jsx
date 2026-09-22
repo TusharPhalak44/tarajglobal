@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { GrowthConnector } from './GrowthConnector'
 import { TrustIndicator } from './TrustIndicator'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 import { SectionLaserDivider } from '@components/animations'
 

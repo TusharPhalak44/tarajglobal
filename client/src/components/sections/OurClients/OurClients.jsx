@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { AnimatedSectionBackground } from '@components/animations'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import { cmsAPI } from '@api/cms.api'
 import './OurClients.css'
 

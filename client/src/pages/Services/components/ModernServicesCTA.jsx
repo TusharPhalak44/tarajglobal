@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Sparkles, ShieldCheck, Zap, Clock, Users, Flame } from 'lucide-react'
 import { useTheme } from '@context/ThemeContext'
 import { motion } from 'framer-motion'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import CyberButton from './CyberButton'
 
 const ASSURANCES = [

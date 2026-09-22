@@ -5,8 +5,8 @@ import { ArrowRight, ChevronRight, ShieldCheck, Target, Sparkles, Activity } fro
 import { StarButton } from '@components/ui/StarButton'
 import { useTheme } from '@context/ThemeContext'
 import { RevenueSignalField } from './RevenueSignalField'
-import { gsap, ScrollTrigger } from '../../../animations/gsap'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { gsap, ScrollTrigger } from '@animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 import { SectionLaserDivider } from '@components/animations'
 

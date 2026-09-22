@@ -21,7 +21,6 @@ const SEARCH_DIRECTORY = [
 
   // Pages
   { title: 'All Solutions & Services', path: '/services', category: 'Pages', desc: 'Explore all demand generation services', icon: Sparkles },
-  { title: 'Industries We Serve', path: '/industries', category: 'Pages', desc: 'SaaS, Cloud, Cybersecurity, FinTech & Enterprise', icon: Building },
   { title: 'About Taraj Global', path: '/about', category: 'Pages', desc: 'Our mission, vision, and executive leadership', icon: FileText },
   { title: 'Careers at Taraj Global', path: '/careers', category: 'Pages', desc: 'Join our fast-growing demand generation team', icon: Briefcase },
   { title: 'Blogs & Insights', path: '/blog', category: 'Pages', desc: 'Latest B2B demand generation research and guides', icon: FileText },

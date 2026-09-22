@@ -43,9 +43,9 @@ import { AlbumModal } from './components/AlbumModal'
 import ChatBot from '@components/chatbot/ChatBot'
 import SEO from '@components/common/SEO'
 import { publicAPI } from '@api/public.api'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
-import { FlowButton } from '../../components/ui/flow-button'
-import { gsap, ScrollTrigger } from '../../animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
+import { FlowButton } from '@components/ui/FlowButton'
+import { gsap, ScrollTrigger } from '@animations/gsap'
 
 // Precision cubic ease-out counter for hero stats
 const StatCounter = ({ end, duration = 1200, suffix = '' }) => {

@@ -40,8 +40,8 @@ server/uploads/*
 
 # Database
 *.sql
-!database/tarajglobal.sql
-!database/migrations/*.sql
+!server/database/schema/*.sql
+!server/database/migrations/*.sql
 
 # Cache
 .cache/
@@ -57,6 +57,8 @@ server/uploads/*
 # Temporary files
 *.tmp
 *.temp
+*.timestamp-*.mjs
+proxy-*.cjs
 video.mp4 
 client/public/video.mp4 
 client/public/side video.mp4 

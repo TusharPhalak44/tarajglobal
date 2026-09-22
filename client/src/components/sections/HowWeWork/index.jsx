@@ -12,8 +12,8 @@ import {
 } from 'lucide-react'
 import { AnimatedSectionBackground, SectionLaserDivider } from '@components/animations'
 import { RevenueProcessVisual } from './StageVisuals'
-import { gsap, ScrollTrigger } from '../../../animations/gsap'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { gsap, ScrollTrigger } from '@animations/gsap'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 import { useTheme } from '@context/ThemeContext'
 
 export const HowWeWork = () => {

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { StarButton } from '@components/ui/StarButton'
 import { useTheme } from '@context/ThemeContext'
-import { useReducedMotion } from '../../../hooks/useReducedMotion'
+import { useReducedMotion } from '@hooks/useReducedMotion'
 
 // 7 orbiting service capabilities converging into the GROWTH engine
 const ORBITING_CAPABILITIES = [

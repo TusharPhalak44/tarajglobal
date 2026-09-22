@@ -7,8 +7,7 @@ A production-ready enterprise-grade corporate website built with React 19, Node.
 ```
 tarajglobal-clone/
 ├── client/          # React 19 Frontend
-├── server/          # Node.js/Express Backend
-├── database/        # MySQL Database Schema
+├── server/          # Node.js/Express Backend & MySQL Database Schema
 ├── docs/            # Documentation
 ├── README.md
 ├── package.json
@@ -70,7 +69,7 @@ tarajglobal-clone/
 
 ### Configuration
 
-1. Set up MySQL database using the schema in `database/tarajglobal.sql`
+1. Set up MySQL database using the schema in `server/database/schema/tarajglobal.sql`
 2. Configure environment variables (see `.env.example` files)
 3. Start the development servers
 

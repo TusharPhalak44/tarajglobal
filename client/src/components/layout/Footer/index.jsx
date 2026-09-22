@@ -205,7 +205,6 @@ export const Footer = () => {
       links: [
         { label: 'About Us', url: '/about' },
         { label: 'All Solutions', url: '/services' },
-        { label: 'Industries We Serve', url: '/industries' },
         { label: 'Careers', url: '/careers' },
         { label: 'Blogs & Insights', url: '/blog' },
         { label: 'Contact Us', url: '/contact' },

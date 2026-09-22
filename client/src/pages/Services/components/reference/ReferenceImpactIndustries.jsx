@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import {
   Laptop,
   Cpu,
@@ -32,7 +31,6 @@ const INDUSTRIES = [
 ]
 
 export default function ReferenceImpactIndustries() {
-  const navigate = useNavigate()
 
   return (
     <section
@@ -131,14 +129,6 @@ export default function ReferenceImpactIndustries() {
                   Built for Modern B2B Teams
                 </h3>
               </div>
-
-              <button
-                onClick={() => navigate('/industries')}
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-white/70 hover:text-[#FF6D00] dark:hover:text-[#FF6D00] transition-colors cursor-pointer group"
-              >
-                <span>View All Industries</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
             </div>
 
             {/* 8-Box Grid (4 cols x 2 rows) */}

@@ -29,7 +29,7 @@ import {
   ArrowDown
 } from 'lucide-react'
 import { adminAPI } from '@api'
-import TGAnimatedLogo from '../../components/layout/PremiumNavbar/TGAnimatedLogo'
+import TGAnimatedLogo from '@components/layout/PremiumNavbar/TGAnimatedLogo'
 
 const CMSNavbar = () => {
   const [loading, setLoading] = useState(true)

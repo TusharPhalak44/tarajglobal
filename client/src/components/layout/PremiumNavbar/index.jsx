@@ -150,7 +150,6 @@ export const PremiumNavbar = () => {
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
-    { name: 'Industries', path: '/industries' },
     { name: 'Careers', path: '/careers' },
     { name: 'Blogs', path: '/blog' },
     { name: 'Contact Us', path: '/contact' },

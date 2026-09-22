@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
-import { useLenis } from '../../../hooks/useLenis'
+import { useLenis } from '@hooks/useLenis'
 
 export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
