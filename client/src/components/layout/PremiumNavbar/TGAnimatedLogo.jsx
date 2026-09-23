@@ -19,92 +19,75 @@ const PATHS = {
     'M 123,565 246,565 364,399 380,375 393,358 409,342 416,337 428,331 442,327 453,325 477,323 605,322 611,312 626,294 667,240 667,238 161,238 146,258 111,301 96,323 293,324 256,378 179,485 Z'
   ],
   gLetter:
-    'M 316,502 328,515 338,523 363,539 389,551 404,556 420,560 438,563 460,565 515,566 677,566 678,565 697,565 697,361 492,361 487,363 480,370 454,401 446,414 444,423 447,429 456,433 463,434 597,435 597,475 595,481 485,482 461,481 436,476 427,473 413,466 402,458 392,448 387,441 383,433 381,426 376,417 334,477 323,491 318,500 Z',
-  pixelPaths: [
-    'M 740,282 740,332 790,332 790,282 Z',
-    'M 859,259 859,298 899,298 899,259 Z',
-    'M 740,243 755,266 761,278 778,279 778,277 773,266 771,264 764,263 764,248 762,244 Z',
-    'M 767,239 767,262 789,262 789,239 Z',
-    'M 828,217 828,238 850,238 849,216 Z',
-    'M 723,203 723,240 761,240 760,202 Z',
-    'M 783,188 783,215 810,215 810,187 Z',
-    'M 849,178 849,197 868,196 868,178 Z',
-    'M 826,152 826,169 843,169 843,152 Z',
-    'M 794,143 794,155 806,155 806,143 Z',
-    'M 861,138 861,148 870,148 870,138 Z'
-  ]
+    'M 316,502 328,515 338,523 363,539 389,551 404,556 420,560 438,563 460,565 515,566 677,566 678,565 697,565 697,361 492,361 487,363 480,370 454,401 446,414 444,423 447,429 456,433 463,434 597,435 597,475 595,481 485,482 461,481 436,476 427,473 413,466 402,458 392,448 387,441 383,433 381,426 376,417 334,477 323,491 318,500 Z'
 }
 
-// Normalized cycle timings for 5.8-second continuous sequence:
-// 0.0s -> 1.3s: Blue slowly-slowly becomes visible
-// 1.3s -> 2.6s: Orange/Red slowly-slowly becomes visible (Blue stays visible)
-// 2.6s -> 3.9s: Green slowly-slowly becomes visible (Blue & Orange stay visible)
-// 3.9s -> 5.2s: All 3 are fully visible together in complete brilliance!
-// 5.2s -> 5.8s: Smooth gentle breath-out to restart the sequence continuously
-const CYCLE_DURATION = 5.8
-const CYCLE_TIMES = [0, 0.224, 0.448, 0.672, 0.897, 1]
+const DIGITAL_PIXELS = [
+  { id: 'p0', d: 'M 740,282 740,332 790,332 790,282 Z', fill: '#0088FF', stroke: '#00E5FF', origin: '765px 307px', times: [0, 0.12, 0.24, 0.42, 0.58, 0.64, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.2, 1, 1.06, 1, 0] },
+  { id: 'p1', d: 'M 723,203 723,240 761,240 760,202 Z', fill: '#00B4FF', stroke: '#80E8FF', origin: '742px 221px', times: [0, 0.12, 0.24, 0.42, 0.60, 0.66, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.25, 1, 0.95, 1, 0] },
+  { id: 'p2', d: 'M 767,239 767,262 789,262 789,239 Z', fill: '#00F5FF', stroke: '#A6FCFF', origin: '778px 250px', times: [0, 0.12, 0.24, 0.42, 0.62, 0.68, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.3, 1, 1.08, 1, 0] },
+  { id: 'p3', d: 'M 740,243 755,266 761,278 778,279 778,277 773,266 771,264 764,263 764,248 762,244 Z', fill: '#00E676', stroke: '#69F0AE', origin: '759px 261px', times: [0, 0.12, 0.24, 0.42, 0.60, 0.66, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.2, 1, 1.04, 1, 0] },
+  { id: 'p4', d: 'M 849,178 849,197 868,196 868,178 Z', fill: '#00E676', stroke: '#B9F6CA', origin: '858px 187px', times: [0, 0.12, 0.24, 0.42, 0.64, 0.70, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.3, 1, 0.94, 1, 0] },
+  { id: 'p5', d: 'M 859,259 859,298 899,298 899,259 Z', fill: '#FF6D00', stroke: '#FFB74D', origin: '879px 278px', times: [0, 0.12, 0.24, 0.42, 0.58, 0.65, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.22, 1, 1.05, 1, 0] },
+  { id: 'p6', d: 'M 828,217 828,238 850,238 849,216 Z', fill: '#FF9100', stroke: '#FFE082', origin: '839px 227px', times: [0, 0.12, 0.24, 0.42, 0.63, 0.69, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.28, 1, 1.08, 1, 0] },
+  { id: 'p7', d: 'M 783,188 783,215 810,215 810,187 Z', fill: '#FF6D00', stroke: '#FFA726', origin: '796px 201px', times: [0, 0.12, 0.24, 0.42, 0.62, 0.68, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.25, 1, 0.95, 1, 0] },
+  { id: 'p8', d: 'M 826,152 826,169 843,169 843,152 Z', fill: '#FFAB00', stroke: '#FFE082', origin: '834px 160px', times: [0, 0.12, 0.24, 0.42, 0.66, 0.72, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.35, 1, 1.1, 1, 0] },
+  { id: 'p9', d: 'M 794,143 794,155 806,155 806,143 Z', fill: '#00F5FF', stroke: '#E0F7FA', origin: '800px 149px', times: [0, 0.12, 0.24, 0.42, 0.68, 0.74, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.4, 1, 0.92, 1, 0] },
+  { id: 'p10', d: 'M 861,138 861,148 870,148 870,138 Z', fill: '#FF5722', stroke: '#FFAB91', origin: '865px 143px', times: [0, 0.12, 0.24, 0.42, 0.70, 0.76, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.45, 1, 1.12, 1, 0] }
+]
+
+// Normalized cycle timings for 6.4-second continuous sequence:
+// 1. 0.00 -> 0.12: Letter 'T' becomes visible first
+// 2. 0.12 -> 0.24: Letter 'G' becomes visible slightly after (T stays visible)
+// 3. 0.24 -> 0.42: Blue Arc becomes visible (T & G stay visible)
+// 4. 0.42 -> 0.60: Orange Arc becomes visible (T, G, Blue stay visible)
+// 5. 0.60 -> 0.78: Green Arc & Digital Telemetry Pixels burst & assemble (All elements stay visible)
+// 6. 0.78 -> 0.92: Full logo assembly in complete brilliant unity with active pixel shimmer!
+// 7. 0.92 -> 1.00: Smooth transition to loop continuously
+const CYCLE_DURATION = 6.4
+const CYCLE_TIMES = [0, 0.12, 0.24, 0.42, 0.60, 0.78, 0.92, 1]
 
 /**
- * TGAnimatedLogo - Ultra-premium animated SVG emblem for Taraj Global.
+ * TGAnimatedLogo - Ultra-sharp animated SVG emblem for Taraj Global.
  * 
- * User Requirement:
- * - "blue, green, red half circle i want there svg animation which slowly slowly visible
- *    and this is continusely visible and one by one it will show"
+ * Sequential Flow:
+ * 1. First 'T' is visible
+ * 2. Then slightly after, 'G' becomes visible
+ * 3. Then Blue Arc becomes visible
+ * 4. Then Orange Arc becomes visible
+ * 5. Then Green Arc & Data Pixels materialize with staggered burst animation
+ * 6. Complete emblem shines together with live pixel pulse and loops continuously
  * 
- * Behavior:
- * 1. Shows ONE BY ONE:
- *    - Blue half-circle slowly-slowly appears first.
- *    - Orange/Red half-circle slowly-slowly appears second (while Blue stays visible).
- *    - Green half-circle slowly-slowly appears third (while Blue & Orange stay visible).
- *    - Full logo with data pixels shines together!
- * 2. Continuously visible & looping:
- *    - Each half-circle STAYS visible as the next one appears.
- *    - Smoothly loops continuously (repeat: Infinity).
- * 3. Center TG Monogram:
- *    - Solid, crisp, permanently visible at 100% opacity at all times.
- *    - Strictly NO 360° spinning/rotation.
+ * Vector Sharpness:
+ * - Pure SVG geometric precision (no blurry raster filters)
+ * - Fine contour strokes on paths to eliminate subpixel anti-aliasing fuzziness
+ * - Ultra-vibrant high-contrast linear gradients & crisp-edge data pixels
  */
-const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', className = '' }) => {
-  // If user uploaded a completely custom external image (e.g. client banner), display directly
-  const isCustomUploaded =
-    logoUrl &&
-    !logoUrl.includes('circle.png') &&
-    !logoUrl.includes('OnlyTG') &&
-    !logoUrl.includes('middle.png') &&
-    !logoUrl.includes('logo img.png') &&
-    !logoUrl.includes('tg_') &&
-    (logoUrl.startsWith('http') || logoUrl.startsWith('/uploads'))
-
-  if (isCustomUploaded) {
-    return (
-      <div className={`relative flex items-center justify-center shrink-0 select-none w-[54px] h-[54px] sm:w-[60px] sm:h-[60px] md:w-[66px] md:h-[66px] ${className}`}>
-        <img
-          src={logoUrl}
-          alt={alt}
-          className="w-full h-full object-contain border-0 outline-none ring-0"
-        />
-      </div>
-    )
-  }
-
+const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
   return (
     <motion.div
-      className={`relative flex items-center justify-center shrink-0 select-none group cursor-pointer outline-none focus:outline-none focus:ring-0 focus-visible:outline-none border-0 w-[54px] h-[54px] sm:w-[60px] sm:h-[60px] md:w-[66px] md:h-[66px] ${className}`}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: 'spring', stiffness: 380, damping: 16 }}
+      className={`relative flex items-center justify-center shrink-0 select-none group cursor-pointer outline-none focus:outline-none focus:ring-0 focus-visible:outline-none border-0 w-[58px] h-[58px] sm:w-[64px] sm:h-[64px] md:w-[70px] md:h-[70px] ${className}`}
+      style={{
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+        WebkitFontSmoothing: 'antialiased'
+      }}
+      whileHover={{ scale: 1.06 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: 'spring', stiffness: 380, damping: 18 }}
     >
-      {/* ── 1. AMBIENT RADIAL ENERGY AURA (CONTINUOUS SOFT BREATHING) ───────── */}
+      {/* ── 1. AMBIENT RADIAL ENERGY AURA (SUBTLE BACKGROUND DEPTH) ─────────── */}
       <svg
-        className="absolute -inset-3 w-[calc(100%+24px)] h-[calc(100%+24px)] pointer-events-none -z-10"
+        className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] pointer-events-none -z-10"
         viewBox="0 0 100 100"
         fill="none"
+        shapeRendering="geometricPrecision"
       >
         <defs>
           <radialGradient id="tgAuraGlow" cx="47%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#00A6FF" stopOpacity="0.28" />
-            <stop offset="45%" stopColor="#FF7A00" stopOpacity="0.14" />
-            <stop offset="75%" stopColor="#22C55E" stopOpacity="0.08" />
+            <stop offset="0%" stopColor="#00A6FF" stopOpacity="0.25" />
+            <stop offset="45%" stopColor="#FF7A00" stopOpacity="0.12" />
+            <stop offset="75%" stopColor="#22C55E" stopOpacity="0.06" />
             <stop offset="100%" stopColor="#00A6FF" stopOpacity="0" />
           </radialGradient>
         </defs>
@@ -114,8 +97,8 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
           r="46"
           fill="url(#tgAuraGlow)"
           animate={{
-            opacity: [0.3, 0.65, 0.3],
-            scale: [0.94, 1.05, 0.94]
+            opacity: [0.3, 0.55, 0.3],
+            scale: [0.95, 1.04, 0.95]
           }}
           transition={{
             duration: 4.8,
@@ -125,72 +108,109 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
         />
       </svg>
 
-      {/* ── 2. MAIN SVG LOGO CANVAS ────────────────────────────────────────── */}
+      {/* ── 2. MAIN SVG LOGO CANVAS (MAXIMUM VECTOR SHARPNESS & CLARITY) ─────── */}
       <svg
         viewBox={PATHS.viewBox}
-        className="w-full h-full object-contain overflow-visible drop-shadow-[0_2px_8px_rgba(0,166,255,0.22)]"
+        className="w-full h-full object-contain overflow-visible"
         xmlns="http://www.w3.org/2000/svg"
+        shapeRendering="geometricPrecision"
+        textRendering="geometricPrecision"
+        imageRendering="crisp-edges"
       >
         <defs>
-          {/* Vibrant Neon Glow Filters for each color */}
-          <filter id="tgBlueGlow" x="-25%" y="-25%" width="150%" height="150%">
-            <feDropShadow dx="0" dy="0" stdDeviation="7" floodColor="#00A6FF" floodOpacity="0.75" />
-          </filter>
-
-          <filter id="tgOrangeGlow" x="-25%" y="-25%" width="150%" height="150%">
-            <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#FF7A00" floodOpacity="0.7" />
-          </filter>
-
-          <filter id="tgGreenGlow" x="-25%" y="-25%" width="150%" height="150%">
-            <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#22C55E" floodOpacity="0.65" />
-          </filter>
-
-          <filter id="tgMonogramGlow" x="-25%" y="-25%" width="150%" height="150%">
-            <feDropShadow dx="0" dy="1" stdDeviation="5" floodColor="#00A6FF" floodOpacity="0.38" />
-          </filter>
-
-          {/* Linear Gradients for Arc Vibrancy */}
+          {/* High-Contrast Vivid Linear Gradients for Razor-Sharp Clarity */}
           <linearGradient id="blueArcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00F0FF" />
-            <stop offset="50%" stopColor="#00A6FF" />
-            <stop offset="100%" stopColor="#0066FF" />
+            <stop offset="0%" stopColor="#00F7FF" />
+            <stop offset="35%" stopColor="#00A3FF" />
+            <stop offset="100%" stopColor="#0050FF" />
           </linearGradient>
 
           <linearGradient id="orangeArcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFB300" />
-            <stop offset="50%" stopColor="#FF7A00" />
-            <stop offset="100%" stopColor="#FF3D00" />
+            <stop offset="0%" stopColor="#FFD000" />
+            <stop offset="45%" stopColor="#FF7700" />
+            <stop offset="100%" stopColor="#FF2200" />
           </linearGradient>
 
           <linearGradient id="greenArcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#4ADE80" />
+            <stop offset="0%" stopColor="#00E676" />
             <stop offset="50%" stopColor="#22C55E" />
-            <stop offset="100%" stopColor="#16A34A" />
+            <stop offset="100%" stopColor="#128A3E" />
           </linearGradient>
 
-          {/* Gradients for T and G Monogram */}
+          {/* Gradients for T and G Monogram with Deep Vivid Saturation */}
           <linearGradient id="tGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFB300" />
-            <stop offset="60%" stopColor="#FF8500" />
-            <stop offset="100%" stopColor="#FF5500" />
+            <stop offset="0%" stopColor="#FFE000" />
+            <stop offset="48%" stopColor="#FF7700" />
+            <stop offset="100%" stopColor="#FF2A00" />
           </linearGradient>
 
           <linearGradient id="gGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00EAFF" />
-            <stop offset="55%" stopColor="#00A6FF" />
-            <stop offset="100%" stopColor="#0066FF" />
+            <stop offset="0%" stopColor="#00FFFF" />
+            <stop offset="48%" stopColor="#00A3FF" />
+            <stop offset="100%" stopColor="#0055FF" />
           </linearGradient>
-
-
         </defs>
 
-        {/* ── 3. BLUE HALF-CIRCLE ARC: SHOWS 1ST (ONE BY ONE) & STAYS VISIBLE ── */}
+        {/* ── 3. LETTER 'T': SHOWS 1ST (ONE BY ONE) & STAYS VISIBLE ──────────── */}
         <motion.g
-          id="tg-blue-half-circle"
+          id="tg-letter-t"
+          style={{ originX: '380px', originY: '380px' }}
+          animate={{
+            opacity: [0, 1, 1, 1, 1, 1, 1, 0],
+            scale: [0.92, 1.025, 1, 1, 1, 1, 1, 0.92]
+          }}
+          transition={{
+            duration: CYCLE_DURATION,
+            times: CYCLE_TIMES,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
+          {PATHS.tLetter.map((p, i) => (
+            <path
+              key={`t-${i}`}
+              d={p}
+              fill="url(#tGradient)"
+              stroke="#FF8800"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+              fillRule="evenodd"
+            />
+          ))}
+        </motion.g>
+
+        {/* ── 4. LETTER 'G': SHOWS 2ND (SLIGHTLY AFTER T) & STAYS VISIBLE ─────── */}
+        <motion.g
+          id="tg-letter-g"
+          style={{ originX: '480px', originY: '450px' }}
+          animate={{
+            opacity: [0, 0, 1, 1, 1, 1, 1, 0],
+            scale: [0.92, 0.92, 1.025, 1, 1, 1, 1, 0.92]
+          }}
+          transition={{
+            duration: CYCLE_DURATION,
+            times: CYCLE_TIMES,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
+          <path
+            d={PATHS.gLetter}
+            fill="url(#gGradient)"
+            stroke="#00D4FF"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+            fillRule="evenodd"
+          />
+        </motion.g>
+
+        {/* ── 5. BLUE ARC: SHOWS 3RD & STAYS VISIBLE ──────────────────────────── */}
+        <motion.g
+          id="tg-blue-arc"
           style={{ originX: '390px', originY: '415.5px' }}
           animate={{
-            opacity: [0, 1, 1, 1, 1, 0],
-            scale: [0.94, 1.015, 1, 1, 1, 0.94]
+            opacity: [0, 0, 0, 1, 1, 1, 1, 0],
+            scale: [0.94, 0.94, 0.94, 1.018, 1, 1, 1, 0.94]
           }}
           transition={{
             duration: CYCLE_DURATION,
@@ -202,18 +222,20 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
           <path
             d={PATHS.blueArc}
             fill="url(#blueArcGradient)"
+            stroke="#00C8FF"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
             fillRule="evenodd"
-            filter="url(#tgBlueGlow)"
           />
         </motion.g>
 
-        {/* ── 4. ORANGE/RED TOP HALF-CIRCLE: SHOWS 2ND (ONE BY ONE) & STAYS VISIBLE ── */}
+        {/* ── 6. ORANGE ARC: SHOWS 4TH & STAYS VISIBLE ────────────────────────── */}
         <motion.g
-          id="tg-orange-half-circle"
+          id="tg-orange-arc"
           style={{ originX: '450px', originY: '415.5px' }}
           animate={{
-            opacity: [0, 0, 1, 1, 1, 0],
-            scale: [0.94, 0.94, 1.018, 1, 1, 0.94]
+            opacity: [0, 0, 0, 0, 1, 1, 1, 0],
+            scale: [0.94, 0.94, 0.94, 0.94, 1.018, 1, 1, 0.94]
           }}
           transition={{
             duration: CYCLE_DURATION,
@@ -225,18 +247,20 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
           <path
             d={PATHS.orangeArc}
             fill="url(#orangeArcGradient)"
+            stroke="#FF8800"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
             fillRule="evenodd"
-            filter="url(#tgOrangeGlow)"
           />
         </motion.g>
 
-        {/* ── 5. GREEN BOTTOM HALF-CIRCLE: SHOWS 3RD (ONE BY ONE) & STAYS VISIBLE ── */}
+        {/* ── 7. GREEN ARC: SHOWS 5TH & STAYS VISIBLE ─────────────────────────── */}
         <motion.g
-          id="tg-green-half-circle"
+          id="tg-green-arc"
           style={{ originX: '450px', originY: '440px' }}
           animate={{
-            opacity: [0, 0, 0, 1, 1, 0],
-            scale: [0.94, 0.94, 0.94, 1.018, 1, 0.94]
+            opacity: [0, 0, 0, 0, 0, 1, 1, 0],
+            scale: [0.94, 0.94, 0.94, 0.94, 0.94, 1.018, 1, 0.94]
           }}
           transition={{
             duration: CYCLE_DURATION,
@@ -250,72 +274,43 @@ const TGAnimatedLogo = ({ logoUrl = '/circle.png', alt = 'Taraj Global Logo', cl
               key={`anim-g-${i}`}
               d={pathStr}
               fill="url(#greenArcGradient)"
-              fillRule="evenodd"
-              filter="url(#tgGreenGlow)"
-            />
-          ))}
-        </motion.g>
-
-        {/* ── 6. TOP-RIGHT DIGITAL TELEMETRY PIXELS: JOINS WITH GREEN ────────── */}
-        <motion.g
-          id="tg-digital-squares"
-          style={{ originX: '800px', originY: '230px' }}
-          animate={{
-            opacity: [0, 0, 0, 1, 1, 0],
-            scale: [0.85, 0.85, 0.85, 1.1, 1, 0.85]
-          }}
-          transition={{
-            duration: CYCLE_DURATION,
-            times: CYCLE_TIMES,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-        >
-          {PATHS.pixelPaths.map((p, idx) => {
-            const fill = idx % 3 === 0 ? '#00A6FF' : idx % 3 === 1 ? '#FF7A00' : '#22C55E'
-            return (
-              <path
-                key={idx}
-                d={p}
-                fill={fill}
-                fillRule="evenodd"
-              />
-            )
-          })}
-        </motion.g>
-
-        {/* ── 7. CENTER "TG" MONOGRAM (SOLID, CRISP & PERMANENT HEADER LOGO) ── */}
-        <motion.g
-          id="tg-monogram"
-          style={{ originX: '430px', originY: '420px' }}
-          filter="url(#tgMonogramGlow)"
-          animate={{
-            y: [0, -2, 0]
-          }}
-          transition={{
-            duration: 3.6,
-
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-        >
-          {/* Orange "T" with Metallic Gradient */}
-          {PATHS.tLetter.map((p, i) => (
-            <path
-              key={`t-${i}`}
-              d={p}
-              fill="url(#tGradient)"
+              stroke="#00E676"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
               fillRule="evenodd"
             />
           ))}
-
-          {/* Cyan "G" with Metallic Gradient */}
-          <path
-            d={PATHS.gLetter}
-            fill="url(#gGradient)"
-            fillRule="evenodd"
-          />
         </motion.g>
+
+        {/* ── 8. DIGITAL TELEMETRY PIXELS: INDIVIDUAL STAGGERED BURST & SHIMMER ── */}
+        <g id="tg-digital-pixel-cluster" shapeRendering="geometricPrecision">
+          {DIGITAL_PIXELS.map((pixel) => (
+            <motion.path
+              key={pixel.id}
+              d={pixel.d}
+              fill={pixel.fill}
+              stroke={pixel.stroke}
+              strokeWidth="1.5"
+              strokeLinejoin="miter"
+              strokeMiterlimit="4"
+              fillRule="evenodd"
+              shapeRendering="geometricPrecision"
+              style={{
+                transformOrigin: pixel.origin
+              }}
+              animate={{
+                opacity: pixel.op,
+                scale: pixel.sc
+              }}
+              transition={{
+                duration: CYCLE_DURATION,
+                times: pixel.times,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+          ))}
+        </g>
       </svg>
     </motion.div>
   )

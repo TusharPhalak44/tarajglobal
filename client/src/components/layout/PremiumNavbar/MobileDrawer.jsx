@@ -8,7 +8,6 @@ import {
   Phone,
   Mail,
   ArrowRight,
-  LogIn,
   Layers,
   Sparkles
 } from 'lucide-react'
@@ -246,16 +245,6 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
               >
                 <span>Start a Conversation</span>
                 <ArrowRight size={15} />
-              </Link>
-
-              {/* Login link */}
-              <Link
-                to="/login"
-                onClick={onClose}
-                className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center justify-center gap-2 hover:bg-white dark:hover:bg-white/5 transition-colors"
-              >
-                <LogIn size={14} />
-                <span>Client Portal / Login</span>
               </Link>
 
               {/* Quick Contacts */}

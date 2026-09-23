@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { useCookies } from '@components/cookies/CookieContext'
 import { useLenis } from '@hooks/useLenis'
+import TGAnimatedLogo from '@components/layout/PremiumNavbar/TGAnimatedLogo'
 import { cmsAPI } from '@api'
 import './footer.css'
 
@@ -212,16 +213,22 @@ export const Footer = () => {
     },
   ]
 
-  // Prepared sections to render
-  const sectionsToRender =
-    contentSections.length > 0
-      ? contentSections.map((s, idx) => ({
-          id: s.id,
-          title: s.title,
-          color: idx === 0 ? '#00A6FF' : idx === 1 ? '#FF6D00' : 'slate',
-          links: linksMap[s.id]?.links || [],
-        }))
-      : defaultSections
+  // Prepared sections to render - guaranteed to always have all 3 columns fully populated with links
+  const sectionsToRender = [0, 1, 2].map((idx) => {
+    const s = contentSections[idx]
+    const defaultSec = defaultSections[idx]
+    if (!s) return defaultSec
+
+    const apiLinks = linksMap[s.id]?.links || (Array.isArray(s.links) ? s.links : [])
+    const finalLinks = apiLinks.length > 0 ? apiLinks : (defaultSec?.links || [])
+
+    return {
+      id: s.id || defaultSec.id,
+      title: s.title || defaultSec.title,
+      color: idx === 0 ? '#00A6FF' : idx === 1 ? '#FF6D00' : 'slate',
+      links: finalLinks,
+    }
+  })
 
   // Active offices or defaults
   const officesToRender = rawOffices.filter((o) => o.is_visible !== 0)
@@ -294,49 +301,33 @@ export const Footer = () => {
 
       {/* ── MAIN 12-COLUMN ENTERPRISE FOOTER CONTENT ─────────────────────── */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-12 lg:py-16">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
           {/* ── COLUMN 1 (SPAN 3): BRAND & VALUE PROPOSITION ──────────────── */}
-          <motion.div variants={itemVariants} className="sm:col-span-2 lg:col-span-3 space-y-5">
-            {/* Logo */}
-            {settings.is_logo_visible !== false && settings.is_logo_visible !== 0 && (
-              <Link to="/" className="inline-block group">
-                <img
-                  src={settings.logo_url || '/OnlyTG- 3.png'}
-                  alt={settings.company_name ? `${settings.company_name} - Demand Generation Partner` : "Taraj Global - B2B Demand Generation & Pipeline Growth Partner"}
-                  className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-103"
+          <div className="sm:col-span-2 lg:col-span-3 space-y-5">
+            {/* Logo & ISO Certification Badges Stack (Centered relative to the badges) */}
+            <div className="w-[185px] sm:w-[210px] md:w-[225px] flex flex-col items-center gap-2">
+              <Link to="/" className="inline-flex items-center justify-center group">
+                <TGAnimatedLogo
+                  alt="Taraj Global"
+                  className="w-[60px] h-[60px] sm:w-[66px] sm:h-[66px]"
                 />
               </Link>
-            )}
 
-            {/* Description */}
-            {settings.is_description_visible !== false && settings.is_description_visible !== 0 && (
-              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed max-w-sm">
-                {settings.company_description ||
-                  'Taraj Global is a full-funnel enterprise B2B demand generation partner helping SaaS and technology companies build predictable sales pipelines with human-verified decision-maker intelligence.'}
-              </p>
-            )}
-
-            {/* Enterprise Trust Badges */}
-            <div className="space-y-2 pt-1">
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
-                <CheckCircle2 size={15} className="text-emerald-500 flex-shrink-0" />
-                <span>99.8% Human-Verified Data Accuracy</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
-                <Target size={15} className="text-[#00A6FF] flex-shrink-0" />
-                <span>100% Ideal Customer Profile (ICP) Precision</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
-                <Zap size={15} className="text-[#FF6D00] flex-shrink-0" />
-                <span>48–72h Rapid Outbound Campaign Deployment</span>
+              <div className="pt-0.5 w-full flex justify-center">
+                <img
+                  src="/footerimage.png"
+                  alt="Taraj Global ISO 9001:2015 & ISO/IEC 27001:2022 Certified"
+                  className="w-full h-auto object-contain select-none"
+                  loading="lazy"
+                />
               </div>
             </div>
+
+            {/* Description / Content (Clearly visible & high contrast) */}
+            <p className="text-slate-700 dark:text-slate-200 text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
+              {settings.company_description ||
+                'Taraj Global is an ISO certified demand generation agency.'}
+            </p>
 
             {/* Social Links */}
             <div className="pt-2 flex flex-wrap items-center gap-2.5">
@@ -370,7 +361,7 @@ export const Footer = () => {
                 </motion.a>
               )}
             </div>
-          </motion.div>
+          </div>
 
           {/* ── DYNAMIC LINK COLUMNS (SPAN 2 EACH) ─────────────────────────── */}
           {sectionsToRender.slice(0, 3).map((section) => {
@@ -396,7 +387,7 @@ export const Footer = () => {
             const chevronColor = isAmber ? 'text-[#FF6D00]' : 'text-[#00A6FF]'
 
             return (
-              <motion.div key={section.id} variants={itemVariants} className="lg:col-span-2 space-y-3.5">
+              <div key={section.id} className="lg:col-span-2 space-y-3.5">
                 <div className="flex items-center gap-1.5">
                   <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} />
                   <h4 className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider font-mono ${headingClass}`}>
@@ -464,12 +455,12 @@ export const Footer = () => {
                     )
                   })}
                 </ul>
-              </motion.div>
+              </div>
             )
           })}
 
           {/* ── COLUMN 5 (SPAN 3): GLOBAL HUBS & CLOCKS ────────────── */}
-          <motion.div variants={itemVariants} className="lg:col-span-3 space-y-3.5">
+          <div className="lg:col-span-3 space-y-3.5">
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <h4 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider font-mono text-slate-800 dark:text-slate-200">
@@ -540,9 +531,9 @@ export const Footer = () => {
                 )
               })}
             </div>
-          </motion.div>
+          </div>
 
-        </motion.div>
+        </div>
       </div>
 
       {/* ── BOTTOM LEGAL BAR, COPYRIGHT & BACK TO TOP ────────────────────── */}

@@ -96,7 +96,12 @@ function AppRoutes() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="cookies" element={<CookiePolicy />} />
-        <Route path="login" element={<Login />} />
+      </Route>
+
+      {/* Auth / Admin Login Route */}
+      <Route element={<AuthLayout />}>
+        <Route path="/loginadmin" element={<Login />} />
+        <Route path="/login" element={<Navigate to="/loginadmin" replace />} />
       </Route>
 
       {/* Admin Routes */}

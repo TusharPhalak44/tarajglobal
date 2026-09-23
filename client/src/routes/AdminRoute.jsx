@@ -13,7 +13,7 @@ function AdminRoute({ children }) {
   }
 
   if (!isAuthenticated || (!isAdmin && !user?.role)) {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/loginadmin" replace />
   }
 
   return children

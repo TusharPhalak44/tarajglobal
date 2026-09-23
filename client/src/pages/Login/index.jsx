@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle, Loader2 } from 'lucide-react'
 import { useAuth } from '@context/AuthContext'
 import { useTheme } from '@context/ThemeContext'
+import TGAnimatedLogo from '@components/layout/PremiumNavbar/TGAnimatedLogo'
 import SEO from '@components/common/SEO'
 
 function Login() {
@@ -61,9 +62,9 @@ function Login() {
 
   const inputCls = (field) => `
     w-full pl-11 pr-4 py-3 rounded-xl text-sm outline-none transition-all duration-200
-    bg-surface/50 border ${errors[field] ? 'border-red-500/60' : 'border-border'}
-    text-text-primary placeholder-text-secondary
-    focus:border-primary/60 focus:bg-surface/70
+    bg-white dark:bg-[#0c1322] border ${errors[field] ? 'border-red-500/80 ring-1 ring-red-500/30' : 'border-slate-300 dark:border-white/15'}
+    text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500
+    focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25
   `
 
   const isDark = theme === 'dark'
@@ -79,8 +80,8 @@ function Login() {
         transition={{ duration: 0.5 }}
         className="flex justify-center mb-8"
       >
-        <Link to="/">
-          <img src="/logo img.png" alt="Taraj Global" className="h-12 w-auto" />
+        <Link to="/" className="inline-flex items-center justify-center group">
+          <TGAnimatedLogo className="w-[68px] h-[68px] sm:w-[76px] sm:h-[76px]" />
         </Link>
       </motion.div>
 
@@ -89,12 +90,12 @@ function Login() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, delay: 0.1 }}
-        className="rounded-2xl p-8 premium-card"
+        className="rounded-2xl p-8 premium-card border border-slate-200/80 dark:border-white/10 bg-white/95 dark:bg-[#0b101d]/95 backdrop-blur-xl shadow-xl shadow-black/[0.05] dark:shadow-black/40"
       >
         {/* Heading */}
         <div className="mb-7">
-          <h1 className="text-2xl font-bold text-text-primary mb-1">Welcome back</h1>
-          <p className="text-sm text-text-secondary">Sign in to your Taraj Global account</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Welcome back</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Sign in to your Taraj Global account</p>
         </div>
 
         {/* API error */}
@@ -102,8 +103,8 @@ function Login() {
           <motion.div
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-2 px-4 py-3 rounded-xl mb-5 text-sm"
-            style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', color: '#FCA5A5' }}
+            className="flex items-center gap-2 px-4 py-3 rounded-xl mb-5 text-sm font-medium"
+            style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.35)', color: '#EF4444' }}
           >
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
             {apiError}
@@ -113,58 +114,65 @@ function Login() {
         <form onSubmit={handleSubmit} noValidate className="space-y-4">
           {/* Email */}
           <div>
-            <label className="block text-xs font-medium text-text-secondary mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
               Email Address
             </label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/50" />
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-slate-400 pointer-events-none" />
               <input
                 name="email"
                 type="email"
                 value={form.email}
                 onChange={handleChange}
-                placeholder="you@company.com"
+                placeholder="admin@tarajglobal.com"
                 className={inputCls('email')}
+                style={{ color: isDark ? '#FFFFFF' : '#0F172A' }}
                 disabled={loading}
                 autoComplete="email"
               />
             </div>
             {errors.email && (
-              <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
-                <AlertCircle className="w-3 h-3" />{errors.email}
+              <p className="mt-1.5 text-xs text-red-500 font-medium flex items-center gap-1">
+                <AlertCircle className="w-3.5 h-3.5" />{errors.email}
               </p>
             )}
           </div>
 
           {/* Password */}
           <div>
-            <label className="block text-xs font-medium text-text-secondary mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
               Password
             </label>
-            <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/50" />
+            <div className="relative flex items-center">
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-slate-400 pointer-events-none" />
               <input
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 value={form.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className={`${inputCls('password')} pr-11`}
+                className={`${inputCls('password')} pr-12`}
+                style={{ color: isDark ? '#FFFFFF' : '#0F172A' }}
                 disabled={loading}
                 autoComplete="current-password"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(v => !v)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-secondary/50 hover:text-text-secondary transition-colors"
-                tabIndex={-1}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-white/10 transition-all cursor-pointer z-10 focus:outline-none"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                title={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4 text-[#00A6FF]" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
               </button>
             </div>
             {errors.password && (
-              <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
-                <AlertCircle className="w-3 h-3" />{errors.password}
+              <p className="mt-1.5 text-xs text-red-500 font-medium flex items-center gap-1">
+                <AlertCircle className="w-3.5 h-3.5" />{errors.password}
               </p>
             )}
           </div>

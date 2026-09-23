@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import {
-  LogIn,
   ChevronDown,
   Search,
   ArrowRight,
@@ -297,15 +296,8 @@ export const PremiumNavbar = () => {
               {/* Ultra-premium animated SVG TG Emblem / Logo */}
               <TGAnimatedLogo
                 logoUrl={logoData.logo_url}
-                alt={logoData.logo_alt || logoData.logo_text || "Taraj Global Logo"}
+                alt={logoData.logo_alt || "Taraj Global Logo"}
               />
-
-              {/* Dynamic CMS Brand Name Text (only if toggled on in CMS or with emblem) */}
-              {logoData.show_logo_text && logoData.logo_text && (
-                <span className="inline-block font-extrabold text-sm sm:text-base md:text-lg tracking-tight text-slate-900 dark:text-white leading-tight font-display group-hover:text-[#00A6FF] transition-colors whitespace-nowrap">
-                  {logoData.logo_text}
-                </span>
-              )}
             </Link>
           </div>
 
@@ -514,18 +506,6 @@ export const PremiumNavbar = () => {
 
             {/* Theme Toggle Switch */}
             <ThemeToggle />
-
-            {/* Enterprise Login */}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                to="/login"
-                className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200/90 dark:border-white/10 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-[#00A6FF] hover:border-[#00A6FF]/40 transition-colors shadow-2xs"
-                aria-label="Login"
-              >
-                <LogIn size={13} />
-                <span>Login</span>
-              </Link>
-            </motion.div>
 
             {/* Primary Action Button ("Get Started") */}
             <motion.div
