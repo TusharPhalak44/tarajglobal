@@ -1,0 +1,26 @@
+<svg width="520" height="220" viewBox="0 0 520 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="220" fill="#F5F5F5"/>
+  <g transform="translate(20,18)">
+    <circle cx="70" cy="70" r="62" fill="none" stroke="#00A6FF" stroke-width="10"/>
+    <path d="M24 92C28 52 58 26 92 26C120 26 148 42 162 72" stroke="#00A6FF" stroke-width="10" stroke-linecap="round"/>
+    <path d="M32 114C50 138 77 152 108 152C133 152 158 142 176 122" stroke="#FF6D00" stroke-width="10" stroke-linecap="round"/>
+    <path d="M72 30L86 62H118L92 78L101 110L72 90L43 110L52 78L26 62H58L72 30Z" fill="#FF6D00" opacity="0.95"/>
+    <path d="M78 15L92 32H103L89 48L97 66L78 52L59 66L67 48L53 32H64L78 15Z" fill="#00A6FF" opacity="0.9"/>
+    <circle cx="70" cy="70" r="4" fill="#00A6FF"/>
+    <circle cx="120" cy="70" r="4" fill="#FF6D00"/>
+    <circle cx="70" cy="120" r="4" fill="#00A6FF"/>
+    <circle cx="120" cy="120" r="4" fill="#FF6D00"/>
+  </g>
+
+  <g transform="translate(190,34)">
+    <text x="0" y="75" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#0F172A">Taraj Global is an ISO certified</text>
+    <text x="0" y="112" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#0F172A">demand generation agency.</text>
+  </g>
+
+  <g transform="translate(190,140)">
+    <rect x="0" y="0" width="72" height="52" rx="12" fill="#F3F4F6" stroke="#D7DCE5" stroke-width="2"/>
+    <path d="M21 19.5C21 17.567 22.567 16 24.5 16H34.5C36.433 16 38 17.567 38 19.5V31.5C38 33.433 36.433 35 34.5 35H24.5C22.567 35 21 33.433 21 31.5V19.5ZM23 19V32H36V19H23ZM27 21H32V23H27V21ZM27 25H32V27H27V25ZM27 29H30V31H27V29Z" fill="#0F172A"/>
+    <path d="M41 25H45C46.1 25 47 25.9 47 27V36H43.5V29.5H41V36H37.5V25H41V25Z" fill="#0F172A"/>
+    <path d="M49 25H53.1L57.5 31V25H61V36H56.9L52.5 30V36H49V25Z" fill="#0F172A"/>
+  </g>
+</svg>

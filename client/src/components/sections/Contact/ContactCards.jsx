@@ -20,7 +20,7 @@ const ContactCards = () => {
     {
       icon: MapPin,
       title: 'Visit Office',
-      info: 'The Space Business Complex Office No 512-516, Grant Rd, Kharadi, Pune, Maharashtra 411014',
+      info: 'The Space Business Complex Office No 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014',
       subInfo: '',
     },
     {

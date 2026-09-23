@@ -135,7 +135,7 @@ const GetInTouch = ({ onBookMeeting }) => {
                 }}
               >
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                We respond within a few hours
+                We are online
               </motion.div>
 
             </div>
@@ -209,7 +209,7 @@ const GetInTouch = ({ onBookMeeting }) => {
                     { icon: Mail, label: 'info@tarajglobal.com', color: '#00A6FF' },
                     { icon: Phone, label: '+91 96655-99442', color: '#FF6D00' },
                     { icon: MapPin, label: 'Pune, Maharashtra', color: '#72D669' },
-                    { icon: MapPin, label: 'The Space Business Complex, Office No 512-516, Grant Rd, Kharadi, Pune, Maharashtra 411014', color: '#72D669' },
+                    { icon: MapPin, label: 'The Space Business Complex, Office No 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014', color: '#72D669' },
                   ].map((item, i) => {
                     const Icon = item.icon
                     return (

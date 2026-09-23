@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import Hero from './components/Hero'
 import WhatIsPlatform from './components/WhatIsPlatform'
@@ -10,9 +10,6 @@ import WhyOnePlatform from './components/WhyOnePlatform'
 import FinalCTA from './components/FinalCTA'
 
 const DemandFlowBridge = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
   const jsonLd = {
     '@context': 'https://schema.org',

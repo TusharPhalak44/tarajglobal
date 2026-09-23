@@ -88,7 +88,7 @@ export const Testimonials = () => {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md shadow-xs">
               <Sparkles size={12} className="text-primary animate-pulse" />
               <span className="text-[10px] sm:text-[11px] font-mono font-bold text-primary uppercase tracking-[0.2em]">
-                Client Reviews &amp; Endorsements
+                Client Testimonials
               </span>
             </div>
 

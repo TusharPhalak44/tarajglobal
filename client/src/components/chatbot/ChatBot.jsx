@@ -26,7 +26,7 @@ const BOT_RESPONSES = [
   },
   {
     patterns: ['contact', 'reach', 'email', 'phone', 'call', 'touch', 'talk'],
-    response: "You can reach us through multiple channels:\n\n📧 **Email:** info@tarajglobal.com\n📞 **Phone:** +91 96655-99442\n📍 **Office:** The Space Business Complex, Office No. 512–516, Grant Rd, Kharadi, Pune, Maharashtra 411014\n\nOr visit our [Contact page](/contact) to send us a message directly!",
+    response: "You can reach us through multiple channels:\n\n📧 **Email:** info@tarajglobal.com\n📞 **Phone:** +91 96655-99442\n📍 **Office:** The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014\n\nOr visit our [Contact page](/contact) to send us a message directly!",
   },
   {
     patterns: ['industry', 'industries', 'sector', 'sectors', 'vertical', 'verticals', 'market'],
@@ -62,7 +62,7 @@ const BOT_RESPONSES = [
   },
   {
     patterns: ['location', 'address', 'where', 'office', 'pune', 'india', 'headquarters'],
-    response: "Our headquarters is located in the heart of Pune's tech corridor:\n\n📍 **The Space Business Complex**\nOffice No. 512–516, Grant Rd, Kharadi\nPune, Maharashtra 411014, India\n\nKharadi is one of Pune's fastest-growing IT hubs — a fitting home for a forward-thinking agency!",
+    response: "Our headquarters is located in the heart of Pune's tech corridor:\n\n📍 **The Space Business Complex**\nOffice No. 512 to 517, Grant Rd, Kharadi\nPune, Maharashtra 411014, India\n\nKharadi is one of Pune's fastest-growing IT hubs — a fitting home for a forward-thinking agency!",
   },
   {
     patterns: ['thank', 'thanks', 'thank you', 'appreciate', 'great', 'awesome', 'perfect', 'helpful'],

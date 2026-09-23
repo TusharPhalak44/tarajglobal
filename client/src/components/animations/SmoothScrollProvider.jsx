@@ -119,7 +119,7 @@ export const SmoothScrollProvider = ({ children }) => {
         const targetElement = document.querySelector(hash)
         if (targetElement) {
           if (lenisRef.current) {
-            lenisRef.current.scrollTo(targetElement, { offset: -85, duration: 1.2 })
+            lenisRef.current.scrollTo(targetElement, { offset: -85, duration: 1.0 })
           } else {
             const top = targetElement.getBoundingClientRect().top + window.scrollY - 85
             window.scrollTo({ top, behavior: 'smooth' })
@@ -128,8 +128,13 @@ export const SmoothScrollProvider = ({ children }) => {
         refreshScrollTrigger()
       }, 150)
       return () => clearTimeout(timer)
+    } else {
       // Standard page navigation: reset scroll to top immediately across window & Lenis
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      } catch {
+        window.scrollTo(0, 0)
+      }
       document.documentElement.scrollTop = 0
       document.body.scrollTop = 0
 

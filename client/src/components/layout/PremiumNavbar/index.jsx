@@ -155,6 +155,9 @@ export const PremiumNavbar = () => {
     { name: 'Contact Us', path: '/contact' },
   ])
 
+  // Filter out Industries from navLinks
+  const filteredNavLinks = navLinks.filter(item => item.name !== 'Industries')
+
   const fetchNavbarData = useCallback(() => {
     cmsAPI.getLogo()
       .then(res => {
@@ -312,7 +315,7 @@ export const PremiumNavbar = () => {
             aria-label="Main Navigation"
             onMouseLeave={() => setHoveredNav(null)}
           >
-            {navLinks.map((item) => {
+            {filteredNavLinks.map((item) => {
               const isServices = item.path === '/services' || item.name?.toLowerCase() === 'services'
               const isExternal =
                 item.path?.startsWith('http://') ||
@@ -566,7 +569,7 @@ export const PremiumNavbar = () => {
         onClose={closeMenu}
         logoUrl={logoData.logo_url}
         logoText={logoData.logo_text}
-        navLinks={navLinks}
+        navLinks={filteredNavLinks}
       />
     </>
   )

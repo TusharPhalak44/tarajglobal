@@ -1180,7 +1180,7 @@ function Careers() {
       num: '01',
       tag: 'CAMPUS & LOCATION',
       q: 'Where is the Taraj Global office located?',
-      a: 'Our primary delivery headquarters is located at The Space Business Complex, Office No. 512–516, Grant Rd, Kharadi, Pune, Maharashtra 411014. We are situated in one of Pune’s most vibrant commercial and technology corridors.',
+      a: 'Our primary delivery headquarters is located at The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014. We are situated in one of Pune\'s most vibrant commercial and technology corridors.',
       highlight: 'The Space Business Complex, Kharadi, Pune (Tech Hub)'
     },
     {
@@ -2087,7 +2087,7 @@ function Careers() {
                             HEADQUARTERS
                           </span>
                           <span className="text-xs font-semibold text-text-primary dark:text-white/90 group-hover:text-[#00A6FF] transition-colors leading-relaxed block">
-                            The Space Business Complex, Office 512–516, Grant Rd, Kharadi, Pune, Maharashtra 411014
+                            The Space Business Complex, Office 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014
                           </span>
                         </div>
                       </div>

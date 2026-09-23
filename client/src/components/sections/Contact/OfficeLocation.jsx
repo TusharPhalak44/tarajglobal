@@ -96,10 +96,10 @@ const OfficeLocation = () => {
                 <MapPin size={24} className="detail-icon" />
                 <h3>Address</h3>
                 <p>The Space Business Complex</p>
-                <p>Office No 512-516, Grant Rd, Kharadi</p>
+                <p>Office No 512 to 517, Grant Rd, Kharadi</p>
                 <p>Pune, Maharashtra 411014</p>
                 <motion.a
-                  href="https://www.google.com/maps/dir/?api=1&destination=The+Space+Business+Complex,+Office+No+512-516,+Grant+Rd,+Kharadi,+Pune,+Maharashtra+411014"
+                  href="https://www.google.com/maps/dir/?api=1&destination=The+Space+Business+Complex,+Office+No+512+to+517,+Grant+Rd,+Kharadi,+Pune,+Maharashtra+411014"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}

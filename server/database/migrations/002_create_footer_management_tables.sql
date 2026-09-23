@@ -121,14 +121,14 @@ CREATE TABLE footer_offices (
 
 -- Insert default offices
 INSERT INTO footer_offices (name, address_line_1, address_line_2, city, state, country, postal_code, map_url, phone, icon, is_visible, sort_order) VALUES
-('India Office', 
+('India Office',
  'The Space Business Complex',
- 'Office No. 512–516, Grant Rd, Kharadi',
+ 'Office No. 512 to 517, Grant Rd, Kharadi',
  'Pune',
  'Maharashtra',
  'India',
  '411014',
- 'https://www.google.com/maps/dir/?api=1&destination=The+Space+Business+Complex,+Office+No.+512-516,+Grant+Rd,+Kharadi,+Pune,+Maharashtra+411014',
+ 'https://www.google.com/maps/dir/?api=1&destination=The+Space+Business+Complex,+Office+No+512+to+517,+Grant+Rd,+Kharadi,+Pune,+Maharashtra+411014',
  '+91 96655-99442',
  'MapPin',
  1, 1),

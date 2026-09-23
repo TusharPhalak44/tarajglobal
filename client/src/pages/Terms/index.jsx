@@ -184,7 +184,7 @@ function Terms() {
                 <div className="bg-background border border-border p-4 rounded-lg space-y-2">
                   <p><strong className="text-text-primary">Email:</strong> info@tarajglobal.com</p>
                   <p><strong className="text-text-primary">Phone:</strong> +91 96655-99442</p>
-                  <p><strong className="text-text-primary">Address:</strong> The Space Business Complex, Office No. 512–516, Grant Rd, Kharady, Pune, Maharashtra 411014</p>
+                  <p><strong className="text-text-primary">Address:</strong> The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014</p>
                 </div>
               </div>
             </section>

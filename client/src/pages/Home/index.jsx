@@ -26,7 +26,7 @@ const homeSchema = {
       "email": "info@tarajglobal.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "The Space Business Complex, Office No 512-516, Grant Rd, Kharadi",
+        "streetAddress": "The Space Business Complex, Office No 512 to 517, Grant Rd, Kharadi",
         "addressLocality": "Pune",
         "addressRegion": "Maharashtra",
         "postalCode": "411014",

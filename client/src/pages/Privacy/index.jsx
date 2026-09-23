@@ -321,7 +321,7 @@ function Privacy() {
                 </div>
                 <div className="flex items-start gap-3 text-text-secondary">
                   <Globe className="w-5 h-5 text-cta mt-1" />
-                  <span>The Space Business Complex, Office No. 512–516, Grant Rd, Kharadi, Pune, Maharashtra 411014</span>
+                  <span>The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014</span>
                 </div>
               </div>
             </motion.section>

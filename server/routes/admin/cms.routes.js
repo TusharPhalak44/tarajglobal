@@ -184,7 +184,7 @@ router.get('/clients', cmsController.getAllClients)
 router.post('/clients', [
   body('client_name').trim().notEmpty().withMessage('Client name is required'),
   body('logo_path').trim().notEmpty().withMessage('Logo path is required'),
-  body('website_url').optional().trim().isURL().withMessage('Website URL must be valid'),
+  body('website_url').optional({ checkFalsy: true }).trim().isURL().withMessage('Website URL must be valid'),
   body('display_order').optional().isInt().withMessage('Display order must be an integer'),
   body('is_active').optional().isBoolean().withMessage('Active status must be a boolean')
 ], validate, cmsController.createClient)
@@ -195,7 +195,7 @@ router.post('/clients', [
 router.put('/clients/:id', [
   body('client_name').optional().trim().notEmpty(),
   body('logo_path').optional().trim().notEmpty(),
-  body('website_url').optional().trim().isURL(),
+  body('website_url').optional({ checkFalsy: true }).trim().isURL().withMessage('Website URL must be valid'),
   body('display_order').optional().isInt(),
   body('is_active').optional().isBoolean()
 ], validate, cmsController.updateClient)

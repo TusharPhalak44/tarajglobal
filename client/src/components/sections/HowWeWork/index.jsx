@@ -118,7 +118,7 @@ export const HowWeWork = () => {
         position: 'relative',
         zIndex: 1,
       }}
-      aria-label="How We Work — From Targeting to Revenue"
+      aria-label="How We Work — From Targetting to Revenue"
     >
       <AnimatedSectionBackground accent="cyan" />
 
@@ -134,14 +134,14 @@ export const HowWeWork = () => {
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-text-primary tracking-tight leading-[1.14] mb-2">
-            From Targeting{' '}
+            From Targetting{' '}
             <span className="bg-gradient-to-r from-primary via-[#00E5FF] to-cta bg-clip-text text-transparent">
               to Revenue.
             </span>
           </h2>
 
           <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-normal">
-            Every campaign follows a structured, data-driven revenue growth process designed to move the right prospects from initial targeting to qualified sales opportunities.
+            Every campaign follows a structured, data-driven revenue growth process designed to move the right prospects from initial targetting to qualified sales opportunities.
           </p>
         </div>
 
