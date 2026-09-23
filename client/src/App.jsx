@@ -8,6 +8,7 @@ import CookieBanner from './components/cookies/CookieBanner'
 import CookieModal from './components/cookies/CookieModal'
 import { SmoothScrollProvider } from './components/animations/SmoothScrollProvider'
 import ScrollToTop from './components/common/ScrollToTop'
+import PageTracker from './components/analytics/PageTracker'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <CookieProvider>
             <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
               <ScrollToTop />
+              <PageTracker />
               <SmoothScrollProvider>
                 <AppRoutes />
                 <CookieBanner />

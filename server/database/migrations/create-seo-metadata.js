@@ -19,7 +19,7 @@ try {
     CREATE TABLE IF NOT EXISTS seo_metadata (
       id INT AUTO_INCREMENT PRIMARY KEY,
       entity_type VARCHAR(50) NOT NULL,
-      entity_id INT NOT NULL,
+      entity_id VARCHAR(255) NOT NULL,
       meta_title VARCHAR(255),
       meta_description TEXT,
       meta_keywords VARCHAR(500),

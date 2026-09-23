@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import api from '../../api/axios'
 
 const CookieContext = createContext(null)
 
@@ -42,8 +43,8 @@ export const CookieProvider = ({ children }) => {
     loadPreferences()
   }, [])
 
-  // Save preferences to localStorage
-  const savePreferences = useCallback((newPreferences) => {
+  // Save preferences to localStorage and database
+  const savePreferences = useCallback(async (newPreferences) => {
     const updated = {
       ...newPreferences,
       consentGiven: true,
@@ -55,6 +56,23 @@ export const CookieProvider = ({ children }) => {
       setPreferences(updated)
       setIsBannerVisible(false)
       setIsModalOpen(false)
+
+      // Get or create session ID
+      let sessionId = sessionStorage.getItem('tg_analytics_session')
+      if (!sessionId) {
+        sessionId = 'sess_' + Math.random().toString(36).substring(2, 15)
+        sessionStorage.setItem('tg_analytics_session', sessionId)
+      }
+
+      // Save to database silently
+      api.post('/analytics/consent', {
+        session_id: sessionId,
+        necessary: updated.necessary,
+        analytics: updated.analytics,
+        functional: updated.functional,
+        marketing: updated.marketing
+      }).catch(err => console.debug('Failed to sync cookie consent to DB:', err))
+
     } catch (error) {
       console.error('Error saving cookie preferences:', error)
     }

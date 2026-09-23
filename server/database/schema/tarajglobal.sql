@@ -82,6 +82,33 @@ CREATE TABLE IF NOT EXISTS settings (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS cookie_consents (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  session_id VARCHAR(100),
+  ip_address VARCHAR(45),
+  necessary BOOLEAN DEFAULT true,
+  analytics BOOLEAN DEFAULT false,
+  functional BOOLEAN DEFAULT false,
+  marketing BOOLEAN DEFAULT false,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE INDEX idx_session_id (session_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS page_views (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  page_url VARCHAR(500) NOT NULL,
+  referrer VARCHAR(500),
+  user_agent VARCHAR(500),
+  session_id VARCHAR(100),
+  ip_address VARCHAR(45),
+  user_email VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_page_url (page_url(255)),
+  INDEX idx_created_at (created_at),
+  INDEX idx_session_id (session_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 INSERT INTO users (name, email, password, role) VALUES
 ('Admin', 'admin@tarajglobal.com', '', 'admin')
 ON DUPLICATE KEY UPDATE email=email;

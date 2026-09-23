@@ -22,7 +22,8 @@ import {
   Archive,
   LayoutTemplate,
   Footprints,
-  Users as UsersIcon
+  Users as UsersIcon,
+  BarChart2
 } from 'lucide-react'
 import { useAuth } from '@context/AuthContext'
 
@@ -57,6 +58,7 @@ const AdminLayout = () => {
     { icon: Image, label: 'Career Gallery', path: '/admin/career-gallery' },
     { icon: UsersIcon, label: 'Our Clients', path: '/admin/cms/clients' },
     { icon: Globe, label: 'SEO', path: '/admin/seo' },
+    { icon: BarChart2, label: 'SEO Analytics', path: '/admin/seo-analytics' },
     { icon: Building, label: 'Leads', path: '/admin/leads' },
     { icon: Activity, label: 'Audit Logs', path: '/admin/audit-logs' },
     { icon: Bell, label: 'Notifications', path: '/admin/notifications' },

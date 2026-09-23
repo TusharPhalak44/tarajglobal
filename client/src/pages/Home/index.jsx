@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '../../hooks/useSEOData'
 import CursorSpotlight from '@components/effects/CursorSpotlight'
 import DynamicScrollBackground from '@components/effects/DynamicScrollBackground'
 import Hero from '@components/sections/Hero'
@@ -49,15 +50,25 @@ const homeSchema = {
 }
 
 function Home() {
+  const { seoData, loading } = useSEOData('page', 'home', {
+    title: "B2B Lead Generation & Demand Generation Agency | Taraj Global",
+    description: "Scale your sales pipeline with Taraj Global. We deliver high-impact B2B lead generation, account-based marketing (ABM), appointment setting, and verified B2B data for SaaS and technology companies.",
+    keywords: "B2B lead generation, demand generation agency, B2B sales pipeline, SaaS lead generation, qualified B2B leads, account-based marketing agency, B2B appointment setting, intent-based marketing, sales qualified leads, verified B2B intelligence",
+    canonical: "/",
+    ogTitle: "Taraj Global | Powering Smarter B2B Pipeline Growth",
+    ogDescription: "Accelerate pipeline velocity with verified B2B data, demand generation campaigns, and targeted decision-maker outreach."
+  })
+
   return (
     <>
       <SEO
-        title="B2B Lead Generation & Demand Generation Agency | Taraj Global"
-        description="Scale your sales pipeline with Taraj Global. We deliver high-impact B2B lead generation, account-based marketing (ABM), appointment setting, and verified B2B data for SaaS and technology companies."
-        keywords="B2B lead generation, demand generation agency, B2B sales pipeline, SaaS lead generation, qualified B2B leads, account-based marketing agency, B2B appointment setting, intent-based marketing, sales qualified leads, verified B2B intelligence"
-        canonical="/"
-        ogTitle="Taraj Global | Powering Smarter B2B Pipeline Growth"
-        ogDescription="Accelerate pipeline velocity with verified B2B data, demand generation campaigns, and targeted decision-maker outreach."
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonical={seoData.canonical}
+        ogTitle={seoData.ogTitle}
+        ogDescription={seoData.ogDescription}
+        ogImage={seoData.ogImage}
         schemaJson={homeSchema}
       />
 

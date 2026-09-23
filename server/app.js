@@ -17,6 +17,8 @@ import adminRoutes from './routes/admin.routes.js'
 import cmsRoutes from './routes/cms.routes.js'
 import footerRoutes from './routes/footer.routes.js'
 import careerGalleryRoutes from './routes/career_gallery.routes.js'
+import analyticsRoutes from './routes/analytics.routes.js'
+import seoRoutes from './routes/seo.routes.js'
 
 // Import middleware
 import { errorHandler } from './middleware/error.middleware.js'
@@ -77,6 +79,8 @@ app.use('/api/admin', adminRoutes)
 app.use('/api/cms', cmsRoutes)
 app.use('/api/footer', footerRoutes)
 app.use('/api/career-gallery', careerGalleryRoutes)
+app.use('/api/analytics', analyticsRoutes)
+app.use('/api/seo', seoRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => {
