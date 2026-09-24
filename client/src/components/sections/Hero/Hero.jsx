@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronRight, ShieldCheck, Target, Sparkles, Activity } from 'lucide-react'
 import { StarButton } from '@components/ui/StarButton'
 import { useTheme } from '@context/ThemeContext'
-import { RevenueSignalField } from './RevenueSignalField'
+import { HeroRightAnimation } from './HeroRightAnimation'
 import { gsap, ScrollTrigger } from '@animations/gsap'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 
@@ -218,8 +218,8 @@ export const Hero = () => {
           </div>
 
           {/* ══ Right Visual Block: Signature Revenue Signal Field (Span 5) ═ */}
-          <div ref={visualRef} className="lg:col-span-5 flex justify-center relative">
-            <RevenueSignalField mousePos={mousePos} />
+          <div ref={visualRef} className="lg:col-span-5 flex justify-center relative w-full h-full min-h-[500px]">
+            <HeroRightAnimation />
           </div>
 
         </div>

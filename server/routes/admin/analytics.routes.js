@@ -234,4 +234,80 @@ router.get('/application-trends', checkPermission('analytics.view'), async (req,
   }
 })
 
+// @route   GET /api/admin/analytics/traffic
+// @desc    Get traffic analytics (SEO)
+// @access  Private
+router.get('/traffic', checkPermission('analytics.view'), async (req, res) => {
+  try {
+    const { days = 30 } = req.query
+
+    // 1. Overview metrics
+    const [overviewResult] = await db.execute(`
+      SELECT 
+        COUNT(*) as total_views,
+        COUNT(DISTINCT session_id) as unique_visitors
+      FROM page_views
+      WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+    `, [parseInt(days)])
+    
+    // 2. Top pages
+    const [topPagesResult] = await db.execute(`
+      SELECT 
+        page_url,
+        COUNT(*) as views,
+        COUNT(DISTINCT session_id) as unique_views
+      FROM page_views
+      WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+      GROUP BY page_url
+      ORDER BY views DESC
+      LIMIT 10
+    `, [parseInt(days)])
+    
+    // 3. Traffic sources (referrers)
+    const [sourcesResult] = await db.execute(`
+      SELECT 
+        CASE 
+          WHEN referrer IS NULL OR referrer = '' THEN 'Direct'
+          WHEN referrer LIKE '%google%' THEN 'Google'
+          WHEN referrer LIKE '%bing%' THEN 'Bing'
+          WHEN referrer LIKE '%linkedin%' THEN 'LinkedIn'
+          WHEN referrer LIKE '%twitter%' OR referrer LIKE '%t.co%' THEN 'Twitter'
+          WHEN referrer LIKE '%facebook%' THEN 'Facebook'
+          ELSE 'Other Referrals'
+        END as source,
+        COUNT(*) as views
+      FROM page_views
+      WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+      GROUP BY source
+      ORDER BY views DESC
+    `, [parseInt(days)])
+    
+    // 4. Recent Visitors (IPs and Sessions with total hit count)
+    const [recentVisitors] = await db.execute(`
+      SELECT 
+        pv.ip_address,
+        pv.session_id,
+        pv.page_url,
+        pv.created_at,
+        (SELECT COUNT(*) FROM page_views WHERE session_id = pv.session_id) as total_visits
+      FROM page_views pv
+      WHERE pv.created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+      ORDER BY pv.created_at DESC
+      LIMIT 10
+    `, [parseInt(days)])
+
+    res.json({
+      success: true,
+      data: {
+        overview: overviewResult[0] || { total_views: 0, unique_visitors: 0 },
+        top_pages: topPagesResult,
+        traffic_sources: sourcesResult,
+        recent_visitors: recentVisitors
+      }
+    })
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message })
+  }
+})
+
 export default router

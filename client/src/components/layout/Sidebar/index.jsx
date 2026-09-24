@@ -11,7 +11,8 @@ import {
   ChevronLeft,
   ChevronRight,
   LogOut,
-  FileEdit
+  FileEdit,
+  CreditCard
 } from 'lucide-react'
 
 const Sidebar = () => {
@@ -25,6 +26,7 @@ const Sidebar = () => {
     { icon: FileText, label: 'Blog Posts', path: '/dashboard/blog' },
     { icon: FileEdit, label: 'Drafts', path: '/dashboard/drafts' },
     { icon: MessageSquare, label: 'Messages', path: '/dashboard/messages' },
+    { icon: CreditCard, label: 'Payments', path: '/admin/payments' },
     { icon: Settings, label: 'Settings', path: '/dashboard/settings' },
   ]
 

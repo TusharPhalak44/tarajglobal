@@ -50,6 +50,7 @@ import Users from '@pages/Admin/Users'
 import Profile from '@pages/Admin/Profile'
 import Settings from '@pages/Admin/Settings'
 import SEO from '@pages/Admin/SEO'
+import SEOAnalytics from '@pages/Admin/SEOAnalytics'
 import Leads from '@pages/Admin/Leads'
 import AuditLogs from '@pages/Admin/AuditLogs'
 import Notifications from '@pages/Admin/Notifications'
@@ -58,6 +59,7 @@ import CMSFooter from '@pages/Admin/CMSFooter'
 import CMSOurClients from '@pages/Admin/CMSOurClients'
 import FooterManagement from '@pages/Admin/FooterManagement'
 import CareerGallery from '@pages/Admin/CareerGallery/index.jsx'
+import PaymentGateways from '@pages/Admin/PaymentGateways'
 
 function AppRoutes() {
   return (
@@ -123,6 +125,7 @@ function AppRoutes() {
         <Route path="profile" element={<Profile />} />
         <Route path="settings" element={<Settings />} />
         <Route path="seo" element={<SEO />} />
+        <Route path="seo-analytics" element={<SEOAnalytics />} />
         <Route path="leads" element={<Leads />} />
         <Route path="audit-logs" element={<AuditLogs />} />
         <Route path="notifications" element={<Notifications />} />
@@ -131,6 +134,7 @@ function AppRoutes() {
         <Route path="cms/clients" element={<CMSOurClients />} />
         <Route path="career-gallery" element={<CareerGallery />} />
         <Route path="footer" element={<FooterManagement />} />
+        <Route path="payments" element={<PaymentGateways />} />
       </Route>
 
       {/* 404 */}

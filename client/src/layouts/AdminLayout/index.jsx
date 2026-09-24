@@ -22,7 +22,9 @@ import {
   Archive,
   LayoutTemplate,
   Footprints,
-  Users as UsersIcon
+  Users as UsersIcon,
+  BarChart2,
+  CreditCard
 } from 'lucide-react'
 import { useAuth } from '@context/AuthContext'
 
@@ -57,9 +59,11 @@ const AdminLayout = () => {
     { icon: Image, label: 'Career Gallery', path: '/admin/career-gallery' },
     { icon: UsersIcon, label: 'Our Clients', path: '/admin/cms/clients' },
     { icon: Globe, label: 'SEO', path: '/admin/seo' },
+    { icon: BarChart2, label: 'SEO Analytics', path: '/admin/seo-analytics' },
     { icon: Building, label: 'Leads', path: '/admin/leads' },
     { icon: Activity, label: 'Audit Logs', path: '/admin/audit-logs' },
     { icon: Bell, label: 'Notifications', path: '/admin/notifications' },
+    { icon: CreditCard, label: 'Payments', path: '/admin/payments' },
     { icon: Settings, label: 'Settings', path: '/admin/settings' },
   ]
 
@@ -71,16 +75,15 @@ const AdminLayout = () => {
   return (
     <>
       <SEO title="Admin Control Center | Taraj Global" noIndex={true} />
-      <div className="min-h-screen bg-background flex">
+      <div className="fixed inset-0 flex bg-background overflow-hidden">
       {/* Sidebar */}
       <aside 
-        className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-surface border-r border-border transform transition-transform duration-300 ease-in-out ${
+        className={`w-64 flex-shrink-0 h-full bg-surface border-r border-border flex flex-col z-50 transform transition-transform duration-300 ease-in-out ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0`}
+        } lg:translate-x-0 fixed inset-y-0 left-0 lg:static`}
       >
-        <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="flex items-center justify-between p-6 border-b border-border">
+        {/* Logo */}
+        <div className="flex-none flex items-center justify-between p-6 border-b border-border">
             <Link to="/admin/dashboard" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-cta flex items-center justify-center">
                 <span className="text-white font-bold text-xl">T</span>
@@ -96,8 +99,8 @@ const AdminLayout = () => {
             </button>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 p-4 overflow-y-auto">
+        {/* Navigation */}
+        <nav className="flex-1 overflow-y-auto p-4 [&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:h-0 [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent="true" style={{ WebkitOverflowScrolling: 'touch' }}>
             <ul className="space-y-2">
               {menuItems.map((item) => {
                 const Icon = item.icon
@@ -123,8 +126,8 @@ const AdminLayout = () => {
             </ul>
           </nav>
 
-          {/* User Section */}
-          <div className="p-4 border-t border-border">
+        {/* User Section */}
+        <div className="flex-none p-4 border-t border-border mt-auto">
             <button
               onClick={() => navigate('/admin/profile')}
               className="flex items-center gap-3 w-full mb-4 p-2 min-h-[44px] rounded-lg hover:bg-surface/80 transition-colors"
@@ -148,14 +151,13 @@ const AdminLayout = () => {
               <LogOut className="w-5 h-5" />
               <span>Logout</span>
             </button>
-          </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 h-full relative">
         {/* Top Header */}
-        <header className="bg-surface border-b border-border px-4 sm:px-6 py-3 sm:py-4">
+        <header className="flex-none z-40 bg-surface border-b border-border px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -197,7 +199,7 @@ const AdminLayout = () => {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6" data-lenis-prevent="true" style={{ WebkitOverflowScrolling: 'touch' }}>
           <Outlet />
         </main>
       </div>
