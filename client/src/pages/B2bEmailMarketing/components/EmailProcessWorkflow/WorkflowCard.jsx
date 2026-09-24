@@ -34,7 +34,7 @@ export default function WorkflowCard({
   customStyle = {},
   className = '',
 }) {
-  const IconComponent = ICON_MAP[step.iconName] || Target
+  const IconComponent = ICON_MAP[step.iconName] || Users
 
   return (
     <motion.div

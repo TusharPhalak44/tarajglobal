@@ -35,7 +35,7 @@ const FLOW_ITEMS = [
       sub: '98%+ active record integrity restored',
       icon: CheckCircle2,
     },
-    color: '#00A6FF',
+    color: '#00A6FF', // Blue
     gradient: 'from-[#00A6FF] to-[#0070E0]',
   },
   {
@@ -54,7 +54,7 @@ const FLOW_ITEMS = [
       sub: 'Pristine sender score & inboxing',
       icon: Sparkles,
     },
-    color: '#8B5CF6',
+    color: '#8B5CF6', // Purple
     gradient: 'from-[#8B5CF6] to-[#6D28D9]',
   },
   {
@@ -73,7 +73,7 @@ const FLOW_ITEMS = [
       sub: '100% deduplicated, unified profiles',
       icon: TrendingUp,
     },
-    color: '#10B981',
+    color: '#10B981', // Emerald
     gradient: 'from-[#10B981] to-[#059669]',
   },
   {
@@ -92,7 +92,7 @@ const FLOW_ITEMS = [
       sub: 'Track former champions to new firms',
       icon: Zap,
     },
-    color: '#F59E0B',
+    color: '#F59E0B', // Amber
     gradient: 'from-[#F59E0B] to-[#D97706]',
   },
   {
@@ -109,22 +109,22 @@ const FLOW_ITEMS = [
     solution: {
       title: 'Full Multi-Field Enrich',
       sub: 'Direct dials & software stacks added',
-      icon: CheckCircle2,
+      icon: ShieldCheck,
     },
-    color: '#EC4899',
+    color: '#EC4899', // Pink
     gradient: 'from-[#EC4899] to-[#BE185D]',
   },
 ]
 
-// ─── Timing Constants ─────────────────────────────────────────────────────────
+// ─── Timing Constants (Smooth, Measured & Slower Pace) ─────────────────────
 
 const TIMING = {
-  problemHighlight: 1000,
-  lineToCenter: 1400,
-  centerReaction: 1500,
-  lineToSolution: 1400,
-  solutionHold: 1500,
-  pauseBetween: 800,
+  problemHighlight: 1000, // 1.0s: problem card highlight
+  lineToCenter: 1400,     // 1.4s: smooth comet glide to center engine
+  centerReaction: 1500,   // 1.5s: center transformation & shockwave
+  lineToSolution: 1400,   // 1.4s: smooth glide to solution card
+  solutionHold: 1500,     // 1.5s: solution card celebration & readout
+  pauseBetween: 800,      // 0.8s: gentle pause before next item
 }
 
 const ProblemsSolved = () => {
@@ -137,7 +137,7 @@ const ProblemsSolved = () => {
 
   const [activeStep, setActiveStep] = useState(0)
   const [cycleKey, setCycleKey] = useState(0)
-  const [phase, setPhase] = useState('problem')
+  const [phase, setPhase] = useState('problem') // 'problem' | 'toCenter' | 'centerReact' | 'toSolution' | 'solution' | 'pause'
   const [isInView, setIsInView] = useState(false)
   const [paths, setPaths] = useState({ left: [], right: [] })
 
@@ -172,6 +172,7 @@ const ProblemsSolved = () => {
     const newLeftPaths = []
     const newRightPaths = []
 
+    // Calculate Y offsets on circle rim for 5 distinct ports
     const angleOffsets = [-0.4, -0.2, 0, 0.2, 0.4]
 
     FLOW_ITEMS.forEach((_, idx) => {
@@ -183,6 +184,7 @@ const ProblemsSolved = () => {
         const startX = pRect.right - containerRect.left
         const startY = pRect.top + pRect.height / 2 - containerRect.top
 
+        // Exact port docking on left rim of circle
         const angle = angleOffsets[idx]
         const rimX = centerRect.left + radius - Math.cos(angle) * radius - containerRect.left
         const rimY = centerY + Math.sin(angle) * (radius * 0.7)
@@ -275,7 +277,7 @@ const ProblemsSolved = () => {
       isMounted = false
       if (stepTimer) clearTimeout(stepTimer)
     }
-  }, [isInView, activeStep, cycleKey, prefersReducedMotion])
+  }, [activeStep, cycleKey, isInView, prefersReducedMotion])
 
   const handleSelectStep = (idx) => {
     setActiveStep(idx)
@@ -285,169 +287,163 @@ const ProblemsSolved = () => {
 
   const currentItem = FLOW_ITEMS[activeStep]
 
+  // Phase-based activity flags
   const isProblemActive = phase === 'problem' || phase === 'toCenter'
   const isLeftLineActive = phase === 'toCenter'
   const isCenterActive = phase === 'centerReact'
   const isRightLineActive = phase === 'toSolution'
-  const isSolutionActive = phase === 'solution'
+  const isSolutionActive = phase === 'solution' || phase === 'toSolution'
 
   return (
     <section
-      id="problems-solved-database-cleansing"
+      id="what-problems-database-cleansing-solves"
       ref={sectionRef}
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
-      aria-label="Problems We Solve in Database Cleansing"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-[#FAFCFF] dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      aria-label="What Problems Does Database Cleansing Solve"
     >
-      {/* Background Lighting */}
+      {/* ── Soft Ambient Background Glow ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
-          className="absolute inset-0 opacity-[0.025] dark:opacity-[0.035]"
+          className="absolute inset-0 opacity-[0.02] dark:opacity-[0.035]"
           style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-            backgroundSize: '28px 28px',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
+            backgroundSize: '24px 24px',
           }}
         />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[400px] rounded-full blur-[140px] opacity-20 pointer-events-none transition-colors duration-700"
-          style={{
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] rounded-full blur-[120px] opacity-15 dark:opacity-20 pointer-events-none"
+          animate={{
             background: `radial-gradient(circle, ${currentItem.color} 0%, transparent 70%)`,
           }}
+          transition={{ duration: 0.8 }}
         />
       </div>
 
-      <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
-          <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-[#00A6FF]/30 bg-white/90 dark:bg-[#0A1426]/90 backdrop-blur-md mb-2.5 shadow-xs"
-          >
-            <Wand2 className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Hygiene Engine
+        {/* ── COMPACT SECTION HEADER ── */}
+        <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5 backdrop-blur-md mb-2 shadow-xs">
+            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
+            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
+              Automated Transformation
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
-          >
-            <span className="text-slate-900 dark:text-white">Problems We Solve in </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Database Cleansing
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+            <span>What Problems Does </span>
+            <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
+              Database Cleansing Solve?
             </span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 12 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.12 }}
-            className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
-          >
-            Dirty data decays sender score and starves sales pipelines. Watch our automated hygiene engine scrub, deduplicate, and enrich stale contacts into revenue-ready assets.
-          </motion.p>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
+            From decaying contact records to high bounce rates, we transform data bottlenecks into verified, revenue-ready assets.
+          </p>
+
+          {/* ── Micro Step Indicator ── */}
+          <div className="flex items-center justify-center gap-2 mt-3">
+            {FLOW_ITEMS.map((item, idx) => {
+              const isCurrent = activeStep === idx
+
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleSelectStep(idx)}
+                  className={`
+                    w-7 h-7 rounded-full text-[11px] font-mono font-bold transition-all duration-300 cursor-pointer flex items-center justify-center border
+                    ${isCurrent
+                      ? 'border-primary text-white bg-primary shadow-md scale-115 z-10'
+                      : 'border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 bg-white dark:bg-white/5 hover:border-slate-300 scale-100'
+                    }
+                  `}
+                  style={{
+                    backgroundColor: isCurrent ? item.color : undefined,
+                    borderColor: isCurrent ? item.color : undefined,
+                  }}
+                  title={item.category}
+                >
+                  {item.num}
+                </button>
+              )
+            })}
+          </div>
         </div>
 
-        {/* ── DESKTOP INTERACTIVE CANVAS CONTAINER (>= 768px) ── */}
+        {/* ── DESKTOP & TABLET VISUALIZATION (Screen >= 768px) ── */}
         <div
           ref={containerRef}
-          className="relative hidden md:block rounded-3xl p-3 sm:p-4 lg:p-5 bg-white/70 dark:bg-[#08101E]/80 border border-slate-200/90 dark:border-white/10 shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md"
+          className="hidden md:block relative min-h-[380px] lg:min-h-[400px] w-full"
         >
-          {/* Background SVG Connectors */}
+          {/* ── SVG S-Curves Connector Layer ── */}
           <svg
-            className="absolute inset-0 w-full h-full pointer-events-none z-0"
-            style={{ overflow: 'visible' }}
+            className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
               <filter id="line-glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3.5" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
               </filter>
 
+              {/* Dynamic Arrowhead Markers */}
               {FLOW_ITEMS.map((item) => (
-                <linearGradient
-                  key={`grad-left-${item.id}`}
-                  id={`left-grad-${item.id}`}
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop offset="0%" stopColor={item.color} stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#00A6FF" stopOpacity="0.9" />
-                </linearGradient>
-              ))}
-
-              {FLOW_ITEMS.map((item) => (
-                <linearGradient
-                  key={`grad-right-${item.id}`}
-                  id={`right-grad-${item.id}`}
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop offset="0%" stopColor="#00A6FF" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={item.color} stopOpacity="0.8" />
-                </linearGradient>
-              ))}
-
-              {FLOW_ITEMS.map((item) => (
-                <marker
-                  key={`arrow-head-${item.id}`}
-                  id={`arrow-head-${item.id}`}
-                  markerWidth="7"
-                  markerHeight="7"
-                  refX="5.5"
-                  refY="3.5"
-                  orient="auto"
-                >
-                  <polygon points="0 1, 6 3.5, 0 6" fill={item.color} />
-                </marker>
-              ))}
-
-              {FLOW_ITEMS.map((item) => (
-                <marker
-                  key={`arrow-head-base-${item.id}`}
-                  id={`arrow-head-base-${item.id}`}
-                  markerWidth="7"
-                  markerHeight="7"
-                  refX="5.5"
-                  refY="3.5"
-                  orient="auto"
-                >
-                  <polygon points="0 1, 6 3.5, 0 6" fill="#64748b" fillOpacity="0.3" />
-                </marker>
+                <React.Fragment key={`arrow-${item.id}`}>
+                  <marker
+                    id={`arrow-head-${item.id}`}
+                    viewBox="0 0 10 10"
+                    refX="7"
+                    refY="5"
+                    markerWidth="6"
+                    markerHeight="6"
+                    orient="auto"
+                  >
+                    <path d="M 1 2 L 8 5 L 1 8 Z" fill={item.color} />
+                  </marker>
+                  <marker
+                    id={`arrow-head-base-${item.id}`}
+                    viewBox="0 0 10 10"
+                    refX="7"
+                    refY="5"
+                    markerWidth="5"
+                    markerHeight="5"
+                    orient="auto"
+                  >
+                    <path d="M 1 2 L 8 5 L 1 8 Z" fill={item.color} fillOpacity="0.4" />
+                  </marker>
+                </React.Fragment>
               ))}
             </defs>
 
-            {/* Left Connectors: Problem Card -> Center Circle */}
-            {paths.left.map((p, idx) => {
-              if (!p) return null
-              const item = FLOW_ITEMS[idx]
-              const isCurr = activeStep === idx
+            {/* Inactive Base Lines with Card Port Dots & Rim Port Dots */}
+            {paths.left.map((p, i) => {
+              const item = FLOW_ITEMS[i]
+              const isCurr = activeStep === i
 
               return (
-                <g key={`path-left-${item.id}`}>
+                <g key={`left-group-${i}`}>
+                  {/* Start Node Port Dot on card edge */}
+                  <circle
+                    cx={p.startX + 6}
+                    cy={p.startY}
+                    r="3.5"
+                    fill="var(--background)"
+                    stroke={item.color}
+                    strokeWidth="1.8"
+                  />
+                  {/* Base Curved Connector Path */}
                   <path
                     d={p.d}
-                    fill="none"
-                    stroke={isCurr && isLeftLineActive ? `url(#left-grad-${item.id})` : '#64748b'}
-                    strokeWidth={isCurr && isLeftLineActive ? 2.5 : 1.2}
-                    strokeOpacity={isCurr && isLeftLineActive ? 1 : 0.2}
-                    filter={isCurr && isLeftLineActive ? 'url(#line-glow)' : 'none'}
-                    className="transition-all duration-300"
+                    stroke={item.color}
+                    strokeWidth={isCurr && isLeftLineActive ? 2.5 : 1.5}
+                    strokeOpacity={isCurr && isLeftLineActive ? 1 : 0.25}
                     markerEnd={`url(#${isCurr && isLeftLineActive ? `arrow-head-${item.id}` : `arrow-head-base-${item.id}`})`}
                   />
+                  {/* Animated Electric Pulse Flow on active line */}
                   {isCurr && isLeftLineActive && (
                     <path
                       d={p.d}
@@ -465,9 +461,10 @@ const ProblemsSolved = () => {
                       />
                     </path>
                   )}
+                  {/* Rim Port Dot on circle left rim */}
                   <circle
-                    cx={p.startX + 6}
-                    cy={p.startY}
+                    cx={p.rimX}
+                    cy={p.rimY}
                     r="3.5"
                     fill="var(--background)"
                     stroke={item.color}
@@ -477,24 +474,30 @@ const ProblemsSolved = () => {
               )
             })}
 
-            {/* Right Connectors: Center Circle -> Solution Card */}
-            {paths.right.map((p, idx) => {
-              if (!p) return null
-              const item = FLOW_ITEMS[idx]
-              const isCurr = activeStep === idx
+            {paths.right.map((p, i) => {
+              const item = FLOW_ITEMS[i]
+              const isCurr = activeStep === i
 
               return (
-                <g key={`path-right-${item.id}`}>
+                <g key={`right-group-${i}`}>
+                  {/* Rim Port Dot on circle right rim */}
+                  <circle
+                    cx={p.rimX}
+                    cy={p.rimY}
+                    r="3.5"
+                    fill="var(--background)"
+                    stroke={item.color}
+                    strokeWidth="1.8"
+                  />
+                  {/* Base Curved Connector Path */}
                   <path
                     d={p.d}
-                    fill="none"
-                    stroke={isCurr && isRightLineActive ? `url(#right-grad-${item.id})` : '#64748b'}
-                    strokeWidth={isCurr && isRightLineActive ? 2.5 : 1.2}
-                    strokeOpacity={isCurr && isRightLineActive ? 1 : 0.2}
-                    filter={isCurr && isRightLineActive ? 'url(#line-glow)' : 'none'}
-                    className="transition-all duration-300"
+                    stroke={item.color}
+                    strokeWidth={isCurr && isRightLineActive ? 2.5 : 1.5}
+                    strokeOpacity={isCurr && isRightLineActive ? 1 : 0.25}
                     markerEnd={`url(#${isCurr && isRightLineActive ? `arrow-head-${item.id}` : `arrow-head-base-${item.id}`})`}
                   />
+                  {/* Animated Electric Pulse Flow on active line */}
                   {isCurr && isRightLineActive && (
                     <path
                       d={p.d}
@@ -512,6 +515,7 @@ const ProblemsSolved = () => {
                       />
                     </path>
                   )}
+                  {/* End Node Port Dot on solution card edge */}
                   <circle
                     cx={p.endX - 6}
                     cy={p.endY}
@@ -524,7 +528,7 @@ const ProblemsSolved = () => {
               )
             })}
 
-            {/* Traveling Particle: Left to Center */}
+            {/* ── Active Traveling Particle: Left to Center (Slower & Multi-Layer Glowing Comet) ── */}
             {paths.left[activeStep] && isLeftLineActive && !prefersReducedMotion && (
               <g>
                 <animateMotion
@@ -534,13 +538,16 @@ const ProblemsSolved = () => {
                   repeatCount="1"
                   fill="freeze"
                 />
+                {/* Outer halo */}
                 <circle r="8.5" fill={currentItem.color} opacity="0.35" filter="url(#line-glow)" />
+                {/* Mid glow */}
                 <circle r="5" fill={currentItem.color} opacity="0.9" />
+                {/* Bright white core */}
                 <circle r="2.8" fill="#ffffff" />
               </g>
             )}
 
-            {/* Traveling Particle: Center to Right */}
+            {/* ── Active Traveling Particle: Center to Right (Slower & Multi-Layer Glowing Comet) ── */}
             {paths.right[activeStep] && isRightLineActive && !prefersReducedMotion && (
               <g>
                 <animateMotion
@@ -550,17 +557,20 @@ const ProblemsSolved = () => {
                   repeatCount="1"
                   fill="freeze"
                 />
+                {/* Outer halo */}
                 <circle r="8.5" fill={currentItem.color} opacity="0.35" filter="url(#line-glow)" />
+                {/* Mid glow */}
                 <circle r="5" fill={currentItem.color} opacity="0.9" />
+                {/* Bright white core */}
                 <circle r="2.8" fill="#ffffff" />
               </g>
             )}
           </svg>
 
-          {/* 3 Columns: Left Cards | Center Circle | Right Cards */}
+          {/* ── 3 Columns: Left Cards | Center Circle | Right Cards ── */}
           <div className="relative z-10 grid grid-cols-12 gap-2.5 lg:gap-3.5 items-center">
 
-            {/* LEFT: 5 Compact Horizontal Problem Cards */}
+            {/* ── LEFT: 5 Compact Horizontal Problem Cards (4 cols) ── */}
             <div className="col-span-4 flex flex-col justify-between gap-2">
               {FLOW_ITEMS.map((item, idx) => {
                 const isActive = activeStep === idx && isProblemActive
@@ -583,13 +593,16 @@ const ProblemsSolved = () => {
                       boxShadow: isActive ? `0 12px 28px -4px ${item.color}40` : undefined,
                     }}
                   >
+                    {/* Square Icon Badge */}
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs transition-transform duration-300 ${isActive ? 'scale-110 shadow-md' : ''}`}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs transition-transform duration-300 ${isActive ? 'scale-110 shadow-md' : ''
+                        }`}
                       style={{ backgroundColor: item.color }}
                     >
                       <Icon className="w-4 h-4" />
                     </div>
 
+                    {/* Text block */}
                     <div className="min-w-0 flex-1">
                       <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-tight truncate flex items-center justify-between">
                         <span>{item.problem.title}</span>
@@ -606,8 +619,9 @@ const ProblemsSolved = () => {
               })}
             </div>
 
-            {/* CENTER: Glowing Circular Engine */}
+            {/* ── CENTER: Compact Glowing Circular Engine (~175px - 195px) (4 cols) ── */}
             <div className="col-span-4 flex flex-col items-center justify-center">
+              {/* Top Pill Tag */}
               <motion.div
                 animate={{
                   borderColor: isCenterActive ? currentItem.color : 'rgba(0,166,255,0.3)',
@@ -623,6 +637,7 @@ const ProblemsSolved = () => {
                 ref={centerCircleRef}
                 className="relative w-[175px] h-[175px] lg:w-[195px] lg:h-[195px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
               >
+                {/* Outer Ambient Glow */}
                 <motion.div
                   className="absolute -inset-3 rounded-full blur-[26px] opacity-40 pointer-events-none"
                   animate={{
@@ -632,6 +647,7 @@ const ProblemsSolved = () => {
                   transition={{ duration: 1.2, repeat: isCenterActive ? Infinity : 0 }}
                 />
 
+                {/* Expanding Shockwave Ripple when active */}
                 {isCenterActive && !prefersReducedMotion && (
                   <motion.div
                     key={`shockwave-${activeStep}`}
@@ -643,6 +659,7 @@ const ProblemsSolved = () => {
                   />
                 )}
 
+                {/* Outer Dashed Orbit Ring */}
                 {!prefersReducedMotion && (
                   <motion.div
                     className="absolute -inset-1.5 rounded-full border border-dashed border-primary/40 dark:border-[#00d2ff]/40 pointer-events-none"
@@ -651,6 +668,7 @@ const ProblemsSolved = () => {
                   />
                 )}
 
+                {/* Core Circular Body: Sleek Gradient Sphere */}
                 <div
                   className={`
                     relative w-full h-full rounded-full flex flex-col items-center justify-center p-2.5 text-white
@@ -664,8 +682,10 @@ const ProblemsSolved = () => {
                     background: 'linear-gradient(135deg, #0d214f 0%, #0c3875 50%, #0369a1 100%)',
                   }}
                 >
+                  {/* Subtle Inner Ring */}
                   <div className="absolute inset-1 rounded-full border border-white/15 pointer-events-none" />
 
+                  {/* Dynamic Problem -> Solution Transformation Illustration */}
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={`center-transform-${activeStep}-${phase}`}
@@ -675,6 +695,7 @@ const ProblemsSolved = () => {
                       transition={{ duration: 0.3 }}
                       className="relative z-10 flex flex-col items-center justify-center w-full"
                     >
+                      {/* Engine Category/Label Badge */}
                       <div className="flex items-center gap-1 mb-1">
                         <span
                           className="w-1.5 h-1.5 rounded-full animate-pulse"
@@ -685,7 +706,9 @@ const ProblemsSolved = () => {
                         </span>
                       </div>
 
+                      {/* Visual Problem ➔ Solution Transformation Illustration */}
                       <div className="flex items-center justify-center gap-1.5 my-1">
+                        {/* Problem Icon */}
                         <div
                           className={`
                             w-7 h-7 rounded-lg flex items-center justify-center text-white/90 border transition-all duration-300
@@ -699,6 +722,7 @@ const ProblemsSolved = () => {
                           <currentItem.problem.icon className="w-3.5 h-3.5" />
                         </div>
 
+                        {/* Animated Arrow Connector */}
                         <motion.div
                           animate={{ x: [0, 2, 0], opacity: [0.5, 1, 0.5] }}
                           transition={{ duration: 0.8, repeat: Infinity }}
@@ -707,6 +731,7 @@ const ProblemsSolved = () => {
                           <ArrowRight className="w-3.5 h-3.5" />
                         </motion.div>
 
+                        {/* Solution Icon */}
                         <div
                           className={`
                             w-7 h-7 rounded-lg flex items-center justify-center text-white border transition-all duration-300
@@ -724,10 +749,12 @@ const ProblemsSolved = () => {
                         </div>
                       </div>
 
+                      {/* Engine Action Headline */}
                       <div className="text-[11px] lg:text-[11.5px] font-black uppercase tracking-tight text-white leading-tight text-center px-1">
                         {currentItem.engineAction}
                       </div>
 
+                      {/* Status indicator */}
                       <div className="text-[8.5px] font-mono tracking-wider mt-0.5 text-center">
                         {phase === 'centerReact' ? (
                           <span className="text-amber-300 font-bold animate-pulse">⚡ TRANSFORMING</span>
@@ -742,6 +769,7 @@ const ProblemsSolved = () => {
                 </div>
               </div>
 
+              {/* Bottom Pill Tag */}
               <motion.div
                 animate={{
                   borderColor: isCenterActive ? currentItem.color : 'rgba(0,166,255,0.3)',
@@ -754,7 +782,7 @@ const ProblemsSolved = () => {
               </motion.div>
             </div>
 
-            {/* RIGHT: 5 Compact Horizontal Solution Cards */}
+            {/* ── RIGHT: 5 Compact Horizontal Solution Cards (4 cols) ── */}
             <div className="col-span-4 flex flex-col justify-between gap-2.5">
               {FLOW_ITEMS.map((item, idx) => {
                 const isActive = activeStep === idx && isSolutionActive
@@ -777,6 +805,7 @@ const ProblemsSolved = () => {
                       boxShadow: isActive ? `0 12px 28px -4px ${item.color}40` : undefined,
                     }}
                   >
+                    {/* Square Icon Badge */}
                     <div
                       className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs"
                       style={{ backgroundColor: item.color }}
@@ -784,6 +813,7 @@ const ProblemsSolved = () => {
                       <Icon className="w-4 h-4" />
                     </div>
 
+                    {/* Text block */}
                     <div className="min-w-0 flex-1">
                       <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-tight truncate">
                         {item.solution.title}
@@ -800,8 +830,9 @@ const ProblemsSolved = () => {
           </div>
         </div>
 
-        {/* MOBILE VERTICAL VIEW (< 768px) */}
+        {/* ── MOBILE VERTICAL VIEW (< 768px) ── */}
         <div className="block md:hidden space-y-3 pt-1">
+          {/* Active Problem Pill */}
           <div
             className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
               phase === 'problem' || phase === 'toCenter'
@@ -822,6 +853,7 @@ const ProblemsSolved = () => {
             </div>
           </div>
 
+          {/* Directional Arrow & Animated Engine Mini-Badge */}
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
@@ -849,6 +881,7 @@ const ProblemsSolved = () => {
             <div className="w-0.5 h-3 bg-gradient-to-b from-primary to-slate-300 dark:from-primary dark:to-white/20" />
           </div>
 
+          {/* Active Solution Pill */}
           <div
             className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
               phase === 'toSolution' || phase === 'solution'
@@ -869,6 +902,7 @@ const ProblemsSolved = () => {
             </div>
           </div>
 
+          {/* Step Selector Tabs */}
           <div className="flex items-center justify-center gap-1.5 pt-2">
             {FLOW_ITEMS.map((item, idx) => (
               <button

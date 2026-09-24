@@ -7,7 +7,7 @@ import {
   Clock,
   Zap,
   ShieldAlert,
-  CheckCircle2,
+  FileCheck2,
   Workflow,
   Send,
   EyeOff,
@@ -71,7 +71,7 @@ const FLOW_ITEMS = [
     solution: {
       title: 'Preserved Lead Value',
       sub: 'Multi-Touch Pipeline Retention',
-      icon: CheckCircle2,
+      icon: FileCheck2,
     },
     color: '#10B981',
     gradient: 'from-[#10B981] to-[#059669]',

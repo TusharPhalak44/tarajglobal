@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Layers,
-  FileCheck,
+  ShieldCheck,
   Share2,
   Sparkles,
   Gauge,
-  BarChart,
+  TrendingUp,
   BadgeCheck,
   Cpu,
   Check,
@@ -44,7 +44,7 @@ const ENGINE_LAYERS = [
     screen: 'Assignment, Touch & CDQA Control Center',
     metric: '1,055 Verified Records • CDQA Approved',
     desc: 'Direct discovery and multi-level verification of corporate buyers matching your target personas.',
-    icon: FileCheck,
+    icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
       'Direct verified decision-maker email addresses and phone dials',
@@ -116,7 +116,7 @@ const ENGINE_LAYERS = [
     screen: 'Data Hygiene & Audit Queue',
     metric: '100% Zero-Bounce Guarantee',
     desc: 'Pre-delivery quality assurance ensuring 100% accurate, complete, and contactable records.',
-    icon: BarChart,
+    icon: TrendingUp,
     image: '/demandflow-dbms.png',
     points: [
       'Manual QA review verifying job title, company status, and active role',

@@ -17,9 +17,12 @@ export const publicAPI = {
   getAuthors: () => api.get('/authors'),
   getAuthorBySlug: (slug) => api.get(`/authors/${slug}`),
   
-  // Contact
-  bookMeeting: (data) => api.post('/contact/meeting', data),
+  // Meetings / Strategy Call
+  getMeetingAvailability: (date) => api.get('/meetings/availability', { params: { date } }),
+  bookMeeting: (data) => api.post('/meetings', data),
+  getMeetingByBookingId: (bookingId) => api.get(`/meetings/booking/${bookingId}`),
 
   // Career Gallery
   getCareerGallery: () => api.get('/career-gallery'),
 }
+

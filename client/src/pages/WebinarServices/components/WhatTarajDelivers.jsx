@@ -402,15 +402,18 @@ const WhatTarajDelivers = () => {
                   </span>
                 </div>
 
-                <div className="pt-2">
-                  <Link
-                    to="/demandflow-bridge"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#00A6FF] text-white hover:bg-[#00A6FF]/90 shadow-md shadow-[#00A6FF]/20 hover:shadow-[#00A6FF]/35 transition-all duration-300 hover:-translate-y-0.5 group"
-                  >
-                    <span>Explore DemandFlow Bridge</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
+                {/* Direct CTA link for DemandFlow Bridge platform - only for stage 01 */}
+                {activeLayer.num === '01' && (
+                  <div className="pt-2">
+                    <Link
+                      to="/demandflow-bridge"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#00A6FF] text-white hover:bg-[#00A6FF]/90 shadow-md shadow-[#00A6FF]/20 hover:shadow-[#00A6FF]/35 transition-all duration-300 hover:-translate-y-0.5 group"
+                    >
+                      <span>Explore DemandFlow Bridge</span>
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Right Column (6 Cols) */}
@@ -433,9 +436,20 @@ const WhatTarajDelivers = () => {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase hidden md:inline">
-                        Click to expand
-                      </span>
+                      {activeLayer.num === '01' ? (
+                        <Link
+                          to="/demandflow-bridge"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#00A6FF]/20 hover:bg-[#00A6FF]/30 border border-[#00A6FF]/40 text-[#00A6FF] text-[11px] font-mono font-bold transition-colors"
+                        >
+                          <span>Explore Platform</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      ) : (
+                        <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase hidden md:inline">
+                          Click to expand
+                        </span>
+                      )}
                       <div className="w-6 h-6 rounded-md bg-white/5 flex items-center justify-center text-slate-400 group-hover:text-white group-hover:bg-[#00A6FF]/20 transition-colors">
                         <Maximize2 className="w-3.5 h-3.5" />
                       </div>

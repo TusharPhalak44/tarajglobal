@@ -2,11 +2,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import {
   Users,
-  Database,
+  Network,
   Compass,
   Mail,
-  UserCog,
-  Rocket,
+  BookOpen,
+  Radio,
   LineChart,
   UserCheck,
   RefreshCw,
@@ -16,11 +16,11 @@ import {
 
 const ICON_MAP = {
   Users: Users,
-  Database: Database,
+  Network: Network,
   Compass: Compass,
   Mail: Mail,
-  UserCog: UserCog,
-  Rocket: Rocket,
+  BookOpen: BookOpen,
+  Radio: Radio,
   LineChart: LineChart,
   UserCheck: UserCheck,
   RefreshCw: RefreshCw,

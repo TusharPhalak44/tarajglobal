@@ -24,6 +24,7 @@ import settingsRoutes from './admin/settings.routes.js'
 import seoRoutes from './admin/seo.routes.js'
 import cmsRoutes from './admin/cms.routes.js'
 import footerRoutes from './admin/footer.routes.js'
+import meetingRoutes from './admin/meeting.routes.js'
 
 // Mount sub-routes
 router.use('/blogs', blogRoutes)
@@ -35,6 +36,7 @@ router.use('/jobs', jobRoutes)
 router.use('/applications', applicationRoutes)
 router.use('/users', userRoutes)
 router.use('/leads', leadRoutes)
+router.use('/meetings', meetingRoutes)
 router.use('/notifications', notificationRoutes)
 router.use('/audit-logs', auditLogRoutes)
 router.use('/analytics', analyticsRoutes)

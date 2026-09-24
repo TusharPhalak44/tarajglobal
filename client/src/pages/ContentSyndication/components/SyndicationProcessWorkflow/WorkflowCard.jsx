@@ -1,33 +1,29 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import {
-  Users,
   Compass,
-  Rocket,
-  MousePointerClick,
-  UserCheck,
-  ShieldCheck,
-  Send,
-  CheckCircle2,
+  ListChecks,
+  Globe,
   FileText,
-  Target,
-  Database,
   UserCog,
+  Rocket,
   LineChart,
+  UserCheck,
+  RefreshCw,
+  Target,
+  CheckCircle2,
 } from 'lucide-react'
 
 const ICON_MAP = {
   Compass: Compass,
-  Users: Users,
-  Rocket: Rocket,
-  MousePointerClick: MousePointerClick,
-  UserCheck: UserCheck,
-  ShieldCheck: ShieldCheck,
-  Send: Send,
+  ListChecks: ListChecks,
+  Globe: Globe,
   FileText: FileText,
-  Database: Database,
   UserCog: UserCog,
+  Rocket: Rocket,
   LineChart: LineChart,
+  UserCheck: UserCheck,
+  RefreshCw: RefreshCw,
 }
 
 export default function WorkflowCard({

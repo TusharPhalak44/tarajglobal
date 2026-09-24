@@ -7,7 +7,7 @@ import {
   MailX,
   MessageSquareQuote,
   ShieldAlert,
-  CheckCircle2,
+  FileCheck2,
   Workflow,
   Send,
   EyeOff,
@@ -73,7 +73,7 @@ const FLOW_ITEMS = [
     solution: {
       title: 'Unified RevOps Flow',
       sub: 'Seamless Lead Routing',
-      icon: CheckCircle2,
+      icon: FileCheck2,
     },
     color: '#10B981',
     gradient: 'from-[#10B981] to-[#059669]',

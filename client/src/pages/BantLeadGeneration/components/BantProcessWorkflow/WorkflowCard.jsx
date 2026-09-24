@@ -1,26 +1,27 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import {
-  Target,
+  Building2,
   Compass,
   Database,
   DollarSign,
   UserCheck,
   Zap,
-  LineChart,
-  CheckCircle2,
+  Clock,
+  SearchCheck,
   RefreshCw,
+  CheckCircle2,
 } from 'lucide-react'
 
 const ICON_MAP = {
-  Target: Target,
+  Building2: Building2,
   Compass: Compass,
   Database: Database,
   DollarSign: DollarSign,
   UserCheck: UserCheck,
   Zap: Zap,
-  LineChart: LineChart,
-  CheckCircle2: CheckCircle2,
+  Clock: Clock,
+  SearchCheck: SearchCheck,
   RefreshCw: RefreshCw,
 }
 
@@ -33,7 +34,7 @@ export default function WorkflowCard({
   customStyle = {},
   className = '',
 }) {
-  const IconComponent = ICON_MAP[step.iconName] || Target
+  const IconComponent = ICON_MAP[step.iconName] || Building2
 
   return (
     <motion.div

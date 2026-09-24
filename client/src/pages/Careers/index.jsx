@@ -89,6 +89,37 @@ const StatCounter = ({ end, duration = 1200, suffix = '' }) => {
   )
 }
 
+// Helper to normalize and parse job requirements whether they arrive as newline-delimited text from MySQL, JSON arrays, or native arrays
+const parseJobRequirements = (reqs) => {
+  if (!reqs) return []
+  if (Array.isArray(reqs)) {
+    return reqs
+      .flatMap(item => (typeof item === 'string' ? item.split(/\r?\n/) : String(item)))
+      .map(r => r.trim().replace(/^[-*•\d.]+\s*/, ''))
+      .filter(Boolean)
+  }
+  if (typeof reqs === 'string') {
+    const trimmed = reqs.trim()
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+      try {
+        const parsed = JSON.parse(trimmed)
+        if (Array.isArray(parsed)) {
+          return parsed
+            .map(r => String(r).trim().replace(/^[-*•\d.]+\s*/, ''))
+            .filter(Boolean)
+        }
+      } catch (e) {
+        // Fallback to newline splitting below
+      }
+    }
+    return trimmed
+      .split(/\r?\n|•/)
+      .map(r => r.trim().replace(/^[-*•\d.]+\s*/, ''))
+      .filter(Boolean)
+  }
+  return [String(reqs)]
+}
+
 const careersSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -1016,11 +1047,35 @@ function Careers() {
   const [selectedJobTitle, setSelectedJobTitle] = useState('')
   const [selectedPhoto, setSelectedPhoto] = useState(null)
   const [selectedAlbum, setSelectedAlbum] = useState(null)
+  const [selectedJobForModal, setSelectedJobForModal] = useState(null)
 
   // Jobs Data
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
   const [expandedJobId, setExpandedJobId] = useState(null)
+
+  // Lock background scroll when any modal is open
+  useEffect(() => {
+    if (selectedJobForModal || showUploadModal) {
+      const originalOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.body.style.overflow = originalOverflow || 'unset'
+      }
+    }
+  }, [selectedJobForModal, showUploadModal])
+
+  // Close modals on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (selectedJobForModal) setSelectedJobForModal(null)
+        if (showUploadModal) closeModal()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedJobForModal, showUploadModal])
 
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
@@ -1063,6 +1118,7 @@ function Careers() {
     if (urlJobId && jobs.length > 0) {
       const match = jobs.find(j => String(j.id) === String(urlJobId) || j.slug === urlJobId)
       if (match) {
+        setSelectedJobForModal(match)
         setExpandedJobId(match.id)
         setTimeout(() => {
           const el = document.getElementById(`job-${match.id}`)
@@ -1493,8 +1549,6 @@ function Careers() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 {filteredJobs.map((job, index) => {
-                  const isExpanded = expandedJobId === job.id
-
                   return (
                     <motion.div
                       id={`job-${job.id}`}
@@ -1504,7 +1558,8 @@ function Careers() {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.06, duration: 0.4 }}
                       whileHover={prefersReducedMotion ? {} : { y: -7, scale: 1.015 }}
-                      className="p-6 rounded-2xl bg-surface/95 dark:bg-white/[0.025] border border-border/70 dark:border-white/10 hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/70 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,166,255,0.22)] dark:hover:shadow-[0_20px_45px_-12px_rgba(0,166,255,0.32)] transition-all duration-300 flex flex-col justify-between relative group overflow-hidden"
+                      onClick={() => setSelectedJobForModal(job)}
+                      className="p-6 rounded-2xl bg-surface/95 dark:bg-white/[0.025] border border-border/70 dark:border-white/10 hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/70 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,166,255,0.22)] dark:hover:shadow-[0_20px_45px_-12px_rgba(0,166,255,0.32)] transition-all duration-300 flex flex-col justify-between relative group overflow-hidden cursor-pointer"
                     >
                       {/* Ambient Hover Spotlight */}
                       <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-[#00A6FF]/[0.08] via-transparent to-[#FF6D00]/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
@@ -1536,53 +1591,30 @@ function Careers() {
                         </div>
 
                         {/* Short Description */}
-                        <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed font-normal mb-4">
+                        <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed font-normal mb-4 line-clamp-3">
                           {job.description}
                         </p>
 
-                        {/* Expandable Requirements */}
-                        {job.requirements && (
-                          <div className="mb-4">
-                            <button
-                              type="button"
-                              onClick={() => setExpandedJobId(prev => (prev === job.id ? null : job.id))}
-                              className="flex items-center gap-1 text-[11px] font-mono font-bold text-[#00A6FF] hover:underline cursor-pointer"
-                            >
-                              <span>{isExpanded ? 'Hide Qualifications' : 'View Key Requirements'}</span>
-                              <ChevronDown
-                                size={13}
-                                className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-                              />
-                            </button>
-
-                            <AnimatePresence>
-                              {isExpanded && (
-                                <motion.div
-                                   initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: 'auto' }}
-                                  exit={{ opacity: 0, height: 0 }}
-                                  className="overflow-hidden mt-2.5 pt-2.5 border-t border-border/40 dark:border-white/5 space-y-1.5"
-                                >
-                                  {(Array.isArray(job.requirements)
-                                    ? job.requirements
-                                    : String(job.requirements).split('\n')
-                                  ).map((req, rIdx) => (
-                                    <div key={rIdx} className="flex items-start gap-1.5 text-xs text-text-secondary">
-                                      <Check size={12} className="text-[#00A6FF] mt-0.5 shrink-0" />
-                                      <span>{req.trim()}</span>
-                                    </div>
-                                  ))}
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                        )}
+                        {/* Click to View Requirements & Role Details */}
+                        <div className="mb-4">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setSelectedJobForModal(job)
+                            }}
+                            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#00A6FF] group-hover:text-[#00E5FF] transition-colors cursor-pointer hover:underline"
+                          >
+                            <span>View Job Requirements</span>
+                            <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </button>
+                        </div>
                       </div>
 
                       {/* Card Action */}
                       <div className="pt-4 border-t border-border/50 dark:border-white/5 flex items-center justify-between relative z-10">
                         <span className="text-[11px] font-mono text-text-muted group-hover:text-text-secondary transition-colors duration-200">
-                          {job.experience || '1 - 3 Yrs Exp'}
+                          {job.salary || job.experience || '1 - 3 Yrs Exp'}
                         </span>
                         <a
                           href="#apply"
@@ -2118,6 +2150,150 @@ function Careers() {
 
           </div>
         </section>
+
+        {/* ── JOB REQUIREMENTS & DETAILS POPUP MODAL ─────────────────────── */}
+        <AnimatePresence>
+          {selectedJobForModal && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
+              onClick={() => setSelectedJobForModal(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.92, opacity: 0, y: 15 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.92, opacity: 0, y: 15 }}
+                transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+                className="bg-white dark:bg-[#111622] border border-border/80 dark:border-white/15 rounded-3xl p-6 sm:p-8 max-w-lg sm:max-w-xl w-full shadow-2xl relative my-8 max-h-[90vh] flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedJobForModal(null)}
+                  className="absolute top-5 right-5 p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+                  aria-label="Close Job Details"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Modal Header */}
+                <div className="mb-4 pr-8">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/20 text-[#00A6FF] text-[10px] font-mono font-bold uppercase tracking-wider">
+                      {selectedJobForModal.department || 'Revenue Operations'}
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border border-border/60 dark:border-white/10 text-text-secondary text-[10px] font-mono font-medium">
+                      {selectedJobForModal.type || 'Full-Time'}
+                    </span>
+                    {selectedJobForModal.status && (
+                      <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[10px] font-mono font-medium uppercase">
+                        Active Opening
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-text-primary tracking-tight">
+                    {selectedJobForModal.title}
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-text-secondary mt-2">
+                    <span className="flex items-center gap-1">
+                      <MapPin size={13} className="text-[#00A6FF]" />
+                      {selectedJobForModal.location || 'Kharadi, Pune (On-Site)'}
+                    </span>
+                    {selectedJobForModal.experience && (
+                      <span className="flex items-center gap-1">
+                        <Clock size={13} className="text-[#00A6FF]" />
+                        {selectedJobForModal.experience}
+                      </span>
+                    )}
+                    {selectedJobForModal.salary && (
+                      <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <TrendingUp size={13} />
+                        {selectedJobForModal.salary}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Scrollable Content Body */}
+                <div className="flex-1 overflow-y-auto pr-1 space-y-5 my-2 no-scrollbar text-sm">
+                  {/* Role Overview */}
+                  {selectedJobForModal.description && (
+                    <div>
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-text-muted mb-1.5">
+                        About the Role
+                      </h4>
+                      <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-normal whitespace-pre-line">
+                        {selectedJobForModal.description}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Job Requirements */}
+                  <div>
+                    <div className="flex items-center gap-1.5 mb-2.5">
+                      <CheckCircle2 size={16} className="text-[#00A6FF]" />
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-text-primary">
+                        Job Requirements & Qualifications
+                      </h4>
+                    </div>
+
+                    {(() => {
+                      const reqs = parseJobRequirements(selectedJobForModal.requirements)
+                      if (reqs.length === 0) {
+                        return (
+                          <p className="text-xs text-text-secondary italic">
+                            No specific requirements listed. We welcome enthusiastic applicants passionate about this domain.
+                          </p>
+                        )
+                      }
+                      return (
+                        <div className="space-y-2">
+                          {reqs.map((req, idx) => (
+                            <div
+                              key={idx}
+                              className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-border/60 dark:border-white/5 flex items-start gap-2.5 text-xs sm:text-[13px] text-text-secondary leading-relaxed"
+                            >
+                              <div className="w-5 h-5 rounded-full bg-[#00A6FF]/10 text-[#00A6FF] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check size={12} strokeWidth={2.5} />
+                              </div>
+                              <span className="font-normal">{req}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )
+                    })()}
+                  </div>
+                </div>
+
+                {/* Modal Action Footer */}
+                <div className="pt-4 mt-2 border-t border-border/60 dark:border-white/10 flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedJobForModal(null)}
+                    className="px-4 py-2.5 rounded-xl border border-border/80 dark:border-white/10 text-xs font-semibold text-text-secondary hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const title = selectedJobForModal.title
+                      setSelectedJobForModal(null)
+                      openModal(title)
+                    }}
+                    className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-[#00A6FF] to-[#0080FF] text-white font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[#00A6FF]/30 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>Apply for this Position</span>
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* ── APPLICATION & RESUME DROP MODAL ─────────────────────────────── */}
         <AnimatePresence>

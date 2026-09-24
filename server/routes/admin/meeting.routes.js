@@ -1,0 +1,37 @@
+import express from 'express'
+import {
+  getAllMeetings,
+  getMeetingById,
+  updateMeetingStatus,
+  rescheduleMeeting,
+  cancelMeeting
+} from '../../controllers/admin/meeting.admin.controller.js'
+
+const router = express.Router()
+
+// @route   GET /api/admin/meetings
+// @desc    List all meetings with search, filter, and pagination
+// @access  Private/Admin
+router.get('/', getAllMeetings)
+
+// @route   GET /api/admin/meetings/:id
+// @desc    Get detailed meeting record by ID
+// @access  Private/Admin
+router.get('/:id', getMeetingById)
+
+// @route   PATCH /api/admin/meetings/:id/status
+// @desc    Update meeting status
+// @access  Private/Admin
+router.patch('/:id/status', updateMeetingStatus)
+
+// @route   POST /api/admin/meetings/:id/reschedule
+// @desc    Reschedule meeting and update Google Calendar
+// @access  Private/Admin
+router.post('/:id/reschedule', rescheduleMeeting)
+
+// @route   POST /api/admin/meetings/:id/cancel
+// @desc    Cancel meeting, release slot, delete Google Calendar event
+// @access  Private/Admin
+router.post('/:id/cancel', cancelMeeting)
+
+export default router

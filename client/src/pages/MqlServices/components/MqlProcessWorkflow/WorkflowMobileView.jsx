@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import WorkflowCard from './WorkflowCard'
 import WorkflowTargetBadge from './WorkflowTargetBadge'
 import { WORKFLOW_STEPS } from './workflowData'
-import { ArrowDown, Sparkles } from 'lucide-react'
+import { ArrowDown, Trophy } from 'lucide-react'
 
 export default function WorkflowMobileView({
   activeStepIndex,
@@ -79,7 +79,7 @@ export default function WorkflowMobileView({
       {/* ── Final Outcome Badge at the end of mobile workflow ── */}
       <div className="pt-4 flex flex-col items-center justify-center">
         <div className="flex items-center gap-1.5 mb-3 text-[11px] font-mono font-bold text-primary dark:text-[#00f0ff] uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5 animate-spin" />
+          <Trophy className="w-3.5 h-3.5 text-amber-400" />
           <span>Workflow Outcome</span>
         </div>
         <WorkflowTargetBadge

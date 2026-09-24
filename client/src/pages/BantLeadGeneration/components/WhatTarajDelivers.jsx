@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Layers,
   Share2,
-  FileCheck,
+  ShieldCheck,
   Cpu,
   Gauge,
-  BarChart,
-  BadgeCheck,
+  CalendarCheck,
+  TrendingUp,
   Check,
   Maximize2,
   X,
@@ -43,7 +43,7 @@ const ENGINE_LAYERS = [
     screen: 'Assignment, Touch & CDQA Control Center',
     metric: '1,055 Records • CDQA Approved',
     desc: 'Direct dials, mobile numbers, and triple-verified corporate email addresses for every stakeholder in the buying group.',
-    icon: FileCheck,
+    icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
       'Zero bounce SMTP ping validation on all email addresses',
@@ -115,7 +115,7 @@ const ENGINE_LAYERS = [
     screen: 'Response Telemetry & Meeting Telemetry',
     metric: '24.8K Opens • 148 Meeting Requests',
     desc: 'Frictionless discovery call booking directly into your sales team calendars with automated calendar reminders.',
-    icon: BadgeCheck,
+    icon: CalendarCheck,
     image: '/demandflow-tracking.png',
     points: [
       'Google Calendar, Outlook, and Chili Piper native scheduling',
@@ -133,7 +133,7 @@ const ENGINE_LAYERS = [
     screen: 'Lead Qualification & QA Control Center',
     metric: '765 Qualified • 100% Client Ready',
     desc: 'Real-time synchronization into your CRM with opportunity attribution and pipeline velocity reporting.',
-    icon: BarChart,
+    icon: TrendingUp,
     image: '/demandflow-qualification.png',
     points: [
       'HubSpot, Salesforce, and Outreach native field mapping',

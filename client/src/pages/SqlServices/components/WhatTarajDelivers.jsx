@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Layers,
-  FileCheck,
+  ShieldCheck,
   Share2,
   Gauge,
   Cpu,
-  BarChart,
-  BadgeCheck,
+  CalendarCheck,
+  TrendingUp,
   Check,
   Maximize2,
   X,
@@ -43,7 +43,7 @@ const ENGINE_LAYERS = [
     screen: 'Assignment, Touch & CDQA Control Center',
     metric: '1,055 Records • CDQA Approved',
     desc: 'Direct discovery and multi-level verification of active corporate buyers matching your target personas.',
-    icon: FileCheck,
+    icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
       'Direct verified decision maker email addresses and phone dials',
@@ -115,7 +115,7 @@ const ENGINE_LAYERS = [
     screen: 'Response Telemetry & Booking Analytics',
     metric: '24.8K Opens • 148 Meeting Requests',
     desc: 'Frictionless calendar booking directly into your Account Executives calendars with automated calendar invites.',
-    icon: BadgeCheck,
+    icon: CalendarCheck,
     image: '/demandflow-tracking.png',
     points: [
       'Native sync with Google Calendar, Outlook, Calendly, and Chili Piper',
@@ -133,7 +133,7 @@ const ENGINE_LAYERS = [
     screen: 'Lead Qualification & QA Control Center',
     metric: '765 Qualified • 100% Client Ready',
     desc: 'Bi-directional CRM synchronization with pipeline velocity tracking from discovery to closed-won revenue.',
-    icon: BarChart,
+    icon: TrendingUp,
     image: '/demandflow-qualification.png',
     points: [
       'Native integration with Salesforce, HubSpot, and Microsoft Dynamics',

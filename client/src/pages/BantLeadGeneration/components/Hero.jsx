@@ -413,30 +413,6 @@ const Hero = () => {
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
               </button>
             </motion.div>
-
-            {/* ── Metric Strip ── */}
-            <motion.div
-              {...fadeUp(0.55)}
-              className="grid grid-cols-3 gap-3 sm:gap-6 pt-4 border-t border-border mt-4"
-            >
-              {[
-                { stat: '100%', label: 'BANT-Verified Criteria', sub: 'All 4 pillars confirmed' },
-                { stat: '3.8x', label: 'Higher Meeting Conversion', sub: 'vs unqualified pipeline' },
-                { stat: '14-Day', label: 'Replacement Guarantee', sub: 'Zero-risk sales pipeline' },
-              ].map((m) => (
-                <div key={m.label} className="flex flex-col">
-                  <span className="text-xl sm:text-2xl font-black font-mono text-primary leading-tight">
-                    {m.stat}
-                  </span>
-                  <span className="text-xs font-semibold text-text-primary mt-0.5 leading-tight">
-                    {m.label}
-                  </span>
-                  <span className="text-[11px] text-text-muted mt-0.5 hidden sm:block">
-                    {m.sub}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           {/* ── Right: Command Center ── */}

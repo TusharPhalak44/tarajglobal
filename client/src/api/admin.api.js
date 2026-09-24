@@ -62,6 +62,13 @@ export const adminAPI = {
   updateLeadStatus: (id, data) => api.patch(`/admin/leads/${id}/status`, data),
   deleteLead: (id) => api.delete(`/admin/leads/${id}`),
 
+  // Meetings / Strategy Calls
+  getMeetings: (params) => api.get('/admin/meetings', { params }),
+  getMeetingById: (id) => api.get(`/admin/meetings/${id}`),
+  updateMeetingStatus: (id, data) => api.patch(`/admin/meetings/${id}/status`, data),
+  rescheduleMeeting: (id, data) => api.post(`/admin/meetings/${id}/reschedule`, data),
+  cancelMeeting: (id, data) => api.post(`/admin/meetings/${id}/cancel`, data),
+
   // Media
   getMedia: (params) => api.get('/admin/media', { params }),
   uploadMedia: (formData, config = {}) => api.post('/admin/media/upload', formData, {

@@ -7,7 +7,7 @@ import {
   PieChart,
   CheckCheck,
   Star,
-  Zap,
+  SlidersHorizontal,
 } from 'lucide-react'
 
 const PILLARS = [
@@ -47,7 +47,7 @@ const PILLARS = [
     num: '05',
     title: 'Pipeline Acceleration',
     desc: 'Turn virtual engagement into revenue-producing pipeline through rapid, structured post-event sales enablement.',
-    icon: Zap,
+    icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },

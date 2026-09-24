@@ -1,11 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import {
-  Users,
-  Database,
+  Building2,
+  Network,
   Compass,
   Mail,
-  UserCog,
+  Share2,
   Rocket,
   LineChart,
   UserCheck,
@@ -15,11 +15,11 @@ import {
 } from 'lucide-react'
 
 const ICON_MAP = {
-  Users: Users,
-  Database: Database,
+  Building2: Building2,
+  Network: Network,
   Compass: Compass,
   Mail: Mail,
-  UserCog: UserCog,
+  Share2: Share2,
   Rocket: Rocket,
   LineChart: LineChart,
   UserCheck: UserCheck,

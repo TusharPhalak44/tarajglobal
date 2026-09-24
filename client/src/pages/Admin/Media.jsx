@@ -8,6 +8,7 @@ import {
   Download,
   Image as ImageIcon,
   FileText,
+  Video,
   Grid,
   List,
   Eye,
@@ -185,7 +186,7 @@ const Media = () => {
           <label className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors cursor-pointer">
             <Upload className="w-5 h-5" />
             Upload
-            <input type="file" multiple onChange={handleFileUpload} className="hidden" accept="image/*,.pdf" />
+            <input type="file" multiple onChange={handleFileUpload} className="hidden" accept="image/*,video/*,.pdf" />
           </label>
         </div>
       </div>
@@ -218,6 +219,7 @@ const Media = () => {
         >
           <option value="">All Types</option>
           <option value="image">Images</option>
+          <option value="video">Videos</option>
           <option value="application/pdf">PDFs</option>
         </select>
         <button className="flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors">
@@ -231,15 +233,23 @@ const Media = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {media.map((item) => (
             <div key={item.id} className="group relative bg-surface rounded-lg border border-border overflow-hidden hover:border-primary/50 transition-colors">
-              <div className="aspect-square bg-background flex items-center justify-center">
+              <div className="aspect-square bg-background flex items-center justify-center overflow-hidden">
                 {isImage(item.mime_type) ? (
                   <img 
                     src={getFileUrl(item)} 
                     alt={item.alt_text || item.original_name}
                     className="w-full h-full object-cover"
                   />
+                ) : item.mime_type?.startsWith('video/') ? (
+                  <div className="w-full h-full bg-slate-900 flex flex-col items-center justify-center text-primary">
+                    <Video className="w-8 h-8" />
+                    <span className="text-[10px] mt-1 text-slate-400 font-mono font-bold">VIDEO</span>
+                  </div>
                 ) : (
-                  <FileText className="w-12 h-12 text-text-muted" />
+                  <div className="w-full h-full bg-red-500/10 flex flex-col items-center justify-center text-red-500">
+                    <FileText className="w-8 h-8 text-red-500" />
+                    <span className="text-[10px] mt-1 text-red-400 font-mono font-bold">PDF</span>
+                  </div>
                 )}
               </div>
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
@@ -287,9 +297,13 @@ const Media = () => {
                             alt={item.alt_text || item.original_name}
                             className="w-12 h-12 rounded object-cover"
                           />
+                        ) : item.mime_type?.startsWith('video/') ? (
+                          <div className="w-12 h-12 rounded bg-slate-900 flex items-center justify-center text-primary">
+                            <Video className="w-6 h-6" />
+                          </div>
                         ) : (
-                          <div className="w-12 h-12 rounded bg-background flex items-center justify-center">
-                            <FileText className="w-6 h-6 text-text-muted" />
+                          <div className="w-12 h-12 rounded bg-red-500/10 flex items-center justify-center text-red-500">
+                            <FileText className="w-6 h-6 text-red-500" />
                           </div>
                         )}
                         <div>

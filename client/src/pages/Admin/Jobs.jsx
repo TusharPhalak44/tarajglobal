@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import { 
-  Plus, 
-  Search, 
-  Filter, 
-  MoreVertical, 
-  Edit, 
-  Trash2, 
+import {
+  Plus,
+  Search,
+  Filter,
+  MoreVertical,
+  Edit,
+  Trash2,
   Archive,
   Briefcase,
   Calendar,
@@ -65,6 +65,23 @@ const Jobs = () => {
     return () => clearTimeout(timer)
   }, [filters.search])
 
+  // Prevent background page from scrolling when any modal is open
+  useEffect(() => {
+    if (showCreateModal || showViewModal) {
+      const mainEl = document.querySelector('main')
+      const originalBodyOverflow = document.body.style.overflow
+      const originalMainOverflow = mainEl ? mainEl.style.overflow : ''
+
+      document.body.style.overflow = 'hidden'
+      if (mainEl) mainEl.style.overflow = 'hidden'
+
+      return () => {
+        document.body.style.overflow = originalBodyOverflow
+        if (mainEl) mainEl.style.overflow = originalMainOverflow
+      }
+    }
+  }, [showCreateModal, showViewModal])
+
   const fetchJobs = async (silent = false) => {
     try {
       if (!silent) setLoading(true)
@@ -76,14 +93,14 @@ const Jobs = () => {
         page: pagination.page,
         limit: pagination.limit
       })
-      
+
       const jobsData = Array.isArray(response.data?.data?.jobs)
         ? response.data.data.jobs
         : Array.isArray(response.data?.jobs)
-        ? response.data.jobs
-        : []
+          ? response.data.jobs
+          : []
       const paginationData = response.data?.data?.pagination || response.data?.pagination || { page: 1, limit: 10, total: jobsData.length, totalPages: 1 }
-      
+
       setJobs(jobsData)
       setPagination(paginationData)
     } catch (err) {
@@ -116,7 +133,7 @@ const Jobs = () => {
   const handleCreateJob = async (e) => {
     e.preventDefault()
     setError('')
-    
+
     if (!createForm.title.trim()) {
       setError('Title is required')
       return
@@ -259,7 +276,7 @@ const Jobs = () => {
           >
             <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-primary' : ''}`} />
           </button>
-          <button 
+          <button
             onClick={() => setShowCreateModal(true)}
             className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium text-sm shadow-md"
           >
@@ -396,8 +413,8 @@ const Jobs = () => {
                   const isDropdownOpen = activeDropdown === job.id
 
                   return (
-                    <tr 
-                      key={job.id} 
+                    <tr
+                      key={job.id}
                       className="hover:bg-surface/70 transition-colors group"
                     >
                       {/* Title */}
@@ -452,7 +469,7 @@ const Jobs = () => {
                       {/* Action Dropdown */}
                       <td className="px-6 py-4 text-right">
                         <div className="relative inline-block text-left">
-                          <button 
+                          <button
                             onClick={() => setActiveDropdown(isDropdownOpen ? null : job.id)}
                             className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background border border-transparent hover:border-border transition-colors"
                             aria-label="Job actions"
@@ -462,19 +479,19 @@ const Jobs = () => {
 
                           {/* Backdrop Click Dismiss */}
                           {isDropdownOpen && (
-                            <div 
-                              className="fixed inset-0 z-40 bg-transparent" 
-                              onClick={() => setActiveDropdown(null)} 
+                            <div
+                              className="fixed inset-0 z-40 bg-transparent"
+                              onClick={() => setActiveDropdown(null)}
                             />
                           )}
 
                           {/* Dropdown Menu */}
                           {isDropdownOpen && (
-                            <div 
+                            <div
                               className={`absolute right-0 ${isBottomHalf ? 'bottom-full mb-2' : 'top-full mt-2'} w-52 bg-surface border border-border rounded-xl shadow-2xl z-50 py-1.5 backdrop-blur-md animate-in fade-in zoom-in-95`}
                             >
                               {/* View Details */}
-                              <button 
+                              <button
                                 onClick={() => handleViewJob(job)}
                                 className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-text-primary hover:bg-primary/10 hover:text-primary transition-colors text-left"
                               >
@@ -483,7 +500,7 @@ const Jobs = () => {
                               </button>
 
                               {/* Preview on Public Careers */}
-                              <button 
+                              <button
                                 onClick={() => handlePreview(job)}
                                 className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors text-left"
                               >
@@ -492,7 +509,7 @@ const Jobs = () => {
                               </button>
 
                               {/* Edit Job */}
-                              <button 
+                              <button
                                 onClick={() => handleEdit(job)}
                                 className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors text-left"
                               >
@@ -501,7 +518,7 @@ const Jobs = () => {
                               </button>
 
                               {/* View Applications */}
-                              <button 
+                              <button
                                 onClick={() => handleViewApplications(job)}
                                 className="flex items-center justify-between w-full px-3.5 py-2 text-xs font-medium text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors text-left"
                               >
@@ -520,7 +537,7 @@ const Jobs = () => {
 
                               {/* Publish / Draft Toggle */}
                               {job.status === 'published' ? (
-                                <button 
+                                <button
                                   onClick={() => handleTogglePublish(job)}
                                   className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-yellow-500 hover:bg-yellow-500/10 transition-colors text-left"
                                 >
@@ -528,7 +545,7 @@ const Jobs = () => {
                                   Move to Draft
                                 </button>
                               ) : (
-                                <button 
+                                <button
                                   onClick={() => handleTogglePublish(job)}
                                   className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-green-500 hover:bg-green-500/10 transition-colors text-left"
                                 >
@@ -539,7 +556,7 @@ const Jobs = () => {
 
                               {/* Archive or Restore */}
                               {job.status === 'archived' ? (
-                                <button 
+                                <button
                                   onClick={() => handleRestore(job, 'published')}
                                   className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-emerald-500 hover:bg-emerald-500/10 transition-colors text-left"
                                 >
@@ -547,7 +564,7 @@ const Jobs = () => {
                                   Restore & Publish
                                 </button>
                               ) : (
-                                <button 
+                                <button
                                   onClick={() => handleArchive(job)}
                                   className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-orange-400 hover:bg-orange-500/10 transition-colors text-left"
                                 >
@@ -559,7 +576,7 @@ const Jobs = () => {
                               <div className="my-1 border-t border-border/70" />
 
                               {/* Delete */}
-                              <button 
+                              <button
                                 onClick={() => handleDelete(job)}
                                 className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-red-500 hover:bg-red-500/10 transition-colors text-left"
                               >
@@ -609,9 +626,17 @@ const Jobs = () => {
 
       {/* View Job Details Modal */}
       {showViewModal && viewJob && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm animate-fade-in">
-          <div className="bg-surface rounded-2xl border border-border w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-6 border-b border-border flex items-center justify-between sticky top-0 bg-surface/95 backdrop-blur-sm z-10">
+        <div
+          className="fixed inset-0 bg-black/60 z-50 p-3 sm:p-6 backdrop-blur-sm animate-fade-in flex items-center justify-center overflow-y-auto overscroll-contain"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowViewModal(false)
+          }}
+        >
+          <div
+            className="bg-surface rounded-2xl border border-border w-full max-w-3xl max-h-[88vh] flex flex-col shadow-2xl overflow-hidden my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-5 sm:p-6 border-b border-border flex items-center justify-between shrink-0 bg-surface z-10">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/10 rounded-xl text-primary">
                   <Briefcase className="w-5 h-5" />
@@ -621,15 +646,16 @@ const Jobs = () => {
                   <p className="text-xs text-text-muted">Job ID: #{viewJob.id} &bull; Created {new Date(viewJob.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
-              <button 
+              <button
+                type="button"
                 onClick={() => setShowViewModal(false)}
-                className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background transition-colors"
+                className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
-            <div className="p-6 space-y-6">
+
+            <div className="p-5 sm:p-6 space-y-6 overflow-y-auto flex-1 overscroll-contain">
               {/* Quick Meta Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div className="p-3.5 bg-background rounded-xl border border-border">
@@ -686,21 +712,23 @@ const Jobs = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border">
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border shrink-0">
                 <div className="flex items-center gap-2">
                   <button
+                    type="button"
                     onClick={() => handlePreview(viewJob)}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-background border border-border rounded-lg text-text-secondary hover:text-text-primary hover:border-primary/40 text-xs font-medium transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-background border border-border rounded-lg text-text-secondary hover:text-text-primary hover:border-primary/40 text-xs font-medium transition-colors cursor-pointer"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                     Preview on Careers
                   </button>
                   <button
+                    type="button"
                     onClick={() => {
                       setShowViewModal(false)
                       handleViewApplications(viewJob)
                     }}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-background border border-border rounded-lg text-text-secondary hover:text-text-primary hover:border-primary/40 text-xs font-medium transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-background border border-border rounded-lg text-text-secondary hover:text-text-primary hover:border-primary/40 text-xs font-medium transition-colors cursor-pointer"
                   >
                     <Users className="w-3.5 h-3.5" />
                     View Applications ({viewJob.application_count || 0})
@@ -709,18 +737,20 @@ const Jobs = () => {
 
                 <div className="flex items-center gap-2">
                   <button
+                    type="button"
                     onClick={() => {
                       setShowViewModal(false)
                       handleEdit(viewJob)
                     }}
-                    className="flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-xs font-medium"
+                    className="flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-xs font-medium cursor-pointer"
                   >
                     <Edit className="w-3.5 h-3.5" />
                     Edit Job
                   </button>
                   <button
+                    type="button"
                     onClick={() => setShowViewModal(false)}
-                    className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-xs font-medium"
+                    className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-xs font-medium cursor-pointer"
                   >
                     Close
                   </button>
@@ -733,28 +763,41 @@ const Jobs = () => {
 
       {/* Create Job Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm animate-fade-in">
-          <div className="bg-surface rounded-2xl border border-border w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-6 border-b border-border flex items-center justify-between sticky top-0 bg-surface/95 backdrop-blur-sm z-10">
+        <div
+          className="fixed inset-0 bg-black/60 z-50 p-3 sm:p-6 backdrop-blur-sm animate-fade-in flex items-center justify-center overflow-y-auto overscroll-contain"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !saving) setShowCreateModal(false)
+          }}
+        >
+          <div
+            className="bg-surface rounded-2xl border border-border w-full max-w-2xl max-h-[88vh] flex flex-col shadow-2xl overflow-hidden my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-5 sm:p-6 border-b border-border flex items-center justify-between shrink-0 bg-surface z-10">
               <div>
                 <h2 className="text-xl font-bold text-text-primary">Create New Job</h2>
                 <p className="text-xs text-text-muted">Post a new career role on the website</p>
               </div>
-              <button 
+              <button
+                type="button"
                 onClick={() => setShowCreateModal(false)}
-                className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background transition-colors"
+                className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background transition-colors cursor-pointer"
+                disabled={saving}
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
-            <form onSubmit={handleCreateJob} className="p-6 space-y-4 text-sm">
+
+            <form
+              onSubmit={handleCreateJob}
+              className="p-5 sm:p-6 space-y-4 text-sm overflow-y-auto flex-1 overscroll-contain"
+            >
               {error && (
                 <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs">
                   {error}
                 </div>
               )}
-              
+
               <div>
                 <label className="block text-xs font-semibold text-text-secondary mb-1.5">Job Title *</label>
                 <input
@@ -764,6 +807,7 @@ const Jobs = () => {
                   placeholder="e.g. Senior Full Stack Engineer"
                   className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
                   disabled={saving}
+                  required
                 />
               </div>
 
@@ -774,8 +818,9 @@ const Jobs = () => {
                   onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
                   placeholder="Detailed job description and day-to-day responsibilities..."
                   rows={5}
-                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm resize-none"
+                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
                   disabled={saving}
+                  required
                 />
               </div>
 
@@ -797,7 +842,7 @@ const Jobs = () => {
                   <select
                     value={createForm.type}
                     onChange={(e) => setCreateForm({ ...createForm, type: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
+                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm cursor-pointer"
                     disabled={saving}
                   >
                     <option value="full-time">Full-time</option>
@@ -826,7 +871,7 @@ const Jobs = () => {
                   <select
                     value={createForm.status}
                     onChange={(e) => setCreateForm({ ...createForm, status: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
+                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm cursor-pointer"
                     disabled={saving}
                   >
                     <option value="draft">Draft (Private)</option>
@@ -843,16 +888,16 @@ const Jobs = () => {
                   onChange={(e) => setCreateForm({ ...createForm, requirements: e.target.value })}
                   placeholder="Required skills, years of experience, certifications..."
                   rows={4}
-                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm resize-none"
+                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
                   disabled={saving}
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-border shrink-0 mt-6">
                 <button
                   type="button"
                   onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-xs font-medium"
+                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-xs font-medium cursor-pointer"
                   disabled={saving}
                 >
                   Cancel
@@ -860,7 +905,7 @@ const Jobs = () => {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium text-xs disabled:opacity-50 shadow-md"
+                  className="flex items-center gap-2 px-5 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium text-xs disabled:opacity-50 shadow-md cursor-pointer"
                 >
                   {saving ? <><Clock className="w-3.5 h-3.5 animate-spin" /> Creating...</> : <><Save className="w-3.5 h-3.5" /> Post Job</>}
                 </button>

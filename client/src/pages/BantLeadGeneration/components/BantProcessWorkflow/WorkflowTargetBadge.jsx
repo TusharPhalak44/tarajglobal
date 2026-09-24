@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Target, Award, PartyPopper, Sparkles, CheckCircle, Zap } from 'lucide-react'
+import { Target, Award, PartyPopper } from 'lucide-react'
 
 // Array of 30 celebratory confetti particles for the blast explosion
 const CONFETTI_PARTICLES = Array.from({ length: 30 }).map((_, i) => {

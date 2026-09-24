@@ -58,6 +58,7 @@ import CMSFooter from '@pages/Admin/CMSFooter'
 import CMSOurClients from '@pages/Admin/CMSOurClients'
 import FooterManagement from '@pages/Admin/FooterManagement'
 import CareerGallery from '@pages/Admin/CareerGallery/index.jsx'
+import Meetings from '@pages/Admin/Meetings'
 
 function AppRoutes() {
   return (
@@ -124,6 +125,7 @@ function AppRoutes() {
         <Route path="settings" element={<Settings />} />
         <Route path="seo" element={<SEO />} />
         <Route path="leads" element={<Leads />} />
+        <Route path="meetings" element={<Meetings />} />
         <Route path="audit-logs" element={<AuditLogs />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="cms/navbar" element={<CMSNavbar />} />

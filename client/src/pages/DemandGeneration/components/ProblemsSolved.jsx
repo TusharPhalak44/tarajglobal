@@ -7,7 +7,7 @@ import {
   MailX,
   MessageSquareQuote,
   ShieldAlert,
-  CheckCircle2,
+  FileCheck2,
   Workflow,
   Send,
   EyeOff,
@@ -71,7 +71,7 @@ const FLOW_ITEMS = [
     solution: {
       title: 'Verified Prospect Data',
       sub: '100% Validated Buying Centers',
-      icon: CheckCircle2,
+      icon: FileCheck2,
     },
     color: '#10B981', // Emerald
     gradient: 'from-[#10B981] to-[#059669]',

@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Users,
+  Layers,
   ShieldCheck,
-  Calendar,
-  FileCheck2,
-  CheckCircle,
-  Database,
+  Share2,
+  Gauge,
   Cpu,
+  CalendarCheck,
+  TrendingUp,
   Check,
   Maximize2,
   X,
   Activity,
-  Layers,
 } from 'lucide-react'
 
 const ENGINE_LAYERS = [
@@ -26,7 +25,7 @@ const ENGINE_LAYERS = [
     screen: 'Outreach Playbook & SDR Capacity Allocation',
     metric: '49 Live Campaigns • 15 Agents Logged In',
     desc: 'Fully dedicated, highly trained SDRs operating as an integrated outbound extension of your internal sales organization.',
-    icon: Users,
+    icon: Share2,
     image: '/demandflow-admin.png',
     points: [
       'Customized outbound phone, email, and social sequencing scripts',
@@ -80,7 +79,7 @@ const ENGINE_LAYERS = [
     screen: 'Campaign Operations & Pacing Board',
     metric: 'Live Allocation • 100% Pacing Tracking',
     desc: 'Continuous real-time tracking of booked meetings against monthly allocation targets with zero sales lull.',
-    icon: Database,
+    icon: Gauge,
     image: '/demandflow-campaigns.png',
     points: [
       'Real-time meeting quota pacing and delivery tracking',
@@ -98,7 +97,7 @@ const ENGINE_LAYERS = [
     screen: 'Dynamic ICP & Pain Profile Matrix',
     metric: '95.5% Match Rate • Pre-Call Intelligence',
     desc: 'Comprehensive prospect briefings ensuring your sales reps enter every call prepared to close.',
-    icon: FileCheck2,
+    icon: Cpu,
     image: '/demandflow-personalization.png',
     points: [
       'Documented pain points, current operational bottlenecks, and goals',
@@ -116,7 +115,7 @@ const ENGINE_LAYERS = [
     screen: 'Meeting Telemetry & Response Intelligence',
     metric: '24.8K Opens • 148 Meeting Requests',
     desc: 'Seamless meeting bookings placed directly onto your sales team’s native calendar application.',
-    icon: Calendar,
+    icon: CalendarCheck,
     image: '/demandflow-tracking.png',
     points: [
       'Direct integration with Calendly, Chili Piper, Google Calendar, and Outlook',
@@ -134,7 +133,7 @@ const ENGINE_LAYERS = [
     screen: 'Lead Qualification & QA Control Center',
     metric: '765 Qualified • 100% Client Ready',
     desc: 'Multi-touch reminder workflows and CRM sync with contractual replacement guarantee for no-shows.',
-    icon: CheckCircle,
+    icon: TrendingUp,
     image: '/demandflow-qualification.png',
     points: [
       'Automated email and SMS reminders sent 24 hours and 1 hour prior',

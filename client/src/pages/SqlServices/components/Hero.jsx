@@ -112,6 +112,7 @@ function CommandCenter({ prefersReducedMotion }) {
       if (step < N - 1) {
         after(900, () => forward(step + 1))
       } else {
+        // Last stage reached — brief flash (400ms), then instantly all go dark -> restart
         after(900, () => {
           setCompletedStages(Array.from({ length: N }, (_, i) => i))
           setActiveStage(N)
@@ -159,117 +160,142 @@ function CommandCenter({ prefersReducedMotion }) {
           <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
           <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
         </div>
-        <div className="ml-2 text-[11px] font-mono tracking-wider text-[#00A6FF] opacity-90 uppercase">
-          DEMANDFLOW BRIDGE™ // SQL PIPELINE COMMAND
-        </div>
+        <span className="ml-2 text-[10px] font-mono font-bold tracking-[0.2em] text-[#00A6FF]/80 uppercase">
+          SQL Pipeline Command Center
+        </span>
         <div className="ml-auto flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[#72D669] animate-pulse" />
-          <span className="text-[10px] font-mono text-white/50 tracking-wider">LIVE TELEMETRY</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#72D669] animate-pulse" />
+          <span className="text-[9px] font-mono text-[#72D669]/70 uppercase tracking-wider">Live</span>
         </div>
       </div>
 
-      {/* Metrics ticker bar */}
-      <div className="grid grid-cols-3 gap-px bg-white/[0.05] border-b border-white/[0.06] text-center">
-        <div className="py-2.5 px-3 bg-[#050D1A]/80">
-          <div className="text-[10px] font-mono text-white/50 tracking-wider">SQL PIPELINE</div>
-          <div className="text-sm font-black text-[#00A6FF] font-mono">1,845+</div>
-        </div>
-        <div className="py-2.5 px-3 bg-[#050D1A]/80">
-          <div className="text-[10px] font-mono text-white/50 tracking-wider">SHOW-UP RATE</div>
-          <div className="text-sm font-black text-[#72D669] font-mono">85%+</div>
-        </div>
-        <div className="py-2.5 px-3 bg-[#050D1A]/80">
-          <div className="text-[10px] font-mono text-white/50 tracking-wider">VELOCITY LIFT</div>
-          <div className="text-sm font-black text-[#FF6D00] font-mono">3.2x</div>
-        </div>
+      {/* Status pills row */}
+      <div className="flex items-center gap-2 px-5 py-3 border-b border-white/[0.04] flex-wrap">
+        {STATUS_PILLS.map((pill) => (
+          <div
+            key={pill.label}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: pill.dot }} />
+            <span className="text-[9px] font-mono text-white/50 uppercase tracking-wider">{pill.label}</span>
+          </div>
+        ))}
       </div>
 
-      {/* Flow visual */}
-      <div className="p-4 sm:p-5 space-y-2">
+      {/* Flow stages */}
+      <div className="p-5 space-y-1.5">
         {FLOW_STAGES.map((stage, idx) => {
-          const isDone = completedStages.includes(idx)
-          const isCurrent = activeStage === idx
-          const isPending = !isDone && !isCurrent
+          const isActive = activeStage === idx
+          const isCompleted = completedStages.includes(idx)
 
           return (
-            <div
+            <motion.div
               key={stage.id}
-              className="flex items-center gap-3 p-2.5 rounded-xl transition-all duration-300 border"
+              initial={prefersReducedMotion ? {} : { opacity: 0.3, x: -8 }}
+              animate={
+                prefersReducedMotion
+                  ? {}
+                  : isActive
+                  ? { opacity: 1, x: 0, scale: 1.01 }
+                  : isCompleted
+                  ? { opacity: 0.85, x: 0, scale: 1 }
+                  : { opacity: 0.3, x: 0, scale: 1 }
+              }
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 relative overflow-hidden"
               style={{
-                background: isCurrent
-                  ? 'rgba(0,166,255,0.08)'
-                  : isDone
+                background: isActive
+                  ? `linear-gradient(90deg, ${stage.color}18 0%, transparent 100%)`
+                  : isCompleted
                   ? 'rgba(255,255,255,0.02)'
-                  : 'rgba(255,255,255,0.01)',
-                borderColor: isCurrent
-                  ? stage.color
-                  : isDone
-                  ? `${stage.color}30`
-                  : 'rgba(255,255,255,0.04)',
+                  : 'transparent',
+                border: isActive
+                  ? `1px solid ${stage.color}35`
+                  : isCompleted
+                  ? '1px solid rgba(255,255,255,0.05)'
+                  : '1px solid transparent',
               }}
             >
-              {/* Step indicator */}
+              {/* Index number */}
+              <span
+                className="text-[9px] font-mono font-bold w-4 shrink-0"
+                style={{ color: isActive ? stage.color : 'rgba(255,255,255,0.2)' }}
+              >
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+
+              {/* Connecting line from above */}
+              {idx > 0 && (
+                <div
+                  className="absolute left-[28px] top-0 w-px h-2.5"
+                  style={{ background: isCompleted ? `${stage.color}50` : 'rgba(255,255,255,0.06)' }}
+                />
+              )}
+
+              {/* Icon node */}
               <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs font-mono font-bold transition-all duration-300"
+                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
                 style={{
-                  background: isCurrent ? stage.color : isDone ? `${stage.color}20` : 'rgba(255,255,255,0.05)',
-                  color: isCurrent ? '#050D1A' : isDone ? stage.color : 'rgba(255,255,255,0.3)',
+                  background: isActive || isCompleted ? `${stage.color}18` : 'rgba(255,255,255,0.03)',
+                  border: `1px solid ${isActive || isCompleted ? stage.color + '40' : 'rgba(255,255,255,0.07)'}`,
                 }}
               >
-                {idx + 1}
+                <StageIcon type={stage.icon} color={isActive || isCompleted ? stage.color : 'rgba(255,255,255,0.2)'} />
               </div>
 
-              {/* Icon badge */}
-              <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-opacity duration-300"
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  opacity: isPending ? 0.3 : 1,
-                }}
-              >
-                <StageIcon type={stage.icon} color={isPending ? '#64748b' : stage.color} />
-              </div>
-
-              {/* Label + sub */}
+              {/* Label */}
               <div className="flex-1 min-w-0">
                 <div
-                  className="text-xs font-bold tracking-tight truncate transition-colors duration-300"
-                  style={{ color: isPending ? 'rgba(255,255,255,0.4)' : '#ffffff' }}
+                  className="text-xs font-semibold leading-tight"
+                  style={{ color: isActive ? '#fff' : isCompleted ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.25)' }}
                 >
                   {stage.label}
                 </div>
-                <div className="text-[10px] font-mono text-white/40 truncate">{stage.sub}</div>
+                <div
+                  className="text-[9px] font-mono mt-0.5"
+                  style={{ color: isActive ? `${stage.color}` : 'rgba(255,255,255,0.2)' }}
+                >
+                  {stage.sub}
+                </div>
               </div>
 
-              {/* Stage status indicator */}
-              <div className="shrink-0 flex items-center gap-1.5">
-                {isCurrent && (
-                  <span className="text-[10px] font-mono font-bold tracking-wider animate-pulse" style={{ color: stage.color }}>
-                    PROCESSING
-                  </span>
-                )}
-                {isDone && (
-                  <span className="text-[10px] font-mono font-bold text-[#72D669] tracking-wider">
-                    VERIFIED ✓
-                  </span>
-                )}
-                {isPending && (
-                  <span className="text-[10px] font-mono text-white/20 tracking-wider">
-                    QUEUED
-                  </span>
-                )}
-              </div>
-            </div>
+              {/* Completed checkmark */}
+              {isCompleted && (
+                <div
+                  className="w-4 h-4 rounded-full flex items-center justify-center shrink-0"
+                  style={{ background: `${stage.color}25`, border: `1px solid ${stage.color}50` }}
+                >
+                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                    <path d="M1.5 4L3 5.5 6.5 2" stroke={stage.color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              )}
+
+              {/* Active pulse */}
+              {isActive && !prefersReducedMotion && (
+                <motion.div
+                  className="w-5 h-5 rounded-full shrink-0"
+                  animate={{ scale: [1, 1.6, 1], opacity: [0.8, 0, 0.8] }}
+                  transition={{ duration: 1.2, repeat: Infinity }}
+                  style={{ background: `${stage.color}30` }}
+                />
+              )}
+            </motion.div>
           )
         })}
       </div>
 
-      {/* Bottom status pills */}
-      <div className="px-5 py-3 border-t border-white/[0.06] flex items-center justify-between flex-wrap gap-2">
-        {STATUS_PILLS.map((pill) => (
-          <div key={pill.label} className="flex items-center gap-1.5 text-[10px] font-mono text-white/60">
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: pill.dot }} />
-            <span>{pill.label}</span>
+      {/* Bottom metric strip */}
+      <div className="border-t border-white/[0.05] px-5 py-3 grid grid-cols-3 gap-3">
+        {[
+          { label: 'SQL Pipeline', value: '1,845+', color: '#00A6FF' },
+          { label: 'Show-Up Rate', value: '85%+', color: '#72D669' },
+          { label: 'Velocity Lift', value: '3.2x', color: '#FF6D00' },
+        ].map((m) => (
+          <div key={m.label} className="text-center">
+            <div className="text-[9px] font-mono text-white/30 uppercase tracking-wider mb-0.5">{m.label}</div>
+            <div className="text-[10px] font-bold font-mono" style={{ color: m.color }}>{m.value}</div>
           </div>
         ))}
       </div>

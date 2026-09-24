@@ -7,7 +7,7 @@ import {
   MailX,
   MessageSquareQuote,
   ShieldAlert,
-  CheckCircle2,
+  FileCheck2,
   Workflow,
   Send,
   EyeOff,
@@ -71,7 +71,7 @@ const FLOW_ITEMS = [
     solution: {
       title: '100% Zero-Bounce Data',
       sub: 'Human & SMTP Verified Inboxes',
-      icon: CheckCircle2,
+      icon: FileCheck2,
     },
     color: '#10B981', // Emerald
     gradient: 'from-[#10B981] to-[#059669]',
