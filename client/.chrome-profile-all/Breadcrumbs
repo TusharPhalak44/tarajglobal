@@ -1,0 +1,49 @@
+0:01:33 Tab1 FinishNav93
+0:01:35 Tab1 StartNav94 #typed
+0:01:35 Tab1 FinishNav94
+0:01:35 Tab1 PageLoad #failure
+0:01:36 Tab1 PageLoad
+0:01:36 Tab1 StartNav95 #renderer-script #link
+0:01:36 Tab1 FinishNav95
+0:01:37 Tab1 StartNav96 #typed
+0:01:37 Tab1 FinishNav96
+0:01:38 Tab1 PageLoad
+0:01:38 Tab1 StartNav97 #renderer-script #link
+0:01:38 Tab1 FinishNav97
+0:01:39 Tab1 StartNav98 #typed
+0:01:39 Tab1 FinishNav98
+0:01:41 Tab1 PageLoad
+0:01:41 Tab1 StartNav99 #typed
+0:01:41 Tab1 StartNav100 #renderer-script #link
+0:01:41 Tab1 FinishNav100
+0:01:41 Tab1 StartNav101 #google #renderer-script #auto_subframe
+0:01:42 Tab1 FinishNav101
+0:01:42 Tab1 PageLoad #google
+0:01:42 Tab1 FinishNav99
+0:01:44 Tab1 PageLoad
+0:01:44 Tab1 StartNav102 #renderer-script #link
+0:01:44 Tab1 FinishNav102
+0:01:44 Tab1 StartNav103 #typed
+0:01:44 Tab1 FinishNav103
+0:01:44 Tab1 PageLoad
+0:01:44 Tab1 StartNav104 #renderer-script #link
+0:01:44 Tab1 FinishNav104
+0:01:46 Tab1 StartNav105 #typed
+0:01:46 Tab1 FinishNav105
+0:01:47 Tab1 PageLoad
+0:01:47 Tab1 StartNav106 #renderer-script #link
+0:01:47 Tab1 FinishNav106
+0:01:48 Tab1 StartNav107 #typed
+0:01:49 Tab1 FinishNav107
+0:01:51 Tab1 StartNav108 #typed
+0:01:51 Tab1 FinishNav108
+0:01:51 Tab1 PageLoad #failure
+0:01:53 Tab1 StartNav109 #typed
+0:01:54 Tab1 FinishNav109
+0:01:55 Tab1 PageLoad #failure
+0:01:56 Tab1 StartNav110 #typed
+0:01:58 Tab1 FinishNav110
+0:01:58 Tab1 PageLoad #failure
+0:02:00 Tab1 StartNav111 #typed
+0:02:01 Tab1 FinishNav111
+0:02:01 Tab1 PageLoad #failure

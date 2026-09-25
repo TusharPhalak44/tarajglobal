@@ -4,10 +4,17 @@ import {
   getMeetingById,
   updateMeetingStatus,
   rescheduleMeeting,
-  cancelMeeting
+  cancelMeeting,
+  retryMeetingEmail,
+  getSMTPDiagnostics
 } from '../../controllers/admin/meeting.admin.controller.js'
 
 const router = express.Router()
+
+// @route   GET /api/admin/meetings/diagnostics/smtp
+// @desc    Safe diagnostic test for SMTP connection & auth
+// @access  Private/Admin
+router.get('/diagnostics/smtp', getSMTPDiagnostics)
 
 // @route   GET /api/admin/meetings
 // @desc    List all meetings with search, filter, and pagination
@@ -34,4 +41,15 @@ router.post('/:id/reschedule', rescheduleMeeting)
 // @access  Private/Admin
 router.post('/:id/cancel', cancelMeeting)
 
+// @route   POST /api/admin/meetings/:id/retry-email
+// @desc    Retry sending confirmation email without duplicate calendar creation
+// @access  Private/Admin
+router.post('/:id/retry-email', retryMeetingEmail)
+
+// @route   POST /api/admin/meetings/:id/resend-email
+// @desc    Resend confirmation email (alias for retry-email)
+// @access  Private/Admin
+router.post('/:id/resend-email', retryMeetingEmail)
+
 export default router
+

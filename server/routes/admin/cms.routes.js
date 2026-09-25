@@ -234,4 +234,16 @@ router.get('/clients-section', cmsController.getClientSectionSettings)
 // @access  Private
 router.put('/clients-section', cmsController.updateClientSectionSettings)
 
+// ==================== BUSINESS OUTCOMES / STATS SETTINGS ROUTES ====================
+
+// @route   GET /api/admin/cms/stats
+// @desc    Get business outcomes stats settings
+// @access  Private
+router.get('/stats', cmsController.getStatsSettings)
+
+// @route   PUT /api/admin/cms/stats
+// @desc    Update business outcomes stats settings
+// @access  Private
+router.put('/stats', cmsController.updateStatsSettings)
+
 export default router

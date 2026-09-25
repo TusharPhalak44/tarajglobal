@@ -1,0 +1,340 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/cookies/CookieModal.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useEffect = __vite__cjsImport3_react["useEffect"]; const useRef = __vite__cjsImport3_react["useRef"];
+import { motion, AnimatePresence } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+import { X } from "/node_modules/.vite/deps/lucide-react.js?v=2f1d9042";
+import { useCookies } from "/src/components/cookies/CookieContext.jsx";
+import CookieToggle from "/src/components/cookies/CookieToggle.jsx";
+const cookieCategories = [
+  {
+    key: "necessary",
+    title: "Necessary Cookies",
+    description: "These cookies are essential for the website to function properly. They cannot be disabled.",
+    required: true
+  },
+  {
+    key: "analytics",
+    title: "Analytics Cookies",
+    description: "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.",
+    required: false
+  },
+  {
+    key: "functional",
+    title: "Functional Cookies",
+    description: "These cookies enable enhanced functionality and personalization, such as videos and live chats.",
+    required: false
+  },
+  {
+    key: "marketing",
+    title: "Marketing Cookies",
+    description: "These cookies are used to track visitors across websites to display relevant advertisements.",
+    required: false
+  }
+];
+const CookieModal = () => {
+  _s();
+  const { isModalOpen, closePreferences, preferences, updatePreference, savePreferences, acceptAll } = useCookies();
+  const modalRef = useRef(null);
+  const firstFocusableRef = useRef(null);
+  useEffect(() => {
+    if (isModalOpen && modalRef.current) {
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      }
+    }
+  }, [isModalOpen]);
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape" && isModalOpen) {
+        closePreferences();
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isModalOpen, closePreferences]);
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
+  const handleSave = () => {
+    savePreferences(preferences);
+  };
+  const handleAcceptAll = () => {
+    acceptAll();
+  };
+  return /* @__PURE__ */ jsxDEV(AnimatePresence, { children: isModalOpen && /* @__PURE__ */ jsxDEV(Fragment, { children: [
+    /* @__PURE__ */ jsxDEV(
+      motion.div,
+      {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: 0.3 },
+        className: "fixed inset-0 bg-black/60 backdrop-blur-sm z-50",
+        onClick: closePreferences,
+        "aria-hidden": "true"
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+        lineNumber: 107,
+        columnNumber: 11
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV(
+      motion.div,
+      {
+        initial: { opacity: 0, scale: 0.9, y: 20 },
+        animate: { opacity: 1, scale: 1, y: 0 },
+        exit: { opacity: 0, scale: 0.9, y: 20 },
+        transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
+        className: "fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8",
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-labelledby": "cookie-modal-title",
+        children: /* @__PURE__ */ jsxDEV(
+          "div",
+          {
+            ref: modalRef,
+            className: "bg-[#121212]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col",
+            children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between p-4 border-b border-white/10", children: [
+                /* @__PURE__ */ jsxDEV("h2", { id: "cookie-modal-title", className: "text-lg font-semibold text-white", children: "Cookie Preferences" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                  lineNumber: 134,
+                  columnNumber: 17
+                }, this),
+                /* @__PURE__ */ jsxDEV(
+                  motion.button,
+                  {
+                    whileHover: { scale: 1.1, rotate: 90 },
+                    whileTap: { scale: 0.9 },
+                    onClick: closePreferences,
+                    className: "p-2 rounded-full text-text-secondary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background",
+                    "aria-label": "Close",
+                    children: /* @__PURE__ */ jsxDEV(X, { size: 24 }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                      lineNumber: 144,
+                      columnNumber: 19
+                    }, this)
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                    lineNumber: 137,
+                    columnNumber: 17
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                lineNumber: 133,
+                columnNumber: 15
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "flex-1 overflow-y-auto p-4 space-y-3", children: cookieCategories.map(
+                (category) => /* @__PURE__ */ jsxDEV(
+                  "div",
+                  {
+                    className: "flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all",
+                    children: [
+                      /* @__PURE__ */ jsxDEV("div", { className: "flex-1", children: [
+                        /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2 mb-1", children: [
+                          /* @__PURE__ */ jsxDEV("h3", { className: "text-sm font-semibold text-white", children: category.title }, void 0, false, {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                            lineNumber: 157,
+                            columnNumber: 25
+                          }, this),
+                          category.required && /* @__PURE__ */ jsxDEV("span", { className: "px-2 py-0.5 text-[10px] font-medium bg-primary/20 text-primary rounded-full", children: "Always Active" }, void 0, false, {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                            lineNumber: 159,
+                            columnNumber: 21
+                          }, this)
+                        ] }, void 0, true, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                          lineNumber: 156,
+                          columnNumber: 23
+                        }, this),
+                        /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-text-secondary leading-relaxed", children: category.description }, void 0, false, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                          lineNumber: 164,
+                          columnNumber: 23
+                        }, this)
+                      ] }, void 0, true, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                        lineNumber: 155,
+                        columnNumber: 21
+                      }, this),
+                      /* @__PURE__ */ jsxDEV(
+                        CookieToggle,
+                        {
+                          checked: preferences[category.key],
+                          onChange: (value) => updatePreference(category.key, value),
+                          disabled: category.required,
+                          label: `Toggle ${category.title}`
+                        },
+                        void 0,
+                        false,
+                        {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                          lineNumber: 168,
+                          columnNumber: 21
+                        },
+                        this
+                      )
+                    ]
+                  },
+                  category.key,
+                  true,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                    lineNumber: 151,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              ) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                lineNumber: 149,
+                columnNumber: 15
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "flex flex-col sm:flex-row gap-2 p-4 border-t border-white/10 bg-white/5", children: [
+                /* @__PURE__ */ jsxDEV(
+                  motion.button,
+                  {
+                    whileHover: { scale: 1.02 },
+                    whileTap: { scale: 0.98 },
+                    onClick: handleSave,
+                    className: "flex-1 px-6 py-3 bg-gradient-to-r from-cta to-accent text-white rounded-lg font-semibold hover:from-cta-hover hover:to-accent transition-all focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base",
+                    children: "Save Preferences"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                    lineNumber: 180,
+                    columnNumber: 17
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  motion.button,
+                  {
+                    whileHover: { scale: 1.02 },
+                    whileTap: { scale: 0.98 },
+                    onClick: handleAcceptAll,
+                    className: "flex-1 px-6 py-3 bg-white/10 border border-white/20 text-white rounded-lg font-semibold hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base",
+                    children: "Accept All"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                    lineNumber: 189,
+                    columnNumber: 17
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  motion.button,
+                  {
+                    whileHover: { scale: 1.02 },
+                    whileTap: { scale: 0.98 },
+                    onClick: closePreferences,
+                    className: "flex-1 px-6 py-3 bg-transparent border border-white/20 text-text-secondary rounded-lg font-semibold hover:bg-white/10 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base",
+                    children: "Cancel"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                    lineNumber: 198,
+                    columnNumber: 17
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+                lineNumber: 179,
+                columnNumber: 15
+              }, this)
+            ]
+          },
+          void 0,
+          true,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+            lineNumber: 128,
+            columnNumber: 13
+          },
+          this
+        )
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+        lineNumber: 118,
+        columnNumber: 11
+      },
+      this
+    )
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+    lineNumber: 105,
+    columnNumber: 7
+  }, this) }, void 0, false, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx",
+    lineNumber: 103,
+    columnNumber: 5
+  }, this);
+};
+_s(CookieModal, "MtagAnS9flLKIIeL3utUb2RoqSk=", false, function() {
+  return [useCookies];
+});
+_c = CookieModal;
+export default CookieModal;
+var _c;
+$RefreshReg$(_c, "CookieModal");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieModal.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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O0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsZ0JBT0E7QUFBQSxnQkFFQTtBQUFBLGtCQUFDLE9BQU87QUFBQSxrQkFBUDtBQUFBLG9CQUNDLFlBQVksRUFBRUksT0FBTyxLQUFLO0FBQUEsb0JBQzFCLFVBQVUsRUFBRUEsT0FBTyxLQUFLO0FBQUEsb0JBQ3hCLFNBQVNIO0FBQUFBLG9CQUNULFdBQVU7QUFBQSxvQkFBbVA7QUFBQTtBQUFBLGtCQUovUDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsZ0JBT0E7QUFBQSxnQkFFQTtBQUFBLGtCQUFDLE9BQU87QUFBQSxrQkFBUDtBQUFBLG9CQUNDLFlBQVksRUFBRUcsT0FBTyxLQUFLO0FBQUEsb0JBQzFCLFVBQVUsRUFBRUEsT0FBTyxLQUFLO0FBQUEsb0JBQ3hCLFNBQVN4QjtBQUFBQSxvQkFDVCxXQUFVO0FBQUEsb0JBQWdSO0FBQUE7QUFBQSxrQkFKNVI7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLGdCQU9BO0FBQUEsbUJBMUJGO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBMkJBO0FBQUE7QUFBQTtBQUFBLFVBOUVGO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxRQStFQTtBQUFBO0FBQUEsTUF6RkY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLElBMEZBO0FBQUEsT0F2R0Y7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQXdHQSxLQTFHSjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBNEdBO0FBRUo7QUFBQ0YsR0FoS0tELGFBQVc7QUFBQSxVQUNzRlAsVUFBVTtBQUFBO0FBQUEsS0FEM0dPO0FBa0tOLGVBQWVBO0FBQVcsSUFBQWtDO0FBQUEsYUFBQUEsSUFBQSIsIm5hbWVzIjpbIlJlYWN0IiwidXNlRWZmZWN0IiwidXNlUmVmIiwibW90aW9uIiwiQW5pbWF0ZVByZXNlbmNlIiwiWCIsInVzZUNvb2tpZXMiLCJDb29raWVUb2dnbGUiLCJjb29raWVDYXRlZ29yaWVzIiwia2V5IiwidGl0bGUiLCJkZXNjcmlwdGlvbiIsInJlcXVpcmVkIiwiQ29va2llTW9kYWwiLCJfcyIsImlzTW9kYWxPcGVuIiwiY2xvc2VQcmVmZXJlbmNlcyIsInByZWZlcmVuY2VzIiwidXBkYXRlUHJlZmVyZW5jZSIsInNhdmVQcmVmZXJlbmNlcyIsImFjY2VwdEFsbCIsIm1vZGFsUmVmIiwiZmlyc3RGb2N1c2FibGVSZWYiLCJjdXJyZW50IiwiZm9jdXNhYmxlRWxlbWVudHMiLCJxdWVyeVNlbGVjdG9yQWxsIiwibGVuZ3RoIiwiZm9jdXMiLCJoYW5kbGVFc2NhcGUiLCJlIiwiZG9jdW1lbnQiLCJhZGRFdmVudExpc3RlbmVyIiwicmVtb3ZlRXZlbnRMaXN0ZW5lciIsImJvZHkiLCJzdHlsZSIsIm92ZXJmbG93IiwiaGFuZGxlU2F2ZSIsImhhbmRsZUFjY2VwdEFsbCIsIm9wYWNpdHkiLCJkdXJhdGlvbiIsInNjYWxlIiwieSIsImVhc2UiLCJyb3RhdGUiLCJtYXAiLCJjYXRlZ29yeSIsInZhbHVlIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiQ29va2llTW9kYWwuanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCwgeyB1c2VFZmZlY3QsIHVzZVJlZiB9IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHsgbW90aW9uLCBBbmltYXRlUHJlc2VuY2UgfSBmcm9tICdmcmFtZXItbW90aW9uJ1xuaW1wb3J0IHsgWCB9IGZyb20gJ2x1Y2lkZS1yZWFjdCdcbmltcG9ydCB7IHVzZUNvb2tpZXMgfSBmcm9tICcuL0Nvb2tpZUNvbnRleHQnXG5pbXBvcnQgQ29va2llVG9nZ2xlIGZyb20gJy4vQ29va2llVG9nZ2xlJ1xuXG5jb25zdCBjb29raWVDYXRlZ29yaWVzID0gW1xuICB7XG4gICAga2V5OiAnbmVjZXNzYXJ5JyxcbiAgICB0aXRsZTogJ05lY2Vzc2FyeSBDb29raWVzJyxcbiAgICBkZXNjcmlwdGlvbjogJ1RoZXNlIGNvb2tpZXMgYXJlIGVzc2VudGlhbCBmb3IgdGhlIHdlYnNpdGUgdG8gZnVuY3Rpb24gcHJvcGVybHkuIFRoZXkgY2Fubm90IGJlIGRpc2FibGVkLicsXG4gICAgcmVxdWlyZWQ6IHRydWUsXG4gIH0sXG4gIHtcbiAgICBrZXk6ICdhbmFseXRpY3MnLFxuICAgIHRpdGxlOiAnQW5hbHl0aWNzIENvb2tpZXMnLFxuICAgIGRlc2NyaXB0aW9uOiAnVGhlc2UgY29va2llcyBoZWxwIHVzIHVuZGVyc3RhbmQgaG93IHZpc2l0b3JzIGludGVyYWN0IHdpdGggb3VyIHdlYnNpdGUgYnkgY29sbGVjdGluZyBhbmQgcmVwb3J0aW5nIGluZm9ybWF0aW9uIGFub255bW91c2x5LicsXG4gICAgcmVxdWlyZWQ6IGZhbHNlLFxuICB9LFxuICB7XG4gICAga2V5OiAnZnVuY3Rpb25hbCcsXG4gICAgdGl0bGU6ICdGdW5jdGlvbmFsIENvb2tpZXMnLFxuICAgIGRlc2NyaXB0aW9uOiAnVGhlc2UgY29va2llcyBlbmFibGUgZW5oYW5jZWQgZnVuY3Rpb25hbGl0eSBhbmQgcGVyc29uYWxpemF0aW9uLCBzdWNoIGFzIHZpZGVvcyBhbmQgbGl2ZSBjaGF0cy4nLFxuICAgIHJlcXVpcmVkOiBmYWxzZSxcbiAgfSxcbiAge1xuICAgIGtleTogJ21hcmtldGluZycsXG4gICAgdGl0bGU6ICdNYXJrZXRpbmcgQ29va2llcycsXG4gICAgZGVzY3JpcHRpb246ICdUaGVzZSBjb29raWVzIGFyZSB1c2VkIHRvIHRyYWNrIHZpc2l0b3JzIGFjcm9zcyB3ZWJzaXRlcyB0byBkaXNwbGF5IHJlbGV2YW50IGFkdmVydGlzZW1lbnRzLicsXG4gICAgcmVxdWlyZWQ6IGZhbHNlLFxuICB9LFxuXVxuXG5jb25zdCBDb29raWVNb2RhbCA9ICgpID0+IHtcbiAgY29uc3QgeyBpc01vZGFsT3BlbiwgY2xvc2VQcmVmZXJlbmNlcywgcHJlZmVyZW5jZXMsIHVwZGF0ZVByZWZlcmVuY2UsIHNhdmVQcmVmZXJlbmNlcywgYWNjZXB0QWxsIH0gPSB1c2VDb29raWVzKClcbiAgY29uc3QgbW9kYWxSZWYgPSB1c2VSZWYobnVsbClcbiAgY29uc3QgZmlyc3RGb2N1c2FibGVSZWYgPSB1c2VSZWYobnVsbClcblxuICAvLyBGb2N1cyB0cmFwXG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgaWYgKGlzTW9kYWxPcGVuICYmIG1vZGFsUmVmLmN1cnJlbnQpIHtcbiAgICAgIGNvbnN0IGZvY3VzYWJsZUVsZW1lbnRzID0gbW9kYWxSZWYuY3VycmVudC5xdWVyeVNlbGVjdG9yQWxsKFxuICAgICAgICAnYnV0dG9uLCBbaHJlZl0sIGlucHV0LCBzZWxlY3QsIHRleHRhcmVhLCBbdGFiaW5kZXhdOm5vdChbdGFiaW5kZXg9XCItMVwiXSknXG4gICAgICApXG4gICAgICBpZiAoZm9jdXNhYmxlRWxlbWVudHMubGVuZ3RoID4gMCkge1xuICAgICAgICBmb2N1c2FibGVFbGVtZW50c1swXS5mb2N1cygpXG4gICAgICB9XG4gICAgfVxuICB9LCBbaXNNb2RhbE9wZW5dKVxuXG4gIC8vIEhhbmRsZSBFU0Mga2V5XG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgY29uc3QgaGFuZGxlRXNjYXBlID0gKGUpID0+IHtcbiAgICAgIGlmIChlLmtleSA9PT0gJ0VzY2FwZScgJiYgaXNNb2RhbE9wZW4pIHtcbiAgICAgICAgY2xvc2VQcmVmZXJlbmNlcygpXG4gICAgICB9XG4gICAgfVxuXG4gICAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigna2V5ZG93bicsIGhhbmRsZUVzY2FwZSlcbiAgICByZXR1cm4gKCkgPT4gZG9jdW1lbnQucmVtb3ZlRXZlbnRMaXN0ZW5lcigna2V5ZG93bicsIGhhbmRsZUVzY2FwZSlcbiAgfSwgW2lzTW9kYWxPcGVuLCBjbG9zZVByZWZlcmVuY2VzXSlcblxuICAvLyBQcmV2ZW50IGJvZHkgc2Nyb2xsIHdoZW4gbW9kYWwgaXMgb3BlblxuICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgIGlmIChpc01vZGFsT3Blbikge1xuICAgICAgZG9jdW1lbnQuYm9keS5zdHlsZS5vdmVyZmxvdyA9ICdoaWRkZW4nXG4gICAgfSBlbHNlIHtcbiAgICAgIGRvY3VtZW50LmJvZHkuc3R5bGUub3ZlcmZsb3cgPSAndW5zZXQnXG4gICAgfVxuICAgIHJldHVybiAoKSA9PiB7XG4gICAgICBkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93ID0gJ3Vuc2V0J1xuICAgIH1cbiAgfSwgW2lzTW9kYWxPcGVuXSlcblxuICBjb25zdCBoYW5kbGVTYXZlID0gKCkgPT4ge1xuICAgIHNhdmVQcmVmZXJlbmNlcyhwcmVmZXJlbmNlcylcbiAgfVxuXG4gIGNvbnN0IGhhbmRsZUFjY2VwdEFsbCA9ICgpID0+IHtcbiAgICBhY2NlcHRBbGwoKVxuICB9XG5cbiAgcmV0dXJuIChcbiAgICA8QW5pbWF0ZVByZXNlbmNlPlxuICAgICAge2lzTW9kYWxPcGVuICYmIChcbiAgICAgICAgPD5cbiAgICAgICAgICB7LyogQmFja2Ryb3AgKi99XG4gICAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICAgIGluaXRpYWw9e3sgb3BhY2l0eTogMCB9fVxuICAgICAgICAgICAgYW5pbWF0ZT17eyBvcGFjaXR5OiAxIH19XG4gICAgICAgICAgICBleGl0PXt7IG9wYWNpdHk6IDAgfX1cbiAgICAgICAgICAgIHRyYW5zaXRpb249e3sgZHVyYXRpb246IDAuMyB9fVxuICAgICAgICAgICAgY2xhc3NOYW1lPVwiZml4ZWQgaW5zZXQtMCBiZy1ibGFjay82MCBiYWNrZHJvcC1ibHVyLXNtIHotNTBcIlxuICAgICAgICAgICAgb25DbGljaz17Y2xvc2VQcmVmZXJlbmNlc31cbiAgICAgICAgICAgIGFyaWEtaGlkZGVuPVwidHJ1ZVwiXG4gICAgICAgICAgLz5cblxuICAgICAgICAgIHsvKiBNb2RhbCAqL31cbiAgICAgICAgICA8bW90aW9uLmRpdlxuICAgICAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwLCBzY2FsZTogMC45LCB5OiAyMCB9fVxuICAgICAgICAgICAgYW5pbWF0ZT17eyBvcGFjaXR5OiAxLCBzY2FsZTogMSwgeTogMCB9fVxuICAgICAgICAgICAgZXhpdD17eyBvcGFjaXR5OiAwLCBzY2FsZTogMC45LCB5OiAyMCB9fVxuICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC4zLCBlYXNlOiBbMC4yNSwgMC40NiwgMC40NSwgMC45NF0gfX1cbiAgICAgICAgICAgIGNsYXNzTmFtZT1cImZpeGVkIGluc2V0LTAgei01MCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBwLTQgbWQ6cC04XCJcbiAgICAgICAgICAgIHJvbGU9XCJkaWFsb2dcIlxuICAgICAgICAgICAgYXJpYS1tb2RhbD1cInRydWVcIlxuICAgICAgICAgICAgYXJpYS1sYWJlbGxlZGJ5PVwiY29va2llLW1vZGFsLXRpdGxlXCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICA8ZGl2XG4gICAgICAgICAgICAgIHJlZj17bW9kYWxSZWZ9XG4gICAgICAgICAgICAgIGNsYXNzTmFtZT1cImJnLVsjMTIxMjEyXS85NSBiYWNrZHJvcC1ibHVyLXhsIGJvcmRlciBib3JkZXItd2hpdGUvMTAgcm91bmRlZC0yeGwgc2hhZG93LTJ4bCB3LWZ1bGwgbWF4LXctMnhsIG1heC1oLVs5MHZoXSBvdmVyZmxvdy1oaWRkZW4gZmxleCBmbGV4LWNvbFwiXG4gICAgICAgICAgICA+XG4gICAgICAgICAgICAgIHsvKiBIZWFkZXIgKi99XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIHAtNCBib3JkZXItYiBib3JkZXItd2hpdGUvMTBcIj5cbiAgICAgICAgICAgICAgICA8aDIgaWQ9XCJjb29raWUtbW9kYWwtdGl0bGVcIiBjbGFzc05hbWU9XCJ0ZXh0LWxnIGZvbnQtc2VtaWJvbGQgdGV4dC13aGl0ZVwiPlxuICAgICAgICAgICAgICAgICAgQ29va2llIFByZWZlcmVuY2VzXG4gICAgICAgICAgICAgICAgPC9oMj5cbiAgICAgICAgICAgICAgICA8bW90aW9uLmJ1dHRvblxuICAgICAgICAgICAgICAgICAgd2hpbGVIb3Zlcj17eyBzY2FsZTogMS4xLCByb3RhdGU6IDkwIH19XG4gICAgICAgICAgICAgICAgICB3aGlsZVRhcD17eyBzY2FsZTogMC45IH19XG4gICAgICAgICAgICAgICAgICBvbkNsaWNrPXtjbG9zZVByZWZlcmVuY2VzfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicC0yIHJvdW5kZWQtZnVsbCB0ZXh0LXRleHQtc2Vjb25kYXJ5IGhvdmVyOnRleHQtd2hpdGUgdHJhbnNpdGlvbi1jb2xvcnMgZm9jdXM6b3V0bGluZS1ub25lIGZvY3VzOnJpbmctMiBmb2N1czpyaW5nLXByaW1hcnkgZm9jdXM6cmluZy1vZmZzZXQtMiBmb2N1czpyaW5nLW9mZnNldC1iYWNrZ3JvdW5kXCJcbiAgICAgICAgICAgICAgICAgIGFyaWEtbGFiZWw9XCJDbG9zZVwiXG4gICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgPFggc2l6ZT17MjR9IC8+XG4gICAgICAgICAgICAgICAgPC9tb3Rpb24uYnV0dG9uPlxuICAgICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgICB7LyogQ29udGVudCAqL31cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4LTEgb3ZlcmZsb3cteS1hdXRvIHAtNCBzcGFjZS15LTNcIj5cbiAgICAgICAgICAgICAgICB7Y29va2llQ2F0ZWdvcmllcy5tYXAoKGNhdGVnb3J5KSA9PiAoXG4gICAgICAgICAgICAgICAgICA8ZGl2XG4gICAgICAgICAgICAgICAgICAgIGtleT17Y2F0ZWdvcnkua2V5fVxuICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLXN0YXJ0IGdhcC0zIHAtMyByb3VuZGVkLXhsIGJnLXdoaXRlLzUgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCBob3Zlcjpib3JkZXItd2hpdGUvMjAgdHJhbnNpdGlvbi1hbGxcIlxuICAgICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXgtMVwiPlxuICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgbWItMVwiPlxuICAgICAgICAgICAgICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT1cInRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXdoaXRlXCI+e2NhdGVnb3J5LnRpdGxlfTwvaDM+XG4gICAgICAgICAgICAgICAgICAgICAgICB7Y2F0ZWdvcnkucmVxdWlyZWQgJiYgKFxuICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJweC0yIHB5LTAuNSB0ZXh0LVsxMHB4XSBmb250LW1lZGl1bSBiZy1wcmltYXJ5LzIwIHRleHQtcHJpbWFyeSByb3VuZGVkLWZ1bGxcIj5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBBbHdheXMgQWN0aXZlXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICAgICAgICAgICAgICAgICl9XG4gICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC14cyB0ZXh0LXRleHQtc2Vjb25kYXJ5IGxlYWRpbmctcmVsYXhlZFwiPlxuICAgICAgICAgICAgICAgICAgICAgICAge2NhdGVnb3J5LmRlc2NyaXB0aW9ufVxuICAgICAgICAgICAgICAgICAgICAgIDwvcD5cbiAgICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgICAgIDxDb29raWVUb2dnbGVcbiAgICAgICAgICAgICAgICAgICAgICBjaGVja2VkPXtwcmVmZXJlbmNlc1tjYXRlZ29yeS5rZXldfVxuICAgICAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXsodmFsdWUpID0+IHVwZGF0ZVByZWZlcmVuY2UoY2F0ZWdvcnkua2V5LCB2YWx1ZSl9XG4gICAgICAgICAgICAgICAgICAgICAgZGlzYWJsZWQ9e2NhdGVnb3J5LnJlcXVpcmVkfVxuICAgICAgICAgICAgICAgICAgICAgIGxhYmVsPXtgVG9nZ2xlICR7Y2F0ZWdvcnkudGl0bGV9YH1cbiAgICAgICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgICkpfVxuICAgICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgICB7LyogRm9vdGVyICovfVxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC1jb2wgc206ZmxleC1yb3cgZ2FwLTIgcC00IGJvcmRlci10IGJvcmRlci13aGl0ZS8xMCBiZy13aGl0ZS81XCI+XG4gICAgICAgICAgICAgICAgPG1vdGlvbi5idXR0b25cbiAgICAgICAgICAgICAgICAgIHdoaWxlSG92ZXI9e3sgc2NhbGU6IDEuMDIgfX1cbiAgICAgICAgICAgICAgICAgIHdoaWxlVGFwPXt7IHNjYWxlOiAwLjk4IH19XG4gICAgICAgICAgICAgICAgICBvbkNsaWNrPXtoYW5kbGVTYXZlfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiZmxleC0xIHB4LTYgcHktMyBiZy1ncmFkaWVudC10by1yIGZyb20tY3RhIHRvLWFjY2VudCB0ZXh0LXdoaXRlIHJvdW5kZWQtbGcgZm9udC1zZW1pYm9sZCBob3Zlcjpmcm9tLWN0YS1ob3ZlciBob3Zlcjp0by1hY2NlbnQgdHJhbnNpdGlvbi1hbGwgZm9jdXM6b3V0bGluZS1ub25lIGZvY3VzOnJpbmctMiBmb2N1czpyaW5nLWN0YSBmb2N1czpyaW5nLW9mZnNldC0yIGZvY3VzOnJpbmctb2Zmc2V0LWJhY2tncm91bmQgdGV4dC1zbSBtZDp0ZXh0LWJhc2VcIlxuICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICAgIFNhdmUgUHJlZmVyZW5jZXNcbiAgICAgICAgICAgICAgICA8L21vdGlvbi5idXR0b24+XG4gICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgPG1vdGlvbi5idXR0b25cbiAgICAgICAgICAgICAgICAgIHdoaWxlSG92ZXI9e3sgc2NhbGU6IDEuMDIgfX1cbiAgICAgICAgICAgICAgICAgIHdoaWxlVGFwPXt7IHNjYWxlOiAwLjk4IH19XG4gICAgICAgICAgICAgICAgICBvbkNsaWNrPXtoYW5kbGVBY2NlcHRBbGx9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJmbGV4LTEgcHgtNiBweS0zIGJnLXdoaXRlLzEwIGJvcmRlciBib3JkZXItd2hpdGUvMjAgdGV4dC13aGl0ZSByb3VuZGVkLWxnIGZvbnQtc2VtaWJvbGQgaG92ZXI6Ymctd2hpdGUvMjAgdHJhbnNpdGlvbi1hbGwgZm9jdXM6b3V0bGluZS1ub25lIGZvY3VzOnJpbmctMiBmb2N1czpyaW5nLXByaW1hcnkgZm9jdXM6cmluZy1vZmZzZXQtMiBmb2N1czpyaW5nLW9mZnNldC1iYWNrZ3JvdW5kIHRleHQtc20gbWQ6dGV4dC1iYXNlXCJcbiAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICBBY2NlcHQgQWxsXG4gICAgICAgICAgICAgICAgPC9tb3Rpb24uYnV0dG9uPlxuICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgIDxtb3Rpb24uYnV0dG9uXG4gICAgICAgICAgICAgICAgICB3aGlsZUhvdmVyPXt7IHNjYWxlOiAxLjAyIH19XG4gICAgICAgICAgICAgICAgICB3aGlsZVRhcD17eyBzY2FsZTogMC45OCB9fVxuICAgICAgICAgICAgICAgICAgb25DbGljaz17Y2xvc2VQcmVmZXJlbmNlc31cbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImZsZXgtMSBweC02IHB5LTMgYmctdHJhbnNwYXJlbnQgYm9yZGVyIGJvcmRlci13aGl0ZS8yMCB0ZXh0LXRleHQtc2Vjb25kYXJ5IHJvdW5kZWQtbGcgZm9udC1zZW1pYm9sZCBob3ZlcjpiZy13aGl0ZS8xMCBob3Zlcjp0ZXh0LXdoaXRlIHRyYW5zaXRpb24tYWxsIGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpyaW5nLTIgZm9jdXM6cmluZy1wcmltYXJ5IGZvY3VzOnJpbmctb2Zmc2V0LTIgZm9jdXM6cmluZy1vZmZzZXQtYmFja2dyb3VuZCB0ZXh0LXNtIG1kOnRleHQtYmFzZVwiXG4gICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgQ2FuY2VsXG4gICAgICAgICAgICAgICAgPC9tb3Rpb24uYnV0dG9uPlxuICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDwvbW90aW9uLmRpdj5cbiAgICAgICAgPC8+XG4gICAgICApfVxuICAgIDwvQW5pbWF0ZVByZXNlbmNlPlxuICApXG59XG5cbmV4cG9ydCBkZWZhdWx0IENvb2tpZU1vZGFsXG4iXSwiZmlsZSI6IkM6L1VzZXJzL0hQL0Rlc2t0b3AvVEdTL1RhcmFqX0dsb2JhbGwvY2xpZW50L3NyYy9jb21wb25lbnRzL2Nvb2tpZXMvQ29va2llTW9kYWwuanN4In0=

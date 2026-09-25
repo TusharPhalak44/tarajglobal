@@ -1,0 +1,510 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+export default function WorkflowSvgConnectors({
+  activeStepIndex = 0,
+  isReducedMotion = false
+}) {
+  const connectors = [
+    {
+      id: "01-to-02",
+      from: 0,
+      to: 1,
+      // Horizontal straight connection from right of 01 (580, 77.5) to left of 02 (740, 77.5)
+      d: "M 580 77.5 L 736 77.52",
+      node: { x: 580, y: 77.5 },
+      dur: "1.2s",
+      activeOn: 0
+    },
+    {
+      id: "02-to-03",
+      from: 1,
+      to: 2,
+      // Exits bottom of 02 (840, 140), curves into channel (y: 167.5), travels left, curves down into top of 03 (120, 191)
+      d: "M 840 144 L 840 155 Q 840 167.5 825 167.5 L 135 167.5 Q 120 167.5 120 180 L 120 191",
+      node: { x: 840, y: 140 },
+      dur: "2.0s",
+      activeOn: 1
+    },
+    {
+      id: "03-to-04",
+      from: 2,
+      to: 3,
+      // Horizontal straight connection from right of 03 (220, 260) to left of 04 (260, 260)
+      d: "M 220 260 L 256 260.02",
+      node: { x: 220, y: 260 },
+      dur: "0.8s",
+      activeOn: 2
+    },
+    {
+      id: "04-to-05",
+      from: 3,
+      to: 4,
+      // Horizontal straight connection from right of 04 (460, 260) to left of 05 (500, 260)
+      d: "M 460 260 L 496 260.02",
+      node: { x: 460, y: 260 },
+      dur: "0.8s",
+      activeOn: 3
+    },
+    {
+      id: "05-to-06",
+      from: 4,
+      to: 5,
+      // Horizontal straight connection from right of 05 (700, 260) to left of 06 (740, 260)
+      d: "M 700 260 L 736 260.02",
+      node: { x: 700, y: 260 },
+      dur: "0.8s",
+      activeOn: 4
+    },
+    {
+      id: "06-to-07",
+      from: 5,
+      to: 6,
+      // Horizontal straight connection from right of 06 (940, 260) to left of 07 (980, 260)
+      d: "M 940 260 L 976 260.02",
+      node: { x: 940, y: 260 },
+      dur: "0.8s",
+      activeOn: 5
+    },
+    {
+      id: "07-to-08",
+      from: 6,
+      to: 7,
+      // Exits bottom-right of 07 (1140, 327), curves into channel Y=350, runs left across to 08 center X=630, curves down into top of 08 (630, 371)
+      d: "M 1140 327 L 1140 338 Q 1140 350 1125 350 L 645 350 Q 630 350 630 362 L 630 371",
+      node: { x: 1140, y: 325 },
+      dur: "2.0s",
+      activeOn: 6
+    },
+    {
+      id: "08-to-09",
+      from: 7,
+      to: 8,
+      // Horizontal straight connection from right of 08 (730, 440) to left of 09 (980, 440)
+      d: "M 730 440 L 976 440.02",
+      node: { x: 730, y: 440 },
+      dur: "1.2s",
+      activeOn: 7
+    },
+    {
+      id: "09-to-goal",
+      from: 8,
+      to: 9,
+      // Smooth curve from right of 09 (1180, 440) up into Target Goal Circle (1268, 328)
+      d: "M 1184 440 C 1235 440, 1255 385, 1268 328",
+      node: { x: 1180, y: 440 },
+      dur: "1.4s",
+      activeOn: 8
+    }
+  ];
+  return /* @__PURE__ */ jsxDEV(
+    "svg",
+    {
+      className: "absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible",
+      viewBox: "0 0 1400 520",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: [
+        /* @__PURE__ */ jsxDEV("defs", { children: [
+          /* @__PURE__ */ jsxDEV("style", { children: `
+          @keyframes unifiedDashFlow {
+            0% { stroke-dashoffset: 24; }
+            100% { stroke-dashoffset: 0; }
+          }
+          .unified-connector-dash {
+            animation: unifiedDashFlow 1.4s linear infinite;
+          }
+        ` }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+            lineNumber: 131,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            "linearGradient",
+            {
+              id: "cyanConnectorGradient",
+              gradientUnits: "userSpaceOnUse",
+              x1: "0",
+              y1: "0",
+              x2: "1400",
+              y2: "520",
+              children: [
+                /* @__PURE__ */ jsxDEV("stop", { offset: "0%", stopColor: "#0284c7" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 150,
+                  columnNumber: 11
+                }, this),
+                /* @__PURE__ */ jsxDEV("stop", { offset: "35%", stopColor: "#00d2ff" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 151,
+                  columnNumber: 11
+                }, this),
+                /* @__PURE__ */ jsxDEV("stop", { offset: "70%", stopColor: "#0284c7" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 152,
+                  columnNumber: 11
+                }, this),
+                /* @__PURE__ */ jsxDEV("stop", { offset: "100%", stopColor: "#00f0ff" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 153,
+                  columnNumber: 11
+                }, this)
+              ]
+            },
+            void 0,
+            true,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+              lineNumber: 142,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            "marker",
+            {
+              id: "cyan-flow-arrowhead",
+              viewBox: "0 0 10 10",
+              refX: "6",
+              refY: "5",
+              markerUnits: "strokeWidth",
+              markerWidth: "4.5",
+              markerHeight: "4.5",
+              orient: "auto",
+              children: /* @__PURE__ */ jsxDEV(
+                "path",
+                {
+                  d: "M 1 1.5 L 8 5 L 1 8.5 Z",
+                  fill: "#0284c7",
+                  className: "fill-sky-500 dark:fill-[#00d2ff]"
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 167,
+                  columnNumber: 11
+                },
+                this
+              )
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+              lineNumber: 157,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            "marker",
+            {
+              id: "active-flow-arrowhead",
+              viewBox: "0 0 10 10",
+              refX: "6",
+              refY: "5",
+              markerUnits: "strokeWidth",
+              markerWidth: "5",
+              markerHeight: "5",
+              orient: "auto",
+              children: /* @__PURE__ */ jsxDEV(
+                "path",
+                {
+                  d: "M 1 1 L 9 5 L 1 9 Z",
+                  fill: "#00e5ff",
+                  className: "fill-sky-400 dark:fill-[#00f0ff]"
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 185,
+                  columnNumber: 11
+                },
+                this
+              )
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+              lineNumber: 175,
+              columnNumber: 9
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+          lineNumber: 129,
+          columnNumber: 7
+        }, this),
+        connectors.map((c) => {
+          const isCurrentActive = activeStepIndex === c.activeOn;
+          const isCompleted = activeStepIndex > c.activeOn;
+          return /* @__PURE__ */ jsxDEV("g", { children: [
+            c.node && /* @__PURE__ */ jsxDEV("g", { className: "transition-transform duration-300", children: [
+              /* @__PURE__ */ jsxDEV(
+                "circle",
+                {
+                  cx: c.node.x,
+                  cy: c.node.y,
+                  r: isCurrentActive ? 4.5 : 3.5,
+                  fill: "#00e5ff",
+                  className: "fill-sky-500 dark:fill-[#00e5ff]",
+                  style: { filter: "drop-shadow(0 0 4px #00d2ff)" },
+                  opacity: isCurrentActive ? 1 : isCompleted ? 0.95 : 0.8
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 203,
+                  columnNumber: 17
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV(
+                "circle",
+                {
+                  cx: c.node.x,
+                  cy: c.node.y,
+                  r: isCurrentActive ? 2 : 1.5,
+                  fill: "#ffffff"
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 212,
+                  columnNumber: 17
+                },
+                this
+              )
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+              lineNumber: 202,
+              columnNumber: 13
+            }, this),
+            isCurrentActive && /* @__PURE__ */ jsxDEV(
+              "path",
+              {
+                d: c.d,
+                stroke: "#00d2ff",
+                strokeWidth: "6",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                opacity: "0.35",
+                style: { filter: "drop-shadow(0 0 6px #00e5ff)" }
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                lineNumber: 223,
+                columnNumber: 13
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV(
+              "path",
+              {
+                id: `path-${c.id}`,
+                d: c.d,
+                stroke: "url(#cyanConnectorGradient)",
+                strokeWidth: isCurrentActive ? "3.5" : "2.6",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeDasharray: isCurrentActive ? "7 4" : "6 5",
+                opacity: isCurrentActive ? 1 : isCompleted ? 0.9 : 0.75,
+                markerEnd: isCurrentActive ? "url(#active-flow-arrowhead)" : "url(#cyan-flow-arrowhead)",
+                className: `stroke-sky-500 dark:stroke-[#00d2ff] ${!isReducedMotion ? "unified-connector-dash" : ""}`,
+                style: { filter: "drop-shadow(0 0 3px rgba(0, 180, 255, 0.5))" },
+                children: !isReducedMotion && /* @__PURE__ */ jsxDEV(
+                  "animate",
+                  {
+                    attributeName: "stroke-dashoffset",
+                    from: "24",
+                    to: "0",
+                    dur: isCurrentActive ? "0.7s" : "1.3s",
+                    repeatCount: "indefinite"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                    lineNumber: 249,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                lineNumber: 235,
+                columnNumber: 13
+              },
+              this
+            ),
+            !isReducedMotion && /* @__PURE__ */ jsxDEV("g", { children: [
+              isCurrentActive && /* @__PURE__ */ jsxDEV(
+                "circle",
+                {
+                  r: "8",
+                  fill: "none",
+                  stroke: "#00f0ff",
+                  strokeWidth: "1.5",
+                  opacity: "0.8",
+                  style: { filter: "drop-shadow(0 0 5px #00f0ff)" },
+                  children: /* @__PURE__ */ jsxDEV(
+                    "animateMotion",
+                    {
+                      path: c.d,
+                      dur: c.dur ? `${parseFloat(c.dur) * 0.75}s` : "1.0s",
+                      repeatCount: "indefinite",
+                      rotate: "auto"
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                      lineNumber: 272,
+                      columnNumber: 21
+                    },
+                    this
+                  )
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 264,
+                  columnNumber: 15
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV(
+                "circle",
+                {
+                  r: isCurrentActive ? 5 : 3.5,
+                  fill: isCurrentActive ? "#00f0ff" : "#38bdf8",
+                  opacity: isCurrentActive ? 1 : isCompleted ? 0.9 : 0.75,
+                  style: { filter: "drop-shadow(0 0 5px #00f0ff)" },
+                  children: /* @__PURE__ */ jsxDEV(
+                    "animateMotion",
+                    {
+                      path: c.d,
+                      dur: isCurrentActive ? c.dur ? `${parseFloat(c.dur) * 0.75}s` : "1.0s" : c.dur,
+                      repeatCount: "indefinite",
+                      rotate: "auto"
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                      lineNumber: 288,
+                      columnNumber: 19
+                    },
+                    this
+                  )
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 282,
+                  columnNumber: 17
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV(
+                "circle",
+                {
+                  r: isCurrentActive ? 2.5 : 1.8,
+                  fill: "#ffffff",
+                  opacity: 1,
+                  children: /* @__PURE__ */ jsxDEV(
+                    "animateMotion",
+                    {
+                      path: c.d,
+                      dur: isCurrentActive ? c.dur ? `${parseFloat(c.dur) * 0.75}s` : "1.0s" : c.dur,
+                      repeatCount: "indefinite",
+                      rotate: "auto"
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                      lineNumber: 302,
+                      columnNumber: 19
+                    },
+                    this
+                  )
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+                  lineNumber: 297,
+                  columnNumber: 17
+                },
+                this
+              )
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+              lineNumber: 261,
+              columnNumber: 13
+            }, this)
+          ] }, `unified-flow-${c.id}`, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+            lineNumber: 199,
+            columnNumber: 11
+          }, this);
+        })
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx",
+      lineNumber: 123,
+      columnNumber: 5
+    },
+    this
+  );
+}
+_c = WorkflowSvgConnectors;
+var _c;
+$RefreshReg$(_c, "WorkflowSvgConnectors");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/AppointmentProcessWorkflow/WorkflowSvgConnectors.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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O0FBQUE7QUFBQSxnQkFWakI7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLGNBWUE7QUFBQSxjQUdBO0FBQUEsZ0JBQUM7QUFBQTtBQUFBLGtCQUNDLEdBQUdJLGtCQUFrQixNQUFNO0FBQUEsa0JBQzNCLE1BQUs7QUFBQSxrQkFDTCxTQUFTO0FBQUEsa0JBRVQ7QUFBQSxvQkFBQztBQUFBO0FBQUEsc0JBQ0MsTUFBTUQsRUFBRVA7QUFBQUEsc0JBQ1IsS0FBS1Esa0JBQW1CRCxFQUFFSCxNQUFNLEdBQUdPLFdBQVdKLEVBQUVILEdBQUcsSUFBSSxJQUFJLE1BQU0sU0FBVUcsRUFBRUg7QUFBQUEsc0JBQzdFLGFBQVk7QUFBQSxzQkFDWixRQUFPO0FBQUE7QUFBQSxvQkFKVDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsa0JBSWU7QUFBQTtBQUFBLGdCQVRqQjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsY0FXQTtBQUFBLGlCQS9DRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQWdEQTtBQUFBLGVBOUdJLGdCQUFnQkcsRUFBRVYsRUFBRSxJQUE1QjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQWdIQTtBQUFBLFFBRUosQ0FBQztBQUFBO0FBQUE7QUFBQSxJQTlMSDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsRUErTEE7QUFFSjtBQUFDZSxLQXRTdUJuQjtBQUFxQixJQUFBbUI7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJXb3JrZmxvd1N2Z0Nvbm5lY3RvcnMiLCJhY3RpdmVTdGVwSW5kZXgiLCJpc1JlZHVjZWRNb3Rpb24iLCJjb25uZWN0b3JzIiwiaWQiLCJmcm9tIiwidG8iLCJkIiwibm9kZSIsIngiLCJ5IiwiZHVyIiwiYWN0aXZlT24iLCJtYXAiLCJjIiwiaXNDdXJyZW50QWN0aXZlIiwiaXNDb21wbGV0ZWQiLCJmaWx0ZXIiLCJwYXJzZUZsb2F0IiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiV29ya2Zsb3dTdmdDb25uZWN0b3JzLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFdvcmtmbG93U3ZnQ29ubmVjdG9ycyh7XG4gIGFjdGl2ZVN0ZXBJbmRleCA9IDAsXG4gIGlzUmVkdWNlZE1vdGlvbiA9IGZhbHNlLFxufSkge1xuICAvLyBBbGwgOSB3b3JrZmxvdyBzZWdtZW50cyBjb25uZWN0aW5nIHN0cmljdGx5OlxuICAvLyAwMSDihpIgMDIg4oaSIDAzIOKGkiAwNCDihpIgMDUg4oaSIDA2IOKGkiAwNyDihpIgMDgg4oaSIDA5IOKGkiBUYXJnZXQgR29hbFxuICAvLyBNaWNybyBkeSAoKzAuMDIpIGVuc3VyZXMgYm91bmRpbmcgYm94IGhlaWdodCBpcyBuZXZlciAwIGluIGFueSBicm93c2VyIGVuZ2luZS5cbiAgY29uc3QgY29ubmVjdG9ycyA9IFtcbiAgICB7XG4gICAgICBpZDogJzAxLXRvLTAyJyxcbiAgICAgIGZyb206IDAsXG4gICAgICB0bzogMSxcbiAgICAgIC8vIEhvcml6b250YWwgc3RyYWlnaHQgY29ubmVjdGlvbiBmcm9tIHJpZ2h0IG9mIDAxICg1ODAsIDc3LjUpIHRvIGxlZnQgb2YgMDIgKDc0MCwgNzcuNSlcbiAgICAgIGQ6ICdNIDU4MCA3Ny41IEwgNzM2IDc3LjUyJyxcbiAgICAgIG5vZGU6IHsgeDogNTgwLCB5OiA3Ny41IH0sXG4gICAgICBkdXI6ICcxLjJzJyxcbiAgICAgIGFjdGl2ZU9uOiAwLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6ICcwMi10by0wMycsXG4gICAgICBmcm9tOiAxLFxuICAgICAgdG86IDIsXG4gICAgICAvLyBFeGl0cyBib3R0b20gb2YgMDIgKDg0MCwgMTQwKSwgY3VydmVzIGludG8gY2hhbm5lbCAoeTogMTY3LjUpLCB0cmF2ZWxzIGxlZnQsIGN1cnZlcyBkb3duIGludG8gdG9wIG9mIDAzICgxMjAsIDE5MSlcbiAgICAgIGQ6ICdNIDg0MCAxNDQgTCA4NDAgMTU1IFEgODQwIDE2Ny41IDgyNSAxNjcuNSBMIDEzNSAxNjcuNSBRIDEyMCAxNjcuNSAxMjAgMTgwIEwgMTIwIDE5MScsXG4gICAgICBub2RlOiB7IHg6IDg0MCwgeTogMTQwIH0sXG4gICAgICBkdXI6ICcyLjBzJyxcbiAgICAgIGFjdGl2ZU9uOiAxLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6ICcwMy10by0wNCcsXG4gICAgICBmcm9tOiAyLFxuICAgICAgdG86IDMsXG4gICAgICAvLyBIb3Jpem9udGFsIHN0cmFpZ2h0IGNvbm5lY3Rpb24gZnJvbSByaWdodCBvZiAwMyAoMjIwLCAyNjApIHRvIGxlZnQgb2YgMDQgKDI2MCwgMjYwKVxuICAgICAgZDogJ00gMjIwIDI2MCBMIDI1NiAyNjAuMDInLFxuICAgICAgbm9kZTogeyB4OiAyMjAsIHk6IDI2MCB9LFxuICAgICAgZHVyOiAnMC44cycsXG4gICAgICBhY3RpdmVPbjogMixcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiAnMDQtdG8tMDUnLFxuICAgICAgZnJvbTogMyxcbiAgICAgIHRvOiA0LFxuICAgICAgLy8gSG9yaXpvbnRhbCBzdHJhaWdodCBjb25uZWN0aW9uIGZyb20gcmlnaHQgb2YgMDQgKDQ2MCwgMjYwKSB0byBsZWZ0IG9mIDA1ICg1MDAsIDI2MClcbiAgICAgIGQ6ICdNIDQ2MCAyNjAgTCA0OTYgMjYwLjAyJyxcbiAgICAgIG5vZGU6IHsgeDogNDYwLCB5OiAyNjAgfSxcbiAgICAgIGR1cjogJzAuOHMnLFxuICAgICAgYWN0aXZlT246IDMsXG4gICAgfSxcbiAgICB7XG4gICAgICBpZDogJzA1LXRvLTA2JyxcbiAgICAgIGZyb206IDQsXG4gICAgICB0bzogNSxcbiAgICAgIC8vIEhvcml6b250YWwgc3RyYWlnaHQgY29ubmVjdGlvbiBmcm9tIHJpZ2h0IG9mIDA1ICg3MDAsIDI2MCkgdG8gbGVmdCBvZiAwNiAoNzQwLCAyNjApXG4gICAgICBkOiAnTSA3MDAgMjYwIEwgNzM2IDI2MC4wMicsXG4gICAgICBub2RlOiB7IHg6IDcwMCwgeTogMjYwIH0sXG4gICAgICBkdXI6ICcwLjhzJyxcbiAgICAgIGFjdGl2ZU9uOiA0LFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6ICcwNi10by0wNycsXG4gICAgICBmcm9tOiA1LFxuICAgICAgdG86IDYsXG4gICAgICAvLyBIb3Jpem9udGFsIHN0cmFpZ2h0IGNvbm5lY3Rpb24gZnJvbSByaWdodCBvZiAwNiAoOTQwLCAyNjApIHRvIGxlZnQgb2YgMDcgKDk4MCwgMjYwKVxuICAgICAgZDogJ00gOTQwIDI2MCBMIDk3NiAyNjAuMDInLFxuICAgICAgbm9kZTogeyB4OiA5NDAsIHk6IDI2MCB9LFxuICAgICAgZHVyOiAnMC44cycsXG4gICAgICBhY3RpdmVPbjogNSxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiAnMDctdG8tMDgnLFxuICAgICAgZnJvbTogNixcbiAgICAgIHRvOiA3LFxuICAgICAgLy8gRXhpdHMgYm90dG9tLXJpZ2h0IG9mIDA3ICgxMTQwLCAzMjcpLCBjdXJ2ZXMgaW50byBjaGFubmVsIFk9MzUwLCBydW5zIGxlZnQgYWNyb3NzIHRvIDA4IGNlbnRlciBYPTYzMCwgY3VydmVzIGRvd24gaW50byB0b3Agb2YgMDggKDYzMCwgMzcxKVxuICAgICAgZDogJ00gMTE0MCAzMjcgTCAxMTQwIDMzOCBRIDExNDAgMzUwIDExMjUgMzUwIEwgNjQ1IDM1MCBRIDYzMCAzNTAgNjMwIDM2MiBMIDYzMCAzNzEnLFxuICAgICAgbm9kZTogeyB4OiAxMTQwLCB5OiAzMjUgfSxcbiAgICAgIGR1cjogJzIuMHMnLFxuICAgICAgYWN0aXZlT246IDYsXG4gICAgfSxcbiAgICB7XG4gICAgICBpZDogJzA4LXRvLTA5JyxcbiAgICAgIGZyb206IDcsXG4gICAgICB0bzogOCxcbiAgICAgIC8vIEhvcml6b250YWwgc3RyYWlnaHQgY29ubmVjdGlvbiBmcm9tIHJpZ2h0IG9mIDA4ICg3MzAsIDQ0MCkgdG8gbGVmdCBvZiAwOSAoOTgwLCA0NDApXG4gICAgICBkOiAnTSA3MzAgNDQwIEwgOTc2IDQ0MC4wMicsXG4gICAgICBub2RlOiB7IHg6IDczMCwgeTogNDQwIH0sXG4gICAgICBkdXI6ICcxLjJzJyxcbiAgICAgIGFjdGl2ZU9uOiA3LFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6ICcwOS10by1nb2FsJyxcbiAgICAgIGZyb206IDgsXG4gICAgICB0bzogOSxcbiAgICAgIC8vIFNtb290aCBjdXJ2ZSBmcm9tIHJpZ2h0IG9mIDA5ICgxMTgwLCA0NDApIHVwIGludG8gVGFyZ2V0IEdvYWwgQ2lyY2xlICgxMjY4LCAzMjgpXG4gICAgICBkOiAnTSAxMTg0IDQ0MCBDIDEyMzUgNDQwLCAxMjU1IDM4NSwgMTI2OCAzMjgnLFxuICAgICAgbm9kZTogeyB4OiAxMTgwLCB5OiA0NDAgfSxcbiAgICAgIGR1cjogJzEuNHMnLFxuICAgICAgYWN0aXZlT246IDgsXG4gICAgfSxcbiAgXVxuXG4gIHJldHVybiAoXG4gICAgPHN2Z1xuICAgICAgY2xhc3NOYW1lPVwiYWJzb2x1dGUgaW5zZXQtMCB3LWZ1bGwgaC1mdWxsIHBvaW50ZXItZXZlbnRzLW5vbmUgei0yMCBvdmVyZmxvdy12aXNpYmxlXCJcbiAgICAgIHZpZXdCb3g9XCIwIDAgMTQwMCA1MjBcIlxuICAgICAgZmlsbD1cIm5vbmVcIlxuICAgICAgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiXG4gICAgPlxuICAgICAgPGRlZnM+XG4gICAgICAgIHsvKiBDb250aW51b3VzIG1vdmluZyBkYXNoIGZsb3cgKi99XG4gICAgICAgIDxzdHlsZT57YFxuICAgICAgICAgIEBrZXlmcmFtZXMgdW5pZmllZERhc2hGbG93IHtcbiAgICAgICAgICAgIDAlIHsgc3Ryb2tlLWRhc2hvZmZzZXQ6IDI0OyB9XG4gICAgICAgICAgICAxMDAlIHsgc3Ryb2tlLWRhc2hvZmZzZXQ6IDA7IH1cbiAgICAgICAgICB9XG4gICAgICAgICAgLnVuaWZpZWQtY29ubmVjdG9yLWRhc2gge1xuICAgICAgICAgICAgYW5pbWF0aW9uOiB1bmlmaWVkRGFzaEZsb3cgMS40cyBsaW5lYXIgaW5maW5pdGU7XG4gICAgICAgICAgfVxuICAgICAgICBgfTwvc3R5bGU+XG5cbiAgICAgICAgey8qIEdsb2JhbCBVc2VyU3BhY2VPblVzZSBDeWFuIEdyYWRpZW50ICovfVxuICAgICAgICA8bGluZWFyR3JhZGllbnRcbiAgICAgICAgICBpZD1cImN5YW5Db25uZWN0b3JHcmFkaWVudFwiXG4gICAgICAgICAgZ3JhZGllbnRVbml0cz1cInVzZXJTcGFjZU9uVXNlXCJcbiAgICAgICAgICB4MT1cIjBcIlxuICAgICAgICAgIHkxPVwiMFwiXG4gICAgICAgICAgeDI9XCIxNDAwXCJcbiAgICAgICAgICB5Mj1cIjUyMFwiXG4gICAgICAgID5cbiAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIwJVwiIHN0b3BDb2xvcj1cIiMwMjg0YzdcIiAvPlxuICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjM1JVwiIHN0b3BDb2xvcj1cIiMwMGQyZmZcIiAvPlxuICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjcwJVwiIHN0b3BDb2xvcj1cIiMwMjg0YzdcIiAvPlxuICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjEwMCVcIiBzdG9wQ29sb3I9XCIjMDBmMGZmXCIgLz5cbiAgICAgICAgPC9saW5lYXJHcmFkaWVudD5cblxuICAgICAgICB7LyogRGlyZWN0aW9uYWwgQXJyb3doZWFkIE1hcmtlciB3aXRoIHN0cm9rZVdpZHRoIHNjYWxpbmcgKi99XG4gICAgICAgIDxtYXJrZXJcbiAgICAgICAgICBpZD1cImN5YW4tZmxvdy1hcnJvd2hlYWRcIlxuICAgICAgICAgIHZpZXdCb3g9XCIwIDAgMTAgMTBcIlxuICAgICAgICAgIHJlZlg9XCI2XCJcbiAgICAgICAgICByZWZZPVwiNVwiXG4gICAgICAgICAgbWFya2VyVW5pdHM9XCJzdHJva2VXaWR0aFwiXG4gICAgICAgICAgbWFya2VyV2lkdGg9XCI0LjVcIlxuICAgICAgICAgIG1hcmtlckhlaWdodD1cIjQuNVwiXG4gICAgICAgICAgb3JpZW50PVwiYXV0b1wiXG4gICAgICAgID5cbiAgICAgICAgICA8cGF0aFxuICAgICAgICAgICAgZD1cIk0gMSAxLjUgTCA4IDUgTCAxIDguNSBaXCJcbiAgICAgICAgICAgIGZpbGw9XCIjMDI4NGM3XCJcbiAgICAgICAgICAgIGNsYXNzTmFtZT1cImZpbGwtc2t5LTUwMCBkYXJrOmZpbGwtWyMwMGQyZmZdXCJcbiAgICAgICAgICAvPlxuICAgICAgICA8L21hcmtlcj5cblxuICAgICAgICB7LyogQWN0aXZlIEdvbGRlbi9DeWFuIEFycm93aGVhZCAqL31cbiAgICAgICAgPG1hcmtlclxuICAgICAgICAgIGlkPVwiYWN0aXZlLWZsb3ctYXJyb3doZWFkXCJcbiAgICAgICAgICB2aWV3Qm94PVwiMCAwIDEwIDEwXCJcbiAgICAgICAgICByZWZYPVwiNlwiXG4gICAgICAgICAgcmVmWT1cIjVcIlxuICAgICAgICAgIG1hcmtlclVuaXRzPVwic3Ryb2tlV2lkdGhcIlxuICAgICAgICAgIG1hcmtlcldpZHRoPVwiNVwiXG4gICAgICAgICAgbWFya2VySGVpZ2h0PVwiNVwiXG4gICAgICAgICAgb3JpZW50PVwiYXV0b1wiXG4gICAgICAgID5cbiAgICAgICAgICA8cGF0aFxuICAgICAgICAgICAgZD1cIk0gMSAxIEwgOSA1IEwgMSA5IFpcIlxuICAgICAgICAgICAgZmlsbD1cIiMwMGU1ZmZcIlxuICAgICAgICAgICAgY2xhc3NOYW1lPVwiZmlsbC1za3ktNDAwIGRhcms6ZmlsbC1bIzAwZjBmZl1cIlxuICAgICAgICAgIC8+XG4gICAgICAgIDwvbWFya2VyPlxuICAgICAgPC9kZWZzPlxuXG4gICAgICB7Lyog4pSA4pSAIEFMTCBQUk9DRVNTIEZMT1cgQ09OTkVDVE9SUyAoMDEg4oaSIDA5IOKGkiBHT0FMKSDilIDilIAgKi99XG4gICAgICB7Y29ubmVjdG9ycy5tYXAoKGMpID0+IHtcbiAgICAgICAgY29uc3QgaXNDdXJyZW50QWN0aXZlID0gYWN0aXZlU3RlcEluZGV4ID09PSBjLmFjdGl2ZU9uXG4gICAgICAgIGNvbnN0IGlzQ29tcGxldGVkID0gYWN0aXZlU3RlcEluZGV4ID4gYy5hY3RpdmVPblxuXG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgPGcga2V5PXtgdW5pZmllZC1mbG93LSR7Yy5pZH1gfT5cbiAgICAgICAgICAgIHsvKiAxLiBHbG93aW5nIE5vZGUgYXQgU3RhcnQgb2YgUGF0aCAqL31cbiAgICAgICAgICAgIHtjLm5vZGUgJiYgKFxuICAgICAgICAgICAgICA8ZyBjbGFzc05hbWU9XCJ0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0zMDBcIj5cbiAgICAgICAgICAgICAgICA8Y2lyY2xlXG4gICAgICAgICAgICAgICAgICBjeD17Yy5ub2RlLnh9XG4gICAgICAgICAgICAgICAgICBjeT17Yy5ub2RlLnl9XG4gICAgICAgICAgICAgICAgICByPXtpc0N1cnJlbnRBY3RpdmUgPyA0LjUgOiAzLjV9XG4gICAgICAgICAgICAgICAgICBmaWxsPVwiIzAwZTVmZlwiXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJmaWxsLXNreS01MDAgZGFyazpmaWxsLVsjMDBlNWZmXVwiXG4gICAgICAgICAgICAgICAgICBzdHlsZT17eyBmaWx0ZXI6ICdkcm9wLXNoYWRvdygwIDAgNHB4ICMwMGQyZmYpJyB9fVxuICAgICAgICAgICAgICAgICAgb3BhY2l0eT17aXNDdXJyZW50QWN0aXZlID8gMSA6IGlzQ29tcGxldGVkID8gMC45NSA6IDAuOH1cbiAgICAgICAgICAgICAgICAvPlxuICAgICAgICAgICAgICAgIDxjaXJjbGVcbiAgICAgICAgICAgICAgICAgIGN4PXtjLm5vZGUueH1cbiAgICAgICAgICAgICAgICAgIGN5PXtjLm5vZGUueX1cbiAgICAgICAgICAgICAgICAgIHI9e2lzQ3VycmVudEFjdGl2ZSA/IDIgOiAxLjV9XG4gICAgICAgICAgICAgICAgICBmaWxsPVwiI2ZmZmZmZlwiXG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPC9nPlxuICAgICAgICAgICAgKX1cblxuICAgICAgICAgICAgey8qIDIuIEFjdGl2ZSBQYXRoIEdsb3cgQmFja2dyb3VuZCAqL31cbiAgICAgICAgICAgIHtpc0N1cnJlbnRBY3RpdmUgJiYgKFxuICAgICAgICAgICAgICA8cGF0aFxuICAgICAgICAgICAgICAgIGQ9e2MuZH1cbiAgICAgICAgICAgICAgICBzdHJva2U9XCIjMDBkMmZmXCJcbiAgICAgICAgICAgICAgICBzdHJva2VXaWR0aD1cIjZcIlxuICAgICAgICAgICAgICAgIHN0cm9rZUxpbmVjYXA9XCJyb3VuZFwiXG4gICAgICAgICAgICAgICAgc3Ryb2tlTGluZWpvaW49XCJyb3VuZFwiXG4gICAgICAgICAgICAgICAgb3BhY2l0eT1cIjAuMzVcIlxuICAgICAgICAgICAgICAgIHN0eWxlPXt7IGZpbHRlcjogJ2Ryb3Atc2hhZG93KDAgMCA2cHggIzAwZTVmZiknIH19XG4gICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICApfVxuXG4gICAgICAgICAgICB7LyogMy4gRGFzaGVkIENvbm5lY3RvciBMaW5lIHdpdGggQXJyb3doZWFkICovfVxuICAgICAgICAgICAgPHBhdGhcbiAgICAgICAgICAgICAgaWQ9e2BwYXRoLSR7Yy5pZH1gfVxuICAgICAgICAgICAgICBkPXtjLmR9XG4gICAgICAgICAgICAgIHN0cm9rZT1cInVybCgjY3lhbkNvbm5lY3RvckdyYWRpZW50KVwiXG4gICAgICAgICAgICAgIHN0cm9rZVdpZHRoPXtpc0N1cnJlbnRBY3RpdmUgPyAnMy41JyA6ICcyLjYnfVxuICAgICAgICAgICAgICBzdHJva2VMaW5lY2FwPVwicm91bmRcIlxuICAgICAgICAgICAgICBzdHJva2VMaW5lam9pbj1cInJvdW5kXCJcbiAgICAgICAgICAgICAgc3Ryb2tlRGFzaGFycmF5PXtpc0N1cnJlbnRBY3RpdmUgPyAnNyA0JyA6ICc2IDUnfVxuICAgICAgICAgICAgICBvcGFjaXR5PXtpc0N1cnJlbnRBY3RpdmUgPyAxIDogaXNDb21wbGV0ZWQgPyAwLjkgOiAwLjc1fVxuICAgICAgICAgICAgICBtYXJrZXJFbmQ9e2lzQ3VycmVudEFjdGl2ZSA/ICd1cmwoI2FjdGl2ZS1mbG93LWFycm93aGVhZCknIDogJ3VybCgjY3lhbi1mbG93LWFycm93aGVhZCknfVxuICAgICAgICAgICAgICBjbGFzc05hbWU9e2BzdHJva2Utc2t5LTUwMCBkYXJrOnN0cm9rZS1bIzAwZDJmZl0gJHshaXNSZWR1Y2VkTW90aW9uID8gJ3VuaWZpZWQtY29ubmVjdG9yLWRhc2gnIDogJyd9YH1cbiAgICAgICAgICAgICAgc3R5bGU9e3sgZmlsdGVyOiAnZHJvcC1zaGFkb3coMCAwIDNweCByZ2JhKDAsIDE4MCwgMjU1LCAwLjUpKScgfX1cbiAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgeyFpc1JlZHVjZWRNb3Rpb24gJiYgKFxuICAgICAgICAgICAgICAgIDxhbmltYXRlXG4gICAgICAgICAgICAgICAgICBhdHRyaWJ1dGVOYW1lPVwic3Ryb2tlLWRhc2hvZmZzZXRcIlxuICAgICAgICAgICAgICAgICAgZnJvbT1cIjI0XCJcbiAgICAgICAgICAgICAgICAgIHRvPVwiMFwiXG4gICAgICAgICAgICAgICAgICBkdXI9e2lzQ3VycmVudEFjdGl2ZSA/ICcwLjdzJyA6ICcxLjNzJ31cbiAgICAgICAgICAgICAgICAgIHJlcGVhdENvdW50PVwiaW5kZWZpbml0ZVwiXG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgKX1cbiAgICAgICAgICAgIDwvcGF0aD5cblxuICAgICAgICAgICAgey8qIDQuIFRyYXZlbGluZyBHbG93aW5nIEVuZXJneSBEb3QgKi99XG4gICAgICAgICAgICB7IWlzUmVkdWNlZE1vdGlvbiAmJiAoXG4gICAgICAgICAgICAgIDxnPlxuICAgICAgICAgICAgICAgIHsvKiBBY3RpdmUgUHVsc2luZyBSaW5nICovfVxuICAgICAgICAgICAgICAgIHtpc0N1cnJlbnRBY3RpdmUgJiYgKFxuICAgICAgICAgICAgICAgICAgPGNpcmNsZVxuICAgICAgICAgICAgICAgICAgICByPVwiOFwiXG4gICAgICAgICAgICAgICAgICAgIGZpbGw9XCJub25lXCJcbiAgICAgICAgICAgICAgICAgICAgc3Ryb2tlPVwiIzAwZjBmZlwiXG4gICAgICAgICAgICAgICAgICAgIHN0cm9rZVdpZHRoPVwiMS41XCJcbiAgICAgICAgICAgICAgICAgICAgb3BhY2l0eT1cIjAuOFwiXG4gICAgICAgICAgICAgICAgICAgIHN0eWxlPXt7IGZpbHRlcjogJ2Ryb3Atc2hhZG93KDAgMCA1cHggIzAwZjBmZiknIH19XG4gICAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICAgIDxhbmltYXRlTW90aW9uXG4gICAgICAgICAgICAgICAgICAgICAgcGF0aD17Yy5kfVxuICAgICAgICAgICAgICAgICAgICAgIGR1cj17Yy5kdXIgPyBgJHtwYXJzZUZsb2F0KGMuZHVyKSAqIDAuNzV9c2AgOiAnMS4wcyd9XG4gICAgICAgICAgICAgICAgICAgICAgcmVwZWF0Q291bnQ9XCJpbmRlZmluaXRlXCJcbiAgICAgICAgICAgICAgICAgICAgICByb3RhdGU9XCJhdXRvXCJcbiAgICAgICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICAgIDwvY2lyY2xlPlxuICAgICAgICAgICAgICAgICl9XG5cbiAgICAgICAgICAgICAgICB7LyogVHJhdmVsaW5nIERvdCBPdXRlciBBdXJhICovfVxuICAgICAgICAgICAgICAgIDxjaXJjbGVcbiAgICAgICAgICAgICAgICAgIHI9e2lzQ3VycmVudEFjdGl2ZSA/IDUgOiAzLjV9XG4gICAgICAgICAgICAgICAgICBmaWxsPXtpc0N1cnJlbnRBY3RpdmUgPyAnIzAwZjBmZicgOiAnIzM4YmRmOCd9XG4gICAgICAgICAgICAgICAgICBvcGFjaXR5PXtpc0N1cnJlbnRBY3RpdmUgPyAxIDogaXNDb21wbGV0ZWQgPyAwLjkgOiAwLjc1fVxuICAgICAgICAgICAgICAgICAgc3R5bGU9e3sgZmlsdGVyOiAnZHJvcC1zaGFkb3coMCAwIDVweCAjMDBmMGZmKScgfX1cbiAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICA8YW5pbWF0ZU1vdGlvblxuICAgICAgICAgICAgICAgICAgICBwYXRoPXtjLmR9XG4gICAgICAgICAgICAgICAgICAgIGR1cj17aXNDdXJyZW50QWN0aXZlID8gKGMuZHVyID8gYCR7cGFyc2VGbG9hdChjLmR1cikgKiAwLjc1fXNgIDogJzEuMHMnKSA6IGMuZHVyfVxuICAgICAgICAgICAgICAgICAgICByZXBlYXRDb3VudD1cImluZGVmaW5pdGVcIlxuICAgICAgICAgICAgICAgICAgICByb3RhdGU9XCJhdXRvXCJcbiAgICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgPC9jaXJjbGU+XG5cbiAgICAgICAgICAgICAgICB7LyogVHJhdmVsaW5nIERvdCBDcmlzcCBDZW50ZXIgQ29yZSAqL31cbiAgICAgICAgICAgICAgICA8Y2lyY2xlXG4gICAgICAgICAgICAgICAgICByPXtpc0N1cnJlbnRBY3RpdmUgPyAyLjUgOiAxLjh9XG4gICAgICAgICAgICAgICAgICBmaWxsPVwiI2ZmZmZmZlwiXG4gICAgICAgICAgICAgICAgICBvcGFjaXR5PXsxfVxuICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICAgIDxhbmltYXRlTW90aW9uXG4gICAgICAgICAgICAgICAgICAgIHBhdGg9e2MuZH1cbiAgICAgICAgICAgICAgICAgICAgZHVyPXtpc0N1cnJlbnRBY3RpdmUgPyAoYy5kdXIgPyBgJHtwYXJzZUZsb2F0KGMuZHVyKSAqIDAuNzV9c2AgOiAnMS4wcycpIDogYy5kdXJ9XG4gICAgICAgICAgICAgICAgICAgIHJlcGVhdENvdW50PVwiaW5kZWZpbml0ZVwiXG4gICAgICAgICAgICAgICAgICAgIHJvdGF0ZT1cImF1dG9cIlxuICAgICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICA8L2NpcmNsZT5cbiAgICAgICAgICAgICAgPC9nPlxuICAgICAgICAgICAgKX1cbiAgICAgICAgICA8L2c+XG4gICAgICAgIClcbiAgICAgIH0pfVxuICAgIDwvc3ZnPlxuICApXG59XG4iXSwiZmlsZSI6IkM6L1VzZXJzL0hQL0Rlc2t0b3AvVEdTL1RhcmFqX0dsb2JhbGwvY2xpZW50L3NyYy9wYWdlcy9CMmJBcHBvaW50bWVudFNldHRpbmcvY29tcG9uZW50cy9BcHBvaW50bWVudFByb2Nlc3NXb3JrZmxvdy9Xb3JrZmxvd1N2Z0Nvbm5lY3RvcnMuanN4In0=

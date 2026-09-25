@@ -1,0 +1,264 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/DemandFlowBridge/index.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import { Helmet } from "/node_modules/.vite/deps/react-helmet-async.js?v=2f1d9042";
+import Hero from "/src/pages/DemandFlowBridge/components/Hero.jsx";
+import WhatIsPlatform from "/src/pages/DemandFlowBridge/components/WhatIsPlatform.jsx";
+import ConnectedEcosystem from "/src/pages/DemandFlowBridge/components/ConnectedEcosystem.jsx";
+import CoreCapabilities from "/src/pages/DemandFlowBridge/components/CoreCapabilities.jsx";
+import TechnologyBehindOperations from "/src/pages/DemandFlowBridge/components/TechnologyBehindOperations.jsx";
+import ProductShowcase from "/src/pages/DemandFlowBridge/components/ProductShowcase.jsx";
+import WhyOnePlatform from "/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx";
+import FinalCTA from "/src/pages/DemandFlowBridge/components/FinalCTA.jsx";
+const DemandFlowBridge = () => {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        name: "DemandFlow Bridge",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Cloud / Web-based",
+        description: "DemandFlow Bridge is Taraj Global's unified business operations platform, connecting CRM, lead management, sales, client management, HRMS, payroll, and operational workflows in one centralized ecosystem.",
+        publisher: {
+          "@type": "Organization",
+          name: "Taraj Global",
+          url: "https://tarajglobal.com"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://tarajglobal.com"
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "DemandFlow Bridge",
+            item: "https://tarajglobal.com/demandflow-bridge"
+          }
+        ]
+      }
+    ]
+  };
+  return /* @__PURE__ */ jsxDEV("div", { className: "relative w-full bg-background min-h-screen selection:bg-primary/20 selection:text-primary", children: [
+    /* @__PURE__ */ jsxDEV(Helmet, { children: [
+      /* @__PURE__ */ jsxDEV("title", { children: "DemandFlow Bridge | Unified Business Operations Platform | Taraj Global" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 73,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(
+        "meta",
+        {
+          name: "description",
+          content: "Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+          lineNumber: 74,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("link", { rel: "canonical", href: "https://tarajglobal.com/demandflow-bridge" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 78,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(
+        "meta",
+        {
+          name: "keywords",
+          content: "business operations platform, CRM and lead management, sales management platform, HRMS platform, client management, payroll management, business operations software, unified business platform, Taraj Global, DemandFlow Bridge"
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+          lineNumber: 79,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("meta", { property: "og:type", content: "website" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 85,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("meta", { property: "og:url", content: "https://tarajglobal.com/demandflow-bridge" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 86,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(
+        "meta",
+        {
+          property: "og:title",
+          content: "DemandFlow Bridge | Unified Business Operations Platform | Taraj Global"
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+          lineNumber: 87,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        "meta",
+        {
+          property: "og:description",
+          content: "Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+          lineNumber: 91,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("meta", { property: "og:image", content: "https://tarajglobal.com/demandflow-admin.png" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 95,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("meta", { name: "twitter:card", content: "summary_large_image" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 98,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(
+        "meta",
+        {
+          name: "twitter:title",
+          content: "DemandFlow Bridge | Unified Business Operations Platform | Taraj Global"
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+          lineNumber: 99,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV(
+        "meta",
+        {
+          name: "twitter:description",
+          content: "Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+          lineNumber: 103,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("meta", { name: "twitter:image", content: "https://tarajglobal.com/demandflow-admin.png" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 107,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("script", { type: "application/ld+json", children: JSON.stringify(jsonLd) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+        lineNumber: 110,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 71,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(Hero, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 114,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(WhatIsPlatform, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 117,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(ConnectedEcosystem, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 120,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(CoreCapabilities, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 123,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(TechnologyBehindOperations, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 126,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(ProductShowcase, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 129,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(WhyOnePlatform, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 132,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(FinalCTA, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+      lineNumber: 135,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx",
+    lineNumber: 70,
+    columnNumber: 5
+  }, this);
+};
+_c = DemandFlowBridge;
+export default DemandFlowBridge;
+var _c;
+$RefreshReg$(_c, "DemandFlowBridge");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/index.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QUFBLFVBQ0wsU0FBUTtBQUFBO0FBQUEsUUFGVjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsTUFFb0w7QUFBQSxNQUVwTCx1QkFBQyxVQUFLLE1BQUssaUJBQWdCLFNBQVEsa0RBQW5DO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBaUY7QUFBQSxNQUdqRix1QkFBQyxZQUFPLE1BQUssdUJBQXVCQyxlQUFLQyxVQUFVWCxNQUFNLEtBQXpEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBMkQ7QUFBQSxTQXZDN0Q7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQXdDQTtBQUFBLElBR0EsdUJBQUMsVUFBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBQUs7QUFBQSxJQUdMLHVCQUFDLG9CQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FBZTtBQUFBLElBR2YsdUJBQUMsd0JBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQUFtQjtBQUFBLElBR25CLHVCQUFDLHNCQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FBaUI7QUFBQSxJQUdqQix1QkFBQyxnQ0FBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBQTJCO0FBQUEsSUFHM0IsdUJBQUMscUJBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQUFnQjtBQUFBLElBR2hCLHVCQUFDLG9CQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FBZTtBQUFBLElBR2YsdUJBQUMsY0FBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBQVM7QUFBQSxPQWpFWDtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBa0VBO0FBRUo7QUFBQ1ksS0EzR0tiO0FBNkdOLGVBQWVBO0FBQWdCLElBQUFhO0FBQUEsYUFBQUEsSUFBQSIsIm5hbWVzIjpbIlJlYWN0IiwiSGVsbWV0IiwiSGVybyIsIldoYXRJc1BsYXRmb3JtIiwiQ29ubmVjdGVkRWNvc3lzdGVtIiwiQ29yZUNhcGFiaWxpdGllcyIsIlRlY2hub2xvZ3lCZWhpbmRPcGVyYXRpb25zIiwiUHJvZHVjdFNob3djYXNlIiwiV2h5T25lUGxhdGZvcm0iLCJGaW5hbENUQSIsIkRlbWFuZEZsb3dCcmlkZ2UiLCJqc29uTGQiLCJuYW1lIiwiYXBwbGljYXRpb25DYXRlZ29yeSIsIm9wZXJhdGluZ1N5c3RlbSIsImRlc2NyaXB0aW9uIiwicHVibGlzaGVyIiwidXJsIiwiaXRlbUxpc3RFbGVtZW50IiwicG9zaXRpb24iLCJpdGVtIiwiSlNPTiIsInN0cmluZ2lmeSIsIl9jIl0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbImluZGV4LmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBIZWxtZXQgfSBmcm9tICdyZWFjdC1oZWxtZXQtYXN5bmMnXG5pbXBvcnQgSGVybyBmcm9tICcuL2NvbXBvbmVudHMvSGVybydcbmltcG9ydCBXaGF0SXNQbGF0Zm9ybSBmcm9tICcuL2NvbXBvbmVudHMvV2hhdElzUGxhdGZvcm0nXG5pbXBvcnQgQ29ubmVjdGVkRWNvc3lzdGVtIGZyb20gJy4vY29tcG9uZW50cy9Db25uZWN0ZWRFY29zeXN0ZW0nXG5pbXBvcnQgQ29yZUNhcGFiaWxpdGllcyBmcm9tICcuL2NvbXBvbmVudHMvQ29yZUNhcGFiaWxpdGllcydcbmltcG9ydCBUZWNobm9sb2d5QmVoaW5kT3BlcmF0aW9ucyBmcm9tICcuL2NvbXBvbmVudHMvVGVjaG5vbG9neUJlaGluZE9wZXJhdGlvbnMnXG5pbXBvcnQgUHJvZHVjdFNob3djYXNlIGZyb20gJy4vY29tcG9uZW50cy9Qcm9kdWN0U2hvd2Nhc2UnXG5pbXBvcnQgV2h5T25lUGxhdGZvcm0gZnJvbSAnLi9jb21wb25lbnRzL1doeU9uZVBsYXRmb3JtJ1xuaW1wb3J0IEZpbmFsQ1RBIGZyb20gJy4vY29tcG9uZW50cy9GaW5hbENUQSdcblxuY29uc3QgRGVtYW5kRmxvd0JyaWRnZSA9ICgpID0+IHtcblxuICBjb25zdCBqc29uTGQgPSB7XG4gICAgJ0Bjb250ZXh0JzogJ2h0dHBzOi8vc2NoZW1hLm9yZycsXG4gICAgJ0BncmFwaCc6IFtcbiAgICAgIHtcbiAgICAgICAgJ0B0eXBlJzogJ1NvZnR3YXJlQXBwbGljYXRpb24nLFxuICAgICAgICBuYW1lOiAnRGVtYW5kRmxvdyBCcmlkZ2UnLFxuICAgICAgICBhcHBsaWNhdGlvbkNhdGVnb3J5OiAnQnVzaW5lc3NBcHBsaWNhdGlvbicsXG4gICAgICAgIG9wZXJhdGluZ1N5c3RlbTogJ0Nsb3VkIC8gV2ViLWJhc2VkJyxcbiAgICAgICAgZGVzY3JpcHRpb246XG4gICAgICAgICAgXCJEZW1hbmRGbG93IEJyaWRnZSBpcyBUYXJhaiBHbG9iYWwncyB1bmlmaWVkIGJ1c2luZXNzIG9wZXJhdGlvbnMgcGxhdGZvcm0sIGNvbm5lY3RpbmcgQ1JNLCBsZWFkIG1hbmFnZW1lbnQsIHNhbGVzLCBjbGllbnQgbWFuYWdlbWVudCwgSFJNUywgcGF5cm9sbCwgYW5kIG9wZXJhdGlvbmFsIHdvcmtmbG93cyBpbiBvbmUgY2VudHJhbGl6ZWQgZWNvc3lzdGVtLlwiLFxuICAgICAgICBwdWJsaXNoZXI6IHtcbiAgICAgICAgICAnQHR5cGUnOiAnT3JnYW5pemF0aW9uJyxcbiAgICAgICAgICBuYW1lOiAnVGFyYWogR2xvYmFsJyxcbiAgICAgICAgICB1cmw6ICdodHRwczovL3RhcmFqZ2xvYmFsLmNvbScsXG4gICAgICAgIH0sXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICAnQHR5cGUnOiAnQnJlYWRjcnVtYkxpc3QnLFxuICAgICAgICBpdGVtTGlzdEVsZW1lbnQ6IFtcbiAgICAgICAgICB7XG4gICAgICAgICAgICAnQHR5cGUnOiAnTGlzdEl0ZW0nLFxuICAgICAgICAgICAgcG9zaXRpb246IDEsXG4gICAgICAgICAgICBuYW1lOiAnSG9tZScsXG4gICAgICAgICAgICBpdGVtOiAnaHR0cHM6Ly90YXJhamdsb2JhbC5jb20nLFxuICAgICAgICAgIH0sXG4gICAgICAgICAge1xuICAgICAgICAgICAgJ0B0eXBlJzogJ0xpc3RJdGVtJyxcbiAgICAgICAgICAgIHBvc2l0aW9uOiAyLFxuICAgICAgICAgICAgbmFtZTogJ0RlbWFuZEZsb3cgQnJpZGdlJyxcbiAgICAgICAgICAgIGl0ZW06ICdodHRwczovL3RhcmFqZ2xvYmFsLmNvbS9kZW1hbmRmbG93LWJyaWRnZScsXG4gICAgICAgICAgfSxcbiAgICAgICAgXSxcbiAgICAgIH0sXG4gICAgXSxcbiAgfVxuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJyZWxhdGl2ZSB3LWZ1bGwgYmctYmFja2dyb3VuZCBtaW4taC1zY3JlZW4gc2VsZWN0aW9uOmJnLXByaW1hcnkvMjAgc2VsZWN0aW9uOnRleHQtcHJpbWFyeVwiPlxuICAgICAgPEhlbG1ldD5cbiAgICAgICAgey8qIEJhc2ljIFNFTyAqL31cbiAgICAgICAgPHRpdGxlPkRlbWFuZEZsb3cgQnJpZGdlIHwgVW5pZmllZCBCdXNpbmVzcyBPcGVyYXRpb25zIFBsYXRmb3JtIHwgVGFyYWogR2xvYmFsPC90aXRsZT5cbiAgICAgICAgPG1ldGFcbiAgICAgICAgICBuYW1lPVwiZGVzY3JpcHRpb25cIlxuICAgICAgICAgIGNvbnRlbnQ9XCJEaXNjb3ZlciBEZW1hbmRGbG93IEJyaWRnZSwgVGFyYWogR2xvYmFsJ3MgdW5pZmllZCBidXNpbmVzcyBvcGVyYXRpb25zIHBsYXRmb3JtIGNvbm5lY3RpbmcgQ1JNLCBsZWFkIG1hbmFnZW1lbnQsIHNhbGVzLCBjbGllbnQgbWFuYWdlbWVudCwgSFJNUywgcGF5cm9sbCBhbmQgb3BlcmF0aW9ucy5cIlxuICAgICAgICAvPlxuICAgICAgICA8bGluayByZWw9XCJjYW5vbmljYWxcIiBocmVmPVwiaHR0cHM6Ly90YXJhamdsb2JhbC5jb20vZGVtYW5kZmxvdy1icmlkZ2VcIiAvPlxuICAgICAgICA8bWV0YVxuICAgICAgICAgIG5hbWU9XCJrZXl3b3Jkc1wiXG4gICAgICAgICAgY29udGVudD1cImJ1c2luZXNzIG9wZXJhdGlvbnMgcGxhdGZvcm0sIENSTSBhbmQgbGVhZCBtYW5hZ2VtZW50LCBzYWxlcyBtYW5hZ2VtZW50IHBsYXRmb3JtLCBIUk1TIHBsYXRmb3JtLCBjbGllbnQgbWFuYWdlbWVudCwgcGF5cm9sbCBtYW5hZ2VtZW50LCBidXNpbmVzcyBvcGVyYXRpb25zIHNvZnR3YXJlLCB1bmlmaWVkIGJ1c2luZXNzIHBsYXRmb3JtLCBUYXJhaiBHbG9iYWwsIERlbWFuZEZsb3cgQnJpZGdlXCJcbiAgICAgICAgLz5cblxuICAgICAgICB7LyogT3BlbiBHcmFwaCAvIEZhY2Vib29rICovfVxuICAgICAgICA8bWV0YSBwcm9wZXJ0eT1cIm9nOnR5cGVcIiBjb250ZW50PVwid2Vic2l0ZVwiIC8+XG4gICAgICAgIDxtZXRhIHByb3BlcnR5PVwib2c6dXJsXCIgY29udGVudD1cImh0dHBzOi8vdGFyYWpnbG9iYWwuY29tL2RlbWFuZGZsb3ctYnJpZGdlXCIgLz5cbiAgICAgICAgPG1ldGFcbiAgICAgICAgICBwcm9wZXJ0eT1cIm9nOnRpdGxlXCJcbiAgICAgICAgICBjb250ZW50PVwiRGVtYW5kRmxvdyBCcmlkZ2UgfCBVbmlmaWVkIEJ1c2luZXNzIE9wZXJhdGlvbnMgUGxhdGZvcm0gfCBUYXJhaiBHbG9iYWxcIlxuICAgICAgICAvPlxuICAgICAgICA8bWV0YVxuICAgICAgICAgIHByb3BlcnR5PVwib2c6ZGVzY3JpcHRpb25cIlxuICAgICAgICAgIGNvbnRlbnQ9XCJEaXNjb3ZlciBEZW1hbmRGbG93IEJyaWRnZSwgVGFyYWogR2xvYmFsJ3MgdW5pZmllZCBidXNpbmVzcyBvcGVyYXRpb25zIHBsYXRmb3JtIGNvbm5lY3RpbmcgQ1JNLCBsZWFkIG1hbmFnZW1lbnQsIHNhbGVzLCBjbGllbnQgbWFuYWdlbWVudCwgSFJNUywgcGF5cm9sbCBhbmQgb3BlcmF0aW9ucy5cIlxuICAgICAgICAvPlxuICAgICAgICA8bWV0YSBwcm9wZXJ0eT1cIm9nOmltYWdlXCIgY29udGVudD1cImh0dHBzOi8vdGFyYWpnbG9iYWwuY29tL2RlbWFuZGZsb3ctYWRtaW4ucG5nXCIgLz5cblxuICAgICAgICB7LyogVHdpdHRlciAqL31cbiAgICAgICAgPG1ldGEgbmFtZT1cInR3aXR0ZXI6Y2FyZFwiIGNvbnRlbnQ9XCJzdW1tYXJ5X2xhcmdlX2ltYWdlXCIgLz5cbiAgICAgICAgPG1ldGFcbiAgICAgICAgICBuYW1lPVwidHdpdHRlcjp0aXRsZVwiXG4gICAgICAgICAgY29udGVudD1cIkRlbWFuZEZsb3cgQnJpZGdlIHwgVW5pZmllZCBCdXNpbmVzcyBPcGVyYXRpb25zIFBsYXRmb3JtIHwgVGFyYWogR2xvYmFsXCJcbiAgICAgICAgLz5cbiAgICAgICAgPG1ldGFcbiAgICAgICAgICBuYW1lPVwidHdpdHRlcjpkZXNjcmlwdGlvblwiXG4gICAgICAgICAgY29udGVudD1cIkRpc2NvdmVyIERlbWFuZEZsb3cgQnJpZGdlLCBUYXJhaiBHbG9iYWwncyB1bmlmaWVkIGJ1c2luZXNzIG9wZXJhdGlvbnMgcGxhdGZvcm0gY29ubmVjdGluZyBDUk0sIGxlYWQgbWFuYWdlbWVudCwgc2FsZXMsIGNsaWVudCBtYW5hZ2VtZW50LCBIUk1TLCBwYXlyb2xsIGFuZCBvcGVyYXRpb25zLlwiXG4gICAgICAgIC8+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJ0d2l0dGVyOmltYWdlXCIgY29udGVudD1cImh0dHBzOi8vdGFyYWpnbG9iYWwuY29tL2RlbWFuZGZsb3ctYWRtaW4ucG5nXCIgLz5cblxuICAgICAgICB7LyogU2NoZW1hLm9yZyBTdHJ1Y3R1cmVkIERhdGEgKi99XG4gICAgICAgIDxzY3JpcHQgdHlwZT1cImFwcGxpY2F0aW9uL2xkK2pzb25cIj57SlNPTi5zdHJpbmdpZnkoanNvbkxkKX08L3NjcmlwdD5cbiAgICAgIDwvSGVsbWV0PlxuXG4gICAgICB7LyogMS4gSEVSTyAqL31cbiAgICAgIDxIZXJvIC8+XG5cbiAgICAgIHsvKiAyLiBXSEFUIElTIERFTUFOREZMT1cgQlJJREdFPyAqL31cbiAgICAgIDxXaGF0SXNQbGF0Zm9ybSAvPlxuXG4gICAgICB7LyogMy4gQ09OTkVDVEVEIEJVU0lORVNTIEVDT1NZU1RFTSAqL31cbiAgICAgIDxDb25uZWN0ZWRFY29zeXN0ZW0gLz5cblxuICAgICAgey8qIDQuIENPUkUgQ0FQQUJJTElUSUVTICovfVxuICAgICAgPENvcmVDYXBhYmlsaXRpZXMgLz5cblxuICAgICAgey8qIDUuIFRIRSBURUNITk9MT0dZIEJFSElORCBUQVJBSiBHTE9CQUwgKi99XG4gICAgICA8VGVjaG5vbG9neUJlaGluZE9wZXJhdGlvbnMgLz5cblxuICAgICAgey8qIDYuIFBST0RVQ1QgU0hPV0NBU0UgKi99XG4gICAgICA8UHJvZHVjdFNob3djYXNlIC8+XG5cbiAgICAgIHsvKiA3LiBXSFkgT05FIFBMQVRGT1JNPyAqL31cbiAgICAgIDxXaHlPbmVQbGF0Zm9ybSAvPlxuXG4gICAgICB7LyogOC4gRklOQUwgQ1RBICovfVxuICAgICAgPEZpbmFsQ1RBIC8+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgRGVtYW5kRmxvd0JyaWRnZVxuIl0sImZpbGUiOiJDOi9Vc2Vycy9IUC9EZXNrdG9wL1RHUy9UYXJhal9HbG9iYWxsL2NsaWVudC9zcmMvcGFnZXMvRGVtYW5kRmxvd0JyaWRnZS9pbmRleC5qc3gifQ==

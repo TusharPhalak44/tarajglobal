@@ -1,0 +1,309 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import { motion } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+import {
+  Building2,
+  Network,
+  Compass,
+  FileText,
+  Share2,
+  Rocket,
+  LineChart,
+  UserCheck,
+  RefreshCw,
+  CheckCircle2,
+  Target
+} from "/node_modules/.vite/deps/lucide-react.js?v=2f1d9042";
+const ICON_MAP = {
+  Building2,
+  Network,
+  Compass,
+  FileText,
+  Share2,
+  Rocket,
+  LineChart,
+  UserCheck,
+  RefreshCw
+};
+export default function WorkflowCard({
+  step,
+  isActive = false,
+  isCompleted = false,
+  onClick,
+  isReducedMotion = false,
+  customStyle = {},
+  className = ""
+}) {
+  const IconComponent = step && ICON_MAP[step.iconName] || Target;
+  if (!step) return null;
+  return /* @__PURE__ */ jsxDEV(
+    motion.div,
+    {
+      onClick,
+      role: "button",
+      tabIndex: 0,
+      onKeyDown: (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick && onClick();
+        }
+      },
+      whileHover: isReducedMotion ? {} : {
+        y: -3,
+        scale: 1.02,
+        transition: { duration: 0.2, ease: "easeOut" }
+      },
+      whileTap: isReducedMotion ? {} : { scale: 0.98 },
+      style: customStyle,
+      className: `
+        relative group cursor-pointer select-none
+        rounded-xl p-2.5 sm:p-3 xl:p-3.5 flex flex-col justify-between
+        transition-all duration-300 backdrop-blur-md
+        border ${isActive ? "border-primary dark:border-[#00d2ff] bg-gradient-to-b from-blue-50/95 via-sky-50/90 to-white/95 dark:from-[#052654]/95 dark:via-[#031b3e]/95 dark:to-[#021029]/98 shadow-[0_4px_15px_rgba(0,166,255,0.25)] dark:shadow-[0_0_30px_rgba(0,180,255,0.4)] ring-2 ring-primary/30 dark:ring-[#00d2ff]/40" : isCompleted ? "border-sky-300/70 dark:border-[#0088dd]/60 bg-white/95 dark:bg-gradient-to-b dark:from-[#031e42]/85 dark:via-[#021533]/90 dark:to-[#010e24]/95 shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-[0_0_18px_rgba(0,140,255,0.18)]" : "border-slate-200/90 dark:border-[#0077cc]/35 hover:border-primary/50 dark:hover:border-[#00aaff]/70 bg-white/90 dark:bg-gradient-to-b dark:from-[#031938]/85 dark:via-[#02122b]/90 dark:to-[#010b1e]/95 shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_6px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_15px_rgba(0,166,255,0.15)] dark:hover:shadow-[0_0_20px_rgba(0,166,255,0.25)]"}
+        ${className}
+      `,
+      children: [
+        /* @__PURE__ */ jsxDEV(
+          "div",
+          {
+            className: `absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-primary dark:via-[#00c8ff] to-transparent transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-30 group-hover:opacity-75"}`
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+            lineNumber: 97,
+            columnNumber: 7
+          },
+          this
+        ),
+        isActive && !isReducedMotion && /* @__PURE__ */ jsxDEV(Fragment, { children: [
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              className: "absolute -inset-[1px] rounded-xl border border-primary dark:border-[#00e5ff] pointer-events-none",
+              animate: {
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.01, 1]
+              },
+              transition: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+              lineNumber: 105,
+              columnNumber: 11
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV("div", { className: "absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] shadow-[0_0_8px_currentColor] animate-ping" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+            lineNumber: 117,
+            columnNumber: 11
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+          lineNumber: 104,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between gap-1 w-full mb-1", children: [
+          /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-1.5", children: [
+            /* @__PURE__ */ jsxDEV(
+              "span",
+              {
+                className: `font-mono text-[10px] xl:text-[11px] font-black tracking-wider transition-colors ${isActive ? "text-primary dark:text-[#00e5ff]" : isCompleted ? "text-sky-500 dark:text-[#38bdf8]" : "text-slate-400 dark:text-slate-500"}`,
+                children: step.stepNumber
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                lineNumber: 124,
+                columnNumber: 11
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV(
+              "span",
+              {
+                className: `text-[8.5px] xl:text-[9.5px] font-mono uppercase tracking-widest px-1.5 py-0.5 rounded border transition-colors ${isActive ? "bg-primary/10 border-primary/30 text-primary dark:bg-[#00d2ff]/20 dark:border-[#00d2ff]/40 dark:text-[#00f0ff]" : isCompleted ? "bg-sky-50 dark:bg-sky-950/40 border-sky-200 dark:border-sky-800/40 text-sky-600 dark:text-sky-300" : "bg-slate-100 dark:bg-white/5 border-slate-200/80 dark:border-white/10 text-slate-500 dark:text-slate-400"}`,
+                children: step.category
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                lineNumber: 134,
+                columnNumber: 11
+              },
+              this
+            )
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+            lineNumber: 123,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            "div",
+            {
+              className: `w-6 h-6 xl:w-7 xl:h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${isActive ? "bg-primary dark:bg-[#00d2ff] text-white dark:text-[#04132b] shadow-sm dark:shadow-[0_0_12px_#00d2ff]" : isCompleted ? "bg-sky-100 dark:bg-sky-900/50 text-primary dark:text-[#38bdf8]" : "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 group-hover:bg-primary/10 dark:group-hover:bg-[#00c8ff]/20 group-hover:text-primary dark:group-hover:text-[#00e5ff]"}`,
+              children: /* @__PURE__ */ jsxDEV(IconComponent, { className: "w-3.5 h-3.5 xl:w-4 xl:h-4" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                lineNumber: 155,
+                columnNumber: 11
+              }, this)
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+              lineNumber: 147,
+              columnNumber: 9
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+          lineNumber: 122,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "my-auto py-0.5", children: [
+          /* @__PURE__ */ jsxDEV(
+            "h3",
+            {
+              className: `text-[11.5px] xl:text-[12.5px] font-black tracking-tight leading-tight line-clamp-1 transition-colors ${isActive ? "text-primary dark:text-[#00e5ff]" : isCompleted ? "text-slate-900 dark:text-white" : "text-slate-800 dark:text-slate-100 group-hover:text-primary dark:group-hover:text-[#00d2ff]"}`,
+              children: step.title
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+              lineNumber: 161,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV("p", { className: "text-[9.5px] xl:text-[10px] text-slate-500 dark:text-slate-300 line-clamp-2 leading-tight mt-0.5 font-normal", children: step.description }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+            lineNumber: 171,
+            columnNumber: 9
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+          lineNumber: 160,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between pt-1 border-t border-slate-100 dark:border-white/10 text-[8.5px] font-mono", children: [
+          /* @__PURE__ */ jsxDEV(
+            "span",
+            {
+              className: `flex items-center gap-1 font-bold ${isActive ? "text-primary dark:text-[#00f0ff]" : isCompleted ? "text-emerald-600 dark:text-emerald-400" : "text-slate-400 dark:text-slate-500"}`,
+              children: isCompleted ? /* @__PURE__ */ jsxDEV(Fragment, { children: [
+                /* @__PURE__ */ jsxDEV(CheckCircle2, { className: "w-2.5 h-2.5" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                  lineNumber: 188,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { children: "Verified" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                  lineNumber: 189,
+                  columnNumber: 15
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                lineNumber: 187,
+                columnNumber: 11
+              }, this) : isActive ? /* @__PURE__ */ jsxDEV(Fragment, { children: [
+                /* @__PURE__ */ jsxDEV("span", { className: "w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] animate-ping" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                  lineNumber: 193,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { children: "Active" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                  lineNumber: 194,
+                  columnNumber: 15
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                lineNumber: 192,
+                columnNumber: 11
+              }, this) : /* @__PURE__ */ jsxDEV("span", { children: "Ready" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+                lineNumber: 197,
+                columnNumber: 11
+              }, this)
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+              lineNumber: 178,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV("span", { className: "text-[8px] text-slate-400 dark:text-slate-500 font-mono tracking-wider", children: [
+            "PHASE ",
+            step.stepNumber
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+            lineNumber: 201,
+            columnNumber: 9
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+          lineNumber: 177,
+          columnNumber: 7
+        }, this)
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx",
+      lineNumber: 62,
+      columnNumber: 5
+    },
+    this
+  );
+}
+_c = WorkflowCard;
+var _c;
+$RefreshReg$(_c, "WorkflowCard");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandGeneration/components/DemandProcessWorkflow/WorkflowCard.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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Q0FBQyxnQkFBYSxXQUFVLGlCQUF4QjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUFxQztBQUFBLGdCQUNyQyx1QkFBQyxVQUFLLHdCQUFOO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQWM7QUFBQSxtQkFGaEI7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFHQSxJQUNFRCxXQUNGLG1DQUNFO0FBQUEsdUNBQUMsVUFBSyxXQUFVLHdFQUFoQjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUFvRjtBQUFBLGdCQUNwRix1QkFBQyxVQUFLLHNCQUFOO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQVk7QUFBQSxtQkFGZDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUdBLElBRUEsdUJBQUMsVUFBSyxxQkFBTjtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUFXO0FBQUE7QUFBQSxZQW5CZjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsVUFxQkE7QUFBQSxVQUVBLHVCQUFDLFVBQUssV0FBVSwwRUFBeUU7QUFBQTtBQUFBLFlBQ2hGRCxLQUFLb0I7QUFBQUEsZUFEZDtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQUVBO0FBQUEsYUExQkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQTJCQTtBQUFBO0FBQUE7QUFBQSxJQTlJRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsRUErSUE7QUFFSjtBQUFDSSxLQS9KdUJ6QjtBQUFZLElBQUF5QjtBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSZWFjdCIsIm1vdGlvbiIsIkJ1aWxkaW5nMiIsIk5ldHdvcmsiLCJDb21wYXNzIiwiRmlsZVRleHQiLCJTaGFyZTIiLCJSb2NrZXQiLCJMaW5lQ2hhcnQiLCJVc2VyQ2hlY2siLCJSZWZyZXNoQ3ciLCJDaGVja0NpcmNsZTIiLCJUYXJnZXQiLCJJQ09OX01BUCIsIldvcmtmbG93Q2FyZCIsInN0ZXAiLCJpc0FjdGl2ZSIsImlzQ29tcGxldGVkIiwib25DbGljayIsImlzUmVkdWNlZE1vdGlvbiIsImN1c3RvbVN0eWxlIiwiY2xhc3NOYW1lIiwiSWNvbkNvbXBvbmVudCIsImljb25OYW1lIiwiZSIsImtleSIsInByZXZlbnREZWZhdWx0IiwieSIsInNjYWxlIiwidHJhbnNpdGlvbiIsImR1cmF0aW9uIiwiZWFzZSIsIm9wYWNpdHkiLCJyZXBlYXQiLCJJbmZpbml0eSIsInN0ZXBOdW1iZXIiLCJjYXRlZ29yeSIsInRpdGxlIiwiZGVzY3JpcHRpb24iLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJXb3JrZmxvd0NhcmQuanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcclxuaW1wb3J0IHsgbW90aW9uIH0gZnJvbSAnZnJhbWVyLW1vdGlvbidcclxuaW1wb3J0IHtcclxuICBCdWlsZGluZzIsXHJcbiAgTmV0d29yayxcclxuICBDb21wYXNzLFxyXG4gIEZpbGVUZXh0LFxyXG4gIFNoYXJlMixcclxuICBSb2NrZXQsXHJcbiAgTGluZUNoYXJ0LFxyXG4gIFVzZXJDaGVjayxcclxuICBSZWZyZXNoQ3csXHJcbiAgQ2hlY2tDaXJjbGUyLFxyXG4gIFRhcmdldCxcclxufSBmcm9tICdsdWNpZGUtcmVhY3QnXHJcblxyXG5jb25zdCBJQ09OX01BUCA9IHtcclxuICBCdWlsZGluZzI6IEJ1aWxkaW5nMixcclxuICBOZXR3b3JrOiBOZXR3b3JrLFxyXG4gIENvbXBhc3M6IENvbXBhc3MsXHJcbiAgRmlsZVRleHQ6IEZpbGVUZXh0LFxyXG4gIFNoYXJlMjogU2hhcmUyLFxyXG4gIFJvY2tldDogUm9ja2V0LFxyXG4gIExpbmVDaGFydDogTGluZUNoYXJ0LFxyXG4gIFVzZXJDaGVjazogVXNlckNoZWNrLFxyXG4gIFJlZnJlc2hDdzogUmVmcmVzaEN3LFxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBXb3JrZmxvd0NhcmQoe1xyXG4gIHN0ZXAsXHJcbiAgaXNBY3RpdmUgPSBmYWxzZSxcclxuICBpc0NvbXBsZXRlZCA9IGZhbHNlLFxyXG4gIG9uQ2xpY2ssXHJcbiAgaXNSZWR1Y2VkTW90aW9uID0gZmFsc2UsXHJcbiAgY3VzdG9tU3R5bGUgPSB7fSxcclxuICBjbGFzc05hbWUgPSAnJyxcclxufSkge1xyXG4gIGNvbnN0IEljb25Db21wb25lbnQgPSAoc3RlcCAmJiBJQ09OX01BUFtzdGVwLmljb25OYW1lXSkgfHwgVGFyZ2V0XHJcblxyXG4gIGlmICghc3RlcCkgcmV0dXJuIG51bGxcclxuXHJcbiAgcmV0dXJuIChcclxuICAgIDxtb3Rpb24uZGl2XHJcbiAgICAgIG9uQ2xpY2s9e29uQ2xpY2t9XHJcbiAgICAgIHJvbGU9XCJidXR0b25cIlxyXG4gICAgICB0YWJJbmRleD17MH1cclxuICAgICAgb25LZXlEb3duPXsoZSkgPT4ge1xyXG4gICAgICAgIGlmIChlLmtleSA9PT0gJ0VudGVyJyB8fCBlLmtleSA9PT0gJyAnKSB7XHJcbiAgICAgICAgICBlLnByZXZlbnREZWZhdWx0KClcclxuICAgICAgICAgIG9uQ2xpY2sgJiYgb25DbGljaygpXHJcbiAgICAgICAgfVxyXG4gICAgICB9fVxyXG4gICAgICB3aGlsZUhvdmVyPXtcclxuICAgICAgICBpc1JlZHVjZWRNb3Rpb25cclxuICAgICAgICAgID8ge31cclxuICAgICAgICAgIDoge1xyXG4gICAgICAgICAgICB5OiAtMyxcclxuICAgICAgICAgICAgc2NhbGU6IDEuMDIsXHJcbiAgICAgICAgICAgIHRyYW5zaXRpb246IHsgZHVyYXRpb246IDAuMiwgZWFzZTogJ2Vhc2VPdXQnIH0sXHJcbiAgICAgICAgICB9XHJcbiAgICAgIH1cclxuICAgICAgd2hpbGVUYXA9e2lzUmVkdWNlZE1vdGlvbiA/IHt9IDogeyBzY2FsZTogMC45OCB9fVxyXG4gICAgICBzdHlsZT17Y3VzdG9tU3R5bGV9XHJcbiAgICAgIGNsYXNzTmFtZT17YFxyXG4gICAgICAgIHJlbGF0aXZlIGdyb3VwIGN1cnNvci1wb2ludGVyIHNlbGVjdC1ub25lXHJcbiAgICAgICAgcm91bmRlZC14bCBwLTIuNSBzbTpwLTMgeGw6cC0zLjUgZmxleCBmbGV4LWNvbCBqdXN0aWZ5LWJldHdlZW5cclxuICAgICAgICB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgYmFja2Ryb3AtYmx1ci1tZFxyXG4gICAgICAgIGJvcmRlciAke2lzQWN0aXZlXHJcbiAgICAgICAgICA/ICdib3JkZXItcHJpbWFyeSBkYXJrOmJvcmRlci1bIzAwZDJmZl0gYmctZ3JhZGllbnQtdG8tYiBmcm9tLWJsdWUtNTAvOTUgdmlhLXNreS01MC85MCB0by13aGl0ZS85NSBkYXJrOmZyb20tWyMwNTI2NTRdLzk1IGRhcms6dmlhLVsjMDMxYjNlXS85NSBkYXJrOnRvLVsjMDIxMDI5XS85OCBzaGFkb3ctWzBfNHB4XzE1cHhfcmdiYSgwLDE2NiwyNTUsMC4yNSldIGRhcms6c2hhZG93LVswXzBfMzBweF9yZ2JhKDAsMTgwLDI1NSwwLjQpXSByaW5nLTIgcmluZy1wcmltYXJ5LzMwIGRhcms6cmluZy1bIzAwZDJmZl0vNDAnXHJcbiAgICAgICAgICA6IGlzQ29tcGxldGVkXHJcbiAgICAgICAgICAgID8gJ2JvcmRlci1za3ktMzAwLzcwIGRhcms6Ym9yZGVyLVsjMDA4OGRkXS82MCBiZy13aGl0ZS85NSBkYXJrOmJnLWdyYWRpZW50LXRvLWIgZGFyazpmcm9tLVsjMDMxZTQyXS84NSBkYXJrOnZpYS1bIzAyMTUzM10vOTAgZGFyazp0by1bIzAxMGUyNF0vOTUgc2hhZG93LVswXzJweF8xMHB4X3JnYmEoMCwwLDAsMC4wNCldIGRhcms6c2hhZG93LVswXzBfMThweF9yZ2JhKDAsMTQwLDI1NSwwLjE4KV0nXHJcbiAgICAgICAgICAgIDogJ2JvcmRlci1zbGF0ZS0yMDAvOTAgZGFyazpib3JkZXItWyMwMDc3Y2NdLzM1IGhvdmVyOmJvcmRlci1wcmltYXJ5LzUwIGRhcms6aG92ZXI6Ym9yZGVyLVsjMDBhYWZmXS83MCBiZy13aGl0ZS85MCBkYXJrOmJnLWdyYWRpZW50LXRvLWIgZGFyazpmcm9tLVsjMDMxOTM4XS84NSBkYXJrOnZpYS1bIzAyMTIyYl0vOTAgZGFyazp0by1bIzAxMGIxZV0vOTUgc2hhZG93LVswXzJweF84cHhfcmdiYSgwLDAsMCwwLjA0KV0gZGFyazpzaGFkb3ctWzBfNnB4XzIwcHhfcmdiYSgwLDAsMCwwLjQpXSBob3ZlcjpzaGFkb3ctWzBfNHB4XzE1cHhfcmdiYSgwLDE2NiwyNTUsMC4xNSldIGRhcms6aG92ZXI6c2hhZG93LVswXzBfMjBweF9yZ2JhKDAsMTY2LDI1NSwwLjI1KV0nXHJcbiAgICAgICAgfVxyXG4gICAgICAgICR7Y2xhc3NOYW1lfVxyXG4gICAgICBgfVxyXG4gICAgPlxyXG4gICAgICB7Lyog4pSA4pSAIFRvcCBBbWJpZW50IEVkZ2UgSGlnaGxpZ2h0IOKUgOKUgCAqL31cclxuICAgICAgPGRpdlxyXG4gICAgICAgIGNsYXNzTmFtZT17YGFic29sdXRlIHRvcC0wIGxlZnQtMS80IHJpZ2h0LTEvNCBoLVsxcHhdIGJnLWdyYWRpZW50LXRvLXIgZnJvbS10cmFuc3BhcmVudCB2aWEtcHJpbWFyeSBkYXJrOnZpYS1bIzAwYzhmZl0gdG8tdHJhbnNwYXJlbnQgdHJhbnNpdGlvbi1vcGFjaXR5IGR1cmF0aW9uLTMwMCAke2lzQWN0aXZlID8gJ29wYWNpdHktMTAwJyA6ICdvcGFjaXR5LTMwIGdyb3VwLWhvdmVyOm9wYWNpdHktNzUnXHJcbiAgICAgICAgICB9YH1cclxuICAgICAgLz5cclxuXHJcbiAgICAgIHsvKiDilIDilIAgQWN0aXZlIFBpbmcgJiBQdWxzaW5nIEJvcmRlciBFZmZlY3Qg4pSA4pSAICovfVxyXG4gICAgICB7aXNBY3RpdmUgJiYgIWlzUmVkdWNlZE1vdGlvbiAmJiAoXHJcbiAgICAgICAgPD5cclxuICAgICAgICAgIDxtb3Rpb24uZGl2XHJcbiAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIC1pbnNldC1bMXB4XSByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItcHJpbWFyeSBkYXJrOmJvcmRlci1bIzAwZTVmZl0gcG9pbnRlci1ldmVudHMtbm9uZVwiXHJcbiAgICAgICAgICAgIGFuaW1hdGU9e3tcclxuICAgICAgICAgICAgICBvcGFjaXR5OiBbMC4zLCAwLjgsIDAuM10sXHJcbiAgICAgICAgICAgICAgc2NhbGU6IFsxLCAxLjAxLCAxXSxcclxuICAgICAgICAgICAgfX1cclxuICAgICAgICAgICAgdHJhbnNpdGlvbj17e1xyXG4gICAgICAgICAgICAgIGR1cmF0aW9uOiAyLFxyXG4gICAgICAgICAgICAgIHJlcGVhdDogSW5maW5pdHksXHJcbiAgICAgICAgICAgICAgZWFzZTogJ2Vhc2VJbk91dCcsXHJcbiAgICAgICAgICAgIH19XHJcbiAgICAgICAgICAvPlxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtMS41IHJpZ2h0LTEuNSB3LTEuNSBoLTEuNSByb3VuZGVkLWZ1bGwgYmctcHJpbWFyeSBkYXJrOmJnLVsjMDBmMGZmXSBzaGFkb3ctWzBfMF84cHhfY3VycmVudENvbG9yXSBhbmltYXRlLXBpbmdcIiAvPlxyXG4gICAgICAgIDwvPlxyXG4gICAgICApfVxyXG5cclxuICAgICAgey8qIOKUgOKUgCBDQVJEIFRPUCBST1c6IFN0ZXAgTnVtYmVyLCBDYXRlZ29yeSAmIEljb24g4pSA4pSAICovfVxyXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBnYXAtMSB3LWZ1bGwgbWItMVwiPlxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEuNVwiPlxyXG4gICAgICAgICAgPHNwYW5cclxuICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9udC1tb25vIHRleHQtWzEwcHhdIHhsOnRleHQtWzExcHhdIGZvbnQtYmxhY2sgdHJhY2tpbmctd2lkZXIgdHJhbnNpdGlvbi1jb2xvcnMgJHtpc0FjdGl2ZVxyXG4gICAgICAgICAgICAgID8gJ3RleHQtcHJpbWFyeSBkYXJrOnRleHQtWyMwMGU1ZmZdJ1xyXG4gICAgICAgICAgICAgIDogaXNDb21wbGV0ZWRcclxuICAgICAgICAgICAgICAgID8gJ3RleHQtc2t5LTUwMCBkYXJrOnRleHQtWyMzOGJkZjhdJ1xyXG4gICAgICAgICAgICAgICAgOiAndGV4dC1zbGF0ZS00MDAgZGFyazp0ZXh0LXNsYXRlLTUwMCdcclxuICAgICAgICAgICAgICB9YH1cclxuICAgICAgICAgID5cclxuICAgICAgICAgICAge3N0ZXAuc3RlcE51bWJlcn1cclxuICAgICAgICAgIDwvc3Bhbj5cclxuICAgICAgICAgIDxzcGFuXHJcbiAgICAgICAgICAgIGNsYXNzTmFtZT17YHRleHQtWzguNXB4XSB4bDp0ZXh0LVs5LjVweF0gZm9udC1tb25vIHVwcGVyY2FzZSB0cmFja2luZy13aWRlc3QgcHgtMS41IHB5LTAuNSByb3VuZGVkIGJvcmRlciB0cmFuc2l0aW9uLWNvbG9ycyAke2lzQWN0aXZlXHJcbiAgICAgICAgICAgICAgPyAnYmctcHJpbWFyeS8xMCBib3JkZXItcHJpbWFyeS8zMCB0ZXh0LXByaW1hcnkgZGFyazpiZy1bIzAwZDJmZl0vMjAgZGFyazpib3JkZXItWyMwMGQyZmZdLzQwIGRhcms6dGV4dC1bIzAwZjBmZl0nXHJcbiAgICAgICAgICAgICAgOiBpc0NvbXBsZXRlZFxyXG4gICAgICAgICAgICAgICAgPyAnYmctc2t5LTUwIGRhcms6Ymctc2t5LTk1MC80MCBib3JkZXItc2t5LTIwMCBkYXJrOmJvcmRlci1za3ktODAwLzQwIHRleHQtc2t5LTYwMCBkYXJrOnRleHQtc2t5LTMwMCdcclxuICAgICAgICAgICAgICAgIDogJ2JnLXNsYXRlLTEwMCBkYXJrOmJnLXdoaXRlLzUgYm9yZGVyLXNsYXRlLTIwMC84MCBkYXJrOmJvcmRlci13aGl0ZS8xMCB0ZXh0LXNsYXRlLTUwMCBkYXJrOnRleHQtc2xhdGUtNDAwJ1xyXG4gICAgICAgICAgICAgIH1gfVxyXG4gICAgICAgICAgPlxyXG4gICAgICAgICAgICB7c3RlcC5jYXRlZ29yeX1cclxuICAgICAgICAgIDwvc3Bhbj5cclxuICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgey8qIFNxdWFyZSBJY29uIENvbnRhaW5lciB3aXRoIHN1YnRsZSBnbG93ICovfVxyXG4gICAgICAgIDxkaXZcclxuICAgICAgICAgIGNsYXNzTmFtZT17YHctNiBoLTYgeGw6dy03IHhsOmgtNyByb3VuZGVkLWxnIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTMwMCAke2lzQWN0aXZlXHJcbiAgICAgICAgICAgID8gJ2JnLXByaW1hcnkgZGFyazpiZy1bIzAwZDJmZl0gdGV4dC13aGl0ZSBkYXJrOnRleHQtWyMwNDEzMmJdIHNoYWRvdy1zbSBkYXJrOnNoYWRvdy1bMF8wXzEycHhfIzAwZDJmZl0nXHJcbiAgICAgICAgICAgIDogaXNDb21wbGV0ZWRcclxuICAgICAgICAgICAgICA/ICdiZy1za3ktMTAwIGRhcms6Ymctc2t5LTkwMC81MCB0ZXh0LXByaW1hcnkgZGFyazp0ZXh0LVsjMzhiZGY4XSdcclxuICAgICAgICAgICAgICA6ICdiZy1zbGF0ZS0xMDAgZGFyazpiZy13aGl0ZS8xMCB0ZXh0LXNsYXRlLTYwMCBkYXJrOnRleHQtc2xhdGUtMzAwIGdyb3VwLWhvdmVyOmJnLXByaW1hcnkvMTAgZGFyazpncm91cC1ob3ZlcjpiZy1bIzAwYzhmZl0vMjAgZ3JvdXAtaG92ZXI6dGV4dC1wcmltYXJ5IGRhcms6Z3JvdXAtaG92ZXI6dGV4dC1bIzAwZTVmZl0nXHJcbiAgICAgICAgICAgIH1gfVxyXG4gICAgICAgID5cclxuICAgICAgICAgIDxJY29uQ29tcG9uZW50IGNsYXNzTmFtZT1cInctMy41IGgtMy41IHhsOnctNCB4bDpoLTRcIiAvPlxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICA8L2Rpdj5cclxuXHJcbiAgICAgIHsvKiDilIDilIAgQ0FSRCBNSURETEU6IFRpdGxlIOKUgOKUgCAqL31cclxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJteS1hdXRvIHB5LTAuNVwiPlxyXG4gICAgICAgIDxoM1xyXG4gICAgICAgICAgY2xhc3NOYW1lPXtgdGV4dC1bMTEuNXB4XSB4bDp0ZXh0LVsxMi41cHhdIGZvbnQtYmxhY2sgdHJhY2tpbmctdGlnaHQgbGVhZGluZy10aWdodCBsaW5lLWNsYW1wLTEgdHJhbnNpdGlvbi1jb2xvcnMgJHtpc0FjdGl2ZVxyXG4gICAgICAgICAgICA/ICd0ZXh0LXByaW1hcnkgZGFyazp0ZXh0LVsjMDBlNWZmXSdcclxuICAgICAgICAgICAgOiBpc0NvbXBsZXRlZFxyXG4gICAgICAgICAgICAgID8gJ3RleHQtc2xhdGUtOTAwIGRhcms6dGV4dC13aGl0ZSdcclxuICAgICAgICAgICAgICA6ICd0ZXh0LXNsYXRlLTgwMCBkYXJrOnRleHQtc2xhdGUtMTAwIGdyb3VwLWhvdmVyOnRleHQtcHJpbWFyeSBkYXJrOmdyb3VwLWhvdmVyOnRleHQtWyMwMGQyZmZdJ1xyXG4gICAgICAgICAgICB9YH1cclxuICAgICAgICA+XHJcbiAgICAgICAgICB7c3RlcC50aXRsZX1cclxuICAgICAgICA8L2gzPlxyXG4gICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQtWzkuNXB4XSB4bDp0ZXh0LVsxMHB4XSB0ZXh0LXNsYXRlLTUwMCBkYXJrOnRleHQtc2xhdGUtMzAwIGxpbmUtY2xhbXAtMiBsZWFkaW5nLXRpZ2h0IG10LTAuNSBmb250LW5vcm1hbFwiPlxyXG4gICAgICAgICAge3N0ZXAuZGVzY3JpcHRpb259XHJcbiAgICAgICAgPC9wPlxyXG4gICAgICA8L2Rpdj5cclxuXHJcbiAgICAgIHsvKiDilIDilIAgQ0FSRCBCT1RUT006IFN0YXR1cyBUYWcg4pSA4pSAICovfVxyXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBwdC0xIGJvcmRlci10IGJvcmRlci1zbGF0ZS0xMDAgZGFyazpib3JkZXItd2hpdGUvMTAgdGV4dC1bOC41cHhdIGZvbnQtbW9ub1wiPlxyXG4gICAgICAgIDxzcGFuXHJcbiAgICAgICAgICBjbGFzc05hbWU9e2BmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMSBmb250LWJvbGQgJHtpc0FjdGl2ZVxyXG4gICAgICAgICAgICA/ICd0ZXh0LXByaW1hcnkgZGFyazp0ZXh0LVsjMDBmMGZmXSdcclxuICAgICAgICAgICAgOiBpc0NvbXBsZXRlZFxyXG4gICAgICAgICAgICAgID8gJ3RleHQtZW1lcmFsZC02MDAgZGFyazp0ZXh0LWVtZXJhbGQtNDAwJ1xyXG4gICAgICAgICAgICAgIDogJ3RleHQtc2xhdGUtNDAwIGRhcms6dGV4dC1zbGF0ZS01MDAnXHJcbiAgICAgICAgICAgIH1gfVxyXG4gICAgICAgID5cclxuICAgICAgICAgIHtpc0NvbXBsZXRlZCA/IChcclxuICAgICAgICAgICAgPD5cclxuICAgICAgICAgICAgICA8Q2hlY2tDaXJjbGUyIGNsYXNzTmFtZT1cInctMi41IGgtMi41XCIgLz5cclxuICAgICAgICAgICAgICA8c3Bhbj5WZXJpZmllZDwvc3Bhbj5cclxuICAgICAgICAgICAgPC8+XHJcbiAgICAgICAgICApIDogaXNBY3RpdmUgPyAoXHJcbiAgICAgICAgICAgIDw+XHJcbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidy0xLjUgaC0xLjUgcm91bmRlZC1mdWxsIGJnLXByaW1hcnkgZGFyazpiZy1bIzAwZjBmZl0gYW5pbWF0ZS1waW5nXCIgLz5cclxuICAgICAgICAgICAgICA8c3Bhbj5BY3RpdmU8L3NwYW4+XHJcbiAgICAgICAgICAgIDwvPlxyXG4gICAgICAgICAgKSA6IChcclxuICAgICAgICAgICAgPHNwYW4+UmVhZHk8L3NwYW4+XHJcbiAgICAgICAgICApfVxyXG4gICAgICAgIDwvc3Bhbj5cclxuXHJcbiAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bOHB4XSB0ZXh0LXNsYXRlLTQwMCBkYXJrOnRleHQtc2xhdGUtNTAwIGZvbnQtbW9ubyB0cmFja2luZy13aWRlclwiPlxyXG4gICAgICAgICAgUEhBU0Uge3N0ZXAuc3RlcE51bWJlcn1cclxuICAgICAgICA8L3NwYW4+XHJcbiAgICAgIDwvZGl2PlxyXG4gICAgPC9tb3Rpb24uZGl2PlxyXG4gIClcclxufVxyXG4iXSwiZmlsZSI6IkM6L1VzZXJzL0hQL0Rlc2t0b3AvVEdTL1RhcmFqX0dsb2JhbGwvY2xpZW50L3NyYy9wYWdlcy9EZW1hbmRHZW5lcmF0aW9uL2NvbXBvbmVudHMvRGVtYW5kUHJvY2Vzc1dvcmtmbG93L1dvcmtmbG93Q2FyZC5qc3gifQ==

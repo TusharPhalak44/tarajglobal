@@ -246,17 +246,28 @@ export const createMeeting = async (req, res) => {
     const emailResult = await sendMeetingConfirmationEmail(confirmedMeeting)
     if (!emailResult.success) {
       emailStatus = 'failed'
+      console.warn(`[BOOKING_EMAIL_STATUS] Customer confirmation email marked as FAILED for ${confirmedMeeting.booking_id}`)
+      if (emailResult.details) {
+        console.warn(`[BOOKING_EMAIL_DIAGNOSTICS] Code: ${emailResult.details.code}, Command: ${emailResult.details.command}, ResponseCode: ${emailResult.details.responseCode}`)
+        console.warn(`[BOOKING_EMAIL_DIAGNOSTICS] Response: ${emailResult.details.response}`)
+      }
+    } else {
+      console.log(`[BOOKING_EMAIL_STATUS] Customer confirmation email sent successfully for ${confirmedMeeting.booking_id}`)
     }
   } catch (emailErr) {
-    console.error('[EMAIL_FAILED] Customer confirmation email exception:', emailErr.message)
     emailStatus = 'failed'
+    console.error('[BOOKING_EMAIL_STATUS] Customer confirmation email exception:', emailErr.message)
+    console.error(`[BOOKING_EMAIL_DIAGNOSTICS] Code: ${emailErr.code || 'UNKNOWN'}, Command: ${emailErr.command || 'UNKNOWN'}, ResponseCode: ${emailErr.responseCode || 'N/A'}`)
   }
 
   // 6. Send internal notification email to Taraj admin
   try {
-    await sendMeetingAdminNotificationEmail(confirmedMeeting)
+    const adminEmailResult = await sendMeetingAdminNotificationEmail(confirmedMeeting)
+    if (!adminEmailResult.success) {
+      console.warn(`[BOOKING_ADMIN_EMAIL] Internal admin notification email delivery failed for ${confirmedMeeting.booking_id}:`, adminEmailResult.details?.response || adminEmailResult.error)
+    }
   } catch (adminEmailErr) {
-    console.error('[EMAIL_FAILED] Admin notification email exception:', adminEmailErr.message)
+    console.error('[BOOKING_ADMIN_EMAIL] Admin notification email exception:', adminEmailErr.message)
   }
 
   // Update email delivery status in DB (meeting remains confirmed even if email failed)

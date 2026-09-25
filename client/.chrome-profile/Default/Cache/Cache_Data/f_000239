@@ -1,0 +1,684 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/routes/AppRoutes.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import { Routes, Route, Navigate } from "/node_modules/.vite/deps/react-router-dom.js?v=2f1d9042";
+import MainLayout from "/src/layouts/MainLayout.jsx";
+import AdminLayout from "/src/layouts/AdminLayout/index.jsx";
+import AuthLayout from "/src/layouts/AuthLayout.jsx";
+import AdminRoute from "/src/routes/AdminRoute.jsx";
+import Home from "/src/pages/Home/index.jsx";
+import About from "/src/pages/About/index.jsx";
+import Services from "/src/pages/Services/index.jsx";
+import ServiceDetails from "/src/pages/ServiceDetails/index.jsx";
+import Blog from "/src/pages/Blog/index.jsx";
+import BlogDetails from "/src/pages/BlogDetails/index.jsx";
+import Careers from "/src/pages/Careers/index.jsx";
+import Contact from "/src/pages/Contact/index.jsx?t=1790343085055";
+import ContentSyndication from "/src/pages/ContentSyndication/index.jsx";
+import BantLeadGeneration from "/src/pages/BantLeadGeneration/index.jsx";
+import MqlServices from "/src/pages/MqlServices/index.jsx";
+import HqlServices from "/src/pages/HqlServices/index.jsx";
+import SqlServices from "/src/pages/SqlServices/index.jsx";
+import B2bAppointmentSetting from "/src/pages/B2bAppointmentSetting/index.jsx";
+import B2bEmailMarketing from "/src/pages/B2bEmailMarketing/index.jsx";
+import DemandFlowBridge from "/src/pages/DemandFlowBridge/index.jsx";
+import Abm from "/src/pages/Abm/index.jsx";
+import WebinarServices from "/src/pages/WebinarServices/index.jsx";
+import LeadNurturing from "/src/pages/LeadNurturing/index.jsx";
+import DemandGeneration from "/src/pages/DemandGeneration/index.jsx";
+import B2bListBuilding from "/src/pages/B2bListBuilding/index.jsx";
+import DatabaseCleansing from "/src/pages/DatabaseCleansing/index.jsx";
+import Privacy from "/src/pages/Privacy/index.jsx";
+import Terms from "/src/pages/Terms/index.jsx";
+import CookiePolicy from "/src/components/cookies/CookiePolicyPage.jsx";
+import Login from "/src/pages/Login/index.jsx";
+import NotFound from "/src/pages/NotFound/index.jsx";
+import Dashboard from "/src/pages/Admin/Dashboard.jsx";
+import Blogs from "/src/pages/Admin/Blogs.jsx";
+import CreateBlog from "/src/pages/Admin/CreateBlog.jsx";
+import EditBlog from "/src/pages/Admin/EditBlog.jsx";
+import Archives from "/src/pages/Admin/Archives.jsx";
+import Drafts from "/src/pages/Admin/Drafts.jsx";
+import Jobs from "/src/pages/Admin/Jobs.jsx";
+import EditJob from "/src/pages/Admin/EditJob.jsx";
+import Applications from "/src/pages/Admin/Applications.jsx";
+import Media from "/src/pages/Admin/Media.jsx";
+import Categories from "/src/pages/Admin/Categories.jsx";
+import Authors from "/src/pages/Admin/Authors.jsx";
+import Users from "/src/pages/Admin/Users.jsx";
+import Profile from "/src/pages/Admin/Profile.jsx";
+import Settings from "/src/pages/Admin/Settings.jsx";
+import SEO from "/src/pages/Admin/SEO.jsx";
+import Leads from "/src/pages/Admin/Leads.jsx";
+import AuditLogs from "/src/pages/Admin/AuditLogs.jsx";
+import Notifications from "/src/pages/Admin/Notifications.jsx";
+import CMSNavbar from "/src/pages/Admin/CMSNavbar.jsx";
+import CMSFooter from "/src/pages/Admin/CMSFooter.jsx";
+import CMSOurClients from "/src/pages/Admin/CMSOurClients.jsx";
+import FooterManagement from "/src/pages/Admin/FooterManagement.jsx";
+import CareerGallery from "/src/pages/Admin/CareerGallery/index.jsx";
+import Meetings from "/src/pages/Admin/Meetings.jsx";
+function AppRoutes() {
+  return /* @__PURE__ */ jsxDEV(Routes, { children: [
+    /* @__PURE__ */ jsxDEV(Route, { path: "/", element: /* @__PURE__ */ jsxDEV(MainLayout, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 86,
+      columnNumber: 32
+    }, this), children: [
+      /* @__PURE__ */ jsxDEV(Route, { index: true, element: /* @__PURE__ */ jsxDEV(Home, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 87,
+        columnNumber: 31
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 87,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "home", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 88,
+        columnNumber: 37
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 88,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "about", element: /* @__PURE__ */ jsxDEV(About, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 89,
+        columnNumber: 38
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 89,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "services", element: /* @__PURE__ */ jsxDEV(Services, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 90,
+        columnNumber: 41
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 90,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "services/:id", element: /* @__PURE__ */ jsxDEV(ServiceDetails, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 91,
+        columnNumber: 45
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 91,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "blog", element: /* @__PURE__ */ jsxDEV(Blog, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 92,
+        columnNumber: 37
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 92,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "blog/:slug", element: /* @__PURE__ */ jsxDEV(BlogDetails, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 93,
+        columnNumber: 43
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 93,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "careers", element: /* @__PURE__ */ jsxDEV(Careers, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 94,
+        columnNumber: 40
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 94,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "contact", element: /* @__PURE__ */ jsxDEV(Contact, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 95,
+        columnNumber: 40
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 95,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "content-syndication", element: /* @__PURE__ */ jsxDEV(ContentSyndication, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 96,
+        columnNumber: 52
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 96,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "bant-lead-generation", element: /* @__PURE__ */ jsxDEV(BantLeadGeneration, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 97,
+        columnNumber: 53
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 97,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "mql-services", element: /* @__PURE__ */ jsxDEV(MqlServices, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 98,
+        columnNumber: 45
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 98,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "hql-services", element: /* @__PURE__ */ jsxDEV(HqlServices, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 99,
+        columnNumber: 45
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 99,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "hql", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/hql-services", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 100,
+        columnNumber: 36
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 100,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "hql-service", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/hql-services", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 101,
+        columnNumber: 44
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 101,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "services/hql-services", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/hql-services", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 102,
+        columnNumber: 54
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 102,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "services/hql", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/hql-services", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 103,
+        columnNumber: 45
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 103,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "services/hql-service", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/hql-services", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 104,
+        columnNumber: 53
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 104,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "sql-services", element: /* @__PURE__ */ jsxDEV(SqlServices, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 105,
+        columnNumber: 45
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 105,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "b2b-appointment-setting", element: /* @__PURE__ */ jsxDEV(B2bAppointmentSetting, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 106,
+        columnNumber: 56
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 106,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "b2b-email-marketing", element: /* @__PURE__ */ jsxDEV(B2bEmailMarketing, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 107,
+        columnNumber: 52
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 107,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "demandflow-bridge", element: /* @__PURE__ */ jsxDEV(DemandFlowBridge, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 108,
+        columnNumber: 50
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 108,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "abm", element: /* @__PURE__ */ jsxDEV(Abm, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 109,
+        columnNumber: 36
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 109,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "content-syndication-new", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/content-syndication", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 110,
+        columnNumber: 56
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 110,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "webinar-services", element: /* @__PURE__ */ jsxDEV(WebinarServices, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 111,
+        columnNumber: 49
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 111,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "lead-nurturing", element: /* @__PURE__ */ jsxDEV(LeadNurturing, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 112,
+        columnNumber: 47
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 112,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "demand-generation", element: /* @__PURE__ */ jsxDEV(DemandGeneration, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 113,
+        columnNumber: 50
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 113,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "b2b-list-building", element: /* @__PURE__ */ jsxDEV(B2bListBuilding, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 114,
+        columnNumber: 50
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 114,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "database-cleansing", element: /* @__PURE__ */ jsxDEV(DatabaseCleansing, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 115,
+        columnNumber: 51
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 115,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "privacy", element: /* @__PURE__ */ jsxDEV(Privacy, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 116,
+        columnNumber: 40
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 116,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "terms", element: /* @__PURE__ */ jsxDEV(Terms, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 117,
+        columnNumber: 38
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 117,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "cookies", element: /* @__PURE__ */ jsxDEV(CookiePolicy, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 118,
+        columnNumber: 40
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 118,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 86,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(Route, { element: /* @__PURE__ */ jsxDEV(AuthLayout, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 122,
+      columnNumber: 23
+    }, this), children: [
+      /* @__PURE__ */ jsxDEV(Route, { path: "/loginadmin", element: /* @__PURE__ */ jsxDEV(Login, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 123,
+        columnNumber: 44
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 123,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "/login", element: /* @__PURE__ */ jsxDEV(Navigate, { to: "/loginadmin", replace: true }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 124,
+        columnNumber: 39
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 124,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 122,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(Route, { path: "/admin", element: /* @__PURE__ */ jsxDEV(AdminRoute, { children: /* @__PURE__ */ jsxDEV(AdminLayout, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 128,
+      columnNumber: 49
+    }, this) }, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 128,
+      columnNumber: 37
+    }, this), children: [
+      /* @__PURE__ */ jsxDEV(Route, { index: true, element: /* @__PURE__ */ jsxDEV(Dashboard, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 129,
+        columnNumber: 31
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 129,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "dashboard", element: /* @__PURE__ */ jsxDEV(Dashboard, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 130,
+        columnNumber: 42
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 130,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "blogs", element: /* @__PURE__ */ jsxDEV(Blogs, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 131,
+        columnNumber: 38
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 131,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "blogs/create", element: /* @__PURE__ */ jsxDEV(CreateBlog, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 132,
+        columnNumber: 45
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 132,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "blogs/edit/:id", element: /* @__PURE__ */ jsxDEV(EditBlog, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 133,
+        columnNumber: 47
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 133,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "drafts", element: /* @__PURE__ */ jsxDEV(Drafts, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 134,
+        columnNumber: 39
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 134,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "archives", element: /* @__PURE__ */ jsxDEV(Archives, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 135,
+        columnNumber: 41
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 135,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "jobs", element: /* @__PURE__ */ jsxDEV(Jobs, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 136,
+        columnNumber: 37
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 136,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "jobs/edit/:id", element: /* @__PURE__ */ jsxDEV(EditJob, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 137,
+        columnNumber: 46
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 137,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "applications", element: /* @__PURE__ */ jsxDEV(Applications, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 138,
+        columnNumber: 45
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 138,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "media", element: /* @__PURE__ */ jsxDEV(Media, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 139,
+        columnNumber: 38
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 139,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "categories", element: /* @__PURE__ */ jsxDEV(Categories, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 140,
+        columnNumber: 43
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 140,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "authors", element: /* @__PURE__ */ jsxDEV(Authors, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 141,
+        columnNumber: 40
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 141,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "users", element: /* @__PURE__ */ jsxDEV(Users, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 142,
+        columnNumber: 38
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 142,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "profile", element: /* @__PURE__ */ jsxDEV(Profile, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 143,
+        columnNumber: 40
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 143,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "settings", element: /* @__PURE__ */ jsxDEV(Settings, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 144,
+        columnNumber: 41
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 144,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "seo", element: /* @__PURE__ */ jsxDEV(SEO, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 145,
+        columnNumber: 36
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 145,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "leads", element: /* @__PURE__ */ jsxDEV(Leads, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 146,
+        columnNumber: 38
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 146,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "meetings", element: /* @__PURE__ */ jsxDEV(Meetings, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 147,
+        columnNumber: 41
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 147,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "audit-logs", element: /* @__PURE__ */ jsxDEV(AuditLogs, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 148,
+        columnNumber: 43
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 148,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "notifications", element: /* @__PURE__ */ jsxDEV(Notifications, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 149,
+        columnNumber: 46
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 149,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "cms/navbar", element: /* @__PURE__ */ jsxDEV(CMSNavbar, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 150,
+        columnNumber: 43
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 150,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "cms/footer", element: /* @__PURE__ */ jsxDEV(CMSFooter, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 151,
+        columnNumber: 43
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 151,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "cms/clients", element: /* @__PURE__ */ jsxDEV(CMSOurClients, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 152,
+        columnNumber: 44
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 152,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "career-gallery", element: /* @__PURE__ */ jsxDEV(CareerGallery, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 153,
+        columnNumber: 47
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 153,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Route, { path: "footer", element: /* @__PURE__ */ jsxDEV(FooterManagement, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 154,
+        columnNumber: 39
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+        lineNumber: 154,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 128,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(Route, { path: "*", element: /* @__PURE__ */ jsxDEV(NotFound, {}, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 158,
+      columnNumber: 32
+    }, this) }, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+      lineNumber: 158,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx",
+    lineNumber: 84,
+    columnNumber: 5
+  }, this);
+}
+_c = AppRoutes;
+export default AppRoutes;
+var _c;
+$RefreshReg$(_c, "AppRoutes");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/routes/AppRoutes.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QTtBQUFBO0FBQUEsV0FBUyxLQUFsQztBQUFBO0FBQUE7QUFBQTtBQUFBLFdBQXNDO0FBQUEsT0ExRXhDO0FBQUE7QUFBQTtBQUFBO0FBQUEsU0EyRUE7QUFFSjtBQUFDQyxLQS9FUUQ7QUFpRlQsZUFBZUE7QUFBUyxJQUFBQztBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSb3V0ZXMiLCJSb3V0ZSIsIk5hdmlnYXRlIiwiTWFpbkxheW91dCIsIkFkbWluTGF5b3V0IiwiQXV0aExheW91dCIsIkFkbWluUm91dGUiLCJIb21lIiwiQWJvdXQiLCJTZXJ2aWNlcyIsIlNlcnZpY2VEZXRhaWxzIiwiQmxvZyIsIkJsb2dEZXRhaWxzIiwiQ2FyZWVycyIsIkNvbnRhY3QiLCJDb250ZW50U3luZGljYXRpb24iLCJCYW50TGVhZEdlbmVyYXRpb24iLCJNcWxTZXJ2aWNlcyIsIkhxbFNlcnZpY2VzIiwiU3FsU2VydmljZXMiLCJCMmJBcHBvaW50bWVudFNldHRpbmciLCJCMmJFbWFpbE1hcmtldGluZyIsIkRlbWFuZEZsb3dCcmlkZ2UiLCJBYm0iLCJXZWJpbmFyU2VydmljZXMiLCJMZWFkTnVydHVyaW5nIiwiRGVtYW5kR2VuZXJhdGlvbiIsIkIyYkxpc3RCdWlsZGluZyIsIkRhdGFiYXNlQ2xlYW5zaW5nIiwiUHJpdmFjeSIsIlRlcm1zIiwiQ29va2llUG9saWN5IiwiTG9naW4iLCJOb3RGb3VuZCIsIkRhc2hib2FyZCIsIkJsb2dzIiwiQ3JlYXRlQmxvZyIsIkVkaXRCbG9nIiwiQXJjaGl2ZXMiLCJEcmFmdHMiLCJKb2JzIiwiRWRpdEpvYiIsIkFwcGxpY2F0aW9ucyIsIk1lZGlhIiwiQ2F0ZWdvcmllcyIsIkF1dGhvcnMiLCJVc2VycyIsIlByb2ZpbGUiLCJTZXR0aW5ncyIsIlNFTyIsIkxlYWRzIiwiQXVkaXRMb2dzIiwiTm90aWZpY2F0aW9ucyIsIkNNU05hdmJhciIsIkNNU0Zvb3RlciIsIkNNU091ckNsaWVudHMiLCJGb290ZXJNYW5hZ2VtZW50IiwiQ2FyZWVyR2FsbGVyeSIsIk1lZXRpbmdzIiwiQXBwUm91dGVzIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiQXBwUm91dGVzLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBSb3V0ZXMsIFJvdXRlLCBOYXZpZ2F0ZSB9IGZyb20gJ3JlYWN0LXJvdXRlci1kb20nXHJcbmltcG9ydCBNYWluTGF5b3V0IGZyb20gJ0BsYXlvdXRzL01haW5MYXlvdXQnXHJcbmltcG9ydCBBZG1pbkxheW91dCBmcm9tICdAbGF5b3V0cy9BZG1pbkxheW91dCdcclxuaW1wb3J0IEF1dGhMYXlvdXQgZnJvbSAnQGxheW91dHMvQXV0aExheW91dCdcclxuaW1wb3J0IEFkbWluUm91dGUgZnJvbSAnQHJvdXRlcy9BZG1pblJvdXRlJ1xyXG5cclxuLy8gUGFnZXNcclxuaW1wb3J0IEhvbWUgZnJvbSAnQHBhZ2VzL0hvbWUnXHJcbmltcG9ydCBBYm91dCBmcm9tICdAcGFnZXMvQWJvdXQnXHJcbmltcG9ydCBTZXJ2aWNlcyBmcm9tICdAcGFnZXMvU2VydmljZXMnXHJcbmltcG9ydCBTZXJ2aWNlRGV0YWlscyBmcm9tICdAcGFnZXMvU2VydmljZURldGFpbHMnXHJcbmltcG9ydCBCbG9nIGZyb20gJ0BwYWdlcy9CbG9nJ1xyXG5pbXBvcnQgQmxvZ0RldGFpbHMgZnJvbSAnQHBhZ2VzL0Jsb2dEZXRhaWxzJ1xyXG5pbXBvcnQgQ2FyZWVycyBmcm9tICdAcGFnZXMvQ2FyZWVycydcclxuaW1wb3J0IENvbnRhY3QgZnJvbSAnQHBhZ2VzL0NvbnRhY3QnXHJcbmltcG9ydCBDb250ZW50U3luZGljYXRpb24gZnJvbSAnQHBhZ2VzL0NvbnRlbnRTeW5kaWNhdGlvbidcclxuaW1wb3J0IEJhbnRMZWFkR2VuZXJhdGlvbiBmcm9tICdAcGFnZXMvQmFudExlYWRHZW5lcmF0aW9uJ1xyXG5pbXBvcnQgTXFsU2VydmljZXMgZnJvbSAnQHBhZ2VzL01xbFNlcnZpY2VzJ1xyXG5pbXBvcnQgSHFsU2VydmljZXMgZnJvbSAnQHBhZ2VzL0hxbFNlcnZpY2VzJ1xyXG5pbXBvcnQgU3FsU2VydmljZXMgZnJvbSAnQHBhZ2VzL1NxbFNlcnZpY2VzJ1xyXG5pbXBvcnQgQjJiQXBwb2ludG1lbnRTZXR0aW5nIGZyb20gJ0BwYWdlcy9CMmJBcHBvaW50bWVudFNldHRpbmcnXHJcbmltcG9ydCBCMmJFbWFpbE1hcmtldGluZyBmcm9tICdAcGFnZXMvQjJiRW1haWxNYXJrZXRpbmcnXHJcbmltcG9ydCBEZW1hbmRGbG93QnJpZGdlIGZyb20gJ0BwYWdlcy9EZW1hbmRGbG93QnJpZGdlJ1xyXG5pbXBvcnQgQWJtIGZyb20gJ0BwYWdlcy9BYm0nXHJcbmltcG9ydCBXZWJpbmFyU2VydmljZXMgZnJvbSAnQHBhZ2VzL1dlYmluYXJTZXJ2aWNlcydcclxuaW1wb3J0IExlYWROdXJ0dXJpbmcgZnJvbSAnQHBhZ2VzL0xlYWROdXJ0dXJpbmcnXHJcbmltcG9ydCBEZW1hbmRHZW5lcmF0aW9uIGZyb20gJ0BwYWdlcy9EZW1hbmRHZW5lcmF0aW9uJ1xyXG5pbXBvcnQgQjJiTGlzdEJ1aWxkaW5nIGZyb20gJ0BwYWdlcy9CMmJMaXN0QnVpbGRpbmcnXHJcbmltcG9ydCBEYXRhYmFzZUNsZWFuc2luZyBmcm9tICdAcGFnZXMvRGF0YWJhc2VDbGVhbnNpbmcnXHJcbmltcG9ydCBQcml2YWN5IGZyb20gJ0BwYWdlcy9Qcml2YWN5J1xyXG5pbXBvcnQgVGVybXMgZnJvbSAnQHBhZ2VzL1Rlcm1zJ1xyXG5pbXBvcnQgQ29va2llUG9saWN5IGZyb20gJ0Bjb21wb25lbnRzL2Nvb2tpZXMvQ29va2llUG9saWN5UGFnZSdcclxuaW1wb3J0IExvZ2luIGZyb20gJ0BwYWdlcy9Mb2dpbidcclxuaW1wb3J0IE5vdEZvdW5kIGZyb20gJ0BwYWdlcy9Ob3RGb3VuZCdcclxuXHJcbi8vIEFkbWluIFBhZ2VzXHJcbmltcG9ydCBEYXNoYm9hcmQgZnJvbSAnQHBhZ2VzL0FkbWluL0Rhc2hib2FyZCdcclxuaW1wb3J0IEJsb2dzIGZyb20gJ0BwYWdlcy9BZG1pbi9CbG9ncydcclxuaW1wb3J0IENyZWF0ZUJsb2cgZnJvbSAnQHBhZ2VzL0FkbWluL0NyZWF0ZUJsb2cnXHJcbmltcG9ydCBFZGl0QmxvZyBmcm9tICdAcGFnZXMvQWRtaW4vRWRpdEJsb2cnXHJcbmltcG9ydCBBcmNoaXZlcyBmcm9tICdAcGFnZXMvQWRtaW4vQXJjaGl2ZXMnXHJcbmltcG9ydCBEcmFmdHMgZnJvbSAnQHBhZ2VzL0FkbWluL0RyYWZ0cydcclxuaW1wb3J0IEpvYnMgZnJvbSAnQHBhZ2VzL0FkbWluL0pvYnMnXHJcbmltcG9ydCBFZGl0Sm9iIGZyb20gJ0BwYWdlcy9BZG1pbi9FZGl0Sm9iJ1xyXG5pbXBvcnQgQXBwbGljYXRpb25zIGZyb20gJ0BwYWdlcy9BZG1pbi9BcHBsaWNhdGlvbnMnXHJcbmltcG9ydCBNZWRpYSBmcm9tICdAcGFnZXMvQWRtaW4vTWVkaWEnXHJcbmltcG9ydCBDYXRlZ29yaWVzIGZyb20gJ0BwYWdlcy9BZG1pbi9DYXRlZ29yaWVzJ1xyXG5pbXBvcnQgQXV0aG9ycyBmcm9tICdAcGFnZXMvQWRtaW4vQXV0aG9ycydcclxuaW1wb3J0IFVzZXJzIGZyb20gJ0BwYWdlcy9BZG1pbi9Vc2VycydcclxuaW1wb3J0IFByb2ZpbGUgZnJvbSAnQHBhZ2VzL0FkbWluL1Byb2ZpbGUnXHJcbmltcG9ydCBTZXR0aW5ncyBmcm9tICdAcGFnZXMvQWRtaW4vU2V0dGluZ3MnXHJcbmltcG9ydCBTRU8gZnJvbSAnQHBhZ2VzL0FkbWluL1NFTydcclxuaW1wb3J0IExlYWRzIGZyb20gJ0BwYWdlcy9BZG1pbi9MZWFkcydcclxuaW1wb3J0IEF1ZGl0TG9ncyBmcm9tICdAcGFnZXMvQWRtaW4vQXVkaXRMb2dzJ1xyXG5pbXBvcnQgTm90aWZpY2F0aW9ucyBmcm9tICdAcGFnZXMvQWRtaW4vTm90aWZpY2F0aW9ucydcclxuaW1wb3J0IENNU05hdmJhciBmcm9tICdAcGFnZXMvQWRtaW4vQ01TTmF2YmFyJ1xyXG5pbXBvcnQgQ01TRm9vdGVyIGZyb20gJ0BwYWdlcy9BZG1pbi9DTVNGb290ZXInXHJcbmltcG9ydCBDTVNPdXJDbGllbnRzIGZyb20gJ0BwYWdlcy9BZG1pbi9DTVNPdXJDbGllbnRzJ1xyXG5pbXBvcnQgRm9vdGVyTWFuYWdlbWVudCBmcm9tICdAcGFnZXMvQWRtaW4vRm9vdGVyTWFuYWdlbWVudCdcclxuaW1wb3J0IENhcmVlckdhbGxlcnkgZnJvbSAnQHBhZ2VzL0FkbWluL0NhcmVlckdhbGxlcnkvaW5kZXguanN4J1xyXG5pbXBvcnQgTWVldGluZ3MgZnJvbSAnQHBhZ2VzL0FkbWluL01lZXRpbmdzJ1xyXG5cclxuZnVuY3Rpb24gQXBwUm91dGVzKCkge1xyXG4gIHJldHVybiAoXHJcbiAgICA8Um91dGVzPlxyXG4gICAgICB7LyogUHVibGljIFJvdXRlcyAqL31cclxuICAgICAgPFJvdXRlIHBhdGg9XCIvXCIgZWxlbWVudD17PE1haW5MYXlvdXQgLz59PlxyXG4gICAgICAgIDxSb3V0ZSBpbmRleCBlbGVtZW50PXs8SG9tZSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImhvbWVcIiBlbGVtZW50PXs8TmF2aWdhdGUgdG89XCIvXCIgcmVwbGFjZSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImFib3V0XCIgZWxlbWVudD17PEFib3V0IC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwic2VydmljZXNcIiBlbGVtZW50PXs8U2VydmljZXMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJzZXJ2aWNlcy86aWRcIiBlbGVtZW50PXs8U2VydmljZURldGFpbHMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJibG9nXCIgZWxlbWVudD17PEJsb2cgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJibG9nLzpzbHVnXCIgZWxlbWVudD17PEJsb2dEZXRhaWxzIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiY2FyZWVyc1wiIGVsZW1lbnQ9ezxDYXJlZXJzIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiY29udGFjdFwiIGVsZW1lbnQ9ezxDb250YWN0IC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiY29udGVudC1zeW5kaWNhdGlvblwiIGVsZW1lbnQ9ezxDb250ZW50U3luZGljYXRpb24gLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJiYW50LWxlYWQtZ2VuZXJhdGlvblwiIGVsZW1lbnQ9ezxCYW50TGVhZEdlbmVyYXRpb24gLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJtcWwtc2VydmljZXNcIiBlbGVtZW50PXs8TXFsU2VydmljZXMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJocWwtc2VydmljZXNcIiBlbGVtZW50PXs8SHFsU2VydmljZXMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJocWxcIiBlbGVtZW50PXs8TmF2aWdhdGUgdG89XCIvaHFsLXNlcnZpY2VzXCIgcmVwbGFjZSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImhxbC1zZXJ2aWNlXCIgZWxlbWVudD17PE5hdmlnYXRlIHRvPVwiL2hxbC1zZXJ2aWNlc1wiIHJlcGxhY2UgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJzZXJ2aWNlcy9ocWwtc2VydmljZXNcIiBlbGVtZW50PXs8TmF2aWdhdGUgdG89XCIvaHFsLXNlcnZpY2VzXCIgcmVwbGFjZSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cInNlcnZpY2VzL2hxbFwiIGVsZW1lbnQ9ezxOYXZpZ2F0ZSB0bz1cIi9ocWwtc2VydmljZXNcIiByZXBsYWNlIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwic2VydmljZXMvaHFsLXNlcnZpY2VcIiBlbGVtZW50PXs8TmF2aWdhdGUgdG89XCIvaHFsLXNlcnZpY2VzXCIgcmVwbGFjZSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cInNxbC1zZXJ2aWNlc1wiIGVsZW1lbnQ9ezxTcWxTZXJ2aWNlcyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImIyYi1hcHBvaW50bWVudC1zZXR0aW5nXCIgZWxlbWVudD17PEIyYkFwcG9pbnRtZW50U2V0dGluZyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImIyYi1lbWFpbC1tYXJrZXRpbmdcIiBlbGVtZW50PXs8QjJiRW1haWxNYXJrZXRpbmcgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJkZW1hbmRmbG93LWJyaWRnZVwiIGVsZW1lbnQ9ezxEZW1hbmRGbG93QnJpZGdlIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiYWJtXCIgZWxlbWVudD17PEFibSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImNvbnRlbnQtc3luZGljYXRpb24tbmV3XCIgZWxlbWVudD17PE5hdmlnYXRlIHRvPVwiL2NvbnRlbnQtc3luZGljYXRpb25cIiByZXBsYWNlIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwid2ViaW5hci1zZXJ2aWNlc1wiIGVsZW1lbnQ9ezxXZWJpbmFyU2VydmljZXMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJsZWFkLW51cnR1cmluZ1wiIGVsZW1lbnQ9ezxMZWFkTnVydHVyaW5nIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiZGVtYW5kLWdlbmVyYXRpb25cIiBlbGVtZW50PXs8RGVtYW5kR2VuZXJhdGlvbiAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImIyYi1saXN0LWJ1aWxkaW5nXCIgZWxlbWVudD17PEIyYkxpc3RCdWlsZGluZyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImRhdGFiYXNlLWNsZWFuc2luZ1wiIGVsZW1lbnQ9ezxEYXRhYmFzZUNsZWFuc2luZyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cInByaXZhY3lcIiBlbGVtZW50PXs8UHJpdmFjeSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cInRlcm1zXCIgZWxlbWVudD17PFRlcm1zIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiY29va2llc1wiIGVsZW1lbnQ9ezxDb29raWVQb2xpY3kgLz59IC8+XHJcbiAgICAgIDwvUm91dGU+XHJcblxyXG4gICAgICB7LyogQXV0aCAvIEFkbWluIExvZ2luIFJvdXRlICovfVxyXG4gICAgICA8Um91dGUgZWxlbWVudD17PEF1dGhMYXlvdXQgLz59PlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiL2xvZ2luYWRtaW5cIiBlbGVtZW50PXs8TG9naW4gLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCIvbG9naW5cIiBlbGVtZW50PXs8TmF2aWdhdGUgdG89XCIvbG9naW5hZG1pblwiIHJlcGxhY2UgLz59IC8+XHJcbiAgICAgIDwvUm91dGU+XHJcblxyXG4gICAgICB7LyogQWRtaW4gUm91dGVzICovfVxyXG4gICAgICA8Um91dGUgcGF0aD1cIi9hZG1pblwiIGVsZW1lbnQ9ezxBZG1pblJvdXRlPjxBZG1pbkxheW91dCAvPjwvQWRtaW5Sb3V0ZT59PlxyXG4gICAgICAgIDxSb3V0ZSBpbmRleCBlbGVtZW50PXs8RGFzaGJvYXJkIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiZGFzaGJvYXJkXCIgZWxlbWVudD17PERhc2hib2FyZCAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImJsb2dzXCIgZWxlbWVudD17PEJsb2dzIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiYmxvZ3MvY3JlYXRlXCIgZWxlbWVudD17PENyZWF0ZUJsb2cgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJibG9ncy9lZGl0LzppZFwiIGVsZW1lbnQ9ezxFZGl0QmxvZyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImRyYWZ0c1wiIGVsZW1lbnQ9ezxEcmFmdHMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJhcmNoaXZlc1wiIGVsZW1lbnQ9ezxBcmNoaXZlcyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImpvYnNcIiBlbGVtZW50PXs8Sm9icyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImpvYnMvZWRpdC86aWRcIiBlbGVtZW50PXs8RWRpdEpvYiAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImFwcGxpY2F0aW9uc1wiIGVsZW1lbnQ9ezxBcHBsaWNhdGlvbnMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJtZWRpYVwiIGVsZW1lbnQ9ezxNZWRpYSAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImNhdGVnb3JpZXNcIiBlbGVtZW50PXs8Q2F0ZWdvcmllcyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImF1dGhvcnNcIiBlbGVtZW50PXs8QXV0aG9ycyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cInVzZXJzXCIgZWxlbWVudD17PFVzZXJzIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwicHJvZmlsZVwiIGVsZW1lbnQ9ezxQcm9maWxlIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwic2V0dGluZ3NcIiBlbGVtZW50PXs8U2V0dGluZ3MgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJzZW9cIiBlbGVtZW50PXs8U0VPIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwibGVhZHNcIiBlbGVtZW50PXs8TGVhZHMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJtZWV0aW5nc1wiIGVsZW1lbnQ9ezxNZWV0aW5ncyAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImF1ZGl0LWxvZ3NcIiBlbGVtZW50PXs8QXVkaXRMb2dzIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwibm90aWZpY2F0aW9uc1wiIGVsZW1lbnQ9ezxOb3RpZmljYXRpb25zIC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiY21zL25hdmJhclwiIGVsZW1lbnQ9ezxDTVNOYXZiYXIgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJjbXMvZm9vdGVyXCIgZWxlbWVudD17PENNU0Zvb3RlciAvPn0gLz5cclxuICAgICAgICA8Um91dGUgcGF0aD1cImNtcy9jbGllbnRzXCIgZWxlbWVudD17PENNU091ckNsaWVudHMgLz59IC8+XHJcbiAgICAgICAgPFJvdXRlIHBhdGg9XCJjYXJlZXItZ2FsbGVyeVwiIGVsZW1lbnQ9ezxDYXJlZXJHYWxsZXJ5IC8+fSAvPlxyXG4gICAgICAgIDxSb3V0ZSBwYXRoPVwiZm9vdGVyXCIgZWxlbWVudD17PEZvb3Rlck1hbmFnZW1lbnQgLz59IC8+XHJcbiAgICAgIDwvUm91dGU+XHJcblxyXG4gICAgICB7LyogNDA0ICovfVxyXG4gICAgICA8Um91dGUgcGF0aD1cIipcIiBlbGVtZW50PXs8Tm90Rm91bmQgLz59IC8+XHJcbiAgICA8L1JvdXRlcz5cclxuICApXHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IEFwcFJvdXRlc1xyXG4iXSwiZmlsZSI6IkM6L1VzZXJzL0hQL0Rlc2t0b3AvVEdTL1RhcmFqX0dsb2JhbGwvY2xpZW50L3NyYy9yb3V0ZXMvQXBwUm91dGVzLmpzeCJ9

@@ -1,0 +1,5812 @@
+[
+  {
+    "route": "/",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6355,
+        "width": 3273,
+        "overflowAmount": 6035
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6355,
+        "width": 118,
+        "overflowAmount": 6035
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6341,
+        "width": 88,
+        "overflowAmount": 6021
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6218,
+        "width": 118,
+        "overflowAmount": 5898
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6196,
+        "width": 73,
+        "overflowAmount": 5876
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6251,
+        "width": 3273,
+        "overflowAmount": 5891
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6251,
+        "width": 118,
+        "overflowAmount": 5891
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6237,
+        "width": 88,
+        "overflowAmount": 5877
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6114,
+        "width": 118,
+        "overflowAmount": 5754
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6092,
+        "width": 73,
+        "overflowAmount": 5732
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 7030,
+        "width": 3744,
+        "overflowAmount": 6655
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 7030,
+        "width": 137,
+        "overflowAmount": 6655
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 7012,
+        "width": 103,
+        "overflowAmount": 6637
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6873,
+        "width": 137,
+        "overflowAmount": 6498
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6849,
+        "width": 89,
+        "overflowAmount": 6474
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6917,
+        "width": 3744,
+        "overflowAmount": 6527
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6917,
+        "width": 137,
+        "overflowAmount": 6527
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6900,
+        "width": 103,
+        "overflowAmount": 6510
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6761,
+        "width": 137,
+        "overflowAmount": 6371
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6736,
+        "width": 89,
+        "overflowAmount": 6346
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6809,
+        "width": 3744,
+        "overflowAmount": 6397
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6809,
+        "width": 137,
+        "overflowAmount": 6397
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6792,
+        "width": 103,
+        "overflowAmount": 6380
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6652,
+        "width": 137,
+        "overflowAmount": 6240
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6628,
+        "width": 89,
+        "overflowAmount": 6216
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6693,
+        "width": 3744,
+        "overflowAmount": 6263
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6693,
+        "width": 137,
+        "overflowAmount": 6263
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6676,
+        "width": 103,
+        "overflowAmount": 6246
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6536,
+        "width": 137,
+        "overflowAmount": 6106
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6512,
+        "width": 89,
+        "overflowAmount": 6082
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8874,
+        "width": 5055,
+        "overflowAmount": 8121
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8874,
+        "width": 199,
+        "overflowAmount": 8121
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8845,
+        "width": 142,
+        "overflowAmount": 8092
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8655,
+        "width": 181,
+        "overflowAmount": 7902
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8622,
+        "width": 115,
+        "overflowAmount": 7869
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 805,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8723,
+        "width": 5055,
+        "overflowAmount": 7918
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8723,
+        "width": 199,
+        "overflowAmount": 7918
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8694,
+        "width": 142,
+        "overflowAmount": 7889
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8504,
+        "width": 181,
+        "overflowAmount": 7699
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8471,
+        "width": 115,
+        "overflowAmount": 7666
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8584,
+        "width": 5055,
+        "overflowAmount": 7575
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8584,
+        "width": 199,
+        "overflowAmount": 7575
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8555,
+        "width": 142,
+        "overflowAmount": 7546
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8365,
+        "width": 181,
+        "overflowAmount": 7356
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8332,
+        "width": 115,
+        "overflowAmount": 7323
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 1265,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8430,
+        "width": 5055,
+        "overflowAmount": 7165
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8430,
+        "width": 199,
+        "overflowAmount": 7165
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8401,
+        "width": 142,
+        "overflowAmount": 7136
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8211,
+        "width": 181,
+        "overflowAmount": 6946
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8178,
+        "width": 115,
+        "overflowAmount": 6913
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8283,
+        "width": 5055,
+        "overflowAmount": 6932
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8283,
+        "width": 199,
+        "overflowAmount": 6932
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8254,
+        "width": 142,
+        "overflowAmount": 6903
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8064,
+        "width": 181,
+        "overflowAmount": 6713
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8031,
+        "width": 115,
+        "overflowAmount": 6680
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8173,
+        "width": 5055,
+        "overflowAmount": 6748
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8173,
+        "width": 199,
+        "overflowAmount": 6748
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8144,
+        "width": 142,
+        "overflowAmount": 6719
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 7954,
+        "width": 181,
+        "overflowAmount": 6529
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 7921,
+        "width": 115,
+        "overflowAmount": 6496
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8256,
+        "width": 5055,
+        "overflowAmount": 6351
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8256,
+        "width": 199,
+        "overflowAmount": 6351
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8228,
+        "width": 142,
+        "overflowAmount": 6323
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8038,
+        "width": 181,
+        "overflowAmount": 6133
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8005,
+        "width": 115,
+        "overflowAmount": 6100
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8425,
+        "width": 5055,
+        "overflowAmount": 5880
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8425,
+        "width": 199,
+        "overflowAmount": 5880
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8396,
+        "width": 142,
+        "overflowAmount": 5851
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8206,
+        "width": 181,
+        "overflowAmount": 5661
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8173,
+        "width": 115,
+        "overflowAmount": 5628
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 8911,
+        "width": 5055,
+        "overflowAmount": 5086
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8911,
+        "width": 199,
+        "overflowAmount": 5086
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8882,
+        "width": 142,
+        "overflowAmount": 5057
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 8692,
+        "width": 181,
+        "overflowAmount": 4867
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 8659,
+        "width": 115,
+        "overflowAmount": 4834
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 1445,
+        "width": 2571,
+        "overflowAmount": 1125
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 830,
+        "width": 750,
+        "overflowAmount": 510
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 789,
+        "width": 1356,
+        "overflowAmount": 469
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-2/3 -left-20 w-[650px]",
+        "id": "",
+        "right": 570,
+        "width": 650,
+        "overflowAmount": 250
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[10%] left-[-10%] w-[600px]",
+        "id": "",
+        "right": 568,
+        "width": 600,
+        "overflowAmount": 248
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2286,
+        "width": 4213,
+        "overflowAmount": 1926
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 887,
+        "width": 1525,
+        "overflowAmount": 527
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 840,
+        "width": 750,
+        "overflowAmount": 480
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-2/3 -left-20 w-[650px]",
+        "id": "",
+        "right": 570,
+        "width": 650,
+        "overflowAmount": 210
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[10%] left-[-10%] w-[600px]",
+        "id": "",
+        "right": 564,
+        "width": 600,
+        "overflowAmount": 204
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 991,
+        "width": 1607,
+        "overflowAmount": 616
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 924,
+        "width": 1589,
+        "overflowAmount": 549
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 844,
+        "width": 750,
+        "overflowAmount": 469
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 630,
+        "width": 300,
+        "overflowAmount": 255
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 614,
+        "width": 320,
+        "overflowAmount": 239
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2305,
+        "width": 4219,
+        "overflowAmount": 1915
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 961,
+        "width": 1652,
+        "overflowAmount": 571
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 848,
+        "width": 750,
+        "overflowAmount": 458
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 677,
+        "width": 300,
+        "overflowAmount": 287
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 676,
+        "width": 320,
+        "overflowAmount": 286
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1016,
+        "width": 1745,
+        "overflowAmount": 604
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 853,
+        "width": 750,
+        "overflowAmount": 441
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 722,
+        "width": 320,
+        "overflowAmount": 310
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 711,
+        "width": 300,
+        "overflowAmount": 299
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 637,
+        "width": 863,
+        "overflowAmount": 225
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2339,
+        "width": 4248,
+        "overflowAmount": 1909
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1060,
+        "width": 1822,
+        "overflowAmount": 630
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 858,
+        "width": 750,
+        "overflowAmount": 428
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 750,
+        "width": 320,
+        "overflowAmount": 320
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/2 left-1/2 -translate-x-1/2",
+        "id": "",
+        "right": 575,
+        "width": 720,
+        "overflowAmount": 145
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1856,
+        "width": 3190,
+        "overflowAmount": 1103
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 1576,
+        "width": 2398,
+        "overflowAmount": 823
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 938,
+        "width": 750,
+        "overflowAmount": 185
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 935,
+        "width": 320,
+        "overflowAmount": 182
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 -right-20 w-[650px]",
+        "id": "",
+        "right": 833,
+        "width": 650,
+        "overflowAmount": 80
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 805,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2578,
+        "width": 4351,
+        "overflowAmount": 1773
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1984,
+        "width": 3410,
+        "overflowAmount": 1179
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1066,
+        "width": 320,
+        "overflowAmount": 261
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 951,
+        "width": 750,
+        "overflowAmount": 146
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 886,
+        "width": 550,
+        "overflowAmount": 81
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2500,
+        "width": 3991,
+        "overflowAmount": 1491
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 2487,
+        "width": 4274,
+        "overflowAmount": 1478
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1312,
+        "width": 320,
+        "overflowAmount": 303
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 1110,
+        "width": 550,
+        "overflowAmount": 101
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 1090,
+        "width": 600,
+        "overflowAmount": 81
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 1265,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 3118,
+        "width": 5359,
+        "overflowAmount": 1853
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 1885,
+        "width": 2506,
+        "overflowAmount": 620
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1585,
+        "width": 320,
+        "overflowAmount": 320
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1450,
+        "width": 300,
+        "overflowAmount": 185
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 1392,
+        "width": 550,
+        "overflowAmount": 127
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 3330,
+        "width": 5723,
+        "overflowAmount": 1979
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2964,
+        "width": 4578,
+        "overflowAmount": 1613
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1612,
+        "width": 300,
+        "overflowAmount": 261
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 1486,
+        "width": 550,
+        "overflowAmount": 135
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1467,
+        "width": 320,
+        "overflowAmount": 116
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 3513,
+        "width": 6037,
+        "overflowAmount": 2088
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 1756,
+        "width": 2087,
+        "overflowAmount": 331
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1721,
+        "width": 300,
+        "overflowAmount": 296
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1653,
+        "width": 320,
+        "overflowAmount": 228
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 1568,
+        "width": 550,
+        "overflowAmount": 143
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 4696,
+        "width": 8070,
+        "overflowAmount": 2791
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 3260,
+        "width": 4615,
+        "overflowAmount": 1355
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2191,
+        "width": 320,
+        "overflowAmount": 286
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 2096,
+        "width": 550,
+        "overflowAmount": 191
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 2057,
+        "width": 600,
+        "overflowAmount": 152
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 6273,
+        "width": 10781,
+        "overflowAmount": 3728
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2862,
+        "width": 320,
+        "overflowAmount": 317
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 2800,
+        "width": 550,
+        "overflowAmount": 255
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 2749,
+        "width": 600,
+        "overflowAmount": 204
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 -right-20 w-[650px]",
+        "id": "",
+        "right": 2625,
+        "width": 650,
+        "overflowAmount": 80
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 9429,
+        "width": 16204,
+        "overflowAmount": 5604
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 4208,
+        "width": 550,
+        "overflowAmount": 383
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 4202,
+        "width": 4579,
+        "overflowAmount": 377
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 4131,
+        "width": 600,
+        "overflowAmount": 306
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 -right-20 w-[650px]",
+        "id": "",
+        "right": 3905,
+        "width": 650,
+        "overflowAmount": 80
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 707,
+        "width": 600,
+        "overflowAmount": 387
+      },
+      {
+        "tag": "button",
+        "className": "group relative flex flex-col",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 355
+      },
+      {
+        "tag": "span",
+        "className": "text-[11px] sm:text-xs font-bold text-center",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 355
+      },
+      {
+        "tag": "div",
+        "className": "w-12 h-12 rounded-full flex",
+        "id": "",
+        "right": 643,
+        "width": 48,
+        "overflowAmount": 323
+      },
+      {
+        "tag": "div",
+        "className": "w-7 h-[3px] mt-1.5 shrink-0",
+        "id": "",
+        "right": 633,
+        "width": 28,
+        "overflowAmount": 313
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 720,
+        "width": 600,
+        "overflowAmount": 360
+      },
+      {
+        "tag": "button",
+        "className": "group relative flex flex-col",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 315
+      },
+      {
+        "tag": "span",
+        "className": "text-[11px] sm:text-xs font-bold text-center",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 315
+      },
+      {
+        "tag": "div",
+        "className": "w-12 h-12 rounded-full flex",
+        "id": "",
+        "right": 643,
+        "width": 48,
+        "overflowAmount": 283
+      },
+      {
+        "tag": "circle",
+        "className": "",
+        "id": "",
+        "right": 633,
+        "width": 53,
+        "overflowAmount": 273
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 725,
+        "width": 600,
+        "overflowAmount": 350
+      },
+      {
+        "tag": "button",
+        "className": "group relative flex flex-col",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 300
+      },
+      {
+        "tag": "span",
+        "className": "text-[11px] sm:text-xs font-bold text-center",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 300
+      },
+      {
+        "tag": "circle",
+        "className": "",
+        "id": "",
+        "right": 662,
+        "width": 56,
+        "overflowAmount": 287
+      },
+      {
+        "tag": "div",
+        "className": "w-12 h-12 rounded-full flex",
+        "id": "",
+        "right": 643,
+        "width": 48,
+        "overflowAmount": 268
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 730,
+        "width": 600,
+        "overflowAmount": 340
+      },
+      {
+        "tag": "circle",
+        "className": "",
+        "id": "",
+        "right": 691,
+        "width": 59,
+        "overflowAmount": 301
+      },
+      {
+        "tag": "button",
+        "className": "group relative flex flex-col",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 285
+      },
+      {
+        "tag": "span",
+        "className": "text-[11px] sm:text-xs font-bold text-center",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 285
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 659,
+        "width": 300,
+        "overflowAmount": 269
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 737,
+        "width": 600,
+        "overflowAmount": 325
+      },
+      {
+        "tag": "circle",
+        "className": "",
+        "id": "",
+        "right": 734,
+        "width": 62,
+        "overflowAmount": 322
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 707,
+        "width": 320,
+        "overflowAmount": 295
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 705,
+        "width": 300,
+        "overflowAmount": 293
+      },
+      {
+        "tag": "button",
+        "className": "group relative flex flex-col",
+        "id": "",
+        "right": 675,
+        "width": 111,
+        "overflowAmount": 263
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "circle",
+        "className": "",
+        "id": "",
+        "right": 754,
+        "width": 64,
+        "overflowAmount": 324
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 745,
+        "width": 320,
+        "overflowAmount": 315
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 743,
+        "width": 600,
+        "overflowAmount": 313
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 730,
+        "width": 300,
+        "overflowAmount": 300
+      },
+      {
+        "tag": "button",
+        "className": "group relative flex flex-col",
+        "id": "",
+        "right": 680,
+        "width": 111,
+        "overflowAmount": 250
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "circle",
+        "className": "",
+        "id": "",
+        "right": 916,
+        "width": 64,
+        "overflowAmount": 163
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 851,
+        "width": 600,
+        "overflowAmount": 98
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 836,
+        "width": 320,
+        "overflowAmount": 83
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 805,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1002,
+        "width": 320,
+        "overflowAmount": 197
+      },
+      {
+        "tag": "circle",
+        "className": "",
+        "id": "",
+        "right": 942,
+        "width": 64,
+        "overflowAmount": 137
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[600px]",
+        "id": "",
+        "right": 868,
+        "width": 600,
+        "overflowAmount": 63
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1268,
+        "width": 320,
+        "overflowAmount": 259
+      },
+      {
+        "tag": "button",
+        "className": "group relative flex flex-col",
+        "id": "",
+        "right": 1061,
+        "width": 121,
+        "overflowAmount": 52
+      },
+      {
+        "tag": "span",
+        "className": "text-[11px] sm:text-xs font-bold text-center",
+        "id": "",
+        "right": 1061,
+        "width": 121,
+        "overflowAmount": 52
+      },
+      {
+        "tag": "div",
+        "className": "w-12 h-12 rounded-full flex",
+        "id": "",
+        "right": 1025,
+        "width": 48,
+        "overflowAmount": 16
+      },
+      {
+        "tag": "div",
+        "className": "w-7 h-[3px] mt-1.5 shrink-0",
+        "id": "",
+        "right": 1015,
+        "width": 28,
+        "overflowAmount": 6
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 1265,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1565,
+        "width": 320,
+        "overflowAmount": 300
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1670,
+        "width": 320,
+        "overflowAmount": 319
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1504,
+        "width": 300,
+        "overflowAmount": 153
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1671,
+        "width": 300,
+        "overflowAmount": 246
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1498,
+        "width": 320,
+        "overflowAmount": 73
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 2194,
+        "width": 300,
+        "overflowAmount": 289
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2082,
+        "width": 320,
+        "overflowAmount": 177
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2800,
+        "width": 320,
+        "overflowAmount": 255
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 4132,
+        "width": 320,
+        "overflowAmount": 307
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "FAIL",
+    "scrollWidth": 455,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 611,
+        "width": 640,
+        "overflowAmount": 291
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 611,
+        "width": 640,
+        "overflowAmount": 291
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 602,
+        "width": 640,
+        "overflowAmount": 282
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 602,
+        "width": 640,
+        "overflowAmount": 282
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 589,
+        "width": 640,
+        "overflowAmount": 269
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "FAIL",
+    "scrollWidth": 495,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 676,
+        "width": 720,
+        "overflowAmount": 316
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 676,
+        "width": 720,
+        "overflowAmount": 316
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 662,
+        "width": 720,
+        "overflowAmount": 302
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 662,
+        "width": 720,
+        "overflowAmount": 302
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 642,
+        "width": 720,
+        "overflowAmount": 282
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "FAIL",
+    "scrollWidth": 518,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 740,
+        "width": 300,
+        "overflowAmount": 365
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 692,
+        "width": 750,
+        "overflowAmount": 317
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 692,
+        "width": 750,
+        "overflowAmount": 317
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 672,
+        "width": 750,
+        "overflowAmount": 297
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 672,
+        "width": 750,
+        "overflowAmount": 297
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "FAIL",
+    "scrollWidth": 535,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 808,
+        "width": 300,
+        "overflowAmount": 418
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 706,
+        "width": 780,
+        "overflowAmount": 316
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 706,
+        "width": 780,
+        "overflowAmount": 316
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 682,
+        "width": 780,
+        "overflowAmount": 292
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 682,
+        "width": 780,
+        "overflowAmount": 292
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "FAIL",
+    "scrollWidth": 509,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 805,
+        "width": 300,
+        "overflowAmount": 393
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 733,
+        "width": 824,
+        "overflowAmount": 321
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 733,
+        "width": 824,
+        "overflowAmount": 321
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 714,
+        "width": 320,
+        "overflowAmount": 302
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 703,
+        "width": 824,
+        "overflowAmount": 291
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "FAIL",
+    "scrollWidth": 517,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 751,
+        "width": 860,
+        "overflowAmount": 321
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 751,
+        "width": 860,
+        "overflowAmount": 321
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 747,
+        "width": 320,
+        "overflowAmount": 317
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 715,
+        "width": 860,
+        "overflowAmount": 285
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 715,
+        "width": 860,
+        "overflowAmount": 285
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1291,
+        "width": 1506,
+        "overflowAmount": 538
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1291,
+        "width": 1506,
+        "overflowAmount": 538
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1219,
+        "width": 1506,
+        "overflowAmount": 466
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1219,
+        "width": 1506,
+        "overflowAmount": 466
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1123,
+        "width": 1506,
+        "overflowAmount": 370
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 805,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1353,
+        "width": 1610,
+        "overflowAmount": 548
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1353,
+        "width": 1610,
+        "overflowAmount": 548
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1267,
+        "width": 1610,
+        "overflowAmount": 462
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1267,
+        "width": 1610,
+        "overflowAmount": 462
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1153,
+        "width": 1610,
+        "overflowAmount": 348
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1662,
+        "width": 2018,
+        "overflowAmount": 653
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1662,
+        "width": 2018,
+        "overflowAmount": 653
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1544,
+        "width": 2018,
+        "overflowAmount": 535
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1544,
+        "width": 2018,
+        "overflowAmount": 535
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1386,
+        "width": 2018,
+        "overflowAmount": 377
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "FAIL",
+    "scrollWidth": 1289,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 2041,
+        "width": 2530,
+        "overflowAmount": 776
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 2041,
+        "width": 2530,
+        "overflowAmount": 776
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1877,
+        "width": 2530,
+        "overflowAmount": 612
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1877,
+        "width": 2530,
+        "overflowAmount": 612
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1660,
+        "width": 2530,
+        "overflowAmount": 395
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 2135,
+        "width": 2702,
+        "overflowAmount": 784
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 2135,
+        "width": 2702,
+        "overflowAmount": 784
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1946,
+        "width": 2702,
+        "overflowAmount": 595
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1946,
+        "width": 2702,
+        "overflowAmount": 595
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1694,
+        "width": 2702,
+        "overflowAmount": 343
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 2206,
+        "width": 2850,
+        "overflowAmount": 781
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 2206,
+        "width": 2850,
+        "overflowAmount": 781
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1991,
+        "width": 2850,
+        "overflowAmount": 566
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 1991,
+        "width": 2850,
+        "overflowAmount": 566
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 1705,
+        "width": 2850,
+        "overflowAmount": 280
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 2884,
+        "width": 3810,
+        "overflowAmount": 979
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 2884,
+        "width": 3810,
+        "overflowAmount": 979
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 2575,
+        "width": 3810,
+        "overflowAmount": 670
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 2575,
+        "width": 3810,
+        "overflowAmount": 670
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 2204,
+        "width": 300,
+        "overflowAmount": 299
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 3767,
+        "width": 5090,
+        "overflowAmount": 1222
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 3767,
+        "width": 5090,
+        "overflowAmount": 1222
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 3326,
+        "width": 5090,
+        "overflowAmount": 781
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 3326,
+        "width": 5090,
+        "overflowAmount": 781
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2836,
+        "width": 320,
+        "overflowAmount": 291
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 5533,
+        "width": 7650,
+        "overflowAmount": 1708
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 5533,
+        "width": 7650,
+        "overflowAmount": 1708
+      },
+      {
+        "tag": "g",
+        "className": "",
+        "id": "",
+        "right": 4827,
+        "width": 7650,
+        "overflowAmount": 1002
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 4827,
+        "width": 7650,
+        "overflowAmount": 1002
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 4145,
+        "width": 320,
+        "overflowAmount": 320
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 540,
+        "width": 600,
+        "overflowAmount": 220
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 left-1/4 -translate-x-1/2",
+        "id": "",
+        "right": 430,
+        "width": 700,
+        "overflowAmount": 110
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 left-1/4 w-72",
+        "id": "",
+        "right": 368,
+        "width": 288,
+        "overflowAmount": 48
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 368,
+        "width": 286,
+        "overflowAmount": 48
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 341,
+        "width": 300,
+        "overflowAmount": 21
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 570,
+        "width": 600,
+        "overflowAmount": 210
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 514,
+        "width": 300,
+        "overflowAmount": 154
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 472,
+        "width": 320,
+        "overflowAmount": 112
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 left-1/4 -translate-x-1/2",
+        "id": "",
+        "right": 440,
+        "width": 700,
+        "overflowAmount": 80
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 385,
+        "width": 292,
+        "overflowAmount": 25
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 608,
+        "width": 300,
+        "overflowAmount": 233
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 586,
+        "width": 320,
+        "overflowAmount": 211
+      },
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 581,
+        "width": 600,
+        "overflowAmount": 206
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 left-1/4 -translate-x-1/2",
+        "id": "",
+        "right": 444,
+        "width": 700,
+        "overflowAmount": 69
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 397,
+        "width": 300,
+        "overflowAmount": 22
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 666,
+        "width": 300,
+        "overflowAmount": 276
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 658,
+        "width": 320,
+        "overflowAmount": 268
+      },
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 593,
+        "width": 600,
+        "overflowAmount": 203
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 left-1/4 -translate-x-1/2",
+        "id": "",
+        "right": 448,
+        "width": 700,
+        "overflowAmount": 58
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 410,
+        "width": 307,
+        "overflowAmount": 20
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 713,
+        "width": 320,
+        "overflowAmount": 301
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 708,
+        "width": 300,
+        "overflowAmount": 296
+      },
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 609,
+        "width": 600,
+        "overflowAmount": 197
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 left-1/4 -translate-x-1/2",
+        "id": "",
+        "right": 453,
+        "width": 700,
+        "overflowAmount": 41
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 424,
+        "width": 313,
+        "overflowAmount": 12
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 747,
+        "width": 320,
+        "overflowAmount": 317
+      },
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 623,
+        "width": 600,
+        "overflowAmount": 193
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 474,
+        "width": 320,
+        "overflowAmount": 44
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 left-1/4 -translate-x-1/2",
+        "id": "",
+        "right": 458,
+        "width": 700,
+        "overflowAmount": 28
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 434,
+        "width": 318,
+        "overflowAmount": 4
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 873,
+        "width": 320,
+        "overflowAmount": 120
+      },
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 865,
+        "width": 600,
+        "overflowAmount": 112
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 805,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1026,
+        "width": 320,
+        "overflowAmount": 221
+      },
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 904,
+        "width": 600,
+        "overflowAmount": 99
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1285,
+        "width": 320,
+        "overflowAmount": 276
+      },
+      {
+        "tag": "div",
+        "className": "absolute bottom-1/4 right-1/4 translate-x-1/2",
+        "id": "",
+        "right": 1057,
+        "width": 600,
+        "overflowAmount": 48
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-12 -right-12 w-48",
+        "id": "",
+        "right": 1024,
+        "width": 192,
+        "overflowAmount": 15
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 1265,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1574,
+        "width": 320,
+        "overflowAmount": 309
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1323,
+        "width": 300,
+        "overflowAmount": 58
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-12 -right-12 w-48",
+        "id": "",
+        "right": 1280,
+        "width": 192,
+        "overflowAmount": 15
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1543,
+        "width": 300,
+        "overflowAmount": 192
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-12 -right-12 w-48",
+        "id": "",
+        "right": 1366,
+        "width": 192,
+        "overflowAmount": 15
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1693,
+        "width": 300,
+        "overflowAmount": 268
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1554,
+        "width": 320,
+        "overflowAmount": 129
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 2203,
+        "width": 300,
+        "overflowAmount": 298
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2124,
+        "width": 320,
+        "overflowAmount": 219
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2829,
+        "width": 320,
+        "overflowAmount": 284
+      }
+    ]
+  },
+  {
+    "route": "/careers",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 4143,
+        "width": 320,
+        "overflowAmount": 318
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 1482,
+        "width": 287,
+        "overflowAmount": 1162
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1146
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 1466,
+        "width": 11,
+        "overflowAmount": 1146
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1146
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 1356,
+        "width": 146,
+        "overflowAmount": 1036
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 1482,
+        "width": 287,
+        "overflowAmount": 1122
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1106
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 1466,
+        "width": 11,
+        "overflowAmount": 1106
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1106
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 1356,
+        "width": 146,
+        "overflowAmount": 996
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 1482,
+        "width": 287,
+        "overflowAmount": 1107
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1091
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 1466,
+        "width": 11,
+        "overflowAmount": 1091
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1091
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 1356,
+        "width": 146,
+        "overflowAmount": 981
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 1482,
+        "width": 287,
+        "overflowAmount": 1092
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1076
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 1466,
+        "width": 11,
+        "overflowAmount": 1076
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1076
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 1356,
+        "width": 146,
+        "overflowAmount": 966
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 1482,
+        "width": 287,
+        "overflowAmount": 1070
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1054
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 1466,
+        "width": 11,
+        "overflowAmount": 1054
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1054
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 1356,
+        "width": 146,
+        "overflowAmount": 944
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 1482,
+        "width": 287,
+        "overflowAmount": 1052
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1036
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 1466,
+        "width": 11,
+        "overflowAmount": 1036
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 1466,
+        "width": 255,
+        "overflowAmount": 1036
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 1356,
+        "width": 146,
+        "overflowAmount": 926
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between min-w-[880px]",
+        "id": "",
+        "right": 933,
+        "width": 880,
+        "overflowAmount": 180
+      },
+      {
+        "tag": "button",
+        "className": "\n   ",
+        "id": "",
+        "right": 933,
+        "width": 92,
+        "overflowAmount": 180
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 931,
+        "width": 320,
+        "overflowAmount": 178
+      },
+      {
+        "tag": "span",
+        "className": "text-[11px] font-bold tracking-tight whitespace-nowrap",
+        "id": "",
+        "right": 921,
+        "width": 68,
+        "overflowAmount": 168
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center gap-1.5 mb-1.5",
+        "id": "",
+        "right": 903,
+        "width": 32,
+        "overflowAmount": 150
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 805,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute inset-0 -translate-x-full bg-gradient-to-r",
+        "id": "",
+        "right": 1268,
+        "width": 397,
+        "overflowAmount": 463
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1064,
+        "width": 320,
+        "overflowAmount": 259
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 933,
+        "width": 384,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between min-w-[880px]",
+        "id": "",
+        "right": 933,
+        "width": 880,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "button",
+        "className": "\n   ",
+        "id": "",
+        "right": 933,
+        "width": 92,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1311,
+        "width": 320,
+        "overflowAmount": 302
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1160,
+        "width": 151,
+        "overflowAmount": 151
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1137,
+        "width": 384,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1041,
+        "width": 300,
+        "overflowAmount": 32
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 1265,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1584,
+        "width": 320,
+        "overflowAmount": 319
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1455,
+        "width": 190,
+        "overflowAmount": 190
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1430,
+        "width": 300,
+        "overflowAmount": 165
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1393,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute inset-0 -translate-x-full bg-gradient-to-r",
+        "id": "",
+        "right": 1709,
+        "width": 415,
+        "overflowAmount": 358
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1605,
+        "width": 300,
+        "overflowAmount": 254
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1554,
+        "width": 203,
+        "overflowAmount": 203
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1479,
+        "width": 384,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1447,
+        "width": 320,
+        "overflowAmount": 96
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1719,
+        "width": 300,
+        "overflowAmount": 294
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1643,
+        "width": 320,
+        "overflowAmount": 218
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1639,
+        "width": 214,
+        "overflowAmount": 214
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1553,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 2191,
+        "width": 286,
+        "overflowAmount": 286
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2187,
+        "width": 320,
+        "overflowAmount": 282
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 2033,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 2927,
+        "width": 382,
+        "overflowAmount": 382
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2861,
+        "width": 320,
+        "overflowAmount": 316
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 2673,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/abm",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 4399,
+        "width": 574,
+        "overflowAmount": 574
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 3953,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 931,
+        "width": 226,
+        "overflowAmount": 611
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 595
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 915,
+        "width": 11,
+        "overflowAmount": 595
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 595
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 878,
+        "width": 157,
+        "overflowAmount": 558
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 931,
+        "width": 226,
+        "overflowAmount": 571
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 555
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 915,
+        "width": 11,
+        "overflowAmount": 555
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 555
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 878,
+        "width": 157,
+        "overflowAmount": 518
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 931,
+        "width": 226,
+        "overflowAmount": 556
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 540
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 915,
+        "width": 11,
+        "overflowAmount": 540
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 540
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 878,
+        "width": 157,
+        "overflowAmount": 503
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 931,
+        "width": 226,
+        "overflowAmount": 541
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 525
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 915,
+        "width": 11,
+        "overflowAmount": 525
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 525
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 878,
+        "width": 157,
+        "overflowAmount": 488
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 931,
+        "width": 226,
+        "overflowAmount": 519
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 503
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 915,
+        "width": 11,
+        "overflowAmount": 503
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 503
+      },
+      {
+        "tag": "span",
+        "className": "text-[9px] font-mono font-bold uppercase",
+        "id": "",
+        "right": 878,
+        "width": 157,
+        "overflowAmount": 466
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute inset-0 -translate-x-full bg-gradient-to-r",
+        "id": "",
+        "right": 983,
+        "width": 347,
+        "overflowAmount": 553
+      },
+      {
+        "tag": "button",
+        "className": "shrink-0 p-4 rounded-xl border",
+        "id": "",
+        "right": 931,
+        "width": 226,
+        "overflowAmount": 501
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between gap-1",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 485
+      },
+      {
+        "tag": "span",
+        "className": "text-[10px] font-mono font-black",
+        "id": "",
+        "right": 915,
+        "width": 11,
+        "overflowAmount": 485
+      },
+      {
+        "tag": "div",
+        "className": "text-sm font-bold text-text-secondary",
+        "id": "",
+        "right": 915,
+        "width": 194,
+        "overflowAmount": 485
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[650px]",
+        "id": "",
+        "right": 901,
+        "width": 650,
+        "overflowAmount": 148
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 889,
+        "width": 320,
+        "overflowAmount": 136
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 881,
+        "width": 384,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 866,
+        "width": 113,
+        "overflowAmount": 113
+      },
+      {
+        "tag": "div",
+        "className": "flex items-center justify-between min-w-[720px]",
+        "id": "",
+        "right": 773,
+        "width": 720,
+        "overflowAmount": 20
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 805,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1039,
+        "width": 320,
+        "overflowAmount": 234
+      },
+      {
+        "tag": "div",
+        "className": "absolute inset-0 -translate-x-full bg-gradient-to-r",
+        "id": "",
+        "right": 1030,
+        "width": 439,
+        "overflowAmount": 225
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 933,
+        "width": 384,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 926,
+        "width": 121,
+        "overflowAmount": 121
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/4 left-1/3 w-[650px]",
+        "id": "",
+        "right": 918,
+        "width": 650,
+        "overflowAmount": 113
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1299,
+        "width": 320,
+        "overflowAmount": 290
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1160,
+        "width": 151,
+        "overflowAmount": 151
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1137,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 1265,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 1581,
+        "width": 320,
+        "overflowAmount": 316
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1455,
+        "width": 190,
+        "overflowAmount": 190
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1393,
+        "width": 384,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1383,
+        "width": 300,
+        "overflowAmount": 118
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute inset-0 -translate-x-full bg-gradient-to-r",
+        "id": "",
+        "right": 1642,
+        "width": 439,
+        "overflowAmount": 291
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1578,
+        "width": 300,
+        "overflowAmount": 227
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1554,
+        "width": 203,
+        "overflowAmount": 203
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1479,
+        "width": 384,
+        "overflowAmount": 128
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1381,
+        "width": 320,
+        "overflowAmount": 30
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1708,
+        "width": 300,
+        "overflowAmount": 283
+      },
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 1639,
+        "width": 214,
+        "overflowAmount": 214
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1601,
+        "width": 320,
+        "overflowAmount": 176
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 1553,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 2191,
+        "width": 286,
+        "overflowAmount": 286
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2161,
+        "width": 320,
+        "overflowAmount": 256
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 2033,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 2927,
+        "width": 382,
+        "overflowAmount": 382
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2850,
+        "width": 320,
+        "overflowAmount": 305
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 2673,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/sql-services",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "line",
+        "className": "",
+        "id": "",
+        "right": 4399,
+        "width": 574,
+        "overflowAmount": 574
+      },
+      {
+        "tag": "div",
+        "className": "absolute -bottom-32 -right-32 w-96",
+        "id": "",
+        "right": 3953,
+        "width": 384,
+        "overflowAmount": 128
+      }
+    ]
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 768,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 820,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 1280,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1366,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1920,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2560,
+    "offenders": []
+  },
+  {
+    "route": "/appointment-setting",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3840,
+    "offenders": []
+  },
+  {
+    "route": "/blog",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute -top-32 left-1/2 -translate-x-1/2",
+        "id": "",
+        "right": 510,
+        "width": 700,
+        "overflowAmount": 190
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 369,
+        "width": 287,
+        "overflowAmount": 49
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 left-1/4 w-72",
+        "id": "",
+        "right": 368,
+        "width": 288,
+        "overflowAmount": 48
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 -right-10 w-32",
+        "id": "",
+        "right": 343,
+        "width": 128,
+        "overflowAmount": 23
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 338,
+        "width": 300,
+        "overflowAmount": 18
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "absolute -top-32 left-1/2 -translate-x-1/2",
+        "id": "",
+        "right": 530,
+        "width": 700,
+        "overflowAmount": 170
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 511,
+        "width": 300,
+        "overflowAmount": 151
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 468,
+        "width": 320,
+        "overflowAmount": 108
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 386,
+        "width": 293,
+        "overflowAmount": 26
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 -right-10 w-32",
+        "id": "",
+        "right": 383,
+        "width": 128,
+        "overflowAmount": 23
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 606,
+        "width": 300,
+        "overflowAmount": 231
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 582,
+        "width": 320,
+        "overflowAmount": 207
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-32 left-1/2 -translate-x-1/2",
+        "id": "",
+        "right": 538,
+        "width": 700,
+        "overflowAmount": 163
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 399,
+        "width": 301,
+        "overflowAmount": 24
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 -right-10 w-32",
+        "id": "",
+        "right": 398,
+        "width": 128,
+        "overflowAmount": 23
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 664,
+        "width": 300,
+        "overflowAmount": 274
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 656,
+        "width": 320,
+        "overflowAmount": 266
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-32 left-1/2 -translate-x-1/2",
+        "id": "",
+        "right": 545,
+        "width": 700,
+        "overflowAmount": 155
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 -right-10 w-32",
+        "id": "",
+        "right": 413,
+        "width": 128,
+        "overflowAmount": 23
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 411,
+        "width": 308,
+        "overflowAmount": 21
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 711,
+        "width": 320,
+        "overflowAmount": 299
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 707,
+        "width": 300,
+        "overflowAmount": 295
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-32 left-1/2 -translate-x-1/2",
+        "id": "",
+        "right": 556,
+        "width": 700,
+        "overflowAmount": 144
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 -right-10 w-32",
+        "id": "",
+        "right": 435,
+        "width": 128,
+        "overflowAmount": 23
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 424,
+        "width": 314,
+        "overflowAmount": 12
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 746,
+        "width": 320,
+        "overflowAmount": 316
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-32 left-1/2 -translate-x-1/2",
+        "id": "",
+        "right": 565,
+        "width": 700,
+        "overflowAmount": 135
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 460,
+        "width": 320,
+        "overflowAmount": 30
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-10 -right-10 w-32",
+        "id": "",
+        "right": 453,
+        "width": 128,
+        "overflowAmount": 23
+      },
+      {
+        "tag": "div",
+        "className": "footer-orb footer-orb-cyan absolute -top-28",
+        "id": "",
+        "right": 434,
+        "width": 319,
+        "overflowAmount": 4
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 753,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-amber",
+        "id": "",
+        "right": 859,
+        "width": 320,
+        "overflowAmount": 106
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 1280,
+    "offenders": []
+  },
+  {
+    "route": "/blog",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 10151,
+        "width": 5055,
+        "overflowAmount": 9142
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 10151,
+        "width": 199,
+        "overflowAmount": 9142
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 10122,
+        "width": 142,
+        "overflowAmount": 9113
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 9932,
+        "width": 181,
+        "overflowAmount": 8923
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 9899,
+        "width": 115,
+        "overflowAmount": 8890
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6386,
+        "width": 3273,
+        "overflowAmount": 6066
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6386,
+        "width": 118,
+        "overflowAmount": 6066
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6372,
+        "width": 88,
+        "overflowAmount": 6052
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6249,
+        "width": 118,
+        "overflowAmount": 5929
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6227,
+        "width": 73,
+        "overflowAmount": 5907
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 360,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6275,
+        "width": 3273,
+        "overflowAmount": 5915
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6275,
+        "width": 118,
+        "overflowAmount": 5915
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6260,
+        "width": 88,
+        "overflowAmount": 5900
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6137,
+        "width": 118,
+        "overflowAmount": 5777
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6115,
+        "width": 73,
+        "overflowAmount": 5755
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 375,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 7047,
+        "width": 3744,
+        "overflowAmount": 6672
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 7047,
+        "width": 137,
+        "overflowAmount": 6672
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 7030,
+        "width": 103,
+        "overflowAmount": 6655
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6891,
+        "width": 137,
+        "overflowAmount": 6516
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6866,
+        "width": 89,
+        "overflowAmount": 6491
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 390,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6930,
+        "width": 3744,
+        "overflowAmount": 6540
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6930,
+        "width": 137,
+        "overflowAmount": 6540
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6913,
+        "width": 103,
+        "overflowAmount": 6523
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6773,
+        "width": 137,
+        "overflowAmount": 6383
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6749,
+        "width": 89,
+        "overflowAmount": 6359
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 412,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6805,
+        "width": 3744,
+        "overflowAmount": 6393
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6805,
+        "width": 137,
+        "overflowAmount": 6393
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6788,
+        "width": 103,
+        "overflowAmount": 6376
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6648,
+        "width": 137,
+        "overflowAmount": 6236
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6624,
+        "width": 89,
+        "overflowAmount": 6212
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 430,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "marquee-track marquee-animate-single",
+        "id": "",
+        "right": 6681,
+        "width": 3744,
+        "overflowAmount": 6251
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6681,
+        "width": 137,
+        "overflowAmount": 6251
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6664,
+        "width": 103,
+        "overflowAmount": 6234
+      },
+      {
+        "tag": "div",
+        "className": "compact-logo-pill group/pill",
+        "id": "",
+        "right": 6524,
+        "width": 137,
+        "overflowAmount": 6094
+      },
+      {
+        "tag": "img",
+        "className": "compact-logo-img",
+        "id": "",
+        "right": 6500,
+        "width": 89,
+        "overflowAmount": 6070
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "320x568_mobile_xs",
+    "width": 320,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": []
+  },
+  {
+    "route": "/privacy",
+    "viewport": "360x800_android",
+    "width": 360,
+    "status": "PASS",
+    "scrollWidth": 1265,
+    "offenders": []
+  },
+  {
+    "route": "/privacy",
+    "viewport": "375x812_iphone",
+    "width": 375,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1462,
+        "width": 300,
+        "overflowAmount": 111
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1378,
+        "width": 320,
+        "overflowAmount": 27
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "390x844_iphone14",
+    "width": 390,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 1651,
+        "width": 300,
+        "overflowAmount": 226
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 1601,
+        "width": 320,
+        "overflowAmount": 176
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "412x924_pixel10",
+    "width": 412,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 2186,
+        "width": 300,
+        "overflowAmount": 281
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2156,
+        "width": 320,
+        "overflowAmount": 251
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "430x932_promax",
+    "width": 430,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 2848,
+        "width": 320,
+        "overflowAmount": 303
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "768x1024_tablet",
+    "width": 768,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": []
+  },
+  {
+    "route": "/privacy",
+    "viewport": "820x1180_ipad_air",
+    "width": 820,
+    "status": "PASS",
+    "scrollWidth": 1280,
+    "offenders": []
+  },
+  {
+    "route": "/privacy",
+    "viewport": "1024x1366_ipad_pro",
+    "width": 1024,
+    "status": "PASS",
+    "scrollWidth": 1009,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2762,
+        "width": 4516,
+        "overflowAmount": 1753
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 2487,
+        "width": 4274,
+        "overflowAmount": 1478
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 1110,
+        "width": 550,
+        "overflowAmount": 101
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 1090,
+        "width": 600,
+        "overflowAmount": 81
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 -right-20 w-[650px]",
+        "id": "",
+        "right": 1089,
+        "width": 650,
+        "overflowAmount": 80
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "1280x800_landscape",
+    "width": 1280,
+    "status": "PASS",
+    "scrollWidth": 320,
+    "offenders": [
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2253,
+        "width": 4185,
+        "overflowAmount": 1933
+      },
+      {
+        "tag": "div",
+        "className": "absolute -top-40 left-1/4 w-[750px]",
+        "id": "",
+        "right": 830,
+        "width": 750,
+        "overflowAmount": 510
+      },
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 789,
+        "width": 1356,
+        "overflowAmount": 469
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-2/3 -left-20 w-[650px]",
+        "id": "",
+        "right": 570,
+        "width": 650,
+        "overflowAmount": 250
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[10%] left-[-10%] w-[600px]",
+        "id": "",
+        "right": 568,
+        "width": 600,
+        "overflowAmount": 248
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "1366x768_laptop",
+    "width": 1366,
+    "status": "PASS",
+    "scrollWidth": 1351,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 3330,
+        "width": 5723,
+        "overflowAmount": 1979
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2123,
+        "width": 2894,
+        "overflowAmount": 772
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 1486,
+        "width": 550,
+        "overflowAmount": 135
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 1459,
+        "width": 600,
+        "overflowAmount": 108
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 -right-20 w-[650px]",
+        "id": "",
+        "right": 1431,
+        "width": 650,
+        "overflowAmount": 80
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "1440x900_macbook",
+    "width": 1440,
+    "status": "PASS",
+    "scrollWidth": 1425,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 3513,
+        "width": 6037,
+        "overflowAmount": 2088
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2866,
+        "width": 4308,
+        "overflowAmount": 1441
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 1568,
+        "width": 550,
+        "overflowAmount": 143
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 1539,
+        "width": 600,
+        "overflowAmount": 114
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-1/3 -right-20 w-[650px]",
+        "id": "",
+        "right": 1505,
+        "width": 650,
+        "overflowAmount": 80
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "1920x1080_desktop",
+    "width": 1920,
+    "status": "PASS",
+    "scrollWidth": 1905,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 4696,
+        "width": 8070,
+        "overflowAmount": 2791
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 2742,
+        "width": 3580,
+        "overflowAmount": 837
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 2096,
+        "width": 550,
+        "overflowAmount": 191
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 2058,
+        "width": 300,
+        "overflowAmount": 153
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 2057,
+        "width": 600,
+        "overflowAmount": 152
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "2560x1440_qhd",
+    "width": 2560,
+    "status": "PASS",
+    "scrollWidth": 2545,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 6273,
+        "width": 10781,
+        "overflowAmount": 3728
+      },
+      {
+        "tag": "span",
+        "className": "absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]",
+        "id": "",
+        "right": 3238,
+        "width": 3932,
+        "overflowAmount": 693
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 2800,
+        "width": 550,
+        "overflowAmount": 255
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 2791,
+        "width": 300,
+        "overflowAmount": 246
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 2749,
+        "width": 600,
+        "overflowAmount": 204
+      }
+    ]
+  },
+  {
+    "route": "/privacy",
+    "viewport": "3840x2160_4k",
+    "width": 3840,
+    "status": "PASS",
+    "scrollWidth": 3825,
+    "offenders": [
+      {
+        "tag": "path",
+        "className": "",
+        "id": "",
+        "right": 9429,
+        "width": 16204,
+        "overflowAmount": 5604
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[35%] right-[-10%] w-[550px]",
+        "id": "",
+        "right": 4208,
+        "width": 550,
+        "overflowAmount": 383
+      },
+      {
+        "tag": "div",
+        "className": "absolute top-[88%] right-[-8%] w-[600px]",
+        "id": "",
+        "right": 4131,
+        "width": 600,
+        "overflowAmount": 306
+      },
+      {
+        "tag": "div",
+        "className": "global-laser-beam global-laser-cyan",
+        "id": "",
+        "right": 4120,
+        "width": 300,
+        "overflowAmount": 295
+      },
+      {
+        "tag": "div",
+        "className": "footer-laser-beam footer-laser-cyan",
+        "id": "",
+        "right": 4088,
+        "width": 320,
+        "overflowAmount": 263
+      }
+    ]
+  }
+]

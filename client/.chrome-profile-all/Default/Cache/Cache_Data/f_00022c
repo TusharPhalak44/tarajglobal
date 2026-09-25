@@ -1,0 +1,404 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/B2bAppointmentSetting/components/FAQ.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useState = __vite__cjsImport3_react["useState"];
+import { motion, AnimatePresence } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+import { ChevronDown, HelpCircle } from "/node_modules/.vite/deps/lucide-react.js?v=2f1d9042";
+import { useReducedMotion } from "/src/hooks/useReducedMotion.js";
+export const FAQS = [
+  {
+    id: "faq-1",
+    num: "01",
+    question: "What is B2B appointment setting?",
+    answer: "B2B appointment setting is a targeted sales development strategy where specialized outbound SDRs identify, contact, and qualify key decision-makers at target accounts, scheduling high-value discovery meetings directly onto your sales executives calendars."
+  },
+  {
+    id: "faq-2",
+    num: "02",
+    question: "How does B2B appointment setting work?",
+    answer: "We map your Ideal Customer Profile (ICP), identify verified buying committee stakeholders, deploy multi-channel cadences across phone, email, and LinkedIn, conduct rigorous qualification conversations, and book confirmed meetings with comprehensive dossiers."
+  },
+  {
+    id: "faq-3",
+    num: "03",
+    question: "Who uses appointment setting services?",
+    answer: "Appointment setting services are primarily used by B2B SaaS companies, technology providers, enterprise vendors, and growing sales organizations that want to accelerate pipeline growth and keep their sales closers focused on high-value revenue conversations."
+  },
+  {
+    id: "faq-4",
+    num: "04",
+    question: "How are sales appointments qualified?",
+    answer: "Every prospect is vetted against strict criteria confirming verified job title authority, organizational ICP fit, explicit business pain points, and active interest in evaluating your solution before any call is scheduled."
+  },
+  {
+    id: "faq-5",
+    num: "05",
+    question: "How do you identify decision-makers?",
+    answer: "Our research engine combines first-party account research and multi-source buyer intelligence to map C-Suite and VP-level economic buyers holding signing authority and budget ownership."
+  },
+  {
+    id: "faq-6",
+    num: "06",
+    question: "What channels are used for appointment setting?",
+    answer: "We execute coordinated omnichannel cadences combining personalized direct-dial phone outreach, customized executive email cadences, and targeted LinkedIn messaging."
+  },
+  {
+    id: "faq-7",
+    num: "07",
+    question: "How does appointment setting support sales teams?",
+    answer: "Appointment setting eliminates the top-of-funnel prospecting burden from internal sales teams. By delivering pre-qualified, scheduled meetings with relevant decision-makers, Account Executives can focus 100% of their energy on discovery calls, demos, and closing opportunities."
+  },
+  {
+    id: "faq-8",
+    num: "08",
+    question: "How does DemandFlow Bridge support appointment setting?",
+    answer: "DemandFlow Bridge helps centralize prospect intelligence, automate workflows, monitor engagement, capture intent signals, and streamline campaign execution while providing seamless CRM and calendar synchronization."
+  }
+];
+const FAQ = () => {
+  _s();
+  const [openId, setOpenId] = useState(null);
+  const prefersReducedMotion = useReducedMotion();
+  const toggle = (id) => {
+    setOpenId((prev) => prev === id ? null : id);
+  };
+  const leftFaqs = FAQS.slice(0, 4);
+  const rightFaqs = FAQS.slice(4, 8);
+  const renderFaqItem = (faq) => {
+    const isOpen = openId === faq.id;
+    return /* @__PURE__ */ jsxDEV(
+      "div",
+      {
+        className: `
+          relative group rounded-2xl transition-all duration-300 border overflow-hidden
+          hover:-translate-y-0.5
+          ${isOpen ? "bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30" : "bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]"}
+        `,
+        children: [
+          /* @__PURE__ */ jsxDEV(
+            "div",
+            {
+              className: `absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+              lineNumber: 114,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            "button",
+            {
+              id: `faq-btn-${faq.id}`,
+              type: "button",
+              "aria-expanded": isOpen,
+              "aria-controls": `faq-panel-${faq.id}`,
+              onClick: () => toggle(faq.id),
+              className: "w-full flex items-start justify-between gap-3.5 p-4 sm:p-5 text-left cursor-pointer transition-colors",
+              children: [
+                /* @__PURE__ */ jsxDEV("div", { className: "flex items-start gap-3", children: [
+                  /* @__PURE__ */ jsxDEV(
+                    "span",
+                    {
+                      className: `font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${isOpen ? "bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40" : "bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]"}`,
+                      children: faq.num
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                      lineNumber: 129,
+                      columnNumber: 13
+                    },
+                    this
+                  ),
+                  /* @__PURE__ */ jsxDEV(
+                    "span",
+                    {
+                      className: `text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${isOpen ? "text-[#00A6FF]" : "text-slate-900 dark:text-white group-hover:text-[#00A6FF]"}`,
+                      children: faq.question
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                      lineNumber: 138,
+                      columnNumber: 13
+                    },
+                    this
+                  )
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                  lineNumber: 128,
+                  columnNumber: 11
+                }, this),
+                /* @__PURE__ */ jsxDEV(
+                  motion.div,
+                  {
+                    animate: { rotate: isOpen ? 180 : 0 },
+                    transition: { duration: 0.25 },
+                    className: `w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${isOpen ? "bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs" : "bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]"}`,
+                    "aria-hidden": "true",
+                    children: /* @__PURE__ */ jsxDEV(ChevronDown, { className: "w-4 h-4" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                      lineNumber: 159,
+                      columnNumber: 13
+                    }, this)
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                    lineNumber: 149,
+                    columnNumber: 11
+                  },
+                  this
+                )
+              ]
+            },
+            void 0,
+            true,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+              lineNumber: 120,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(AnimatePresence, { initial: false, children: isOpen && /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              id: `faq-panel-${faq.id}`,
+              role: "region",
+              "aria-labelledby": `faq-btn-${faq.id}`,
+              initial: prefersReducedMotion ? {} : { height: 0, opacity: 0 },
+              animate: prefersReducedMotion ? {} : { height: "auto", opacity: 1 },
+              exit: prefersReducedMotion ? {} : { height: 0, opacity: 0 },
+              transition: { duration: 0.25 },
+              className: "overflow-hidden",
+              children: /* @__PURE__ */ jsxDEV("div", { className: "px-4 sm:px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-white/5 font-normal pl-[44px] sm:pl-[48px]", children: faq.answer }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                lineNumber: 175,
+                columnNumber: 15
+              }, this)
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+              lineNumber: 165,
+              columnNumber: 11
+            },
+            this
+          ) }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+            lineNumber: 163,
+            columnNumber: 9
+          }, this)
+        ]
+      },
+      faq.id,
+      true,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+        lineNumber: 101,
+        columnNumber: 7
+      },
+      this
+    );
+  };
+  return /* @__PURE__ */ jsxDEV(
+    "section",
+    {
+      id: "faq",
+      className: "relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300",
+      "aria-label": "Frequently Asked Questions about B2B Appointment Setting",
+      children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 pointer-events-none", "aria-hidden": "true", children: [
+          /* @__PURE__ */ jsxDEV(
+            "div",
+            {
+              className: "absolute inset-0 opacity-[0.025] dark:opacity-[0.035]",
+              style: {
+                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+                backgroundSize: "28px 28px"
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+              lineNumber: 193,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV("div", { className: "absolute bottom-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#00A6FF]/10 rounded-full blur-[160px] pointer-events-none" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+            lineNumber: 201,
+            columnNumber: 9
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+          lineNumber: 192,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8", children: [
+          /* @__PURE__ */ jsxDEV("div", { className: "text-center max-w-3xl mx-auto mb-4 sm:mb-6", children: [
+            /* @__PURE__ */ jsxDEV(
+              motion.div,
+              {
+                initial: prefersReducedMotion ? {} : { opacity: 0, y: 10 },
+                whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.4 },
+                className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-slate-200 dark:border-[#00A6FF]/30 bg-white/90 dark:bg-[#0A1426]/90 backdrop-blur-md mb-2.5 shadow-xs",
+                children: [
+                  /* @__PURE__ */ jsxDEV(HelpCircle, { className: "w-3.5 h-3.5 text-[#00A6FF] animate-pulse" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                    lineNumber: 214,
+                    columnNumber: 13
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("span", { className: "text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase", children: "FAQ" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                    lineNumber: 215,
+                    columnNumber: 13
+                  }, this)
+                ]
+              },
+              void 0,
+              true,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                lineNumber: 207,
+                columnNumber: 11
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV(
+              motion.h2,
+              {
+                initial: prefersReducedMotion ? {} : { opacity: 0, y: 14 },
+                whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.45, delay: 0.08 },
+                className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase",
+                children: [
+                  /* @__PURE__ */ jsxDEV("span", { className: "text-slate-900 dark:text-white", children: "Frequently Asked " }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                    lineNumber: 227,
+                    columnNumber: 13
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("span", { className: "text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]", children: "Questions" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                    lineNumber: 228,
+                    columnNumber: 13
+                  }, this)
+                ]
+              },
+              void 0,
+              true,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                lineNumber: 220,
+                columnNumber: 11
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV(
+              motion.p,
+              {
+                initial: prefersReducedMotion ? {} : { opacity: 0, y: 12 },
+                whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.45, delay: 0.12 },
+                className: "text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal",
+                children: "Everything you need to know about our enterprise B2B appointment setting methodology, qualification standards, and calendar delivery."
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+                lineNumber: 233,
+                columnNumber: 11
+              },
+              this
+            )
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+            lineNumber: 206,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-2.5 items-start", children: [
+            /* @__PURE__ */ jsxDEV("div", { className: "space-y-2", children: leftFaqs.map(renderFaqItem) }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+              lineNumber: 247,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "space-y-2", children: rightFaqs.map(renderFaqItem) }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+              lineNumber: 252,
+              columnNumber: 11
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+            lineNumber: 245,
+            columnNumber: 9
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+          lineNumber: 204,
+          columnNumber: 7
+        }, this)
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx",
+      lineNumber: 186,
+      columnNumber: 5
+    },
+    this
+  );
+};
+_s(FAQ, "1004S2w2JHsrManUp0tzKqH8dDg=", false, function() {
+  return [useReducedMotion];
+});
+_c = FAQ;
+export default FAQ;
+var _c;
+$RefreshReg$(_c, "FAQ");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bAppointmentSetting/components/FAQ.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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MUMsV0FBVTtBQUFBLGdCQUE0RztBQUFBO0FBQUEsY0FMeEg7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFlBUUE7QUFBQSxlQW5DRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQW9DQTtBQUFBLFVBR0EsdUJBQUMsU0FBSSxXQUFVLGdFQUViO0FBQUEsbUNBQUMsU0FBSSxXQUFVLGFBQ1pkLG1CQUFTZSxJQUFJWixhQUFhLEtBRDdCO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBRUE7QUFBQSxZQUdBLHVCQUFDLFNBQUksV0FBVSxhQUNaRCxvQkFBVWEsSUFBSVosYUFBYSxLQUQ5QjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUVBO0FBQUEsZUFURjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQVVBO0FBQUEsYUFuREY7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQW9EQTtBQUFBO0FBQUE7QUFBQSxJQXRFRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsRUF1RUE7QUFFSjtBQUFDVCxHQS9LS0QsS0FBRztBQUFBLFVBRXNCTixnQkFBZ0I7QUFBQTtBQUFBLEtBRnpDTTtBQWlMTixlQUFlQTtBQUFHLElBQUF1QjtBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSZWFjdCIsInVzZVN0YXRlIiwibW90aW9uIiwiQW5pbWF0ZVByZXNlbmNlIiwiQ2hldnJvbkRvd24iLCJIZWxwQ2lyY2xlIiwidXNlUmVkdWNlZE1vdGlvbiIsIkZBUVMiLCJpZCIsIm51bSIsInF1ZXN0aW9uIiwiYW5zd2VyIiwiRkFRIiwiX3MiLCJvcGVuSWQiLCJzZXRPcGVuSWQiLCJwcmVmZXJzUmVkdWNlZE1vdGlvbiIsInRvZ2dsZSIsInByZXYiLCJsZWZ0RmFxcyIsInNsaWNlIiwicmlnaHRGYXFzIiwicmVuZGVyRmFxSXRlbSIsImZhcSIsImlzT3BlbiIsInJvdGF0ZSIsImR1cmF0aW9uIiwiaGVpZ2h0Iiwib3BhY2l0eSIsImJhY2tncm91bmRJbWFnZSIsImJhY2tncm91bmRTaXplIiwieSIsIm9uY2UiLCJkZWxheSIsIm1hcCIsIl9jIl0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbIkZBUS5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBtb3Rpb24sIEFuaW1hdGVQcmVzZW5jZSB9IGZyb20gJ2ZyYW1lci1tb3Rpb24nXG5pbXBvcnQgeyBDaGV2cm9uRG93biwgSGVscENpcmNsZSB9IGZyb20gJ2x1Y2lkZS1yZWFjdCdcbmltcG9ydCB7IHVzZVJlZHVjZWRNb3Rpb24gfSBmcm9tICdAaG9va3MvdXNlUmVkdWNlZE1vdGlvbidcblxuZXhwb3J0IGNvbnN0IEZBUVMgPSBbXG4gIHtcbiAgICBpZDogJ2ZhcS0xJyxcbiAgICBudW06ICcwMScsXG4gICAgcXVlc3Rpb246ICdXaGF0IGlzIEIyQiBhcHBvaW50bWVudCBzZXR0aW5nPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ0IyQiBhcHBvaW50bWVudCBzZXR0aW5nIGlzIGEgdGFyZ2V0ZWQgc2FsZXMgZGV2ZWxvcG1lbnQgc3RyYXRlZ3kgd2hlcmUgc3BlY2lhbGl6ZWQgb3V0Ym91bmQgU0RScyBpZGVudGlmeSwgY29udGFjdCwgYW5kIHF1YWxpZnkga2V5IGRlY2lzaW9uLW1ha2VycyBhdCB0YXJnZXQgYWNjb3VudHMsIHNjaGVkdWxpbmcgaGlnaC12YWx1ZSBkaXNjb3ZlcnkgbWVldGluZ3MgZGlyZWN0bHkgb250byB5b3VyIHNhbGVzIGV4ZWN1dGl2ZXMgY2FsZW5kYXJzLicsXG4gIH0sXG4gIHtcbiAgICBpZDogJ2ZhcS0yJyxcbiAgICBudW06ICcwMicsXG4gICAgcXVlc3Rpb246ICdIb3cgZG9lcyBCMkIgYXBwb2ludG1lbnQgc2V0dGluZyB3b3JrPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ1dlIG1hcCB5b3VyIElkZWFsIEN1c3RvbWVyIFByb2ZpbGUgKElDUCksIGlkZW50aWZ5IHZlcmlmaWVkIGJ1eWluZyBjb21taXR0ZWUgc3Rha2Vob2xkZXJzLCBkZXBsb3kgbXVsdGktY2hhbm5lbCBjYWRlbmNlcyBhY3Jvc3MgcGhvbmUsIGVtYWlsLCBhbmQgTGlua2VkSW4sIGNvbmR1Y3Qgcmlnb3JvdXMgcXVhbGlmaWNhdGlvbiBjb252ZXJzYXRpb25zLCBhbmQgYm9vayBjb25maXJtZWQgbWVldGluZ3Mgd2l0aCBjb21wcmVoZW5zaXZlIGRvc3NpZXJzLicsXG4gIH0sXG4gIHtcbiAgICBpZDogJ2ZhcS0zJyxcbiAgICBudW06ICcwMycsXG4gICAgcXVlc3Rpb246ICdXaG8gdXNlcyBhcHBvaW50bWVudCBzZXR0aW5nIHNlcnZpY2VzPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ0FwcG9pbnRtZW50IHNldHRpbmcgc2VydmljZXMgYXJlIHByaW1hcmlseSB1c2VkIGJ5IEIyQiBTYWFTIGNvbXBhbmllcywgdGVjaG5vbG9neSBwcm92aWRlcnMsIGVudGVycHJpc2UgdmVuZG9ycywgYW5kIGdyb3dpbmcgc2FsZXMgb3JnYW5pemF0aW9ucyB0aGF0IHdhbnQgdG8gYWNjZWxlcmF0ZSBwaXBlbGluZSBncm93dGggYW5kIGtlZXAgdGhlaXIgc2FsZXMgY2xvc2VycyBmb2N1c2VkIG9uIGhpZ2gtdmFsdWUgcmV2ZW51ZSBjb252ZXJzYXRpb25zLicsXG4gIH0sXG4gIHtcbiAgICBpZDogJ2ZhcS00JyxcbiAgICBudW06ICcwNCcsXG4gICAgcXVlc3Rpb246ICdIb3cgYXJlIHNhbGVzIGFwcG9pbnRtZW50cyBxdWFsaWZpZWQ/JyxcbiAgICBhbnN3ZXI6XG4gICAgICAnRXZlcnkgcHJvc3BlY3QgaXMgdmV0dGVkIGFnYWluc3Qgc3RyaWN0IGNyaXRlcmlhIGNvbmZpcm1pbmcgdmVyaWZpZWQgam9iIHRpdGxlIGF1dGhvcml0eSwgb3JnYW5pemF0aW9uYWwgSUNQIGZpdCwgZXhwbGljaXQgYnVzaW5lc3MgcGFpbiBwb2ludHMsIGFuZCBhY3RpdmUgaW50ZXJlc3QgaW4gZXZhbHVhdGluZyB5b3VyIHNvbHV0aW9uIGJlZm9yZSBhbnkgY2FsbCBpcyBzY2hlZHVsZWQuJyxcbiAgfSxcbiAge1xuICAgIGlkOiAnZmFxLTUnLFxuICAgIG51bTogJzA1JyxcbiAgICBxdWVzdGlvbjogJ0hvdyBkbyB5b3UgaWRlbnRpZnkgZGVjaXNpb24tbWFrZXJzPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ091ciByZXNlYXJjaCBlbmdpbmUgY29tYmluZXMgZmlyc3QtcGFydHkgYWNjb3VudCByZXNlYXJjaCBhbmQgbXVsdGktc291cmNlIGJ1eWVyIGludGVsbGlnZW5jZSB0byBtYXAgQy1TdWl0ZSBhbmQgVlAtbGV2ZWwgZWNvbm9taWMgYnV5ZXJzIGhvbGRpbmcgc2lnbmluZyBhdXRob3JpdHkgYW5kIGJ1ZGdldCBvd25lcnNoaXAuJyxcbiAgfSxcbiAge1xuICAgIGlkOiAnZmFxLTYnLFxuICAgIG51bTogJzA2JyxcbiAgICBxdWVzdGlvbjogJ1doYXQgY2hhbm5lbHMgYXJlIHVzZWQgZm9yIGFwcG9pbnRtZW50IHNldHRpbmc/JyxcbiAgICBhbnN3ZXI6XG4gICAgICAnV2UgZXhlY3V0ZSBjb29yZGluYXRlZCBvbW5pY2hhbm5lbCBjYWRlbmNlcyBjb21iaW5pbmcgcGVyc29uYWxpemVkIGRpcmVjdC1kaWFsIHBob25lIG91dHJlYWNoLCBjdXN0b21pemVkIGV4ZWN1dGl2ZSBlbWFpbCBjYWRlbmNlcywgYW5kIHRhcmdldGVkIExpbmtlZEluIG1lc3NhZ2luZy4nLFxuICB9LFxuICB7XG4gICAgaWQ6ICdmYXEtNycsXG4gICAgbnVtOiAnMDcnLFxuICAgIHF1ZXN0aW9uOiAnSG93IGRvZXMgYXBwb2ludG1lbnQgc2V0dGluZyBzdXBwb3J0IHNhbGVzIHRlYW1zPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ0FwcG9pbnRtZW50IHNldHRpbmcgZWxpbWluYXRlcyB0aGUgdG9wLW9mLWZ1bm5lbCBwcm9zcGVjdGluZyBidXJkZW4gZnJvbSBpbnRlcm5hbCBzYWxlcyB0ZWFtcy4gQnkgZGVsaXZlcmluZyBwcmUtcXVhbGlmaWVkLCBzY2hlZHVsZWQgbWVldGluZ3Mgd2l0aCByZWxldmFudCBkZWNpc2lvbi1tYWtlcnMsIEFjY291bnQgRXhlY3V0aXZlcyBjYW4gZm9jdXMgMTAwJSBvZiB0aGVpciBlbmVyZ3kgb24gZGlzY292ZXJ5IGNhbGxzLCBkZW1vcywgYW5kIGNsb3Npbmcgb3Bwb3J0dW5pdGllcy4nLFxuICB9LFxuICB7XG4gICAgaWQ6ICdmYXEtOCcsXG4gICAgbnVtOiAnMDgnLFxuICAgIHF1ZXN0aW9uOiAnSG93IGRvZXMgRGVtYW5kRmxvdyBCcmlkZ2Ugc3VwcG9ydCBhcHBvaW50bWVudCBzZXR0aW5nPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ0RlbWFuZEZsb3cgQnJpZGdlIGhlbHBzIGNlbnRyYWxpemUgcHJvc3BlY3QgaW50ZWxsaWdlbmNlLCBhdXRvbWF0ZSB3b3JrZmxvd3MsIG1vbml0b3IgZW5nYWdlbWVudCwgY2FwdHVyZSBpbnRlbnQgc2lnbmFscywgYW5kIHN0cmVhbWxpbmUgY2FtcGFpZ24gZXhlY3V0aW9uIHdoaWxlIHByb3ZpZGluZyBzZWFtbGVzcyBDUk0gYW5kIGNhbGVuZGFyIHN5bmNocm9uaXphdGlvbi4nLFxuICB9LFxuXVxuXG5jb25zdCBGQVEgPSAoKSA9PiB7XG4gIGNvbnN0IFtvcGVuSWQsIHNldE9wZW5JZF0gPSB1c2VTdGF0ZShudWxsKVxuICBjb25zdCBwcmVmZXJzUmVkdWNlZE1vdGlvbiA9IHVzZVJlZHVjZWRNb3Rpb24oKVxuXG4gIC8vIFNpbmdsZS1vcGVuIGFjY29yZGlvbjogb3BlbmluZyBvbmUgY2xvc2VzIGFueSBvdGhlciBvcGVuIEZBUVxuICBjb25zdCB0b2dnbGUgPSAoaWQpID0+IHtcbiAgICBzZXRPcGVuSWQoKHByZXYpID0+IChwcmV2ID09PSBpZCA/IG51bGwgOiBpZCkpXG4gIH1cblxuICAvLyBTcGxpdCBpbnRvIDQgbGVmdCBhbmQgNCByaWdodFxuICBjb25zdCBsZWZ0RmFxcyA9IEZBUVMuc2xpY2UoMCwgNClcbiAgY29uc3QgcmlnaHRGYXFzID0gRkFRUy5zbGljZSg0LCA4KVxuXG4gIGNvbnN0IHJlbmRlckZhcUl0ZW0gPSAoZmFxKSA9PiB7XG4gICAgY29uc3QgaXNPcGVuID0gb3BlbklkID09PSBmYXEuaWRcblxuICAgIHJldHVybiAoXG4gICAgICA8ZGl2XG4gICAgICAgIGtleT17ZmFxLmlkfVxuICAgICAgICBjbGFzc05hbWU9e2BcbiAgICAgICAgICByZWxhdGl2ZSBncm91cCByb3VuZGVkLTJ4bCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgYm9yZGVyIG92ZXJmbG93LWhpZGRlblxuICAgICAgICAgIGhvdmVyOi10cmFuc2xhdGUteS0wLjVcbiAgICAgICAgICAke1xuICAgICAgICAgICAgaXNPcGVuXG4gICAgICAgICAgICAgID8gJ2JnLXdoaXRlIGRhcms6YmctWyMwQjE0MjRdIGJvcmRlci1bIzAwQTZGRl0gc2hhZG93LWxnIHNoYWRvdy1bIzAwQTZGRl0vMTUgZGFyazpzaGFkb3ctWzBfMTBweF8zMHB4X3JnYmEoMCwxNjYsMjU1LDAuMjIpXSByaW5nLTEgcmluZy1bIzAwQTZGRl0vMzAnXG4gICAgICAgICAgICAgIDogJ2JnLXdoaXRlIGRhcms6YmctWyMwOTExMjBdIGJvcmRlci1zbGF0ZS0yMDAvOTAgZGFyazpib3JkZXItd2hpdGUvMTAgc2hhZG93LXNtIGhvdmVyOmJvcmRlci1bIzAwQTZGRl0vNjAgZGFyazpob3Zlcjpib3JkZXItWyMwMEE2RkZdLzYwIGhvdmVyOnNoYWRvdy1tZCBob3ZlcjpzaGFkb3ctWyMwMEE2RkZdLzEwIGRhcms6aG92ZXI6c2hhZG93LVswXzhweF8yNXB4X3JnYmEoMCwxNjYsMjU1LDAuMTQpXSdcbiAgICAgICAgICB9XG4gICAgICAgIGB9XG4gICAgICA+XG4gICAgICAgIHsvKiBUb3Agc3VidGxlIGhvdmVyIC8gYWN0aXZlIGFjY2VudCBiZWFtICovfVxuICAgICAgICA8ZGl2XG4gICAgICAgICAgY2xhc3NOYW1lPXtgYWJzb2x1dGUgdG9wLTAgbGVmdC0wIHJpZ2h0LTAgaC1bMnB4XSBiZy1ncmFkaWVudC10by1yIGZyb20tdHJhbnNwYXJlbnQgdmlhLVsjMDBBNkZGXSB0by10cmFuc3BhcmVudCB0cmFuc2l0aW9uLW9wYWNpdHkgZHVyYXRpb24tMzAwICR7XG4gICAgICAgICAgICBpc09wZW4gPyAnb3BhY2l0eS0xMDAnIDogJ29wYWNpdHktMCBncm91cC1ob3ZlcjpvcGFjaXR5LTEwMCdcbiAgICAgICAgICB9YH1cbiAgICAgICAgLz5cblxuICAgICAgICA8YnV0dG9uXG4gICAgICAgICAgaWQ9e2BmYXEtYnRuLSR7ZmFxLmlkfWB9XG4gICAgICAgICAgdHlwZT1cImJ1dHRvblwiXG4gICAgICAgICAgYXJpYS1leHBhbmRlZD17aXNPcGVufVxuICAgICAgICAgIGFyaWEtY29udHJvbHM9e2BmYXEtcGFuZWwtJHtmYXEuaWR9YH1cbiAgICAgICAgICBvbkNsaWNrPXsoKSA9PiB0b2dnbGUoZmFxLmlkKX1cbiAgICAgICAgICBjbGFzc05hbWU9XCJ3LWZ1bGwgZmxleCBpdGVtcy1zdGFydCBqdXN0aWZ5LWJldHdlZW4gZ2FwLTMuNSBwLTQgc206cC01IHRleHQtbGVmdCBjdXJzb3ItcG9pbnRlciB0cmFuc2l0aW9uLWNvbG9yc1wiXG4gICAgICAgID5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtc3RhcnQgZ2FwLTNcIj5cbiAgICAgICAgICAgIDxzcGFuXG4gICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvbnQtbW9ubyB0ZXh0LXhzIGZvbnQtYmxhY2sgcHgtMiBweS0wLjUgcm91bmRlZC1tZCBtdC0wLjUgc2hyaW5rLTAgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMjAwICR7XG4gICAgICAgICAgICAgICAgaXNPcGVuXG4gICAgICAgICAgICAgICAgICA/ICdiZy1bIzAwQTZGRl0gdGV4dC13aGl0ZSBzaGFkb3cteHMgc2hhZG93LVsjMDBBNkZGXS80MCdcbiAgICAgICAgICAgICAgICAgIDogJ2JnLXNsYXRlLTEwMCBkYXJrOmJnLXdoaXRlLzUgdGV4dC1zbGF0ZS01MDAgZGFyazp0ZXh0LXNsYXRlLTQwMCBncm91cC1ob3Zlcjp0ZXh0LVsjMDBBNkZGXSdcbiAgICAgICAgICAgICAgfWB9XG4gICAgICAgICAgICA+XG4gICAgICAgICAgICAgIHtmYXEubnVtfVxuICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgICAgPHNwYW5cbiAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgdGV4dC1zbSBzbTp0ZXh0LVsxNXB4XSBmb250LWJvbGQgbGVhZGluZy1zbnVnIHRyYW5zaXRpb24tY29sb3JzIGR1cmF0aW9uLTIwMCAke1xuICAgICAgICAgICAgICAgIGlzT3BlblxuICAgICAgICAgICAgICAgICAgPyAndGV4dC1bIzAwQTZGRl0nXG4gICAgICAgICAgICAgICAgICA6ICd0ZXh0LXNsYXRlLTkwMCBkYXJrOnRleHQtd2hpdGUgZ3JvdXAtaG92ZXI6dGV4dC1bIzAwQTZGRl0nXG4gICAgICAgICAgICAgIH1gfVxuICAgICAgICAgICAgPlxuICAgICAgICAgICAgICB7ZmFxLnF1ZXN0aW9ufVxuICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICAgIGFuaW1hdGU9e3sgcm90YXRlOiBpc09wZW4gPyAxODAgOiAwIH19XG4gICAgICAgICAgICB0cmFuc2l0aW9uPXt7IGR1cmF0aW9uOiAwLjI1IH19XG4gICAgICAgICAgICBjbGFzc05hbWU9e2B3LTcgaC03IHJvdW5kZWQteGwgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgc2hyaW5rLTAgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMjAwICR7XG4gICAgICAgICAgICAgIGlzT3BlblxuICAgICAgICAgICAgICAgID8gJ2JnLVsjMDBBNkZGXS8xNSB0ZXh0LVsjMDBBNkZGXSBib3JkZXIgYm9yZGVyLVsjMDBBNkZGXS80MCBzaGFkb3cteHMnXG4gICAgICAgICAgICAgICAgOiAnYmctc2xhdGUtMTAwIGRhcms6Ymctd2hpdGUvNSB0ZXh0LXNsYXRlLTQwMCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMC82MCBkYXJrOmJvcmRlci13aGl0ZS81IGdyb3VwLWhvdmVyOmJvcmRlci1bIzAwQTZGRl0vNDAgZ3JvdXAtaG92ZXI6dGV4dC1bIzAwQTZGRl0nXG4gICAgICAgICAgICB9YH1cbiAgICAgICAgICAgIGFyaWEtaGlkZGVuPVwidHJ1ZVwiXG4gICAgICAgICAgPlxuICAgICAgICAgICAgPENoZXZyb25Eb3duIGNsYXNzTmFtZT1cInctNCBoLTRcIiAvPlxuICAgICAgICAgIDwvbW90aW9uLmRpdj5cbiAgICAgICAgPC9idXR0b24+XG5cbiAgICAgICAgPEFuaW1hdGVQcmVzZW5jZSBpbml0aWFsPXtmYWxzZX0+XG4gICAgICAgICAge2lzT3BlbiAmJiAoXG4gICAgICAgICAgICA8bW90aW9uLmRpdlxuICAgICAgICAgICAgICBpZD17YGZhcS1wYW5lbC0ke2ZhcS5pZH1gfVxuICAgICAgICAgICAgICByb2xlPVwicmVnaW9uXCJcbiAgICAgICAgICAgICAgYXJpYS1sYWJlbGxlZGJ5PXtgZmFxLWJ0bi0ke2ZhcS5pZH1gfVxuICAgICAgICAgICAgICBpbml0aWFsPXtwcmVmZXJzUmVkdWNlZE1vdGlvbiA/IHt9IDogeyBoZWlnaHQ6IDAsIG9wYWNpdHk6IDAgfX1cbiAgICAgICAgICAgICAgYW5pbWF0ZT17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgaGVpZ2h0OiAnYXV0bycsIG9wYWNpdHk6IDEgfX1cbiAgICAgICAgICAgICAgZXhpdD17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgaGVpZ2h0OiAwLCBvcGFjaXR5OiAwIH19XG4gICAgICAgICAgICAgIHRyYW5zaXRpb249e3sgZHVyYXRpb246IDAuMjUgfX1cbiAgICAgICAgICAgICAgY2xhc3NOYW1lPVwib3ZlcmZsb3ctaGlkZGVuXCJcbiAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJweC00IHNtOnB4LTUgcGItNCBwdC0xIHRleHQteHMgc206dGV4dC1zbSB0ZXh0LXNsYXRlLTYwMCBkYXJrOnRleHQtc2xhdGUtMzAwIGxlYWRpbmctcmVsYXhlZCBib3JkZXItdCBib3JkZXItc2xhdGUtMTAwIGRhcms6Ym9yZGVyLXdoaXRlLzUgZm9udC1ub3JtYWwgcGwtWzQ0cHhdIHNtOnBsLVs0OHB4XVwiPlxuICAgICAgICAgICAgICAgIHtmYXEuYW5zd2VyfVxuICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgIDwvbW90aW9uLmRpdj5cbiAgICAgICAgICApfVxuICAgICAgICA8L0FuaW1hdGVQcmVzZW5jZT5cbiAgICAgIDwvZGl2PlxuICAgIClcbiAgfVxuXG4gIHJldHVybiAoXG4gICAgPHNlY3Rpb25cbiAgICAgIGlkPVwiZmFxXCJcbiAgICAgIGNsYXNzTmFtZT1cInJlbGF0aXZlIHB5LTggc206cHktMTAgbGc6cHktMTIgb3ZlcmZsb3ctaGlkZGVuIGJnLXNsYXRlLTUwIGRhcms6YmctWyMwNzBEMThdIHRleHQtc2xhdGUtOTAwIGRhcms6dGV4dC13aGl0ZSBib3JkZXItdCBib3JkZXItYiBib3JkZXItc2xhdGUtMjAwLzgwIGRhcms6Ym9yZGVyLXdoaXRlLzEwIHRyYW5zaXRpb24tY29sb3JzIGR1cmF0aW9uLTMwMFwiXG4gICAgICBhcmlhLWxhYmVsPVwiRnJlcXVlbnRseSBBc2tlZCBRdWVzdGlvbnMgYWJvdXQgQjJCIEFwcG9pbnRtZW50IFNldHRpbmdcIlxuICAgID5cbiAgICAgIHsvKiDilIDilIAgQW1iaWVudCBCYWNrZ3JvdW5kIExpZ2h0aW5nIOKUgOKUgCAqL31cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYWJzb2x1dGUgaW5zZXQtMCBwb2ludGVyLWV2ZW50cy1ub25lXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+XG4gICAgICAgIDxkaXZcbiAgICAgICAgICBjbGFzc05hbWU9XCJhYnNvbHV0ZSBpbnNldC0wIG9wYWNpdHktWzAuMDI1XSBkYXJrOm9wYWNpdHktWzAuMDM1XVwiXG4gICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgIGJhY2tncm91bmRJbWFnZTpcbiAgICAgICAgICAgICAgJ3JhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgMXB4IDFweCwgY3VycmVudENvbG9yIDFweCwgdHJhbnNwYXJlbnQgMCknLFxuICAgICAgICAgICAgYmFja2dyb3VuZFNpemU6ICcyOHB4IDI4cHgnLFxuICAgICAgICAgIH19XG4gICAgICAgIC8+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYWJzb2x1dGUgYm90dG9tLTEwIGxlZnQtMS8yIC10cmFuc2xhdGUteC0xLzIgdy1bNzAwcHhdIGgtWzM1MHB4XSBiZy1bIzAwQTZGRl0vMTAgcm91bmRlZC1mdWxsIGJsdXItWzE2MHB4XSBwb2ludGVyLWV2ZW50cy1ub25lXCIgLz5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlIG1heC13LVsxMzIwcHhdIG14LWF1dG8gcHgtNCBzbTpweC02IGxnOnB4LThcIj5cbiAgICAgICAgey8qIOKUgOKUgCBTRUNUSU9OIEhFQURFUiDilIDilIAgKi99XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC1jZW50ZXIgbWF4LXctM3hsIG14LWF1dG8gbWItNCBzbTptYi02XCI+XG4gICAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICAgIGluaXRpYWw9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDAsIHk6IDEwIH19XG4gICAgICAgICAgICB3aGlsZUluVmlldz17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgICAgdmlld3BvcnQ9e3sgb25jZTogdHJ1ZSB9fVxuICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC40IH19XG4gICAgICAgICAgICBjbGFzc05hbWU9XCJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgcHgtMy41IHB5LTEgcm91bmRlZC1mdWxsIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIGRhcms6Ym9yZGVyLVsjMDBBNkZGXS8zMCBiZy13aGl0ZS85MCBkYXJrOmJnLVsjMEExNDI2XS85MCBiYWNrZHJvcC1ibHVyLW1kIG1iLTIuNSBzaGFkb3cteHNcIlxuICAgICAgICAgID5cbiAgICAgICAgICAgIDxIZWxwQ2lyY2xlIGNsYXNzTmFtZT1cInctMy41IGgtMy41IHRleHQtWyMwMEE2RkZdIGFuaW1hdGUtcHVsc2VcIiAvPlxuICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bMTFweF0gZm9udC1tb25vIGZvbnQtYm9sZCB0cmFja2luZy1bMC4yZW1dIHRleHQtWyMwMEE2RkZdIHVwcGVyY2FzZVwiPlxuICAgICAgICAgICAgICBGQVFcbiAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICA8L21vdGlvbi5kaXY+XG5cbiAgICAgICAgICA8bW90aW9uLmgyXG4gICAgICAgICAgICBpbml0aWFsPXtwcmVmZXJzUmVkdWNlZE1vdGlvbiA/IHt9IDogeyBvcGFjaXR5OiAwLCB5OiAxNCB9fVxuICAgICAgICAgICAgd2hpbGVJblZpZXc9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDEsIHk6IDAgfX1cbiAgICAgICAgICAgIHZpZXdwb3J0PXt7IG9uY2U6IHRydWUgfX1cbiAgICAgICAgICAgIHRyYW5zaXRpb249e3sgZHVyYXRpb246IDAuNDUsIGRlbGF5OiAwLjA4IH19XG4gICAgICAgICAgICBjbGFzc05hbWU9XCJ0ZXh0LTJ4bCBzbTp0ZXh0LTN4bCBtZDp0ZXh0LTR4bCBsZzp0ZXh0LTV4bCBmb250LWJsYWNrIHRyYWNraW5nLXRpZ2h0IGxlYWRpbmctdGlnaHQgdXBwZXJjYXNlXCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXNsYXRlLTkwMCBkYXJrOnRleHQtd2hpdGVcIj5GcmVxdWVudGx5IEFza2VkIDwvc3Bhbj5cbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtWyMwMEE2RkZdIGRyb3Atc2hhZG93LVswXzBfMjBweF9yZ2JhKDAsMTY2LDI1NSwwLjQpXVwiPlxuICAgICAgICAgICAgICBRdWVzdGlvbnNcbiAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICA8L21vdGlvbi5oMj5cblxuICAgICAgICAgIDxtb3Rpb24ucFxuICAgICAgICAgICAgaW5pdGlhbD17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMCwgeTogMTIgfX1cbiAgICAgICAgICAgIHdoaWxlSW5WaWV3PXtwcmVmZXJzUmVkdWNlZE1vdGlvbiA/IHt9IDogeyBvcGFjaXR5OiAxLCB5OiAwIH19XG4gICAgICAgICAgICB2aWV3cG9ydD17eyBvbmNlOiB0cnVlIH19XG4gICAgICAgICAgICB0cmFuc2l0aW9uPXt7IGR1cmF0aW9uOiAwLjQ1LCBkZWxheTogMC4xMiB9fVxuICAgICAgICAgICAgY2xhc3NOYW1lPVwidGV4dC1zbSBzbTp0ZXh0LWJhc2UgdGV4dC1zbGF0ZS02MDAgZGFyazp0ZXh0LXNsYXRlLTQwMCBsZWFkaW5nLXJlbGF4ZWQgbWF4LXctMnhsIG14LWF1dG8gbXQtMiBmb250LW5vcm1hbFwiXG4gICAgICAgICAgPlxuICAgICAgICAgICAgRXZlcnl0aGluZyB5b3UgbmVlZCB0byBrbm93IGFib3V0IG91ciBlbnRlcnByaXNlIEIyQiBhcHBvaW50bWVudCBzZXR0aW5nIG1ldGhvZG9sb2d5LCBxdWFsaWZpY2F0aW9uIHN0YW5kYXJkcywgYW5kIGNhbGVuZGFyIGRlbGl2ZXJ5LlxuICAgICAgICAgIDwvbW90aW9uLnA+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIHsvKiDilIDilIAgMi1DT0xVTU4gU1BMSVQgQUNDT1JESU9OIChIQUxGIExFRlQsIEhBTEYgUklHSFQpIOKUgOKUgCAqL31cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkIGdyaWQtY29scy0xIGxnOmdyaWQtY29scy0yIGdhcC0yIHNtOmdhcC0yLjUgaXRlbXMtc3RhcnRcIj5cbiAgICAgICAgICB7LyogTGVmdCBDb2x1bW4gKDAxIHRvIDA0KSAqL31cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInNwYWNlLXktMlwiPlxuICAgICAgICAgICAge2xlZnRGYXFzLm1hcChyZW5kZXJGYXFJdGVtKX1cbiAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgIHsvKiBSaWdodCBDb2x1bW4gKDA1IHRvIDA4KSAqL31cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInNwYWNlLXktMlwiPlxuICAgICAgICAgICAge3JpZ2h0RmFxcy5tYXAocmVuZGVyRmFxSXRlbSl9XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9zZWN0aW9uPlxuICApXG59XG5cbmV4cG9ydCBkZWZhdWx0IEZBUVxuIl0sImZpbGUiOiJDOi9Vc2Vycy9IUC9EZXNrdG9wL1RHUy9UYXJhal9HbG9iYWxsL2NsaWVudC9zcmMvcGFnZXMvQjJiQXBwb2ludG1lbnRTZXR0aW5nL2NvbXBvbmVudHMvRkFRLmpzeCJ9

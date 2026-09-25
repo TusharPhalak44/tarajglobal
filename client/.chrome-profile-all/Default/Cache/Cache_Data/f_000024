@@ -1,0 +1,719 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/Terms/index.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import ChatBot from "/src/components/chatbot/ChatBot.jsx";
+import SEO from "/src/components/common/SEO/index.js";
+const termsSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms & Conditions | Taraj Global",
+  "url": "https://tarajglobal.com/terms",
+  "description": "Terms of Service and legal agreements governing the use of Taraj Global's website, marketing services, and digital solutions."
+};
+function Terms() {
+  return /* @__PURE__ */ jsxDEV(Fragment, { children: [
+    /* @__PURE__ */ jsxDEV(
+      SEO,
+      {
+        title: "Terms & Conditions | Service Agreement | Taraj Global",
+        description: "Review the Terms & Conditions governing Taraj Global's demand generation and lead generation services, intellectual property, and client engagements.",
+        keywords: "Taraj Global terms, terms and conditions, B2B marketing terms of service, lead generation agreement",
+        canonical: "/terms",
+        ogTitle: "Terms & Conditions | Taraj Global",
+        ogDescription: "Read the terms and conditions governing the use of Taraj Global's services.",
+        schemaJson: termsSchema
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+        lineNumber: 35,
+        columnNumber: 7
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV("div", { className: "min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "max-w-4xl mx-auto", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-surface border border-border rounded-lg overflow-hidden", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "bg-gradient-to-r from-cta to-accent px-6 py-8", children: [
+          /* @__PURE__ */ jsxDEV("h1", { className: "text-3xl font-bold text-text-primary", children: "Terms & Conditions" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 48,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("p", { className: "text-text-primary/80 mt-2", children: "Last Updated: January 2025" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 49,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+          lineNumber: 47,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "px-6 py-8 space-y-8", children: [
+          /* @__PURE__ */ jsxDEV("section", { className: "text-text-secondary", children: /* @__PURE__ */ jsxDEV("p", { className: "text-lg", children: "Welcome to Taraj Global. These Terms & Conditions govern your use of our website, services, and products. By accessing or using our services, you agree to be bound by these terms." }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 55,
+            columnNumber: 15
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 54,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("nav", { className: "border-b border-border pb-6", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-lg font-semibold text-text-primary mb-4", children: "Table of Contents" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 62,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("ul", { className: "space-y-2 text-sm text-text-secondary", children: [
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#acceptance", className: "text-primary hover:text-cta transition-colors", children: "1. Acceptance of Terms" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 64,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 64,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#services", className: "text-primary hover:text-cta transition-colors", children: "2. Description of Services" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 65,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 65,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#user-accounts", className: "text-primary hover:text-cta transition-colors", children: "3. User Accounts" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 66,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 66,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#user-conduct", className: "text-primary hover:text-cta transition-colors", children: "4. User Conduct" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 67,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 67,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#intellectual-property", className: "text-primary hover:text-cta transition-colors", children: "5. Intellectual Property" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 68,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 68,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#payment", className: "text-primary hover:text-cta transition-colors", children: "6. Payment & Billing" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 69,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 69,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#cancellation", className: "text-primary hover:text-cta transition-colors", children: "7. Cancellation & Refunds" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 70,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 70,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#limitation", className: "text-primary hover:text-cta transition-colors", children: "8. Limitation of Liability" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 71,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 71,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#termination", className: "text-primary hover:text-cta transition-colors", children: "9. Termination" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 72,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 72,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#governing-law", className: "text-primary hover:text-cta transition-colors", children: "10. Governing Law" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 73,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 73,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV("a", { href: "#contact", className: "text-primary hover:text-cta transition-colors", children: "11. Contact Information" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 74,
+                columnNumber: 21
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 74,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 63,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 61,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "acceptance", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "1. Acceptance of Terms" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 80,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "By accessing and using Taraj Global's website, services, and products, you acknowledge that you have read, understood, and agree to be bound by these Terms & Conditions. If you do not agree to these terms, please do not use our services." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 82,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "We reserve the right to modify these terms at any time. Your continued use of our services after any changes constitutes acceptance of the updated terms." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 83,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 81,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 79,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "services", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "2. Description of Services" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 89,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "Taraj Global provides [describe your services here - e.g., digital marketing solutions, web development services, consulting, etc.]. We reserve the right to modify, suspend, or discontinue any service at any time without prior notice." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 91,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "We do not guarantee that our services will be uninterrupted, secure, or error-free. We may also impose limits on certain features or restrict access to parts or all of our services without notice." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 92,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 90,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 88,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "user-accounts", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "3. User Accounts" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 98,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "To access certain features of our services, you may be required to create an account. You are responsible for:" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 100,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("ul", { className: "list-disc pl-6 space-y-2", children: [
+                /* @__PURE__ */ jsxDEV("li", { children: "Maintaining the confidentiality of your account credentials" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 102,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "All activities that occur under your account" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 103,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Notifying us immediately of any unauthorized use of your account" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 104,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Providing accurate, current, and complete information" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 105,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 101,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "You agree not to share your account credentials with any third party. You are solely responsible for any damage resulting from your failure to maintain account security." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 107,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 99,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 97,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "user-conduct", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "4. User Conduct" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 113,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "You agree to use our services only for lawful purposes and in accordance with these Terms. You agree NOT to:" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 115,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("ul", { className: "list-disc pl-6 space-y-2", children: [
+                /* @__PURE__ */ jsxDEV("li", { children: "Use the services for any illegal purpose or to solicit others to perform unlawful acts" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 117,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Violate any international, federal, provincial, or local regulations or laws" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 118,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Infringe upon or violate our intellectual property rights or those of others" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 119,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 120,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Submit false or misleading information" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 121,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Upload viruses or malicious code that could damage our services or others' systems" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 122,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Attempt to gain unauthorized access to our systems, networks, or data" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 123,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Interfere with or disrupt our services or servers" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 124,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Use our services to distribute spam or unsolicited communications" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 125,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 116,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 114,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 112,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "intellectual-property", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "5. Intellectual Property" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 132,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "All content, features, and functionality of the Taraj Global website, including but not limited to text, graphics, logos, designs, software, and code, are the exclusive property of Taraj Global and are protected by international copyright, trademark, and other intellectual property laws." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 134,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "You may not reproduce, distribute, modify, create derivative works, publicly display, or perform any content from our services without our prior written consent." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 135,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "Any feedback, suggestions, or ideas you provide to us regarding our services become our property and may be used without restriction or compensation." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 136,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 133,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 131,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "payment", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "6. Payment & Billing" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 142,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "For paid services, you agree to provide accurate, current, and complete billing information. You agree to pay all charges incurred under your account at the prices in effect when incurred." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 144,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "We reserve the right to change our prices at any time. Any price changes will apply to new purchases only. We may offer free trials or promotional rates at our discretion." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 145,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "Payment is due upon receipt of invoice unless otherwise agreed in writing. Late payments may incur interest charges or service suspension." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 146,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 143,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 141,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "cancellation", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "7. Cancellation & Refunds" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 152,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "You may cancel your subscription or service at any time by following the cancellation procedure outlined in your account settings or by contacting our support team." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 154,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "Refunds will be processed according to our refund policy:" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 155,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("ul", { className: "list-disc pl-6 space-y-2", children: [
+                /* @__PURE__ */ jsxDEV("li", { children: "Services not yet rendered may be eligible for full refund" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 157,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Partial refunds may be available for services in progress" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 158,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Completed services are generally non-refundable" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 159,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Refund requests must be made within 30 days of service delivery" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 160,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 156,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 153,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 151,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "limitation", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "8. Limitation of Liability" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 167,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "To the maximum extent permitted by law, Taraj Global shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, use, goodwill, or other intangible losses." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 169,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "Our total liability to you for all claims shall not exceed the amount you paid to us in the twelve (12) months preceding the claim. Some jurisdictions do not allow the exclusion of certain warranties or limitations of liability, so the above exclusions may not apply to you." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 170,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 168,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 166,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "termination", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "9. Termination" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 176,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "We reserve the right to terminate or suspend your account and access to our services at any time, without prior notice, for any reason, including but not limited to:" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 178,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("ul", { className: "list-disc pl-6 space-y-2", children: [
+                /* @__PURE__ */ jsxDEV("li", { children: "Breach of these Terms & Conditions" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 180,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Violation of applicable laws or regulations" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 181,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Fraudulent or illegal activities" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 182,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("li", { children: "Extended period of account inactivity" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 183,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 179,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "Upon termination, your right to use our services will immediately cease. All provisions of these Terms shall survive termination, including ownership provisions, warranty disclaimers, and limitations of liability." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 185,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 177,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 175,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "governing-law", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "10. Governing Law" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 191,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "These Terms & Conditions shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 193,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { children: "Any disputes arising from these terms or your use of our services shall be resolved exclusively in the courts of [Your Jurisdiction]. You agree to submit to the personal jurisdiction of these courts." }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 194,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 192,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 190,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("section", { id: "contact", className: "space-y-4", children: [
+            /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl font-bold text-text-primary border-b-2 border-cta pb-2", children: "11. Contact Information" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 200,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary space-y-3", children: [
+              /* @__PURE__ */ jsxDEV("p", { children: "If you have any questions about these Terms & Conditions, please contact us:" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 202,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "bg-background border border-border p-4 rounded-lg space-y-2", children: [
+                /* @__PURE__ */ jsxDEV("p", { children: [
+                  /* @__PURE__ */ jsxDEV("strong", { className: "text-text-primary", children: "Email:" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                    lineNumber: 204,
+                    columnNumber: 22
+                  }, this),
+                  " info@tarajglobal.com"
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 204,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("p", { children: [
+                  /* @__PURE__ */ jsxDEV("strong", { className: "text-text-primary", children: "Phone:" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                    lineNumber: 205,
+                    columnNumber: 22
+                  }, this),
+                  " +91 96655-99442"
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 205,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV("p", { children: [
+                  /* @__PURE__ */ jsxDEV("strong", { className: "text-text-primary", children: "Address:" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                    lineNumber: 206,
+                    columnNumber: 22
+                  }, this),
+                  " The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014"
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                  lineNumber: 206,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+                lineNumber: 203,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+              lineNumber: 201,
+              columnNumber: 15
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 199,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "bg-primary/10 border border-primary/30 rounded-lg p-6 mt-8", children: /* @__PURE__ */ jsxDEV("p", { className: "text-text-primary font-medium", children: "By using Taraj Global services, you acknowledge that you have read, understood, and agree to be bound by these Terms & Conditions." }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 213,
+            columnNumber: 15
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+            lineNumber: 212,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+          lineNumber: 52,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+        lineNumber: 46,
+        columnNumber: 9
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+        lineNumber: 45,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ jsxDEV(ChatBot, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+        lineNumber: 220,
+        columnNumber: 7
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+      lineNumber: 44,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx",
+    lineNumber: 34,
+    columnNumber: 5
+  }, this);
+}
+_c = Terms;
+export default Terms;
+var _c;
+$RefreshReg$(_c, "Terms");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Terms/index.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6IkFBY0ksbUJBQ0UsY0FERjs7Ozs7Ozs7Ozs7Ozs7OztBQWRKLE9BQU9BLFdBQVc7QUFDbEIsT0FBT0MsYUFBYTtBQUNwQixPQUFPQyxTQUFTO0FBRWhCLE1BQU1DLGNBQWM7QUFBQSxFQUNsQixZQUFZO0FBQUEsRUFDWixTQUFTO0FBQUEsRUFDVCxRQUFRO0FBQUEsRUFDUixPQUFPO0FBQUEsRUFDUCxlQUFlO0FBQ2pCO0FBRUEsU0FBU0MsUUFBUTtBQUNmLFNBQ0UsbUNBQ0U7QUFBQTtBQUFBLE1BQUM7QUFBQTtBQUFBLFFBQ0MsT0FBTTtBQUFBLFFBQ04sYUFBWTtBQUFBLFFBQ1osVUFBUztBQUFBLFFBQ1QsV0FBVTtBQUFBLFFBQ1YsU0FBUTtBQUFBLFFBQ1IsZUFBYztBQUFBLFFBQ2QsWUFBWUQ7QUFBQUE7QUFBQUEsTUFQZDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsSUFPMEI7QUFBQSxJQUUxQix1QkFBQyxTQUFJLFdBQVUseURBQ2Y7QUFBQSw2QkFBQyxTQUFJLFdBQVUscUJBQ2IsaUNBQUMsU0FBSSxXQUFVLDhEQUNiO0FBQUEsK0JBQUMsU0FBSSxXQUFVLGlEQUNiO0FBQUEsaUNBQUMsUUFBRyxXQUFVLHdDQUF1QyxrQ0FBckQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFBdUU7QUFBQSxVQUN2RSx1QkFBQyxPQUFFLFdBQVUsNkJBQTRCLDBDQUF6QztBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQUFtRTtBQUFBLGFBRnJFO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFHQTtBQUFBLFFBRUEsdUJBQUMsU0FBSSxXQUFVLHVCQUViO0FBQUEsaUNBQUMsYUFBUSxXQUFVLHVCQUNqQixpQ0FBQyxPQUFFLFdBQVUsV0FBUyxtTUFBdEI7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFFQSxLQUhGO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBSUE7QUFBQSxVQUdBLHVCQUFDLFNBQUksV0FBVSwrQkFDYjtBQUFBLG1DQUFDLFFBQUcsV0FBVSxnREFBK0MsaUNBQTdEO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQThFO0FBQUEsWUFDOUUsdUJBQUMsUUFBRyxXQUFVLHlDQUNaO0FBQUEscUNBQUMsUUFBRyxpQ0FBQyxPQUFFLE1BQUssZUFBYyxXQUFVLGlEQUFnRCxzQ0FBaEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBc0csS0FBMUc7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBOEc7QUFBQSxjQUM5Ryx1QkFBQyxRQUFHLGlDQUFDLE9BQUUsTUFBSyxhQUFZLFdBQVUsaURBQWdELDBDQUE5RTtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUF3RyxLQUE1RztBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUFnSDtBQUFBLGNBQ2hILHVCQUFDLFFBQUcsaUNBQUMsT0FBRSxNQUFLLGtCQUFpQixXQUFVLGlEQUFnRCxnQ0FBbkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBbUcsS0FBdkc7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBMkc7QUFBQSxjQUMzRyx1QkFBQyxRQUFHLGlDQUFDLE9BQUUsTUFBSyxpQkFBZ0IsV0FBVSxpREFBZ0QsK0JBQWxGO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQWlHLEtBQXJHO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQXlHO0FBQUEsY0FDekcsdUJBQUMsUUFBRyxpQ0FBQyxPQUFFLE1BQUssMEJBQXlCLFdBQVUsaURBQWdELHdDQUEzRjtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUFtSCxLQUF2SDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUEySDtBQUFBLGNBQzNILHVCQUFDLFFBQUcsaUNBQUMsT0FBRSxNQUFLLFlBQVcsV0FBVSxpREFBZ0Qsb0NBQTdFO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQWlHLEtBQXJHO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQXlHO0FBQUEsY0FDekcsdUJBQUMsUUFBRyxpQ0FBQyxPQUFFLE1BQUssaUJBQWdCLFdBQVUsaURBQWdELHlDQUFsRjtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUEyRyxLQUEvRztBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUFtSDtBQUFBLGNBQ25ILHVCQUFDLFFBQUcsaUNBQUMsT0FBRSxNQUFLLGVBQWMsV0FBVSxpREFBZ0QsMENBQWhGO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQTBHLEtBQTlHO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQWtIO0FBQUEsY0FDbEgsdUJBQUMsUUFBRyxpQ0FBQyxPQUFFLE1BQUssZ0JBQWUsV0FBVSxpREFBZ0QsOEJBQWpGO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQStGLEtBQW5HO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQXVHO0FBQUEsY0FDdkcsdUJBQUMsUUFBRyxpQ0FBQyxPQUFFLE1BQUssa0JBQWlCLFdBQVUsaURBQWdELGlDQUFuRjtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUFvRyxLQUF4RztBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUE0RztBQUFBLGNBQzVHLHVCQUFDLFFBQUcsaUNBQUMsT0FBRSxNQUFLLFlBQVcsV0FBVSxpREFBZ0QsdUNBQTdFO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQW9HLEtBQXhHO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQTRHO0FBQUEsaUJBWDlHO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBWUE7QUFBQSxlQWRGO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBZUE7QUFBQSxVQUdBLHVCQUFDLGFBQVEsSUFBRyxjQUFhLFdBQVUsYUFDakM7QUFBQSxtQ0FBQyxRQUFHLFdBQVUsbUVBQWtFLHNDQUFoRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUFzRztBQUFBLFlBQ3RHLHVCQUFDLFNBQUksV0FBVSxpQ0FDYjtBQUFBLHFDQUFDLE9BQUUsNlBBQUg7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBZ1A7QUFBQSxjQUNoUCx1QkFBQyxPQUFFLHlLQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQTRKO0FBQUEsaUJBRjlKO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBR0E7QUFBQSxlQUxGO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBTUE7QUFBQSxVQUdBLHVCQUFDLGFBQVEsSUFBRyxZQUFXLFdBQVUsYUFDL0I7QUFBQSxtQ0FBQyxRQUFHLFdBQVUsbUVBQWtFLDBDQUFoRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUEwRztBQUFBLFlBQzFHLHVCQUFDLFNBQUksV0FBVSxpQ0FDYjtBQUFBLHFDQUFDLE9BQUUsMFBBQUg7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBNk87QUFBQSxjQUM3Tyx1QkFBQyxPQUFFLG9OQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQXVNO0FBQUEsaUJBRnpNO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBR0E7QUFBQSxlQUxGO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBTUE7QUFBQSxVQUdBLHVCQUFDLGFBQVEsSUFBRyxpQkFBZ0IsV0FBVSxhQUNwQztBQUFBLG1DQUFDLFFBQUcsV0FBVSxtRUFBa0UsZ0NBQWhGO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQWdHO0FBQUEsWUFDaEcsdUJBQUMsU0FBSSxXQUFVLGlDQUNiO0FBQUEscUNBQUMsT0FBRSw4SEFBSDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUFpSDtBQUFBLGNBQ2pILHVCQUFDLFFBQUcsV0FBVSw0QkFDWjtBQUFBLHVDQUFDLFFBQUcsMkVBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBK0Q7QUFBQSxnQkFDL0QsdUJBQUMsUUFBRyw0REFBSjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUFnRDtBQUFBLGdCQUNoRCx1QkFBQyxRQUFHLGdGQUFKO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQW9FO0FBQUEsZ0JBQ3BFLHVCQUFDLFFBQUcscUVBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBeUQ7QUFBQSxtQkFKM0Q7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFLQTtBQUFBLGNBQ0EsdUJBQUMsT0FBRSx5TEFBSDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUE0SztBQUFBLGlCQVI5SztBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQVNBO0FBQUEsZUFYRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQVlBO0FBQUEsVUFHQSx1QkFBQyxhQUFRLElBQUcsZ0JBQWUsV0FBVSxhQUNuQztBQUFBLG1DQUFDLFFBQUcsV0FBVSxtRUFBa0UsK0JBQWhGO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQStGO0FBQUEsWUFDL0YsdUJBQUMsU0FBSSxXQUFVLGlDQUNiO0FBQUEscUNBQUMsT0FBRSw0SEFBSDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUErRztBQUFBLGNBQy9HLHVCQUFDLFFBQUcsV0FBVSw0QkFDWjtBQUFBLHVDQUFDLFFBQUcsc0dBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBMEY7QUFBQSxnQkFDMUYsdUJBQUMsUUFBRyw0RkFBSjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUFnRjtBQUFBLGdCQUNoRix1QkFBQyxRQUFHLDRGQUFKO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQWdGO0FBQUEsZ0JBQ2hGLHVCQUFDLFFBQUcsb0dBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBd0Y7QUFBQSxnQkFDeEYsdUJBQUMsUUFBRyxzREFBSjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUEwQztBQUFBLGdCQUMxQyx1QkFBQyxRQUFHLGtHQUFKO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQXNGO0FBQUEsZ0JBQ3RGLHVCQUFDLFFBQUcscUZBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBeUU7QUFBQSxnQkFDekUsdUJBQUMsUUFBRyxpRUFBSjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUFxRDtBQUFBLGdCQUNyRCx1QkFBQyxRQUFHLGlGQUFKO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQXFFO0FBQUEsbUJBVHZFO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBVUE7QUFBQSxpQkFaRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQWFBO0FBQUEsZUFmRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQWdCQTtBQUFBLFVBR0EsdUJBQUMsYUFBUSxJQUFHLHlCQUF3QixXQUFVLGFBQzVDO0FBQUEsbUNBQUMsUUFBRyxXQUFVLG1FQUFrRSx3Q0FBaEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFBd0c7QUFBQSxZQUN4Ryx1QkFBQyxTQUFJLFdBQVUsaUNBQ2I7QUFBQSxxQ0FBQyxPQUFFLGdUQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQW1TO0FBQUEsY0FDblMsdUJBQUMsT0FBRSxpTEFBSDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUFvSztBQUFBLGNBQ3BLLHVCQUFDLE9BQUUscUtBQUg7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBd0o7QUFBQSxpQkFIMUo7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFJQTtBQUFBLGVBTkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFPQTtBQUFBLFVBR0EsdUJBQUMsYUFBUSxJQUFHLFdBQVUsV0FBVSxhQUM5QjtBQUFBLG1DQUFDLFFBQUcsV0FBVSxtRUFBa0Usb0NBQWhGO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQW9HO0FBQUEsWUFDcEcsdUJBQUMsU0FBSSxXQUFVLGlDQUNiO0FBQUEscUNBQUMsT0FBRSw0TUFBSDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUErTDtBQUFBLGNBQy9MLHVCQUFDLE9BQUUsMkxBQUg7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBOEs7QUFBQSxjQUM5Syx1QkFBQyxPQUFFLDBKQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQTZJO0FBQUEsaUJBSC9JO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBSUE7QUFBQSxlQU5GO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBT0E7QUFBQSxVQUdBLHVCQUFDLGFBQVEsSUFBRyxnQkFBZSxXQUFVLGFBQ25DO0FBQUEsbUNBQUMsUUFBRyxXQUFVLG1FQUFrRSx5Q0FBaEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFBeUc7QUFBQSxZQUN6Ryx1QkFBQyxTQUFJLFdBQVUsaUNBQ2I7QUFBQSxxQ0FBQyxPQUFFLG9MQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQXVLO0FBQUEsY0FDdkssdUJBQUMsT0FBRSx5RUFBSDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUE0RDtBQUFBLGNBQzVELHVCQUFDLFFBQUcsV0FBVSw0QkFDWjtBQUFBLHVDQUFDLFFBQUcseUVBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBNkQ7QUFBQSxnQkFDN0QsdUJBQUMsUUFBRyx5RUFBSjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUE2RDtBQUFBLGdCQUM3RCx1QkFBQyxRQUFHLCtEQUFKO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQW1EO0FBQUEsZ0JBQ25ELHVCQUFDLFFBQUcsK0VBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBbUU7QUFBQSxtQkFKckU7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFLQTtBQUFBLGlCQVJGO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBU0E7QUFBQSxlQVhGO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBWUE7QUFBQSxVQUdBLHVCQUFDLGFBQVEsSUFBRyxjQUFhLFdBQVUsYUFDakM7QUFBQSxtQ0FBQyxRQUFHLFdBQVUsbUVBQWtFLDBDQUFoRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUEwRztBQUFBLFlBQzFHLHVCQUFDLFNBQUksV0FBVSxpQ0FDYjtBQUFBLHFDQUFDLE9BQUUsa1FBQUg7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBcVA7QUFBQSxjQUNyUCx1QkFBQyxPQUFFLGtTQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQXFSO0FBQUEsaUJBRnZSO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBR0E7QUFBQSxlQUxGO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBTUE7QUFBQSxVQUdBLHVCQUFDLGFBQVEsSUFBRyxlQUFjLFdBQVUsYUFDbEM7QUFBQSxtQ0FBQyxRQUFHLFdBQVUsbUVBQWtFLDhCQUFoRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUE4RjtBQUFBLFlBQzlGLHVCQUFDLFNBQUksV0FBVSxpQ0FDYjtBQUFBLHFDQUFDLE9BQUUscUxBQUg7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBd0s7QUFBQSxjQUN4Syx1QkFBQyxRQUFHLFdBQVUsNEJBQ1o7QUFBQSx1Q0FBQyxRQUFHLGtEQUFKO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQXNDO0FBQUEsZ0JBQ3RDLHVCQUFDLFFBQUcsMkRBQUo7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBK0M7QUFBQSxnQkFDL0MsdUJBQUMsUUFBRyxnREFBSjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUFvQztBQUFBLGdCQUNwQyx1QkFBQyxRQUFHLHFEQUFKO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBQXlDO0FBQUEsbUJBSjNDO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBS0E7QUFBQSxjQUNBLHVCQUFDLE9BQUUscU9BQUg7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFBd047QUFBQSxpQkFSMU47QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFTQTtBQUFBLGVBWEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFZQTtBQUFBLFVBR0EsdUJBQUMsYUFBUSxJQUFHLGlCQUFnQixXQUFVLGFBQ3BDO0FBQUEsbUNBQUMsUUFBRyxXQUFVLG1FQUFrRSxpQ0FBaEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFBaUc7QUFBQSxZQUNqRyx1QkFBQyxTQUFJLFdBQVUsaUNBQ2I7QUFBQSxxQ0FBQyxPQUFFLGlMQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQW9LO0FBQUEsY0FDcEssdUJBQUMsT0FBRSx1TkFBSDtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQUEwTTtBQUFBLGlCQUY1TTtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQUdBO0FBQUEsZUFMRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQU1BO0FBQUEsVUFHQSx1QkFBQyxhQUFRLElBQUcsV0FBVSxXQUFVLGFBQzlCO0FBQUEsbUNBQUMsUUFBRyxXQUFVLG1FQUFrRSx1Q0FBaEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFBdUc7QUFBQSxZQUN2Ryx1QkFBQyxTQUFJLFdBQVUsaUNBQ2I7QUFBQSxxQ0FBQyxPQUFFLDRGQUFIO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBQStFO0FBQUEsY0FDL0UsdUJBQUMsU0FBSSxXQUFVLCtEQUNiO0FBQUEsdUNBQUMsT0FBRTtBQUFBLHlDQUFDLFlBQU8sV0FBVSxxQkFBb0Isc0JBQXRDO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBQTRDO0FBQUEsa0JBQVM7QUFBQSxxQkFBeEQ7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBNkU7QUFBQSxnQkFDN0UsdUJBQUMsT0FBRTtBQUFBLHlDQUFDLFlBQU8sV0FBVSxxQkFBb0Isc0JBQXRDO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBQTRDO0FBQUEsa0JBQVM7QUFBQSxxQkFBeEQ7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBd0U7QUFBQSxnQkFDeEUsdUJBQUMsT0FBRTtBQUFBLHlDQUFDLFlBQU8sV0FBVSxxQkFBb0Isd0JBQXRDO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBQThDO0FBQUEsa0JBQVM7QUFBQSxxQkFBMUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFBeUo7QUFBQSxtQkFIM0o7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQkFJQTtBQUFBLGlCQU5GO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBT0E7QUFBQSxlQVRGO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBVUE7QUFBQSxVQUdBLHVCQUFDLFNBQUksV0FBVSw4REFDYixpQ0FBQyxPQUFFLFdBQVUsaUNBQStCLGtKQUE1QztBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQUVBLEtBSEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFJQTtBQUFBLGFBcEtGO0FBQUE7QUFBQTtBQUFBO0FBQUEsZUFxS0E7QUFBQSxXQTNLRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBNEtBLEtBN0tGO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUE4S0E7QUFBQSxNQUNBLHVCQUFDLGFBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUFRO0FBQUEsU0FoTFI7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQWlMRjtBQUFBLE9BM0xBO0FBQUE7QUFBQTtBQUFBO0FBQUEsU0E0TEE7QUFFSjtBQUFDRSxLQWhNUUQ7QUFrTVQsZUFBZUE7QUFBSyxJQUFBQztBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSZWFjdCIsIkNoYXRCb3QiLCJTRU8iLCJ0ZXJtc1NjaGVtYSIsIlRlcm1zIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiaW5kZXguanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCBDaGF0Qm90IGZyb20gJ0Bjb21wb25lbnRzL2NoYXRib3QvQ2hhdEJvdCdcbmltcG9ydCBTRU8gZnJvbSAnQGNvbXBvbmVudHMvY29tbW9uL1NFTydcblxuY29uc3QgdGVybXNTY2hlbWEgPSB7XG4gIFwiQGNvbnRleHRcIjogXCJodHRwczovL3NjaGVtYS5vcmdcIixcbiAgXCJAdHlwZVwiOiBcIldlYlBhZ2VcIixcbiAgXCJuYW1lXCI6IFwiVGVybXMgJiBDb25kaXRpb25zIHwgVGFyYWogR2xvYmFsXCIsXG4gIFwidXJsXCI6IFwiaHR0cHM6Ly90YXJhamdsb2JhbC5jb20vdGVybXNcIixcbiAgXCJkZXNjcmlwdGlvblwiOiBcIlRlcm1zIG9mIFNlcnZpY2UgYW5kIGxlZ2FsIGFncmVlbWVudHMgZ292ZXJuaW5nIHRoZSB1c2Ugb2YgVGFyYWogR2xvYmFsJ3Mgd2Vic2l0ZSwgbWFya2V0aW5nIHNlcnZpY2VzLCBhbmQgZGlnaXRhbCBzb2x1dGlvbnMuXCJcbn1cblxuZnVuY3Rpb24gVGVybXMoKSB7XG4gIHJldHVybiAoXG4gICAgPD5cbiAgICAgIDxTRU9cbiAgICAgICAgdGl0bGU9XCJUZXJtcyAmIENvbmRpdGlvbnMgfCBTZXJ2aWNlIEFncmVlbWVudCB8IFRhcmFqIEdsb2JhbFwiXG4gICAgICAgIGRlc2NyaXB0aW9uPVwiUmV2aWV3IHRoZSBUZXJtcyAmIENvbmRpdGlvbnMgZ292ZXJuaW5nIFRhcmFqIEdsb2JhbCdzIGRlbWFuZCBnZW5lcmF0aW9uIGFuZCBsZWFkIGdlbmVyYXRpb24gc2VydmljZXMsIGludGVsbGVjdHVhbCBwcm9wZXJ0eSwgYW5kIGNsaWVudCBlbmdhZ2VtZW50cy5cIlxuICAgICAgICBrZXl3b3Jkcz1cIlRhcmFqIEdsb2JhbCB0ZXJtcywgdGVybXMgYW5kIGNvbmRpdGlvbnMsIEIyQiBtYXJrZXRpbmcgdGVybXMgb2Ygc2VydmljZSwgbGVhZCBnZW5lcmF0aW9uIGFncmVlbWVudFwiXG4gICAgICAgIGNhbm9uaWNhbD1cIi90ZXJtc1wiXG4gICAgICAgIG9nVGl0bGU9XCJUZXJtcyAmIENvbmRpdGlvbnMgfCBUYXJhaiBHbG9iYWxcIlxuICAgICAgICBvZ0Rlc2NyaXB0aW9uPVwiUmVhZCB0aGUgdGVybXMgYW5kIGNvbmRpdGlvbnMgZ292ZXJuaW5nIHRoZSB1c2Ugb2YgVGFyYWogR2xvYmFsJ3Mgc2VydmljZXMuXCJcbiAgICAgICAgc2NoZW1hSnNvbj17dGVybXNTY2hlbWF9XG4gICAgICAvPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJtaW4taC1zY3JlZW4gYmctYmFja2dyb3VuZCBweS0xMiBweC00IHNtOnB4LTYgbGc6cHgtOFwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJtYXgtdy00eGwgbXgtYXV0b1wiPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJnLXN1cmZhY2UgYm9yZGVyIGJvcmRlci1ib3JkZXIgcm91bmRlZC1sZyBvdmVyZmxvdy1oaWRkZW5cIj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJnLWdyYWRpZW50LXRvLXIgZnJvbS1jdGEgdG8tYWNjZW50IHB4LTYgcHktOFwiPlxuICAgICAgICAgICAgPGgxIGNsYXNzTmFtZT1cInRleHQtM3hsIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeVwiPlRlcm1zICYgQ29uZGl0aW9uczwvaDE+XG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtcHJpbWFyeS84MCBtdC0yXCI+TGFzdCBVcGRhdGVkOiBKYW51YXJ5IDIwMjU8L3A+XG4gICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInB4LTYgcHktOCBzcGFjZS15LThcIj5cbiAgICAgICAgICAgIHsvKiBJbnRyb2R1Y3Rpb24gKi99XG4gICAgICAgICAgICA8c2VjdGlvbiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5XCI+XG4gICAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQtbGdcIj5cbiAgICAgICAgICAgICAgICBXZWxjb21lIHRvIFRhcmFqIEdsb2JhbC4gVGhlc2UgVGVybXMgJiBDb25kaXRpb25zIGdvdmVybiB5b3VyIHVzZSBvZiBvdXIgd2Vic2l0ZSwgc2VydmljZXMsIGFuZCBwcm9kdWN0cy4gQnkgYWNjZXNzaW5nIG9yIHVzaW5nIG91ciBzZXJ2aWNlcywgeW91IGFncmVlIHRvIGJlIGJvdW5kIGJ5IHRoZXNlIHRlcm1zLlxuICAgICAgICAgICAgICA8L3A+XG4gICAgICAgICAgICA8L3NlY3Rpb24+XG5cbiAgICAgICAgICAgIHsvKiBUYWJsZSBvZiBDb250ZW50cyAqL31cbiAgICAgICAgICAgIDxuYXYgY2xhc3NOYW1lPVwiYm9yZGVyLWIgYm9yZGVyLWJvcmRlciBwYi02XCI+XG4gICAgICAgICAgICAgIDxoMiBjbGFzc05hbWU9XCJ0ZXh0LWxnIGZvbnQtc2VtaWJvbGQgdGV4dC10ZXh0LXByaW1hcnkgbWItNFwiPlRhYmxlIG9mIENvbnRlbnRzPC9oMj5cbiAgICAgICAgICAgICAgPHVsIGNsYXNzTmFtZT1cInNwYWNlLXktMiB0ZXh0LXNtIHRleHQtdGV4dC1zZWNvbmRhcnlcIj5cbiAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj1cIiNhY2NlcHRhbmNlXCIgY2xhc3NOYW1lPVwidGV4dC1wcmltYXJ5IGhvdmVyOnRleHQtY3RhIHRyYW5zaXRpb24tY29sb3JzXCI+MS4gQWNjZXB0YW5jZSBvZiBUZXJtczwvYT48L2xpPlxuICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPVwiI3NlcnZpY2VzXCIgY2xhc3NOYW1lPVwidGV4dC1wcmltYXJ5IGhvdmVyOnRleHQtY3RhIHRyYW5zaXRpb24tY29sb3JzXCI+Mi4gRGVzY3JpcHRpb24gb2YgU2VydmljZXM8L2E+PC9saT5cbiAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj1cIiN1c2VyLWFjY291bnRzXCIgY2xhc3NOYW1lPVwidGV4dC1wcmltYXJ5IGhvdmVyOnRleHQtY3RhIHRyYW5zaXRpb24tY29sb3JzXCI+My4gVXNlciBBY2NvdW50czwvYT48L2xpPlxuICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPVwiI3VzZXItY29uZHVjdFwiIGNsYXNzTmFtZT1cInRleHQtcHJpbWFyeSBob3Zlcjp0ZXh0LWN0YSB0cmFuc2l0aW9uLWNvbG9yc1wiPjQuIFVzZXIgQ29uZHVjdDwvYT48L2xpPlxuICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPVwiI2ludGVsbGVjdHVhbC1wcm9wZXJ0eVwiIGNsYXNzTmFtZT1cInRleHQtcHJpbWFyeSBob3Zlcjp0ZXh0LWN0YSB0cmFuc2l0aW9uLWNvbG9yc1wiPjUuIEludGVsbGVjdHVhbCBQcm9wZXJ0eTwvYT48L2xpPlxuICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPVwiI3BheW1lbnRcIiBjbGFzc05hbWU9XCJ0ZXh0LXByaW1hcnkgaG92ZXI6dGV4dC1jdGEgdHJhbnNpdGlvbi1jb2xvcnNcIj42LiBQYXltZW50ICYgQmlsbGluZzwvYT48L2xpPlxuICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPVwiI2NhbmNlbGxhdGlvblwiIGNsYXNzTmFtZT1cInRleHQtcHJpbWFyeSBob3Zlcjp0ZXh0LWN0YSB0cmFuc2l0aW9uLWNvbG9yc1wiPjcuIENhbmNlbGxhdGlvbiAmIFJlZnVuZHM8L2E+PC9saT5cbiAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj1cIiNsaW1pdGF0aW9uXCIgY2xhc3NOYW1lPVwidGV4dC1wcmltYXJ5IGhvdmVyOnRleHQtY3RhIHRyYW5zaXRpb24tY29sb3JzXCI+OC4gTGltaXRhdGlvbiBvZiBMaWFiaWxpdHk8L2E+PC9saT5cbiAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj1cIiN0ZXJtaW5hdGlvblwiIGNsYXNzTmFtZT1cInRleHQtcHJpbWFyeSBob3Zlcjp0ZXh0LWN0YSB0cmFuc2l0aW9uLWNvbG9yc1wiPjkuIFRlcm1pbmF0aW9uPC9hPjwvbGk+XG4gICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9XCIjZ292ZXJuaW5nLWxhd1wiIGNsYXNzTmFtZT1cInRleHQtcHJpbWFyeSBob3Zlcjp0ZXh0LWN0YSB0cmFuc2l0aW9uLWNvbG9yc1wiPjEwLiBHb3Zlcm5pbmcgTGF3PC9hPjwvbGk+XG4gICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9XCIjY29udGFjdFwiIGNsYXNzTmFtZT1cInRleHQtcHJpbWFyeSBob3Zlcjp0ZXh0LWN0YSB0cmFuc2l0aW9uLWNvbG9yc1wiPjExLiBDb250YWN0IEluZm9ybWF0aW9uPC9hPjwvbGk+XG4gICAgICAgICAgICAgIDwvdWw+XG4gICAgICAgICAgICA8L25hdj5cblxuICAgICAgICAgICAgey8qIDEuIEFjY2VwdGFuY2Ugb2YgVGVybXMgKi99XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cImFjY2VwdGFuY2VcIiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBib3JkZXItYi0yIGJvcmRlci1jdGEgcGItMlwiPjEuIEFjY2VwdGFuY2Ugb2YgVGVybXM8L2gyPlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtdGV4dC1zZWNvbmRhcnkgc3BhY2UteS0zXCI+XG4gICAgICAgICAgICAgICAgPHA+QnkgYWNjZXNzaW5nIGFuZCB1c2luZyBUYXJhaiBHbG9iYWwncyB3ZWJzaXRlLCBzZXJ2aWNlcywgYW5kIHByb2R1Y3RzLCB5b3UgYWNrbm93bGVkZ2UgdGhhdCB5b3UgaGF2ZSByZWFkLCB1bmRlcnN0b29kLCBhbmQgYWdyZWUgdG8gYmUgYm91bmQgYnkgdGhlc2UgVGVybXMgJiBDb25kaXRpb25zLiBJZiB5b3UgZG8gbm90IGFncmVlIHRvIHRoZXNlIHRlcm1zLCBwbGVhc2UgZG8gbm90IHVzZSBvdXIgc2VydmljZXMuPC9wPlxuICAgICAgICAgICAgICAgIDxwPldlIHJlc2VydmUgdGhlIHJpZ2h0IHRvIG1vZGlmeSB0aGVzZSB0ZXJtcyBhdCBhbnkgdGltZS4gWW91ciBjb250aW51ZWQgdXNlIG9mIG91ciBzZXJ2aWNlcyBhZnRlciBhbnkgY2hhbmdlcyBjb25zdGl0dXRlcyBhY2NlcHRhbmNlIG9mIHRoZSB1cGRhdGVkIHRlcm1zLjwvcD5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L3NlY3Rpb24+XG5cbiAgICAgICAgICAgIHsvKiAyLiBEZXNjcmlwdGlvbiBvZiBTZXJ2aWNlcyAqL31cbiAgICAgICAgICAgIDxzZWN0aW9uIGlkPVwic2VydmljZXNcIiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBib3JkZXItYi0yIGJvcmRlci1jdGEgcGItMlwiPjIuIERlc2NyaXB0aW9uIG9mIFNlcnZpY2VzPC9oMj5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5IHNwYWNlLXktM1wiPlxuICAgICAgICAgICAgICAgIDxwPlRhcmFqIEdsb2JhbCBwcm92aWRlcyBbZGVzY3JpYmUgeW91ciBzZXJ2aWNlcyBoZXJlIC0gZS5nLiwgZGlnaXRhbCBtYXJrZXRpbmcgc29sdXRpb25zLCB3ZWIgZGV2ZWxvcG1lbnQgc2VydmljZXMsIGNvbnN1bHRpbmcsIGV0Yy5dLiBXZSByZXNlcnZlIHRoZSByaWdodCB0byBtb2RpZnksIHN1c3BlbmQsIG9yIGRpc2NvbnRpbnVlIGFueSBzZXJ2aWNlIGF0IGFueSB0aW1lIHdpdGhvdXQgcHJpb3Igbm90aWNlLjwvcD5cbiAgICAgICAgICAgICAgICA8cD5XZSBkbyBub3QgZ3VhcmFudGVlIHRoYXQgb3VyIHNlcnZpY2VzIHdpbGwgYmUgdW5pbnRlcnJ1cHRlZCwgc2VjdXJlLCBvciBlcnJvci1mcmVlLiBXZSBtYXkgYWxzbyBpbXBvc2UgbGltaXRzIG9uIGNlcnRhaW4gZmVhdHVyZXMgb3IgcmVzdHJpY3QgYWNjZXNzIHRvIHBhcnRzIG9yIGFsbCBvZiBvdXIgc2VydmljZXMgd2l0aG91dCBub3RpY2UuPC9wPlxuICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgIDwvc2VjdGlvbj5cblxuICAgICAgICAgICAgey8qIDMuIFVzZXIgQWNjb3VudHMgKi99XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cInVzZXItYWNjb3VudHNcIiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBib3JkZXItYi0yIGJvcmRlci1jdGEgcGItMlwiPjMuIFVzZXIgQWNjb3VudHM8L2gyPlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtdGV4dC1zZWNvbmRhcnkgc3BhY2UteS0zXCI+XG4gICAgICAgICAgICAgICAgPHA+VG8gYWNjZXNzIGNlcnRhaW4gZmVhdHVyZXMgb2Ygb3VyIHNlcnZpY2VzLCB5b3UgbWF5IGJlIHJlcXVpcmVkIHRvIGNyZWF0ZSBhbiBhY2NvdW50LiBZb3UgYXJlIHJlc3BvbnNpYmxlIGZvcjo8L3A+XG4gICAgICAgICAgICAgICAgPHVsIGNsYXNzTmFtZT1cImxpc3QtZGlzYyBwbC02IHNwYWNlLXktMlwiPlxuICAgICAgICAgICAgICAgICAgPGxpPk1haW50YWluaW5nIHRoZSBjb25maWRlbnRpYWxpdHkgb2YgeW91ciBhY2NvdW50IGNyZWRlbnRpYWxzPC9saT5cbiAgICAgICAgICAgICAgICAgIDxsaT5BbGwgYWN0aXZpdGllcyB0aGF0IG9jY3VyIHVuZGVyIHlvdXIgYWNjb3VudDwvbGk+XG4gICAgICAgICAgICAgICAgICA8bGk+Tm90aWZ5aW5nIHVzIGltbWVkaWF0ZWx5IG9mIGFueSB1bmF1dGhvcml6ZWQgdXNlIG9mIHlvdXIgYWNjb3VudDwvbGk+XG4gICAgICAgICAgICAgICAgICA8bGk+UHJvdmlkaW5nIGFjY3VyYXRlLCBjdXJyZW50LCBhbmQgY29tcGxldGUgaW5mb3JtYXRpb248L2xpPlxuICAgICAgICAgICAgICAgIDwvdWw+XG4gICAgICAgICAgICAgICAgPHA+WW91IGFncmVlIG5vdCB0byBzaGFyZSB5b3VyIGFjY291bnQgY3JlZGVudGlhbHMgd2l0aCBhbnkgdGhpcmQgcGFydHkuIFlvdSBhcmUgc29sZWx5IHJlc3BvbnNpYmxlIGZvciBhbnkgZGFtYWdlIHJlc3VsdGluZyBmcm9tIHlvdXIgZmFpbHVyZSB0byBtYWludGFpbiBhY2NvdW50IHNlY3VyaXR5LjwvcD5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L3NlY3Rpb24+XG5cbiAgICAgICAgICAgIHsvKiA0LiBVc2VyIENvbmR1Y3QgKi99XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cInVzZXItY29uZHVjdFwiIGNsYXNzTmFtZT1cInNwYWNlLXktNFwiPlxuICAgICAgICAgICAgICA8aDIgY2xhc3NOYW1lPVwidGV4dC0yeGwgZm9udC1ib2xkIHRleHQtdGV4dC1wcmltYXJ5IGJvcmRlci1iLTIgYm9yZGVyLWN0YSBwYi0yXCI+NC4gVXNlciBDb25kdWN0PC9oMj5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5IHNwYWNlLXktM1wiPlxuICAgICAgICAgICAgICAgIDxwPllvdSBhZ3JlZSB0byB1c2Ugb3VyIHNlcnZpY2VzIG9ubHkgZm9yIGxhd2Z1bCBwdXJwb3NlcyBhbmQgaW4gYWNjb3JkYW5jZSB3aXRoIHRoZXNlIFRlcm1zLiBZb3UgYWdyZWUgTk9UIHRvOjwvcD5cbiAgICAgICAgICAgICAgICA8dWwgY2xhc3NOYW1lPVwibGlzdC1kaXNjIHBsLTYgc3BhY2UteS0yXCI+XG4gICAgICAgICAgICAgICAgICA8bGk+VXNlIHRoZSBzZXJ2aWNlcyBmb3IgYW55IGlsbGVnYWwgcHVycG9zZSBvciB0byBzb2xpY2l0IG90aGVycyB0byBwZXJmb3JtIHVubGF3ZnVsIGFjdHM8L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPlZpb2xhdGUgYW55IGludGVybmF0aW9uYWwsIGZlZGVyYWwsIHByb3ZpbmNpYWwsIG9yIGxvY2FsIHJlZ3VsYXRpb25zIG9yIGxhd3M8L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPkluZnJpbmdlIHVwb24gb3IgdmlvbGF0ZSBvdXIgaW50ZWxsZWN0dWFsIHByb3BlcnR5IHJpZ2h0cyBvciB0aG9zZSBvZiBvdGhlcnM8L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPkhhcmFzcywgYWJ1c2UsIGluc3VsdCwgaGFybSwgZGVmYW1lLCBzbGFuZGVyLCBkaXNwYXJhZ2UsIGludGltaWRhdGUsIG9yIGRpc2NyaW1pbmF0ZTwvbGk+XG4gICAgICAgICAgICAgICAgICA8bGk+U3VibWl0IGZhbHNlIG9yIG1pc2xlYWRpbmcgaW5mb3JtYXRpb248L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPlVwbG9hZCB2aXJ1c2VzIG9yIG1hbGljaW91cyBjb2RlIHRoYXQgY291bGQgZGFtYWdlIG91ciBzZXJ2aWNlcyBvciBvdGhlcnMnIHN5c3RlbXM8L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPkF0dGVtcHQgdG8gZ2FpbiB1bmF1dGhvcml6ZWQgYWNjZXNzIHRvIG91ciBzeXN0ZW1zLCBuZXR3b3Jrcywgb3IgZGF0YTwvbGk+XG4gICAgICAgICAgICAgICAgICA8bGk+SW50ZXJmZXJlIHdpdGggb3IgZGlzcnVwdCBvdXIgc2VydmljZXMgb3Igc2VydmVyczwvbGk+XG4gICAgICAgICAgICAgICAgICA8bGk+VXNlIG91ciBzZXJ2aWNlcyB0byBkaXN0cmlidXRlIHNwYW0gb3IgdW5zb2xpY2l0ZWQgY29tbXVuaWNhdGlvbnM8L2xpPlxuICAgICAgICAgICAgICAgIDwvdWw+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuXG4gICAgICAgICAgICB7LyogNS4gSW50ZWxsZWN0dWFsIFByb3BlcnR5ICovfVxuICAgICAgICAgICAgPHNlY3Rpb24gaWQ9XCJpbnRlbGxlY3R1YWwtcHJvcGVydHlcIiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBib3JkZXItYi0yIGJvcmRlci1jdGEgcGItMlwiPjUuIEludGVsbGVjdHVhbCBQcm9wZXJ0eTwvaDI+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC10ZXh0LXNlY29uZGFyeSBzcGFjZS15LTNcIj5cbiAgICAgICAgICAgICAgICA8cD5BbGwgY29udGVudCwgZmVhdHVyZXMsIGFuZCBmdW5jdGlvbmFsaXR5IG9mIHRoZSBUYXJhaiBHbG9iYWwgd2Vic2l0ZSwgaW5jbHVkaW5nIGJ1dCBub3QgbGltaXRlZCB0byB0ZXh0LCBncmFwaGljcywgbG9nb3MsIGRlc2lnbnMsIHNvZnR3YXJlLCBhbmQgY29kZSwgYXJlIHRoZSBleGNsdXNpdmUgcHJvcGVydHkgb2YgVGFyYWogR2xvYmFsIGFuZCBhcmUgcHJvdGVjdGVkIGJ5IGludGVybmF0aW9uYWwgY29weXJpZ2h0LCB0cmFkZW1hcmssIGFuZCBvdGhlciBpbnRlbGxlY3R1YWwgcHJvcGVydHkgbGF3cy48L3A+XG4gICAgICAgICAgICAgICAgPHA+WW91IG1heSBub3QgcmVwcm9kdWNlLCBkaXN0cmlidXRlLCBtb2RpZnksIGNyZWF0ZSBkZXJpdmF0aXZlIHdvcmtzLCBwdWJsaWNseSBkaXNwbGF5LCBvciBwZXJmb3JtIGFueSBjb250ZW50IGZyb20gb3VyIHNlcnZpY2VzIHdpdGhvdXQgb3VyIHByaW9yIHdyaXR0ZW4gY29uc2VudC48L3A+XG4gICAgICAgICAgICAgICAgPHA+QW55IGZlZWRiYWNrLCBzdWdnZXN0aW9ucywgb3IgaWRlYXMgeW91IHByb3ZpZGUgdG8gdXMgcmVnYXJkaW5nIG91ciBzZXJ2aWNlcyBiZWNvbWUgb3VyIHByb3BlcnR5IGFuZCBtYXkgYmUgdXNlZCB3aXRob3V0IHJlc3RyaWN0aW9uIG9yIGNvbXBlbnNhdGlvbi48L3A+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuXG4gICAgICAgICAgICB7LyogNi4gUGF5bWVudCAmIEJpbGxpbmcgKi99XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cInBheW1lbnRcIiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBib3JkZXItYi0yIGJvcmRlci1jdGEgcGItMlwiPjYuIFBheW1lbnQgJiBCaWxsaW5nPC9oMj5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5IHNwYWNlLXktM1wiPlxuICAgICAgICAgICAgICAgIDxwPkZvciBwYWlkIHNlcnZpY2VzLCB5b3UgYWdyZWUgdG8gcHJvdmlkZSBhY2N1cmF0ZSwgY3VycmVudCwgYW5kIGNvbXBsZXRlIGJpbGxpbmcgaW5mb3JtYXRpb24uIFlvdSBhZ3JlZSB0byBwYXkgYWxsIGNoYXJnZXMgaW5jdXJyZWQgdW5kZXIgeW91ciBhY2NvdW50IGF0IHRoZSBwcmljZXMgaW4gZWZmZWN0IHdoZW4gaW5jdXJyZWQuPC9wPlxuICAgICAgICAgICAgICAgIDxwPldlIHJlc2VydmUgdGhlIHJpZ2h0IHRvIGNoYW5nZSBvdXIgcHJpY2VzIGF0IGFueSB0aW1lLiBBbnkgcHJpY2UgY2hhbmdlcyB3aWxsIGFwcGx5IHRvIG5ldyBwdXJjaGFzZXMgb25seS4gV2UgbWF5IG9mZmVyIGZyZWUgdHJpYWxzIG9yIHByb21vdGlvbmFsIHJhdGVzIGF0IG91ciBkaXNjcmV0aW9uLjwvcD5cbiAgICAgICAgICAgICAgICA8cD5QYXltZW50IGlzIGR1ZSB1cG9uIHJlY2VpcHQgb2YgaW52b2ljZSB1bmxlc3Mgb3RoZXJ3aXNlIGFncmVlZCBpbiB3cml0aW5nLiBMYXRlIHBheW1lbnRzIG1heSBpbmN1ciBpbnRlcmVzdCBjaGFyZ2VzIG9yIHNlcnZpY2Ugc3VzcGVuc2lvbi48L3A+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuXG4gICAgICAgICAgICB7LyogNy4gQ2FuY2VsbGF0aW9uICYgUmVmdW5kcyAqL31cbiAgICAgICAgICAgIDxzZWN0aW9uIGlkPVwiY2FuY2VsbGF0aW9uXCIgY2xhc3NOYW1lPVwic3BhY2UteS00XCI+XG4gICAgICAgICAgICAgIDxoMiBjbGFzc05hbWU9XCJ0ZXh0LTJ4bCBmb250LWJvbGQgdGV4dC10ZXh0LXByaW1hcnkgYm9yZGVyLWItMiBib3JkZXItY3RhIHBiLTJcIj43LiBDYW5jZWxsYXRpb24gJiBSZWZ1bmRzPC9oMj5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5IHNwYWNlLXktM1wiPlxuICAgICAgICAgICAgICAgIDxwPllvdSBtYXkgY2FuY2VsIHlvdXIgc3Vic2NyaXB0aW9uIG9yIHNlcnZpY2UgYXQgYW55IHRpbWUgYnkgZm9sbG93aW5nIHRoZSBjYW5jZWxsYXRpb24gcHJvY2VkdXJlIG91dGxpbmVkIGluIHlvdXIgYWNjb3VudCBzZXR0aW5ncyBvciBieSBjb250YWN0aW5nIG91ciBzdXBwb3J0IHRlYW0uPC9wPlxuICAgICAgICAgICAgICAgIDxwPlJlZnVuZHMgd2lsbCBiZSBwcm9jZXNzZWQgYWNjb3JkaW5nIHRvIG91ciByZWZ1bmQgcG9saWN5OjwvcD5cbiAgICAgICAgICAgICAgICA8dWwgY2xhc3NOYW1lPVwibGlzdC1kaXNjIHBsLTYgc3BhY2UteS0yXCI+XG4gICAgICAgICAgICAgICAgICA8bGk+U2VydmljZXMgbm90IHlldCByZW5kZXJlZCBtYXkgYmUgZWxpZ2libGUgZm9yIGZ1bGwgcmVmdW5kPC9saT5cbiAgICAgICAgICAgICAgICAgIDxsaT5QYXJ0aWFsIHJlZnVuZHMgbWF5IGJlIGF2YWlsYWJsZSBmb3Igc2VydmljZXMgaW4gcHJvZ3Jlc3M8L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPkNvbXBsZXRlZCBzZXJ2aWNlcyBhcmUgZ2VuZXJhbGx5IG5vbi1yZWZ1bmRhYmxlPC9saT5cbiAgICAgICAgICAgICAgICAgIDxsaT5SZWZ1bmQgcmVxdWVzdHMgbXVzdCBiZSBtYWRlIHdpdGhpbiAzMCBkYXlzIG9mIHNlcnZpY2UgZGVsaXZlcnk8L2xpPlxuICAgICAgICAgICAgICAgIDwvdWw+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuXG4gICAgICAgICAgICB7LyogOC4gTGltaXRhdGlvbiBvZiBMaWFiaWxpdHkgKi99XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cImxpbWl0YXRpb25cIiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBib3JkZXItYi0yIGJvcmRlci1jdGEgcGItMlwiPjguIExpbWl0YXRpb24gb2YgTGlhYmlsaXR5PC9oMj5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5IHNwYWNlLXktM1wiPlxuICAgICAgICAgICAgICAgIDxwPlRvIHRoZSBtYXhpbXVtIGV4dGVudCBwZXJtaXR0ZWQgYnkgbGF3LCBUYXJhaiBHbG9iYWwgc2hhbGwgbm90IGJlIGxpYWJsZSBmb3IgYW55IGluZGlyZWN0LCBpbmNpZGVudGFsLCBzcGVjaWFsLCBjb25zZXF1ZW50aWFsLCBvciBwdW5pdGl2ZSBkYW1hZ2VzLCBpbmNsdWRpbmcgYnV0IG5vdCBsaW1pdGVkIHRvIGxvc3Mgb2YgcHJvZml0cywgZGF0YSwgdXNlLCBnb29kd2lsbCwgb3Igb3RoZXIgaW50YW5naWJsZSBsb3NzZXMuPC9wPlxuICAgICAgICAgICAgICAgIDxwPk91ciB0b3RhbCBsaWFiaWxpdHkgdG8geW91IGZvciBhbGwgY2xhaW1zIHNoYWxsIG5vdCBleGNlZWQgdGhlIGFtb3VudCB5b3UgcGFpZCB0byB1cyBpbiB0aGUgdHdlbHZlICgxMikgbW9udGhzIHByZWNlZGluZyB0aGUgY2xhaW0uIFNvbWUganVyaXNkaWN0aW9ucyBkbyBub3QgYWxsb3cgdGhlIGV4Y2x1c2lvbiBvZiBjZXJ0YWluIHdhcnJhbnRpZXMgb3IgbGltaXRhdGlvbnMgb2YgbGlhYmlsaXR5LCBzbyB0aGUgYWJvdmUgZXhjbHVzaW9ucyBtYXkgbm90IGFwcGx5IHRvIHlvdS48L3A+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuXG4gICAgICAgICAgICB7LyogOS4gVGVybWluYXRpb24gKi99XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cInRlcm1pbmF0aW9uXCIgY2xhc3NOYW1lPVwic3BhY2UteS00XCI+XG4gICAgICAgICAgICAgIDxoMiBjbGFzc05hbWU9XCJ0ZXh0LTJ4bCBmb250LWJvbGQgdGV4dC10ZXh0LXByaW1hcnkgYm9yZGVyLWItMiBib3JkZXItY3RhIHBiLTJcIj45LiBUZXJtaW5hdGlvbjwvaDI+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC10ZXh0LXNlY29uZGFyeSBzcGFjZS15LTNcIj5cbiAgICAgICAgICAgICAgICA8cD5XZSByZXNlcnZlIHRoZSByaWdodCB0byB0ZXJtaW5hdGUgb3Igc3VzcGVuZCB5b3VyIGFjY291bnQgYW5kIGFjY2VzcyB0byBvdXIgc2VydmljZXMgYXQgYW55IHRpbWUsIHdpdGhvdXQgcHJpb3Igbm90aWNlLCBmb3IgYW55IHJlYXNvbiwgaW5jbHVkaW5nIGJ1dCBub3QgbGltaXRlZCB0bzo8L3A+XG4gICAgICAgICAgICAgICAgPHVsIGNsYXNzTmFtZT1cImxpc3QtZGlzYyBwbC02IHNwYWNlLXktMlwiPlxuICAgICAgICAgICAgICAgICAgPGxpPkJyZWFjaCBvZiB0aGVzZSBUZXJtcyAmIENvbmRpdGlvbnM8L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPlZpb2xhdGlvbiBvZiBhcHBsaWNhYmxlIGxhd3Mgb3IgcmVndWxhdGlvbnM8L2xpPlxuICAgICAgICAgICAgICAgICAgPGxpPkZyYXVkdWxlbnQgb3IgaWxsZWdhbCBhY3Rpdml0aWVzPC9saT5cbiAgICAgICAgICAgICAgICAgIDxsaT5FeHRlbmRlZCBwZXJpb2Qgb2YgYWNjb3VudCBpbmFjdGl2aXR5PC9saT5cbiAgICAgICAgICAgICAgICA8L3VsPlxuICAgICAgICAgICAgICAgIDxwPlVwb24gdGVybWluYXRpb24sIHlvdXIgcmlnaHQgdG8gdXNlIG91ciBzZXJ2aWNlcyB3aWxsIGltbWVkaWF0ZWx5IGNlYXNlLiBBbGwgcHJvdmlzaW9ucyBvZiB0aGVzZSBUZXJtcyBzaGFsbCBzdXJ2aXZlIHRlcm1pbmF0aW9uLCBpbmNsdWRpbmcgb3duZXJzaGlwIHByb3Zpc2lvbnMsIHdhcnJhbnR5IGRpc2NsYWltZXJzLCBhbmQgbGltaXRhdGlvbnMgb2YgbGlhYmlsaXR5LjwvcD5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L3NlY3Rpb24+XG5cbiAgICAgICAgICAgIHsvKiAxMC4gR292ZXJuaW5nIExhdyAqL31cbiAgICAgICAgICAgIDxzZWN0aW9uIGlkPVwiZ292ZXJuaW5nLWxhd1wiIGNsYXNzTmFtZT1cInNwYWNlLXktNFwiPlxuICAgICAgICAgICAgICA8aDIgY2xhc3NOYW1lPVwidGV4dC0yeGwgZm9udC1ib2xkIHRleHQtdGV4dC1wcmltYXJ5IGJvcmRlci1iLTIgYm9yZGVyLWN0YSBwYi0yXCI+MTAuIEdvdmVybmluZyBMYXc8L2gyPlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtdGV4dC1zZWNvbmRhcnkgc3BhY2UteS0zXCI+XG4gICAgICAgICAgICAgICAgPHA+VGhlc2UgVGVybXMgJiBDb25kaXRpb25zIHNoYWxsIGJlIGdvdmVybmVkIGJ5IGFuZCBjb25zdHJ1ZWQgaW4gYWNjb3JkYW5jZSB3aXRoIHRoZSBsYXdzIG9mIFtZb3VyIEp1cmlzZGljdGlvbl0sIHdpdGhvdXQgcmVnYXJkIHRvIGl0cyBjb25mbGljdCBvZiBsYXcgcHJvdmlzaW9ucy48L3A+XG4gICAgICAgICAgICAgICAgPHA+QW55IGRpc3B1dGVzIGFyaXNpbmcgZnJvbSB0aGVzZSB0ZXJtcyBvciB5b3VyIHVzZSBvZiBvdXIgc2VydmljZXMgc2hhbGwgYmUgcmVzb2x2ZWQgZXhjbHVzaXZlbHkgaW4gdGhlIGNvdXJ0cyBvZiBbWW91ciBKdXJpc2RpY3Rpb25dLiBZb3UgYWdyZWUgdG8gc3VibWl0IHRvIHRoZSBwZXJzb25hbCBqdXJpc2RpY3Rpb24gb2YgdGhlc2UgY291cnRzLjwvcD5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L3NlY3Rpb24+XG5cbiAgICAgICAgICAgIHsvKiAxMS4gQ29udGFjdCBJbmZvcm1hdGlvbiAqL31cbiAgICAgICAgICAgIDxzZWN0aW9uIGlkPVwiY29udGFjdFwiIGNsYXNzTmFtZT1cInNwYWNlLXktNFwiPlxuICAgICAgICAgICAgICA8aDIgY2xhc3NOYW1lPVwidGV4dC0yeGwgZm9udC1ib2xkIHRleHQtdGV4dC1wcmltYXJ5IGJvcmRlci1iLTIgYm9yZGVyLWN0YSBwYi0yXCI+MTEuIENvbnRhY3QgSW5mb3JtYXRpb248L2gyPlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtdGV4dC1zZWNvbmRhcnkgc3BhY2UteS0zXCI+XG4gICAgICAgICAgICAgICAgPHA+SWYgeW91IGhhdmUgYW55IHF1ZXN0aW9ucyBhYm91dCB0aGVzZSBUZXJtcyAmIENvbmRpdGlvbnMsIHBsZWFzZSBjb250YWN0IHVzOjwvcD5cbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJnLWJhY2tncm91bmQgYm9yZGVyIGJvcmRlci1ib3JkZXIgcC00IHJvdW5kZWQtbGcgc3BhY2UteS0yXCI+XG4gICAgICAgICAgICAgICAgICA8cD48c3Ryb25nIGNsYXNzTmFtZT1cInRleHQtdGV4dC1wcmltYXJ5XCI+RW1haWw6PC9zdHJvbmc+IGluZm9AdGFyYWpnbG9iYWwuY29tPC9wPlxuICAgICAgICAgICAgICAgICAgPHA+PHN0cm9uZyBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtcHJpbWFyeVwiPlBob25lOjwvc3Ryb25nPiArOTEgOTY2NTUtOTk0NDI8L3A+XG4gICAgICAgICAgICAgICAgICA8cD48c3Ryb25nIGNsYXNzTmFtZT1cInRleHQtdGV4dC1wcmltYXJ5XCI+QWRkcmVzczo8L3N0cm9uZz4gVGhlIFNwYWNlIEJ1c2luZXNzIENvbXBsZXgsIE9mZmljZSBOby4gNTEyIHRvIDUxNywgR3JhbnQgUmQsIEtoYXJhZGksIFB1bmUsIE1haGFyYXNodHJhIDQxMTAxNDwvcD5cbiAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L3NlY3Rpb24+XG5cbiAgICAgICAgICAgIHsvKiBBZ3JlZW1lbnQgU3RhdGVtZW50ICovfVxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJiZy1wcmltYXJ5LzEwIGJvcmRlciBib3JkZXItcHJpbWFyeS8zMCByb3VuZGVkLWxnIHAtNiBtdC04XCI+XG4gICAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQtdGV4dC1wcmltYXJ5IGZvbnQtbWVkaXVtXCI+XG4gICAgICAgICAgICAgICAgQnkgdXNpbmcgVGFyYWogR2xvYmFsIHNlcnZpY2VzLCB5b3UgYWNrbm93bGVkZ2UgdGhhdCB5b3UgaGF2ZSByZWFkLCB1bmRlcnN0b29kLCBhbmQgYWdyZWUgdG8gYmUgYm91bmQgYnkgdGhlc2UgVGVybXMgJiBDb25kaXRpb25zLlxuICAgICAgICAgICAgICA8L3A+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxDaGF0Qm90IC8+XG4gICAgPC9kaXY+XG4gICAgPC8+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgVGVybXNcbiJdLCJmaWxlIjoiQzovVXNlcnMvSFAvRGVza3RvcC9UR1MvVGFyYWpfR2xvYmFsbC9jbGllbnQvc3JjL3BhZ2VzL1Rlcm1zL2luZGV4LmpzeCJ9

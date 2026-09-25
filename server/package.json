@@ -10,7 +10,9 @@
     "migrate": "node database/migrations/run.js",
     "seed": "node database/seeders/run.js",
     "test": "jest --detectOpenHandles",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:smtp": "node scripts/test-smtp.js",
+    "test:booking": "node scripts/test-booking-flow.js"
   },
   "keywords": [
     "express",

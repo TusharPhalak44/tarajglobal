@@ -15,31 +15,52 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
       const [result] = await db.execute(`
         SELECT
           COUNT(*) as total_blogs,
-          SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) as published_blogs,
-          SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END) as draft_blogs,
-          0 as scheduled_blogs,
-          0 as total_views
+          COALESCE(SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END), 0) as published_blogs,
+          COALESCE(SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END), 0) as draft_blogs,
+          COALESCE(SUM(CASE WHEN status = 'scheduled' THEN 1 ELSE 0 END), 0) as scheduled_blogs,
+          COALESCE(SUM(views), 0) as total_views
         FROM blogs
       `)
-      if (result[0]) blogStats = result[0]
+      if (result[0]) {
+        blogStats = {
+          total_blogs: Number(result[0].total_blogs || 0),
+          published_blogs: Number(result[0].published_blogs || 0),
+          draft_blogs: Number(result[0].draft_blogs || 0),
+          scheduled_blogs: Number(result[0].scheduled_blogs || 0),
+          total_views: Number(result[0].total_views || 0)
+        }
+      }
     } catch (e) { console.log('Blogs table error:', e.message) }
 
     // Job stats
-    let jobStats = { total_jobs: 0, draft_jobs: 0, current_jobs: 0 }
+    let jobStats = { total_jobs: 0, draft_jobs: 0, current_jobs: 0, active_jobs: 0, published_jobs: 0, archived_jobs: 0 }
     try {
       const [result] = await db.execute(`
         SELECT
           COUNT(*) as total_jobs,
-          SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END) as draft_jobs,
-          SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) as current_jobs
+          COALESCE(SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END), 0) as draft_jobs,
+          COALESCE(SUM(CASE WHEN status IN ('published', 'active') THEN 1 ELSE 0 END), 0) as active_jobs,
+          COALESCE(SUM(CASE WHEN status IN ('published', 'active') THEN 1 ELSE 0 END), 0) as current_jobs,
+          COALESCE(SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END), 0) as published_jobs,
+          COALESCE(SUM(CASE WHEN status = 'archived' THEN 1 ELSE 0 END), 0) as archived_jobs
         FROM careers
       `)
-      if (result[0]) jobStats = result[0]
+      if (result[0]) {
+        jobStats = {
+          total_jobs: Number(result[0].total_jobs || 0),
+          draft_jobs: Number(result[0].draft_jobs || 0),
+          active_jobs: Number(result[0].active_jobs || 0),
+          current_jobs: Number(result[0].current_jobs || 0),
+          published_jobs: Number(result[0].published_jobs || 0),
+          archived_jobs: Number(result[0].archived_jobs || 0)
+        }
+      }
     } catch (e) { 
       console.log('Careers table error:', e.message)
       // Fallback if status column doesn't exist
       const [fallback] = await db.execute(`SELECT COUNT(*) as total_jobs FROM careers`)
-      jobStats = { total_jobs: fallback[0]?.total_jobs || 0, draft_jobs: 0, current_jobs: fallback[0]?.total_jobs || 0 }
+      const count = Number(fallback[0]?.total_jobs || 0)
+      jobStats = { total_jobs: count, draft_jobs: 0, current_jobs: count, active_jobs: count, published_jobs: count, archived_jobs: 0 }
     }
 
     // Application stats
@@ -48,11 +69,17 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
       const [result] = await db.execute(`
         SELECT
           COUNT(*) as total_applications,
-          SUM(CASE WHEN status = 'applied' THEN 1 ELSE 0 END) as new_applications,
-          SUM(CASE WHEN DATE(applied_at) = CURDATE() THEN 1 ELSE 0 END) as today_applications
+          COALESCE(SUM(CASE WHEN status = 'applied' THEN 1 ELSE 0 END), 0) as new_applications,
+          COALESCE(SUM(CASE WHEN DATE(applied_at) = CURDATE() THEN 1 ELSE 0 END), 0) as today_applications
         FROM job_applications
       `)
-      if (result[0]) applicationStats = result[0]
+      if (result[0]) {
+        applicationStats = {
+          total_applications: Number(result[0].total_applications || 0),
+          new_applications: Number(result[0].new_applications || 0),
+          today_applications: Number(result[0].today_applications || 0)
+        }
+      }
     } catch (e) { console.log('Job applications table error:', e.message) }
 
     // Content stats
@@ -65,7 +92,14 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
           (SELECT COUNT(*) FROM tags) as total_tags,
           (SELECT COUNT(*) FROM media) as total_media
       `)
-      if (result[0]) contentStats = result[0]
+      if (result[0]) {
+        contentStats = {
+          total_authors: Number(result[0].total_authors || 0),
+          total_categories: Number(result[0].total_categories || 0),
+          total_tags: Number(result[0].total_tags || 0),
+          total_media: Number(result[0].total_media || 0)
+        }
+      }
     } catch (e) { 
       console.log('Content stats error:', e.message)
       // Fallback queries for individual tables
@@ -74,10 +108,10 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
         const [categories] = await db.execute('SELECT COUNT(*) as count FROM categories')
         const [media] = await db.execute('SELECT COUNT(*) as count FROM media')
         contentStats = {
-          total_authors: authors[0]?.count || 0,
-          total_categories: categories[0]?.count || 0,
+          total_authors: Number(authors[0]?.count || 0),
+          total_categories: Number(categories[0]?.count || 0),
           total_tags: 0,
-          total_media: media[0]?.count || 0
+          total_media: Number(media[0]?.count || 0)
         }
       } catch (fallbackError) {
         console.log('Content stats fallback error:', fallbackError.message)
@@ -90,13 +124,21 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
       const [result] = await db.execute(`
         SELECT
           COUNT(*) as total_leads,
-          SUM(CASE WHEN status = 'new' THEN 1 ELSE 0 END) as new_leads,
-          SUM(CASE WHEN status = 'contacted' THEN 1 ELSE 0 END) as contacted_leads,
-          SUM(CASE WHEN status = 'qualified' THEN 1 ELSE 0 END) as qualified_leads,
-          SUM(CASE WHEN status = 'converted' THEN 1 ELSE 0 END) as converted_leads
+          COALESCE(SUM(CASE WHEN status = 'new' THEN 1 ELSE 0 END), 0) as new_leads,
+          COALESCE(SUM(CASE WHEN status = 'contacted' THEN 1 ELSE 0 END), 0) as contacted_leads,
+          COALESCE(SUM(CASE WHEN status = 'qualified' THEN 1 ELSE 0 END), 0) as qualified_leads,
+          COALESCE(SUM(CASE WHEN status = 'converted' THEN 1 ELSE 0 END), 0) as converted_leads
         FROM contacts
       `)
-      if (result[0]) leadStats = result[0]
+      if (result[0]) {
+        leadStats = {
+          total_leads: Number(result[0].total_leads || 0),
+          new_leads: Number(result[0].new_leads || 0),
+          contacted_leads: Number(result[0].contacted_leads || 0),
+          qualified_leads: Number(result[0].qualified_leads || 0),
+          converted_leads: Number(result[0].converted_leads || 0)
+        }
+      }
     } catch (e) { console.log('Contacts table error:', e.message) }
 
     // Recent activity
@@ -116,13 +158,16 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
     let popularBlogs = []
     try {
       const [result] = await db.execute(`
-        SELECT id, title, status
+        SELECT id, title, status, COALESCE(views, 0) as view_count
         FROM blogs
         WHERE status = 'published'
-        ORDER BY created_at DESC
+        ORDER BY views DESC, created_at DESC
         LIMIT 5
       `)
-      popularBlogs = result.map(blog => ({ ...blog, view_count: 0 }))
+      popularBlogs = result.map(blog => ({
+        ...blog,
+        view_count: Number(blog.view_count || 0)
+      }))
     } catch (e) { console.log('Popular blogs error:', e.message) }
 
     // Popular categories

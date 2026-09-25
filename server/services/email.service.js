@@ -1,28 +1,180 @@
 import nodemailer from 'nodemailer'
 
-// Create transporter with comprehensive fallback for environment variables
-const createTransporter = () => {
-  const host = process.env.SMTP_HOST || process.env.EMAIL_HOST || 'smtp.gmail.com'
-  const port = parseInt(process.env.SMTP_PORT || process.env.EMAIL_PORT || '587', 10)
-  const user = process.env.SMTP_USER || process.env.EMAIL_USER
-  const pass = process.env.SMTP_PASS || process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465,
-    auth: { user, pass }
-  })
+// Clean environment strings from whitespace or stray wrapping quotes
+const cleanEnv = (val) => {
+  if (!val) return ''
+  return String(val).trim().replace(/^["']|["']$/g, '')
 }
 
-// Send email
-export const sendEmail = async (options) => {
+// Get normalized and sanitized SMTP configuration
+export const getSMTPConfig = () => {
+  const host = cleanEnv(process.env.SMTP_HOST || process.env.EMAIL_HOST) || 'smtp.hostinger.com'
+  const port = parseInt(cleanEnv(process.env.SMTP_PORT || process.env.EMAIL_PORT) || '465', 10)
+  const secureEnv = cleanEnv(process.env.SMTP_SECURE)
+  const secure = secureEnv ? secureEnv === 'true' : port === 465
+  const user = cleanEnv(process.env.SMTP_USER || process.env.EMAIL_USER) || 'info@tarajglobal.com'
+  const pass = cleanEnv(process.env.SMTP_PASS || process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS)
+  const from = cleanEnv(process.env.MAIL_FROM || process.env.EMAIL_FROM || process.env.SMTP_FROM || user) || 'info@tarajglobal.com'
+  const replyTo = cleanEnv(process.env.MAIL_REPLY_TO) || 'info@tarajglobal.com'
+  const adminNotificationEmail = cleanEnv(process.env.MEETING_NOTIFICATION_EMAIL || process.env.ADMIN_EMAIL) || 'info@tarajglobal.com'
+
+  const isPlaceholder = !pass || pass.includes('your_') || pass.includes('password') || pass === 'YOUR_ACTUAL_PASSWORD' || pass === 'YOUR_ACTUAL_HOSTINGER_EMAIL_PASSWORD'
+
+  return {
+    host,
+    port,
+    secure,
+    user,
+    pass,
+    from,
+    replyTo,
+    adminNotificationEmail,
+    isConfigured: Boolean(user && pass && !isPlaceholder),
+    isPlaceholder
+  }
+}
+
+// Singleton reusable Nodemailer transporter instance
+let reusableTransporter = null
+
+export const getTransporter = () => {
+  if (reusableTransporter) {
+    return reusableTransporter
+  }
+  const cfg = getSMTPConfig()
+  const transportOptions = {
+    host: cfg.host,
+    port: cfg.port,
+    secure: cfg.secure, // true for 465 (SSL), false for 587 (STARTTLS)
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000
+  }
+
+  if (cfg.port === 587) {
+    transportOptions.requireTLS = true
+  }
+
+  if (cfg.user && cfg.pass) {
+    transportOptions.auth = {
+      user: cfg.user,
+      pass: cfg.pass
+    }
+  }
+
+  reusableTransporter = nodemailer.createTransport(transportOptions)
+  return reusableTransporter
+}
+
+export const resetTransporter = () => {
+  reusableTransporter = null
+}
+
+export const createTransporter = () => {
+  return getTransporter()
+}
+
+/**
+ * Verify SMTP connection and credentials without sending an email
+ * Tests: DNS resolution, TCP connection, TLS negotiation, authentication
+ */
+export const verifySMTPConnection = async () => {
+  const cfg = getSMTPConfig()
+
+  const safeConfig = {
+    host: cfg.host,
+    port: cfg.port,
+    secure: cfg.secure,
+    user: cfg.user ? (cfg.user.includes('@') ? `${cfg.user.split('@')[0].slice(0, 3)}***@${cfg.user.split('@')[1]}` : `${cfg.user.slice(0, 3)}***`) : '(not configured)',
+    from: cfg.from,
+    isConfigured: cfg.isConfigured
+  }
+
+  if (!cfg.isConfigured) {
+    return {
+      success: false,
+      configured: false,
+      safeConfig,
+      error: {
+        code: 'ECONFIG',
+        command: 'CONFIG',
+        responseCode: 535,
+        response: 'SMTP credentials are not configured or still have placeholder values (SMTP_USER / SMTP_PASS).',
+        message: 'Please set your actual Hostinger email password in SMTP_PASS in server/.env.'
+      },
+      likelyCause: 'Placeholder credentials (YOUR_ACTUAL_HOSTINGER_EMAIL_PASSWORD) detected in server/.env. Add the real Hostinger email password to SMTP_PASS.'
+    }
+  }
+
   try {
     const transporter = createTransporter()
-    const fromEmail = process.env.MAIL_FROM || process.env.EMAIL_FROM || process.env.SMTP_FROM || process.env.SMTP_USER || process.env.EMAIL_USER || 'info@tarajglobal.com'
-    
+    await transporter.verify()
+    return {
+      success: true,
+      configured: true,
+      safeConfig,
+      message: 'SMTP connection verified successfully.'
+    }
+  } catch (error) {
+    const safeError = {
+      code: error.code || 'UNKNOWN',
+      command: error.command || 'UNKNOWN',
+      responseCode: error.responseCode || null,
+      response: error.response || error.message || 'SMTP operation failed',
+      message: error.message
+    }
+
+    let likelyCause = 'Unknown SMTP error.'
+    if (safeError.code === 'EAUTH' || safeError.responseCode === 535) {
+      if (cfg.host.includes('gmail')) {
+        likelyCause = 'Google rejected the login credentials. For Gmail/Google Workspace, Google requires 2-Step Verification enabled and a 16-character App Password generated at https://myaccount.google.com/apppasswords. Regular account passwords are not accepted.'
+      } else {
+        likelyCause = 'The SMTP server rejected your login credentials. Verify EMAIL_USER and EMAIL_PASSWORD (or SMTP_USER and SMTP_PASS) in server/.env.'
+      }
+    } else if (safeError.code === 'ECONNECTION' || safeError.code === 'ETIMEDOUT') {
+      likelyCause = `Could not connect to SMTP server ${cfg.host}:${cfg.port}. Verify host/port and firewall settings.`
+    } else if (safeError.code === 'ETLS') {
+      likelyCause = `TLS handshake failed on port ${cfg.port}. Verify secure mode (port 465 for SSL, port 587 for STARTTLS).`
+    }
+
+    return {
+      success: false,
+      configured: true,
+      safeConfig,
+      error: safeError,
+      likelyCause
+    }
+  }
+}
+
+// Send email with comprehensive error capture
+export const sendEmail = async (options) => {
+  const cfg = getSMTPConfig()
+
+  if (!cfg.isConfigured) {
+    const errorDetails = {
+      code: 'EAUTH_CONFIG',
+      command: 'AUTH',
+      responseCode: 535,
+      response: 'SMTP credentials not configured or placeholder values detected in server/.env',
+      message: 'SMTP credentials missing or set to placeholder values.'
+    }
+    console.warn(`[EMAIL_SKIPPED] Cannot deliver email to: ${options.to}. Reason: ${errorDetails.response}`)
+    return {
+      success: false,
+      error: errorDetails.message,
+      details: errorDetails
+    }
+  }
+
+  try {
+    const transporter = createTransporter()
+    const fromAddress = options.from || `"Taraj Global Solutions" <${cfg.from}>`
+
     const mailOptions = {
-      from: options.from || fromEmail,
+      from: fromAddress,
       to: options.to,
+      replyTo: options.replyTo || cfg.replyTo,
       subject: options.subject,
       html: options.html,
       text: options.text
@@ -32,8 +184,21 @@ export const sendEmail = async (options) => {
     console.log(`[EMAIL_SENT] Email successfully delivered to: ${options.to}, Subject: "${options.subject}" (MsgID: ${info.messageId})`)
     return { success: true, messageId: info.messageId }
   } catch (error) {
-    console.error(`[EMAIL_FAILED] Failed sending email to: ${options.to}, Error: ${error.message}`)
-    return { success: false, error: error.message }
+    const safeError = {
+      code: error.code || 'UNKNOWN',
+      command: error.command || 'UNKNOWN',
+      responseCode: error.responseCode || null,
+      response: error.response || error.message || 'SMTP operation failed',
+      message: error.message
+    }
+    console.error(`[EMAIL_FAILED] Failed sending email to: ${options.to}`)
+    console.error(`[EMAIL_FAILED_DETAILS] code=${safeError.code}, command=${safeError.command}, responseCode=${safeError.responseCode}`)
+    console.error(`[EMAIL_FAILED_RESPONSE] ${safeError.response}`)
+    return { 
+      success: false, 
+      error: error.message,
+      details: safeError 
+    }
   }
 }
 
@@ -164,6 +329,7 @@ export const sendBlogPublishedNotification = async (blog, recipients) => {
 // Send customer meeting confirmation email
 export const sendMeetingConfirmationEmail = async (meeting) => {
   const customerName = meeting.fullName || meeting.full_name || meeting.name || 'Valued Client'
+  const bookingId = meeting.bookingId || meeting.booking_id || 'N/A'
   const displayDate = meeting.displayDate || (typeof meeting.meeting_date === 'string' ? meeting.meeting_date.split('T')[0] : new Date(meeting.meeting_date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))
   const displayTime = meeting.meeting_time || meeting.time || meeting.start_time
   const timezone = meeting.timeZone || meeting.time_zone || 'Asia/Kolkata'
@@ -217,6 +383,7 @@ export const sendMeetingConfirmationEmail = async (meeting) => {
 
           <div class="card">
             <div class="card-title">Meeting Details</div>
+            <div class="item"><span class="label">Booking ID:</span><span class="value" style="font-family: monospace; color: #00A6FF;">${bookingId}</span></div>
             <div class="item"><span class="label">Meeting:</span><span class="value">Strategy Call</span></div>
             <div class="item"><span class="label">Date:</span><span class="value">${displayDate}</span></div>
             <div class="item"><span class="label">Time:</span><span class="value">${displayTime}</span></div>
@@ -267,6 +434,7 @@ Thank you for booking a strategy call with Taraj Global Solutions.
 Your meeting has been successfully scheduled.
 
 Meeting Details:
+- Booking Reference: ${bookingId}
 - Meeting: Strategy Call
 - Date: ${displayDate}
 - Time: ${displayTime} (${timezone})

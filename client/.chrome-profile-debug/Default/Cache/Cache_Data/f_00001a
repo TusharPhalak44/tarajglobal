@@ -1,0 +1,244 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/B2bEmailMarketing/index.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import SEO from "/src/components/common/SEO/index.js";
+import ChatBot from "/src/components/chatbot/ChatBot.jsx";
+import Hero from "/src/pages/B2bEmailMarketing/components/Hero.jsx?t=1790341379126";
+import WhatIsService from "/src/pages/B2bEmailMarketing/components/WhatIsService.jsx";
+import WhoIsItFor from "/src/pages/B2bEmailMarketing/components/WhoIsItFor.jsx";
+import ProblemsSolved from "/src/pages/B2bEmailMarketing/components/ProblemsSolved.jsx";
+import EmailProcess from "/src/pages/B2bEmailMarketing/components/EmailProcess.jsx";
+import WhatTarajDelivers from "/src/pages/B2bEmailMarketing/components/WhatTarajDelivers.jsx";
+import WhyChoose from "/src/pages/B2bEmailMarketing/components/WhyChoose.jsx";
+import FAQ from "/src/pages/B2bEmailMarketing/components/FAQ.jsx";
+import CTA from "/src/pages/B2bEmailMarketing/components/CTA.jsx";
+const emailMarketingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "B2B Email Marketing",
+      "description": "Targeted B2B email marketing services designed to connect businesses with relevant decision-makers through personalized outreach, verified prospect data, engagement tracking, and lead qualification.",
+      "url": "https://www.tarajglobal.com/b2b-email-marketing",
+      "provider": {
+        "@type": "Organization",
+        "name": "Taraj Global",
+        "url": "https://tarajglobal.com"
+      },
+      "areaServed": "Global",
+      "serviceType": "B2B Email Marketing"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.tarajglobal.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.tarajglobal.com/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "B2B Email Marketing",
+          "item": "https://www.tarajglobal.com/b2b-email-marketing"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is B2B email marketing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B email marketing is a targeted outreach strategy that connects businesses with relevant decision makers through personalized email campaigns. Unlike consumer email marketing, B2B email marketing focuses on reaching specific business roles, such as managers, directors, and executives, with messaging relevant to their professional responsibilities and business challenges. The goal is to generate meaningful business conversations rather than broad awareness."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is B2B email marketing suitable for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B email marketing is suitable for any company that sells products or services to other businesses and needs to reach specific decision makers as part of their sales process. It is particularly effective for SaaS companies, IT and technology providers, professional services firms, and enterprise solution providers where personalized, targeted outreach supports a structured sales cycle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Taraj Global build targeted B2B email campaigns?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Taraj Global builds targeted B2B email campaigns by first defining your ideal customer profile (the industries, company types, sizes, and roles most relevant to your business). Using this profile, we identify and verify relevant prospects, develop structured multi step email sequences, personalize messaging based on audience context, and execute campaigns with engagement tracking throughout."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you identify and verify B2B prospects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We identify B2B prospects by mapping your ideal customer profile against available business data including company type, industry, size, and relevant decision maker roles. Prospect data is then validated to improve quality and relevance before use in campaigns. Verification reduces wasted outreach and ensures campaigns reach active, relevant decision makers rather than outdated or inaccurate contacts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can B2B email campaigns be personalized by industry or job role?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. B2B email campaigns can be personalized by industry, job role, company type, company size, and campaign objective. Personalization ensures that each email speaks directly to the recipient's business context rather than delivering generic messaging."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you measure B2B email marketing performance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B email marketing performance is measured across multiple engagement stages: delivery rates, open rates, click rates, reply rates, and qualification rates. Tracking across all stages provides a complete view of campaign effectiveness."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does email marketing generate qualified B2B leads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B email marketing generates qualified leads by targeting prospects that match your ideal customer profile, delivering relevant and personalized messaging, maintaining engagement through structured multi step sequences, and qualifying responses to identify genuine sales interest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between B2B email marketing and cold email outreach?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cold email outreach typically refers to one to one or one to few prospecting messages aimed at initiating a sales conversation. B2B email marketing encompasses a broader strategy including audience segmentation, multi step sequences, campaign management, engagement tracking, and lead qualification, structured to generate consistent responses across a defined target audience over time."
+          }
+        }
+      ]
+    }
+  ]
+};
+const B2bEmailMarketing = () => {
+  return /* @__PURE__ */ jsxDEV(Fragment, { children: [
+    /* @__PURE__ */ jsxDEV(
+      SEO,
+      {
+        title: "B2B Email Marketing Services | Taraj Global",
+        description: "Drive qualified B2B conversations with targeted email marketing campaigns. Taraj Global combines verified data, personalization, outreach, and lead qualification.",
+        keywords: "B2B email marketing, B2B email marketing services, B2B email marketing agency, B2B email campaigns, B2B email outreach, B2B lead generation, targeted B2B email campaigns, B2B prospect outreach, email lead generation, B2B demand generation, qualified B2B leads, B2B sales outreach, personalized B2B email campaigns",
+        canonical: "/b2b-email-marketing",
+        ogTitle: "B2B Email Marketing Services | Taraj Global",
+        ogDescription: "Reach the right B2B decision makers with targeted email campaigns, personalized outreach, verified data, engagement tracking, and lead qualification.",
+        ogType: "website",
+        twitterCard: "summary_large_image",
+        schemaJson: emailMarketingSchema
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 152,
+        columnNumber: 7
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV("div", { className: "min-h-screen bg-background", children: [
+      /* @__PURE__ */ jsxDEV(Hero, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 166,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhatIsService, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 169,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhoIsItFor, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 172,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(ProblemsSolved, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 175,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(EmailProcess, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 178,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhatTarajDelivers, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 181,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhyChoose, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 184,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(FAQ, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 187,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(CTA, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 190,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(ChatBot, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+        lineNumber: 192,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+      lineNumber: 164,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx",
+    lineNumber: 151,
+    columnNumber: 5
+  }, this);
+};
+_c = B2bEmailMarketing;
+export default B2bEmailMarketing;
+var _c;
+$RefreshReg$(_c, "B2bEmailMarketing");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/B2bEmailMarketing/index.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6IkFBbUlJLG1CQUNFLGNBREY7Ozs7Ozs7Ozs7Ozs7Ozs7QUFuSUosT0FBT0EsV0FBVztBQUNsQixPQUFPQyxTQUFTO0FBQ2hCLE9BQU9DLGFBQWE7QUFFcEIsT0FBT0MsVUFBVTtBQUNqQixPQUFPQyxtQkFBbUI7QUFDMUIsT0FBT0MsZ0JBQWdCO0FBQ3ZCLE9BQU9DLG9CQUFvQjtBQUMzQixPQUFPQyxrQkFBa0I7QUFDekIsT0FBT0MsdUJBQXVCO0FBQzlCLE9BQU9DLGVBQWU7QUFDdEIsT0FBT0MsU0FBUztBQUNoQixPQUFPQyxTQUFTO0FBSWhCLE1BQU1DLHVCQUF1QjtBQUFBLEVBQzNCLFlBQVk7QUFBQSxFQUNaLFVBQVU7QUFBQSxJQUNSO0FBQUEsTUFDRSxTQUFTO0FBQUEsTUFDVCxRQUFRO0FBQUEsTUFDUixlQUFlO0FBQUEsTUFDZixPQUFPO0FBQUEsTUFDUCxZQUFZO0FBQUEsUUFDVixTQUFTO0FBQUEsUUFDVCxRQUFRO0FBQUEsUUFDUixPQUFPO0FBQUEsTUFDVDtBQUFBLE1BQ0EsY0FBYztBQUFBLE1BQ2QsZUFBZTtBQUFBLElBQ2pCO0FBQUEsSUFDQTtBQUFBLE1BQ0UsU0FBUztBQUFBLE1BQ1QsbUJBQW1CO0FBQUEsUUFDakI7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFlBQVk7QUFBQSxVQUNaLFFBQVE7QUFBQSxVQUNSLFFBQVE7QUFBQSxRQUNWO0FBQUEsUUFDQTtBQUFBLFVBQ0UsU0FBUztBQUFBLFVBQ1QsWUFBWTtBQUFBLFVBQ1osUUFBUTtBQUFBLFVBQ1IsUUFBUTtBQUFBLFFBQ1Y7QUFBQSxRQUNBO0FBQUEsVUFDRSxTQUFTO0FBQUEsVUFDVCxZQUFZO0FBQUEsVUFDWixRQUFRO0FBQUEsVUFDUixRQUFRO0FBQUEsUUFDVjtBQUFBLE1BQUM7QUFBQSxJQUVMO0FBQUEsSUFDQTtBQUFBLE1BQ0UsU0FBUztBQUFBLE1BQ1QsY0FBYztBQUFBLFFBQ1o7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLE1BQUM7QUFBQSxJQUVMO0FBQUEsRUFBQztBQUVMO0FBSUEsTUFBTUMsb0JBQW9CQSxNQUFNO0FBQzlCLFNBQ0UsbUNBQ0U7QUFBQTtBQUFBLE1BQUM7QUFBQTtBQUFBLFFBQ0MsT0FBTTtBQUFBLFFBQ04sYUFBWTtBQUFBLFFBQ1osVUFBUztBQUFBLFFBQ1QsV0FBVTtBQUFBLFFBQ1YsU0FBUTtBQUFBLFFBQ1IsZUFBYztBQUFBLFFBQ2QsUUFBTztBQUFBLFFBQ1AsYUFBWTtBQUFBLFFBQ1osWUFBWUQ7QUFBQUE7QUFBQUEsTUFUZDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsSUFTbUM7QUFBQSxJQUduQyx1QkFBQyxTQUFJLFdBQVUsOEJBRWI7QUFBQSw2QkFBQyxVQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBSztBQUFBLE1BR0wsdUJBQUMsbUJBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUFjO0FBQUEsTUFHZCx1QkFBQyxnQkFBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQVc7QUFBQSxNQUdYLHVCQUFDLG9CQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBZTtBQUFBLE1BR2YsdUJBQUMsa0JBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUFhO0FBQUEsTUFHYix1QkFBQyx1QkFBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQWtCO0FBQUEsTUFHbEIsdUJBQUMsZUFBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQVU7QUFBQSxNQUdWLHVCQUFDLFNBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUFJO0FBQUEsTUFHSix1QkFBQyxTQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBSTtBQUFBLE1BRUosdUJBQUMsYUFBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQVE7QUFBQSxTQTVCVjtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBNkJBO0FBQUEsT0ExQ0Y7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQTJDQTtBQUVKO0FBQUNFLEtBL0NLRDtBQWlETixlQUFlQTtBQUFpQixJQUFBQztBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSZWFjdCIsIlNFTyIsIkNoYXRCb3QiLCJIZXJvIiwiV2hhdElzU2VydmljZSIsIldob0lzSXRGb3IiLCJQcm9ibGVtc1NvbHZlZCIsIkVtYWlsUHJvY2VzcyIsIldoYXRUYXJhakRlbGl2ZXJzIiwiV2h5Q2hvb3NlIiwiRkFRIiwiQ1RBIiwiZW1haWxNYXJrZXRpbmdTY2hlbWEiLCJCMmJFbWFpbE1hcmtldGluZyIsIl9jIl0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbImluZGV4LmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgU0VPIGZyb20gJ0Bjb21wb25lbnRzL2NvbW1vbi9TRU8nXG5pbXBvcnQgQ2hhdEJvdCBmcm9tICdAY29tcG9uZW50cy9jaGF0Ym90L0NoYXRCb3QnXG5cbmltcG9ydCBIZXJvIGZyb20gJy4vY29tcG9uZW50cy9IZXJvJ1xuaW1wb3J0IFdoYXRJc1NlcnZpY2UgZnJvbSAnLi9jb21wb25lbnRzL1doYXRJc1NlcnZpY2UnXG5pbXBvcnQgV2hvSXNJdEZvciBmcm9tICcuL2NvbXBvbmVudHMvV2hvSXNJdEZvcidcbmltcG9ydCBQcm9ibGVtc1NvbHZlZCBmcm9tICcuL2NvbXBvbmVudHMvUHJvYmxlbXNTb2x2ZWQnXG5pbXBvcnQgRW1haWxQcm9jZXNzIGZyb20gJy4vY29tcG9uZW50cy9FbWFpbFByb2Nlc3MnXG5pbXBvcnQgV2hhdFRhcmFqRGVsaXZlcnMgZnJvbSAnLi9jb21wb25lbnRzL1doYXRUYXJhakRlbGl2ZXJzJ1xuaW1wb3J0IFdoeUNob29zZSBmcm9tICcuL2NvbXBvbmVudHMvV2h5Q2hvb3NlJ1xuaW1wb3J0IEZBUSBmcm9tICcuL2NvbXBvbmVudHMvRkFRJ1xuaW1wb3J0IENUQSBmcm9tICcuL2NvbXBvbmVudHMvQ1RBJ1xuXG4vLyDilIDilIDilIAgSlNPTi1MRCBTdHJ1Y3R1cmVkIERhdGEg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5cbmNvbnN0IGVtYWlsTWFya2V0aW5nU2NoZW1hID0ge1xuICBcIkBjb250ZXh0XCI6IFwiaHR0cHM6Ly9zY2hlbWEub3JnXCIsXG4gIFwiQGdyYXBoXCI6IFtcbiAgICB7XG4gICAgICBcIkB0eXBlXCI6IFwiU2VydmljZVwiLFxuICAgICAgXCJuYW1lXCI6IFwiQjJCIEVtYWlsIE1hcmtldGluZ1wiLFxuICAgICAgXCJkZXNjcmlwdGlvblwiOiBcIlRhcmdldGVkIEIyQiBlbWFpbCBtYXJrZXRpbmcgc2VydmljZXMgZGVzaWduZWQgdG8gY29ubmVjdCBidXNpbmVzc2VzIHdpdGggcmVsZXZhbnQgZGVjaXNpb24tbWFrZXJzIHRocm91Z2ggcGVyc29uYWxpemVkIG91dHJlYWNoLCB2ZXJpZmllZCBwcm9zcGVjdCBkYXRhLCBlbmdhZ2VtZW50IHRyYWNraW5nLCBhbmQgbGVhZCBxdWFsaWZpY2F0aW9uLlwiLFxuICAgICAgXCJ1cmxcIjogXCJodHRwczovL3d3dy50YXJhamdsb2JhbC5jb20vYjJiLWVtYWlsLW1hcmtldGluZ1wiLFxuICAgICAgXCJwcm92aWRlclwiOiB7XG4gICAgICAgIFwiQHR5cGVcIjogXCJPcmdhbml6YXRpb25cIixcbiAgICAgICAgXCJuYW1lXCI6IFwiVGFyYWogR2xvYmFsXCIsXG4gICAgICAgIFwidXJsXCI6IFwiaHR0cHM6Ly90YXJhamdsb2JhbC5jb21cIlxuICAgICAgfSxcbiAgICAgIFwiYXJlYVNlcnZlZFwiOiBcIkdsb2JhbFwiLFxuICAgICAgXCJzZXJ2aWNlVHlwZVwiOiBcIkIyQiBFbWFpbCBNYXJrZXRpbmdcIlxuICAgIH0sXG4gICAge1xuICAgICAgXCJAdHlwZVwiOiBcIkJyZWFkY3J1bWJMaXN0XCIsXG4gICAgICBcIml0ZW1MaXN0RWxlbWVudFwiOiBbXG4gICAgICAgIHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiTGlzdEl0ZW1cIixcbiAgICAgICAgICBcInBvc2l0aW9uXCI6IDEsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiSG9tZVwiLFxuICAgICAgICAgIFwiaXRlbVwiOiBcImh0dHBzOi8vd3d3LnRhcmFqZ2xvYmFsLmNvbS9cIlxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIkxpc3RJdGVtXCIsXG4gICAgICAgICAgXCJwb3NpdGlvblwiOiAyLFxuICAgICAgICAgIFwibmFtZVwiOiBcIlNlcnZpY2VzXCIsXG4gICAgICAgICAgXCJpdGVtXCI6IFwiaHR0cHM6Ly93d3cudGFyYWpnbG9iYWwuY29tL3NlcnZpY2VzXCJcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJMaXN0SXRlbVwiLFxuICAgICAgICAgIFwicG9zaXRpb25cIjogMyxcbiAgICAgICAgICBcIm5hbWVcIjogXCJCMkIgRW1haWwgTWFya2V0aW5nXCIsXG4gICAgICAgICAgXCJpdGVtXCI6IFwiaHR0cHM6Ly93d3cudGFyYWpnbG9iYWwuY29tL2IyYi1lbWFpbC1tYXJrZXRpbmdcIlxuICAgICAgICB9XG4gICAgICBdXG4gICAgfSxcbiAgICB7XG4gICAgICBcIkB0eXBlXCI6IFwiRkFRUGFnZVwiLFxuICAgICAgXCJtYWluRW50aXR5XCI6IFtcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJRdWVzdGlvblwiLFxuICAgICAgICAgIFwibmFtZVwiOiBcIldoYXQgaXMgQjJCIGVtYWlsIG1hcmtldGluZz9cIixcbiAgICAgICAgICBcImFjY2VwdGVkQW5zd2VyXCI6IHtcbiAgICAgICAgICAgIFwiQHR5cGVcIjogXCJBbnN3ZXJcIixcbiAgICAgICAgICAgIFwidGV4dFwiOiBcIkIyQiBlbWFpbCBtYXJrZXRpbmcgaXMgYSB0YXJnZXRlZCBvdXRyZWFjaCBzdHJhdGVneSB0aGF0IGNvbm5lY3RzIGJ1c2luZXNzZXMgd2l0aCByZWxldmFudCBkZWNpc2lvbiBtYWtlcnMgdGhyb3VnaCBwZXJzb25hbGl6ZWQgZW1haWwgY2FtcGFpZ25zLiBVbmxpa2UgY29uc3VtZXIgZW1haWwgbWFya2V0aW5nLCBCMkIgZW1haWwgbWFya2V0aW5nIGZvY3VzZXMgb24gcmVhY2hpbmcgc3BlY2lmaWMgYnVzaW5lc3Mgcm9sZXMsIHN1Y2ggYXMgbWFuYWdlcnMsIGRpcmVjdG9ycywgYW5kIGV4ZWN1dGl2ZXMsIHdpdGggbWVzc2FnaW5nIHJlbGV2YW50IHRvIHRoZWlyIHByb2Zlc3Npb25hbCByZXNwb25zaWJpbGl0aWVzIGFuZCBidXNpbmVzcyBjaGFsbGVuZ2VzLiBUaGUgZ29hbCBpcyB0byBnZW5lcmF0ZSBtZWFuaW5nZnVsIGJ1c2luZXNzIGNvbnZlcnNhdGlvbnMgcmF0aGVyIHRoYW4gYnJvYWQgYXdhcmVuZXNzLlwiXG4gICAgICAgICAgfVxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIlF1ZXN0aW9uXCIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiV2hvIGlzIEIyQiBlbWFpbCBtYXJrZXRpbmcgc3VpdGFibGUgZm9yP1wiLFxuICAgICAgICAgIFwiYWNjZXB0ZWRBbnN3ZXJcIjoge1xuICAgICAgICAgICAgXCJAdHlwZVwiOiBcIkFuc3dlclwiLFxuICAgICAgICAgICAgXCJ0ZXh0XCI6IFwiQjJCIGVtYWlsIG1hcmtldGluZyBpcyBzdWl0YWJsZSBmb3IgYW55IGNvbXBhbnkgdGhhdCBzZWxscyBwcm9kdWN0cyBvciBzZXJ2aWNlcyB0byBvdGhlciBidXNpbmVzc2VzIGFuZCBuZWVkcyB0byByZWFjaCBzcGVjaWZpYyBkZWNpc2lvbiBtYWtlcnMgYXMgcGFydCBvZiB0aGVpciBzYWxlcyBwcm9jZXNzLiBJdCBpcyBwYXJ0aWN1bGFybHkgZWZmZWN0aXZlIGZvciBTYWFTIGNvbXBhbmllcywgSVQgYW5kIHRlY2hub2xvZ3kgcHJvdmlkZXJzLCBwcm9mZXNzaW9uYWwgc2VydmljZXMgZmlybXMsIGFuZCBlbnRlcnByaXNlIHNvbHV0aW9uIHByb3ZpZGVycyB3aGVyZSBwZXJzb25hbGl6ZWQsIHRhcmdldGVkIG91dHJlYWNoIHN1cHBvcnRzIGEgc3RydWN0dXJlZCBzYWxlcyBjeWNsZS5cIlxuICAgICAgICAgIH1cbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJRdWVzdGlvblwiLFxuICAgICAgICAgIFwibmFtZVwiOiBcIkhvdyBkb2VzIFRhcmFqIEdsb2JhbCBidWlsZCB0YXJnZXRlZCBCMkIgZW1haWwgY2FtcGFpZ25zP1wiLFxuICAgICAgICAgIFwiYWNjZXB0ZWRBbnN3ZXJcIjoge1xuICAgICAgICAgICAgXCJAdHlwZVwiOiBcIkFuc3dlclwiLFxuICAgICAgICAgICAgXCJ0ZXh0XCI6IFwiVGFyYWogR2xvYmFsIGJ1aWxkcyB0YXJnZXRlZCBCMkIgZW1haWwgY2FtcGFpZ25zIGJ5IGZpcnN0IGRlZmluaW5nIHlvdXIgaWRlYWwgY3VzdG9tZXIgcHJvZmlsZSAodGhlIGluZHVzdHJpZXMsIGNvbXBhbnkgdHlwZXMsIHNpemVzLCBhbmQgcm9sZXMgbW9zdCByZWxldmFudCB0byB5b3VyIGJ1c2luZXNzKS4gVXNpbmcgdGhpcyBwcm9maWxlLCB3ZSBpZGVudGlmeSBhbmQgdmVyaWZ5IHJlbGV2YW50IHByb3NwZWN0cywgZGV2ZWxvcCBzdHJ1Y3R1cmVkIG11bHRpIHN0ZXAgZW1haWwgc2VxdWVuY2VzLCBwZXJzb25hbGl6ZSBtZXNzYWdpbmcgYmFzZWQgb24gYXVkaWVuY2UgY29udGV4dCwgYW5kIGV4ZWN1dGUgY2FtcGFpZ25zIHdpdGggZW5nYWdlbWVudCB0cmFja2luZyB0aHJvdWdob3V0LlwiXG4gICAgICAgICAgfVxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIlF1ZXN0aW9uXCIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiSG93IGRvIHlvdSBpZGVudGlmeSBhbmQgdmVyaWZ5IEIyQiBwcm9zcGVjdHM/XCIsXG4gICAgICAgICAgXCJhY2NlcHRlZEFuc3dlclwiOiB7XG4gICAgICAgICAgICBcIkB0eXBlXCI6IFwiQW5zd2VyXCIsXG4gICAgICAgICAgICBcInRleHRcIjogXCJXZSBpZGVudGlmeSBCMkIgcHJvc3BlY3RzIGJ5IG1hcHBpbmcgeW91ciBpZGVhbCBjdXN0b21lciBwcm9maWxlIGFnYWluc3QgYXZhaWxhYmxlIGJ1c2luZXNzIGRhdGEgaW5jbHVkaW5nIGNvbXBhbnkgdHlwZSwgaW5kdXN0cnksIHNpemUsIGFuZCByZWxldmFudCBkZWNpc2lvbiBtYWtlciByb2xlcy4gUHJvc3BlY3QgZGF0YSBpcyB0aGVuIHZhbGlkYXRlZCB0byBpbXByb3ZlIHF1YWxpdHkgYW5kIHJlbGV2YW5jZSBiZWZvcmUgdXNlIGluIGNhbXBhaWducy4gVmVyaWZpY2F0aW9uIHJlZHVjZXMgd2FzdGVkIG91dHJlYWNoIGFuZCBlbnN1cmVzIGNhbXBhaWducyByZWFjaCBhY3RpdmUsIHJlbGV2YW50IGRlY2lzaW9uIG1ha2VycyByYXRoZXIgdGhhbiBvdXRkYXRlZCBvciBpbmFjY3VyYXRlIGNvbnRhY3RzLlwiXG4gICAgICAgICAgfVxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIlF1ZXN0aW9uXCIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiQ2FuIEIyQiBlbWFpbCBjYW1wYWlnbnMgYmUgcGVyc29uYWxpemVkIGJ5IGluZHVzdHJ5IG9yIGpvYiByb2xlP1wiLFxuICAgICAgICAgIFwiYWNjZXB0ZWRBbnN3ZXJcIjoge1xuICAgICAgICAgICAgXCJAdHlwZVwiOiBcIkFuc3dlclwiLFxuICAgICAgICAgICAgXCJ0ZXh0XCI6IFwiWWVzLiBCMkIgZW1haWwgY2FtcGFpZ25zIGNhbiBiZSBwZXJzb25hbGl6ZWQgYnkgaW5kdXN0cnksIGpvYiByb2xlLCBjb21wYW55IHR5cGUsIGNvbXBhbnkgc2l6ZSwgYW5kIGNhbXBhaWduIG9iamVjdGl2ZS4gUGVyc29uYWxpemF0aW9uIGVuc3VyZXMgdGhhdCBlYWNoIGVtYWlsIHNwZWFrcyBkaXJlY3RseSB0byB0aGUgcmVjaXBpZW50J3MgYnVzaW5lc3MgY29udGV4dCByYXRoZXIgdGhhbiBkZWxpdmVyaW5nIGdlbmVyaWMgbWVzc2FnaW5nLlwiXG4gICAgICAgICAgfVxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIlF1ZXN0aW9uXCIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiSG93IGRvIHlvdSBtZWFzdXJlIEIyQiBlbWFpbCBtYXJrZXRpbmcgcGVyZm9ybWFuY2U/XCIsXG4gICAgICAgICAgXCJhY2NlcHRlZEFuc3dlclwiOiB7XG4gICAgICAgICAgICBcIkB0eXBlXCI6IFwiQW5zd2VyXCIsXG4gICAgICAgICAgICBcInRleHRcIjogXCJCMkIgZW1haWwgbWFya2V0aW5nIHBlcmZvcm1hbmNlIGlzIG1lYXN1cmVkIGFjcm9zcyBtdWx0aXBsZSBlbmdhZ2VtZW50IHN0YWdlczogZGVsaXZlcnkgcmF0ZXMsIG9wZW4gcmF0ZXMsIGNsaWNrIHJhdGVzLCByZXBseSByYXRlcywgYW5kIHF1YWxpZmljYXRpb24gcmF0ZXMuIFRyYWNraW5nIGFjcm9zcyBhbGwgc3RhZ2VzIHByb3ZpZGVzIGEgY29tcGxldGUgdmlldyBvZiBjYW1wYWlnbiBlZmZlY3RpdmVuZXNzLlwiXG4gICAgICAgICAgfVxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIlF1ZXN0aW9uXCIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiSG93IGRvZXMgZW1haWwgbWFya2V0aW5nIGdlbmVyYXRlIHF1YWxpZmllZCBCMkIgbGVhZHM/XCIsXG4gICAgICAgICAgXCJhY2NlcHRlZEFuc3dlclwiOiB7XG4gICAgICAgICAgICBcIkB0eXBlXCI6IFwiQW5zd2VyXCIsXG4gICAgICAgICAgICBcInRleHRcIjogXCJCMkIgZW1haWwgbWFya2V0aW5nIGdlbmVyYXRlcyBxdWFsaWZpZWQgbGVhZHMgYnkgdGFyZ2V0aW5nIHByb3NwZWN0cyB0aGF0IG1hdGNoIHlvdXIgaWRlYWwgY3VzdG9tZXIgcHJvZmlsZSwgZGVsaXZlcmluZyByZWxldmFudCBhbmQgcGVyc29uYWxpemVkIG1lc3NhZ2luZywgbWFpbnRhaW5pbmcgZW5nYWdlbWVudCB0aHJvdWdoIHN0cnVjdHVyZWQgbXVsdGkgc3RlcCBzZXF1ZW5jZXMsIGFuZCBxdWFsaWZ5aW5nIHJlc3BvbnNlcyB0byBpZGVudGlmeSBnZW51aW5lIHNhbGVzIGludGVyZXN0LlwiXG4gICAgICAgICAgfVxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIlF1ZXN0aW9uXCIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiV2hhdCBpcyB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIEIyQiBlbWFpbCBtYXJrZXRpbmcgYW5kIGNvbGQgZW1haWwgb3V0cmVhY2g/XCIsXG4gICAgICAgICAgXCJhY2NlcHRlZEFuc3dlclwiOiB7XG4gICAgICAgICAgICBcIkB0eXBlXCI6IFwiQW5zd2VyXCIsXG4gICAgICAgICAgICBcInRleHRcIjogXCJDb2xkIGVtYWlsIG91dHJlYWNoIHR5cGljYWxseSByZWZlcnMgdG8gb25lIHRvIG9uZSBvciBvbmUgdG8gZmV3IHByb3NwZWN0aW5nIG1lc3NhZ2VzIGFpbWVkIGF0IGluaXRpYXRpbmcgYSBzYWxlcyBjb252ZXJzYXRpb24uIEIyQiBlbWFpbCBtYXJrZXRpbmcgZW5jb21wYXNzZXMgYSBicm9hZGVyIHN0cmF0ZWd5IGluY2x1ZGluZyBhdWRpZW5jZSBzZWdtZW50YXRpb24sIG11bHRpIHN0ZXAgc2VxdWVuY2VzLCBjYW1wYWlnbiBtYW5hZ2VtZW50LCBlbmdhZ2VtZW50IHRyYWNraW5nLCBhbmQgbGVhZCBxdWFsaWZpY2F0aW9uLCBzdHJ1Y3R1cmVkIHRvIGdlbmVyYXRlIGNvbnNpc3RlbnQgcmVzcG9uc2VzIGFjcm9zcyBhIGRlZmluZWQgdGFyZ2V0IGF1ZGllbmNlIG92ZXIgdGltZS5cIlxuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgXVxuICAgIH1cbiAgXVxufVxuXG4vLyDilIDilIDilIAgUGFnZSBDb21wb25lbnQg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5cbmNvbnN0IEIyYkVtYWlsTWFya2V0aW5nID0gKCkgPT4ge1xuICByZXR1cm4gKFxuICAgIDw+XG4gICAgICA8U0VPXG4gICAgICAgIHRpdGxlPVwiQjJCIEVtYWlsIE1hcmtldGluZyBTZXJ2aWNlcyB8IFRhcmFqIEdsb2JhbFwiXG4gICAgICAgIGRlc2NyaXB0aW9uPVwiRHJpdmUgcXVhbGlmaWVkIEIyQiBjb252ZXJzYXRpb25zIHdpdGggdGFyZ2V0ZWQgZW1haWwgbWFya2V0aW5nIGNhbXBhaWducy4gVGFyYWogR2xvYmFsIGNvbWJpbmVzIHZlcmlmaWVkIGRhdGEsIHBlcnNvbmFsaXphdGlvbiwgb3V0cmVhY2gsIGFuZCBsZWFkIHF1YWxpZmljYXRpb24uXCJcbiAgICAgICAga2V5d29yZHM9XCJCMkIgZW1haWwgbWFya2V0aW5nLCBCMkIgZW1haWwgbWFya2V0aW5nIHNlcnZpY2VzLCBCMkIgZW1haWwgbWFya2V0aW5nIGFnZW5jeSwgQjJCIGVtYWlsIGNhbXBhaWducywgQjJCIGVtYWlsIG91dHJlYWNoLCBCMkIgbGVhZCBnZW5lcmF0aW9uLCB0YXJnZXRlZCBCMkIgZW1haWwgY2FtcGFpZ25zLCBCMkIgcHJvc3BlY3Qgb3V0cmVhY2gsIGVtYWlsIGxlYWQgZ2VuZXJhdGlvbiwgQjJCIGRlbWFuZCBnZW5lcmF0aW9uLCBxdWFsaWZpZWQgQjJCIGxlYWRzLCBCMkIgc2FsZXMgb3V0cmVhY2gsIHBlcnNvbmFsaXplZCBCMkIgZW1haWwgY2FtcGFpZ25zXCJcbiAgICAgICAgY2Fub25pY2FsPVwiL2IyYi1lbWFpbC1tYXJrZXRpbmdcIlxuICAgICAgICBvZ1RpdGxlPVwiQjJCIEVtYWlsIE1hcmtldGluZyBTZXJ2aWNlcyB8IFRhcmFqIEdsb2JhbFwiXG4gICAgICAgIG9nRGVzY3JpcHRpb249XCJSZWFjaCB0aGUgcmlnaHQgQjJCIGRlY2lzaW9uIG1ha2VycyB3aXRoIHRhcmdldGVkIGVtYWlsIGNhbXBhaWducywgcGVyc29uYWxpemVkIG91dHJlYWNoLCB2ZXJpZmllZCBkYXRhLCBlbmdhZ2VtZW50IHRyYWNraW5nLCBhbmQgbGVhZCBxdWFsaWZpY2F0aW9uLlwiXG4gICAgICAgIG9nVHlwZT1cIndlYnNpdGVcIlxuICAgICAgICB0d2l0dGVyQ2FyZD1cInN1bW1hcnlfbGFyZ2VfaW1hZ2VcIlxuICAgICAgICBzY2hlbWFKc29uPXtlbWFpbE1hcmtldGluZ1NjaGVtYX1cbiAgICAgIC8+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwibWluLWgtc2NyZWVuIGJnLWJhY2tncm91bmRcIj5cbiAgICAgICAgey8qIFNlY3Rpb24gMSDigJQgSGVybyAqL31cbiAgICAgICAgPEhlcm8gLz5cblxuICAgICAgICB7LyogU2VjdGlvbiAyIOKAlCBXaGF0IElzIEIyQiBFbWFpbCBNYXJrZXRpbmcgKi99XG4gICAgICAgIDxXaGF0SXNTZXJ2aWNlIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gMyDigJQgV2hvIENhbiBCZW5lZml0ICovfVxuICAgICAgICA8V2hvSXNJdEZvciAvPlxuXG4gICAgICAgIHsvKiBTZWN0aW9uIDQg4oCUIFByb2JsZW0g4oaSIFNvbHV0aW9uICovfVxuICAgICAgICA8UHJvYmxlbXNTb2x2ZWQgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiA1IOKAlCA5LVN0ZXAgV29ya2Zsb3cgKi99XG4gICAgICAgIDxFbWFpbFByb2Nlc3MgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiA2IOKAlCBXaGF0IFRhcmFqIEdsb2JhbCBEZWxpdmVycyAqL31cbiAgICAgICAgPFdoYXRUYXJhakRlbGl2ZXJzIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gNyDigJQgV2h5IENob29zZSBUYXJhaiBHbG9iYWwgKi99XG4gICAgICAgIDxXaHlDaG9vc2UgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiA4IOKAlCBGQVEgKi99XG4gICAgICAgIDxGQVEgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiA5IOKAlCBGaW5hbCBDVEEgKi99XG4gICAgICAgIDxDVEEgLz5cblxuICAgICAgICA8Q2hhdEJvdCAvPlxuICAgICAgPC9kaXY+XG4gICAgPC8+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgQjJiRW1haWxNYXJrZXRpbmdcbiJdLCJmaWxlIjoiQzovVXNlcnMvSFAvRGVza3RvcC9UR1MvVGFyYWpfR2xvYmFsbC9jbGllbnQvc3JjL3BhZ2VzL0IyYkVtYWlsTWFya2V0aW5nL2luZGV4LmpzeCJ9

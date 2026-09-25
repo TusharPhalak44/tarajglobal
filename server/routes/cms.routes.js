@@ -44,4 +44,11 @@ router.get('/clients', cmsController.getActiveClients)
 // @access  Public
 router.get('/clients-section', cmsController.getClientSectionSettings)
 
+// ==================== PUBLIC STATS / BUSINESS OUTCOMES ROUTES ====================
+
+// @route   GET /api/cms/stats
+// @desc    Get business outcomes stats settings
+// @access  Public
+router.get('/stats', cmsController.getStatsSettings)
+
 export default router

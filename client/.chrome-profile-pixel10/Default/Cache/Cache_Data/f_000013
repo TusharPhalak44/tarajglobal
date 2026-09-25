@@ -1,0 +1,186 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/ContentSyndication/index.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import SEO from "/src/components/common/SEO/index.js";
+import ChatBot from "/src/components/chatbot/ChatBot.jsx";
+import Hero from "/src/pages/ContentSyndication/components/Hero.jsx";
+import WhatIsService from "/src/pages/ContentSyndication/components/WhatIsService.jsx";
+import WhoIsItFor from "/src/pages/ContentSyndication/components/WhoIsItFor.jsx";
+import ProblemsSolved from "/src/pages/ContentSyndication/components/ProblemsSolved.jsx";
+import SyndicationProcess from "/src/pages/ContentSyndication/components/SyndicationProcess.jsx";
+import WhatTarajDelivers from "/src/pages/ContentSyndication/components/WhatTarajDelivers.jsx";
+import WhyChoose from "/src/pages/ContentSyndication/components/WhyChoose.jsx";
+import FAQ, { FAQS } from "/src/pages/ContentSyndication/components/FAQ.jsx";
+import CTA from "/src/pages/ContentSyndication/components/CTA.jsx";
+const syndicationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "B2B Content Syndication Services",
+      "description": "Distribute whitepapers, ebooks, and research reports across verified B2B publisher networks to reach targeted decision-makers and generate sales-qualified leads on guaranteed CPL pricing.",
+      "url": "https://www.tarajglobal.com/content-syndication",
+      "provider": {
+        "@type": "Organization",
+        "name": "Taraj Global",
+        "url": "https://tarajglobal.com"
+      },
+      "areaServed": "Global",
+      "serviceType": "B2B Content Syndication"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.tarajglobal.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.tarajglobal.com/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Content Syndication",
+          "item": "https://www.tarajglobal.com/content-syndication"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": FAQS.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
+const ContentSyndication = () => {
+  return /* @__PURE__ */ jsxDEV(Fragment, { children: [
+    /* @__PURE__ */ jsxDEV(
+      SEO,
+      {
+        title: "B2B Content Syndication Services | Taraj Global",
+        description: "Expand reach, engage active decision-makers, and generate high-intent qualified leads with targeted B2B content syndication on guaranteed CPL terms.",
+        keywords: "B2B content syndication, content syndication services, B2B lead syndication, whitepaper syndication, CPL content syndication, B2B lead generation, demand generation syndication, enterprise content distribution, verified reader leads, ABM content syndication",
+        canonical: "/content-syndication",
+        ogTitle: "B2B Content Syndication Services | Taraj Global",
+        ogDescription: "Distribute high-value digital assets to verified B2B decision-makers across premier publishing networks. Guaranteed CPL qualified lead delivery.",
+        ogType: "website",
+        twitterCard: "summary_large_image",
+        schemaJson: syndicationSchema
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 94,
+        columnNumber: 7
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV("div", { className: "min-h-screen bg-background", children: [
+      /* @__PURE__ */ jsxDEV(Hero, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 108,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhatIsService, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 111,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhoIsItFor, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 114,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(ProblemsSolved, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 117,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(SyndicationProcess, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 120,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhatTarajDelivers, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 123,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhyChoose, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 126,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(FAQ, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 129,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(CTA, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 132,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(ChatBot, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+        lineNumber: 134,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+      lineNumber: 106,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx",
+    lineNumber: 93,
+    columnNumber: 5
+  }, this);
+};
+_c = ContentSyndication;
+export default ContentSyndication;
+var _c;
+$RefreshReg$(_c, "ContentSyndication");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/ContentSyndication/index.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QTtBQUFBLFdBNkJBO0FBQUEsT0ExQ0Y7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQTJDQTtBQUVKO0FBQUNNLEtBL0NLRDtBQWlETixlQUFlQTtBQUFrQixJQUFBQztBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSZWFjdCIsIlNFTyIsIkNoYXRCb3QiLCJIZXJvIiwiV2hhdElzU2VydmljZSIsIldob0lzSXRGb3IiLCJQcm9ibGVtc1NvbHZlZCIsIlN5bmRpY2F0aW9uUHJvY2VzcyIsIldoYXRUYXJhakRlbGl2ZXJzIiwiV2h5Q2hvb3NlIiwiRkFRIiwiRkFRUyIsIkNUQSIsInN5bmRpY2F0aW9uU2NoZW1hIiwibWFwIiwiZmFxIiwicXVlc3Rpb24iLCJhbnN3ZXIiLCJDb250ZW50U3luZGljYXRpb24iLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJpbmRleC5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFNFTyBmcm9tICdAY29tcG9uZW50cy9jb21tb24vU0VPJ1xuaW1wb3J0IENoYXRCb3QgZnJvbSAnQGNvbXBvbmVudHMvY2hhdGJvdC9DaGF0Qm90J1xuXG5pbXBvcnQgSGVybyBmcm9tICcuL2NvbXBvbmVudHMvSGVybydcbmltcG9ydCBXaGF0SXNTZXJ2aWNlIGZyb20gJy4vY29tcG9uZW50cy9XaGF0SXNTZXJ2aWNlJ1xuaW1wb3J0IFdob0lzSXRGb3IgZnJvbSAnLi9jb21wb25lbnRzL1dob0lzSXRGb3InXG5pbXBvcnQgUHJvYmxlbXNTb2x2ZWQgZnJvbSAnLi9jb21wb25lbnRzL1Byb2JsZW1zU29sdmVkJ1xuaW1wb3J0IFN5bmRpY2F0aW9uUHJvY2VzcyBmcm9tICcuL2NvbXBvbmVudHMvU3luZGljYXRpb25Qcm9jZXNzJ1xuaW1wb3J0IFdoYXRUYXJhakRlbGl2ZXJzIGZyb20gJy4vY29tcG9uZW50cy9XaGF0VGFyYWpEZWxpdmVycydcbmltcG9ydCBXaHlDaG9vc2UgZnJvbSAnLi9jb21wb25lbnRzL1doeUNob29zZSdcbmltcG9ydCBGQVEsIHsgRkFRUyB9IGZyb20gJy4vY29tcG9uZW50cy9GQVEnXG5pbXBvcnQgQ1RBIGZyb20gJy4vY29tcG9uZW50cy9DVEEnXG5cbi8vIOKUgOKUgOKUgCBKU09OLUxEIFN0cnVjdHVyZWQgRGF0YSBmb3IgQ29udGVudCBTeW5kaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcblxuY29uc3Qgc3luZGljYXRpb25TY2hlbWEgPSB7XG4gIFwiQGNvbnRleHRcIjogXCJodHRwczovL3NjaGVtYS5vcmdcIixcbiAgXCJAZ3JhcGhcIjogW1xuICAgIHtcbiAgICAgIFwiQHR5cGVcIjogXCJTZXJ2aWNlXCIsXG4gICAgICBcIm5hbWVcIjogXCJCMkIgQ29udGVudCBTeW5kaWNhdGlvbiBTZXJ2aWNlc1wiLFxuICAgICAgXCJkZXNjcmlwdGlvblwiOiBcIkRpc3RyaWJ1dGUgd2hpdGVwYXBlcnMsIGVib29rcywgYW5kIHJlc2VhcmNoIHJlcG9ydHMgYWNyb3NzIHZlcmlmaWVkIEIyQiBwdWJsaXNoZXIgbmV0d29ya3MgdG8gcmVhY2ggdGFyZ2V0ZWQgZGVjaXNpb24tbWFrZXJzIGFuZCBnZW5lcmF0ZSBzYWxlcy1xdWFsaWZpZWQgbGVhZHMgb24gZ3VhcmFudGVlZCBDUEwgcHJpY2luZy5cIixcbiAgICAgIFwidXJsXCI6IFwiaHR0cHM6Ly93d3cudGFyYWpnbG9iYWwuY29tL2NvbnRlbnQtc3luZGljYXRpb25cIixcbiAgICAgIFwicHJvdmlkZXJcIjoge1xuICAgICAgICBcIkB0eXBlXCI6IFwiT3JnYW5pemF0aW9uXCIsXG4gICAgICAgIFwibmFtZVwiOiBcIlRhcmFqIEdsb2JhbFwiLFxuICAgICAgICBcInVybFwiOiBcImh0dHBzOi8vdGFyYWpnbG9iYWwuY29tXCIsXG4gICAgICB9LFxuICAgICAgXCJhcmVhU2VydmVkXCI6IFwiR2xvYmFsXCIsXG4gICAgICBcInNlcnZpY2VUeXBlXCI6IFwiQjJCIENvbnRlbnQgU3luZGljYXRpb25cIixcbiAgICB9LFxuICAgIHtcbiAgICAgIFwiQHR5cGVcIjogXCJCcmVhZGNydW1iTGlzdFwiLFxuICAgICAgXCJpdGVtTGlzdEVsZW1lbnRcIjogW1xuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIkxpc3RJdGVtXCIsXG4gICAgICAgICAgXCJwb3NpdGlvblwiOiAxLFxuICAgICAgICAgIFwibmFtZVwiOiBcIkhvbWVcIixcbiAgICAgICAgICBcIml0ZW1cIjogXCJodHRwczovL3d3dy50YXJhamdsb2JhbC5jb20vXCIsXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiTGlzdEl0ZW1cIixcbiAgICAgICAgICBcInBvc2l0aW9uXCI6IDIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiU2VydmljZXNcIixcbiAgICAgICAgICBcIml0ZW1cIjogXCJodHRwczovL3d3dy50YXJhamdsb2JhbC5jb20vc2VydmljZXNcIixcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJMaXN0SXRlbVwiLFxuICAgICAgICAgIFwicG9zaXRpb25cIjogMyxcbiAgICAgICAgICBcIm5hbWVcIjogXCJDb250ZW50IFN5bmRpY2F0aW9uXCIsXG4gICAgICAgICAgXCJpdGVtXCI6IFwiaHR0cHM6Ly93d3cudGFyYWpnbG9iYWwuY29tL2NvbnRlbnQtc3luZGljYXRpb25cIixcbiAgICAgICAgfSxcbiAgICAgIF0sXG4gICAgfSxcbiAgICB7XG4gICAgICBcIkB0eXBlXCI6IFwiRkFRUGFnZVwiLFxuICAgICAgXCJtYWluRW50aXR5XCI6IEZBUVMubWFwKChmYXEpID0+ICh7XG4gICAgICAgIFwiQHR5cGVcIjogXCJRdWVzdGlvblwiLFxuICAgICAgICBcIm5hbWVcIjogZmFxLnF1ZXN0aW9uLFxuICAgICAgICBcImFjY2VwdGVkQW5zd2VyXCI6IHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiQW5zd2VyXCIsXG4gICAgICAgICAgXCJ0ZXh0XCI6IGZhcS5hbnN3ZXIsXG4gICAgICAgIH0sXG4gICAgICB9KSksXG4gICAgfSxcbiAgXSxcbn1cblxuLy8g4pSA4pSA4pSAIFBhZ2UgQ29tcG9uZW50IOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuXG5jb25zdCBDb250ZW50U3luZGljYXRpb24gPSAoKSA9PiB7XG4gIHJldHVybiAoXG4gICAgPD5cbiAgICAgIDxTRU9cbiAgICAgICAgdGl0bGU9XCJCMkIgQ29udGVudCBTeW5kaWNhdGlvbiBTZXJ2aWNlcyB8IFRhcmFqIEdsb2JhbFwiXG4gICAgICAgIGRlc2NyaXB0aW9uPVwiRXhwYW5kIHJlYWNoLCBlbmdhZ2UgYWN0aXZlIGRlY2lzaW9uLW1ha2VycywgYW5kIGdlbmVyYXRlIGhpZ2gtaW50ZW50IHF1YWxpZmllZCBsZWFkcyB3aXRoIHRhcmdldGVkIEIyQiBjb250ZW50IHN5bmRpY2F0aW9uIG9uIGd1YXJhbnRlZWQgQ1BMIHRlcm1zLlwiXG4gICAgICAgIGtleXdvcmRzPVwiQjJCIGNvbnRlbnQgc3luZGljYXRpb24sIGNvbnRlbnQgc3luZGljYXRpb24gc2VydmljZXMsIEIyQiBsZWFkIHN5bmRpY2F0aW9uLCB3aGl0ZXBhcGVyIHN5bmRpY2F0aW9uLCBDUEwgY29udGVudCBzeW5kaWNhdGlvbiwgQjJCIGxlYWQgZ2VuZXJhdGlvbiwgZGVtYW5kIGdlbmVyYXRpb24gc3luZGljYXRpb24sIGVudGVycHJpc2UgY29udGVudCBkaXN0cmlidXRpb24sIHZlcmlmaWVkIHJlYWRlciBsZWFkcywgQUJNIGNvbnRlbnQgc3luZGljYXRpb25cIlxuICAgICAgICBjYW5vbmljYWw9XCIvY29udGVudC1zeW5kaWNhdGlvblwiXG4gICAgICAgIG9nVGl0bGU9XCJCMkIgQ29udGVudCBTeW5kaWNhdGlvbiBTZXJ2aWNlcyB8IFRhcmFqIEdsb2JhbFwiXG4gICAgICAgIG9nRGVzY3JpcHRpb249XCJEaXN0cmlidXRlIGhpZ2gtdmFsdWUgZGlnaXRhbCBhc3NldHMgdG8gdmVyaWZpZWQgQjJCIGRlY2lzaW9uLW1ha2VycyBhY3Jvc3MgcHJlbWllciBwdWJsaXNoaW5nIG5ldHdvcmtzLiBHdWFyYW50ZWVkIENQTCBxdWFsaWZpZWQgbGVhZCBkZWxpdmVyeS5cIlxuICAgICAgICBvZ1R5cGU9XCJ3ZWJzaXRlXCJcbiAgICAgICAgdHdpdHRlckNhcmQ9XCJzdW1tYXJ5X2xhcmdlX2ltYWdlXCJcbiAgICAgICAgc2NoZW1hSnNvbj17c3luZGljYXRpb25TY2hlbWF9XG4gICAgICAvPlxuXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1pbi1oLXNjcmVlbiBiZy1iYWNrZ3JvdW5kXCI+XG4gICAgICAgIHsvKiBTZWN0aW9uIDEg4oCUIEhlcm8gKi99XG4gICAgICAgIDxIZXJvIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gMiDigJQgV2hhdCBJcyBCMkIgQ29udGVudCBTeW5kaWNhdGlvbiAqL31cbiAgICAgICAgPFdoYXRJc1NlcnZpY2UgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiAzIOKAlCBXaG8gQ2FuIEJlbmVmaXQgKi99XG4gICAgICAgIDxXaG9Jc0l0Rm9yIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gNCDigJQgUHJvYmxlbSDihpIgU29sdXRpb24gKi99XG4gICAgICAgIDxQcm9ibGVtc1NvbHZlZCAvPlxuXG4gICAgICAgIHsvKiBTZWN0aW9uIDUg4oCUIDctU3RlcCBXb3JrZmxvdyAqL31cbiAgICAgICAgPFN5bmRpY2F0aW9uUHJvY2VzcyAvPlxuXG4gICAgICAgIHsvKiBTZWN0aW9uIDYg4oCUIFdoYXQgVGFyYWogR2xvYmFsIERlbGl2ZXJzIChQb3dlcmVkIGJ5IERlbWFuZEZsb3cgQnJpZGdlKSAqL31cbiAgICAgICAgPFdoYXRUYXJhakRlbGl2ZXJzIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gNyDigJQgV2h5IENob29zZSBUYXJhaiBHbG9iYWwgKi99XG4gICAgICAgIDxXaHlDaG9vc2UgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiA4IOKAlCBGQVEgKi99XG4gICAgICAgIDxGQVEgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiA5IOKAlCBGaW5hbCBDVEEgKi99XG4gICAgICAgIDxDVEEgLz5cblxuICAgICAgICA8Q2hhdEJvdCAvPlxuICAgICAgPC9kaXY+XG4gICAgPC8+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgQ29udGVudFN5bmRpY2F0aW9uXG4iXSwiZmlsZSI6IkM6L1VzZXJzL0hQL0Rlc2t0b3AvVEdTL1RhcmFqX0dsb2JhbGwvY2xpZW50L3NyYy9wYWdlcy9Db250ZW50U3luZGljYXRpb24vaW5kZXguanN4In0=

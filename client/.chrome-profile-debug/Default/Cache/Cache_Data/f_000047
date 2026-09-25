@@ -1,0 +1,349 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/effects/DynamicScrollBackground.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useEffect = __vite__cjsImport3_react["useEffect"]; const useState = __vite__cjsImport3_react["useState"];
+import { motion, useScroll, useTransform } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+export const DynamicScrollBackground = () => {
+  _s();
+  const [isDark, setIsDark] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const smoothScroll = scrollYProgress;
+  const gridScale = useTransform(
+    smoothScroll,
+    [0, 0.2, 0.4, 0.6, 0.8, 1],
+    [1, 1.15, 1.02, 1.18, 1.04, 1.2]
+  );
+  const gridRotate = useTransform(
+    smoothScroll,
+    [0, 0.35, 0.7, 1],
+    [0, 2, -2, 0]
+  );
+  const blob1Y = useTransform(smoothScroll, [0, 1], [-80, 220]);
+  const blob1X = useTransform(smoothScroll, [0, 0.5, 1], [-30, 25, -20]);
+  const blob1Scale = useTransform(
+    smoothScroll,
+    [0, 0.25, 0.5, 0.75, 1],
+    [1, 1.25, 0.98, 1.3, 1.05]
+  );
+  const blob2Y = useTransform(smoothScroll, [0, 1], [120, -180]);
+  const blob2X = useTransform(smoothScroll, [0, 0.5, 1], [25, -30, 20]);
+  const blob2Scale = useTransform(
+    smoothScroll,
+    [0, 0.25, 0.5, 0.75, 1],
+    [1.15, 0.95, 1.25, 0.98, 1.18]
+  );
+  const blob3Y = useTransform(smoothScroll, [0, 1], [30, -100]);
+  const blob3Scale = useTransform(
+    smoothScroll,
+    [0, 0.35, 0.7, 1],
+    [0.95, 1.25, 0.96, 1.2]
+  );
+  const auroraRotate = useTransform(smoothScroll, [0, 1], [0, 15]);
+  const auroraScale = useTransform(
+    smoothScroll,
+    [0, 0.3, 0.6, 1],
+    [1, 1.15, 1.04, 1.18]
+  );
+  const auroraY = useTransform(smoothScroll, [0, 1], [-50, 120]);
+  useEffect(() => {
+    const checkDark = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkDark();
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+  return /* @__PURE__ */ jsxDEV("div", { className: "fixed inset-0 pointer-events-none z-0 overflow-hidden select-none", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 bg-background transition-colors duration-500" }, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+      lineNumber: 90,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV(
+      "div",
+      {
+        className: "absolute inset-0 origin-center",
+        children: [
+          !isDark && /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              style: {
+                y: auroraY,
+                rotate: auroraRotate,
+                scale: auroraScale
+              },
+              className: "absolute -inset-[20%] opacity-70 pointer-events-none origin-center",
+              children: [
+                /* @__PURE__ */ jsxDEV(
+                  "div",
+                  {
+                    className: "absolute top-1/4 left-1/5 w-[850px] h-[500px] rounded-[100%] blur-[120px] opacity-65 transform -rotate-12",
+                    style: {
+                      background: "linear-gradient(135deg, rgba(0, 166, 255, 0.28) 0%, rgba(139, 92, 246, 0.18) 50%, rgba(0, 229, 255, 0.12) 100%)"
+                    }
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+                    lineNumber: 107,
+                    columnNumber: 13
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  "div",
+                  {
+                    className: "absolute top-1/2 right-1/5 w-[800px] h-[550px] rounded-[100%] blur-[130px] opacity-60 transform rotate-15",
+                    style: {
+                      background: "linear-gradient(135deg, rgba(255, 109, 0, 0.25) 0%, rgba(255, 183, 77, 0.20) 50%, rgba(255, 87, 34, 0.10) 100%)"
+                    }
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+                    lineNumber: 115,
+                    columnNumber: 13
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  "div",
+                  {
+                    className: "absolute bottom-1/5 left-1/3 w-[750px] h-[480px] rounded-[100%] blur-[140px] opacity-50 transform -rotate-6",
+                    style: {
+                      background: "linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(0, 166, 255, 0.18) 60%, transparent 100%)"
+                    }
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+                    lineNumber: 123,
+                    columnNumber: 13
+                  },
+                  this
+                )
+              ]
+            },
+            void 0,
+            true,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+              lineNumber: 98,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              style: {
+                y: blob1Y,
+                x: blob1X,
+                scale: blob1Scale,
+                translateX: "-20%",
+                translateY: "-20%"
+              },
+              className: "absolute top-1/4 left-1/4 w-[750px] h-[750px] rounded-full blur-[130px] opacity-60 dark:opacity-35 origin-center",
+              animate: {
+                background: isDark ? "radial-gradient(circle, rgba(0, 166, 255, 0.45) 0%, rgba(0, 229, 255, 0.2) 50%, transparent 70%)" : "radial-gradient(circle, rgba(0, 166, 255, 0.35) 0%, rgba(0, 229, 255, 0.18) 50%, transparent 70%)"
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+              lineNumber: 134,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              style: {
+                y: blob2Y,
+                x: blob2X,
+                scale: blob2Scale,
+                translateX: "20%",
+                translateY: "20%"
+              },
+              className: "absolute top-1/2 right-1/6 w-[700px] h-[700px] rounded-full blur-[140px] opacity-55 dark:opacity-30 origin-center",
+              animate: {
+                background: isDark ? "radial-gradient(circle, rgba(255, 109, 0, 0.4) 0%, rgba(255, 165, 0, 0.15) 50%, transparent 70%)" : "radial-gradient(circle, rgba(255, 109, 0, 0.30) 0%, rgba(255, 165, 0, 0.14) 50%, transparent 70%)"
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+              lineNumber: 151,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              style: {
+                y: blob3Y,
+                scale: blob3Scale,
+                translateX: "-50%",
+                translateY: "-50%"
+              },
+              className: "absolute top-2/3 left-1/2 w-[650px] h-[650px] rounded-full blur-[150px] opacity-45 dark:opacity-25 origin-center",
+              animate: {
+                background: isDark ? "radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, rgba(0, 166, 255, 0.15) 55%, transparent 70%)" : "radial-gradient(circle, rgba(16, 185, 129, 0.24) 0%, rgba(0, 166, 255, 0.14) 55%, transparent 70%)"
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+              lineNumber: 168,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              style: {
+                scale: gridScale,
+                rotate: gridRotate
+              },
+              className: "absolute -inset-[30%] opacity-[0.045] dark:opacity-[0.05] pointer-events-none origin-center",
+              animate: {
+                backgroundImage: isDark ? `
+                linear-gradient(rgba(0, 166, 255, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 166, 255, 0.5) 1px, transparent 1px)
+              ` : `
+                radial-gradient(circle, rgba(0, 102, 204, 0.7) 1.2px, transparent 1.2px)
+              `,
+                backgroundSize: isDark ? "48px 48px" : "32px 32px"
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+              lineNumber: 184,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 opacity-40 dark:opacity-60 pointer-events-none", children: [...Array(16)].map((_, i) => {
+            const isCyan = i % 2 === 0;
+            const size = i % 3 + 3;
+            return /* @__PURE__ */ jsxDEV(
+              motion.div,
+              {
+                className: "absolute rounded-full pointer-events-none",
+                style: {
+                  left: `${(i * 19 + 7) % 94}%`,
+                  top: `${(i * 23 + 11) % 92}%`,
+                  width: size,
+                  height: size,
+                  background: isDark ? isCyan ? "#00A6FF" : "#FF6D00" : isCyan ? "#0070F3" : "#FF7A00",
+                  boxShadow: isDark ? isCyan ? "0 0 10px #00A6FF" : "0 0 10px #FF6D00" : isCyan ? "0 0 8px rgba(0,112,243,0.6)" : "0 0 8px rgba(255,122,0,0.6)"
+                },
+                animate: {
+                  y: [0, -25, 0],
+                  scale: [1, 1.3, 1],
+                  opacity: [0.35, 0.85, 0.35]
+                },
+                transition: {
+                  duration: 3.5 + i % 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.25
+                }
+              },
+              i,
+              false,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+                lineNumber: 209,
+                columnNumber: 15
+              },
+              this
+            );
+          }) }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+            lineNumber: 204,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            "div",
+            {
+              className: "absolute inset-0 opacity-[0.032] dark:opacity-[0.05] pointer-events-none mix-blend-overlay z-20",
+              style: {
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+              lineNumber: 241,
+              columnNumber: 9
+            },
+            this
+          )
+        ]
+      },
+      void 0,
+      true,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+        lineNumber: 93,
+        columnNumber: 7
+      },
+      this
+    )
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx",
+    lineNumber: 88,
+    columnNumber: 5
+  }, this);
+};
+_s(DynamicScrollBackground, "EkbLkdRGSSajMXErK+YcN4eaMP0=", false, function() {
+  return [useScroll, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform, useTransform];
+});
+_c = DynamicScrollBackground;
+export default DynamicScrollBackground;
+var _c;
+$RefreshReg$(_c, "DynamicScrollBackground");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/effects/DynamicScrollBackground.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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LGlCQWtDQTtBQUFBLFVBR0E7QUFBQSxZQUFDO0FBQUE7QUFBQSxjQUNDLFdBQVU7QUFBQSxjQUNWLE9BQU87QUFBQSxnQkFDTEwsaUJBQWlCO0FBQUEsY0FDbkI7QUFBQTtBQUFBLFlBSkY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFVBSUk7QUFBQTtBQUFBO0FBQUEsTUF4Sk47QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLElBMEpBO0FBQUEsT0EvSkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQWdLQTtBQUVKO0FBQUNwQyxHQW5PWUQseUJBQXVCO0FBQUEsVUFFTkYsV0FNVkMsY0FNQ0EsY0FPSkEsY0FDQUEsY0FDSUEsY0FNSkEsY0FDQUEsY0FDSUEsY0FNSkEsY0FDSUEsY0FPRUEsY0FDREEsY0FLSkEsWUFBWTtBQUFBO0FBQUEsS0FuRGpCQztBQXFPYixlQUFlQTtBQUF1QixJQUFBd0Q7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJ1c2VFZmZlY3QiLCJ1c2VTdGF0ZSIsIm1vdGlvbiIsInVzZVNjcm9sbCIsInVzZVRyYW5zZm9ybSIsIkR5bmFtaWNTY3JvbGxCYWNrZ3JvdW5kIiwiX3MiLCJpc0RhcmsiLCJzZXRJc0RhcmsiLCJzY3JvbGxZUHJvZ3Jlc3MiLCJzbW9vdGhTY3JvbGwiLCJncmlkU2NhbGUiLCJncmlkUm90YXRlIiwiYmxvYjFZIiwiYmxvYjFYIiwiYmxvYjFTY2FsZSIsImJsb2IyWSIsImJsb2IyWCIsImJsb2IyU2NhbGUiLCJibG9iM1kiLCJibG9iM1NjYWxlIiwiYXVyb3JhUm90YXRlIiwiYXVyb3JhU2NhbGUiLCJhdXJvcmFZIiwiY2hlY2tEYXJrIiwiZG9jdW1lbnQiLCJkb2N1bWVudEVsZW1lbnQiLCJjbGFzc0xpc3QiLCJjb250YWlucyIsIm9ic2VydmVyIiwiTXV0YXRpb25PYnNlcnZlciIsIm9ic2VydmUiLCJhdHRyaWJ1dGVzIiwiYXR0cmlidXRlRmlsdGVyIiwiZGlzY29ubmVjdCIsInkiLCJyb3RhdGUiLCJzY2FsZSIsImJhY2tncm91bmQiLCJ4IiwidHJhbnNsYXRlWCIsInRyYW5zbGF0ZVkiLCJiYWNrZ3JvdW5kSW1hZ2UiLCJiYWNrZ3JvdW5kU2l6ZSIsIkFycmF5IiwibWFwIiwiXyIsImkiLCJpc0N5YW4iLCJzaXplIiwibGVmdCIsInRvcCIsIndpZHRoIiwiaGVpZ2h0IiwiYm94U2hhZG93Iiwib3BhY2l0eSIsImR1cmF0aW9uIiwicmVwZWF0IiwiSW5maW5pdHkiLCJlYXNlIiwiZGVsYXkiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJEeW5hbWljU2Nyb2xsQmFja2dyb3VuZC5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZUVmZmVjdCwgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IG1vdGlvbiwgdXNlU2Nyb2xsLCB1c2VUcmFuc2Zvcm0gfSBmcm9tICdmcmFtZXItbW90aW9uJ1xuXG5leHBvcnQgY29uc3QgRHluYW1pY1Njcm9sbEJhY2tncm91bmQgPSAoKSA9PiB7XG4gIGNvbnN0IFtpc0RhcmssIHNldElzRGFya10gPSB1c2VTdGF0ZShmYWxzZSlcbiAgY29uc3QgeyBzY3JvbGxZUHJvZ3Jlc3MgfSA9IHVzZVNjcm9sbCgpXG5cbiAgLy8gVXNlIHNjcm9sbFlQcm9ncmVzcyBkaXJlY3RseTsgTGVuaXMgYWxyZWFkeSBwcm92aWRlcyBnbG9iYWwgaGFyZHdhcmUtYWNjZWxlcmF0ZWQgc21vb3RoaW5nXG4gIGNvbnN0IHNtb290aFNjcm9sbCA9IHNjcm9sbFlQcm9ncmVzc1xuXG4gIC8vIE11bHRpLXdhdmUgem9vbSBpbiAmIHpvb20gb3V0IHRyYW5zZm9ybXMgbWFwcGVkIGFjcm9zcyBzY3JvbGwgZGVwdGhcbiAgY29uc3QgZ3JpZFNjYWxlID0gdXNlVHJhbnNmb3JtKFxuICAgIHNtb290aFNjcm9sbCxcbiAgICBbMCwgMC4yLCAwLjQsIDAuNiwgMC44LCAxXSxcbiAgICBbMS4wLCAxLjE1LCAxLjAyLCAxLjE4LCAxLjA0LCAxLjJdXG4gIClcblxuICBjb25zdCBncmlkUm90YXRlID0gdXNlVHJhbnNmb3JtKFxuICAgIHNtb290aFNjcm9sbCxcbiAgICBbMCwgMC4zNSwgMC43LCAxXSxcbiAgICBbMCwgMiwgLTIsIDBdXG4gIClcblxuICAvLyBSYWRpYWwgYW1iaWVudCBncmFkaWVudCBibG9icyBzaGlmdGluZyAmIHpvb21pbmcgd2l0aCBzY3JvbGxcbiAgY29uc3QgYmxvYjFZID0gdXNlVHJhbnNmb3JtKHNtb290aFNjcm9sbCwgWzAsIDFdLCBbLTgwLCAyMjBdKVxuICBjb25zdCBibG9iMVggPSB1c2VUcmFuc2Zvcm0oc21vb3RoU2Nyb2xsLCBbMCwgMC41LCAxXSwgWy0zMCwgMjUsIC0yMF0pXG4gIGNvbnN0IGJsb2IxU2NhbGUgPSB1c2VUcmFuc2Zvcm0oXG4gICAgc21vb3RoU2Nyb2xsLFxuICAgIFswLCAwLjI1LCAwLjUsIDAuNzUsIDFdLFxuICAgIFsxLjAsIDEuMjUsIDAuOTgsIDEuMywgMS4wNV1cbiAgKVxuXG4gIGNvbnN0IGJsb2IyWSA9IHVzZVRyYW5zZm9ybShzbW9vdGhTY3JvbGwsIFswLCAxXSwgWzEyMCwgLTE4MF0pXG4gIGNvbnN0IGJsb2IyWCA9IHVzZVRyYW5zZm9ybShzbW9vdGhTY3JvbGwsIFswLCAwLjUsIDFdLCBbMjUsIC0zMCwgMjBdKVxuICBjb25zdCBibG9iMlNjYWxlID0gdXNlVHJhbnNmb3JtKFxuICAgIHNtb290aFNjcm9sbCxcbiAgICBbMCwgMC4yNSwgMC41LCAwLjc1LCAxXSxcbiAgICBbMS4xNSwgMC45NSwgMS4yNSwgMC45OCwgMS4xOF1cbiAgKVxuXG4gIGNvbnN0IGJsb2IzWSA9IHVzZVRyYW5zZm9ybShzbW9vdGhTY3JvbGwsIFswLCAxXSwgWzMwLCAtMTAwXSlcbiAgY29uc3QgYmxvYjNTY2FsZSA9IHVzZVRyYW5zZm9ybShcbiAgICBzbW9vdGhTY3JvbGwsXG4gICAgWzAsIDAuMzUsIDAuNywgMV0sXG4gICAgWzAuOTUsIDEuMjUsIDAuOTYsIDEuMl1cbiAgKVxuXG4gIC8vIExpZ2h0LU1vZGUgc3BlY2lmaWMgSXJpZGVzY2VudCBBdXJvcmEgTWVzaCB0cmFuc2xhdGlvblxuICBjb25zdCBhdXJvcmFSb3RhdGUgPSB1c2VUcmFuc2Zvcm0oc21vb3RoU2Nyb2xsLCBbMCwgMV0sIFswLCAxNV0pXG4gIGNvbnN0IGF1cm9yYVNjYWxlID0gdXNlVHJhbnNmb3JtKFxuICAgIHNtb290aFNjcm9sbCxcbiAgICBbMCwgMC4zLCAwLjYsIDFdLFxuICAgIFsxLjAsIDEuMTUsIDEuMDQsIDEuMThdXG4gIClcbiAgY29uc3QgYXVyb3JhWSA9IHVzZVRyYW5zZm9ybShzbW9vdGhTY3JvbGwsIFswLCAxXSwgWy01MCwgMTIwXSlcblxuICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgIGNvbnN0IGNoZWNrRGFyayA9ICgpID0+IHtcbiAgICAgIHNldElzRGFyayhkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQuY2xhc3NMaXN0LmNvbnRhaW5zKCdkYXJrJykpXG4gICAgfVxuICAgIGNoZWNrRGFyaygpXG4gICAgY29uc3Qgb2JzZXJ2ZXIgPSBuZXcgTXV0YXRpb25PYnNlcnZlcihjaGVja0RhcmspXG4gICAgb2JzZXJ2ZXIub2JzZXJ2ZShkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQsIHsgYXR0cmlidXRlczogdHJ1ZSwgYXR0cmlidXRlRmlsdGVyOiBbJ2NsYXNzJ10gfSlcblxuICAgIHJldHVybiAoKSA9PiBvYnNlcnZlci5kaXNjb25uZWN0KClcbiAgfSwgW10pXG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cImZpeGVkIGluc2V0LTAgcG9pbnRlci1ldmVudHMtbm9uZSB6LTAgb3ZlcmZsb3ctaGlkZGVuIHNlbGVjdC1ub25lXCI+XG4gICAgICB7LyogQmFzZSBCYWNrZ3JvdW5kIFN1cmZhY2UgKi99XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImFic29sdXRlIGluc2V0LTAgYmctYmFja2dyb3VuZCB0cmFuc2l0aW9uLWNvbG9ycyBkdXJhdGlvbi01MDBcIiAvPlxuXG4gICAgICB7LyogTWFzdGVyIENvbnRhaW5lciAqL31cbiAgICAgIDxkaXYgXG4gICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIGluc2V0LTAgb3JpZ2luLWNlbnRlclwiXG4gICAgICA+XG4gICAgICAgIHsvKiDilIDilIAgTElHSFQgTU9ERTogUHJpc21hdGljIEF1cm9yYSBNZXNoICYgQ2F1c3RpYyBHbG93IFdhdmVzIOKUgOKUgOKUgOKUgOKUgOKUgCAqL31cbiAgICAgICAgeyFpc0RhcmsgJiYgKFxuICAgICAgICAgIDxtb3Rpb24uZGl2XG4gICAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgICB5OiBhdXJvcmFZLFxuICAgICAgICAgICAgICByb3RhdGU6IGF1cm9yYVJvdGF0ZSxcbiAgICAgICAgICAgICAgc2NhbGU6IGF1cm9yYVNjYWxlLFxuICAgICAgICAgICAgfX1cbiAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIC1pbnNldC1bMjAlXSBvcGFjaXR5LTcwIHBvaW50ZXItZXZlbnRzLW5vbmUgb3JpZ2luLWNlbnRlclwiXG4gICAgICAgICAgPlxuICAgICAgICAgICAgey8qIElyaWRlc2NlbnQgQXVyb3JhIFN0cmVhbSAxIChTa3kgQXp1cmUgdG8gU29mdCBWaW9sZXQpICovfVxuICAgICAgICAgICAgPGRpdiBcbiAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiYWJzb2x1dGUgdG9wLTEvNCBsZWZ0LTEvNSB3LVs4NTBweF0gaC1bNTAwcHhdIHJvdW5kZWQtWzEwMCVdIGJsdXItWzEyMHB4XSBvcGFjaXR5LTY1IHRyYW5zZm9ybSAtcm90YXRlLTEyXCJcbiAgICAgICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kOiAnbGluZWFyLWdyYWRpZW50KDEzNWRlZywgcmdiYSgwLCAxNjYsIDI1NSwgMC4yOCkgMCUsIHJnYmEoMTM5LCA5MiwgMjQ2LCAwLjE4KSA1MCUsIHJnYmEoMCwgMjI5LCAyNTUsIDAuMTIpIDEwMCUpJ1xuICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgLz5cblxuICAgICAgICAgICAgey8qIElyaWRlc2NlbnQgQXVyb3JhIFN0cmVhbSAyIChQZWFjaCBHb2xkIHRvIENvcmFsIEdsb3cpICovfVxuICAgICAgICAgICAgPGRpdiBcbiAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiYWJzb2x1dGUgdG9wLTEvMiByaWdodC0xLzUgdy1bODAwcHhdIGgtWzU1MHB4XSByb3VuZGVkLVsxMDAlXSBibHVyLVsxMzBweF0gb3BhY2l0eS02MCB0cmFuc2Zvcm0gcm90YXRlLTE1XCJcbiAgICAgICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kOiAnbGluZWFyLWdyYWRpZW50KDEzNWRlZywgcmdiYSgyNTUsIDEwOSwgMCwgMC4yNSkgMCUsIHJnYmEoMjU1LCAxODMsIDc3LCAwLjIwKSA1MCUsIHJnYmEoMjU1LCA4NywgMzQsIDAuMTApIDEwMCUpJ1xuICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgLz5cblxuICAgICAgICAgICAgey8qIElyaWRlc2NlbnQgQXVyb3JhIFN0cmVhbSAzIChGcmVzaCBNaW50IHRvIEF6dXJlKSAqL31cbiAgICAgICAgICAgIDxkaXYgXG4gICAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIGJvdHRvbS0xLzUgbGVmdC0xLzMgdy1bNzUwcHhdIGgtWzQ4MHB4XSByb3VuZGVkLVsxMDAlXSBibHVyLVsxNDBweF0gb3BhY2l0eS01MCB0cmFuc2Zvcm0gLXJvdGF0ZS02XCJcbiAgICAgICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kOiAnbGluZWFyLWdyYWRpZW50KDEzNWRlZywgcmdiYSgxNiwgMTg1LCAxMjksIDAuMjIpIDAlLCByZ2JhKDAsIDE2NiwgMjU1LCAwLjE4KSA2MCUsIHRyYW5zcGFyZW50IDEwMCUpJ1xuICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgLz5cbiAgICAgICAgICA8L21vdGlvbi5kaXY+XG4gICAgICAgICl9XG5cbiAgICAgICAgey8qIOKUgOKUgCBBTUJJRU5UIFJBRElBTCBDT0xPUiBPUkJTIChCb3RoIFRoZW1lcyB3aXRoIFRoZW1lIFR1bmluZykg4pSA4pSAICovfVxuICAgICAgICB7LyogQ3lhbiAvIEJsdWUgT3JiICovfVxuICAgICAgICA8bW90aW9uLmRpdlxuICAgICAgICAgIHN0eWxlPXt7XG4gICAgICAgICAgICB5OiBibG9iMVksXG4gICAgICAgICAgICB4OiBibG9iMVgsXG4gICAgICAgICAgICBzY2FsZTogYmxvYjFTY2FsZSxcbiAgICAgICAgICAgIHRyYW5zbGF0ZVg6ICctMjAlJyxcbiAgICAgICAgICAgIHRyYW5zbGF0ZVk6ICctMjAlJyxcbiAgICAgICAgICB9fVxuICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIHRvcC0xLzQgbGVmdC0xLzQgdy1bNzUwcHhdIGgtWzc1MHB4XSByb3VuZGVkLWZ1bGwgYmx1ci1bMTMwcHhdIG9wYWNpdHktNjAgZGFyazpvcGFjaXR5LTM1IG9yaWdpbi1jZW50ZXJcIlxuICAgICAgICAgIGFuaW1hdGU9e3tcbiAgICAgICAgICAgIGJhY2tncm91bmQ6IGlzRGFya1xuICAgICAgICAgICAgICA/ICdyYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCByZ2JhKDAsIDE2NiwgMjU1LCAwLjQ1KSAwJSwgcmdiYSgwLCAyMjksIDI1NSwgMC4yKSA1MCUsIHRyYW5zcGFyZW50IDcwJSknXG4gICAgICAgICAgICAgIDogJ3JhZGlhbC1ncmFkaWVudChjaXJjbGUsIHJnYmEoMCwgMTY2LCAyNTUsIDAuMzUpIDAlLCByZ2JhKDAsIDIyOSwgMjU1LCAwLjE4KSA1MCUsIHRyYW5zcGFyZW50IDcwJSknLFxuICAgICAgICAgIH19XG4gICAgICAgIC8+XG5cbiAgICAgICAgey8qIE9yYW5nZSAvIEdvbGQgT3JiICovfVxuICAgICAgICA8bW90aW9uLmRpdlxuICAgICAgICAgIHN0eWxlPXt7XG4gICAgICAgICAgICB5OiBibG9iMlksXG4gICAgICAgICAgICB4OiBibG9iMlgsXG4gICAgICAgICAgICBzY2FsZTogYmxvYjJTY2FsZSxcbiAgICAgICAgICAgIHRyYW5zbGF0ZVg6ICcyMCUnLFxuICAgICAgICAgICAgdHJhbnNsYXRlWTogJzIwJScsXG4gICAgICAgICAgfX1cbiAgICAgICAgICBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtMS8yIHJpZ2h0LTEvNiB3LVs3MDBweF0gaC1bNzAwcHhdIHJvdW5kZWQtZnVsbCBibHVyLVsxNDBweF0gb3BhY2l0eS01NSBkYXJrOm9wYWNpdHktMzAgb3JpZ2luLWNlbnRlclwiXG4gICAgICAgICAgYW5pbWF0ZT17e1xuICAgICAgICAgICAgYmFja2dyb3VuZDogaXNEYXJrXG4gICAgICAgICAgICAgID8gJ3JhZGlhbC1ncmFkaWVudChjaXJjbGUsIHJnYmEoMjU1LCAxMDksIDAsIDAuNCkgMCUsIHJnYmEoMjU1LCAxNjUsIDAsIDAuMTUpIDUwJSwgdHJhbnNwYXJlbnQgNzAlKSdcbiAgICAgICAgICAgICAgOiAncmFkaWFsLWdyYWRpZW50KGNpcmNsZSwgcmdiYSgyNTUsIDEwOSwgMCwgMC4zMCkgMCUsIHJnYmEoMjU1LCAxNjUsIDAsIDAuMTQpIDUwJSwgdHJhbnNwYXJlbnQgNzAlKScsXG4gICAgICAgICAgfX1cbiAgICAgICAgLz5cblxuICAgICAgICB7LyogRW1lcmFsZCAvIEVsZWN0cmljIENlbnRlciBQdWxzZSAqL31cbiAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgeTogYmxvYjNZLFxuICAgICAgICAgICAgc2NhbGU6IGJsb2IzU2NhbGUsXG4gICAgICAgICAgICB0cmFuc2xhdGVYOiAnLTUwJScsXG4gICAgICAgICAgICB0cmFuc2xhdGVZOiAnLTUwJScsXG4gICAgICAgICAgfX1cbiAgICAgICAgICBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtMi8zIGxlZnQtMS8yIHctWzY1MHB4XSBoLVs2NTBweF0gcm91bmRlZC1mdWxsIGJsdXItWzE1MHB4XSBvcGFjaXR5LTQ1IGRhcms6b3BhY2l0eS0yNSBvcmlnaW4tY2VudGVyXCJcbiAgICAgICAgICBhbmltYXRlPXt7XG4gICAgICAgICAgICBiYWNrZ3JvdW5kOiBpc0RhcmtcbiAgICAgICAgICAgICAgPyAncmFkaWFsLWdyYWRpZW50KGNpcmNsZSwgcmdiYSgxNiwgMTg1LCAxMjksIDAuMzUpIDAlLCByZ2JhKDAsIDE2NiwgMjU1LCAwLjE1KSA1NSUsIHRyYW5zcGFyZW50IDcwJSknXG4gICAgICAgICAgICAgIDogJ3JhZGlhbC1ncmFkaWVudChjaXJjbGUsIHJnYmEoMTYsIDE4NSwgMTI5LCAwLjI0KSAwJSwgcmdiYSgwLCAxNjYsIDI1NSwgMC4xNCkgNTUlLCB0cmFuc3BhcmVudCA3MCUpJyxcbiAgICAgICAgICB9fVxuICAgICAgICAvPlxuXG4gICAgICAgIHsvKiDilIDilIAgSElHSC1QUkVDSVNJT04gRE9UICYgQ1lCRVJORVRJQyBQRVJTUEVDVElWRSBHUklEIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCAqL31cbiAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgc2NhbGU6IGdyaWRTY2FsZSxcbiAgICAgICAgICAgIHJvdGF0ZTogZ3JpZFJvdGF0ZSxcbiAgICAgICAgICB9fVxuICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIC1pbnNldC1bMzAlXSBvcGFjaXR5LVswLjA0NV0gZGFyazpvcGFjaXR5LVswLjA1XSBwb2ludGVyLWV2ZW50cy1ub25lIG9yaWdpbi1jZW50ZXJcIlxuICAgICAgICAgIGFuaW1hdGU9e3tcbiAgICAgICAgICAgIGJhY2tncm91bmRJbWFnZTogaXNEYXJrXG4gICAgICAgICAgICAgID8gYFxuICAgICAgICAgICAgICAgIGxpbmVhci1ncmFkaWVudChyZ2JhKDAsIDE2NiwgMjU1LCAwLjUpIDFweCwgdHJhbnNwYXJlbnQgMXB4KSxcbiAgICAgICAgICAgICAgICBsaW5lYXItZ3JhZGllbnQoOTBkZWcsIHJnYmEoMCwgMTY2LCAyNTUsIDAuNSkgMXB4LCB0cmFuc3BhcmVudCAxcHgpXG4gICAgICAgICAgICAgIGBcbiAgICAgICAgICAgICAgOiBgXG4gICAgICAgICAgICAgICAgcmFkaWFsLWdyYWRpZW50KGNpcmNsZSwgcmdiYSgwLCAxMDIsIDIwNCwgMC43KSAxLjJweCwgdHJhbnNwYXJlbnQgMS4ycHgpXG4gICAgICAgICAgICAgIGAsXG4gICAgICAgICAgICBiYWNrZ3JvdW5kU2l6ZTogaXNEYXJrID8gJzQ4cHggNDhweCcgOiAnMzJweCAzMnB4JyxcbiAgICAgICAgICB9fVxuICAgICAgICAvPlxuXG4gICAgICAgIHsvKiDilIDilIAgRkxPQVRJTkcgQ1JZU1RBTCBQUklTTSBTUEFSS0xFUyBPTiBTQ1JPTEwg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAICovfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImFic29sdXRlIGluc2V0LTAgb3BhY2l0eS00MCBkYXJrOm9wYWNpdHktNjAgcG9pbnRlci1ldmVudHMtbm9uZVwiPlxuICAgICAgICAgIHtbLi4uQXJyYXkoMTYpXS5tYXAoKF8sIGkpID0+IHtcbiAgICAgICAgICAgIGNvbnN0IGlzQ3lhbiA9IGkgJSAyID09PSAwXG4gICAgICAgICAgICBjb25zdCBzaXplID0gKGkgJSAzKSArIDNcbiAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgIDxtb3Rpb24uZGl2XG4gICAgICAgICAgICAgICAga2V5PXtpfVxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIHJvdW5kZWQtZnVsbCBwb2ludGVyLWV2ZW50cy1ub25lXCJcbiAgICAgICAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgICAgICAgbGVmdDogYCR7KGkgKiAxOSArIDcpICUgOTR9JWAsXG4gICAgICAgICAgICAgICAgICB0b3A6IGAkeyhpICogMjMgKyAxMSkgJSA5Mn0lYCxcbiAgICAgICAgICAgICAgICAgIHdpZHRoOiBzaXplLFxuICAgICAgICAgICAgICAgICAgaGVpZ2h0OiBzaXplLFxuICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZDogaXNEYXJrIFxuICAgICAgICAgICAgICAgICAgICA/IChpc0N5YW4gPyAnIzAwQTZGRicgOiAnI0ZGNkQwMCcpXG4gICAgICAgICAgICAgICAgICAgIDogKGlzQ3lhbiA/ICcjMDA3MEYzJyA6ICcjRkY3QTAwJyksXG4gICAgICAgICAgICAgICAgICBib3hTaGFkb3c6IGlzRGFya1xuICAgICAgICAgICAgICAgICAgICA/IChpc0N5YW4gPyAnMCAwIDEwcHggIzAwQTZGRicgOiAnMCAwIDEwcHggI0ZGNkQwMCcpXG4gICAgICAgICAgICAgICAgICAgIDogKGlzQ3lhbiA/ICcwIDAgOHB4IHJnYmEoMCwxMTIsMjQzLDAuNiknIDogJzAgMCA4cHggcmdiYSgyNTUsMTIyLDAsMC42KScpLFxuICAgICAgICAgICAgICAgIH19XG4gICAgICAgICAgICAgICAgYW5pbWF0ZT17e1xuICAgICAgICAgICAgICAgICAgeTogWzAsIC0yNSwgMF0sXG4gICAgICAgICAgICAgICAgICBzY2FsZTogWzEsIDEuMywgMV0sXG4gICAgICAgICAgICAgICAgICBvcGFjaXR5OiBbMC4zNSwgMC44NSwgMC4zNV0sXG4gICAgICAgICAgICAgICAgfX1cbiAgICAgICAgICAgICAgICB0cmFuc2l0aW9uPXt7XG4gICAgICAgICAgICAgICAgICBkdXJhdGlvbjogMy41ICsgKGkgJSA0KSxcbiAgICAgICAgICAgICAgICAgIHJlcGVhdDogSW5maW5pdHksXG4gICAgICAgICAgICAgICAgICBlYXNlOiAnZWFzZUluT3V0JyxcbiAgICAgICAgICAgICAgICAgIGRlbGF5OiBpICogMC4yNSxcbiAgICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgICAvPlxuICAgICAgICAgICAgKVxuICAgICAgICAgIH0pfVxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICB7Lyog4pSA4pSAIFVMVFJBLUxVWFVSWSBBTkFMT0cgR1JBSU4gLyBOT0lTRSBURVhUVVJFIChhLWxpZ24gc3R1ZGlvIHNpZ25hdHVyZSkg4pSA4pSAICovfVxuICAgICAgICA8ZGl2IFxuICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIGluc2V0LTAgb3BhY2l0eS1bMC4wMzJdIGRhcms6b3BhY2l0eS1bMC4wNV0gcG9pbnRlci1ldmVudHMtbm9uZSBtaXgtYmxlbmQtb3ZlcmxheSB6LTIwXCJcbiAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgYmFja2dyb3VuZEltYWdlOiBgdXJsKFwiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB2aWV3Qm94PScwIDAgMjUwIDI1MCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyUzRSUzQ2ZpbHRlciBpZD0nbm9pc2VGaWx0ZXInJTNFJTNDZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44NScgbnVtT2N0YXZlcz0nMycgc3RpdGNoVGlsZXM9J3N0aXRjaCcvJTNFJTNDL2ZpbHRlciUzRSUzQ3JlY3Qgd2lkdGg9JzEwMCUyNScgaGVpZ2h0PScxMDAlMjUnIGZpbHRlcj0ndXJsKCUyM25vaXNlRmlsdGVyKScvJTNFJTNDL3N2ZyUzRVwiKWBcbiAgICAgICAgICB9fVxuICAgICAgICAvPlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgRHluYW1pY1Njcm9sbEJhY2tncm91bmRcbiJdLCJmaWxlIjoiQzovVXNlcnMvSFAvRGVza3RvcC9UR1MvVGFyYWpfR2xvYmFsbC9jbGllbnQvc3JjL2NvbXBvbmVudHMvZWZmZWN0cy9EeW5hbWljU2Nyb2xsQmFja2dyb3VuZC5qc3gifQ==

@@ -1043,3 +1043,149 @@ export const updateClientSectionSettings = async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to update client section settings' })
   }
 }
+
+// ==================== BUSINESS OUTCOMES / STATS SETTINGS ====================
+
+// @desc    Get Business Outcomes / Stats settings (public or admin)
+// @route   GET /api/cms/stats  |  GET /api/admin/cms/stats
+export const getStatsSettings = async (req, res) => {
+  try {
+    const keys = [
+      'stats_section_eyebrow',
+      'stats_section_title',
+      'stats_section_desc',
+
+      'stats_c1_number',
+      'stats_c1_suffix',
+      'stats_c1_name',
+      'stats_c1_label',
+      'stats_c1_desc',
+
+      'stats_c2_number',
+      'stats_c2_suffix',
+      'stats_c2_name',
+      'stats_c2_label',
+      'stats_c2_desc',
+
+      'stats_c3_number',
+      'stats_c3_suffix',
+      'stats_c3_name',
+      'stats_c3_label',
+      'stats_c3_desc',
+
+      'stats_c4_number',
+      'stats_c4_suffix',
+      'stats_c4_name',
+      'stats_c4_label',
+      'stats_c4_desc',
+    ]
+
+    const [rows] = await db.execute(
+      `SELECT key_name, value FROM settings WHERE key_name IN (${keys.map(() => '?').join(',')})`,
+      keys
+    )
+    const map = Object.fromEntries(rows.map(r => [r.key_name, r.value]))
+
+    res.json({
+      success: true,
+      data: {
+        eyebrow: map['stats_section_eyebrow'] ?? 'BUSINESS OUTCOMES / 01',
+        title: map['stats_section_title'] ?? 'BUILT ON EXPERIENCE. FOCUSED ON OUTCOMES.',
+        description: map['stats_section_desc'] ?? 'We work with the leading business firms globally to deliver what actually drives them providing consumer leads that increase their sales. We motivate consumers to embrace your business and build a long term relationship with you. We are experienced in creating digital experiences that generate high quality leads that increase the growth of any business.',
+
+        chamber1: {
+          number: map['stats_c1_number'] ?? '12',
+          suffix: map['stats_c1_suffix'] ?? '+',
+          name: map['stats_c1_name'] ?? 'EXPERIENCE',
+          label: map['stats_c1_label'] ?? 'Industries Served',
+          desc: map['stats_c1_desc'] ?? 'B2B SaaS, Cloud, Cybersecurity, FinTech, HealthTech & Enterprise Hardware.',
+        },
+        chamber2: {
+          number: map['stats_c2_number'] ?? '2,100',
+          suffix: map['stats_c2_suffix'] ?? '+',
+          name: map['stats_c2_name'] ?? 'DATA',
+          label: map['stats_c2_label'] ?? 'Campaigns Delivered',
+          desc: map['stats_c2_desc'] ?? 'High-converting multi-channel demand generation and ABM initiatives.',
+        },
+        chamber3: {
+          number: map['stats_c3_number'] ?? '1,500',
+          suffix: map['stats_c3_suffix'] ?? '+',
+          name: map['stats_c3_name'] ?? 'TARGETING',
+          label: map['stats_c3_label'] ?? 'Leads Monthly',
+          desc: map['stats_c3_desc'] ?? 'Decision-maker matched opportunities delivered straight into sales pipelines.',
+        },
+        chamber4: {
+          number: map['stats_c4_number'] ?? '16',
+          suffix: map['stats_c4_suffix'] ?? '+',
+          name: map['stats_c4_name'] ?? 'EXECUTION',
+          label: map['stats_c4_label'] ?? 'Pipeline Multiplier',
+          desc: map['stats_c4_desc'] ?? 'Predictable pipeline acceleration measured across client multi-quarter cohorts.',
+        },
+      }
+    })
+  } catch (error) {
+    console.error('Error fetching stats settings:', error)
+    res.status(500).json({ success: false, message: 'Failed to fetch stats settings' })
+  }
+}
+
+// @desc    Update Business Outcomes / Stats settings
+// @route   PUT /api/admin/cms/stats
+export const updateStatsSettings = async (req, res) => {
+  try {
+    const {
+      eyebrow,
+      title,
+      description,
+      chamber1,
+      chamber2,
+      chamber3,
+      chamber4
+    } = req.body
+
+    const updates = [
+      ['stats_section_eyebrow', eyebrow],
+      ['stats_section_title', title],
+      ['stats_section_desc', description],
+
+      ['stats_c1_number', chamber1?.number],
+      ['stats_c1_suffix', chamber1?.suffix],
+      ['stats_c1_name', chamber1?.name],
+      ['stats_c1_label', chamber1?.label],
+      ['stats_c1_desc', chamber1?.desc],
+
+      ['stats_c2_number', chamber2?.number],
+      ['stats_c2_suffix', chamber2?.suffix],
+      ['stats_c2_name', chamber2?.name],
+      ['stats_c2_label', chamber2?.label],
+      ['stats_c2_desc', chamber2?.desc],
+
+      ['stats_c3_number', chamber3?.number],
+      ['stats_c3_suffix', chamber3?.suffix],
+      ['stats_c3_name', chamber3?.name],
+      ['stats_c3_label', chamber3?.label],
+      ['stats_c3_desc', chamber3?.desc],
+
+      ['stats_c4_number', chamber4?.number],
+      ['stats_c4_suffix', chamber4?.suffix],
+      ['stats_c4_name', chamber4?.name],
+      ['stats_c4_label', chamber4?.label],
+      ['stats_c4_desc', chamber4?.desc],
+    ]
+
+    for (const [key, value] of updates) {
+      if (value !== undefined && value !== null) {
+        await db.execute(
+          `INSERT INTO settings (key_name, value) VALUES (?, ?)
+           ON DUPLICATE KEY UPDATE value = VALUES(value), updated_at = CURRENT_TIMESTAMP`,
+          [key, String(value)]
+        )
+      }
+    }
+
+    res.json({ success: true, message: 'Business outcomes stats updated successfully' })
+  } catch (error) {
+    console.error('Error updating stats settings:', error)
+    res.status(500).json({ success: false, message: 'Failed to update stats settings' })
+  }
+}

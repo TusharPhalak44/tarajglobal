@@ -9,8 +9,11 @@ import {
   cancelStrategyCallCalendarEvent
 } from '../../services/googleCalendar.service.js'
 import {
+  sendMeetingConfirmationEmail,
+  sendMeetingAdminNotificationEmail,
   sendMeetingRescheduledEmail,
-  sendMeetingCancellationEmail
+  sendMeetingCancellationEmail,
+  verifySMTPConnection
 } from '../../services/email.service.js'
 
 /**
@@ -194,10 +197,80 @@ export const cancelMeeting = async (req, res) => {
   }
 }
 
+/**
+ * POST /api/admin/meetings/:id/retry-email
+ * Retries sending confirmation & admin notification email WITHOUT recreating Google Calendar event
+ */
+export const retryMeetingEmail = async (req, res) => {
+  try {
+    const meeting = await Meeting.findById(req.params.id)
+    if (!meeting) {
+      return res.status(404).json({ success: false, message: 'Meeting not found.' })
+    }
+
+    console.log(`[ADMIN_RETRY_EMAIL] Initiating email retry for booking ${meeting.booking_id} (Calendar event ID preserved: ${meeting.calendar_event_id || 'N/A'})`)
+
+    // IMPORTANT: If calendar event is already created, do NOT touch Google Calendar API!
+    const emailResult = await sendMeetingConfirmationEmail(meeting)
+
+    if (emailResult.success) {
+      await Meeting.update(meeting.id, { email_status: 'sent' })
+
+      // Also trigger admin notification in background
+      try {
+        await sendMeetingAdminNotificationEmail(meeting)
+      } catch (adminErr) {
+        console.warn('[ADMIN_RETRY_EMAIL_ADMIN_NOTIFY_WARN]', adminErr.message)
+      }
+
+      return res.json({
+        success: true,
+        message: `Confirmation email successfully delivered to ${meeting.email}.`,
+        messageId: emailResult.messageId
+      })
+    } else {
+      await Meeting.update(meeting.id, { email_status: 'failed' })
+
+      return res.status(502).json({
+        success: false,
+        message: 'Email delivery failed.',
+        error: emailResult.details || { message: emailResult.error }
+      })
+    }
+  } catch (error) {
+    console.error('[ADMIN_RETRY_EMAIL_ERROR]', error)
+    return res.status(500).json({
+      success: false,
+      message: 'Unexpected error during email retry.',
+      error: error.message
+    })
+  }
+}
+
+/**
+ * GET /api/admin/meetings/diagnostics/smtp
+ * Diagnostic endpoint to test SMTP connection and authentication safely
+ */
+export const getSMTPDiagnostics = async (req, res) => {
+  try {
+    const result = await verifySMTPConnection()
+    return res.json(result)
+  } catch (error) {
+    console.error('[ADMIN_SMTP_DIAGNOSTICS_ERROR]', error)
+    return res.status(500).json({
+      success: false,
+      error: error.message
+    })
+  }
+}
+
 export default {
   getAllMeetings,
   getMeetingById,
   updateMeetingStatus,
   rescheduleMeeting,
-  cancelMeeting
+  cancelMeeting,
+  retryMeetingEmail,
+  getSMTPDiagnostics
 }
+

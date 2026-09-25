@@ -1,0 +1,339 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/MqlServices/components/MqlProcess.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useState = __vite__cjsImport3_react["useState"]; const useEffect = __vite__cjsImport3_react["useEffect"]; const useRef = __vite__cjsImport3_react["useRef"];
+import { motion } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+import { useReducedMotion } from "/src/hooks/useReducedMotion.js";
+import WorkflowCanvas from "/src/pages/MqlServices/components/MqlProcessWorkflow/WorkflowCanvas.jsx";
+import WorkflowMobileView from "/src/pages/MqlServices/components/MqlProcessWorkflow/WorkflowMobileView.jsx";
+import { WORKFLOW_STEPS } from "/src/pages/MqlServices/components/MqlProcessWorkflow/workflowData.js";
+const TOTAL_STEPS = 10;
+const STEP_DURATION_MS = 2200;
+const MqlProcess = () => {
+  _s();
+  const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+  const timerRef = useRef(null);
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+          setIsPlaying(true);
+        }
+      },
+      { threshold: 0.25 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, [hasStarted, prefersReducedMotion]);
+  useEffect(() => {
+    if (isPlaying && !prefersReducedMotion) {
+      const duration = activeStepIndex === 9 ? 3200 : STEP_DURATION_MS;
+      timerRef.current = setTimeout(() => {
+        setActiveStepIndex((prev) => (prev + 1) % TOTAL_STEPS);
+      }, duration);
+    } else {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    }
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [isPlaying, activeStepIndex, prefersReducedMotion]);
+  const handleSelectStep = (idx) => {
+    setActiveStepIndex(idx);
+  };
+  return /* @__PURE__ */ jsxDEV(
+    "section",
+    {
+      id: "mql-process",
+      ref: sectionRef,
+      className: "relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300",
+      "aria-label": "How Our MQL Generation Process Works",
+      children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 pointer-events-none", "aria-hidden": "true", children: [
+          /* @__PURE__ */ jsxDEV(
+            "div",
+            {
+              className: "absolute inset-0 opacity-[0.025] dark:opacity-[0.04]",
+              style: {
+                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+                backgroundSize: "32px 32px"
+              }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+              lineNumber: 90,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              className: "absolute top-1/4 left-1/4 w-[500px] h-[350px] rounded-full blur-[140px] opacity-20 pointer-events-none",
+              animate: prefersReducedMotion ? {} : {
+                scale: [1, 1.12, 1],
+                opacity: [0.15, 0.25, 0.15]
+              },
+              transition: { duration: 9, repeat: Infinity, ease: "easeInOut" },
+              style: { background: "radial-gradient(circle, #0284c7 0%, transparent 70%)" }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+              lineNumber: 100,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              className: "absolute bottom-1/4 right-1/4 w-[500px] h-[350px] rounded-full blur-[140px] opacity-20 pointer-events-none",
+              animate: prefersReducedMotion ? {} : {
+                scale: [1.1, 0.95, 1.1],
+                opacity: [0.18, 0.28, 0.18]
+              },
+              transition: { duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1 },
+              style: { background: "radial-gradient(circle, #00d2ff 0%, transparent 70%)" }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+              lineNumber: 113,
+              columnNumber: 9
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+          lineNumber: 88,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "relative max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8", children: [
+          /* @__PURE__ */ jsxDEV("div", { className: "text-center max-w-3xl mx-auto mb-4 sm:mb-5", children: [
+            /* @__PURE__ */ jsxDEV(
+              motion.div,
+              {
+                initial: prefersReducedMotion ? {} : { opacity: 0, y: 10 },
+                whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.4 },
+                className: "inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-[#00d2ff]/30 bg-white/80 dark:bg-[#031c3d]/60 backdrop-blur-md mb-3 shadow-xs dark:shadow-[0_0_12px_rgba(0,180,255,0.15)]",
+                children: [
+                  /* @__PURE__ */ jsxDEV(
+                    motion.span,
+                    {
+                      className: "w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] shadow-xs",
+                      animate: prefersReducedMotion ? {} : { scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] },
+                      transition: { duration: 1.8, repeat: Infinity }
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                      lineNumber: 139,
+                      columnNumber: 13
+                    },
+                    this
+                  ),
+                  /* @__PURE__ */ jsxDEV("span", { className: "text-[11px] font-mono font-bold tracking-[0.2em] text-primary dark:text-[#00d2ff] uppercase", children: "How Our Process Works" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                    lineNumber: 144,
+                    columnNumber: 13
+                  }, this)
+                ]
+              },
+              void 0,
+              true,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                lineNumber: 132,
+                columnNumber: 11
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV(
+              motion.div,
+              {
+                initial: prefersReducedMotion ? {} : { opacity: 0, y: 12 },
+                whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.45, delay: 0.05 },
+                className: "relative inline-block",
+                children: [
+                  /* @__PURE__ */ jsxDEV("h2", { className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase", children: [
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-slate-900 dark:text-white", children: [
+                      "MQL LEAD GENERATION",
+                      " "
+                    ] }, void 0, true, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                      lineNumber: 158,
+                      columnNumber: 15
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]", children: "WORKFLOW" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                      lineNumber: 161,
+                      columnNumber: 15
+                    }, this)
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                    lineNumber: 157,
+                    columnNumber: 13
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("div", { className: "relative mt-2.5 flex items-center justify-center", children: [
+                    /* @__PURE__ */ jsxDEV("div", { className: "w-36 sm:w-52 md:w-64 h-[2px] bg-gradient-to-r from-transparent via-primary dark:via-[#00d2ff] to-transparent" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                      lineNumber: 168,
+                      columnNumber: 15
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("div", { className: "absolute w-16 sm:w-24 h-[3px] bg-primary dark:bg-[#00f0ff] blur-[1.5px] rounded-full" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                      lineNumber: 169,
+                      columnNumber: 15
+                    }, this)
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                    lineNumber: 167,
+                    columnNumber: 13
+                  }, this)
+                ]
+              },
+              void 0,
+              true,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                lineNumber: 150,
+                columnNumber: 11
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV(
+              motion.p,
+              {
+                initial: prefersReducedMotion ? {} : { opacity: 0, y: 10 },
+                whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.4, delay: 0.1 },
+                className: "text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto mt-3 font-normal",
+                children: "A systematic 9-stage qualification pipeline identifying, engaging, and scoring verified B2B prospects into sales-ready MQLs."
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+                lineNumber: 174,
+                columnNumber: 11
+              },
+              this
+            )
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+            lineNumber: 130,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "hidden lg:block", children: /* @__PURE__ */ jsxDEV(
+            WorkflowCanvas,
+            {
+              activeStepIndex,
+              onSelectStep: handleSelectStep,
+              isReducedMotion: prefersReducedMotion
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+              lineNumber: 187,
+              columnNumber: 11
+            },
+            this
+          ) }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+            lineNumber: 186,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "block lg:hidden", children: /* @__PURE__ */ jsxDEV(
+            WorkflowMobileView,
+            {
+              activeStepIndex,
+              onSelectStep: handleSelectStep,
+              isReducedMotion: prefersReducedMotion
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+              lineNumber: 196,
+              columnNumber: 11
+            },
+            this
+          ) }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+            lineNumber: 195,
+            columnNumber: 9
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+          lineNumber: 128,
+          columnNumber: 7
+        }, this)
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx",
+      lineNumber: 81,
+      columnNumber: 5
+    },
+    this
+  );
+};
+_s(MqlProcess, "VHxiE5cdN50h3lW2/vBT5LoHa4Y=", false, function() {
+  return [useReducedMotion];
+});
+_c = MqlProcess;
+export default MqlProcess;
+var _c;
+$RefreshReg$(_c, "MqlProcess");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/MqlServices/components/MqlProcess.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6IkFBc0VROzs7Ozs7Ozs7Ozs7Ozs7OztBQXRFUixPQUFPQSxTQUFTQyxVQUFVQyxXQUFXQyxjQUFjO0FBQ25ELFNBQVNDLGNBQWM7QUFDdkIsU0FBU0Msd0JBQXdCO0FBQ2pDLE9BQU9DLG9CQUFvQjtBQUMzQixPQUFPQyx3QkFBd0I7QUFDL0IsU0FBU0Msc0JBQXNCO0FBRS9CLE1BQU1DLGNBQWM7QUFDcEIsTUFBTUMsbUJBQW1CO0FBRXpCLE1BQU1DLGFBQWFBLE1BQU07QUFBQUMsS0FBQTtBQUN2QixRQUFNQyx1QkFBdUJSLGlCQUFpQjtBQUM5QyxRQUFNUyxhQUFhWCxPQUFPLElBQUk7QUFDOUIsUUFBTVksV0FBV1osT0FBTyxJQUFJO0FBRTVCLFFBQU0sQ0FBQ2EsaUJBQWlCQyxrQkFBa0IsSUFBSWhCLFNBQVMsQ0FBQztBQUN4RCxRQUFNLENBQUNpQixXQUFXQyxZQUFZLElBQUlsQixTQUFTLEtBQUs7QUFDaEQsUUFBTSxDQUFDbUIsWUFBWUMsYUFBYSxJQUFJcEIsU0FBUyxLQUFLO0FBR2xEQyxZQUFVLE1BQU07QUFDZCxRQUFJVyxxQkFBc0I7QUFFMUIsVUFBTVMsV0FBVyxJQUFJQztBQUFBQSxNQUNuQixDQUFDLENBQUNDLEtBQUssTUFBTTtBQUNYLFlBQUlBLE1BQU1DLGtCQUFrQixDQUFDTCxZQUFZO0FBQ3ZDQyx3QkFBYyxJQUFJO0FBQ2xCRix1QkFBYSxJQUFJO0FBQUEsUUFDbkI7QUFBQSxNQUNGO0FBQUEsTUFDQSxFQUFFTyxXQUFXLEtBQUs7QUFBQSxJQUNwQjtBQUVBLFFBQUlaLFdBQVdhLFNBQVM7QUFDdEJMLGVBQVNNLFFBQVFkLFdBQVdhLE9BQU87QUFBQSxJQUNyQztBQUVBLFdBQU8sTUFBTUwsU0FBU08sV0FBVztBQUFBLEVBQ25DLEdBQUcsQ0FBQ1QsWUFBWVAsb0JBQW9CLENBQUM7QUFHckNYLFlBQVUsTUFBTTtBQUNkLFFBQUlnQixhQUFhLENBQUNMLHNCQUFzQjtBQUN0QyxZQUFNaUIsV0FBV2Qsb0JBQW9CLElBQUksT0FBT047QUFDaERLLGVBQVNZLFVBQVVJLFdBQVcsTUFBTTtBQUNsQ2QsMkJBQW1CLENBQUNlLFVBQVVBLE9BQU8sS0FBS3ZCLFdBQVc7QUFBQSxNQUN2RCxHQUFHcUIsUUFBUTtBQUFBLElBQ2IsT0FBTztBQUNMLFVBQUlmLFNBQVNZLFFBQVNNLGNBQWFsQixTQUFTWSxPQUFPO0FBQUEsSUFDckQ7QUFFQSxXQUFPLE1BQU07QUFDWCxVQUFJWixTQUFTWSxRQUFTTSxjQUFhbEIsU0FBU1ksT0FBTztBQUFBLElBQ3JEO0FBQUEsRUFDRixHQUFHLENBQUNULFdBQVdGLGlCQUFpQkgsb0JBQW9CLENBQUM7QUFFckQsUUFBTXFCLG1CQUFtQkEsQ0FBQ0MsUUFBUTtBQUNoQ2xCLHVCQUFtQmtCLEdBQUc7QUFBQSxFQUN4QjtBQUVBLFNBQ0U7QUFBQSxJQUFDO0FBQUE7QUFBQSxNQUNDLElBQUc7QUFBQSxNQUNILEtBQUtyQjtBQUFBQSxNQUNMLFdBQVU7QUFBQSxNQUNWLGNBQVc7QUFBQSxNQUdYO0FBQUEsK0JBQUMsU0FBSSxXQUFVLHdDQUF1QyxlQUFZLFFBRWhFO0FBQUE7QUFBQSxZQUFDO0FBQUE7QUFBQSxjQUNDLFdBQVU7QUFBQSxjQUNWLE9BQU87QUFBQSxnQkFDTHNCLGlCQUNFO0FBQUEsZ0JBQ0ZDLGdCQUFnQjtBQUFBLGNBQ2xCO0FBQUE7QUFBQSxZQU5GO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxVQU1JO0FBQUEsVUFJSjtBQUFBLFlBQUMsT0FBTztBQUFBLFlBQVA7QUFBQSxjQUNDLFdBQVU7QUFBQSxjQUNWLFNBQ0V4Qix1QkFDSSxDQUFDLElBQ0Q7QUFBQSxnQkFDRXlCLE9BQU8sQ0FBQyxHQUFHLE1BQU0sQ0FBQztBQUFBLGdCQUNsQkMsU0FBUyxDQUFDLE1BQU0sTUFBTSxJQUFJO0FBQUEsY0FDNUI7QUFBQSxjQUVOLFlBQVksRUFBRVQsVUFBVSxHQUFHVSxRQUFRQyxVQUFVQyxNQUFNLFlBQVk7QUFBQSxjQUMvRCxPQUFPLEVBQUVDLFlBQVksdURBQXVEO0FBQUE7QUFBQSxZQVg5RTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsVUFXZ0Y7QUFBQSxVQUVoRjtBQUFBLFlBQUMsT0FBTztBQUFBLFlBQVA7QUFBQSxjQUNDLFdBQVU7QUFBQSxjQUNWLFNBQ0U5Qix1QkFDSSxDQUFDLElBQ0Q7QUFBQSxnQkFDRXlCLE9BQU8sQ0FBQyxLQUFLLE1BQU0sR0FBRztBQUFBLGdCQUN0QkMsU0FBUyxDQUFDLE1BQU0sTUFBTSxJQUFJO0FBQUEsY0FDNUI7QUFBQSxjQUVOLFlBQVksRUFBRVQsVUFBVSxJQUFJVSxRQUFRQyxVQUFVQyxNQUFNLGFBQWFFLE9BQU8sRUFBRTtBQUFBLGNBQzFFLE9BQU8sRUFBRUQsWUFBWSx1REFBdUQ7QUFBQTtBQUFBLFlBWDlFO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxVQVdnRjtBQUFBLGFBcENsRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGVBc0NBO0FBQUEsUUFFQSx1QkFBQyxTQUFJLFdBQVUsd0RBRWI7QUFBQSxpQ0FBQyxTQUFJLFdBQVUsOENBRWI7QUFBQTtBQUFBLGNBQUMsT0FBTztBQUFBLGNBQVA7QUFBQSxnQkFDQyxTQUFTOUIsdUJBQXVCLENBQUMsSUFBSSxFQUFFMEIsU0FBUyxHQUFHTSxHQUFHLEdBQUc7QUFBQSxnQkFDekQsYUFBYWhDLHVCQUF1QixDQUFDLElBQUksRUFBRTBCLFNBQVMsR0FBR00sR0FBRyxFQUFFO0FBQUEsZ0JBQzVELFVBQVUsRUFBRUMsTUFBTSxLQUFLO0FBQUEsZ0JBQ3ZCLFlBQVksRUFBRWhCLFVBQVUsSUFBSTtBQUFBLGdCQUM1QixXQUFVO0FBQUEsZ0JBRVY7QUFBQTtBQUFBLG9CQUFDLE9BQU87QUFBQSxvQkFBUDtBQUFBLHNCQUNDLFdBQVU7QUFBQSxzQkFDVixTQUFTakIsdUJBQXVCLENBQUMsSUFBSSxFQUFFeUIsT0FBTyxDQUFDLEdBQUcsS0FBSyxDQUFDLEdBQUdDLFNBQVMsQ0FBQyxLQUFLLEdBQUcsR0FBRyxFQUFFO0FBQUEsc0JBQ2xGLFlBQVksRUFBRVQsVUFBVSxLQUFLVSxRQUFRQyxTQUFTO0FBQUE7QUFBQSxvQkFIaEQ7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLGtCQUdrRDtBQUFBLGtCQUVsRCx1QkFBQyxVQUFLLFdBQVUsK0ZBQTZGLHFDQUE3RztBQUFBO0FBQUE7QUFBQTtBQUFBLHlCQUVBO0FBQUE7QUFBQTtBQUFBLGNBZEY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFlBZUE7QUFBQSxZQUdBO0FBQUEsY0FBQyxPQUFPO0FBQUEsY0FBUDtBQUFBLGdCQUNDLFNBQVM1Qix1QkFBdUIsQ0FBQyxJQUFJLEVBQUUwQixTQUFTLEdBQUdNLEdBQUcsR0FBRztBQUFBLGdCQUN6RCxhQUFhaEMsdUJBQXVCLENBQUMsSUFBSSxFQUFFMEIsU0FBUyxHQUFHTSxHQUFHLEVBQUU7QUFBQSxnQkFDNUQsVUFBVSxFQUFFQyxNQUFNLEtBQUs7QUFBQSxnQkFDdkIsWUFBWSxFQUFFaEIsVUFBVSxNQUFNYyxPQUFPLEtBQUs7QUFBQSxnQkFDMUMsV0FBVTtBQUFBLGdCQUVWO0FBQUEseUNBQUMsUUFBRyxXQUFVLGtHQUNaO0FBQUEsMkNBQUMsVUFBSyxXQUFVLGtDQUFnQztBQUFBO0FBQUEsc0JBQzFCO0FBQUEseUJBRHRCO0FBQUE7QUFBQTtBQUFBO0FBQUEsMkJBRUE7QUFBQSxvQkFDQSx1QkFBQyxVQUFLLFdBQVUsb0ZBQWtGLHdCQUFsRztBQUFBO0FBQUE7QUFBQTtBQUFBLDJCQUVBO0FBQUEsdUJBTkY7QUFBQTtBQUFBO0FBQUE7QUFBQSx5QkFPQTtBQUFBLGtCQUdBLHVCQUFDLFNBQUksV0FBVSxvREFDYjtBQUFBLDJDQUFDLFNBQUksV0FBVSxrSEFBZjtBQUFBO0FBQUE7QUFBQTtBQUFBLDJCQUE2SDtBQUFBLG9CQUM3SCx1QkFBQyxTQUFJLFdBQVUsMEZBQWY7QUFBQTtBQUFBO0FBQUE7QUFBQSwyQkFBcUc7QUFBQSx1QkFGdkc7QUFBQTtBQUFBO0FBQUE7QUFBQSx5QkFHQTtBQUFBO0FBQUE7QUFBQSxjQXBCRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsWUFxQkE7QUFBQSxZQUdBO0FBQUEsY0FBQyxPQUFPO0FBQUEsY0FBUDtBQUFBLGdCQUNDLFNBQVMvQix1QkFBdUIsQ0FBQyxJQUFJLEVBQUUwQixTQUFTLEdBQUdNLEdBQUcsR0FBRztBQUFBLGdCQUN6RCxhQUFhaEMsdUJBQXVCLENBQUMsSUFBSSxFQUFFMEIsU0FBUyxHQUFHTSxHQUFHLEVBQUU7QUFBQSxnQkFDNUQsVUFBVSxFQUFFQyxNQUFNLEtBQUs7QUFBQSxnQkFDdkIsWUFBWSxFQUFFaEIsVUFBVSxLQUFLYyxPQUFPLElBQUk7QUFBQSxnQkFDeEMsV0FBVTtBQUFBLGdCQUEyRztBQUFBO0FBQUEsY0FMdkg7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFlBUUE7QUFBQSxlQXBERjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQXFEQTtBQUFBLFVBR0EsdUJBQUMsU0FBSSxXQUFVLG1CQUNiO0FBQUEsWUFBQztBQUFBO0FBQUEsY0FDQztBQUFBLGNBQ0EsY0FBY1Y7QUFBQUEsY0FDZCxpQkFBaUJyQjtBQUFBQTtBQUFBQSxZQUhuQjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsVUFHd0MsS0FKMUM7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFNQTtBQUFBLFVBR0EsdUJBQUMsU0FBSSxXQUFVLG1CQUNiO0FBQUEsWUFBQztBQUFBO0FBQUEsY0FDQztBQUFBLGNBQ0EsY0FBY3FCO0FBQUFBLGNBQ2QsaUJBQWlCckI7QUFBQUE7QUFBQUEsWUFIbkI7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFVBR3dDLEtBSjFDO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBTUE7QUFBQSxhQXpFRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGVBMEVBO0FBQUE7QUFBQTtBQUFBLElBekhGO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxFQTBIQTtBQUVKO0FBQUNELEdBL0tLRCxZQUFVO0FBQUEsVUFDZU4sZ0JBQWdCO0FBQUE7QUFBQSxLQUR6Q007QUFpTE4sZUFBZUE7QUFBVSxJQUFBb0M7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsInVzZVJlZiIsIm1vdGlvbiIsInVzZVJlZHVjZWRNb3Rpb24iLCJXb3JrZmxvd0NhbnZhcyIsIldvcmtmbG93TW9iaWxlVmlldyIsIldPUktGTE9XX1NURVBTIiwiVE9UQUxfU1RFUFMiLCJTVEVQX0RVUkFUSU9OX01TIiwiTXFsUHJvY2VzcyIsIl9zIiwicHJlZmVyc1JlZHVjZWRNb3Rpb24iLCJzZWN0aW9uUmVmIiwidGltZXJSZWYiLCJhY3RpdmVTdGVwSW5kZXgiLCJzZXRBY3RpdmVTdGVwSW5kZXgiLCJpc1BsYXlpbmciLCJzZXRJc1BsYXlpbmciLCJoYXNTdGFydGVkIiwic2V0SGFzU3RhcnRlZCIsIm9ic2VydmVyIiwiSW50ZXJzZWN0aW9uT2JzZXJ2ZXIiLCJlbnRyeSIsImlzSW50ZXJzZWN0aW5nIiwidGhyZXNob2xkIiwiY3VycmVudCIsIm9ic2VydmUiLCJkaXNjb25uZWN0IiwiZHVyYXRpb24iLCJzZXRUaW1lb3V0IiwicHJldiIsImNsZWFyVGltZW91dCIsImhhbmRsZVNlbGVjdFN0ZXAiLCJpZHgiLCJiYWNrZ3JvdW5kSW1hZ2UiLCJiYWNrZ3JvdW5kU2l6ZSIsInNjYWxlIiwib3BhY2l0eSIsInJlcGVhdCIsIkluZmluaXR5IiwiZWFzZSIsImJhY2tncm91bmQiLCJkZWxheSIsInkiLCJvbmNlIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiTXFsUHJvY2Vzcy5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlLCB1c2VFZmZlY3QsIHVzZVJlZiB9IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHsgbW90aW9uIH0gZnJvbSAnZnJhbWVyLW1vdGlvbidcbmltcG9ydCB7IHVzZVJlZHVjZWRNb3Rpb24gfSBmcm9tICdAaG9va3MvdXNlUmVkdWNlZE1vdGlvbidcbmltcG9ydCBXb3JrZmxvd0NhbnZhcyBmcm9tICcuL01xbFByb2Nlc3NXb3JrZmxvdy9Xb3JrZmxvd0NhbnZhcydcbmltcG9ydCBXb3JrZmxvd01vYmlsZVZpZXcgZnJvbSAnLi9NcWxQcm9jZXNzV29ya2Zsb3cvV29ya2Zsb3dNb2JpbGVWaWV3J1xuaW1wb3J0IHsgV09SS0ZMT1dfU1RFUFMgfSBmcm9tICcuL01xbFByb2Nlc3NXb3JrZmxvdy93b3JrZmxvd0RhdGEnXG5cbmNvbnN0IFRPVEFMX1NURVBTID0gMTAgLy8gU3RlcHMgMDEgdG8gMDkgKyBGaW5hbCBHb2FsIChpbmRleCA5KVxuY29uc3QgU1RFUF9EVVJBVElPTl9NUyA9IDIyMDAgLy8gVGltZSBzcGVudCBvbiBlYWNoIHN0ZXAgZHVyaW5nIGF1dG9wbGF5XG5cbmNvbnN0IE1xbFByb2Nlc3MgPSAoKSA9PiB7XG4gIGNvbnN0IHByZWZlcnNSZWR1Y2VkTW90aW9uID0gdXNlUmVkdWNlZE1vdGlvbigpXG4gIGNvbnN0IHNlY3Rpb25SZWYgPSB1c2VSZWYobnVsbClcbiAgY29uc3QgdGltZXJSZWYgPSB1c2VSZWYobnVsbClcblxuICBjb25zdCBbYWN0aXZlU3RlcEluZGV4LCBzZXRBY3RpdmVTdGVwSW5kZXhdID0gdXNlU3RhdGUoMClcbiAgY29uc3QgW2lzUGxheWluZywgc2V0SXNQbGF5aW5nXSA9IHVzZVN0YXRlKGZhbHNlKVxuICBjb25zdCBbaGFzU3RhcnRlZCwgc2V0SGFzU3RhcnRlZF0gPSB1c2VTdGF0ZShmYWxzZSlcblxuICAvLyAxLiBUcmlnZ2VyIGF1dG9wbGF5IHdoZW4gc2VjdGlvbiBlbnRlcnMgdmlld3BvcnRcbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICBpZiAocHJlZmVyc1JlZHVjZWRNb3Rpb24pIHJldHVyblxuXG4gICAgY29uc3Qgb2JzZXJ2ZXIgPSBuZXcgSW50ZXJzZWN0aW9uT2JzZXJ2ZXIoXG4gICAgICAoW2VudHJ5XSkgPT4ge1xuICAgICAgICBpZiAoZW50cnkuaXNJbnRlcnNlY3RpbmcgJiYgIWhhc1N0YXJ0ZWQpIHtcbiAgICAgICAgICBzZXRIYXNTdGFydGVkKHRydWUpXG4gICAgICAgICAgc2V0SXNQbGF5aW5nKHRydWUpXG4gICAgICAgIH1cbiAgICAgIH0sXG4gICAgICB7IHRocmVzaG9sZDogMC4yNSB9XG4gICAgKVxuXG4gICAgaWYgKHNlY3Rpb25SZWYuY3VycmVudCkge1xuICAgICAgb2JzZXJ2ZXIub2JzZXJ2ZShzZWN0aW9uUmVmLmN1cnJlbnQpXG4gICAgfVxuXG4gICAgcmV0dXJuICgpID0+IG9ic2VydmVyLmRpc2Nvbm5lY3QoKVxuICB9LCBbaGFzU3RhcnRlZCwgcHJlZmVyc1JlZHVjZWRNb3Rpb25dKVxuXG4gIC8vIDIuIFNlcXVlbnRpYWwgU3RlcC1ieS1TdGVwIFN0b3J5dGVsbGluZyBMb29wXG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgaWYgKGlzUGxheWluZyAmJiAhcHJlZmVyc1JlZHVjZWRNb3Rpb24pIHtcbiAgICAgIGNvbnN0IGR1cmF0aW9uID0gYWN0aXZlU3RlcEluZGV4ID09PSA5ID8gMzIwMCA6IFNURVBfRFVSQVRJT05fTVNcbiAgICAgIHRpbWVyUmVmLmN1cnJlbnQgPSBzZXRUaW1lb3V0KCgpID0+IHtcbiAgICAgICAgc2V0QWN0aXZlU3RlcEluZGV4KChwcmV2KSA9PiAocHJldiArIDEpICUgVE9UQUxfU1RFUFMpXG4gICAgICB9LCBkdXJhdGlvbilcbiAgICB9IGVsc2Uge1xuICAgICAgaWYgKHRpbWVyUmVmLmN1cnJlbnQpIGNsZWFyVGltZW91dCh0aW1lclJlZi5jdXJyZW50KVxuICAgIH1cblxuICAgIHJldHVybiAoKSA9PiB7XG4gICAgICBpZiAodGltZXJSZWYuY3VycmVudCkgY2xlYXJUaW1lb3V0KHRpbWVyUmVmLmN1cnJlbnQpXG4gICAgfVxuICB9LCBbaXNQbGF5aW5nLCBhY3RpdmVTdGVwSW5kZXgsIHByZWZlcnNSZWR1Y2VkTW90aW9uXSlcblxuICBjb25zdCBoYW5kbGVTZWxlY3RTdGVwID0gKGlkeCkgPT4ge1xuICAgIHNldEFjdGl2ZVN0ZXBJbmRleChpZHgpXG4gIH1cblxuICByZXR1cm4gKFxuICAgIDxzZWN0aW9uXG4gICAgICBpZD1cIm1xbC1wcm9jZXNzXCJcbiAgICAgIHJlZj17c2VjdGlvblJlZn1cbiAgICAgIGNsYXNzTmFtZT1cInJlbGF0aXZlIHB5LTggc206cHktMTAgbGc6cHktMTIgb3ZlcmZsb3ctaGlkZGVuIGJnLXNsYXRlLTUwIGRhcms6YmctWyMwNzBEMThdIHRleHQtc2xhdGUtOTAwIGRhcms6dGV4dC13aGl0ZSBib3JkZXItdCBib3JkZXItYiBib3JkZXItc2xhdGUtMjAwLzgwIGRhcms6Ym9yZGVyLXdoaXRlLzEwIHRyYW5zaXRpb24tY29sb3JzIGR1cmF0aW9uLTMwMFwiXG4gICAgICBhcmlhLWxhYmVsPVwiSG93IE91ciBNUUwgR2VuZXJhdGlvbiBQcm9jZXNzIFdvcmtzXCJcbiAgICA+XG4gICAgICB7Lyog4pSA4pSAIEFtYmllbnQgQmFja2dyb3VuZCBMaWdodGluZyAoTGlnaHQgJiBEYXJrKSDilIDilIAgKi99XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cImFic29sdXRlIGluc2V0LTAgcG9pbnRlci1ldmVudHMtbm9uZVwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPlxuICAgICAgICB7LyogU3VidGxlIEdyaWQgKi99XG4gICAgICAgIDxkaXZcbiAgICAgICAgICBjbGFzc05hbWU9XCJhYnNvbHV0ZSBpbnNldC0wIG9wYWNpdHktWzAuMDI1XSBkYXJrOm9wYWNpdHktWzAuMDRdXCJcbiAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgYmFja2dyb3VuZEltYWdlOlxuICAgICAgICAgICAgICAncmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCAxcHggMXB4LCBjdXJyZW50Q29sb3IgMXB4LCB0cmFuc3BhcmVudCAwKScsXG4gICAgICAgICAgICBiYWNrZ3JvdW5kU2l6ZTogJzMycHggMzJweCcsXG4gICAgICAgICAgfX1cbiAgICAgICAgLz5cblxuICAgICAgICB7LyogQW1iaWVudCBSYWRpYWwgQmx1ZSAmIEN5YW4gTGlnaHQgT3JicyAqL31cbiAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtMS80IGxlZnQtMS80IHctWzUwMHB4XSBoLVszNTBweF0gcm91bmRlZC1mdWxsIGJsdXItWzE0MHB4XSBvcGFjaXR5LTIwIHBvaW50ZXItZXZlbnRzLW5vbmVcIlxuICAgICAgICAgIGFuaW1hdGU9e1xuICAgICAgICAgICAgcHJlZmVyc1JlZHVjZWRNb3Rpb25cbiAgICAgICAgICAgICAgPyB7fVxuICAgICAgICAgICAgICA6IHtcbiAgICAgICAgICAgICAgICAgIHNjYWxlOiBbMSwgMS4xMiwgMV0sXG4gICAgICAgICAgICAgICAgICBvcGFjaXR5OiBbMC4xNSwgMC4yNSwgMC4xNV0sXG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgIH1cbiAgICAgICAgICB0cmFuc2l0aW9uPXt7IGR1cmF0aW9uOiA5LCByZXBlYXQ6IEluZmluaXR5LCBlYXNlOiAnZWFzZUluT3V0JyB9fVxuICAgICAgICAgIHN0eWxlPXt7IGJhY2tncm91bmQ6ICdyYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCAjMDI4NGM3IDAlLCB0cmFuc3BhcmVudCA3MCUpJyB9fVxuICAgICAgICAvPlxuICAgICAgICA8bW90aW9uLmRpdlxuICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIGJvdHRvbS0xLzQgcmlnaHQtMS80IHctWzUwMHB4XSBoLVszNTBweF0gcm91bmRlZC1mdWxsIGJsdXItWzE0MHB4XSBvcGFjaXR5LTIwIHBvaW50ZXItZXZlbnRzLW5vbmVcIlxuICAgICAgICAgIGFuaW1hdGU9e1xuICAgICAgICAgICAgcHJlZmVyc1JlZHVjZWRNb3Rpb25cbiAgICAgICAgICAgICAgPyB7fVxuICAgICAgICAgICAgICA6IHtcbiAgICAgICAgICAgICAgICAgIHNjYWxlOiBbMS4xLCAwLjk1LCAxLjFdLFxuICAgICAgICAgICAgICAgICAgb3BhY2l0eTogWzAuMTgsIDAuMjgsIDAuMThdLFxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICB9XG4gICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMTEsIHJlcGVhdDogSW5maW5pdHksIGVhc2U6ICdlYXNlSW5PdXQnLCBkZWxheTogMSB9fVxuICAgICAgICAgIHN0eWxlPXt7IGJhY2tncm91bmQ6ICdyYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCAjMDBkMmZmIDAlLCB0cmFuc3BhcmVudCA3MCUpJyB9fVxuICAgICAgICAvPlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmVsYXRpdmUgbWF4LXctWzEzODBweF0gbXgtYXV0byBweC00IHNtOnB4LTYgbGc6cHgtOFwiPlxuICAgICAgICB7Lyog4pSA4pSAIENPTVBBQ1QgU0VDVElPTiBIRUFERVIgJiBUSVRMRSDilIDilIAgKi99XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC1jZW50ZXIgbWF4LXctM3hsIG14LWF1dG8gbWItNCBzbTptYi01XCI+XG4gICAgICAgICAgey8qIEV5ZWJyb3cgQmFkZ2UgKi99XG4gICAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICAgIGluaXRpYWw9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDAsIHk6IDEwIH19XG4gICAgICAgICAgICB3aGlsZUluVmlldz17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgICAgdmlld3BvcnQ9e3sgb25jZTogdHJ1ZSB9fVxuICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC40IH19XG4gICAgICAgICAgICBjbGFzc05hbWU9XCJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgcHgtMyBweS0xIHJvdW5kZWQtZnVsbCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBkYXJrOmJvcmRlci1bIzAwZDJmZl0vMzAgYmctd2hpdGUvODAgZGFyazpiZy1bIzAzMWMzZF0vNjAgYmFja2Ryb3AtYmx1ci1tZCBtYi0zIHNoYWRvdy14cyBkYXJrOnNoYWRvdy1bMF8wXzEycHhfcmdiYSgwLDE4MCwyNTUsMC4xNSldXCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICA8bW90aW9uLnNwYW5cbiAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidy0xLjUgaC0xLjUgcm91bmRlZC1mdWxsIGJnLXByaW1hcnkgZGFyazpiZy1bIzAwZjBmZl0gc2hhZG93LXhzXCJcbiAgICAgICAgICAgICAgYW5pbWF0ZT17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgc2NhbGU6IFsxLCAxLjQsIDFdLCBvcGFjaXR5OiBbMC43LCAxLCAwLjddIH19XG4gICAgICAgICAgICAgIHRyYW5zaXRpb249e3sgZHVyYXRpb246IDEuOCwgcmVwZWF0OiBJbmZpbml0eSB9fVxuICAgICAgICAgICAgLz5cbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtWzExcHhdIGZvbnQtbW9ubyBmb250LWJvbGQgdHJhY2tpbmctWzAuMmVtXSB0ZXh0LXByaW1hcnkgZGFyazp0ZXh0LVsjMDBkMmZmXSB1cHBlcmNhc2VcIj5cbiAgICAgICAgICAgICAgSG93IE91ciBQcm9jZXNzIFdvcmtzXG4gICAgICAgICAgICA8L3NwYW4+XG4gICAgICAgICAgPC9tb3Rpb24uZGl2PlxuXG4gICAgICAgICAgey8qIE1haW4gVGl0bGU6IE1RTCBMRUFEIEdFTkVSQVRJT04gV09SS0ZMT1cgKi99XG4gICAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICAgIGluaXRpYWw9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDAsIHk6IDEyIH19XG4gICAgICAgICAgICB3aGlsZUluVmlldz17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgICAgdmlld3BvcnQ9e3sgb25jZTogdHJ1ZSB9fVxuICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC40NSwgZGVsYXk6IDAuMDUgfX1cbiAgICAgICAgICAgIGNsYXNzTmFtZT1cInJlbGF0aXZlIGlubGluZS1ibG9ja1wiXG4gICAgICAgICAgPlxuICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIHNtOnRleHQtM3hsIG1kOnRleHQtNHhsIGxnOnRleHQtNXhsIGZvbnQtYmxhY2sgdHJhY2tpbmctdGlnaHQgbGVhZGluZy10aWdodCB1cHBlcmNhc2VcIj5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1zbGF0ZS05MDAgZGFyazp0ZXh0LXdoaXRlXCI+XG4gICAgICAgICAgICAgICAgTVFMIExFQUQgR0VORVJBVElPTnsnICd9XG4gICAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1wcmltYXJ5IGRhcms6dGV4dC1bIzAwQTZGRl0gZGFyazpkcm9wLXNoYWRvdy1bMF8wXzE1cHhfcmdiYSgwLDE2NiwyNTUsMC42KV1cIj5cbiAgICAgICAgICAgICAgICBXT1JLRkxPV1xuICAgICAgICAgICAgICA8L3NwYW4+XG4gICAgICAgICAgICA8L2gyPlxuXG4gICAgICAgICAgICB7LyogU3VidGxlIGxpZ2h0IGJhciB1bmRlciB0aXRsZSAqL31cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmVsYXRpdmUgbXQtMi41IGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyXCI+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidy0zNiBzbTp3LTUyIG1kOnctNjQgaC1bMnB4XSBiZy1ncmFkaWVudC10by1yIGZyb20tdHJhbnNwYXJlbnQgdmlhLXByaW1hcnkgZGFyazp2aWEtWyMwMGQyZmZdIHRvLXRyYW5zcGFyZW50XCIgLz5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSB3LTE2IHNtOnctMjQgaC1bM3B4XSBiZy1wcmltYXJ5IGRhcms6YmctWyMwMGYwZmZdIGJsdXItWzEuNXB4XSByb3VuZGVkLWZ1bGxcIiAvPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPC9tb3Rpb24uZGl2PlxuXG4gICAgICAgICAgey8qIFN1YnRpdGxlICovfVxuICAgICAgICAgIDxtb3Rpb24ucFxuICAgICAgICAgICAgaW5pdGlhbD17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMCwgeTogMTAgfX1cbiAgICAgICAgICAgIHdoaWxlSW5WaWV3PXtwcmVmZXJzUmVkdWNlZE1vdGlvbiA/IHt9IDogeyBvcGFjaXR5OiAxLCB5OiAwIH19XG4gICAgICAgICAgICB2aWV3cG9ydD17eyBvbmNlOiB0cnVlIH19XG4gICAgICAgICAgICB0cmFuc2l0aW9uPXt7IGR1cmF0aW9uOiAwLjQsIGRlbGF5OiAwLjEgfX1cbiAgICAgICAgICAgIGNsYXNzTmFtZT1cInRleHQtc20gc206dGV4dC1iYXNlIHRleHQtc2xhdGUtNjAwIGRhcms6dGV4dC1zbGF0ZS0zMDAgbGVhZGluZy1yZWxheGVkIG1heC13LXhsIG14LWF1dG8gbXQtMyBmb250LW5vcm1hbFwiXG4gICAgICAgICAgPlxuICAgICAgICAgICAgQSBzeXN0ZW1hdGljIDktc3RhZ2UgcXVhbGlmaWNhdGlvbiBwaXBlbGluZSBpZGVudGlmeWluZywgZW5nYWdpbmcsIGFuZCBzY29yaW5nIHZlcmlmaWVkIEIyQiBwcm9zcGVjdHMgaW50byBzYWxlcy1yZWFkeSBNUUxzLlxuICAgICAgICAgIDwvbW90aW9uLnA+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIHsvKiDilIDilIAgQ09NUEFDVCBERVNLVE9QIFdPUktGTE9XIENBTlZBUyAoU2NyZWVuID49IDEwMjRweCkg4pSA4pSAICovfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImhpZGRlbiBsZzpibG9ja1wiPlxuICAgICAgICAgIDxXb3JrZmxvd0NhbnZhc1xuICAgICAgICAgICAgYWN0aXZlU3RlcEluZGV4PXthY3RpdmVTdGVwSW5kZXh9XG4gICAgICAgICAgICBvblNlbGVjdFN0ZXA9e2hhbmRsZVNlbGVjdFN0ZXB9XG4gICAgICAgICAgICBpc1JlZHVjZWRNb3Rpb249e3ByZWZlcnNSZWR1Y2VkTW90aW9ufVxuICAgICAgICAgIC8+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIHsvKiDilIDilIAgVEFCTEVUICYgTU9CSUxFIFdPUktGTE9XIFZJRVcgKFNjcmVlbiA8IDEwMjRweCkg4pSA4pSAICovfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImJsb2NrIGxnOmhpZGRlblwiPlxuICAgICAgICAgIDxXb3JrZmxvd01vYmlsZVZpZXdcbiAgICAgICAgICAgIGFjdGl2ZVN0ZXBJbmRleD17YWN0aXZlU3RlcEluZGV4fVxuICAgICAgICAgICAgb25TZWxlY3RTdGVwPXtoYW5kbGVTZWxlY3RTdGVwfVxuICAgICAgICAgICAgaXNSZWR1Y2VkTW90aW9uPXtwcmVmZXJzUmVkdWNlZE1vdGlvbn1cbiAgICAgICAgICAvPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuICAgIDwvc2VjdGlvbj5cbiAgKVxufVxuXG5leHBvcnQgZGVmYXVsdCBNcWxQcm9jZXNzXG4iXSwiZmlsZSI6IkM6L1VzZXJzL0hQL0Rlc2t0b3AvVEdTL1RhcmFqX0dsb2JhbGwvY2xpZW50L3NyYy9wYWdlcy9NcWxTZXJ2aWNlcy9jb21wb25lbnRzL01xbFByb2Nlc3MuanN4In0=

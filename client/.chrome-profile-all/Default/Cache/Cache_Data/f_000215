@@ -1,0 +1,1356 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/HqlServices/components/WhoIsHqlFor.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useState = __vite__cjsImport3_react["useState"]; const useEffect = __vite__cjsImport3_react["useEffect"]; const useRef = __vite__cjsImport3_react["useRef"];
+import { motion, AnimatePresence } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+import { Check } from "/node_modules/.vite/deps/lucide-react.js?v=2f1d9042";
+import { useReducedMotion } from "/src/hooks/useReducedMotion.js";
+import { gsap, ScrollTrigger } from "/src/animations/gsap.js";
+const AUDIENCES = [
+  {
+    id: "saas",
+    num: "01",
+    label: "SaaS & Cloud Platforms",
+    tagline: "TECHNOLOGY DECISION MAKERS",
+    color: "#00A6FF",
+    image: "/saas-audience.jpg",
+    description: "Connect with CTOs, VP Engineering, and software buying committees evaluated against your target ARR tiers, tech stack, and cloud environment.",
+    points: [
+      "Targeting by install-base technographics, ARR tiers, and cloud stack",
+      "Pre-screened buying interest validating active evaluation timelines",
+      "Sales-ready discovery handoffs ready for platform demos and trials"
+    ],
+    visualType: "saas"
+  },
+  {
+    id: "it",
+    num: "02",
+    label: "IT & Cybersecurity Providers",
+    tagline: "INFRASTRUCTURE & SECURITY BUYERS",
+    color: "#7C3AED",
+    image: "/it-audience.jpg",
+    description: "Reach CISOs, CIOs, and IT directors actively researching infrastructure upgrades, zero-trust architectures, and managed security solutions.",
+    points: [
+      "Targeting CISOs, CIOs, IT Ops, and infrastructure decision makers",
+      "Custom screening questions validating active modernization projects",
+      "Direct dials and verified business inboxes of economic budget holders"
+    ],
+    visualType: "it"
+  },
+  {
+    id: "b2b-services",
+    num: "03",
+    label: "B2B Professional Services",
+    tagline: "PROFESSIONAL SERVICES DECISION MAKERS",
+    color: "#72D669",
+    image: "/services-audience.jpg",
+    description: "Engage senior executives and procurement heads responsible for consulting contracts, advisory vendor selection, and strategic outsourcing.",
+    points: [
+      "Seniority filtering targeting C-suite, VPs, and corporate buyers",
+      "Thought-leadership asset engagement validating business pain points",
+      "High-velocity handoffs ready for consultative strategic conversations"
+    ],
+    visualType: "services"
+  },
+  {
+    id: "enterprise",
+    num: "04",
+    label: "Enterprise Solutions",
+    tagline: "ENTERPRISE BUYERS & PROCUREMENT",
+    color: "#FF6D00",
+    image: "/enterprise-audience.jpg",
+    description: "Engage multi-stakeholder enterprise buying committees and procurement heads navigating complex, high-ACV multi-month evaluation cycles.",
+    points: [
+      "Account-level targeting matching your Global 2000 & mid-market ICP",
+      "Pre-screened committee roles with custom discovery questionnaire answers",
+      "Guaranteed CPL delivery with zero-bounce replacement SLA guarantee"
+    ],
+    visualType: "enterprise"
+  }
+];
+const AudienceVisualBackground = ({ type, color }) => {
+  if (type === "saas") {
+    return /* @__PURE__ */ jsxDEV(
+      "svg",
+      {
+        className: "absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-[0.14] pointer-events-none",
+        viewBox: "0 0 300 300",
+        fill: "none",
+        children: [
+          /* @__PURE__ */ jsxDEV("circle", { cx: "150", cy: "150", r: "110", stroke: color, strokeWidth: "1", strokeDasharray: "4 4" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 102,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "150", cy: "150", r: "60", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 103,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "150", cy: "150", r: "8", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 104,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "150", y1: "150", x2: "60", y2: "90", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 105,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "60", cy: "90", r: "18", fill: "var(--surface)", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 106,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("rect", { x: "53", y: "85", width: "14", height: "10", rx: "2", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 107,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "150", y1: "150", x2: "240", y2: "80", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 109,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "240", cy: "80", r: "16", fill: "var(--surface)", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 110,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "240", cy: "77", r: "5", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 111,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("path", { d: "M232 88 C232 83, 248 83, 248 88", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 112,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "150", y1: "150", x2: "210", y2: "220", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 114,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "210", cy: "220", r: "20", fill: "var(--surface)", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 115,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("path", { d: "M202 225 L210 213 L218 225 Z", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 116,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "150", y1: "150", x2: "80", y2: "210", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 118,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "80", cy: "210", r: "15", fill: "var(--surface)", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 119,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "80", cy: "210", r: "6", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 120,
+            columnNumber: 9
+          }, this)
+        ]
+      },
+      void 0,
+      true,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+        lineNumber: 97,
+        columnNumber: 7
+      },
+      this
+    );
+  }
+  if (type === "it") {
+    return /* @__PURE__ */ jsxDEV(
+      "svg",
+      {
+        className: "absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-[0.14] pointer-events-none",
+        viewBox: "0 0 300 300",
+        fill: "none",
+        children: [
+          /* @__PURE__ */ jsxDEV("rect", { x: "180", y: "50", width: "90", height: "40", rx: "6", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 132,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "195", cy: "70", r: "3", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 133,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "210", y1: "70", x2: "255", y2: "70", stroke: color, strokeWidth: "1", strokeDasharray: "2 2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 134,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("rect", { x: "180", y: "110", width: "90", height: "40", rx: "6", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 136,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "195", cy: "130", r: "3", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 137,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "210", y1: "130", x2: "255", y2: "130", stroke: color, strokeWidth: "1", strokeDasharray: "2 2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 138,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("rect", { x: "180", y: "170", width: "90", height: "40", rx: "6", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 140,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "195", cy: "190", r: "3", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 141,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "210", y1: "190", x2: "255", y2: "190", stroke: color, strokeWidth: "1", strokeDasharray: "2 2" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 142,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("path", { d: "M180 70 H130 V190 H180", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 144,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("path", { d: "M130 130 H60", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 145,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "60", cy: "130", r: "22", fill: "var(--surface)", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 146,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "60", cy: "130", r: "8", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 147,
+            columnNumber: 9
+          }, this)
+        ]
+      },
+      void 0,
+      true,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+        lineNumber: 127,
+        columnNumber: 7
+      },
+      this
+    );
+  }
+  if (type === "services") {
+    return /* @__PURE__ */ jsxDEV(
+      "svg",
+      {
+        className: "absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-[0.14] pointer-events-none",
+        viewBox: "0 0 300 300",
+        fill: "none",
+        children: [
+          /* @__PURE__ */ jsxDEV("circle", { cx: "100", cy: "100", r: "26", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 159,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "100", cy: "100", r: "8", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 160,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "210", cy: "80", r: "20", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 161,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "210", cy: "80", r: "6", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 162,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "200", cy: "210", r: "30", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 163,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "200", cy: "210", r: "10", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 164,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "80", cy: "220", r: "22", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 165,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("circle", { cx: "80", cy: "220", r: "7", fill: color }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 166,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "124", y1: "108", x2: "175", y2: "190", stroke: color, strokeWidth: "1.2", strokeDasharray: "4 4" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 168,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "126", y1: "95", x2: "190", y2: "83", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 169,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "102", y1: "220", x2: "170", y2: "212", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 170,
+            columnNumber: 9
+          }, this),
+          /* @__PURE__ */ jsxDEV("line", { x1: "88", y1: "199", x2: "96", y2: "126", stroke: color, strokeWidth: "1.2", strokeDasharray: "4 4" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 171,
+            columnNumber: 9
+          }, this)
+        ]
+      },
+      void 0,
+      true,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+        lineNumber: 154,
+        columnNumber: 7
+      },
+      this
+    );
+  }
+  return /* @__PURE__ */ jsxDEV(
+    "svg",
+    {
+      className: "absolute right-0 top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-[0.14] pointer-events-none",
+      viewBox: "0 0 300 300",
+      fill: "none",
+      children: [
+        /* @__PURE__ */ jsxDEV("rect", { x: "110", y: "40", width: "80", height: "34", rx: "6", stroke: color, strokeWidth: "1.5" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 182,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("text", { x: "150", y: "62", textAnchor: "middle", fill: color, fontSize: "11", fontFamily: "monospace", fontWeight: "bold", children: "HQ / C-SUITE" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 183,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("path", { d: "M150 74 V120 M70 120 H230 M70 120 V150 M230 120 V150 M150 120 V150", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 185,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("rect", { x: "35", y: "150", width: "70", height: "30", rx: "5", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 187,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("text", { x: "70", y: "170", textAnchor: "middle", fill: color, fontSize: "9", fontFamily: "monospace", children: "PROCUREMENT" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 188,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("rect", { x: "115", y: "150", width: "70", height: "30", rx: "5", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 190,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("text", { x: "150", y: "170", textAnchor: "middle", fill: color, fontSize: "9", fontFamily: "monospace", children: "OPERATIONS" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 191,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("rect", { x: "195", y: "150", width: "70", height: "30", rx: "5", stroke: color, strokeWidth: "1.2" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 193,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("text", { x: "230", y: "170", textAnchor: "middle", fill: color, fontSize: "9", fontFamily: "monospace", children: "TECHNOLOGY" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 194,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("circle", { cx: "150", cy: "230", r: "28", stroke: color, strokeWidth: "1.5", strokeDasharray: "4 4" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 196,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("circle", { cx: "150", cy: "230", r: "10", fill: color }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 197,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV("line", { x1: "150", y1: "180", x2: "150", y2: "202", stroke: color, strokeWidth: "1.2", strokeDasharray: "2 2" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 198,
+          columnNumber: 7
+        }, this)
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+      lineNumber: 177,
+      columnNumber: 5
+    },
+    this
+  );
+};
+_c = AudienceVisualBackground;
+const WhoIsHqlFor = () => {
+  _s();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef(null);
+  const desktopPinRef = useRef(null);
+  const activeIndexRef = useRef(0);
+  const tabRefs = useRef([]);
+  const prefersReducedMotion = useReducedMotion();
+  const active = AUDIENCES[currentIndex] || AUDIENCES[0];
+  useEffect(() => {
+    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+    if (!isDesktop || prefersReducedMotion || !sectionRef.current || !desktopPinRef.current) return;
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        id: "who-is-hql-for-scroll",
+        trigger: sectionRef.current,
+        pin: desktopPinRef.current,
+        start: "center center",
+        end: "+=1600px",
+        scrub: 1,
+        anticipatePin: 1,
+        onUpdate: (self2) => {
+          const p = self2.progress;
+          setScrollProgress(p);
+          const currentStage = Math.min(Math.floor(p * AUDIENCES.length), AUDIENCES.length - 1);
+          if (currentStage !== activeIndexRef.current) {
+            activeIndexRef.current = currentStage;
+            setCurrentIndex(currentStage);
+          }
+        }
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, [prefersReducedMotion]);
+  useEffect(() => {
+    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+    if (isDesktop && !prefersReducedMotion) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % AUDIENCES.length);
+    }, 4e3);
+    return () => clearInterval(timer);
+  }, [currentIndex, prefersReducedMotion]);
+  useEffect(() => {
+    if (tabRefs.current[currentIndex]) {
+      tabRefs.current[currentIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+      });
+    }
+  }, [currentIndex]);
+  const handleSelect = (idx) => {
+    setCurrentIndex(idx);
+    activeIndexRef.current = idx;
+    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+    if (isDesktop && !prefersReducedMotion) {
+      const st = ScrollTrigger.getById("who-is-hql-for-scroll");
+      if (st) {
+        const scrollPos = st.start + (idx + 0.5) / AUDIENCES.length * (st.end - st.start);
+        window.scrollTo({ top: scrollPos, behavior: "smooth" });
+      }
+    }
+  };
+  const fadeUp = (delay = 0) => prefersReducedMotion ? {} : {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }
+  };
+  return /* @__PURE__ */ jsxDEV(
+    "section",
+    {
+      ref: sectionRef,
+      id: "is-hql-lead-generation-right-for-your-business",
+      className: "relative py-6 sm:py-8 lg:py-8 overflow-hidden bg-background",
+      "aria-label": "Is HQL Lead Generation Right for Your Business?",
+      children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 pointer-events-none", "aria-hidden": "true", children: [
+          /* @__PURE__ */ jsxDEV(
+            "div",
+            {
+              className: "absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[450px] rounded-full blur-[140px] opacity-15",
+              style: { background: "radial-gradient(circle, rgba(0,166,255,0.18) 0%, transparent 70%)" }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+              lineNumber: 299,
+              columnNumber: 9
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            "div",
+            {
+              className: "absolute bottom-10 right-10 w-[500px] h-[400px] rounded-full blur-[130px] opacity-10",
+              style: { background: "radial-gradient(circle, rgba(255,109,0,0.14) 0%, transparent 70%)" }
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+              lineNumber: 303,
+              columnNumber: 9
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+          lineNumber: 298,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ jsxDEV(
+          "div",
+          {
+            ref: desktopPinRef,
+            className: "relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8",
+            children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "max-w-4xl mx-auto text-center mb-3.5 lg:mb-4", children: [
+                /* @__PURE__ */ jsxDEV(
+                  motion.div,
+                  {
+                    ...fadeUp(0),
+                    className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-border bg-surface mb-2 shadow-xs",
+                    children: [
+                      /* @__PURE__ */ jsxDEV("span", { className: "w-2 h-2 rounded-full bg-primary" }, void 0, false, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 319,
+                        columnNumber: 13
+                      }, this),
+                      /* @__PURE__ */ jsxDEV("span", { className: "text-[10.5px] font-mono font-bold tracking-[0.2em] text-primary uppercase", children: "Target Audience" }, void 0, false, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 320,
+                        columnNumber: 13
+                      }, this)
+                    ]
+                  },
+                  void 0,
+                  true,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                    lineNumber: 315,
+                    columnNumber: 11
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  motion.h2,
+                  {
+                    ...fadeUp(0.08),
+                    className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2",
+                    children: [
+                      "Is HQL Lead Generation",
+                      " ",
+                      /* @__PURE__ */ jsxDEV("span", { className: "bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent", children: "Right for Your Business?" }, void 0, false, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 330,
+                        columnNumber: 13
+                      }, this)
+                    ]
+                  },
+                  void 0,
+                  true,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                    lineNumber: 325,
+                    columnNumber: 11
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  motion.p,
+                  {
+                    ...fadeUp(0.12),
+                    className: "text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal",
+                    children: "HQL generation helps B2B companies reach verified decision-makers with active buying intent and build qualified sales opportunities."
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                    lineNumber: 335,
+                    columnNumber: 11
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                lineNumber: 314,
+                columnNumber: 9
+              }, this),
+              /* @__PURE__ */ jsxDEV(
+                motion.div,
+                {
+                  ...fadeUp(0.18),
+                  className: "hidden md:block p-4 sm:p-5 lg:p-6 rounded-3xl border border-border bg-surface/70 backdrop-blur-sm shadow-xl relative overflow-hidden",
+                  children: /* @__PURE__ */ jsxDEV("div", { className: "grid md:grid-cols-12 gap-5 lg:gap-6 items-stretch", children: [
+                    /* @__PURE__ */ jsxDEV("div", { className: "md:col-span-5 lg:col-span-4 flex flex-col justify-between gap-2.5", children: AUDIENCES.map((aud, idx) => {
+                      const isActive = idx === currentIndex;
+                      return /* @__PURE__ */ jsxDEV(
+                        motion.button,
+                        {
+                          onClick: () => handleSelect(idx),
+                          whileHover: prefersReducedMotion ? {} : {
+                            x: 4,
+                            transition: { duration: 0.2, ease: "easeOut" }
+                          },
+                          className: `group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive ? "bg-surface shadow-md" : "bg-surface/50 hover:bg-surface border-border/80 hover:border-border"}`,
+                          style: {
+                            borderColor: isActive ? aud.color : void 0,
+                            boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : void 0
+                          },
+                          role: "tab",
+                          "aria-selected": isActive,
+                          children: [
+                            /* @__PURE__ */ jsxDEV(
+                              "div",
+                              {
+                                className: "absolute left-0 top-0 bottom-0 w-1.5 z-10 transition-all duration-300 pointer-events-none",
+                                style: {
+                                  backgroundColor: isActive ? aud.color : "transparent"
+                                }
+                              },
+                              void 0,
+                              false,
+                              {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 379,
+                                columnNumber: 21
+                              },
+                              this
+                            ),
+                            isActive && /* @__PURE__ */ jsxDEV(
+                              "div",
+                              {
+                                className: "absolute left-0 bottom-0 w-4 h-4 z-20 pointer-events-none",
+                                style: {
+                                  borderLeft: `6px solid ${aud.color}`,
+                                  borderBottom: `3px solid ${aud.color}`,
+                                  borderBottomLeftRadius: "1rem"
+                                }
+                              },
+                              void 0,
+                              false,
+                              {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 388,
+                                columnNumber: 21
+                              },
+                              this
+                            ),
+                            /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between gap-2 mb-1.5 pl-1.5", children: [
+                              /* @__PURE__ */ jsxDEV(
+                                "span",
+                                {
+                                  className: "text-[10px] font-mono font-bold tracking-wider uppercase transition-colors",
+                                  style: { color: isActive ? aud.color : "var(--text-secondary)" },
+                                  children: aud.tagline
+                                },
+                                void 0,
+                                false,
+                                {
+                                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                  lineNumber: 400,
+                                  columnNumber: 23
+                                },
+                                this
+                              ),
+                              /* @__PURE__ */ jsxDEV(
+                                "span",
+                                {
+                                  className: `text-xs font-mono font-black tracking-widest transition-colors ${isActive ? "text-text-primary" : "text-text-secondary opacity-60"}`,
+                                  style: { color: isActive ? aud.color : void 0 },
+                                  children: aud.num
+                                },
+                                void 0,
+                                false,
+                                {
+                                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                  lineNumber: 406,
+                                  columnNumber: 23
+                                },
+                                this
+                              )
+                            ] }, void 0, true, {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 399,
+                              columnNumber: 21
+                            }, this),
+                            /* @__PURE__ */ jsxDEV(
+                              "div",
+                              {
+                                className: `text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? "text-text-primary" : "text-text-secondary group-hover:text-text-primary"}`,
+                                children: aud.label
+                              },
+                              void 0,
+                              false,
+                              {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 417,
+                                columnNumber: 21
+                              },
+                              this
+                            ),
+                            isActive && /* @__PURE__ */ jsxDEV("div", { className: "absolute bottom-0 left-0 right-0 h-[3px] bg-border/40 overflow-hidden", children: typeof window !== "undefined" && window.innerWidth >= 1024 && !prefersReducedMotion ? /* @__PURE__ */ jsxDEV(
+                              "div",
+                              {
+                                className: "h-full transition-all duration-75 ease-out",
+                                style: {
+                                  backgroundColor: aud.color,
+                                  width: `${Math.min(
+                                    Math.max((scrollProgress * AUDIENCES.length - idx) * 100, 0),
+                                    100
+                                  )}%`
+                                }
+                              },
+                              void 0,
+                              false,
+                              {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 429,
+                                columnNumber: 23
+                              },
+                              this
+                            ) : /* @__PURE__ */ jsxDEV(
+                              motion.div,
+                              {
+                                initial: { width: "0%" },
+                                animate: { width: "100%" },
+                                transition: { duration: 4, ease: "linear" },
+                                className: "h-full",
+                                style: { backgroundColor: aud.color }
+                              },
+                              `prog-${currentIndex}`,
+                              false,
+                              {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 440,
+                                columnNumber: 23
+                              },
+                              this
+                            ) }, void 0, false, {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 427,
+                              columnNumber: 21
+                            }, this)
+                          ]
+                        },
+                        aud.id,
+                        true,
+                        {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                          lineNumber: 355,
+                          columnNumber: 19
+                        },
+                        this
+                      );
+                    }) }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                      lineNumber: 350,
+                      columnNumber: 13
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("div", { className: "md:col-span-7 lg:col-span-8", children: /* @__PURE__ */ jsxDEV(
+                      "div",
+                      {
+                        className: "relative h-full flex flex-col justify-between p-4 sm:p-5 lg:p-6 rounded-3xl bg-surface shadow-xl overflow-hidden transition-all duration-300",
+                        style: {
+                          border: `2px solid ${active.color}`,
+                          boxShadow: `0 10px 30px -10px ${active.color}25`
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxDEV(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsxDEV(
+                            motion.div,
+                            {
+                              initial: { opacity: 0, scale: 0.95 },
+                              animate: { opacity: 1, scale: 1 },
+                              exit: { opacity: 0, scale: 1.05 },
+                              transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+                              children: /* @__PURE__ */ jsxDEV(AudienceVisualBackground, { type: active.visualType, color: active.color }, void 0, false, {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 474,
+                                columnNumber: 21
+                              }, this)
+                            },
+                            active.visualType,
+                            false,
+                            {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 467,
+                              columnNumber: 19
+                            },
+                            this
+                          ) }, void 0, false, {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                            lineNumber: 466,
+                            columnNumber: 17
+                          }, this),
+                          /* @__PURE__ */ jsxDEV(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsxDEV(
+                            motion.div,
+                            {
+                              initial: prefersReducedMotion ? {} : { opacity: 0, y: 16 },
+                              animate: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+                              exit: prefersReducedMotion ? {} : { opacity: 0, y: -16 },
+                              transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+                              className: "relative z-10 flex flex-col justify-between h-full space-y-3.5",
+                              children: /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center", children: [
+                                /* @__PURE__ */ jsxDEV("div", { className: "lg:col-span-7 flex flex-col", children: [
+                                  /* @__PURE__ */ jsxDEV("div", { className: "inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-background border border-border text-[11px] font-mono font-semibold mb-2.5 w-fit", children: [
+                                    /* @__PURE__ */ jsxDEV("span", { className: "w-1.5 h-1.5 rounded-full", style: { backgroundColor: active.color } }, void 0, false, {
+                                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                      lineNumber: 494,
+                                      columnNumber: 27
+                                    }, this),
+                                    /* @__PURE__ */ jsxDEV("span", { className: "text-text-secondary", children: active.num }, void 0, false, {
+                                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                      lineNumber: 495,
+                                      columnNumber: 27
+                                    }, this),
+                                    /* @__PURE__ */ jsxDEV("span", { className: "text-text-primary", children: active.tagline }, void 0, false, {
+                                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                      lineNumber: 496,
+                                      columnNumber: 27
+                                    }, this)
+                                  ] }, void 0, true, {
+                                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                    lineNumber: 493,
+                                    columnNumber: 25
+                                  }, this),
+                                  /* @__PURE__ */ jsxDEV("h3", { className: "text-xl sm:text-2xl font-black tracking-tight text-text-primary mb-2", children: active.label }, void 0, false, {
+                                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                    lineNumber: 500,
+                                    columnNumber: 25
+                                  }, this),
+                                  /* @__PURE__ */ jsxDEV("p", { className: "text-sm sm:text-base text-text-secondary leading-relaxed font-normal mb-3.5", children: active.description }, void 0, false, {
+                                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                    lineNumber: 505,
+                                    columnNumber: 25
+                                  }, this),
+                                  /* @__PURE__ */ jsxDEV("div", { className: "space-y-2.5", children: active.points.map(
+                                    (pt, i) => /* @__PURE__ */ jsxDEV("div", { className: "flex items-start gap-2.5", children: [
+                                      /* @__PURE__ */ jsxDEV(
+                                        "div",
+                                        {
+                                          className: "w-3.5 h-3.5 rounded-full flex items-center justify-center shrink-0 mt-0.5",
+                                          style: {
+                                            backgroundColor: `${active.color}18`,
+                                            color: active.color,
+                                            border: `1px solid ${active.color}40`
+                                          },
+                                          children: /* @__PURE__ */ jsxDEV(Check, { className: "w-2 h-2", strokeWidth: 2.5 }, void 0, false, {
+                                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                            lineNumber: 521,
+                                            columnNumber: 33
+                                          }, this)
+                                        },
+                                        void 0,
+                                        false,
+                                        {
+                                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                          lineNumber: 513,
+                                          columnNumber: 31
+                                        },
+                                        this
+                                      ),
+                                      /* @__PURE__ */ jsxDEV("span", { className: "text-sm sm:text-base text-text-primary font-medium leading-snug", children: pt }, void 0, false, {
+                                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                        lineNumber: 523,
+                                        columnNumber: 31
+                                      }, this)
+                                    ] }, i, true, {
+                                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                      lineNumber: 512,
+                                      columnNumber: 27
+                                    }, this)
+                                  ) }, void 0, false, {
+                                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                    lineNumber: 510,
+                                    columnNumber: 25
+                                  }, this)
+                                ] }, void 0, true, {
+                                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                  lineNumber: 491,
+                                  columnNumber: 23
+                                }, this),
+                                /* @__PURE__ */ jsxDEV("div", { className: "lg:col-span-5", children: /* @__PURE__ */ jsxDEV(
+                                  "div",
+                                  {
+                                    className: "relative rounded-2xl overflow-hidden border shadow-md group aspect-[16/11] max-h-[250px] w-full",
+                                    style: {
+                                      borderColor: `${active.color}35`,
+                                      boxShadow: `0 10px 24px -6px ${active.color}20`
+                                    },
+                                    children: [
+                                      /* @__PURE__ */ jsxDEV(
+                                        "img",
+                                        {
+                                          src: active.image,
+                                          alt: `${active.label} HQL Preview`,
+                                          className: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105",
+                                          loading: "lazy"
+                                        },
+                                        void 0,
+                                        false,
+                                        {
+                                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                          lineNumber: 540,
+                                          columnNumber: 27
+                                        },
+                                        this
+                                      ),
+                                      /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" }, void 0, false, {
+                                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                        lineNumber: 546,
+                                        columnNumber: 27
+                                      }, this),
+                                      /* @__PURE__ */ jsxDEV("div", { className: "absolute top-2.5 left-2.5 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-background/90 backdrop-blur-md border border-border/80 text-[10px] font-mono font-bold shadow-xs", children: [
+                                        /* @__PURE__ */ jsxDEV("span", { className: "w-1.5 h-1.5 rounded-full animate-pulse", style: { backgroundColor: active.color } }, void 0, false, {
+                                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                          lineNumber: 550,
+                                          columnNumber: 29
+                                        }, this),
+                                        /* @__PURE__ */ jsxDEV("span", { className: "text-text-primary uppercase tracking-wider", children: "PREVIEW" }, void 0, false, {
+                                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                          lineNumber: 551,
+                                          columnNumber: 29
+                                        }, this)
+                                      ] }, void 0, true, {
+                                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                        lineNumber: 549,
+                                        columnNumber: 27
+                                      }, this),
+                                      /* @__PURE__ */ jsxDEV("div", { className: "absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between text-white pointer-events-none", children: [
+                                        /* @__PURE__ */ jsxDEV("span", { className: "text-[11px] font-mono font-bold text-white/95 drop-shadow-xs truncate", children: active.label }, void 0, false, {
+                                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                          lineNumber: 556,
+                                          columnNumber: 29
+                                        }, this),
+                                        /* @__PURE__ */ jsxDEV(
+                                          "span",
+                                          {
+                                            className: "px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-white shadow-xs shrink-0",
+                                            style: { backgroundColor: active.color },
+                                            children: active.num
+                                          },
+                                          void 0,
+                                          false,
+                                          {
+                                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                            lineNumber: 559,
+                                            columnNumber: 29
+                                          },
+                                          this
+                                        )
+                                      ] }, void 0, true, {
+                                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                        lineNumber: 555,
+                                        columnNumber: 27
+                                      }, this)
+                                    ]
+                                  },
+                                  void 0,
+                                  true,
+                                  {
+                                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                    lineNumber: 533,
+                                    columnNumber: 25
+                                  },
+                                  this
+                                ) }, void 0, false, {
+                                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                  lineNumber: 532,
+                                  columnNumber: 23
+                                }, this)
+                              ] }, void 0, true, {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 489,
+                                columnNumber: 21
+                              }, this)
+                            },
+                            active.id,
+                            false,
+                            {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 480,
+                              columnNumber: 19
+                            },
+                            this
+                          ) }, void 0, false, {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                            lineNumber: 479,
+                            columnNumber: 17
+                          }, this)
+                        ]
+                      },
+                      void 0,
+                      true,
+                      {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 458,
+                        columnNumber: 15
+                      },
+                      this
+                    ) }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                      lineNumber: 457,
+                      columnNumber: 13
+                    }, this)
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                    lineNumber: 348,
+                    columnNumber: 11
+                  }, this)
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                  lineNumber: 344,
+                  columnNumber: 9
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV("div", { className: "md:hidden space-y-3", children: [
+                /* @__PURE__ */ jsxDEV("div", { className: "flex gap-2 overflow-x-auto no-scrollbar pb-1 px-1 -mx-4 px-4 sm:mx-0 sm:px-0", children: AUDIENCES.map((aud, idx) => {
+                  const isActive = idx === currentIndex;
+                  return /* @__PURE__ */ jsxDEV(
+                    "button",
+                    {
+                      ref: (el) => {
+                        tabRefs.current[idx] = el;
+                      },
+                      onClick: () => handleSelect(idx),
+                      className: `shrink-0 p-4 rounded-xl border text-left transition-all ${isActive ? "bg-surface shadow-md border-primary" : "bg-surface/50 border-border/70"}`,
+                      style: {
+                        borderColor: isActive ? aud.color : void 0,
+                        minWidth: "220px"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between gap-1 mb-1", children: [
+                          /* @__PURE__ */ jsxDEV(
+                            "span",
+                            {
+                              className: "text-[9px] font-mono font-bold uppercase tracking-wider line-clamp-1",
+                              style: { color: isActive ? aud.color : "var(--text-secondary)" },
+                              children: aud.tagline
+                            },
+                            void 0,
+                            false,
+                            {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 601,
+                              columnNumber: 21
+                            },
+                            this
+                          ),
+                          /* @__PURE__ */ jsxDEV("span", { className: "text-[10px] font-mono font-black", style: { color: aud.color }, children: aud.num }, void 0, false, {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                            lineNumber: 607,
+                            columnNumber: 21
+                          }, this)
+                        ] }, void 0, true, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                          lineNumber: 600,
+                          columnNumber: 19
+                        }, this),
+                        /* @__PURE__ */ jsxDEV(
+                          "div",
+                          {
+                            className: `text-sm font-bold ${isActive ? "text-text-primary" : "text-text-secondary"}`,
+                            children: aud.label
+                          },
+                          void 0,
+                          false,
+                          {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                            lineNumber: 611,
+                            columnNumber: 19
+                          },
+                          this
+                        ),
+                        isActive && /* @__PURE__ */ jsxDEV("div", { className: "w-full h-1 bg-border/40 rounded-full mt-2.5 overflow-hidden", children: /* @__PURE__ */ jsxDEV(
+                          motion.div,
+                          {
+                            initial: { width: "0%" },
+                            animate: { width: "100%" },
+                            transition: { duration: 4, ease: "linear" },
+                            className: "h-full",
+                            style: { backgroundColor: aud.color }
+                          },
+                          `prog-mob-${currentIndex}`,
+                          false,
+                          {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                            lineNumber: 621,
+                            columnNumber: 23
+                          },
+                          this
+                        ) }, void 0, false, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                          lineNumber: 620,
+                          columnNumber: 19
+                        }, this)
+                      ]
+                    },
+                    aud.id,
+                    true,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                      lineNumber: 584,
+                      columnNumber: 17
+                    },
+                    this
+                  );
+                }) }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                  lineNumber: 579,
+                  columnNumber: 11
+                }, this),
+                /* @__PURE__ */ jsxDEV(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsxDEV(
+                  motion.div,
+                  {
+                    initial: { opacity: 0, y: 16 },
+                    animate: { opacity: 1, y: 0 },
+                    exit: { opacity: 0, y: -16 },
+                    transition: { duration: 0.35 },
+                    className: "p-5 sm:p-6 rounded-2xl bg-surface shadow-lg relative overflow-hidden transition-all duration-300",
+                    style: { border: `2px solid ${active.color}`, boxShadow: `0 8px 24px -8px ${active.color}25` },
+                    children: [
+                      /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2 mb-2", children: [
+                        /* @__PURE__ */ jsxDEV("span", { className: "w-2 h-2 rounded-full", style: { backgroundColor: active.color } }, void 0, false, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                          lineNumber: 648,
+                          columnNumber: 17
+                        }, this),
+                        /* @__PURE__ */ jsxDEV("span", { className: "text-[11px] font-mono font-bold uppercase", style: { color: active.color }, children: active.tagline }, void 0, false, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                          lineNumber: 649,
+                          columnNumber: 17
+                        }, this)
+                      ] }, void 0, true, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 647,
+                        columnNumber: 15
+                      }, this),
+                      /* @__PURE__ */ jsxDEV("h4", { className: "text-xl font-black text-text-primary mb-2.5", children: active.label }, void 0, false, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 653,
+                        columnNumber: 15
+                      }, this),
+                      /* @__PURE__ */ jsxDEV(
+                        "div",
+                        {
+                          className: "relative rounded-xl overflow-hidden border shadow-sm aspect-[16/10] mb-3.5",
+                          style: { borderColor: `${active.color}35` },
+                          children: [
+                            /* @__PURE__ */ jsxDEV(
+                              "img",
+                              {
+                                src: active.image,
+                                alt: `${active.label} Outreach Preview`,
+                                className: "w-full h-full object-cover",
+                                loading: "lazy"
+                              },
+                              void 0,
+                              false,
+                              {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 660,
+                                columnNumber: 17
+                              },
+                              this
+                            ),
+                            /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" }, void 0, false, {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 666,
+                              columnNumber: 17
+                            }, this),
+                            /* @__PURE__ */ jsxDEV("div", { className: "absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-white pointer-events-none", children: [
+                              /* @__PURE__ */ jsxDEV("span", { className: "text-[10px] font-mono font-bold text-white/90", children: active.label }, void 0, false, {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 668,
+                                columnNumber: 19
+                              }, this),
+                              /* @__PURE__ */ jsxDEV(
+                                "span",
+                                {
+                                  className: "text-[9px] font-mono font-bold px-1.5 py-0.5 rounded text-white",
+                                  style: { backgroundColor: active.color },
+                                  children: active.num
+                                },
+                                void 0,
+                                false,
+                                {
+                                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                  lineNumber: 669,
+                                  columnNumber: 19
+                                },
+                                this
+                              )
+                            ] }, void 0, true, {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 667,
+                              columnNumber: 17
+                            }, this)
+                          ]
+                        },
+                        void 0,
+                        true,
+                        {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                          lineNumber: 656,
+                          columnNumber: 15
+                        },
+                        this
+                      ),
+                      /* @__PURE__ */ jsxDEV("p", { className: "text-sm sm:text-base text-text-secondary leading-relaxed mb-3.5", children: active.description }, void 0, false, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 678,
+                        columnNumber: 15
+                      }, this),
+                      /* @__PURE__ */ jsxDEV("div", { className: "space-y-2", children: active.points.map(
+                        (pt, i) => /* @__PURE__ */ jsxDEV("div", { className: "flex items-start gap-2.5 text-sm sm:text-base text-text-primary", children: [
+                          /* @__PURE__ */ jsxDEV(
+                            "div",
+                            {
+                              className: "w-3.5 h-3.5 rounded-full flex items-center justify-center shrink-0 mt-0.5",
+                              style: { backgroundColor: `${active.color}20`, color: active.color },
+                              children: /* @__PURE__ */ jsxDEV(Check, { className: "w-2 h-2", strokeWidth: 2.5 }, void 0, false, {
+                                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                                lineNumber: 688,
+                                columnNumber: 23
+                              }, this)
+                            },
+                            void 0,
+                            false,
+                            {
+                              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                              lineNumber: 684,
+                              columnNumber: 21
+                            },
+                            this
+                          ),
+                          /* @__PURE__ */ jsxDEV("span", { children: pt }, void 0, false, {
+                            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                            lineNumber: 690,
+                            columnNumber: 21
+                          }, this)
+                        ] }, i, true, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                          lineNumber: 683,
+                          columnNumber: 17
+                        }, this)
+                      ) }, void 0, false, {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                        lineNumber: 681,
+                        columnNumber: 15
+                      }, this)
+                    ]
+                  },
+                  active.id,
+                  true,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                    lineNumber: 638,
+                    columnNumber: 13
+                  },
+                  this
+                ) }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                  lineNumber: 637,
+                  columnNumber: 11
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+                lineNumber: 577,
+                columnNumber: 9
+              }, this)
+            ]
+          },
+          void 0,
+          true,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+            lineNumber: 309,
+            columnNumber: 7
+          },
+          this
+        )
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx",
+      lineNumber: 291,
+      columnNumber: 5
+    },
+    this
+  );
+};
+_s(WhoIsHqlFor, "QP2qBGiV/ie0yxzYTV31ziBn7Zs=", false, function() {
+  return [useReducedMotion];
+});
+_c2 = WhoIsHqlFor;
+export default WhoIsHqlFor;
+var _c, _c2;
+$RefreshReg$(_c, "AudienceVisualBackground");
+$RefreshReg$(_c2, "WhoIsHqlFor");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/HqlServices/components/WhoIsHqlFor.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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LFdBQ0U7QUFBQSxNQUFDO0FBQUE7QUFBQSxRQUNDLFdBQVU7QUFBQSxRQUNWLFNBQVE7QUFBQSxRQUNSLE1BQUs7QUFBQSxRQUVMO0FBQUEsaUNBQUMsWUFBTyxJQUFHLE9BQU0sSUFBRyxPQUFNLEdBQUUsTUFBSyxRQUFRTixPQUFPLGFBQVksU0FBNUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFBaUU7QUFBQSxVQUNqRSx1QkFBQyxZQUFPLElBQUcsT0FBTSxJQUFHLE9BQU0sR0FBRSxLQUFJLE1BQU1BLFNBQXRDO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQTRDO0FBQUEsVUFDNUMsdUJBQUMsWUFBTyxJQUFHLE9BQU0sSUFBRyxNQUFLLEdBQUUsTUFBSyxRQUFRQSxPQUFPLGFBQVksU0FBM0Q7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFBZ0U7QUFBQSxVQUNoRSx1QkFBQyxZQUFPLElBQUcsT0FBTSxJQUFHLE1BQUssR0FBRSxLQUFJLE1BQU1BLFNBQXJDO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQTJDO0FBQUEsVUFDM0MsdUJBQUMsWUFBTyxJQUFHLE9BQU0sSUFBRyxPQUFNLEdBQUUsTUFBSyxRQUFRQSxPQUFPLGFBQVksU0FBNUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFBaUU7QUFBQSxVQUNqRSx1QkFBQyxZQUFPLElBQUcsT0FBTSxJQUFHLE9BQU0sR0FBRSxNQUFLLE1BQU1BLFNBQXZDO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQTZDO0FBQUEsVUFDN0MsdUJBQUMsWUFBTyxJQUFHLE1BQUssSUFBRyxPQUFNLEdBQUUsTUFBSyxRQUFRQSxPQUFPLGFBQVksU0FBM0Q7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFBZ0U7QUFBQSxVQUNoRSx1QkFBQyxZQUFPLElBQUcsTUFBSyxJQUFHLE9BQU0sR0FBRSxLQUFJLE1BQU1BLFNBQXJDO0FBQUE7QUFBQTtBQUFBO0FBQUEsaUJBQTJDO0FBQUEsVUFFM0MsdUJBQUMsVUFBSyxJQUFHLE9BQU0sSUFBRyxPQUFNLElBQUcsT0FBTSxJQUFHLE9BQU0s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eEM7QUFBQTtBQUFBO0FBQUE7QUFBQSxxQ0FBNEM7QUFBQTtBQUFBLDRCQUo5QztBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsMEJBS0E7QUFBQSwwQkFDQSx1QkFBQyxVQUFNcUYsZ0JBQVA7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQ0FBVTtBQUFBLDZCQVBGQyxHQUFWO0FBQUE7QUFBQTtBQUFBO0FBQUEsK0JBUUE7QUFBQSxzQkFDRCxLQVhIO0FBQUE7QUFBQTtBQUFBO0FBQUEsNkJBWUE7QUFBQTtBQUFBO0FBQUEsa0JBdERLbkUsT0FBT3ZCO0FBQUFBLGtCQURkO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsZ0JBd0RBLEtBekRGO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBMERBO0FBQUEsbUJBdEhGO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBdUhBO0FBQUE7QUFBQTtBQUFBLFVBbllGO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxRQW9ZQTtBQUFBO0FBQUE7QUFBQSxJQXRaRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsRUF1WkE7QUFFSjtBQUFDYSxHQWpmS0QsYUFBVztBQUFBLFVBT2NoQixnQkFBZ0I7QUFBQTtBQUFBLE1BUHpDZ0I7QUFtZk4sZUFBZUE7QUFBVyxJQUFBRCxJQUFBa0Y7QUFBQSxhQUFBbEYsSUFBQTtBQUFBLGFBQUFrRixLQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsInVzZVJlZiIsIm1vdGlvbiIsIkFuaW1hdGVQcmVzZW5jZSIsIkNoZWNrIiwidXNlUmVkdWNlZE1vdGlvbiIsImdzYXAiLCJTY3JvbGxUcmlnZ2VyIiwiQVVESUVOQ0VTIiwiaWQiLCJudW0iLCJsYWJlbCIsInRhZ2xpbmUiLCJjb2xvciIsImltYWdlIiwiZGVzY3JpcHRpb24iLCJwb2ludHMiLCJ2aXN1YWxUeXBlIiwiQXVkaWVuY2VWaXN1YWxCYWNrZ3JvdW5kIiwidHlwZSIsIl9jIiwiV2hvSXNIcWxGb3IiLCJfcyIsImN1cnJlbnRJbmRleCIsInNldEN1cnJlbnRJbmRleCIsInNjcm9sbFByb2dyZXNzIiwic2V0U2Nyb2xsUHJvZ3Jlc3MiLCJzZWN0aW9uUmVmIiwiZGVza3RvcFBpblJlZiIsImFjdGl2ZUluZGV4UmVmIiwidGFiUmVmcyIsInByZWZlcnNSZWR1Y2VkTW90aW9uIiwiYWN0aXZlIiwiaXNEZXNrdG9wIiwid2luZG93IiwiaW5uZXJXaWR0aCIsImN1cnJlbnQiLCJjdHgiLCJjb250ZXh0IiwiY3JlYXRlIiwidHJpZ2dlciIsInBpbiIsInN0YXJ0IiwiZW5kIiwic2NydWIiLCJhbnRpY2lwYXRlUGluIiwib25VcGRhdGUiLCJzZWxmIiwicCIsInByb2dyZXNzIiwiY3VycmVudFN0YWdlIiwiTWF0aCIsIm1pbiIsImZsb29yIiwibGVuZ3RoIiwicmV2ZXJ0IiwidGltZXIiLCJzZXRJbnRlcnZhbCIsInByZXYiLCJjbGVhckludGVydmFsIiwic2Nyb2xsSW50b1ZpZXciLCJiZWhhdmlvciIsImJsb2NrIiwiaW5saW5lIiwiaGFuZGxlU2VsZWN0IiwiaWR4Iiwic3QiLCJnZXRCeUlkIiwic2Nyb2xsUG9zIiwic2Nyb2xsVG8iLCJ0b3AiLCJmYWRlVXAiLCJkZWxheSIsImluaXRpYWwiLCJvcGFjaXR5IiwieSIsIndoaWxlSW5WaWV3Iiwidmlld3BvcnQiLCJvbmNlIiwidHJhbnNpdGlvbiIsImR1cmF0aW9uIiwiZWFzZSIsImJhY2tncm91bmQiLCJtYXAiLCJhdWQiLCJpc0FjdGl2ZSIsIngiLCJib3JkZXJDb2xvciIsInVuZGVmaW5lZCIsImJveFNoYWRvdyIsImJhY2tncm91bmRDb2xvciIsImJvcmRlckxlZnQiLCJib3JkZXJCb3R0b20iLCJib3JkZXJCb3R0b21MZWZ0UmFkaXVzIiwid2lkdGgiLCJtYXgiLCJib3JkZXIiLCJzY2FsZSIsInB0IiwiaSIsImVsIiwibWluV2lkdGgiLCJfYzIiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiV2hvSXNIcWxGb3IuanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCwgeyB1c2VTdGF0ZSwgdXNlRWZmZWN0LCB1c2VSZWYgfSBmcm9tICdyZWFjdCdcclxuaW1wb3J0IHsgbW90aW9uLCBBbmltYXRlUHJlc2VuY2UgfSBmcm9tICdmcmFtZXItbW90aW9uJ1xyXG5pbXBvcnQgeyBDaGVjayB9IGZyb20gJ2x1Y2lkZS1yZWFjdCdcclxuaW1wb3J0IHsgdXNlUmVkdWNlZE1vdGlvbiB9IGZyb20gJ0Bob29rcy91c2VSZWR1Y2VkTW90aW9uJ1xyXG5pbXBvcnQgeyBnc2FwLCBTY3JvbGxUcmlnZ2VyIH0gZnJvbSAnQGFuaW1hdGlvbnMvZ3NhcCdcclxuXHJcbmNvbnN0IEFVRElFTkNFUyA9IFtcclxuICB7XHJcbiAgICBpZDogJ3NhYXMnLFxyXG4gICAgbnVtOiAnMDEnLFxyXG4gICAgbGFiZWw6ICdTYWFTICYgQ2xvdWQgUGxhdGZvcm1zJyxcclxuICAgIHRhZ2xpbmU6ICdURUNITk9MT0dZIERFQ0lTSU9OIE1BS0VSUycsXHJcbiAgICBjb2xvcjogJyMwMEE2RkYnLFxyXG4gICAgaW1hZ2U6ICcvc2Fhcy1hdWRpZW5jZS5qcGcnLFxyXG4gICAgZGVzY3JpcHRpb246XHJcbiAgICAgICdDb25uZWN0IHdpdGggQ1RPcywgVlAgRW5naW5lZXJpbmcsIGFuZCBzb2Z0d2FyZSBidXlpbmcgY29tbWl0dGVlcyBldmFsdWF0ZWQgYWdhaW5zdCB5b3VyIHRhcmdldCBBUlIgdGllcnMsIHRlY2ggc3RhY2ssIGFuZCBjbG91ZCBlbnZpcm9ubWVudC4nLFxyXG4gICAgcG9pbnRzOiBbXHJcbiAgICAgICdUYXJnZXRpbmcgYnkgaW5zdGFsbC1iYXNlIHRlY2hub2dyYXBoaWNzLCBBUlIgdGllcnMsIGFuZCBjbG91ZCBzdGFjaycsXHJcbiAgICAgICdQcmUtc2NyZWVuZWQgYnV5aW5nIGludGVyZXN0IHZhbGlkYXRpbmcgYWN0aXZlIGV2YWx1YXRpb24gdGltZWxpbmVzJyxcclxuICAgICAgJ1NhbGVzLXJlYWR5IGRpc2NvdmVyeSBoYW5kb2ZmcyByZWFkeSBmb3IgcGxhdGZvcm0gZGVtb3MgYW5kIHRyaWFscycsXHJcbiAgICBdLFxyXG4gICAgdmlzdWFsVHlwZTogJ3NhYXMnLFxyXG4gIH0sXHJcbiAge1xyXG4gICAgaWQ6ICdpdCcsXHJcbiAgICBudW06ICcwMicsXHJcbiAgICBsYWJlbDogJ0lUICYgQ3liZXJzZWN1cml0eSBQcm92aWRlcnMnLFxyXG4gICAgdGFnbGluZTogJ0lORlJBU1RSVUNUVVJFICYgU0VDVVJJVFkgQlVZRVJTJyxcclxuICAgIGNvbG9yOiAnIzdDM0FFRCcsXHJcbiAgICBpbWFnZTogJy9pdC1hdWRpZW5jZS5qcGcnLFxyXG4gICAgZGVzY3JpcHRpb246XHJcbiAgICAgICdSZWFjaCBDSVNPcywgQ0lPcywgYW5kIElUIGRpcmVjdG9ycyBhY3RpdmVseSByZXNlYXJjaGluZyBpbmZyYXN0cnVjdHVyZSB1cGdyYWRlcywgemVyby10cnVzdCBhcmNoaXRlY3R1cmVzLCBhbmQgbWFuYWdlZCBzZWN1cml0eSBzb2x1dGlvbnMuJyxcclxuICAgIHBvaW50czogW1xyXG4gICAgICAnVGFyZ2V0aW5nIENJU09zLCBDSU9zLCBJVCBPcHMsIGFuZCBpbmZyYXN0cnVjdHVyZSBkZWNpc2lvbiBtYWtlcnMnLFxyXG4gICAgICAnQ3VzdG9tIHNjcmVlbmluZyBxdWVzdGlvbnMgdmFsaWRhdGluZyBhY3RpdmUgbW9kZXJuaXphdGlvbiBwcm9qZWN0cycsXHJcbiAgICAgICdEaXJlY3QgZGlhbHMgYW5kIHZlcmlmaWVkIGJ1c2luZXNzIGluYm94ZXMgb2YgZWNvbm9taWMgYnVkZ2V0IGhvbGRlcnMnLFxyXG4gICAgXSxcclxuICAgIHZpc3VhbFR5cGU6ICdpdCcsXHJcbiAgfSxcclxuICB7XHJcbiAgICBpZDogJ2IyYi1zZXJ2aWNlcycsXHJcbiAgICBudW06ICcwMycsXHJcbiAgICBsYWJlbDogJ0IyQiBQcm9mZXNzaW9uYWwgU2VydmljZXMnLFxyXG4gICAgdGFnbGluZTogJ1BST0ZFU1NJT05BTCBTRVJWSUNFUyBERUNJU0lPTiBNQUtFUlMnLFxyXG4gICAgY29sb3I6ICcjNzJENjY5JyxcclxuICAgIGltYWdlOiAnL3NlcnZpY2VzLWF1ZGllbmNlLmpwZycsXHJcbiAgICBkZXNjcmlwdGlvbjpcclxuICAgICAgJ0VuZ2FnZSBzZW5pb3IgZXhlY3V0aXZlcyBhbmQgcHJvY3VyZW1lbnQgaGVhZHMgcmVzcG9uc2libGUgZm9yIGNvbnN1bHRpbmcgY29udHJhY3RzLCBhZHZpc29yeSB2ZW5kb3Igc2VsZWN0aW9uLCBhbmQgc3RyYXRlZ2ljIG91dHNvdXJjaW5nLicsXHJcbiAgICBwb2ludHM6IFtcclxuICAgICAgJ1Nlbmlvcml0eSBmaWx0ZXJpbmcgdGFyZ2V0aW5nIEMtc3VpdGUsIFZQcywgYW5kIGNvcnBvcmF0ZSBidXllcnMnLFxyXG4gICAgICAnVGhvdWdodC1sZWFkZXJzaGlwIGFzc2V0IGVuZ2FnZW1lbnQgdmFsaWRhdGluZyBidXNpbmVzcyBwYWluIHBvaW50cycsXHJcbiAgICAgICdIaWdoLXZlbG9jaXR5IGhhbmRvZmZzIHJlYWR5IGZvciBjb25zdWx0YXRpdmUgc3RyYXRlZ2ljIGNvbnZlcnNhdGlvbnMnLFxyXG4gICAgXSxcclxuICAgIHZpc3VhbFR5cGU6ICdzZXJ2aWNlcycsXHJcbiAgfSxcclxuICB7XHJcbiAgICBpZDogJ2VudGVycHJpc2UnLFxyXG4gICAgbnVtOiAnMDQnLFxyXG4gICAgbGFiZWw6ICdFbnRlcnByaXNlIFNvbHV0aW9ucycsXHJcbiAgICB0YWdsaW5lOiAnRU5URVJQUklTRSBCVVlFUlMgJiBQUk9DVVJFTUVOVCcsXHJcbiAgICBjb2xvcjogJyNGRjZEMDAnLFxyXG4gICAgaW1hZ2U6ICcvZW50ZXJwcmlzZS1hdWRpZW5jZS5qcGcnLFxyXG4gICAgZGVzY3JpcHRpb246XHJcbiAgICAgICdFbmdhZ2UgbXVsdGktc3Rha2Vob2xkZXIgZW50ZXJwcmlzZSBidXlpbmcgY29tbWl0dGVlcyBhbmQgcHJvY3VyZW1lbnQgaGVhZHMgbmF2aWdhdGluZyBjb21wbGV4LCBoaWdoLUFDViBtdWx0aS1tb250aCBldmFsdWF0aW9uIGN5Y2xlcy4nLFxyXG4gICAgcG9pbnRzOiBbXHJcbiAgICAgICdBY2NvdW50LWxldmVsIHRhcmdldGluZyBtYXRjaGluZyB5b3VyIEdsb2JhbCAyMDAwICYgbWlkLW1hcmtldCBJQ1AnLFxyXG4gICAgICAnUHJlLXNjcmVlbmVkIGNvbW1pdHRlZSByb2xlcyB3aXRoIGN1c3RvbSBkaXNjb3ZlcnkgcXVlc3Rpb25uYWlyZSBhbnN3ZXJzJyxcclxuICAgICAgJ0d1YXJhbnRlZWQgQ1BMIGRlbGl2ZXJ5IHdpdGggemVyby1ib3VuY2UgcmVwbGFjZW1lbnQgU0xBIGd1YXJhbnRlZScsXHJcbiAgICBdLFxyXG4gICAgdmlzdWFsVHlwZTogJ2VudGVycHJpc2UnLFxyXG4gIH0sXHJcbl1cclxuXHJcbi8vIFN1YnRsZSwgYWJzdHJhY3QgQjJCIHRlY2hub2xvZ3kgYmFja2dyb3VuZCB2aXN1YWxzXHJcbmNvbnN0IEF1ZGllbmNlVmlzdWFsQmFja2dyb3VuZCA9ICh7IHR5cGUsIGNvbG9yIH0pID0+IHtcclxuICBpZiAodHlwZSA9PT0gJ3NhYXMnKSB7XHJcbiAgICByZXR1cm4gKFxyXG4gICAgICA8c3ZnXHJcbiAgICAgICAgY2xhc3NOYW1lPVwiYWJzb2x1dGUgcmlnaHQtMCB0b3AtMS8yIC10cmFuc2xhdGUteS0xLzIgdy1bMzQwcHhdIGgtWzM0MHB4XSBvcGFjaXR5LVswLjE0XSBwb2ludGVyLWV2ZW50cy1ub25lXCJcclxuICAgICAgICB2aWV3Qm94PVwiMCAwIDMwMCAzMDBcIlxyXG4gICAgICAgIGZpbGw9XCJub25lXCJcclxuICAgICAgPlxyXG4gICAgICAgIDxjaXJjbGUgY3g9XCIxNTBcIiBjeT1cIjE1MFwiIHI9XCIxMTBcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjFcIiBzdHJva2VEYXNoYXJyYXk9XCI0IDRcIiAvPlxyXG4gICAgICAgIDxjaXJjbGUgY3g9XCIxNTBcIiBjeT1cIjE1MFwiIHI9XCI2MFwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS41XCIgLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiMTUwXCIgY3k9XCIxNTBcIiByPVwiOFwiIGZpbGw9e2NvbG9yfSAvPlxyXG4gICAgICAgIDxsaW5lIHgxPVwiMTUwXCIgeTE9XCIxNTBcIiB4Mj1cIjYwXCIgeTI9XCI5MFwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS4yXCIgLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiNjBcIiBjeT1cIjkwXCIgcj1cIjE4XCIgZmlsbD1cInZhcigtLXN1cmZhY2UpXCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjVcIiAvPlxyXG4gICAgICAgIDxyZWN0IHg9XCI1M1wiIHk9XCI4NVwiIHdpZHRoPVwiMTRcIiBoZWlnaHQ9XCIxMFwiIHJ4PVwiMlwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS4yXCIgLz5cclxuXHJcbiAgICAgICAgPGxpbmUgeDE9XCIxNTBcIiB5MT1cIjE1MFwiIHgyPVwiMjQwXCIgeTI9XCI4MFwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS4yXCIgLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiMjQwXCIgY3k9XCI4MFwiIHI9XCIxNlwiIGZpbGw9XCJ2YXIoLS1zdXJmYWNlKVwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS41XCIgLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiMjQwXCIgY3k9XCI3N1wiIHI9XCI1XCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjJcIiAvPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMjMyIDg4IEMyMzIgODMsIDI0OCA4MywgMjQ4IDg4XCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjJcIiAvPlxyXG5cclxuICAgICAgICA8bGluZSB4MT1cIjE1MFwiIHkxPVwiMTUwXCIgeDI9XCIyMTBcIiB5Mj1cIjIyMFwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS4yXCIgLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiMjEwXCIgY3k9XCIyMjBcIiByPVwiMjBcIiBmaWxsPVwidmFyKC0tc3VyZmFjZSlcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPHBhdGggZD1cIk0yMDIgMjI1IEwyMTAgMjEzIEwyMTggMjI1IFpcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuMlwiIC8+XHJcblxyXG4gICAgICAgIDxsaW5lIHgxPVwiMTUwXCIgeTE9XCIxNTBcIiB4Mj1cIjgwXCIgeTI9XCIyMTBcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuMlwiIC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjgwXCIgY3k9XCIyMTBcIiByPVwiMTVcIiBmaWxsPVwidmFyKC0tc3VyZmFjZSlcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjgwXCIgY3k9XCIyMTBcIiByPVwiNlwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS4yXCIgLz5cclxuICAgICAgPC9zdmc+XHJcbiAgICApXHJcbiAgfVxyXG5cclxuICBpZiAodHlwZSA9PT0gJ2l0Jykge1xyXG4gICAgcmV0dXJuIChcclxuICAgICAgPHN2Z1xyXG4gICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIHJpZ2h0LTAgdG9wLTEvMiAtdHJhbnNsYXRlLXktMS8yIHctWzM0MHB4XSBoLVszNDBweF0gb3BhY2l0eS1bMC4xNF0gcG9pbnRlci1ldmVudHMtbm9uZVwiXHJcbiAgICAgICAgdmlld0JveD1cIjAgMCAzMDAgMzAwXCJcclxuICAgICAgICBmaWxsPVwibm9uZVwiXHJcbiAgICAgID5cclxuICAgICAgICA8cmVjdCB4PVwiMTgwXCIgeT1cIjUwXCIgd2lkdGg9XCI5MFwiIGhlaWdodD1cIjQwXCIgcng9XCI2XCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjVcIiAvPlxyXG4gICAgICAgIDxjaXJjbGUgY3g9XCIxOTVcIiBjeT1cIjcwXCIgcj1cIjNcIiBmaWxsPXtjb2xvcn0gLz5cclxuICAgICAgICA8bGluZSB4MT1cIjIxMFwiIHkxPVwiNzBcIiB4Mj1cIjI1NVwiIHkyPVwiNzBcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjFcIiBzdHJva2VEYXNoYXJyYXk9XCIyIDJcIiAvPlxyXG5cclxuICAgICAgICA8cmVjdCB4PVwiMTgwXCIgeT1cIjExMFwiIHdpZHRoPVwiOTBcIiBoZWlnaHQ9XCI0MFwiIHJ4PVwiNlwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS41XCIgLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiMTk1XCIgY3k9XCIxMzBcIiByPVwiM1wiIGZpbGw9e2NvbG9yfSAvPlxyXG4gICAgICAgIDxsaW5lIHgxPVwiMjEwXCIgeTE9XCIxMzBcIiB4Mj1cIjI1NVwiIHkyPVwiMTMwXCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxXCIgc3Ryb2tlRGFzaGFycmF5PVwiMiAyXCIgLz5cclxuXHJcbiAgICAgICAgPHJlY3QgeD1cIjE4MFwiIHk9XCIxNzBcIiB3aWR0aD1cIjkwXCIgaGVpZ2h0PVwiNDBcIiByeD1cIjZcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjE5NVwiIGN5PVwiMTkwXCIgcj1cIjNcIiBmaWxsPXtjb2xvcn0gLz5cclxuICAgICAgICA8bGluZSB4MT1cIjIxMFwiIHkxPVwiMTkwXCIgeDI9XCIyNTVcIiB5Mj1cIjE5MFwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMVwiIHN0cm9rZURhc2hhcnJheT1cIjIgMlwiIC8+XHJcblxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMTgwIDcwIEgxMzAgVjE5MCBIMTgwXCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjVcIiAvPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMTMwIDEzMCBINjBcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjYwXCIgY3k9XCIxMzBcIiByPVwiMjJcIiBmaWxsPVwidmFyKC0tc3VyZmFjZSlcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjYwXCIgY3k9XCIxMzBcIiByPVwiOFwiIGZpbGw9e2NvbG9yfSAvPlxyXG4gICAgICA8L3N2Zz5cclxuICAgIClcclxuICB9XHJcblxyXG4gIGlmICh0eXBlID09PSAnc2VydmljZXMnKSB7XHJcbiAgICByZXR1cm4gKFxyXG4gICAgICA8c3ZnXHJcbiAgICAgICAgY2xhc3NOYW1lPVwiYWJzb2x1dGUgcmlnaHQtMCB0b3AtMS8yIC10cmFuc2xhdGUteS0xLzIgdy1bMzQwcHhdIGgtWzM0MHB4XSBvcGFjaXR5LVswLjE0XSBwb2ludGVyLWV2ZW50cy1ub25lXCJcclxuICAgICAgICB2aWV3Qm94PVwiMCAwIDMwMCAzMDBcIlxyXG4gICAgICAgIGZpbGw9XCJub25lXCJcclxuICAgICAgPlxyXG4gICAgICAgIDxjaXJjbGUgY3g9XCIxMDBcIiBjeT1cIjEwMFwiIHI9XCIyNlwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS41XCIgLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiMTAwXCIgY3k9XCIxMDBcIiByPVwiOFwiIGZpbGw9e2NvbG9yfSAvPlxyXG4gICAgICAgIDxjaXJjbGUgY3g9XCIyMTBcIiBjeT1cIjgwXCIgcj1cIjIwXCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjVcIiAvPlxyXG4gICAgICAgIDxjaXJjbGUgY3g9XCIyMTBcIiBjeT1cIjgwXCIgcj1cIjZcIiBmaWxsPXtjb2xvcn0gLz5cclxuICAgICAgICA8Y2lyY2xlIGN4PVwiMjAwXCIgY3k9XCIyMTBcIiByPVwiMzBcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjIwMFwiIGN5PVwiMjEwXCIgcj1cIjEwXCIgZmlsbD17Y29sb3J9IC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjgwXCIgY3k9XCIyMjBcIiByPVwiMjJcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGNpcmNsZSBjeD1cIjgwXCIgY3k9XCIyMjBcIiByPVwiN1wiIGZpbGw9e2NvbG9yfSAvPlxyXG5cclxuICAgICAgICA8bGluZSB4MT1cIjEyNFwiIHkxPVwiMTA4XCIgeDI9XCIxNzVcIiB5Mj1cIjE5MFwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS4yXCIgc3Ryb2tlRGFzaGFycmF5PVwiNCA0XCIgLz5cclxuICAgICAgICA8bGluZSB4MT1cIjEyNlwiIHkxPVwiOTVcIiB4Mj1cIjE5MFwiIHkyPVwiODNcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGxpbmUgeDE9XCIxMDJcIiB5MT1cIjIyMFwiIHgyPVwiMTcwXCIgeTI9XCIyMTJcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuNVwiIC8+XHJcbiAgICAgICAgPGxpbmUgeDE9XCI4OFwiIHkxPVwiMTk5XCIgeDI9XCI5NlwiIHkyPVwiMTI2XCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjJcIiBzdHJva2VEYXNoYXJyYXk9XCI0IDRcIiAvPlxyXG4gICAgICA8L3N2Zz5cclxuICAgIClcclxuICB9XHJcblxyXG4gIHJldHVybiAoXHJcbiAgICA8c3ZnXHJcbiAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIHJpZ2h0LTAgdG9wLTEvMiAtdHJhbnNsYXRlLXktMS8yIHctWzM0MHB4XSBoLVszNDBweF0gb3BhY2l0eS1bMC4xNF0gcG9pbnRlci1ldmVudHMtbm9uZVwiXHJcbiAgICAgIHZpZXdCb3g9XCIwIDAgMzAwIDMwMFwiXHJcbiAgICAgIGZpbGw9XCJub25lXCJcclxuICAgID5cclxuICAgICAgPHJlY3QgeD1cIjExMFwiIHk9XCI0MFwiIHdpZHRoPVwiODBcIiBoZWlnaHQ9XCIzNFwiIHJ4PVwiNlwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS41XCIgLz5cclxuICAgICAgPHRleHQgeD1cIjE1MFwiIHk9XCI2MlwiIHRleHRBbmNob3I9XCJtaWRkbGVcIiBmaWxsPXtjb2xvcn0gZm9udFNpemU9XCIxMVwiIGZvbnRGYW1pbHk9XCJtb25vc3BhY2VcIiBmb250V2VpZ2h0PVwiYm9sZFwiPkhRIC8gQy1TVUlURTwvdGV4dD5cclxuXHJcbiAgICAgIDxwYXRoIGQ9XCJNMTUwIDc0IFYxMjAgTTcwIDEyMCBIMjMwIE03MCAxMjAgVjE1MCBNMjMwIDEyMCBWMTUwIE0xNTAgMTIwIFYxNTBcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuMlwiIC8+XHJcblxyXG4gICAgICA8cmVjdCB4PVwiMzVcIiB5PVwiMTUwXCIgd2lkdGg9XCI3MFwiIGhlaWdodD1cIjMwXCIgcng9XCI1XCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjJcIiAvPlxyXG4gICAgICA8dGV4dCB4PVwiNzBcIiB5PVwiMTcwXCIgdGV4dEFuY2hvcj1cIm1pZGRsZVwiIGZpbGw9e2NvbG9yfSBmb250U2l6ZT1cIjlcIiBmb250RmFtaWx5PVwibW9ub3NwYWNlXCI+UFJPQ1VSRU1FTlQ8L3RleHQ+XHJcblxyXG4gICAgICA8cmVjdCB4PVwiMTE1XCIgeT1cIjE1MFwiIHdpZHRoPVwiNzBcIiBoZWlnaHQ9XCIzMFwiIHJ4PVwiNVwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS4yXCIgLz5cclxuICAgICAgPHRleHQgeD1cIjE1MFwiIHk9XCIxNzBcIiB0ZXh0QW5jaG9yPVwibWlkZGxlXCIgZmlsbD17Y29sb3J9IGZvbnRTaXplPVwiOVwiIGZvbnRGYW1pbHk9XCJtb25vc3BhY2VcIj5PUEVSQVRJT05TPC90ZXh0PlxyXG5cclxuICAgICAgPHJlY3QgeD1cIjE5NVwiIHk9XCIxNTBcIiB3aWR0aD1cIjcwXCIgaGVpZ2h0PVwiMzBcIiByeD1cIjVcIiBzdHJva2U9e2NvbG9yfSBzdHJva2VXaWR0aD1cIjEuMlwiIC8+XHJcbiAgICAgIDx0ZXh0IHg9XCIyMzBcIiB5PVwiMTcwXCIgdGV4dEFuY2hvcj1cIm1pZGRsZVwiIGZpbGw9e2NvbG9yfSBmb250U2l6ZT1cIjlcIiBmb250RmFtaWx5PVwibW9ub3NwYWNlXCI+VEVDSE5PTE9HWTwvdGV4dD5cclxuXHJcbiAgICAgIDxjaXJjbGUgY3g9XCIxNTBcIiBjeT1cIjIzMFwiIHI9XCIyOFwiIHN0cm9rZT17Y29sb3J9IHN0cm9rZVdpZHRoPVwiMS41XCIgc3Ryb2tlRGFzaGFycmF5PVwiNCA0XCIgLz5cclxuICAgICAgPGNpcmNsZSBjeD1cIjE1MFwiIGN5PVwiMjMwXCIgcj1cIjEwXCIgZmlsbD17Y29sb3J9IC8+XHJcbiAgICAgIDxsaW5lIHgxPVwiMTUwXCIgeTE9XCIxODBcIiB4Mj1cIjE1MFwiIHkyPVwiMjAyXCIgc3Ryb2tlPXtjb2xvcn0gc3Ryb2tlV2lkdGg9XCIxLjJcIiBzdHJva2VEYXNoYXJyYXk9XCIyIDJcIiAvPlxyXG4gICAgPC9zdmc+XHJcbiAgKVxyXG59XHJcblxyXG5jb25zdCBXaG9Jc0hxbEZvciA9ICgpID0+IHtcclxuICBjb25zdCBbY3VycmVudEluZGV4LCBzZXRDdXJyZW50SW5kZXhdID0gdXNlU3RhdGUoMClcclxuICBjb25zdCBbc2Nyb2xsUHJvZ3Jlc3MsIHNldFNjcm9sbFByb2dyZXNzXSA9IHVzZVN0YXRlKDApXHJcbiAgY29uc3Qgc2VjdGlvblJlZiA9IHVzZVJlZihudWxsKVxyXG4gIGNvbnN0IGRlc2t0b3BQaW5SZWYgPSB1c2VSZWYobnVsbClcclxuICBjb25zdCBhY3RpdmVJbmRleFJlZiA9IHVzZVJlZigwKVxyXG4gIGNvbnN0IHRhYlJlZnMgPSB1c2VSZWYoW10pXHJcbiAgY29uc3QgcHJlZmVyc1JlZHVjZWRNb3Rpb24gPSB1c2VSZWR1Y2VkTW90aW9uKClcclxuXHJcbiAgY29uc3QgYWN0aXZlID0gQVVESUVOQ0VTW2N1cnJlbnRJbmRleF0gfHwgQVVESUVOQ0VTWzBdXHJcblxyXG4gIC8vIEdTQVAgU2Nyb2xsVHJpZ2dlciBQaW5uZWQgU3Rvcnl0ZWxsaW5nIG9uIERlc2t0b3BcclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgY29uc3QgaXNEZXNrdG9wID0gdHlwZW9mIHdpbmRvdyAhPT0gJ3VuZGVmaW5lZCcgJiYgd2luZG93LmlubmVyV2lkdGggPj0gMTAyNFxyXG4gICAgaWYgKCFpc0Rlc2t0b3AgfHwgcHJlZmVyc1JlZHVjZWRNb3Rpb24gfHwgIXNlY3Rpb25SZWYuY3VycmVudCB8fCAhZGVza3RvcFBpblJlZi5jdXJyZW50KSByZXR1cm5cclxuXHJcbiAgICBjb25zdCBjdHggPSBnc2FwLmNvbnRleHQoKCkgPT4ge1xyXG4gICAgICBTY3JvbGxUcmlnZ2VyLmNyZWF0ZSh7XHJcbiAgICAgICAgaWQ6ICd3aG8taXMtaHFsLWZvci1zY3JvbGwnLFxyXG4gICAgICAgIHRyaWdnZXI6IHNlY3Rpb25SZWYuY3VycmVudCxcclxuICAgICAgICBwaW46IGRlc2t0b3BQaW5SZWYuY3VycmVudCxcclxuICAgICAgICBzdGFydDogJ2NlbnRlciBjZW50ZXInLFxyXG4gICAgICAgIGVuZDogJys9MTYwMHB4JyxcclxuICAgICAgICBzY3J1YjogMSxcclxuICAgICAgICBhbnRpY2lwYXRlUGluOiAxLFxyXG4gICAgICAgIG9uVXBkYXRlOiAoc2VsZikgPT4ge1xyXG4gICAgICAgICAgY29uc3QgcCA9IHNlbGYucHJvZ3Jlc3NcclxuICAgICAgICAgIHNldFNjcm9sbFByb2dyZXNzKHApXHJcblxyXG4gICAgICAgICAgY29uc3QgY3VycmVudFN0YWdlID0gTWF0aC5taW4oTWF0aC5mbG9vcihwICogQVVESUVOQ0VTLmxlbmd0aCksIEFVRElFTkNFUy5sZW5ndGggLSAxKVxyXG4gICAgICAgICAgaWYgKGN1cnJlbnRTdGFnZSAhPT0gYWN0aXZlSW5kZXhSZWYuY3VycmVudCkge1xyXG4gICAgICAgICAgICBhY3RpdmVJbmRleFJlZi5jdXJyZW50ID0gY3VycmVudFN0YWdlXHJcbiAgICAgICAgICAgIHNldEN1cnJlbnRJbmRleChjdXJyZW50U3RhZ2UpXHJcbiAgICAgICAgICB9XHJcbiAgICAgICAgfSxcclxuICAgICAgfSlcclxuICAgIH0sIHNlY3Rpb25SZWYpXHJcblxyXG4gICAgcmV0dXJuICgpID0+IGN0eC5yZXZlcnQoKVxyXG4gIH0sIFtwcmVmZXJzUmVkdWNlZE1vdGlvbl0pXHJcblxyXG4gIC8vIEF1dG9tYXRpYyBwcm9ncmVzc2lvbiBvbiBtb2JpbGUgLyBmYWxsYmFjayAoPDEwMjRweClcclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgY29uc3QgaXNEZXNrdG9wID0gdHlwZW9mIHdpbmRvdyAhPT0gJ3VuZGVmaW5lZCcgJiYgd2luZG93LmlubmVyV2lkdGggPj0gMTAyNFxyXG4gICAgaWYgKGlzRGVza3RvcCAmJiAhcHJlZmVyc1JlZHVjZWRNb3Rpb24pIHJldHVyblxyXG5cclxuICAgIGNvbnN0IHRpbWVyID0gc2V0SW50ZXJ2YWwoKCkgPT4ge1xyXG4gICAgICBzZXRDdXJyZW50SW5kZXgoKHByZXYpID0+IChwcmV2ICsgMSkgJSBBVURJRU5DRVMubGVuZ3RoKVxyXG4gICAgfSwgNDAwMClcclxuXHJcbiAgICByZXR1cm4gKCkgPT4gY2xlYXJJbnRlcnZhbCh0aW1lcilcclxuICB9LCBbY3VycmVudEluZGV4LCBwcmVmZXJzUmVkdWNlZE1vdGlvbl0pXHJcblxyXG4gIC8vIEF1dG8tc2Nyb2xsIGFjdGl2ZSB0YWIgaW50byB2aWV3IG9uIG1vYmlsZVxyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBpZiAodGFiUmVmcy5jdXJyZW50W2N1cnJlbnRJbmRleF0pIHtcclxuICAgICAgdGFiUmVmcy5jdXJyZW50W2N1cnJlbnRJbmRleF0uc2Nyb2xsSW50b1ZpZXcoe1xyXG4gICAgICAgIGJlaGF2aW9yOiAnc21vb3RoJyxcclxuICAgICAgICBibG9jazogJ25lYXJlc3QnLFxyXG4gICAgICAgIGlubGluZTogJ2NlbnRlcicsXHJcbiAgICAgIH0pXHJcbiAgICB9XHJcbiAgfSwgW2N1cnJlbnRJbmRleF0pXHJcblxyXG4gIGNvbnN0IGhhbmRsZVNlbGVjdCA9IChpZHgpID0+IHtcclxuICAgIHNldEN1cnJlbnRJbmRleChpZHgpXHJcbiAgICBhY3RpdmVJbmRleFJlZi5jdXJyZW50ID0gaWR4XHJcbiAgICBjb25zdCBpc0Rlc2t0b3AgPSB0eXBlb2Ygd2luZG93ICE9PSAndW5kZWZpbmVkJyAmJiB3aW5kb3cuaW5uZXJXaWR0aCA+PSAxMDI0XHJcbiAgICBpZiAoaXNEZXNrdG9wICYmICFwcmVmZXJzUmVkdWNlZE1vdGlvbikge1xyXG4gICAgICBjb25zdCBzdCA9IFNjcm9sbFRyaWdnZXIuZ2V0QnlJZCgnd2hvLWlzLWhxbC1mb3Itc2Nyb2xsJylcclxuICAgICAgaWYgKHN0KSB7XHJcbiAgICAgICAgY29uc3Qgc2Nyb2xsUG9zID0gc3Quc3RhcnQgKyAoKGlkeCArIDAuNSkgLyBBVURJRU5DRVMubGVuZ3RoKSAqIChzdC5lbmQgLSBzdC5zdGFydClcclxuICAgICAgICB3aW5kb3cuc2Nyb2xsVG8oeyB0b3A6IHNjcm9sbFBvcywgYmVoYXZpb3I6ICdzbW9vdGgnIH0pXHJcbiAgICAgIH1cclxuICAgIH1cclxuICB9XHJcblxyXG4gIGNvbnN0IGZhZGVVcCA9IChkZWxheSA9IDApID0+XHJcbiAgICBwcmVmZXJzUmVkdWNlZE1vdGlvblxyXG4gICAgICA/IHt9XHJcbiAgICAgIDoge1xyXG4gICAgICAgICAgaW5pdGlhbDogeyBvcGFjaXR5OiAwLCB5OiAyMCB9LFxyXG4gICAgICAgICAgd2hpbGVJblZpZXc6IHsgb3BhY2l0eTogMSwgeTogMCB9LFxyXG4gICAgICAgICAgdmlld3BvcnQ6IHsgb25jZTogdHJ1ZSB9LFxyXG4gICAgICAgICAgdHJhbnNpdGlvbjogeyBkdXJhdGlvbjogMC42LCBkZWxheSwgZWFzZTogWzAuMjIsIDEsIDAuMzYsIDFdIH0sXHJcbiAgICAgICAgfVxyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPHNlY3Rpb25cclxuICAgICAgcmVmPXtzZWN0aW9uUmVmfVxyXG4gICAgICBpZD1cImlzLWhxbC1sZWFkLWdlbmVyYXRpb24tcmlnaHQtZm9yLXlvdXItYnVzaW5lc3NcIlxyXG4gICAgICBjbGFzc05hbWU9XCJyZWxhdGl2ZSBweS02IHNtOnB5LTggbGc6cHktOCBvdmVyZmxvdy1oaWRkZW4gYmctYmFja2dyb3VuZFwiXHJcbiAgICAgIGFyaWEtbGFiZWw9XCJJcyBIUUwgTGVhZCBHZW5lcmF0aW9uIFJpZ2h0IGZvciBZb3VyIEJ1c2luZXNzP1wiXHJcbiAgICA+XHJcbiAgICAgIHsvKiBCYWNrZ3JvdW5kIGFjY2VudHMg4oCUIGNsZWFuLCBzb2Z0LCBhbG1vc3Qtd2hpdGUgd2l0aCB2ZXJ5IHN1YnRsZSByYWRpYWwgbGlnaHQgKi99XHJcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYWJzb2x1dGUgaW5zZXQtMCBwb2ludGVyLWV2ZW50cy1ub25lXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+XHJcbiAgICAgICAgPGRpdlxyXG4gICAgICAgICAgY2xhc3NOYW1lPVwiYWJzb2x1dGUgdG9wLTEvMyBsZWZ0LTEvMiAtdHJhbnNsYXRlLXgtMS8yIHctWzcwMHB4XSBoLVs0NTBweF0gcm91bmRlZC1mdWxsIGJsdXItWzE0MHB4XSBvcGFjaXR5LTE1XCJcclxuICAgICAgICAgIHN0eWxlPXt7IGJhY2tncm91bmQ6ICdyYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCByZ2JhKDAsMTY2LDI1NSwwLjE4KSAwJSwgdHJhbnNwYXJlbnQgNzAlKScgfX1cclxuICAgICAgICAvPlxyXG4gICAgICAgIDxkaXZcclxuICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIGJvdHRvbS0xMCByaWdodC0xMCB3LVs1MDBweF0gaC1bNDAwcHhdIHJvdW5kZWQtZnVsbCBibHVyLVsxMzBweF0gb3BhY2l0eS0xMFwiXHJcbiAgICAgICAgICBzdHlsZT17eyBiYWNrZ3JvdW5kOiAncmFkaWFsLWdyYWRpZW50KGNpcmNsZSwgcmdiYSgyNTUsMTA5LDAsMC4xNCkgMCUsIHRyYW5zcGFyZW50IDcwJSknIH19XHJcbiAgICAgICAgLz5cclxuICAgICAgPC9kaXY+XHJcblxyXG4gICAgICA8ZGl2XHJcbiAgICAgICAgcmVmPXtkZXNrdG9wUGluUmVmfVxyXG4gICAgICAgIGNsYXNzTmFtZT1cInJlbGF0aXZlIHotMTAgbWF4LXctWzE0NDBweF0gbXgtYXV0byBweC00IHNtOnB4LTYgbGc6cHgtOFwiXHJcbiAgICAgID5cclxuICAgICAgICB7LyogU2VjdGlvbiBoZWFkZXIg4oCUIENlbnRlcmVkLCB3ZWxsLXNwYWNlZCAmIHVuY29tcHJlc3NlZCAqL31cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1heC13LTR4bCBteC1hdXRvIHRleHQtY2VudGVyIG1iLTMuNSBsZzptYi00XCI+XHJcbiAgICAgICAgICA8bW90aW9uLmRpdlxyXG4gICAgICAgICAgICB7Li4uZmFkZVVwKDApfVxyXG4gICAgICAgICAgICBjbGFzc05hbWU9XCJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgcHgtMy41IHB5LTEgcm91bmRlZC1mdWxsIGJvcmRlciBib3JkZXItYm9yZGVyIGJnLXN1cmZhY2UgbWItMiBzaGFkb3cteHNcIlxyXG4gICAgICAgICAgPlxyXG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ3LTIgaC0yIHJvdW5kZWQtZnVsbCBiZy1wcmltYXJ5XCIgLz5cclxuICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bMTAuNXB4XSBmb250LW1vbm8gZm9udC1ib2xkIHRyYWNraW5nLVswLjJlbV0gdGV4dC1wcmltYXJ5IHVwcGVyY2FzZVwiPlxyXG4gICAgICAgICAgICAgIFRhcmdldCBBdWRpZW5jZVxyXG4gICAgICAgICAgICA8L3NwYW4+XHJcbiAgICAgICAgICA8L21vdGlvbi5kaXY+XHJcblxyXG4gICAgICAgICAgPG1vdGlvbi5oMlxyXG4gICAgICAgICAgICB7Li4uZmFkZVVwKDAuMDgpfVxyXG4gICAgICAgICAgICBjbGFzc05hbWU9XCJ0ZXh0LTJ4bCBzbTp0ZXh0LTN4bCBtZDp0ZXh0LTR4bCBsZzp0ZXh0LTV4bCBmb250LWJsYWNrIHRyYWNraW5nLXRpZ2h0IGxlYWRpbmctdGlnaHQgdGV4dC10ZXh0LXByaW1hcnkgbWItMlwiXHJcbiAgICAgICAgICA+XHJcbiAgICAgICAgICAgIElzIEhRTCBMZWFkIEdlbmVyYXRpb257JyAnfVxyXG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJiZy1ncmFkaWVudC10by1yIGZyb20tcHJpbWFyeSB0by1jdGEgYmctY2xpcC10ZXh0IHRleHQtdHJhbnNwYXJlbnRcIj5cclxuICAgICAgICAgICAgICBSaWdodCBmb3IgWW91ciBCdXNpbmVzcz9cclxuICAgICAgICAgICAgPC9zcGFuPlxyXG4gICAgICAgICAgPC9tb3Rpb24uaDI+XHJcblxyXG4gICAgICAgICAgPG1vdGlvbi5wXHJcbiAgICAgICAgICAgIHsuLi5mYWRlVXAoMC4xMil9XHJcbiAgICAgICAgICAgIGNsYXNzTmFtZT1cInRleHQtc20gc206dGV4dC1iYXNlIHRleHQtdGV4dC1zZWNvbmRhcnkgbGVhZGluZy1yZWxheGVkIG1heC13LTN4bCBteC1hdXRvIGZvbnQtbm9ybWFsXCJcclxuICAgICAgICAgID5cclxuICAgICAgICAgICAgSFFMIGdlbmVyYXRpb24gaGVscHMgQjJCIGNvbXBhbmllcyByZWFjaCB2ZXJpZmllZCBkZWNpc2lvbi1tYWtlcnMgd2l0aCBhY3RpdmUgYnV5aW5nIGludGVudCBhbmQgYnVpbGQgcXVhbGlmaWVkIHNhbGVzIG9wcG9ydHVuaXRpZXMuXHJcbiAgICAgICAgICA8L21vdGlvbi5wPlxyXG4gICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICB7Lyog4pSA4pSAIERlc2t0b3AgJiBUYWJsZXQ6IExhcmdlIFJvdW5kZWQgU2hvd2Nhc2UgQ29udGFpbmVyIHdpdGggQXV0b21hdGljIFByb2dyZXNzaW9uIOKUgOKUgCAqL31cclxuICAgICAgICA8bW90aW9uLmRpdlxyXG4gICAgICAgICAgey4uLmZhZGVVcCgwLjE4KX1cclxuICAgICAgICAgIGNsYXNzTmFtZT1cImhpZGRlbiBtZDpibG9jayBwLTQgc206cC01IGxnOnAtNiByb3VuZGVkLTN4bCBib3JkZXIgYm9yZGVyLWJvcmRlciBiZy1zdXJmYWNlLzcwIGJhY2tkcm9wLWJsdXItc20gc2hhZG93LXhsIHJlbGF0aXZlIG92ZXJmbG93LWhpZGRlblwiXHJcbiAgICAgICAgPlxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkIG1kOmdyaWQtY29scy0xMiBnYXAtNSBsZzpnYXAtNiBpdGVtcy1zdHJldGNoXCI+XHJcbiAgICAgICAgICAgIHsvKiBMRUZUIFNJREU6IFZlcnRpY2FsIFN0YWNrIG9mIDQgU2VsZWN0YWJsZSBBdWRpZW5jZSBDYXJkcyAoNCBjb2xzIG9uIGxnKSAqL31cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtZDpjb2wtc3Bhbi01IGxnOmNvbC1zcGFuLTQgZmxleCBmbGV4LWNvbCBqdXN0aWZ5LWJldHdlZW4gZ2FwLTIuNVwiPlxyXG4gICAgICAgICAgICAgIHtBVURJRU5DRVMubWFwKChhdWQsIGlkeCkgPT4ge1xyXG4gICAgICAgICAgICAgICAgY29uc3QgaXNBY3RpdmUgPSBpZHggPT09IGN1cnJlbnRJbmRleFxyXG5cclxuICAgICAgICAgICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgICAgICAgIDxtb3Rpb24uYnV0dG9uXHJcbiAgICAgICAgICAgICAgICAgICAga2V5PXthdWQuaWR9XHJcbiAgICAgICAgICAgICAgICAgICAgb25DbGljaz17KCkgPT4gaGFuZGxlU2VsZWN0KGlkeCl9XHJcbiAgICAgICAgICAgICAgICAgICAgd2hpbGVIb3Zlcj17XHJcbiAgICAgICAgICAgICAgICAgICAgICBwcmVmZXJzUmVkdWNlZE1vdGlvblxyXG4gICAgICAgICAgICAgICAgICAgICAgICA/IHt9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDoge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgeDogNCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zaXRpb246IHsgZHVyYXRpb246IDAuMiwgZWFzZTogJ2Vhc2VPdXQnIH0sXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bncm91cCByZWxhdGl2ZSBmbGV4LTEgcC0zLjUgc206cC00IHJvdW5kZWQtMnhsIHRleHQtbGVmdCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgYm9yZGVyIGN1cnNvci1wb2ludGVyIG92ZXJmbG93LWhpZGRlbiAke1xyXG4gICAgICAgICAgICAgICAgICAgICAgaXNBY3RpdmVcclxuICAgICAgICAgICAgICAgICAgICAgICAgPyAnYmctc3VyZmFjZSBzaGFkb3ctbWQnXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDogJ2JnLXN1cmZhY2UvNTAgaG92ZXI6Ymctc3VyZmFjZSBib3JkZXItYm9yZGVyLzgwIGhvdmVyOmJvcmRlci1ib3JkZXInXHJcbiAgICAgICAgICAgICAgICAgICAgfWB9XHJcbiAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3tcclxuICAgICAgICAgICAgICAgICAgICAgIGJvcmRlckNvbG9yOiBpc0FjdGl2ZSA/IGF1ZC5jb2xvciA6IHVuZGVmaW5lZCxcclxuICAgICAgICAgICAgICAgICAgICAgIGJveFNoYWRvdzogaXNBY3RpdmUgPyBgMCA4cHggMjJweCAtNnB4ICR7YXVkLmNvbG9yfTI1YCA6IHVuZGVmaW5lZCxcclxuICAgICAgICAgICAgICAgICAgICB9fVxyXG4gICAgICAgICAgICAgICAgICAgIHJvbGU9XCJ0YWJcIlxyXG4gICAgICAgICAgICAgICAgICAgIGFyaWEtc2VsZWN0ZWQ9e2lzQWN0aXZlfVxyXG4gICAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgICAgey8qIEFjdGl2ZSBsZWZ0IGFjY2VudCBsaW5lIGluZGljYXRvciAqL31cclxuICAgICAgICAgICAgICAgICAgICA8ZGl2XHJcbiAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJhYnNvbHV0ZSBsZWZ0LTAgdG9wLTAgYm90dG9tLTAgdy0xLjUgei0xMCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgcG9pbnRlci1ldmVudHMtbm9uZVwiXHJcbiAgICAgICAgICAgICAgICAgICAgICBzdHlsZT17e1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6IGlzQWN0aXZlID8gYXVkLmNvbG9yIDogJ3RyYW5zcGFyZW50JyxcclxuICAgICAgICAgICAgICAgICAgICAgIH19XHJcbiAgICAgICAgICAgICAgICAgICAgLz5cclxuXHJcbiAgICAgICAgICAgICAgICAgICAgey8qIEN1cnZlZCBjb3JuZXIgZmlsbCBmb2xsb3dpbmcgdGhlIGNhcmQncyBleGFjdCBib3JkZXItcmFkaXVzICovfVxyXG4gICAgICAgICAgICAgICAgICAgIHtpc0FjdGl2ZSAmJiAoXHJcbiAgICAgICAgICAgICAgICAgICAgICA8ZGl2XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIGxlZnQtMCBib3R0b20tMCB3LTQgaC00IHotMjAgcG9pbnRlci1ldmVudHMtbm9uZVwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0eWxlPXt7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgYm9yZGVyTGVmdDogYDZweCBzb2xpZCAke2F1ZC5jb2xvcn1gLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGJvcmRlckJvdHRvbTogYDNweCBzb2xpZCAke2F1ZC5jb2xvcn1gLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGJvcmRlckJvdHRvbUxlZnRSYWRpdXM6ICcxcmVtJyxcclxuICAgICAgICAgICAgICAgICAgICAgICAgfX1cclxuICAgICAgICAgICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgKX1cclxuXHJcbiAgICAgICAgICAgICAgICAgICAgey8qIEV5ZWJyb3cgJiBOdW1iZXIgKi99XHJcbiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gZ2FwLTIgbWItMS41IHBsLTEuNVwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPHNwYW5cclxuICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidGV4dC1bMTBweF0gZm9udC1tb25vIGZvbnQtYm9sZCB0cmFja2luZy13aWRlciB1cHBlcmNhc2UgdHJhbnNpdGlvbi1jb2xvcnNcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICBzdHlsZT17eyBjb2xvcjogaXNBY3RpdmUgPyBhdWQuY29sb3IgOiAndmFyKC0tdGV4dC1zZWNvbmRhcnkpJyB9fVxyXG4gICAgICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICB7YXVkLnRhZ2xpbmV9XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8c3BhblxyXG4gICAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2B0ZXh0LXhzIGZvbnQtbW9ubyBmb250LWJsYWNrIHRyYWNraW5nLXdpZGVzdCB0cmFuc2l0aW9uLWNvbG9ycyAke1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGlzQWN0aXZlID8gJ3RleHQtdGV4dC1wcmltYXJ5JyA6ICd0ZXh0LXRleHQtc2Vjb25kYXJ5IG9wYWNpdHktNjAnXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIH1gfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICBzdHlsZT17eyBjb2xvcjogaXNBY3RpdmUgPyBhdWQuY29sb3IgOiB1bmRlZmluZWQgfX1cclxuICAgICAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICAgICAge2F1ZC5udW19XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgICAgICAgICAgIHsvKiBNYWluIFRpdGxlICovfVxyXG4gICAgICAgICAgICAgICAgICAgIDxkaXZcclxuICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YHRleHQtWzE1cHhdIHNtOnRleHQtYmFzZSBmb250LWJvbGQgdHJhbnNpdGlvbi1jb2xvcnMgcGwtMS41ICR7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGlzQWN0aXZlID8gJ3RleHQtdGV4dC1wcmltYXJ5JyA6ICd0ZXh0LXRleHQtc2Vjb25kYXJ5IGdyb3VwLWhvdmVyOnRleHQtdGV4dC1wcmltYXJ5J1xyXG4gICAgICAgICAgICAgICAgICAgICAgfWB9XHJcbiAgICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgICAge2F1ZC5sYWJlbH1cclxuICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgICAgICAgICAgey8qIFZpc3VhbCBGbG93IFByb2dyZXNzIEJhciBvbiBBY3RpdmUgQ2FyZCAqL31cclxuICAgICAgICAgICAgICAgICAgICB7aXNBY3RpdmUgJiYgKFxyXG4gICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSBib3R0b20tMCBsZWZ0LTAgcmlnaHQtMCBoLVszcHhdIGJnLWJvcmRlci80MCBvdmVyZmxvdy1oaWRkZW5cIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAge3R5cGVvZiB3aW5kb3cgIT09ICd1bmRlZmluZWQnICYmIHdpbmRvdy5pbm5lcldpZHRoID49IDEwMjQgJiYgIXByZWZlcnNSZWR1Y2VkTW90aW9uID8gKFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXZcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImgtZnVsbCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi03NSBlYXNlLW91dFwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHlsZT17e1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6IGF1ZC5jb2xvcixcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2lkdGg6IGAke01hdGgubWluKFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1hdGgubWF4KChzY3JvbGxQcm9ncmVzcyAqIEFVRElFTkNFUy5sZW5ndGggLSBpZHgpICogMTAwLCAwKSxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxMDBcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKX0lYCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH19XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgKSA6IChcclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8bW90aW9uLmRpdlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAga2V5PXtgcHJvZy0ke2N1cnJlbnRJbmRleH1gfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgaW5pdGlhbD17eyB3aWR0aDogJzAlJyB9fVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWF0ZT17eyB3aWR0aDogJzEwMCUnIH19XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2l0aW9uPXt7IGR1cmF0aW9uOiA0LjAsIGVhc2U6ICdsaW5lYXInIH19XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJoLWZ1bGxcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3sgYmFja2dyb3VuZENvbG9yOiBhdWQuY29sb3IgfX1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICApfVxyXG4gICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgKX1cclxuICAgICAgICAgICAgICAgICAgPC9tb3Rpb24uYnV0dG9uPlxyXG4gICAgICAgICAgICAgICAgKVxyXG4gICAgICAgICAgICAgIH0pfVxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgIHsvKiBSSUdIVCBTSURFOiBMYXJnZSBWaXN1YWwgLyBDb250ZW50IEFyZWEgZm9yIFNlbGVjdGVkIEF1ZGllbmNlICg4IGNvbHMgb24gbGcpICovfVxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1kOmNvbC1zcGFuLTcgbGc6Y29sLXNwYW4tOFwiPlxyXG4gICAgICAgICAgICAgIDxkaXZcclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInJlbGF0aXZlIGgtZnVsbCBmbGV4IGZsZXgtY29sIGp1c3RpZnktYmV0d2VlbiBwLTQgc206cC01IGxnOnAtNiByb3VuZGVkLTN4bCBiZy1zdXJmYWNlIHNoYWRvdy14bCBvdmVyZmxvdy1oaWRkZW4gdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMzAwXCJcclxuICAgICAgICAgICAgICAgIHN0eWxlPXt7XHJcbiAgICAgICAgICAgICAgICAgIGJvcmRlcjogYDJweCBzb2xpZCAke2FjdGl2ZS5jb2xvcn1gLFxyXG4gICAgICAgICAgICAgICAgICBib3hTaGFkb3c6IGAwIDEwcHggMzBweCAtMTBweCAke2FjdGl2ZS5jb2xvcn0yNWAsXHJcbiAgICAgICAgICAgICAgICB9fVxyXG4gICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIHsvKiBTdWJ0bGUgYWJzdHJhY3QgYmFja2dyb3VuZCB2aXN1YWxpemF0aW9uICovfVxyXG4gICAgICAgICAgICAgICAgPEFuaW1hdGVQcmVzZW5jZSBtb2RlPVwid2FpdFwiPlxyXG4gICAgICAgICAgICAgICAgICA8bW90aW9uLmRpdlxyXG4gICAgICAgICAgICAgICAgICAgIGtleT17YWN0aXZlLnZpc3VhbFR5cGV9XHJcbiAgICAgICAgICAgICAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwLCBzY2FsZTogMC45NSB9fVxyXG4gICAgICAgICAgICAgICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSwgc2NhbGU6IDEgfX1cclxuICAgICAgICAgICAgICAgICAgICBleGl0PXt7IG9wYWNpdHk6IDAsIHNjYWxlOiAxLjA1IH19XHJcbiAgICAgICAgICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC40NSwgZWFzZTogWzAuMjIsIDEsIDAuMzYsIDFdIH19XHJcbiAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICA8QXVkaWVuY2VWaXN1YWxCYWNrZ3JvdW5kIHR5cGU9e2FjdGl2ZS52aXN1YWxUeXBlfSBjb2xvcj17YWN0aXZlLmNvbG9yfSAvPlxyXG4gICAgICAgICAgICAgICAgICA8L21vdGlvbi5kaXY+XHJcbiAgICAgICAgICAgICAgICA8L0FuaW1hdGVQcmVzZW5jZT5cclxuXHJcbiAgICAgICAgICAgICAgICB7LyogRm9yZWdyb3VuZCBDb250ZW50IHdpdGggc21vb3RoIHNsaWRlLXVwIHRyYW5zaXRpb24gKi99XHJcbiAgICAgICAgICAgICAgICA8QW5pbWF0ZVByZXNlbmNlIG1vZGU9XCJ3YWl0XCI+XHJcbiAgICAgICAgICAgICAgICAgIDxtb3Rpb24uZGl2XHJcbiAgICAgICAgICAgICAgICAgICAga2V5PXthY3RpdmUuaWR9XHJcbiAgICAgICAgICAgICAgICAgICAgaW5pdGlhbD17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMCwgeTogMTYgfX1cclxuICAgICAgICAgICAgICAgICAgICBhbmltYXRlPXtwcmVmZXJzUmVkdWNlZE1vdGlvbiA/IHt9IDogeyBvcGFjaXR5OiAxLCB5OiAwIH19XHJcbiAgICAgICAgICAgICAgICAgICAgZXhpdD17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMCwgeTogLTE2IH19XHJcbiAgICAgICAgICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC4zNSwgZWFzZTogWzAuMjIsIDEsIDAuMzYsIDFdIH19XHJcbiAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicmVsYXRpdmUgei0xMCBmbGV4IGZsZXgtY29sIGp1c3RpZnktYmV0d2VlbiBoLWZ1bGwgc3BhY2UteS0zLjVcIlxyXG4gICAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgICAgey8qIFR3by1jb2x1bW4gbGF5b3V0OiBMZWZ0IHRleHQgY29udGVudCArIFJpZ2h0IGltYWdlIHByZXZpZXcgKi99XHJcbiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkIGdyaWQtY29scy0xIGxnOmdyaWQtY29scy0xMiBnYXAtNSBsZzpnYXAtNiBpdGVtcy1jZW50ZXJcIj5cclxuICAgICAgICAgICAgICAgICAgICAgIHsvKiBMZWZ0IHNpZGU6IENvbnRlbnQgKi99XHJcbiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImxnOmNvbC1zcGFuLTcgZmxleCBmbGV4LWNvbFwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICB7LyogSGVhZGVyIGJhZGdlICovfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiBweC0yLjUgcHktMC41IHJvdW5kZWQtZnVsbCBiZy1iYWNrZ3JvdW5kIGJvcmRlciBib3JkZXItYm9yZGVyIHRleHQtWzExcHhdIGZvbnQtbW9ubyBmb250LXNlbWlib2xkIG1iLTIuNSB3LWZpdFwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInctMS41IGgtMS41IHJvdW5kZWQtZnVsbFwiIHN0eWxlPXt7IGJhY2tncm91bmRDb2xvcjogYWN0aXZlLmNvbG9yIH19IC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC10ZXh0LXNlY29uZGFyeVwiPnthY3RpdmUubnVtfTwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtcHJpbWFyeVwiPnthY3RpdmUudGFnbGluZX08L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgey8qIE1haW4gVGl0bGUgKi99XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDxoMyBjbGFzc05hbWU9XCJ0ZXh0LXhsIHNtOnRleHQtMnhsIGZvbnQtYmxhY2sgdHJhY2tpbmctdGlnaHQgdGV4dC10ZXh0LXByaW1hcnkgbWItMlwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHthY3RpdmUubGFiZWx9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvaDM+XHJcblxyXG4gICAgICAgICAgICAgICAgICAgICAgICB7LyogRGVzY3JpcHRpb24gKi99XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQtc20gc206dGV4dC1iYXNlIHRleHQtdGV4dC1zZWNvbmRhcnkgbGVhZGluZy1yZWxheGVkIGZvbnQtbm9ybWFsIG1iLTMuNVwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHthY3RpdmUuZGVzY3JpcHRpb259XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvcD5cclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHsvKiAzIENoZWNrcG9pbnQgUG9pbnRzICovfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInNwYWNlLXktMi41XCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAge2FjdGl2ZS5wb2ludHMubWFwKChwdCwgaSkgPT4gKFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBrZXk9e2l9IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtc3RhcnQgZ2FwLTIuNVwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidy0zLjUgaC0zLjUgcm91bmRlZC1mdWxsIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHNocmluay0wIG10LTAuNVwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3tcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmRDb2xvcjogYCR7YWN0aXZlLmNvbG9yfTE4YCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiBhY3RpdmUuY29sb3IsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBib3JkZXI6IGAxcHggc29saWQgJHthY3RpdmUuY29sb3J9NDBgLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH19XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8Q2hlY2sgY2xhc3NOYW1lPVwidy0yIGgtMlwiIHN0cm9rZVdpZHRoPXsyLjV9IC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXNtIHNtOnRleHQtYmFzZSB0ZXh0LXRleHQtcHJpbWFyeSBmb250LW1lZGl1bSBsZWFkaW5nLXNudWdcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB7cHR9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICkpfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgIHsvKiBSaWdodCBzaWRlOiBNb2Rlcm4gSW1hZ2UgUHJldmlldyBDYXJkICovfVxyXG4gICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJsZzpjb2wtc3Bhbi01XCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXZcclxuICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJyZWxhdGl2ZSByb3VuZGVkLTJ4bCBvdmVyZmxvdy1oaWRkZW4gYm9yZGVyIHNoYWRvdy1tZCBncm91cCBhc3BlY3QtWzE2LzExXSBtYXgtaC1bMjUwcHhdIHctZnVsbFwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3tcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJvcmRlckNvbG9yOiBgJHthY3RpdmUuY29sb3J9MzVgLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgYm94U2hhZG93OiBgMCAxMHB4IDI0cHggLTZweCAke2FjdGl2ZS5jb2xvcn0yMGAsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgfX1cclxuICAgICAgICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxpbWdcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNyYz17YWN0aXZlLmltYWdlfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgYWx0PXtgJHthY3RpdmUubGFiZWx9IEhRTCBQcmV2aWV3YH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInctZnVsbCBoLWZ1bGwgb2JqZWN0LWNvdmVyIHRyYW5zaXRpb24tdHJhbnNmb3JtIGR1cmF0aW9uLTcwMCBncm91cC1ob3ZlcjpzY2FsZS0xMDVcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgbG9hZGluZz1cImxhenlcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSBpbnNldC0wIGJnLWdyYWRpZW50LXRvLXQgZnJvbS1ibGFjay83NSB2aWEtYmxhY2svMTUgdG8tdHJhbnNwYXJlbnQgcG9pbnRlci1ldmVudHMtbm9uZVwiIC8+XHJcblxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHsvKiBUb3AgRmxvYXRpbmcgQmFkZ2UgKi99XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtMi41IGxlZnQtMi41IHotMTAgaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGdhcC0xLjUgcHgtMiBweS0wLjUgcm91bmRlZC1tZCBiZy1iYWNrZ3JvdW5kLzkwIGJhY2tkcm9wLWJsdXItbWQgYm9yZGVyIGJvcmRlci1ib3JkZXIvODAgdGV4dC1bMTBweF0gZm9udC1tb25vIGZvbnQtYm9sZCBzaGFkb3cteHNcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInctMS41IGgtMS41IHJvdW5kZWQtZnVsbCBhbmltYXRlLXB1bHNlXCIgc3R5bGU9e3sgYmFja2dyb3VuZENvbG9yOiBhY3RpdmUuY29sb3IgfX0gLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtdGV4dC1wcmltYXJ5IHVwcGVyY2FzZSB0cmFja2luZy13aWRlclwiPlBSRVZJRVc8L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHsvKiBCb3R0b20gQ2FwdGlvbiBPdmVybGF5ICovfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYWJzb2x1dGUgYm90dG9tLTIuNSBsZWZ0LTIuNSByaWdodC0yLjUgei0xMCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gdGV4dC13aGl0ZSBwb2ludGVyLWV2ZW50cy1ub25lXCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LVsxMXB4XSBmb250LW1vbm8gZm9udC1ib2xkIHRleHQtd2hpdGUvOTUgZHJvcC1zaGFkb3cteHMgdHJ1bmNhdGVcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAge2FjdGl2ZS5sYWJlbH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInB4LTEuNSBweS0wLjUgcm91bmRlZCB0ZXh0LVsxMHB4XSBmb250LW1vbm8gZm9udC1ib2xkIHRleHQtd2hpdGUgc2hhZG93LXhzIHNocmluay0wXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3sgYmFja2dyb3VuZENvbG9yOiBhY3RpdmUuY29sb3IgfX1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAge2FjdGl2ZS5udW19XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgIDwvbW90aW9uLmRpdj5cclxuICAgICAgICAgICAgICAgIDwvQW5pbWF0ZVByZXNlbmNlPlxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgIDwvbW90aW9uLmRpdj5cclxuXHJcbiAgICAgICAgey8qIOKUgOKUgCBNb2JpbGUgJiBTbWFsbCBTY3JlZW5zOiBIb3Jpem9udGFsbHkgQXV0by1TY3JvbGxpbmcgVGFicyArIENvbnRlbnQgQ2FyZCDilIDilIAgKi99XHJcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtZDpoaWRkZW4gc3BhY2UteS0zXCI+XHJcbiAgICAgICAgICB7LyogSG9yaXpvbnRhbCBzY3JvbGxhYmxlIHRhYiByb3cgd2l0aCBhdXRvLXNjcm9sbCByZWYgKi99XHJcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZ2FwLTIgb3ZlcmZsb3cteC1hdXRvIG5vLXNjcm9sbGJhciBwYi0xIHB4LTEgLW14LTQgcHgtNCBzbTpteC0wIHNtOnB4LTBcIj5cclxuICAgICAgICAgICAge0FVRElFTkNFUy5tYXAoKGF1ZCwgaWR4KSA9PiB7XHJcbiAgICAgICAgICAgICAgY29uc3QgaXNBY3RpdmUgPSBpZHggPT09IGN1cnJlbnRJbmRleFxyXG5cclxuICAgICAgICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgICAgICBrZXk9e2F1ZC5pZH1cclxuICAgICAgICAgICAgICAgICAgcmVmPXsoZWwpID0+IHtcclxuICAgICAgICAgICAgICAgICAgICB0YWJSZWZzLmN1cnJlbnRbaWR4XSA9IGVsXHJcbiAgICAgICAgICAgICAgICAgIH19XHJcbiAgICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IGhhbmRsZVNlbGVjdChpZHgpfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2BzaHJpbmstMCBwLTQgcm91bmRlZC14bCBib3JkZXIgdGV4dC1sZWZ0IHRyYW5zaXRpb24tYWxsICR7XHJcbiAgICAgICAgICAgICAgICAgICAgaXNBY3RpdmVcclxuICAgICAgICAgICAgICAgICAgICAgID8gJ2JnLXN1cmZhY2Ugc2hhZG93LW1kIGJvcmRlci1wcmltYXJ5J1xyXG4gICAgICAgICAgICAgICAgICAgICAgOiAnYmctc3VyZmFjZS81MCBib3JkZXItYm9yZGVyLzcwJ1xyXG4gICAgICAgICAgICAgICAgICB9YH1cclxuICAgICAgICAgICAgICAgICAgc3R5bGU9e3tcclxuICAgICAgICAgICAgICAgICAgICBib3JkZXJDb2xvcjogaXNBY3RpdmUgPyBhdWQuY29sb3IgOiB1bmRlZmluZWQsXHJcbiAgICAgICAgICAgICAgICAgICAgbWluV2lkdGg6ICcyMjBweCcsXHJcbiAgICAgICAgICAgICAgICAgIH19XHJcbiAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIGdhcC0xIG1iLTFcIj5cclxuICAgICAgICAgICAgICAgICAgICA8c3BhblxyXG4gICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidGV4dC1bOXB4XSBmb250LW1vbm8gZm9udC1ib2xkIHVwcGVyY2FzZSB0cmFja2luZy13aWRlciBsaW5lLWNsYW1wLTFcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3sgY29sb3I6IGlzQWN0aXZlID8gYXVkLmNvbG9yIDogJ3ZhcigtLXRleHQtc2Vjb25kYXJ5KScgfX1cclxuICAgICAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgICAgICB7YXVkLnRhZ2xpbmV9XHJcbiAgICAgICAgICAgICAgICAgICAgPC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtWzEwcHhdIGZvbnQtbW9ubyBmb250LWJsYWNrXCIgc3R5bGU9e3sgY29sb3I6IGF1ZC5jb2xvciB9fT5cclxuICAgICAgICAgICAgICAgICAgICAgIHthdWQubnVtfVxyXG4gICAgICAgICAgICAgICAgICAgIDwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgIDxkaXZcclxuICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2B0ZXh0LXNtIGZvbnQtYm9sZCAke1xyXG4gICAgICAgICAgICAgICAgICAgICAgaXNBY3RpdmUgPyAndGV4dC10ZXh0LXByaW1hcnknIDogJ3RleHQtdGV4dC1zZWNvbmRhcnknXHJcbiAgICAgICAgICAgICAgICAgICAgfWB9XHJcbiAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICB7YXVkLmxhYmVsfVxyXG4gICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgey8qIFByb2dyZXNzIGxpbmUgKi99XHJcbiAgICAgICAgICAgICAgICAgIHtpc0FjdGl2ZSAmJiAoXHJcbiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ3LWZ1bGwgaC0xIGJnLWJvcmRlci80MCByb3VuZGVkLWZ1bGwgbXQtMi41IG92ZXJmbG93LWhpZGRlblwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPG1vdGlvbi5kaXZcclxuICAgICAgICAgICAgICAgICAgICAgICAga2V5PXtgcHJvZy1tb2ItJHtjdXJyZW50SW5kZXh9YH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgaW5pdGlhbD17eyB3aWR0aDogJzAlJyB9fVxyXG4gICAgICAgICAgICAgICAgICAgICAgICBhbmltYXRlPXt7IHdpZHRoOiAnMTAwJScgfX1cclxuICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogNC4wLCBlYXNlOiAnbGluZWFyJyB9fVxyXG4gICAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJoLWZ1bGxcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICBzdHlsZT17eyBiYWNrZ3JvdW5kQ29sb3I6IGF1ZC5jb2xvciB9fVxyXG4gICAgICAgICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgKX1cclxuICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICAgIClcclxuICAgICAgICAgICAgfSl9XHJcbiAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICB7LyogQWN0aXZlIG1vYmlsZSBjb250ZW50IGNhcmQgKi99XHJcbiAgICAgICAgICA8QW5pbWF0ZVByZXNlbmNlIG1vZGU9XCJ3YWl0XCI+XHJcbiAgICAgICAgICAgIDxtb3Rpb24uZGl2XHJcbiAgICAgICAgICAgICAga2V5PXthY3RpdmUuaWR9XHJcbiAgICAgICAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwLCB5OiAxNiB9fVxyXG4gICAgICAgICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSwgeTogMCB9fVxyXG4gICAgICAgICAgICAgIGV4aXQ9e3sgb3BhY2l0eTogMCwgeTogLTE2IH19XHJcbiAgICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC4zNSB9fVxyXG4gICAgICAgICAgICAgIGNsYXNzTmFtZT1cInAtNSBzbTpwLTYgcm91bmRlZC0yeGwgYmctc3VyZmFjZSBzaGFkb3ctbGcgcmVsYXRpdmUgb3ZlcmZsb3ctaGlkZGVuIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTMwMFwiXHJcbiAgICAgICAgICAgICAgc3R5bGU9e3sgYm9yZGVyOiBgMnB4IHNvbGlkICR7YWN0aXZlLmNvbG9yfWAsIGJveFNoYWRvdzogYDAgOHB4IDI0cHggLThweCAke2FjdGl2ZS5jb2xvcn0yNWAgfX1cclxuICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgbWItMlwiPlxyXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidy0yIGgtMiByb3VuZGVkLWZ1bGxcIiBzdHlsZT17eyBiYWNrZ3JvdW5kQ29sb3I6IGFjdGl2ZS5jb2xvciB9fSAvPlxyXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1bMTFweF0gZm9udC1tb25vIGZvbnQtYm9sZCB1cHBlcmNhc2VcIiBzdHlsZT17eyBjb2xvcjogYWN0aXZlLmNvbG9yIH19PlxyXG4gICAgICAgICAgICAgICAgICB7YWN0aXZlLnRhZ2xpbmV9XHJcbiAgICAgICAgICAgICAgICA8L3NwYW4+XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgPGg0IGNsYXNzTmFtZT1cInRleHQteGwgZm9udC1ibGFjayB0ZXh0LXRleHQtcHJpbWFyeSBtYi0yLjVcIj57YWN0aXZlLmxhYmVsfTwvaDQ+XHJcblxyXG4gICAgICAgICAgICAgIHsvKiBNb2JpbGUgSW1hZ2UgUHJldmlldyAqL31cclxuICAgICAgICAgICAgICA8ZGl2XHJcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJyZWxhdGl2ZSByb3VuZGVkLXhsIG92ZXJmbG93LWhpZGRlbiBib3JkZXIgc2hhZG93LXNtIGFzcGVjdC1bMTYvMTBdIG1iLTMuNVwiXHJcbiAgICAgICAgICAgICAgICBzdHlsZT17eyBib3JkZXJDb2xvcjogYCR7YWN0aXZlLmNvbG9yfTM1YCB9fVxyXG4gICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIDxpbWdcclxuICAgICAgICAgICAgICAgICAgc3JjPXthY3RpdmUuaW1hZ2V9XHJcbiAgICAgICAgICAgICAgICAgIGFsdD17YCR7YWN0aXZlLmxhYmVsfSBPdXRyZWFjaCBQcmV2aWV3YH1cclxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidy1mdWxsIGgtZnVsbCBvYmplY3QtY292ZXJcIlxyXG4gICAgICAgICAgICAgICAgICBsb2FkaW5nPVwibGF6eVwiXHJcbiAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSBpbnNldC0wIGJnLWdyYWRpZW50LXRvLXQgZnJvbS1ibGFjay83MCB2aWEtdHJhbnNwYXJlbnQgdG8tdHJhbnNwYXJlbnQgcG9pbnRlci1ldmVudHMtbm9uZVwiIC8+XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImFic29sdXRlIGJvdHRvbS0yIGxlZnQtMi41IHJpZ2h0LTIuNSBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gdGV4dC13aGl0ZSBwb2ludGVyLWV2ZW50cy1ub25lXCI+XHJcbiAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtWzEwcHhdIGZvbnQtbW9ubyBmb250LWJvbGQgdGV4dC13aGl0ZS85MFwiPnthY3RpdmUubGFiZWx9PC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICA8c3BhblxyXG4gICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInRleHQtWzlweF0gZm9udC1tb25vIGZvbnQtYm9sZCBweC0xLjUgcHktMC41IHJvdW5kZWQgdGV4dC13aGl0ZVwiXHJcbiAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3sgYmFja2dyb3VuZENvbG9yOiBhY3RpdmUuY29sb3IgfX1cclxuICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgIHthY3RpdmUubnVtfVxyXG4gICAgICAgICAgICAgICAgICA8L3NwYW4+XHJcbiAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1zbSBzbTp0ZXh0LWJhc2UgdGV4dC10ZXh0LXNlY29uZGFyeSBsZWFkaW5nLXJlbGF4ZWQgbWItMy41XCI+XHJcbiAgICAgICAgICAgICAgICB7YWN0aXZlLmRlc2NyaXB0aW9ufVxyXG4gICAgICAgICAgICAgIDwvcD5cclxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInNwYWNlLXktMlwiPlxyXG4gICAgICAgICAgICAgICAge2FjdGl2ZS5wb2ludHMubWFwKChwdCwgaSkgPT4gKFxyXG4gICAgICAgICAgICAgICAgICA8ZGl2IGtleT17aX0gY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1zdGFydCBnYXAtMi41IHRleHQtc20gc206dGV4dC1iYXNlIHRleHQtdGV4dC1wcmltYXJ5XCI+XHJcbiAgICAgICAgICAgICAgICAgICAgPGRpdlxyXG4gICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidy0zLjUgaC0zLjUgcm91bmRlZC1mdWxsIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHNocmluay0wIG10LTAuNVwiXHJcbiAgICAgICAgICAgICAgICAgICAgICBzdHlsZT17eyBiYWNrZ3JvdW5kQ29sb3I6IGAke2FjdGl2ZS5jb2xvcn0yMGAsIGNvbG9yOiBhY3RpdmUuY29sb3IgfX1cclxuICAgICAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8Q2hlY2sgY2xhc3NOYW1lPVwidy0yIGgtMlwiIHN0cm9rZVdpZHRoPXsyLjV9IC8+XHJcbiAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgPHNwYW4+e3B0fTwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICApKX1cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgPC9tb3Rpb24uZGl2PlxyXG4gICAgICAgICAgPC9BbmltYXRlUHJlc2VuY2U+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgIDwvZGl2PlxyXG4gICAgPC9zZWN0aW9uPlxyXG4gIClcclxufVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgV2hvSXNIcWxGb3JcclxuIl0sImZpbGUiOiJDOi9Vc2Vycy9IUC9EZXNrdG9wL1RHUy9UYXJhal9HbG9iYWxsL2NsaWVudC9zcmMvcGFnZXMvSHFsU2VydmljZXMvY29tcG9uZW50cy9XaG9Jc0hxbEZvci5qc3gifQ==

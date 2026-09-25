@@ -1,0 +1,244 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/DatabaseCleansing/index.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import SEO from "/src/components/common/SEO/index.js";
+import ChatBot from "/src/components/chatbot/ChatBot.jsx";
+import Hero from "/src/pages/DatabaseCleansing/components/Hero.jsx";
+import WhatIsService from "/src/pages/DatabaseCleansing/components/WhatIsService.jsx";
+import WhoIsItFor from "/src/pages/DatabaseCleansing/components/WhoIsItFor.jsx";
+import ProblemsSolved from "/src/pages/DatabaseCleansing/components/ProblemsSolved.jsx";
+import CleansingProcess from "/src/pages/DatabaseCleansing/components/CleansingProcess.jsx";
+import WhatTarajDelivers from "/src/pages/DatabaseCleansing/components/WhatTarajDelivers.jsx";
+import WhyChoose from "/src/pages/DatabaseCleansing/components/WhyChoose.jsx";
+import FAQ from "/src/pages/DatabaseCleansing/components/FAQ.jsx";
+import CTA from "/src/pages/DatabaseCleansing/components/CTA.jsx";
+const databaseCleansingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "B2B Database Cleansing Services",
+      "description": "Comprehensive CRM database cleansing, deduplication, live SMTP verification, and contact enrichment services to eliminate bounce rates and restore data accuracy.",
+      "url": "https://www.tarajglobal.com/database-cleansing",
+      "provider": {
+        "@type": "Organization",
+        "name": "Taraj Global",
+        "url": "https://tarajglobal.com"
+      },
+      "areaServed": "Global",
+      "serviceType": "Database Hygiene & Cleansing"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.tarajglobal.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.tarajglobal.com/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Database Cleansing",
+          "item": "https://www.tarajglobal.com/database-cleansing"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is B2B database cleansing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B database cleansing is the systematic process of identifying, fixing, or removing inaccurate, duplicate, corrupt, and stale contact and account records from your CRM and marketing automation platforms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does database decay affect outbound sales and deliverability?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B data naturally decays by 25% to 30% annually due to job changes, company rebrands, and promotions. Stale contact lists cause high hard bounce rates that destroy sender domain reputation, waste sales rep dial time, and result in blacklisted email servers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you detect duplicate records across CRM systems?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We use advanced multi-vector fuzzy matching algorithms across email prefixes, domain root variations, LinkedIn profile handles, phone structures, and company legal entities to safely consolidate duplicate records while preserving complete historical deal activity and custom notes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is live SMTP verification and how does it prevent bounces?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our verification engine conducts real-time SMTP handshakes directly with destination mail servers without ever sending an outbound email. This confirms the exact mailbox existence, identifies catch-all risks, and suppresses known spam traps and honeypots before your team ever hits send."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you identify executive job changes and corporate turnover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We combine live professional network tracking and automated employment directory validation to detect departed executives, map their new employers, and identify the newly promoted successor decision-maker at their previous firm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What data fields can Taraj Global enrich into existing contact records?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We append verified direct desk extensions, mobile numbers, personal LinkedIn profile URLs, company employee counts, estimated annual revenue brackets, industry NAICS/SIC taxonomy, and installed technographic software stacks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you guarantee sub-1% hard bounce rates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Through a rigorous multi-stage scrub combining syntax normalization, DNS/MX record health checks, real-time live SMTP ping handshakes, and CDQA manual audit verification. We back every scrubbed list with an ironclad 99%+ deliverability guarantee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Taraj Global securely sync scrubbed data back into our CRM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We support direct bi-directional API sync with Salesforce, HubSpot, Marketo, and Microsoft Dynamics 365, as well as encrypted AES-256 staging files, ensuring zero data leakage and effortless one-click CRM updates."
+          }
+        }
+      ]
+    }
+  ]
+};
+const DatabaseCleansing = () => {
+  return /* @__PURE__ */ jsxDEV(Fragment, { children: [
+    /* @__PURE__ */ jsxDEV(
+      SEO,
+      {
+        title: "B2B Database Cleansing Services | Taraj Global",
+        description: "Scrub, deduplicate, verify, and enrich your stale CRM databases. Boost email deliverability, protect sender score, and empower sales with accurate contact data.",
+        keywords: "database cleansing services, B2B data enrichment, CRM data hygiene, contact list cleaning, email bounce reduction, CRM deduplication, lead data validation, sales database refresh, SMTP verification",
+        canonical: "/database-cleansing",
+        ogTitle: "B2B Database Cleansing Services | Taraj Global",
+        ogDescription: "Protect your sender reputation and accelerate sales efficiency with automated CRM hygiene, fuzzy deduplication, live SMTP verification, and data enrichment.",
+        ogType: "website",
+        twitterCard: "summary_large_image",
+        schemaJson: databaseCleansingSchema
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 152,
+        columnNumber: 7
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV("div", { className: "min-h-screen bg-background", children: [
+      /* @__PURE__ */ jsxDEV(Hero, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 166,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhatIsService, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 169,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhoIsItFor, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 172,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(ProblemsSolved, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 175,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(CleansingProcess, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 178,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhatTarajDelivers, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 181,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(WhyChoose, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 184,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(FAQ, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 187,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(CTA, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 190,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(ChatBot, {}, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+        lineNumber: 192,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+      lineNumber: 164,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx",
+    lineNumber: 151,
+    columnNumber: 5
+  }, this);
+};
+_c = DatabaseCleansing;
+export default DatabaseCleansing;
+var _c;
+$RefreshReg$(_c, "DatabaseCleansing");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DatabaseCleansing/index.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6IkFBbUlJLG1CQUNFLGNBREY7Ozs7Ozs7Ozs7Ozs7Ozs7QUFuSUosT0FBT0EsV0FBVztBQUNsQixPQUFPQyxTQUFTO0FBQ2hCLE9BQU9DLGFBQWE7QUFFcEIsT0FBT0MsVUFBVTtBQUNqQixPQUFPQyxtQkFBbUI7QUFDMUIsT0FBT0MsZ0JBQWdCO0FBQ3ZCLE9BQU9DLG9CQUFvQjtBQUMzQixPQUFPQyxzQkFBc0I7QUFDN0IsT0FBT0MsdUJBQXVCO0FBQzlCLE9BQU9DLGVBQWU7QUFDdEIsT0FBT0MsU0FBUztBQUNoQixPQUFPQyxTQUFTO0FBSWhCLE1BQU1DLDBCQUEwQjtBQUFBLEVBQzlCLFlBQVk7QUFBQSxFQUNaLFVBQVU7QUFBQSxJQUNSO0FBQUEsTUFDRSxTQUFTO0FBQUEsTUFDVCxRQUFRO0FBQUEsTUFDUixlQUFlO0FBQUEsTUFDZixPQUFPO0FBQUEsTUFDUCxZQUFZO0FBQUEsUUFDVixTQUFTO0FBQUEsUUFDVCxRQUFRO0FBQUEsUUFDUixPQUFPO0FBQUEsTUFDVDtBQUFBLE1BQ0EsY0FBYztBQUFBLE1BQ2QsZUFBZTtBQUFBLElBQ2pCO0FBQUEsSUFDQTtBQUFBLE1BQ0UsU0FBUztBQUFBLE1BQ1QsbUJBQW1CO0FBQUEsUUFDakI7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFlBQVk7QUFBQSxVQUNaLFFBQVE7QUFBQSxVQUNSLFFBQVE7QUFBQSxRQUNWO0FBQUEsUUFDQTtBQUFBLFVBQ0UsU0FBUztBQUFBLFVBQ1QsWUFBWTtBQUFBLFVBQ1osUUFBUTtBQUFBLFVBQ1IsUUFBUTtBQUFBLFFBQ1Y7QUFBQSxRQUNBO0FBQUEsVUFDRSxTQUFTO0FBQUEsVUFDVCxZQUFZO0FBQUEsVUFDWixRQUFRO0FBQUEsVUFDUixRQUFRO0FBQUEsUUFDVjtBQUFBLE1BQUM7QUFBQSxJQUVMO0FBQUEsSUFDQTtBQUFBLE1BQ0UsU0FBUztBQUFBLE1BQ1QsY0FBYztBQUFBLFFBQ1o7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLFFBQ0E7QUFBQSxVQUNFLFNBQVM7QUFBQSxVQUNULFFBQVE7QUFBQSxVQUNSLGtCQUFrQjtBQUFBLFlBQ2hCLFNBQVM7QUFBQSxZQUNULFFBQVE7QUFBQSxVQUNWO0FBQUEsUUFDRjtBQUFBLE1BQUM7QUFBQSxJQUVMO0FBQUEsRUFBQztBQUVMO0FBSUEsTUFBTUMsb0JBQW9CQSxNQUFNO0FBQzlCLFNBQ0UsbUNBQ0U7QUFBQTtBQUFBLE1BQUM7QUFBQTtBQUFBLFFBQ0MsT0FBTTtBQUFBLFFBQ04sYUFBWTtBQUFBLFFBQ1osVUFBUztBQUFBLFFBQ1QsV0FBVTtBQUFBLFFBQ1YsU0FBUTtBQUFBLFFBQ1IsZUFBYztBQUFBLFFBQ2QsUUFBTztBQUFBLFFBQ1AsYUFBWTtBQUFBLFFBQ1osWUFBWUQ7QUFBQUE7QUFBQUEsTUFUZDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsSUFTc0M7QUFBQSxJQUd0Qyx1QkFBQyxTQUFJLFdBQVUsOEJBRWI7QUFBQSw2QkFBQyxVQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBSztBQUFBLE1BR0wsdUJBQUMsbUJBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUFjO0FBQUEsTUFHZCx1QkFBQyxnQkFBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQVc7QUFBQSxNQUdYLHVCQUFDLG9CQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBZTtBQUFBLE1BR2YsdUJBQUMsc0JBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUFpQjtBQUFBLE1BR2pCLHVCQUFDLHVCQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBa0I7QUFBQSxNQUdsQix1QkFBQyxlQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBVTtBQUFBLE1BR1YsdUJBQUMsU0FBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLGFBQUk7QUFBQSxNQUdKLHVCQUFDLFNBQUQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQUFJO0FBQUEsTUFFSix1QkFBQyxhQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsYUFBUTtBQUFBLFNBNUJWO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0E2QkE7QUFBQSxPQTFDRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBMkNBO0FBRUo7QUFBQ0UsS0EvQ0tEO0FBaUROLGVBQWVBO0FBQWlCLElBQUFDO0FBQUEsYUFBQUEsSUFBQSIsIm5hbWVzIjpbIlJlYWN0IiwiU0VPIiwiQ2hhdEJvdCIsIkhlcm8iLCJXaGF0SXNTZXJ2aWNlIiwiV2hvSXNJdEZvciIsIlByb2JsZW1zU29sdmVkIiwiQ2xlYW5zaW5nUHJvY2VzcyIsIldoYXRUYXJhakRlbGl2ZXJzIiwiV2h5Q2hvb3NlIiwiRkFRIiwiQ1RBIiwiZGF0YWJhc2VDbGVhbnNpbmdTY2hlbWEiLCJEYXRhYmFzZUNsZWFuc2luZyIsIl9jIl0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbImluZGV4LmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgU0VPIGZyb20gJ0Bjb21wb25lbnRzL2NvbW1vbi9TRU8nXG5pbXBvcnQgQ2hhdEJvdCBmcm9tICdAY29tcG9uZW50cy9jaGF0Ym90L0NoYXRCb3QnXG5cbmltcG9ydCBIZXJvIGZyb20gJy4vY29tcG9uZW50cy9IZXJvJ1xuaW1wb3J0IFdoYXRJc1NlcnZpY2UgZnJvbSAnLi9jb21wb25lbnRzL1doYXRJc1NlcnZpY2UnXG5pbXBvcnQgV2hvSXNJdEZvciBmcm9tICcuL2NvbXBvbmVudHMvV2hvSXNJdEZvcidcbmltcG9ydCBQcm9ibGVtc1NvbHZlZCBmcm9tICcuL2NvbXBvbmVudHMvUHJvYmxlbXNTb2x2ZWQnXG5pbXBvcnQgQ2xlYW5zaW5nUHJvY2VzcyBmcm9tICcuL2NvbXBvbmVudHMvQ2xlYW5zaW5nUHJvY2VzcydcbmltcG9ydCBXaGF0VGFyYWpEZWxpdmVycyBmcm9tICcuL2NvbXBvbmVudHMvV2hhdFRhcmFqRGVsaXZlcnMnXG5pbXBvcnQgV2h5Q2hvb3NlIGZyb20gJy4vY29tcG9uZW50cy9XaHlDaG9vc2UnXG5pbXBvcnQgRkFRIGZyb20gJy4vY29tcG9uZW50cy9GQVEnXG5pbXBvcnQgQ1RBIGZyb20gJy4vY29tcG9uZW50cy9DVEEnXG5cbi8vIOKUgOKUgOKUgCBKU09OLUxEIFN0cnVjdHVyZWQgRGF0YSDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcblxuY29uc3QgZGF0YWJhc2VDbGVhbnNpbmdTY2hlbWEgPSB7XG4gIFwiQGNvbnRleHRcIjogXCJodHRwczovL3NjaGVtYS5vcmdcIixcbiAgXCJAZ3JhcGhcIjogW1xuICAgIHtcbiAgICAgIFwiQHR5cGVcIjogXCJTZXJ2aWNlXCIsXG4gICAgICBcIm5hbWVcIjogXCJCMkIgRGF0YWJhc2UgQ2xlYW5zaW5nIFNlcnZpY2VzXCIsXG4gICAgICBcImRlc2NyaXB0aW9uXCI6IFwiQ29tcHJlaGVuc2l2ZSBDUk0gZGF0YWJhc2UgY2xlYW5zaW5nLCBkZWR1cGxpY2F0aW9uLCBsaXZlIFNNVFAgdmVyaWZpY2F0aW9uLCBhbmQgY29udGFjdCBlbnJpY2htZW50IHNlcnZpY2VzIHRvIGVsaW1pbmF0ZSBib3VuY2UgcmF0ZXMgYW5kIHJlc3RvcmUgZGF0YSBhY2N1cmFjeS5cIixcbiAgICAgIFwidXJsXCI6IFwiaHR0cHM6Ly93d3cudGFyYWpnbG9iYWwuY29tL2RhdGFiYXNlLWNsZWFuc2luZ1wiLFxuICAgICAgXCJwcm92aWRlclwiOiB7XG4gICAgICAgIFwiQHR5cGVcIjogXCJPcmdhbml6YXRpb25cIixcbiAgICAgICAgXCJuYW1lXCI6IFwiVGFyYWogR2xvYmFsXCIsXG4gICAgICAgIFwidXJsXCI6IFwiaHR0cHM6Ly90YXJhamdsb2JhbC5jb21cIlxuICAgICAgfSxcbiAgICAgIFwiYXJlYVNlcnZlZFwiOiBcIkdsb2JhbFwiLFxuICAgICAgXCJzZXJ2aWNlVHlwZVwiOiBcIkRhdGFiYXNlIEh5Z2llbmUgJiBDbGVhbnNpbmdcIlxuICAgIH0sXG4gICAge1xuICAgICAgXCJAdHlwZVwiOiBcIkJyZWFkY3J1bWJMaXN0XCIsXG4gICAgICBcIml0ZW1MaXN0RWxlbWVudFwiOiBbXG4gICAgICAgIHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiTGlzdEl0ZW1cIixcbiAgICAgICAgICBcInBvc2l0aW9uXCI6IDEsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiSG9tZVwiLFxuICAgICAgICAgIFwiaXRlbVwiOiBcImh0dHBzOi8vd3d3LnRhcmFqZ2xvYmFsLmNvbS9cIlxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIkxpc3RJdGVtXCIsXG4gICAgICAgICAgXCJwb3NpdGlvblwiOiAyLFxuICAgICAgICAgIFwibmFtZVwiOiBcIlNlcnZpY2VzXCIsXG4gICAgICAgICAgXCJpdGVtXCI6IFwiaHR0cHM6Ly93d3cudGFyYWpnbG9iYWwuY29tL3NlcnZpY2VzXCJcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJMaXN0SXRlbVwiLFxuICAgICAgICAgIFwicG9zaXRpb25cIjogMyxcbiAgICAgICAgICBcIm5hbWVcIjogXCJEYXRhYmFzZSBDbGVhbnNpbmdcIixcbiAgICAgICAgICBcIml0ZW1cIjogXCJodHRwczovL3d3dy50YXJhamdsb2JhbC5jb20vZGF0YWJhc2UtY2xlYW5zaW5nXCJcbiAgICAgICAgfVxuICAgICAgXVxuICAgIH0sXG4gICAge1xuICAgICAgXCJAdHlwZVwiOiBcIkZBUVBhZ2VcIixcbiAgICAgIFwibWFpbkVudGl0eVwiOiBbXG4gICAgICAgIHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiUXVlc3Rpb25cIixcbiAgICAgICAgICBcIm5hbWVcIjogXCJXaGF0IGlzIEIyQiBkYXRhYmFzZSBjbGVhbnNpbmc/XCIsXG4gICAgICAgICAgXCJhY2NlcHRlZEFuc3dlclwiOiB7XG4gICAgICAgICAgICBcIkB0eXBlXCI6IFwiQW5zd2VyXCIsXG4gICAgICAgICAgICBcInRleHRcIjogXCJCMkIgZGF0YWJhc2UgY2xlYW5zaW5nIGlzIHRoZSBzeXN0ZW1hdGljIHByb2Nlc3Mgb2YgaWRlbnRpZnlpbmcsIGZpeGluZywgb3IgcmVtb3ZpbmcgaW5hY2N1cmF0ZSwgZHVwbGljYXRlLCBjb3JydXB0LCBhbmQgc3RhbGUgY29udGFjdCBhbmQgYWNjb3VudCByZWNvcmRzIGZyb20geW91ciBDUk0gYW5kIG1hcmtldGluZyBhdXRvbWF0aW9uIHBsYXRmb3Jtcy5cIlxuICAgICAgICAgIH1cbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJRdWVzdGlvblwiLFxuICAgICAgICAgIFwibmFtZVwiOiBcIkhvdyBkb2VzIGRhdGFiYXNlIGRlY2F5IGFmZmVjdCBvdXRib3VuZCBzYWxlcyBhbmQgZGVsaXZlcmFiaWxpdHk/XCIsXG4gICAgICAgICAgXCJhY2NlcHRlZEFuc3dlclwiOiB7XG4gICAgICAgICAgICBcIkB0eXBlXCI6IFwiQW5zd2VyXCIsXG4gICAgICAgICAgICBcInRleHRcIjogXCJCMkIgZGF0YSBuYXR1cmFsbHkgZGVjYXlzIGJ5IDI1JSB0byAzMCUgYW5udWFsbHkgZHVlIHRvIGpvYiBjaGFuZ2VzLCBjb21wYW55IHJlYnJhbmRzLCBhbmQgcHJvbW90aW9ucy4gU3RhbGUgY29udGFjdCBsaXN0cyBjYXVzZSBoaWdoIGhhcmQgYm91bmNlIHJhdGVzIHRoYXQgZGVzdHJveSBzZW5kZXIgZG9tYWluIHJlcHV0YXRpb24sIHdhc3RlIHNhbGVzIHJlcCBkaWFsIHRpbWUsIGFuZCByZXN1bHQgaW4gYmxhY2tsaXN0ZWQgZW1haWwgc2VydmVycy5cIlxuICAgICAgICAgIH1cbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJRdWVzdGlvblwiLFxuICAgICAgICAgIFwibmFtZVwiOiBcIkhvdyBkbyB5b3UgZGV0ZWN0IGR1cGxpY2F0ZSByZWNvcmRzIGFjcm9zcyBDUk0gc3lzdGVtcz9cIixcbiAgICAgICAgICBcImFjY2VwdGVkQW5zd2VyXCI6IHtcbiAgICAgICAgICAgIFwiQHR5cGVcIjogXCJBbnN3ZXJcIixcbiAgICAgICAgICAgIFwidGV4dFwiOiBcIldlIHVzZSBhZHZhbmNlZCBtdWx0aS12ZWN0b3IgZnV6enkgbWF0Y2hpbmcgYWxnb3JpdGhtcyBhY3Jvc3MgZW1haWwgcHJlZml4ZXMsIGRvbWFpbiByb290IHZhcmlhdGlvbnMsIExpbmtlZEluIHByb2ZpbGUgaGFuZGxlcywgcGhvbmUgc3RydWN0dXJlcywgYW5kIGNvbXBhbnkgbGVnYWwgZW50aXRpZXMgdG8gc2FmZWx5IGNvbnNvbGlkYXRlIGR1cGxpY2F0ZSByZWNvcmRzIHdoaWxlIHByZXNlcnZpbmcgY29tcGxldGUgaGlzdG9yaWNhbCBkZWFsIGFjdGl2aXR5IGFuZCBjdXN0b20gbm90ZXMuXCJcbiAgICAgICAgICB9XG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiUXVlc3Rpb25cIixcbiAgICAgICAgICBcIm5hbWVcIjogXCJXaGF0IGlzIGxpdmUgU01UUCB2ZXJpZmljYXRpb24gYW5kIGhvdyBkb2VzIGl0IHByZXZlbnQgYm91bmNlcz9cIixcbiAgICAgICAgICBcImFjY2VwdGVkQW5zd2VyXCI6IHtcbiAgICAgICAgICAgIFwiQHR5cGVcIjogXCJBbnN3ZXJcIixcbiAgICAgICAgICAgIFwidGV4dFwiOiBcIk91ciB2ZXJpZmljYXRpb24gZW5naW5lIGNvbmR1Y3RzIHJlYWwtdGltZSBTTVRQIGhhbmRzaGFrZXMgZGlyZWN0bHkgd2l0aCBkZXN0aW5hdGlvbiBtYWlsIHNlcnZlcnMgd2l0aG91dCBldmVyIHNlbmRpbmcgYW4gb3V0Ym91bmQgZW1haWwuIFRoaXMgY29uZmlybXMgdGhlIGV4YWN0IG1haWxib3ggZXhpc3RlbmNlLCBpZGVudGlmaWVzIGNhdGNoLWFsbCByaXNrcywgYW5kIHN1cHByZXNzZXMga25vd24gc3BhbSB0cmFwcyBhbmQgaG9uZXlwb3RzIGJlZm9yZSB5b3VyIHRlYW0gZXZlciBoaXRzIHNlbmQuXCJcbiAgICAgICAgICB9XG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiUXVlc3Rpb25cIixcbiAgICAgICAgICBcIm5hbWVcIjogXCJIb3cgZG8geW91IGlkZW50aWZ5IGV4ZWN1dGl2ZSBqb2IgY2hhbmdlcyBhbmQgY29ycG9yYXRlIHR1cm5vdmVyP1wiLFxuICAgICAgICAgIFwiYWNjZXB0ZWRBbnN3ZXJcIjoge1xuICAgICAgICAgICAgXCJAdHlwZVwiOiBcIkFuc3dlclwiLFxuICAgICAgICAgICAgXCJ0ZXh0XCI6IFwiV2UgY29tYmluZSBsaXZlIHByb2Zlc3Npb25hbCBuZXR3b3JrIHRyYWNraW5nIGFuZCBhdXRvbWF0ZWQgZW1wbG95bWVudCBkaXJlY3RvcnkgdmFsaWRhdGlvbiB0byBkZXRlY3QgZGVwYXJ0ZWQgZXhlY3V0aXZlcywgbWFwIHRoZWlyIG5ldyBlbXBsb3llcnMsIGFuZCBpZGVudGlmeSB0aGUgbmV3bHkgcHJvbW90ZWQgc3VjY2Vzc29yIGRlY2lzaW9uLW1ha2VyIGF0IHRoZWlyIHByZXZpb3VzIGZpcm0uXCJcbiAgICAgICAgICB9XG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICBcIkB0eXBlXCI6IFwiUXVlc3Rpb25cIixcbiAgICAgICAgICBcIm5hbWVcIjogXCJXaGF0IGRhdGEgZmllbGRzIGNhbiBUYXJhaiBHbG9iYWwgZW5yaWNoIGludG8gZXhpc3RpbmcgY29udGFjdCByZWNvcmRzP1wiLFxuICAgICAgICAgIFwiYWNjZXB0ZWRBbnN3ZXJcIjoge1xuICAgICAgICAgICAgXCJAdHlwZVwiOiBcIkFuc3dlclwiLFxuICAgICAgICAgICAgXCJ0ZXh0XCI6IFwiV2UgYXBwZW5kIHZlcmlmaWVkIGRpcmVjdCBkZXNrIGV4dGVuc2lvbnMsIG1vYmlsZSBudW1iZXJzLCBwZXJzb25hbCBMaW5rZWRJbiBwcm9maWxlIFVSTHMsIGNvbXBhbnkgZW1wbG95ZWUgY291bnRzLCBlc3RpbWF0ZWQgYW5udWFsIHJldmVudWUgYnJhY2tldHMsIGluZHVzdHJ5IE5BSUNTL1NJQyB0YXhvbm9teSwgYW5kIGluc3RhbGxlZCB0ZWNobm9ncmFwaGljIHNvZnR3YXJlIHN0YWNrcy5cIlxuICAgICAgICAgIH1cbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIFwiQHR5cGVcIjogXCJRdWVzdGlvblwiLFxuICAgICAgICAgIFwibmFtZVwiOiBcIkhvdyBkbyB5b3UgZ3VhcmFudGVlIHN1Yi0xJSBoYXJkIGJvdW5jZSByYXRlcz9cIixcbiAgICAgICAgICBcImFjY2VwdGVkQW5zd2VyXCI6IHtcbiAgICAgICAgICAgIFwiQHR5cGVcIjogXCJBbnN3ZXJcIixcbiAgICAgICAgICAgIFwidGV4dFwiOiBcIlRocm91Z2ggYSByaWdvcm91cyBtdWx0aS1zdGFnZSBzY3J1YiBjb21iaW5pbmcgc3ludGF4IG5vcm1hbGl6YXRpb24sIEROUy9NWCByZWNvcmQgaGVhbHRoIGNoZWNrcywgcmVhbC10aW1lIGxpdmUgU01UUCBwaW5nIGhhbmRzaGFrZXMsIGFuZCBDRFFBIG1hbnVhbCBhdWRpdCB2ZXJpZmljYXRpb24uIFdlIGJhY2sgZXZlcnkgc2NydWJiZWQgbGlzdCB3aXRoIGFuIGlyb25jbGFkIDk5JSsgZGVsaXZlcmFiaWxpdHkgZ3VhcmFudGVlLlwiXG4gICAgICAgICAgfVxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgXCJAdHlwZVwiOiBcIlF1ZXN0aW9uXCIsXG4gICAgICAgICAgXCJuYW1lXCI6IFwiSG93IGRvZXMgVGFyYWogR2xvYmFsIHNlY3VyZWx5IHN5bmMgc2NydWJiZWQgZGF0YSBiYWNrIGludG8gb3VyIENSTT9cIixcbiAgICAgICAgICBcImFjY2VwdGVkQW5zd2VyXCI6IHtcbiAgICAgICAgICAgIFwiQHR5cGVcIjogXCJBbnN3ZXJcIixcbiAgICAgICAgICAgIFwidGV4dFwiOiBcIldlIHN1cHBvcnQgZGlyZWN0IGJpLWRpcmVjdGlvbmFsIEFQSSBzeW5jIHdpdGggU2FsZXNmb3JjZSwgSHViU3BvdCwgTWFya2V0bywgYW5kIE1pY3Jvc29mdCBEeW5hbWljcyAzNjUsIGFzIHdlbGwgYXMgZW5jcnlwdGVkIEFFUy0yNTYgc3RhZ2luZyBmaWxlcywgZW5zdXJpbmcgemVybyBkYXRhIGxlYWthZ2UgYW5kIGVmZm9ydGxlc3Mgb25lLWNsaWNrIENSTSB1cGRhdGVzLlwiXG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICBdXG4gICAgfVxuICBdXG59XG5cbi8vIOKUgOKUgOKUgCBQYWdlIENvbXBvbmVudCDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcblxuY29uc3QgRGF0YWJhc2VDbGVhbnNpbmcgPSAoKSA9PiB7XG4gIHJldHVybiAoXG4gICAgPD5cbiAgICAgIDxTRU9cbiAgICAgICAgdGl0bGU9XCJCMkIgRGF0YWJhc2UgQ2xlYW5zaW5nIFNlcnZpY2VzIHwgVGFyYWogR2xvYmFsXCJcbiAgICAgICAgZGVzY3JpcHRpb249XCJTY3J1YiwgZGVkdXBsaWNhdGUsIHZlcmlmeSwgYW5kIGVucmljaCB5b3VyIHN0YWxlIENSTSBkYXRhYmFzZXMuIEJvb3N0IGVtYWlsIGRlbGl2ZXJhYmlsaXR5LCBwcm90ZWN0IHNlbmRlciBzY29yZSwgYW5kIGVtcG93ZXIgc2FsZXMgd2l0aCBhY2N1cmF0ZSBjb250YWN0IGRhdGEuXCJcbiAgICAgICAga2V5d29yZHM9XCJkYXRhYmFzZSBjbGVhbnNpbmcgc2VydmljZXMsIEIyQiBkYXRhIGVucmljaG1lbnQsIENSTSBkYXRhIGh5Z2llbmUsIGNvbnRhY3QgbGlzdCBjbGVhbmluZywgZW1haWwgYm91bmNlIHJlZHVjdGlvbiwgQ1JNIGRlZHVwbGljYXRpb24sIGxlYWQgZGF0YSB2YWxpZGF0aW9uLCBzYWxlcyBkYXRhYmFzZSByZWZyZXNoLCBTTVRQIHZlcmlmaWNhdGlvblwiXG4gICAgICAgIGNhbm9uaWNhbD1cIi9kYXRhYmFzZS1jbGVhbnNpbmdcIlxuICAgICAgICBvZ1RpdGxlPVwiQjJCIERhdGFiYXNlIENsZWFuc2luZyBTZXJ2aWNlcyB8IFRhcmFqIEdsb2JhbFwiXG4gICAgICAgIG9nRGVzY3JpcHRpb249XCJQcm90ZWN0IHlvdXIgc2VuZGVyIHJlcHV0YXRpb24gYW5kIGFjY2VsZXJhdGUgc2FsZXMgZWZmaWNpZW5jeSB3aXRoIGF1dG9tYXRlZCBDUk0gaHlnaWVuZSwgZnV6enkgZGVkdXBsaWNhdGlvbiwgbGl2ZSBTTVRQIHZlcmlmaWNhdGlvbiwgYW5kIGRhdGEgZW5yaWNobWVudC5cIlxuICAgICAgICBvZ1R5cGU9XCJ3ZWJzaXRlXCJcbiAgICAgICAgdHdpdHRlckNhcmQ9XCJzdW1tYXJ5X2xhcmdlX2ltYWdlXCJcbiAgICAgICAgc2NoZW1hSnNvbj17ZGF0YWJhc2VDbGVhbnNpbmdTY2hlbWF9XG4gICAgICAvPlxuXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1pbi1oLXNjcmVlbiBiZy1iYWNrZ3JvdW5kXCI+XG4gICAgICAgIHsvKiBTZWN0aW9uIDEg4oCUIEhlcm8gKi99XG4gICAgICAgIDxIZXJvIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gMiDigJQgV2hhdCBJcyBEYXRhYmFzZSBDbGVhbnNpbmcgKi99XG4gICAgICAgIDxXaGF0SXNTZXJ2aWNlIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gMyDigJQgV2hvIENhbiBCZW5lZml0ICovfVxuICAgICAgICA8V2hvSXNJdEZvciAvPlxuXG4gICAgICAgIHsvKiBTZWN0aW9uIDQg4oCUIFByb2JsZW0g4oaSIFNvbHV0aW9uICovfVxuICAgICAgICA8UHJvYmxlbXNTb2x2ZWQgLz5cblxuICAgICAgICB7LyogU2VjdGlvbiA1IOKAlCA5LVN0ZXAgV29ya2Zsb3cgKi99XG4gICAgICAgIDxDbGVhbnNpbmdQcm9jZXNzIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gNiDigJQgV2hhdCBUYXJhaiBHbG9iYWwgRGVsaXZlcnMgKi99XG4gICAgICAgIDxXaGF0VGFyYWpEZWxpdmVycyAvPlxuXG4gICAgICAgIHsvKiBTZWN0aW9uIDcg4oCUIFdoeSBDaG9vc2UgVGFyYWogR2xvYmFsICovfVxuICAgICAgICA8V2h5Q2hvb3NlIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gOCDigJQgRkFRICovfVxuICAgICAgICA8RkFRIC8+XG5cbiAgICAgICAgey8qIFNlY3Rpb24gOSDigJQgRmluYWwgQ1RBICovfVxuICAgICAgICA8Q1RBIC8+XG5cbiAgICAgICAgPENoYXRCb3QgLz5cbiAgICAgIDwvZGl2PlxuICAgIDwvPlxuICApXG59XG5cbmV4cG9ydCBkZWZhdWx0IERhdGFiYXNlQ2xlYW5zaW5nXG4iXSwiZmlsZSI6IkM6L1VzZXJzL0hQL0Rlc2t0b3AvVEdTL1RhcmFqX0dsb2JhbGwvY2xpZW50L3NyYy9wYWdlcy9EYXRhYmFzZUNsZWFuc2luZy9pbmRleC5qc3gifQ==

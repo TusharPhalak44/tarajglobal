@@ -1,0 +1,1527 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/Admin/Meetings.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useEffect = __vite__cjsImport3_react["useEffect"]; const useState = __vite__cjsImport3_react["useState"];
+import {
+  Calendar as CalendarIcon,
+  Search,
+  Filter,
+  MoreVertical,
+  Clock,
+  Video,
+  ExternalLink,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  X,
+  RefreshCw,
+  User,
+  Building,
+  Mail,
+  Phone,
+  MessageSquare,
+  ChevronLeft,
+  ChevronRight,
+  RotateCcw
+} from "/node_modules/.vite/deps/lucide-react.js?v=2f1d9042";
+import { adminAPI } from "/src/api/index.js";
+const Meetings = () => {
+  _s();
+  const [loading, setLoading] = useState(true);
+  const [meetings, setMeetings] = useState([]);
+  const [pagination, setPagination] = useState({ page: 1, limit: 15, total: 0, totalPages: 0 });
+  const [filters, setFilters] = useState({ status: "", search: "", date: "" });
+  const [selectedMeeting, setSelectedMeeting] = useState(null);
+  const [showDetailModal, setShowDetailModal] = useState(false);
+  const [showRescheduleModal, setShowRescheduleModal] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
+  const [rescheduleForm, setRescheduleForm] = useState({ date: "", time: "" });
+  const [cancelReason, setCancelReason] = useState("");
+  const [statusVal, setStatusVal] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [actionError, setActionError] = useState("");
+  useEffect(() => {
+    fetchMeetings();
+  }, [filters.status, filters.date, pagination.page]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchMeetings();
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [filters.search]);
+  const fetchMeetings = async () => {
+    try {
+      setLoading(true);
+      const response = await adminAPI.getMeetings({
+        ...filters,
+        page: pagination.page,
+        limit: pagination.limit
+      });
+      if (response.data && response.data.success) {
+        setMeetings(response.data.data || []);
+        if (response.data.pagination) {
+          setPagination(response.data.pagination);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to load meetings:", error);
+      setMeetings([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const isAnyModalOpen = showDetailModal || showRescheduleModal || showCancelModal || showStatusModal;
+  useEffect(() => {
+    if (isAnyModalOpen) {
+      const prevBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prevBodyOverflow || "";
+      };
+    }
+  }, [isAnyModalOpen]);
+  const handleOpenDetail = (meeting) => {
+    setSelectedMeeting(meeting);
+    setShowDetailModal(true);
+  };
+  const handleOpenReschedule = (meeting) => {
+    setSelectedMeeting(meeting);
+    const curDate = meeting.meeting_date ? new Date(meeting.meeting_date).toISOString().split("T")[0] : "";
+    setRescheduleForm({
+      date: curDate,
+      time: meeting.meeting_time || "10:00 AM"
+    });
+    setActionError("");
+    setShowRescheduleModal(true);
+  };
+  const handleOpenCancel = (meeting) => {
+    setSelectedMeeting(meeting);
+    setCancelReason("");
+    setActionError("");
+    setShowCancelModal(true);
+  };
+  const handleOpenStatus = (meeting) => {
+    setSelectedMeeting(meeting);
+    setStatusVal(meeting.status || "pending");
+    setActionError("");
+    setShowStatusModal(true);
+  };
+  const handleRescheduleSubmit = async (e) => {
+    e.preventDefault();
+    if (!rescheduleForm.date || !rescheduleForm.time) {
+      setActionError("Both date and time are required.");
+      return;
+    }
+    try {
+      setSaving(true);
+      setActionError("");
+      const response = await adminAPI.rescheduleMeeting(selectedMeeting.id, {
+        date: rescheduleForm.date,
+        time: rescheduleForm.time
+      });
+      if (response.data?.success) {
+        setShowRescheduleModal(false);
+        fetchMeetings();
+      } else {
+        setActionError(response.data?.message || "Failed to reschedule.");
+      }
+    } catch (err) {
+      setActionError(err.response?.data?.message || err.message || "Reschedule failed.");
+    } finally {
+      setSaving(false);
+    }
+  };
+  const handleCancelSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setSaving(true);
+      setActionError("");
+      const response = await adminAPI.cancelMeeting(selectedMeeting.id, {
+        cancellationReason: cancelReason
+      });
+      if (response.data?.success) {
+        setShowCancelModal(false);
+        fetchMeetings();
+      } else {
+        setActionError(response.data?.message || "Failed to cancel meeting.");
+      }
+    } catch (err) {
+      setActionError(err.response?.data?.message || err.message || "Cancellation failed.");
+    } finally {
+      setSaving(false);
+    }
+  };
+  const handleStatusSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setSaving(true);
+      setActionError("");
+      const response = await adminAPI.updateMeetingStatus(selectedMeeting.id, {
+        status: statusVal
+      });
+      if (response.data?.success) {
+        setShowStatusModal(false);
+        fetchMeetings();
+      } else {
+        setActionError(response.data?.message || "Failed to update status.");
+      }
+    } catch (err) {
+      setActionError(err.response?.data?.message || err.message || "Failed to update status.");
+    } finally {
+      setSaving(false);
+    }
+  };
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case "confirmed":
+        return /* @__PURE__ */ jsxDEV("span", { className: "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20", children: "Confirmed" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 216,
+          columnNumber: 16
+        }, this);
+      case "pending":
+        return /* @__PURE__ */ jsxDEV("span", { className: "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20", children: "Pending" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 218,
+          columnNumber: 16
+        }, this);
+      case "completed":
+        return /* @__PURE__ */ jsxDEV("span", { className: "px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20", children: "Completed" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 220,
+          columnNumber: 16
+        }, this);
+      case "cancelled":
+        return /* @__PURE__ */ jsxDEV("span", { className: "px-2.5 py-1 rounded-full text-xs font-bold bg-slate-500/10 text-slate-500 border border-slate-500/20", children: "Cancelled" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 222,
+          columnNumber: 16
+        }, this);
+      case "failed":
+        return /* @__PURE__ */ jsxDEV("span", { className: "px-2.5 py-1 rounded-full text-xs font-bold bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20", children: "Failed" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 224,
+          columnNumber: 16
+        }, this);
+      default:
+        return /* @__PURE__ */ jsxDEV("span", { className: "px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 dark:bg-white/5 text-text-muted", children: status }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 226,
+          columnNumber: 16
+        }, this);
+    }
+  };
+  return /* @__PURE__ */ jsxDEV("div", { className: "p-6 max-w-7xl mx-auto space-y-6", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "flex flex-col sm:flex-row sm:items-center justify-between gap-4", children: [
+      /* @__PURE__ */ jsxDEV("div", { children: [
+        /* @__PURE__ */ jsxDEV("h1", { className: "text-2xl font-extrabold text-text-primary tracking-tight", children: "Strategy Call Meetings" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 235,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-sm text-text-secondary", children: "Manage inbound strategy call bookings, Google Calendar synchronization, and Google Meet rooms." }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 236,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 234,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          onClick: fetchMeetings,
+          className: "inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 text-text-primary text-xs font-bold transition-colors cursor-pointer",
+          children: [
+            /* @__PURE__ */ jsxDEV(RotateCcw, { size: 14 }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 244,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("span", { children: "Refresh" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 245,
+              columnNumber: 11
+            }, this)
+          ]
+        },
+        void 0,
+        true,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 240,
+          columnNumber: 9
+        },
+        this
+      )
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 233,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "p-4 rounded-2xl bg-surface border border-border flex flex-col md:flex-row items-center justify-between gap-4", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "relative w-full md:w-80", children: [
+        /* @__PURE__ */ jsxDEV(Search, { className: "absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 252,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV(
+          "input",
+          {
+            type: "text",
+            placeholder: "Search by name, email, company, ID...",
+            value: filters.search,
+            onChange: (e) => setFilters((prev) => ({ ...prev, search: e.target.value })),
+            className: "w-full pl-10 pr-4 py-2.5 rounded-xl bg-background border border-border text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-[#00A6FF]"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 253,
+            columnNumber: 11
+          },
+          this
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 251,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "flex flex-wrap items-center gap-3 w-full md:w-auto", children: [
+        /* @__PURE__ */ jsxDEV(
+          "select",
+          {
+            value: filters.status,
+            onChange: (e) => setFilters((prev) => ({ ...prev, status: e.target.value })),
+            className: "px-3 py-2.5 rounded-xl bg-background border border-border text-xs text-text-primary focus:outline-none focus:border-[#00A6FF] cursor-pointer",
+            children: [
+              /* @__PURE__ */ jsxDEV("option", { value: "", children: "All Statuses" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 269,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "confirmed", children: "Confirmed" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 270,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "pending", children: "Pending" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 271,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "completed", children: "Completed" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 272,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "cancelled", children: "Cancelled" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 273,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "failed", children: "Failed" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 274,
+                columnNumber: 13
+              }, this)
+            ]
+          },
+          void 0,
+          true,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 264,
+            columnNumber: 11
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          "input",
+          {
+            type: "date",
+            value: filters.date,
+            onChange: (e) => setFilters((prev) => ({ ...prev, date: e.target.value })),
+            className: "px-3 py-2 rounded-xl bg-background border border-border text-xs text-text-primary focus:outline-none focus:border-[#00A6FF] cursor-pointer"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 278,
+            columnNumber: 11
+          },
+          this
+        ),
+        (filters.status || filters.date || filters.search) && /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            onClick: () => setFilters({ status: "", search: "", date: "" }),
+            className: "text-xs text-[#00A6FF] hover:underline font-bold cursor-pointer",
+            children: "Clear Filters"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 286,
+            columnNumber: 11
+          },
+          this
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 262,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 250,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "rounded-2xl bg-surface border border-border overflow-hidden shadow-sm", children: [
+      loading ? /* @__PURE__ */ jsxDEV("div", { className: "p-16 text-center text-text-muted text-xs font-mono", children: [
+        /* @__PURE__ */ jsxDEV("span", { className: "inline-block animate-spin mr-2", children: "⟳" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 300,
+          columnNumber: 13
+        }, this),
+        "Loading meetings..."
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 299,
+        columnNumber: 9
+      }, this) : meetings.length === 0 ? /* @__PURE__ */ jsxDEV("div", { className: "p-16 text-center text-text-muted", children: [
+        /* @__PURE__ */ jsxDEV(CalendarIcon, { size: 36, className: "mx-auto mb-2 text-text-muted opacity-40" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 305,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-sm font-semibold text-text-primary", children: "No meetings found" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 306,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-text-secondary mt-1", children: "Try adjusting your filters or date range." }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 307,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 304,
+        columnNumber: 9
+      }, this) : /* @__PURE__ */ jsxDEV("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxDEV("table", { className: "w-full text-left border-collapse", children: [
+        /* @__PURE__ */ jsxDEV("thead", { children: /* @__PURE__ */ jsxDEV("tr", { className: "border-b border-border/80 bg-slate-50/50 dark:bg-white/[0.015] text-[11px] font-mono uppercase text-text-muted tracking-wider", children: [
+          /* @__PURE__ */ jsxDEV("th", { className: "py-3 px-4", children: "Attendee & Company" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 314,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-3 px-4", children: "Date & Time" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 315,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-3 px-4", children: "Interest" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 316,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-3 px-4", children: "Status" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 317,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-3 px-4", children: "Google Meet / Cal" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 318,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "py-3 px-4 text-right", children: "Actions" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 319,
+            columnNumber: 19
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 313,
+          columnNumber: 17
+        }, this) }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 312,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("tbody", { className: "divide-y divide-border/60 text-xs", children: meetings.map((meeting) => {
+          const dateStr = meeting.meeting_date ? new Date(meeting.meeting_date).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          }) : "N/A";
+          return /* @__PURE__ */ jsxDEV("tr", { className: "hover:bg-slate-50/60 dark:hover:bg-white/[0.015] transition-colors", children: [
+            /* @__PURE__ */ jsxDEV("td", { className: "py-3.5 px-4", children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "font-bold text-text-primary text-[13px]", children: meeting.full_name || meeting.name }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 336,
+                columnNumber: 25
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary text-xs flex items-center gap-1.5 mt-0.5", children: [
+                /* @__PURE__ */ jsxDEV(Building, { size: 12, className: "text-[#00A6FF]" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 340,
+                  columnNumber: 27
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { children: meeting.company }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 341,
+                  columnNumber: 27
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 339,
+                columnNumber: 25
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "text-text-muted text-[11px] font-mono mt-0.5", children: [
+                meeting.email,
+                " • ",
+                meeting.phone || "No phone"
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 343,
+                columnNumber: 25
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 335,
+              columnNumber: 23
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-3.5 px-4", children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "font-semibold text-text-primary flex items-center gap-1.5", children: [
+                /* @__PURE__ */ jsxDEV(CalendarIcon, { size: 13, className: "text-[#00A6FF]" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 351,
+                  columnNumber: 27
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { children: dateStr }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 352,
+                  columnNumber: 27
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 350,
+                columnNumber: 25
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "text-text-muted text-[11px] font-mono flex items-center gap-1 mt-0.5", children: [
+                /* @__PURE__ */ jsxDEV(Clock, { size: 12 }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 355,
+                  columnNumber: 27
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { children: [
+                  meeting.meeting_time,
+                  " (",
+                  meeting.time_zone || "IST",
+                  ")"
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 356,
+                  columnNumber: 27
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 354,
+                columnNumber: 25
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "text-[10px] text-text-muted font-mono mt-0.5", children: [
+                "ID: ",
+                meeting.booking_id
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 358,
+                columnNumber: 25
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 349,
+              columnNumber: 23
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-3.5 px-4", children: /* @__PURE__ */ jsxDEV("span", { className: "px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/5 border border-border/60 text-text-secondary text-[11px] font-medium", children: meeting.interest || "Strategy Call" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 365,
+              columnNumber: 25
+            }, this) }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 364,
+              columnNumber: 23
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-3.5 px-4", children: getStatusBadge(meeting.status) }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 371,
+              columnNumber: 23
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-3.5 px-4", children: /* @__PURE__ */ jsxDEV("div", { className: "flex flex-col gap-1.5", children: [
+              meeting.meeting_link ? /* @__PURE__ */ jsxDEV(
+                "a",
+                {
+                  href: meeting.meeting_link,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: "inline-flex items-center gap-1 text-[#00A6FF] hover:underline font-bold text-[11px]",
+                  children: [
+                    /* @__PURE__ */ jsxDEV(Video, { size: 12 }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 385,
+                      columnNumber: 31
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("span", { children: "Join Meet" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 386,
+                      columnNumber: 31
+                    }, this),
+                    /* @__PURE__ */ jsxDEV(ExternalLink, { size: 10 }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 387,
+                      columnNumber: 31
+                    }, this)
+                  ]
+                },
+                void 0,
+                true,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 379,
+                  columnNumber: 25
+                },
+                this
+              ) : /* @__PURE__ */ jsxDEV("span", { className: "text-text-muted text-[10px] font-mono", children: "No Meet link" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 390,
+                columnNumber: 25
+              }, this),
+              meeting.calendar_event_link && /* @__PURE__ */ jsxDEV(
+                "a",
+                {
+                  href: meeting.calendar_event_link,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: "inline-flex items-center gap-1 text-text-secondary hover:text-[#00A6FF] text-[11px]",
+                  children: [
+                    /* @__PURE__ */ jsxDEV(CalendarIcon, { size: 11 }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 400,
+                      columnNumber: 31
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("span", { children: "Calendar" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 401,
+                      columnNumber: 31
+                    }, this)
+                  ]
+                },
+                void 0,
+                true,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 394,
+                  columnNumber: 25
+                },
+                this
+              )
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 377,
+              columnNumber: 25
+            }, this) }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 376,
+              columnNumber: 23
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "py-3.5 px-4 text-right", children: /* @__PURE__ */ jsxDEV("div", { className: "inline-flex items-center gap-1.5", children: [
+              /* @__PURE__ */ jsxDEV(
+                "button",
+                {
+                  onClick: () => handleOpenDetail(meeting),
+                  className: "px-2.5 py-1.5 rounded-lg border border-border/80 hover:bg-slate-100 dark:hover:bg-white/5 text-[11px] font-semibold text-text-primary cursor-pointer",
+                  children: "Details"
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 410,
+                  columnNumber: 27
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV(
+                "button",
+                {
+                  onClick: () => handleOpenReschedule(meeting),
+                  disabled: meeting.status === "cancelled",
+                  className: "px-2.5 py-1.5 rounded-lg bg-[#00A6FF]/10 text-[#00A6FF] hover:bg-[#00A6FF]/20 text-[11px] font-semibold disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer",
+                  children: "Reschedule"
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 416,
+                  columnNumber: 27
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV(
+                "button",
+                {
+                  onClick: () => handleOpenCancel(meeting),
+                  disabled: meeting.status === "cancelled",
+                  className: "px-2.5 py-1.5 rounded-lg bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20 text-[11px] font-semibold disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer",
+                  children: "Cancel"
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 423,
+                  columnNumber: 27
+                },
+                this
+              )
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 409,
+              columnNumber: 25
+            }, this) }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 408,
+              columnNumber: 23
+            }, this)
+          ] }, meeting.id, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 333,
+            columnNumber: 19
+          }, this);
+        }) }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 322,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 311,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 310,
+        columnNumber: 9
+      }, this),
+      pagination.totalPages > 1 && /* @__PURE__ */ jsxDEV("div", { className: "p-4 border-t border-border flex items-center justify-between text-xs text-text-secondary", children: [
+        /* @__PURE__ */ jsxDEV("span", { children: [
+          "Showing ",
+          (pagination.page - 1) * pagination.limit + 1,
+          " to ",
+          Math.min(pagination.page * pagination.limit, pagination.total),
+          " of ",
+          pagination.total,
+          " bookings"
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 443,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-1", children: [
+          /* @__PURE__ */ jsxDEV(
+            "button",
+            {
+              disabled: pagination.page <= 1,
+              onClick: () => setPagination((prev) => ({ ...prev, page: prev.page - 1 })),
+              className: "p-1.5 rounded-lg border border-border text-text-muted hover:text-text-primary disabled:opacity-40 cursor-pointer",
+              children: /* @__PURE__ */ jsxDEV(ChevronLeft, { size: 14 }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 452,
+                columnNumber: 17
+              }, this)
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 447,
+              columnNumber: 15
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV("span", { className: "px-2 font-mono font-bold", children: [
+            pagination.page,
+            " / ",
+            pagination.totalPages
+          ] }, void 0, true, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 454,
+            columnNumber: 15
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            "button",
+            {
+              disabled: pagination.page >= pagination.totalPages,
+              onClick: () => setPagination((prev) => ({ ...prev, page: prev.page + 1 })),
+              className: "p-1.5 rounded-lg border border-border text-text-muted hover:text-text-primary disabled:opacity-40 cursor-pointer",
+              children: /* @__PURE__ */ jsxDEV(ChevronRight, { size: 14 }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 462,
+                columnNumber: 17
+              }, this)
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 457,
+              columnNumber: 15
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 446,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 442,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 297,
+      columnNumber: 7
+    }, this),
+    showDetailModal && selectedMeeting && /* @__PURE__ */ jsxDEV(
+      "div",
+      {
+        "data-lenis-prevent": "true",
+        className: "fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 overscroll-contain",
+        onWheel: (e) => e.stopPropagation(),
+        children: /* @__PURE__ */ jsxDEV(
+          "div",
+          {
+            className: "bg-surface border border-border rounded-2xl p-6 max-w-lg w-full shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto overscroll-contain custom-modal-scrollbar",
+            onClick: (e) => e.stopPropagation(),
+            children: [
+              /* @__PURE__ */ jsxDEV(
+                "button",
+                {
+                  onClick: () => setShowDetailModal(false),
+                  className: "absolute top-4 right-4 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 text-text-muted hover:text-text-primary cursor-pointer",
+                  children: /* @__PURE__ */ jsxDEV(X, { size: 18 }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 484,
+                    columnNumber: 15
+                  }, this)
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 480,
+                  columnNumber: 13
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV("h3", { className: "text-xl font-bold text-text-primary mb-1", children: "Meeting Details" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 487,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-text-muted font-mono mb-4", children: [
+                "Booking Reference: ",
+                selectedMeeting.booking_id
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 488,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "space-y-3 text-xs", children: [
+                /* @__PURE__ */ jsxDEV("div", { className: "p-3 rounded-xl bg-background border border-border/70", children: [
+                  /* @__PURE__ */ jsxDEV("span", { className: "text-text-muted block text-[10px] font-mono uppercase", children: "Customer" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 494,
+                    columnNumber: 17
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("div", { className: "font-bold text-sm text-text-primary mt-0.5", children: selectedMeeting.full_name }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 495,
+                    columnNumber: 17
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary mt-1", children: selectedMeeting.company }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 496,
+                    columnNumber: 17
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("div", { className: "text-text-muted font-mono mt-0.5", children: [
+                    selectedMeeting.email,
+                    " • ",
+                    selectedMeeting.phone || "N/A"
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 497,
+                    columnNumber: 17
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 493,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-2 gap-3", children: [
+                  /* @__PURE__ */ jsxDEV("div", { className: "p-3 rounded-xl bg-background border border-border/70", children: [
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-text-muted block text-[10px] font-mono uppercase", children: "Date & Time" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 502,
+                      columnNumber: 19
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("div", { className: "font-semibold text-text-primary mt-0.5", children: new Date(selectedMeeting.meeting_date).toLocaleDateString() }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 503,
+                      columnNumber: 19
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary font-mono mt-0.5", children: [
+                      selectedMeeting.meeting_time,
+                      " (",
+                      selectedMeeting.time_zone || "IST",
+                      ")"
+                    ] }, void 0, true, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 506,
+                      columnNumber: 19
+                    }, this)
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 501,
+                    columnNumber: 17
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("div", { className: "p-3 rounded-xl bg-background border border-border/70", children: [
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-text-muted block text-[10px] font-mono uppercase", children: "Status" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 512,
+                      columnNumber: 19
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("div", { className: "mt-1", children: getStatusBadge(selectedMeeting.status) }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 513,
+                      columnNumber: 19
+                    }, this)
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 511,
+                    columnNumber: 17
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 500,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV("div", { className: "p-3 rounded-xl bg-background border border-border/70", children: [
+                  /* @__PURE__ */ jsxDEV("span", { className: "text-text-muted block text-[10px] font-mono uppercase", children: "Area of Interest" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 518,
+                    columnNumber: 17
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("div", { className: "font-semibold text-text-primary mt-0.5", children: selectedMeeting.interest || "Strategy Call" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 519,
+                    columnNumber: 17
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 517,
+                  columnNumber: 15
+                }, this),
+                selectedMeeting.message && /* @__PURE__ */ jsxDEV("div", { className: "p-3 rounded-xl bg-background border border-border/70", children: [
+                  /* @__PURE__ */ jsxDEV("span", { className: "text-text-muted block text-[10px] font-mono uppercase", children: "Message / Requirements" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 524,
+                    columnNumber: 19
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("div", { className: "text-text-secondary mt-0.5 leading-relaxed", children: selectedMeeting.message }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 525,
+                    columnNumber: 19
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 523,
+                  columnNumber: 13
+                }, this),
+                selectedMeeting.meeting_link && /* @__PURE__ */ jsxDEV("div", { className: "p-3 rounded-xl bg-[#00A6FF]/10 border border-[#00A6FF]/20 flex items-center justify-between", children: [
+                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2", children: [
+                    /* @__PURE__ */ jsxDEV(Video, { size: 16, className: "text-[#00A6FF]" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 532,
+                      columnNumber: 21
+                    }, this),
+                    /* @__PURE__ */ jsxDEV("span", { className: "font-bold text-[#00A6FF]", children: "Google Meet Video Room" }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 533,
+                      columnNumber: 21
+                    }, this)
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 531,
+                    columnNumber: 19
+                  }, this),
+                  /* @__PURE__ */ jsxDEV(
+                    "a",
+                    {
+                      href: selectedMeeting.meeting_link,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "px-3 py-1.5 rounded-lg bg-[#00A6FF] text-white text-[11px] font-bold",
+                      children: "Join"
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                      lineNumber: 535,
+                      columnNumber: 19
+                    },
+                    this
+                  )
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 530,
+                  columnNumber: 13
+                }, this),
+                /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between text-[11px] font-mono text-text-muted pt-2 border-t border-border", children: [
+                  /* @__PURE__ */ jsxDEV("span", { children: [
+                    "Calendar Sync: ",
+                    selectedMeeting.calendar_sync_status
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 547,
+                    columnNumber: 17
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("span", { children: [
+                    "Email Status: ",
+                    selectedMeeting.email_status
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 548,
+                    columnNumber: 17
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                  lineNumber: 546,
+                  columnNumber: 15
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 492,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "mt-5 flex justify-end gap-2", children: [
+                /* @__PURE__ */ jsxDEV(
+                  "button",
+                  {
+                    onClick: () => handleOpenStatus(selectedMeeting),
+                    className: "px-4 py-2 rounded-xl border border-border text-xs font-semibold text-text-secondary hover:text-text-primary cursor-pointer",
+                    children: "Change Status"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 553,
+                    columnNumber: 15
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  "button",
+                  {
+                    onClick: () => setShowDetailModal(false),
+                    className: "px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-xs font-bold cursor-pointer",
+                    children: "Close"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                    lineNumber: 559,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 552,
+                columnNumber: 13
+              }, this)
+            ]
+          },
+          void 0,
+          true,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 476,
+            columnNumber: 11
+          },
+          this
+        )
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 471,
+        columnNumber: 7
+      },
+      this
+    ),
+    showRescheduleModal && selectedMeeting && /* @__PURE__ */ jsxDEV("div", { className: "fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4", children: /* @__PURE__ */ jsxDEV("form", { onSubmit: handleRescheduleSubmit, className: "bg-surface border border-border rounded-2xl p-6 max-w-md w-full shadow-2xl relative my-auto", children: [
+      /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          type: "button",
+          onClick: () => setShowRescheduleModal(false),
+          className: "absolute top-4 right-4 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 text-text-muted hover:text-text-primary cursor-pointer",
+          children: /* @__PURE__ */ jsxDEV(X, { size: 18 }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 579,
+            columnNumber: 15
+          }, this)
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 574,
+          columnNumber: 13
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("h3", { className: "text-lg font-bold text-text-primary mb-1", children: "Reschedule Meeting" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 582,
+        columnNumber: 13
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-text-secondary mb-4", children: [
+        "Select a new date and time for ",
+        selectedMeeting.full_name,
+        ". The existing Google Calendar event will be updated."
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 583,
+        columnNumber: 13
+      }, this),
+      actionError && /* @__PURE__ */ jsxDEV("div", { className: "p-3 mb-4 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-500", children: actionError }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 588,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "space-y-3 mb-5", children: [
+        /* @__PURE__ */ jsxDEV("div", { children: [
+          /* @__PURE__ */ jsxDEV("label", { className: "block text-xs font-semibold text-text-secondary mb-1", children: "New Date" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 595,
+            columnNumber: 17
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            "input",
+            {
+              type: "date",
+              required: true,
+              value: rescheduleForm.date,
+              onChange: (e) => setRescheduleForm((prev) => ({ ...prev, date: e.target.value })),
+              className: "w-full px-3 py-2 rounded-xl bg-background border border-border text-xs text-text-primary focus:outline-none focus:border-[#00A6FF]"
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 596,
+              columnNumber: 17
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 594,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { children: [
+          /* @__PURE__ */ jsxDEV("label", { className: "block text-xs font-semibold text-text-secondary mb-1", children: "New Time Slot" }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 606,
+            columnNumber: 17
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            "input",
+            {
+              type: "text",
+              required: true,
+              placeholder: "e.g. 10:00 AM or 3:30 PM",
+              value: rescheduleForm.time,
+              onChange: (e) => setRescheduleForm((prev) => ({ ...prev, time: e.target.value })),
+              className: "w-full px-3 py-2 rounded-xl bg-background border border-border text-xs text-text-primary focus:outline-none focus:border-[#00A6FF]"
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+              lineNumber: 607,
+              columnNumber: 17
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 605,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 593,
+        columnNumber: 13
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "flex justify-end gap-2", children: [
+        /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            type: "button",
+            onClick: () => setShowRescheduleModal(false),
+            className: "px-4 py-2 rounded-xl border border-border text-xs font-semibold text-text-secondary cursor-pointer",
+            children: "Cancel"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 619,
+            columnNumber: 15
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            type: "submit",
+            disabled: saving,
+            className: "px-5 py-2 rounded-xl bg-[#00A6FF] hover:bg-[#0090e0] text-white text-xs font-bold transition-all disabled:opacity-50 cursor-pointer",
+            children: saving ? "Updating Calendar..." : "Confirm Reschedule"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 626,
+            columnNumber: 15
+          },
+          this
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 618,
+        columnNumber: 13
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 573,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 572,
+      columnNumber: 7
+    }, this),
+    showCancelModal && selectedMeeting && /* @__PURE__ */ jsxDEV("div", { className: "fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4", children: /* @__PURE__ */ jsxDEV("form", { onSubmit: handleCancelSubmit, className: "bg-surface border border-border rounded-2xl p-6 max-w-md w-full shadow-2xl relative my-auto", children: [
+      /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          type: "button",
+          onClick: () => setShowCancelModal(false),
+          className: "absolute top-4 right-4 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 text-text-muted hover:text-text-primary cursor-pointer",
+          children: /* @__PURE__ */ jsxDEV(X, { size: 18 }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 647,
+            columnNumber: 15
+          }, this)
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 642,
+          columnNumber: 13
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("h3", { className: "text-lg font-bold text-red-600 dark:text-red-400 mb-1", children: "Cancel Strategy Call" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 650,
+        columnNumber: 13
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-text-secondary mb-4", children: "This will mark the meeting as cancelled, delete the Google Calendar event, notify the attendee, and release the slot." }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 651,
+        columnNumber: 13
+      }, this),
+      actionError && /* @__PURE__ */ jsxDEV("div", { className: "p-3 mb-4 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-500", children: actionError }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 656,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "mb-5", children: [
+        /* @__PURE__ */ jsxDEV("label", { className: "block text-xs font-semibold text-text-secondary mb-1", children: "Cancellation Reason (Optional)" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 662,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV(
+          "textarea",
+          {
+            rows: 3,
+            placeholder: "e.g. Client requested postponement or schedule conflict...",
+            value: cancelReason,
+            onChange: (e) => setCancelReason(e.target.value),
+            className: "w-full px-3 py-2 rounded-xl bg-background border border-border text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-red-500 resize-none"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 665,
+            columnNumber: 15
+          },
+          this
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 661,
+        columnNumber: 13
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "flex justify-end gap-2", children: [
+        /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            type: "button",
+            onClick: () => setShowCancelModal(false),
+            className: "px-4 py-2 rounded-xl border border-border text-xs font-semibold text-text-secondary cursor-pointer",
+            children: "Go Back"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 675,
+            columnNumber: 15
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            type: "submit",
+            disabled: saving,
+            className: "px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-all disabled:opacity-50 cursor-pointer",
+            children: saving ? "Cancelling..." : "Confirm Cancellation"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 682,
+            columnNumber: 15
+          },
+          this
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 674,
+        columnNumber: 13
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 641,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 640,
+      columnNumber: 7
+    }, this),
+    showStatusModal && selectedMeeting && /* @__PURE__ */ jsxDEV("div", { className: "fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4", children: /* @__PURE__ */ jsxDEV("form", { onSubmit: handleStatusSubmit, className: "bg-surface border border-border rounded-2xl p-6 max-w-sm w-full shadow-2xl relative my-auto", children: [
+      /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          type: "button",
+          onClick: () => setShowStatusModal(false),
+          className: "absolute top-4 right-4 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 text-text-muted hover:text-text-primary cursor-pointer",
+          children: /* @__PURE__ */ jsxDEV(X, { size: 18 }, void 0, false, {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 703,
+            columnNumber: 15
+          }, this)
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 698,
+          columnNumber: 13
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("h3", { className: "text-lg font-bold text-text-primary mb-3", children: "Update Status" }, void 0, false, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 706,
+        columnNumber: 13
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "mb-4", children: [
+        /* @__PURE__ */ jsxDEV("label", { className: "block text-xs font-semibold text-text-secondary mb-1", children: "Status" }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+          lineNumber: 709,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV(
+          "select",
+          {
+            value: statusVal,
+            onChange: (e) => setStatusVal(e.target.value),
+            className: "w-full px-3 py-2 rounded-xl bg-background border border-border text-xs text-text-primary focus:outline-none focus:border-[#00A6FF] cursor-pointer",
+            children: [
+              /* @__PURE__ */ jsxDEV("option", { value: "pending", children: "Pending" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 715,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "confirmed", children: "Confirmed" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 716,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "completed", children: "Completed" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 717,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "cancelled", children: "Cancelled" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 718,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("option", { value: "failed", children: "Failed" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+                lineNumber: 719,
+                columnNumber: 17
+              }, this)
+            ]
+          },
+          void 0,
+          true,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 710,
+            columnNumber: 15
+          },
+          this
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 708,
+        columnNumber: 13
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "flex justify-end gap-2", children: [
+        /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            type: "button",
+            onClick: () => setShowStatusModal(false),
+            className: "px-4 py-2 rounded-xl border border-border text-xs font-semibold text-text-secondary cursor-pointer",
+            children: "Cancel"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 724,
+            columnNumber: 15
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          "button",
+          {
+            type: "submit",
+            disabled: saving,
+            className: "px-5 py-2 rounded-xl bg-[#00A6FF] text-white text-xs font-bold cursor-pointer",
+            children: saving ? "Saving..." : "Save"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+            lineNumber: 731,
+            columnNumber: 15
+          },
+          this
+        )
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+        lineNumber: 723,
+        columnNumber: 13
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 697,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+      lineNumber: 696,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx",
+    lineNumber: 231,
+    columnNumber: 5
+  }, this);
+};
+_s(Meetings, "ShGWlR5p5mCKFEU0zZA5TnbmTUg=");
+_c = Meetings;
+export default Meetings;
+var _c;
+$RefreshReg$(_c, "Meetings");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/Admin/Meetings.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QUE7QUFBQSxVQUwxQjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsUUFNQTtBQUFBLFdBZEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQWVBO0FBQUEsU0F6Q0Y7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQTBDQSxLQTNDRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBNENBO0FBQUEsT0E3Zko7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQStmQTtBQUVKO0FBQUNqQyxHQTNyQktELFVBQVE7QUFBQSxLQUFSQTtBQTZyQk4sZUFBZUE7QUFBUSxJQUFBdUc7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJ1c2VFZmZlY3QiLCJ1c2VTdGF0ZSIsIkNhbGVuZGFyIiwiQ2FsZW5kYXJJY29uIiwiU2VhcmNoIiwiRmlsdGVyIiwiTW9yZVZlcnRpY2FsIiwiQ2xvY2siLCJWaWRlbyIsIkV4dGVybmFsTGluayIsIkNoZWNrQ2lyY2xlIiwiWENpcmNsZSIsIkFsZXJ0Q2lyY2xlIiwiWCIsIlJlZnJlc2hDdyIsIlVzZXIiLCJCdWlsZGluZyIsIk1haWwiLCJQaG9uZSIsIk1lc3NhZ2VTcXVhcmUiLCJDaGV2cm9uTGVmdCIsIkNoZXZyb25SaWdodCIsIlJvdGF0ZUNjdyIsImFkbWluQVBJIiwiTWVldGluZ3MiLCJfcyIsImxvYWRpbmciLCJzZXRMb2FkaW5nIiwibWVldGluZ3MiLCJzZXRNZWV0aW5ncyIsInBhZ2luYXRpb24iLCJzZXRQYWdpbmF0aW9uIiwicGFnZSIsImxpbWl0IiwidG90YWwiLCJ0b3RhbFBhZ2VzIiwiZmlsdGVycyIsInNldEZpbHRlcnMiLCJzdGF0dXMiLCJzZWFyY2giLCJkYXRlIiwic2VsZWN0ZWRNZWV0aW5nIiwic2V0U2VsZWN0ZWRNZWV0aW5nIiwic2hvd0RldGFpbE1vZGFsIiwic2V0U2hvd0RldGFpbE1vZGFsIiwic2hvd1Jlc2NoZWR1bGVNb2RhbCIsInNldFNob3dSZXNjaGVkdWxlTW9kYWwiLCJzaG93Q2FuY2VsTW9kYWwiLCJzZXRTaG93Q2FuY2VsTW9kYWwiLCJzaG93U3RhdHVzTW9kYWwiLCJzZXRTaG93U3RhdHVzTW9kYWwiLCJyZXNjaGVkdWxlRm9ybSIsInNldFJlc2NoZWR1bGVGb3JtIiwidGltZSIsImNhbmNlbFJlYXNvbiIsInNldENhbmNlbFJlYXNvbiIsInN0YXR1c1ZhbCIsInNldFN0YXR1c1ZhbCIsInNhdmluZyIsInNldFNhdmluZyIsImFjdGlvbkVycm9yIiwic2V0QWN0aW9uRXJyb3IiLCJmZXRjaE1lZXRpbmdzIiwidGltZXIiLCJzZXRUaW1lb3V0IiwiY2xlYXJUaW1lb3V0IiwicmVzcG9uc2UiLCJnZXRNZWV0aW5ncyIsImRhdGEiLCJzdWNjZXNzIiwiZXJyb3IiLCJjb25zb2xlIiwiaXNBbnlNb2RhbE9wZW4iLCJwcmV2Qm9keU92ZXJmbG93IiwiZG9jdW1lbnQiLCJib2R5Iiwic3R5bGUiLCJvdmVyZmxvdyIsImhhbmRsZU9wZW5EZXRhaWwiLCJtZWV0aW5nIiwiaGFuZGxlT3BlblJlc2NoZWR1bGUiLCJjdXJEYXRlIiwibWVldGluZ19kYXRlIiwiRGF0ZSIsInRvSVNPU3RyaW5nIiwic3BsaXQiLCJtZWV0aW5nX3RpbWUiLCJoYW5kbGVPcGVuQ2FuY2VsIiwiaGFuZGxlT3BlblN0YXR1cyIsImhhbmRsZVJlc2NoZWR1bGVTdWJtaXQiLCJlIiwicHJldmVudERlZmF1bHQiLCJyZXNjaGVkdWxlTWVldGluZyIsImlkIiwibWVzc2FnZSIsImVyciIsImhhbmRsZUNhbmNlbFN1Ym1pdCIsImNhbmNlbE1lZXRpbmciLCJjYW5jZWxsYXRpb25SZWFzb24iLCJoYW5kbGVTdGF0dXNTdWJtaXQiLCJ1cGRhdGVNZWV0aW5nU3RhdHVzIiwiZ2V0U3RhdHVzQmFkZ2UiLCJwcmV2IiwidGFyZ2V0IiwidmFsdWUiLCJsZW5ndGgiLCJtYXAiLCJkYXRlU3RyIiwidG9Mb2NhbGVEYXRlU3RyaW5nIiwibW9udGgiLCJkYXkiLCJ5ZWFyIiwiZnVsbF9uYW1lIiwibmFtZSIsImNvbXBhbnkiLCJlbWFpbCIsInBob25lIiwidGltZV96b25lIiwiYm9va2luZ19pZCIsImludGVyZXN0IiwibWVldGluZ19saW5rIiwiY2FsZW5kYXJfZXZlbnRfbGluayIsIk1hdGgiLCJtaW4iLCJzdG9wUHJvcGFnYXRpb24iLCJjYWxlbmRhcl9zeW5jX3N0YXR1cyIsImVtYWlsX3N0YXR1cyIsIl9jIl0sImlnbm9yZUxpc3QiOltdLCJzb3VyY2VzIjpbIk1lZXRpbmdzLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgdXNlRWZmZWN0LCB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0J1xyXG5pbXBvcnQge1xyXG4gIENhbGVuZGFyIGFzIENhbGVuZGFySWNvbixcclxuICBTZWFyY2gsXHJcbiAgRmlsdGVyLFxyXG4gIE1vcmVWZXJ0aWNhbCxcclxuICBDbG9jayxcclxuICBWaWRlbyxcclxuICBFeHRlcm5hbExpbmssXHJcbiAgQ2hlY2tDaXJjbGUsXHJcbiAgWENpcmNsZSxcclxuICBBbGVydENpcmNsZSxcclxuICBYLFxyXG4gIFJlZnJlc2hDdyxcclxuICBVc2VyLFxyXG4gIEJ1aWxkaW5nLFxyXG4gIE1haWwsXHJcbiAgUGhvbmUsXHJcbiAgTWVzc2FnZVNxdWFyZSxcclxuICBDaGV2cm9uTGVmdCxcclxuICBDaGV2cm9uUmlnaHQsXHJcbiAgUm90YXRlQ2N3XHJcbn0gZnJvbSAnbHVjaWRlLXJlYWN0J1xyXG5pbXBvcnQgeyBhZG1pbkFQSSB9IGZyb20gJ0BhcGknXHJcblxyXG5jb25zdCBNZWV0aW5ncyA9ICgpID0+IHtcclxuICBjb25zdCBbbG9hZGluZywgc2V0TG9hZGluZ10gPSB1c2VTdGF0ZSh0cnVlKVxyXG4gIGNvbnN0IFttZWV0aW5ncywgc2V0TWVldGluZ3NdID0gdXNlU3RhdGUoW10pXHJcbiAgY29uc3QgW3BhZ2luYXRpb24sIHNldFBhZ2luYXRpb25dID0gdXNlU3RhdGUoeyBwYWdlOiAxLCBsaW1pdDogMTUsIHRvdGFsOiAwLCB0b3RhbFBhZ2VzOiAwIH0pXHJcbiAgY29uc3QgW2ZpbHRlcnMsIHNldEZpbHRlcnNdID0gdXNlU3RhdGUoeyBzdGF0dXM6ICcnLCBzZWFyY2g6ICcnLCBkYXRlOiAnJyB9KVxyXG5cclxuICAvLyBNb2RhbHMgc3RhdGVcclxuICBjb25zdCBbc2VsZWN0ZWRNZWV0aW5nLCBzZXRTZWxlY3RlZE1lZXRpbmddID0gdXNlU3RhdGUobnVsbClcclxuICBjb25zdCBbc2hvd0RldGFpbE1vZGFsLCBzZXRTaG93RGV0YWlsTW9kYWxdID0gdXNlU3RhdGUoZmFsc2UpXHJcbiAgY29uc3QgW3Nob3dSZXNjaGVkdWxlTW9kYWwsIHNldFNob3dSZXNjaGVkdWxlTW9kYWxdID0gdXNlU3RhdGUoZmFsc2UpXHJcbiAgY29uc3QgW3Nob3dDYW5jZWxNb2RhbCwgc2V0U2hvd0NhbmNlbE1vZGFsXSA9IHVzZVN0YXRlKGZhbHNlKVxyXG4gIGNvbnN0IFtzaG93U3RhdHVzTW9kYWwsIHNldFNob3dTdGF0dXNNb2RhbF0gPSB1c2VTdGF0ZShmYWxzZSlcclxuXHJcbiAgLy8gRm9ybXMgc3RhdGVcclxuICBjb25zdCBbcmVzY2hlZHVsZUZvcm0sIHNldFJlc2NoZWR1bGVGb3JtXSA9IHVzZVN0YXRlKHsgZGF0ZTogJycsIHRpbWU6ICcnIH0pXHJcbiAgY29uc3QgW2NhbmNlbFJlYXNvbiwgc2V0Q2FuY2VsUmVhc29uXSA9IHVzZVN0YXRlKCcnKVxyXG4gIGNvbnN0IFtzdGF0dXNWYWwsIHNldFN0YXR1c1ZhbF0gPSB1c2VTdGF0ZSgnJylcclxuICBjb25zdCBbc2F2aW5nLCBzZXRTYXZpbmddID0gdXNlU3RhdGUoZmFsc2UpXHJcbiAgY29uc3QgW2FjdGlvbkVycm9yLCBzZXRBY3Rpb25FcnJvcl0gPSB1c2VTdGF0ZSgnJylcclxuXHJcbiAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgIGZldGNoTWVldGluZ3MoKVxyXG4gIH0sIFtmaWx0ZXJzLnN0YXR1cywgZmlsdGVycy5kYXRlLCBwYWdpbmF0aW9uLnBhZ2VdKVxyXG5cclxuICAvLyBEZWJvdW5jZSBzZWFyY2hcclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgY29uc3QgdGltZXIgPSBzZXRUaW1lb3V0KCgpID0+IHtcclxuICAgICAgZmV0Y2hNZWV0aW5ncygpXHJcbiAgICB9LCAzNTApXHJcbiAgICByZXR1cm4gKCkgPT4gY2xlYXJUaW1lb3V0KHRpbWVyKVxyXG4gIH0sIFtmaWx0ZXJzLnNlYXJjaF0pXHJcblxyXG4gIGNvbnN0IGZldGNoTWVldGluZ3MgPSBhc3luYyAoKSA9PiB7XHJcbiAgICB0cnkge1xyXG4gICAgICBzZXRMb2FkaW5nKHRydWUpXHJcbiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgYWRtaW5BUEkuZ2V0TWVldGluZ3Moe1xyXG4gICAgICAgIC4uLmZpbHRlcnMsXHJcbiAgICAgICAgcGFnZTogcGFnaW5hdGlvbi5wYWdlLFxyXG4gICAgICAgIGxpbWl0OiBwYWdpbmF0aW9uLmxpbWl0XHJcbiAgICAgIH0pXHJcbiAgICAgIGlmIChyZXNwb25zZS5kYXRhICYmIHJlc3BvbnNlLmRhdGEuc3VjY2Vzcykge1xyXG4gICAgICAgIHNldE1lZXRpbmdzKHJlc3BvbnNlLmRhdGEuZGF0YSB8fCBbXSlcclxuICAgICAgICBpZiAocmVzcG9uc2UuZGF0YS5wYWdpbmF0aW9uKSB7XHJcbiAgICAgICAgICBzZXRQYWdpbmF0aW9uKHJlc3BvbnNlLmRhdGEucGFnaW5hdGlvbilcclxuICAgICAgICB9XHJcbiAgICAgIH1cclxuICAgIH0gY2F0Y2ggKGVycm9yKSB7XHJcbiAgICAgIGNvbnNvbGUuZXJyb3IoJ0ZhaWxlZCB0byBsb2FkIG1lZXRpbmdzOicsIGVycm9yKVxyXG4gICAgICBzZXRNZWV0aW5ncyhbXSlcclxuICAgIH0gZmluYWxseSB7XHJcbiAgICAgIHNldExvYWRpbmcoZmFsc2UpXHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICBjb25zdCBpc0FueU1vZGFsT3BlbiA9IHNob3dEZXRhaWxNb2RhbCB8fCBzaG93UmVzY2hlZHVsZU1vZGFsIHx8IHNob3dDYW5jZWxNb2RhbCB8fCBzaG93U3RhdHVzTW9kYWxcclxuXHJcbiAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgIGlmIChpc0FueU1vZGFsT3Blbikge1xyXG4gICAgICBjb25zdCBwcmV2Qm9keU92ZXJmbG93ID0gZG9jdW1lbnQuYm9keS5zdHlsZS5vdmVyZmxvd1xyXG4gICAgICBkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93ID0gJ2hpZGRlbidcclxuICAgICAgcmV0dXJuICgpID0+IHtcclxuICAgICAgICBkb2N1bWVudC5ib2R5LnN0eWxlLm92ZXJmbG93ID0gcHJldkJvZHlPdmVyZmxvdyB8fCAnJ1xyXG4gICAgICB9XHJcbiAgICB9XHJcbiAgfSwgW2lzQW55TW9kYWxPcGVuXSlcclxuXHJcbiAgY29uc3QgaGFuZGxlT3BlbkRldGFpbCA9IChtZWV0aW5nKSA9PiB7XHJcbiAgICBzZXRTZWxlY3RlZE1lZXRpbmcobWVldGluZylcclxuICAgIHNldFNob3dEZXRhaWxNb2RhbCh0cnVlKVxyXG4gIH1cclxuXHJcbiAgY29uc3QgaGFuZGxlT3BlblJlc2NoZWR1bGUgPSAobWVldGluZykgPT4ge1xyXG4gICAgc2V0U2VsZWN0ZWRNZWV0aW5nKG1lZXRpbmcpXHJcbiAgICBjb25zdCBjdXJEYXRlID0gbWVldGluZy5tZWV0aW5nX2RhdGUgPyBuZXcgRGF0ZShtZWV0aW5nLm1lZXRpbmdfZGF0ZSkudG9JU09TdHJpbmcoKS5zcGxpdCgnVCcpWzBdIDogJydcclxuICAgIHNldFJlc2NoZWR1bGVGb3JtKHtcclxuICAgICAgZGF0ZTogY3VyRGF0ZSxcclxuICAgICAgdGltZTogbWVldGluZy5tZWV0aW5nX3RpbWUgfHwgJzEwOjAwIEFNJ1xyXG4gICAgfSlcclxuICAgIHNldEFjdGlvbkVycm9yKCcnKVxyXG4gICAgc2V0U2hvd1Jlc2NoZWR1bGVNb2RhbCh0cnVlKVxyXG4gIH1cclxuXHJcbiAgY29uc3QgaGFuZGxlT3BlbkNhbmNlbCA9IChtZWV0aW5nKSA9PiB7XHJcbiAgICBzZXRTZWxlY3RlZE1lZXRpbmcobWVldGluZylcclxuICAgIHNldENhbmNlbFJlYXNvbignJylcclxuICAgIHNldEFjdGlvbkVycm9yKCcnKVxyXG4gICAgc2V0U2hvd0NhbmNlbE1vZGFsKHRydWUpXHJcbiAgfVxyXG5cclxuICBjb25zdCBoYW5kbGVPcGVuU3RhdHVzID0gKG1lZXRpbmcpID0+IHtcclxuICAgIHNldFNlbGVjdGVkTWVldGluZyhtZWV0aW5nKVxyXG4gICAgc2V0U3RhdHVzVmFsKG1lZXRpbmcuc3RhdHVzIHx8ICdwZW5kaW5nJylcclxuICAgIHNldEFjdGlvbkVycm9yKCcnKVxyXG4gICAgc2V0U2hvd1N0YXR1c01vZGFsKHRydWUpXHJcbiAgfVxyXG5cclxuICBjb25zdCBoYW5kbGVSZXNjaGVkdWxlU3VibWl0ID0gYXN5bmMgKGUpID0+IHtcclxuICAgIGUucHJldmVudERlZmF1bHQoKVxyXG4gICAgaWYgKCFyZXNjaGVkdWxlRm9ybS5kYXRlIHx8ICFyZXNjaGVkdWxlRm9ybS50aW1lKSB7XHJcbiAgICAgIHNldEFjdGlvbkVycm9yKCdCb3RoIGRhdGUgYW5kIHRpbWUgYXJlIHJlcXVpcmVkLicpXHJcbiAgICAgIHJldHVyblxyXG4gICAgfVxyXG5cclxuICAgIHRyeSB7XHJcbiAgICAgIHNldFNhdmluZyh0cnVlKVxyXG4gICAgICBzZXRBY3Rpb25FcnJvcignJylcclxuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBhZG1pbkFQSS5yZXNjaGVkdWxlTWVldGluZyhzZWxlY3RlZE1lZXRpbmcuaWQsIHtcclxuICAgICAgICBkYXRlOiByZXNjaGVkdWxlRm9ybS5kYXRlLFxyXG4gICAgICAgIHRpbWU6IHJlc2NoZWR1bGVGb3JtLnRpbWVcclxuICAgICAgfSlcclxuXHJcbiAgICAgIGlmIChyZXNwb25zZS5kYXRhPy5zdWNjZXNzKSB7XHJcbiAgICAgICAgc2V0U2hvd1Jlc2NoZWR1bGVNb2RhbChmYWxzZSlcclxuICAgICAgICBmZXRjaE1lZXRpbmdzKClcclxuICAgICAgfSBlbHNlIHtcclxuICAgICAgICBzZXRBY3Rpb25FcnJvcihyZXNwb25zZS5kYXRhPy5tZXNzYWdlIHx8ICdGYWlsZWQgdG8gcmVzY2hlZHVsZS4nKVxyXG4gICAgICB9XHJcbiAgICB9IGNhdGNoIChlcnIpIHtcclxuICAgICAgc2V0QWN0aW9uRXJyb3IoZXJyLnJlc3BvbnNlPy5kYXRhPy5tZXNzYWdlIHx8IGVyci5tZXNzYWdlIHx8ICdSZXNjaGVkdWxlIGZhaWxlZC4nKVxyXG4gICAgfSBmaW5hbGx5IHtcclxuICAgICAgc2V0U2F2aW5nKGZhbHNlKVxyXG4gICAgfVxyXG4gIH1cclxuXHJcbiAgY29uc3QgaGFuZGxlQ2FuY2VsU3VibWl0ID0gYXN5bmMgKGUpID0+IHtcclxuICAgIGUucHJldmVudERlZmF1bHQoKVxyXG4gICAgdHJ5IHtcclxuICAgICAgc2V0U2F2aW5nKHRydWUpXHJcbiAgICAgIHNldEFjdGlvbkVycm9yKCcnKVxyXG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGFkbWluQVBJLmNhbmNlbE1lZXRpbmcoc2VsZWN0ZWRNZWV0aW5nLmlkLCB7XHJcbiAgICAgICAgY2FuY2VsbGF0aW9uUmVhc29uOiBjYW5jZWxSZWFzb25cclxuICAgICAgfSlcclxuXHJcbiAgICAgIGlmIChyZXNwb25zZS5kYXRhPy5zdWNjZXNzKSB7XHJcbiAgICAgICAgc2V0U2hvd0NhbmNlbE1vZGFsKGZhbHNlKVxyXG4gICAgICAgIGZldGNoTWVldGluZ3MoKVxyXG4gICAgICB9IGVsc2Uge1xyXG4gICAgICAgIHNldEFjdGlvbkVycm9yKHJlc3BvbnNlLmRhdGE/Lm1lc3NhZ2UgfHwgJ0ZhaWxlZCB0byBjYW5jZWwgbWVldGluZy4nKVxyXG4gICAgICB9XHJcbiAgICB9IGNhdGNoIChlcnIpIHtcclxuICAgICAgc2V0QWN0aW9uRXJyb3IoZXJyLnJlc3BvbnNlPy5kYXRhPy5tZXNzYWdlIHx8IGVyci5tZXNzYWdlIHx8ICdDYW5jZWxsYXRpb24gZmFpbGVkLicpXHJcbiAgICB9IGZpbmFsbHkge1xyXG4gICAgICBzZXRTYXZpbmcoZmFsc2UpXHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICBjb25zdCBoYW5kbGVTdGF0dXNTdWJtaXQgPSBhc3luYyAoZSkgPT4ge1xyXG4gICAgZS5wcmV2ZW50RGVmYXVsdCgpXHJcbiAgICB0cnkge1xyXG4gICAgICBzZXRTYXZpbmcodHJ1ZSlcclxuICAgICAgc2V0QWN0aW9uRXJyb3IoJycpXHJcbiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgYWRtaW5BUEkudXBkYXRlTWVldGluZ1N0YXR1cyhzZWxlY3RlZE1lZXRpbmcuaWQsIHtcclxuICAgICAgICBzdGF0dXM6IHN0YXR1c1ZhbFxyXG4gICAgICB9KVxyXG5cclxuICAgICAgaWYgKHJlc3BvbnNlLmRhdGE/LnN1Y2Nlc3MpIHtcclxuICAgICAgICBzZXRTaG93U3RhdHVzTW9kYWwoZmFsc2UpXHJcbiAgICAgICAgZmV0Y2hNZWV0aW5ncygpXHJcbiAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgc2V0QWN0aW9uRXJyb3IocmVzcG9uc2UuZGF0YT8ubWVzc2FnZSB8fCAnRmFpbGVkIHRvIHVwZGF0ZSBzdGF0dXMuJylcclxuICAgICAgfVxyXG4gICAgfSBjYXRjaCAoZXJyKSB7XHJcbiAgICAgIHNldEFjdGlvbkVycm9yKGVyci5yZXNwb25zZT8uZGF0YT8ubWVzc2FnZSB8fCBlcnIubWVzc2FnZSB8fCAnRmFpbGVkIHRvIHVwZGF0ZSBzdGF0dXMuJylcclxuICAgIH0gZmluYWxseSB7XHJcbiAgICAgIHNldFNhdmluZyhmYWxzZSlcclxuICAgIH1cclxuICB9XHJcblxyXG4gIGNvbnN0IGdldFN0YXR1c0JhZGdlID0gKHN0YXR1cykgPT4ge1xyXG4gICAgc3dpdGNoIChzdGF0dXMpIHtcclxuICAgICAgY2FzZSAnY29uZmlybWVkJzpcclxuICAgICAgICByZXR1cm4gPHNwYW4gY2xhc3NOYW1lPVwicHgtMi41IHB5LTEgcm91bmRlZC1mdWxsIHRleHQteHMgZm9udC1ib2xkIGJnLWVtZXJhbGQtNTAwLzEwIHRleHQtZW1lcmFsZC02MDAgZGFyazp0ZXh0LWVtZXJhbGQtNDAwIGJvcmRlciBib3JkZXItZW1lcmFsZC01MDAvMjBcIj5Db25maXJtZWQ8L3NwYW4+XHJcbiAgICAgIGNhc2UgJ3BlbmRpbmcnOlxyXG4gICAgICAgIHJldHVybiA8c3BhbiBjbGFzc05hbWU9XCJweC0yLjUgcHktMSByb3VuZGVkLWZ1bGwgdGV4dC14cyBmb250LWJvbGQgYmctYW1iZXItNTAwLzEwIHRleHQtYW1iZXItNjAwIGRhcms6dGV4dC1hbWJlci00MDAgYm9yZGVyIGJvcmRlci1hbWJlci01MDAvMjBcIj5QZW5kaW5nPC9zcGFuPlxyXG4gICAgICBjYXNlICdjb21wbGV0ZWQnOlxyXG4gICAgICAgIHJldHVybiA8c3BhbiBjbGFzc05hbWU9XCJweC0yLjUgcHktMSByb3VuZGVkLWZ1bGwgdGV4dC14cyBmb250LWJvbGQgYmctYmx1ZS01MDAvMTAgdGV4dC1ibHVlLTYwMCBkYXJrOnRleHQtYmx1ZS00MDAgYm9yZGVyIGJvcmRlci1ibHVlLTUwMC8yMFwiPkNvbXBsZXRlZDwvc3Bhbj5cclxuICAgICAgY2FzZSAnY2FuY2VsbGVkJzpcclxuICAgICAgICByZXR1cm4gPHNwYW4gY2xhc3NOYW1lPVwicHgtMi41IHB5LTEgcm91bmRlZC1mdWxsIHRleHQteHMgZm9udC1ib2xkIGJnLXNsYXRlLTUwMC8xMCB0ZXh0LXNsYXRlLTUwMCBib3JkZXIgYm9yZGVyLXNsYXRlLTUwMC8yMFwiPkNhbmNlbGxlZDwvc3Bhbj5cclxuICAgICAgY2FzZSAnZmFpbGVkJzpcclxuICAgICAgICByZXR1cm4gPHNwYW4gY2xhc3NOYW1lPVwicHgtMi41IHB5LTEgcm91bmRlZC1mdWxsIHRleHQteHMgZm9udC1ib2xkIGJnLXJlZC01MDAvMTAgdGV4dC1yZWQtNjAwIGRhcms6dGV4dC1yZWQtNDAwIGJvcmRlciBib3JkZXItcmVkLTUwMC8yMFwiPkZhaWxlZDwvc3Bhbj5cclxuICAgICAgZGVmYXVsdDpcclxuICAgICAgICByZXR1cm4gPHNwYW4gY2xhc3NOYW1lPVwicHgtMi41IHB5LTEgcm91bmRlZC1mdWxsIHRleHQteHMgZm9udC1ib2xkIGJnLXNsYXRlLTEwMCBkYXJrOmJnLXdoaXRlLzUgdGV4dC10ZXh0LW11dGVkXCI+e3N0YXR1c308L3NwYW4+XHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPGRpdiBjbGFzc05hbWU9XCJwLTYgbWF4LXctN3hsIG14LWF1dG8gc3BhY2UteS02XCI+XHJcbiAgICAgIHsvKiBIZWFkZXIgKi99XHJcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBmbGV4LWNvbCBzbTpmbGV4LXJvdyBzbTppdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIGdhcC00XCI+XHJcbiAgICAgICAgPGRpdj5cclxuICAgICAgICAgIDxoMSBjbGFzc05hbWU9XCJ0ZXh0LTJ4bCBmb250LWV4dHJhYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSB0cmFja2luZy10aWdodFwiPlN0cmF0ZWd5IENhbGwgTWVldGluZ3M8L2gxPlxyXG4gICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1zbSB0ZXh0LXRleHQtc2Vjb25kYXJ5XCI+XHJcbiAgICAgICAgICAgIE1hbmFnZSBpbmJvdW5kIHN0cmF0ZWd5IGNhbGwgYm9va2luZ3MsIEdvb2dsZSBDYWxlbmRhciBzeW5jaHJvbml6YXRpb24sIGFuZCBHb29nbGUgTWVldCByb29tcy5cclxuICAgICAgICAgIDwvcD5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8YnV0dG9uXHJcbiAgICAgICAgICBvbkNsaWNrPXtmZXRjaE1lZXRpbmdzfVxyXG4gICAgICAgICAgY2xhc3NOYW1lPVwiaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGdhcC0yIHB4LTQgcHktMi41IHJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgZGFyazpib3JkZXItd2hpdGUvMTAgaG92ZXI6Ymctc2xhdGUtNTAgZGFyazpob3ZlcjpiZy13aGl0ZS81IHRleHQtdGV4dC1wcmltYXJ5IHRleHQteHMgZm9udC1ib2xkIHRyYW5zaXRpb24tY29sb3JzIGN1cnNvci1wb2ludGVyXCJcclxuICAgICAgICA+XHJcbiAgICAgICAgICA8Um90YXRlQ2N3IHNpemU9ezE0fSAvPlxyXG4gICAgICAgICAgPHNwYW4+UmVmcmVzaDwvc3Bhbj5cclxuICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgPC9kaXY+XHJcblxyXG4gICAgICB7LyogRmlsdGVyIEJhciAqL31cclxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJwLTQgcm91bmRlZC0yeGwgYmctc3VyZmFjZSBib3JkZXIgYm9yZGVyLWJvcmRlciBmbGV4IGZsZXgtY29sIG1kOmZsZXgtcm93IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gZ2FwLTRcIj5cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlIHctZnVsbCBtZDp3LTgwXCI+XHJcbiAgICAgICAgICA8U2VhcmNoIGNsYXNzTmFtZT1cImFic29sdXRlIGxlZnQtMy41IHRvcC0xLzIgLXRyYW5zbGF0ZS15LTEvMiB3LTQgaC00IHRleHQtdGV4dC1tdXRlZFwiIC8+XHJcbiAgICAgICAgICA8aW5wdXRcclxuICAgICAgICAgICAgdHlwZT1cInRleHRcIlxyXG4gICAgICAgICAgICBwbGFjZWhvbGRlcj1cIlNlYXJjaCBieSBuYW1lLCBlbWFpbCwgY29tcGFueSwgSUQuLi5cIlxyXG4gICAgICAgICAgICB2YWx1ZT17ZmlsdGVycy5zZWFyY2h9XHJcbiAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0RmlsdGVycyhwcmV2ID0+ICh7IC4uLnByZXYsIHNlYXJjaDogZS50YXJnZXQudmFsdWUgfSkpfVxyXG4gICAgICAgICAgICBjbGFzc05hbWU9XCJ3LWZ1bGwgcGwtMTAgcHItNCBweS0yLjUgcm91bmRlZC14bCBiZy1iYWNrZ3JvdW5kIGJvcmRlciBib3JkZXItYm9yZGVyIHRleHQteHMgdGV4dC10ZXh0LXByaW1hcnkgcGxhY2Vob2xkZXI6dGV4dC10ZXh0LW11dGVkIGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpib3JkZXItWyMwMEE2RkZdXCJcclxuICAgICAgICAgIC8+XHJcbiAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBmbGV4LXdyYXAgaXRlbXMtY2VudGVyIGdhcC0zIHctZnVsbCBtZDp3LWF1dG9cIj5cclxuICAgICAgICAgIHsvKiBTdGF0dXMgRmlsdGVyICovfVxyXG4gICAgICAgICAgPHNlbGVjdFxyXG4gICAgICAgICAgICB2YWx1ZT17ZmlsdGVycy5zdGF0dXN9XHJcbiAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0RmlsdGVycyhwcmV2ID0+ICh7IC4uLnByZXYsIHN0YXR1czogZS50YXJnZXQudmFsdWUgfSkpfVxyXG4gICAgICAgICAgICBjbGFzc05hbWU9XCJweC0zIHB5LTIuNSByb3VuZGVkLXhsIGJnLWJhY2tncm91bmQgYm9yZGVyIGJvcmRlci1ib3JkZXIgdGV4dC14cyB0ZXh0LXRleHQtcHJpbWFyeSBmb2N1czpvdXRsaW5lLW5vbmUgZm9jdXM6Ym9yZGVyLVsjMDBBNkZGXSBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICA+XHJcbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJcIj5BbGwgU3RhdHVzZXM8L29wdGlvbj5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImNvbmZpcm1lZFwiPkNvbmZpcm1lZDwvb3B0aW9uPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwicGVuZGluZ1wiPlBlbmRpbmc8L29wdGlvbj5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImNvbXBsZXRlZFwiPkNvbXBsZXRlZDwvb3B0aW9uPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwiY2FuY2VsbGVkXCI+Q2FuY2VsbGVkPC9vcHRpb24+XHJcbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJmYWlsZWRcIj5GYWlsZWQ8L29wdGlvbj5cclxuICAgICAgICAgIDwvc2VsZWN0PlxyXG5cclxuICAgICAgICAgIHsvKiBEYXRlIEZpbHRlciAqL31cclxuICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICB0eXBlPVwiZGF0ZVwiXHJcbiAgICAgICAgICAgIHZhbHVlPXtmaWx0ZXJzLmRhdGV9XHJcbiAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0RmlsdGVycyhwcmV2ID0+ICh7IC4uLnByZXYsIGRhdGU6IGUudGFyZ2V0LnZhbHVlIH0pKX1cclxuICAgICAgICAgICAgY2xhc3NOYW1lPVwicHgtMyBweS0yIHJvdW5kZWQteGwgYmctYmFja2dyb3VuZCBib3JkZXIgYm9yZGVyLWJvcmRlciB0ZXh0LXhzIHRleHQtdGV4dC1wcmltYXJ5IGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpib3JkZXItWyMwMEE2RkZdIGN1cnNvci1wb2ludGVyXCJcclxuICAgICAgICAgIC8+XHJcblxyXG4gICAgICAgICAgeyhmaWx0ZXJzLnN0YXR1cyB8fCBmaWx0ZXJzLmRhdGUgfHwgZmlsdGVycy5zZWFyY2gpICYmIChcclxuICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldEZpbHRlcnMoeyBzdGF0dXM6ICcnLCBzZWFyY2g6ICcnLCBkYXRlOiAnJyB9KX1cclxuICAgICAgICAgICAgICBjbGFzc05hbWU9XCJ0ZXh0LXhzIHRleHQtWyMwMEE2RkZdIGhvdmVyOnVuZGVybGluZSBmb250LWJvbGQgY3Vyc29yLXBvaW50ZXJcIlxyXG4gICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgQ2xlYXIgRmlsdGVyc1xyXG4gICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgICl9XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgey8qIE1lZXRpbmdzIFRhYmxlICovfVxyXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cInJvdW5kZWQtMnhsIGJnLXN1cmZhY2UgYm9yZGVyIGJvcmRlci1ib3JkZXIgb3ZlcmZsb3ctaGlkZGVuIHNoYWRvdy1zbVwiPlxyXG4gICAgICAgIHtsb2FkaW5nID8gKFxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwLTE2IHRleHQtY2VudGVyIHRleHQtdGV4dC1tdXRlZCB0ZXh0LXhzIGZvbnQtbW9ub1wiPlxyXG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJpbmxpbmUtYmxvY2sgYW5pbWF0ZS1zcGluIG1yLTJcIj7in7M8L3NwYW4+XHJcbiAgICAgICAgICAgIExvYWRpbmcgbWVldGluZ3MuLi5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICkgOiBtZWV0aW5ncy5sZW5ndGggPT09IDAgPyAoXHJcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInAtMTYgdGV4dC1jZW50ZXIgdGV4dC10ZXh0LW11dGVkXCI+XHJcbiAgICAgICAgICAgIDxDYWxlbmRhckljb24gc2l6ZT17MzZ9IGNsYXNzTmFtZT1cIm14LWF1dG8gbWItMiB0ZXh0LXRleHQtbXV0ZWQgb3BhY2l0eS00MFwiIC8+XHJcbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXRleHQtcHJpbWFyeVwiPk5vIG1lZXRpbmdzIGZvdW5kPC9wPlxyXG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJ0ZXh0LXhzIHRleHQtdGV4dC1zZWNvbmRhcnkgbXQtMVwiPlRyeSBhZGp1c3RpbmcgeW91ciBmaWx0ZXJzIG9yIGRhdGUgcmFuZ2UuPC9wPlxyXG4gICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgKSA6IChcclxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwib3ZlcmZsb3cteC1hdXRvXCI+XHJcbiAgICAgICAgICAgIDx0YWJsZSBjbGFzc05hbWU9XCJ3LWZ1bGwgdGV4dC1sZWZ0IGJvcmRlci1jb2xsYXBzZVwiPlxyXG4gICAgICAgICAgICAgIDx0aGVhZD5cclxuICAgICAgICAgICAgICAgIDx0ciBjbGFzc05hbWU9XCJib3JkZXItYiBib3JkZXItYm9yZGVyLzgwIGJnLXNsYXRlLTUwLzUwIGRhcms6Ymctd2hpdGUvWzAuMDE1XSB0ZXh0LVsxMXB4XSBmb250LW1vbm8gdXBwZXJjYXNlIHRleHQtdGV4dC1tdXRlZCB0cmFja2luZy13aWRlclwiPlxyXG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHktMyBweC00XCI+QXR0ZW5kZWUgJmFtcDsgQ29tcGFueTwvdGg+XHJcbiAgICAgICAgICAgICAgICAgIDx0aCBjbGFzc05hbWU9XCJweS0zIHB4LTRcIj5EYXRlICZhbXA7IFRpbWU8L3RoPlxyXG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHktMyBweC00XCI+SW50ZXJlc3Q8L3RoPlxyXG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHktMyBweC00XCI+U3RhdHVzPC90aD5cclxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB5LTMgcHgtNFwiPkdvb2dsZSBNZWV0IC8gQ2FsPC90aD5cclxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB5LTMgcHgtNCB0ZXh0LXJpZ2h0XCI+QWN0aW9uczwvdGg+XHJcbiAgICAgICAgICAgICAgICA8L3RyPlxyXG4gICAgICAgICAgICAgIDwvdGhlYWQ+XHJcbiAgICAgICAgICAgICAgPHRib2R5IGNsYXNzTmFtZT1cImRpdmlkZS15IGRpdmlkZS1ib3JkZXIvNjAgdGV4dC14c1wiPlxyXG4gICAgICAgICAgICAgICAge21lZXRpbmdzLm1hcCgobWVldGluZykgPT4ge1xyXG4gICAgICAgICAgICAgICAgICBjb25zdCBkYXRlU3RyID0gbWVldGluZy5tZWV0aW5nX2RhdGVcclxuICAgICAgICAgICAgICAgICAgICA/IG5ldyBEYXRlKG1lZXRpbmcubWVldGluZ19kYXRlKS50b0xvY2FsZURhdGVTdHJpbmcoJ2VuLVVTJywge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBtb250aDogJ3Nob3J0JyxcclxuICAgICAgICAgICAgICAgICAgICAgICAgZGF5OiAnbnVtZXJpYycsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHllYXI6ICdudW1lcmljJ1xyXG4gICAgICAgICAgICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgICAgICAgICA6ICdOL0EnXHJcblxyXG4gICAgICAgICAgICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgICAgIDx0ciBrZXk9e21lZXRpbmcuaWR9IGNsYXNzTmFtZT1cImhvdmVyOmJnLXNsYXRlLTUwLzYwIGRhcms6aG92ZXI6Ymctd2hpdGUvWzAuMDE1XSB0cmFuc2l0aW9uLWNvbG9yc1wiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgey8qIEN1c3RvbWVyIEluZm8gKi99XHJcbiAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktMy41IHB4LTRcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmb250LWJvbGQgdGV4dC10ZXh0LXByaW1hcnkgdGV4dC1bMTNweF1cIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICB7bWVldGluZy5mdWxsX25hbWUgfHwgbWVldGluZy5uYW1lfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5IHRleHQteHMgZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEuNSBtdC0wLjVcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8QnVpbGRpbmcgc2l6ZT17MTJ9IGNsYXNzTmFtZT1cInRleHQtWyMwMEE2RkZdXCIgLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8c3Bhbj57bWVldGluZy5jb21wYW55fTwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC10ZXh0LW11dGVkIHRleHQtWzExcHhdIGZvbnQtbW9ubyBtdC0wLjVcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICB7bWVldGluZy5lbWFpbH0gJmJ1bGw7IHttZWV0aW5nLnBob25lIHx8ICdObyBwaG9uZSd9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC90ZD5cclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICB7LyogRGF0ZSAmIFRpbWUgKi99XHJcbiAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHktMy41IHB4LTRcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmb250LXNlbWlib2xkIHRleHQtdGV4dC1wcmltYXJ5IGZsZXggaXRlbXMtY2VudGVyIGdhcC0xLjVcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8Q2FsZW5kYXJJY29uIHNpemU9ezEzfSBjbGFzc05hbWU9XCJ0ZXh0LVsjMDBBNkZGXVwiIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4+e2RhdGVTdHJ9PC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtbXV0ZWQgdGV4dC1bMTFweF0gZm9udC1tb25vIGZsZXggaXRlbXMtY2VudGVyIGdhcC0xIG10LTAuNVwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxDbG9jayBzaXplPXsxMn0gLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8c3Bhbj57bWVldGluZy5tZWV0aW5nX3RpbWV9ICh7bWVldGluZy50aW1lX3pvbmUgfHwgJ0lTVCd9KTwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC1bMTBweF0gdGV4dC10ZXh0LW11dGVkIGZvbnQtbW9ubyBtdC0wLjVcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICBJRDoge21lZXRpbmcuYm9va2luZ19pZH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3RkPlxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgIHsvKiBJbnRlcmVzdCAqL31cclxuICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9XCJweS0zLjUgcHgtNFwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJweC0yIHB5LTAuNSByb3VuZGVkLW1kIGJnLXNsYXRlLTEwMCBkYXJrOmJnLXdoaXRlLzUgYm9yZGVyIGJvcmRlci1ib3JkZXIvNjAgdGV4dC10ZXh0LXNlY29uZGFyeSB0ZXh0LVsxMXB4XSBmb250LW1lZGl1bVwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHttZWV0aW5nLmludGVyZXN0IHx8ICdTdHJhdGVneSBDYWxsJ31cclxuICAgICAgICAgICAgICAgICAgICAgICAgPC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC90ZD5cclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICB7LyogU3RhdHVzICovfVxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTMuNSBweC00XCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHtnZXRTdGF0dXNCYWRnZShtZWV0aW5nLnN0YXR1cyl9XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3RkPlxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgIHsvKiBMaW5rcyAqL31cclxuICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9XCJweS0zLjUgcHgtNFwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC1jb2wgZ2FwLTEuNVwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHttZWV0aW5nLm1lZXRpbmdfbGluayA/IChcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxhXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGhyZWY9e21lZXRpbmcubWVldGluZ19saW5rfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YXJnZXQ9XCJfYmxhbmtcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWw9XCJub29wZW5lciBub3JlZmVycmVyXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGdhcC0xIHRleHQtWyMwMEE2RkZdIGhvdmVyOnVuZGVybGluZSBmb250LWJvbGQgdGV4dC1bMTFweF1cIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8VmlkZW8gc2l6ZT17MTJ9IC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuPkpvaW4gTWVldDwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPEV4dGVybmFsTGluayBzaXplPXsxMH0gLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvYT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICApIDogKFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC10ZXh0LW11dGVkIHRleHQtWzEwcHhdIGZvbnQtbW9ub1wiPk5vIE1lZXQgbGluazwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICApfVxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICB7bWVldGluZy5jYWxlbmRhcl9ldmVudF9saW5rICYmIChcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxhXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGhyZWY9e21lZXRpbmcuY2FsZW5kYXJfZXZlbnRfbGlua31cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFyZ2V0PVwiX2JsYW5rXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVsPVwibm9vcGVuZXIgbm9yZWZlcnJlclwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBnYXAtMSB0ZXh0LXRleHQtc2Vjb25kYXJ5IGhvdmVyOnRleHQtWyMwMEE2RkZdIHRleHQtWzExcHhdXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPENhbGVuZGFySWNvbiBzaXplPXsxMX0gLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4+Q2FsZW5kYXI8L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2E+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgKX1cclxuICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3RkPlxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgIHsvKiBBY3Rpb25zICovfVxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT1cInB5LTMuNSBweC00IHRleHQtcmlnaHRcIj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEuNVwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IGhhbmRsZU9wZW5EZXRhaWwobWVldGluZyl9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJweC0yLjUgcHktMS41IHJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1ib3JkZXIvODAgaG92ZXI6Ymctc2xhdGUtMTAwIGRhcms6aG92ZXI6Ymctd2hpdGUvNSB0ZXh0LVsxMXB4XSBmb250LXNlbWlib2xkIHRleHQtdGV4dC1wcmltYXJ5IGN1cnNvci1wb2ludGVyXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBEZXRhaWxzXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPC9idXR0b24+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgb25DbGljaz17KCkgPT4gaGFuZGxlT3BlblJlc2NoZWR1bGUobWVldGluZyl9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNhYmxlZD17bWVldGluZy5zdGF0dXMgPT09ICdjYW5jZWxsZWQnfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicHgtMi41IHB5LTEuNSByb3VuZGVkLWxnIGJnLVsjMDBBNkZGXS8xMCB0ZXh0LVsjMDBBNkZGXSBob3ZlcjpiZy1bIzAwQTZGRl0vMjAgdGV4dC1bMTFweF0gZm9udC1zZW1pYm9sZCBkaXNhYmxlZDpvcGFjaXR5LTMwIGRpc2FibGVkOmN1cnNvci1ub3QtYWxsb3dlZCBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgUmVzY2hlZHVsZVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IGhhbmRsZU9wZW5DYW5jZWwobWVldGluZyl9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNhYmxlZD17bWVldGluZy5zdGF0dXMgPT09ICdjYW5jZWxsZWQnfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicHgtMi41IHB5LTEuNSByb3VuZGVkLWxnIGJnLXJlZC01MDAvMTAgdGV4dC1yZWQtNjAwIGRhcms6dGV4dC1yZWQtNDAwIGhvdmVyOmJnLXJlZC01MDAvMjAgdGV4dC1bMTFweF0gZm9udC1zZW1pYm9sZCBkaXNhYmxlZDpvcGFjaXR5LTMwIGRpc2FibGVkOmN1cnNvci1ub3QtYWxsb3dlZCBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgQ2FuY2VsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPC9idXR0b24+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC90ZD5cclxuICAgICAgICAgICAgICAgICAgICA8L3RyPlxyXG4gICAgICAgICAgICAgICAgICApXHJcbiAgICAgICAgICAgICAgICB9KX1cclxuICAgICAgICAgICAgICA8L3Rib2R5PlxyXG4gICAgICAgICAgICA8L3RhYmxlPlxyXG4gICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgKX1cclxuXHJcbiAgICAgICAgey8qIFBhZ2luYXRpb24gKi99XHJcbiAgICAgICAge3BhZ2luYXRpb24udG90YWxQYWdlcyA+IDEgJiYgKFxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwLTQgYm9yZGVyLXQgYm9yZGVyLWJvcmRlciBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gdGV4dC14cyB0ZXh0LXRleHQtc2Vjb25kYXJ5XCI+XHJcbiAgICAgICAgICAgIDxzcGFuPlxyXG4gICAgICAgICAgICAgIFNob3dpbmcgeygocGFnaW5hdGlvbi5wYWdlIC0gMSkgKiBwYWdpbmF0aW9uLmxpbWl0KSArIDF9IHRvIHtNYXRoLm1pbihwYWdpbmF0aW9uLnBhZ2UgKiBwYWdpbmF0aW9uLmxpbWl0LCBwYWdpbmF0aW9uLnRvdGFsKX0gb2Yge3BhZ2luYXRpb24udG90YWx9IGJvb2tpbmdzXHJcbiAgICAgICAgICAgIDwvc3Bhbj5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMVwiPlxyXG4gICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgIGRpc2FibGVkPXtwYWdpbmF0aW9uLnBhZ2UgPD0gMX1cclxuICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFBhZ2luYXRpb24ocHJldiA9PiAoeyAuLi5wcmV2LCBwYWdlOiBwcmV2LnBhZ2UgLSAxIH0pKX1cclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInAtMS41IHJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1ib3JkZXIgdGV4dC10ZXh0LW11dGVkIGhvdmVyOnRleHQtdGV4dC1wcmltYXJ5IGRpc2FibGVkOm9wYWNpdHktNDAgY3Vyc29yLXBvaW50ZXJcIlxyXG4gICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIDxDaGV2cm9uTGVmdCBzaXplPXsxNH0gLz5cclxuICAgICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJweC0yIGZvbnQtbW9ubyBmb250LWJvbGRcIj5cclxuICAgICAgICAgICAgICAgIHtwYWdpbmF0aW9uLnBhZ2V9IC8ge3BhZ2luYXRpb24udG90YWxQYWdlc31cclxuICAgICAgICAgICAgICA8L3NwYW4+XHJcbiAgICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgICAgZGlzYWJsZWQ9e3BhZ2luYXRpb24ucGFnZSA+PSBwYWdpbmF0aW9uLnRvdGFsUGFnZXN9XHJcbiAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRQYWdpbmF0aW9uKHByZXYgPT4gKHsgLi4ucHJldiwgcGFnZTogcHJldi5wYWdlICsgMSB9KSl9XHJcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJwLTEuNSByb3VuZGVkLWxnIGJvcmRlciBib3JkZXItYm9yZGVyIHRleHQtdGV4dC1tdXRlZCBob3Zlcjp0ZXh0LXRleHQtcHJpbWFyeSBkaXNhYmxlZDpvcGFjaXR5LTQwIGN1cnNvci1wb2ludGVyXCJcclxuICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICA8Q2hldnJvblJpZ2h0IHNpemU9ezE0fSAvPlxyXG4gICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICl9XHJcbiAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgey8qIE1PREFMIDE6IE1FRVRJTkcgREVUQUlMUyAqL31cclxuICAgICAge3Nob3dEZXRhaWxNb2RhbCAmJiBzZWxlY3RlZE1lZXRpbmcgJiYgKFxyXG4gICAgICAgIDxkaXYgXHJcbiAgICAgICAgICBkYXRhLWxlbmlzLXByZXZlbnQ9XCJ0cnVlXCJcclxuICAgICAgICAgIGNsYXNzTmFtZT1cImZpeGVkIGluc2V0LTAgYmctYmxhY2svNzAgYmFja2Ryb3AtYmx1ci1zbSB6LTUwIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHAtNCBvdmVyc2Nyb2xsLWNvbnRhaW5cIlxyXG4gICAgICAgICAgb25XaGVlbD17KGUpID0+IGUuc3RvcFByb3BhZ2F0aW9uKCl9XHJcbiAgICAgICAgPlxyXG4gICAgICAgICAgPGRpdiBcclxuICAgICAgICAgICAgY2xhc3NOYW1lPVwiYmctc3VyZmFjZSBib3JkZXIgYm9yZGVyLWJvcmRlciByb3VuZGVkLTJ4bCBwLTYgbWF4LXctbGcgdy1mdWxsIHNoYWRvdy0yeGwgcmVsYXRpdmUgbXktYXV0byBtYXgtaC1bOTB2aF0gb3ZlcmZsb3cteS1hdXRvIG92ZXJzY3JvbGwtY29udGFpbiBjdXN0b20tbW9kYWwtc2Nyb2xsYmFyXCJcclxuICAgICAgICAgICAgb25DbGljaz17KGUpID0+IGUuc3RvcFByb3BhZ2F0aW9uKCl9XHJcbiAgICAgICAgICA+XHJcbiAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRTaG93RGV0YWlsTW9kYWwoZmFsc2UpfVxyXG4gICAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIHRvcC00IHJpZ2h0LTQgcC0xLjUgcm91bmRlZC1mdWxsIGhvdmVyOmJnLXNsYXRlLTEwMCBkYXJrOmhvdmVyOmJnLXdoaXRlLzEwIHRleHQtdGV4dC1tdXRlZCBob3Zlcjp0ZXh0LXRleHQtcHJpbWFyeSBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICA8WCBzaXplPXsxOH0gLz5cclxuICAgICAgICAgICAgPC9idXR0b24+XHJcblxyXG4gICAgICAgICAgICA8aDMgY2xhc3NOYW1lPVwidGV4dC14bCBmb250LWJvbGQgdGV4dC10ZXh0LXByaW1hcnkgbWItMVwiPk1lZXRpbmcgRGV0YWlsczwvaDM+XHJcbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQteHMgdGV4dC10ZXh0LW11dGVkIGZvbnQtbW9ubyBtYi00XCI+XHJcbiAgICAgICAgICAgICAgQm9va2luZyBSZWZlcmVuY2U6IHtzZWxlY3RlZE1lZXRpbmcuYm9va2luZ19pZH1cclxuICAgICAgICAgICAgPC9wPlxyXG5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzcGFjZS15LTMgdGV4dC14c1wiPlxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicC0zIHJvdW5kZWQteGwgYmctYmFja2dyb3VuZCBib3JkZXIgYm9yZGVyLWJvcmRlci83MFwiPlxyXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC10ZXh0LW11dGVkIGJsb2NrIHRleHQtWzEwcHhdIGZvbnQtbW9ubyB1cHBlcmNhc2VcIj5DdXN0b21lcjwvc3Bhbj5cclxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZm9udC1ib2xkIHRleHQtc20gdGV4dC10ZXh0LXByaW1hcnkgbXQtMC41XCI+e3NlbGVjdGVkTWVldGluZy5mdWxsX25hbWV9PC9kaXY+XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtdGV4dC1zZWNvbmRhcnkgbXQtMVwiPntzZWxlY3RlZE1lZXRpbmcuY29tcGFueX08L2Rpdj5cclxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC10ZXh0LW11dGVkIGZvbnQtbW9ubyBtdC0wLjVcIj57c2VsZWN0ZWRNZWV0aW5nLmVtYWlsfSAmYnVsbDsge3NlbGVjdGVkTWVldGluZy5waG9uZSB8fCAnTi9BJ308L2Rpdj5cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkIGdyaWQtY29scy0yIGdhcC0zXCI+XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInAtMyByb3VuZGVkLXhsIGJnLWJhY2tncm91bmQgYm9yZGVyIGJvcmRlci1ib3JkZXIvNzBcIj5cclxuICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC10ZXh0LW11dGVkIGJsb2NrIHRleHQtWzEwcHhdIGZvbnQtbW9ubyB1cHBlcmNhc2VcIj5EYXRlICZhbXA7IFRpbWU8L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZm9udC1zZW1pYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBtdC0wLjVcIj5cclxuICAgICAgICAgICAgICAgICAgICB7bmV3IERhdGUoc2VsZWN0ZWRNZWV0aW5nLm1lZXRpbmdfZGF0ZSkudG9Mb2NhbGVEYXRlU3RyaW5nKCl9XHJcbiAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtdGV4dC1zZWNvbmRhcnkgZm9udC1tb25vIG10LTAuNVwiPlxyXG4gICAgICAgICAgICAgICAgICAgIHtzZWxlY3RlZE1lZXRpbmcubWVldGluZ190aW1lfSAoe3NlbGVjdGVkTWVldGluZy50aW1lX3pvbmUgfHwgJ0lTVCd9KVxyXG4gICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicC0zIHJvdW5kZWQteGwgYmctYmFja2dyb3VuZCBib3JkZXIgYm9yZGVyLWJvcmRlci83MFwiPlxyXG4gICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtbXV0ZWQgYmxvY2sgdGV4dC1bMTBweF0gZm9udC1tb25vIHVwcGVyY2FzZVwiPlN0YXR1czwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtdC0xXCI+e2dldFN0YXR1c0JhZGdlKHNlbGVjdGVkTWVldGluZy5zdGF0dXMpfTwvZGl2PlxyXG4gICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicC0zIHJvdW5kZWQteGwgYmctYmFja2dyb3VuZCBib3JkZXIgYm9yZGVyLWJvcmRlci83MFwiPlxyXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC10ZXh0LW11dGVkIGJsb2NrIHRleHQtWzEwcHhdIGZvbnQtbW9ubyB1cHBlcmNhc2VcIj5BcmVhIG9mIEludGVyZXN0PC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmb250LXNlbWlib2xkIHRleHQtdGV4dC1wcmltYXJ5IG10LTAuNVwiPntzZWxlY3RlZE1lZXRpbmcuaW50ZXJlc3QgfHwgJ1N0cmF0ZWd5IENhbGwnfTwvZGl2PlxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgICAgICB7c2VsZWN0ZWRNZWV0aW5nLm1lc3NhZ2UgJiYgKFxyXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwLTMgcm91bmRlZC14bCBiZy1iYWNrZ3JvdW5kIGJvcmRlciBib3JkZXItYm9yZGVyLzcwXCI+XHJcbiAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtdGV4dC1tdXRlZCBibG9jayB0ZXh0LVsxMHB4XSBmb250LW1vbm8gdXBwZXJjYXNlXCI+TWVzc2FnZSAvIFJlcXVpcmVtZW50czwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXRleHQtc2Vjb25kYXJ5IG10LTAuNSBsZWFkaW5nLXJlbGF4ZWRcIj57c2VsZWN0ZWRNZWV0aW5nLm1lc3NhZ2V9PC9kaXY+XHJcbiAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICApfVxyXG5cclxuICAgICAgICAgICAgICB7c2VsZWN0ZWRNZWV0aW5nLm1lZXRpbmdfbGluayAmJiAoXHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInAtMyByb3VuZGVkLXhsIGJnLVsjMDBBNkZGXS8xMCBib3JkZXIgYm9yZGVyLVsjMDBBNkZGXS8yMCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW5cIj5cclxuICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMlwiPlxyXG4gICAgICAgICAgICAgICAgICAgIDxWaWRlbyBzaXplPXsxNn0gY2xhc3NOYW1lPVwidGV4dC1bIzAwQTZGRl1cIiAvPlxyXG4gICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImZvbnQtYm9sZCB0ZXh0LVsjMDBBNkZGXVwiPkdvb2dsZSBNZWV0IFZpZGVvIFJvb208L3NwYW4+XHJcbiAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICA8YVxyXG4gICAgICAgICAgICAgICAgICAgIGhyZWY9e3NlbGVjdGVkTWVldGluZy5tZWV0aW5nX2xpbmt9XHJcbiAgICAgICAgICAgICAgICAgICAgdGFyZ2V0PVwiX2JsYW5rXCJcclxuICAgICAgICAgICAgICAgICAgICByZWw9XCJub29wZW5lciBub3JlZmVycmVyXCJcclxuICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJweC0zIHB5LTEuNSByb3VuZGVkLWxnIGJnLVsjMDBBNkZGXSB0ZXh0LXdoaXRlIHRleHQtWzExcHhdIGZvbnQtYm9sZFwiXHJcbiAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgICBKb2luXHJcbiAgICAgICAgICAgICAgICAgIDwvYT5cclxuICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICl9XHJcblxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIHRleHQtWzExcHhdIGZvbnQtbW9ubyB0ZXh0LXRleHQtbXV0ZWQgcHQtMiBib3JkZXItdCBib3JkZXItYm9yZGVyXCI+XHJcbiAgICAgICAgICAgICAgICA8c3Bhbj5DYWxlbmRhciBTeW5jOiB7c2VsZWN0ZWRNZWV0aW5nLmNhbGVuZGFyX3N5bmNfc3RhdHVzfTwvc3Bhbj5cclxuICAgICAgICAgICAgICAgIDxzcGFuPkVtYWlsIFN0YXR1czoge3NlbGVjdGVkTWVldGluZy5lbWFpbF9zdGF0dXN9PC9zcGFuPlxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXQtNSBmbGV4IGp1c3RpZnktZW5kIGdhcC0yXCI+XHJcbiAgICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgICAgb25DbGljaz17KCkgPT4gaGFuZGxlT3BlblN0YXR1cyhzZWxlY3RlZE1lZXRpbmcpfVxyXG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicHgtNCBweS0yIHJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci1ib3JkZXIgdGV4dC14cyBmb250LXNlbWlib2xkIHRleHQtdGV4dC1zZWNvbmRhcnkgaG92ZXI6dGV4dC10ZXh0LXByaW1hcnkgY3Vyc29yLXBvaW50ZXJcIlxyXG4gICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIENoYW5nZSBTdGF0dXNcclxuICAgICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgICAgICA8YnV0dG9uXHJcbiAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRTaG93RGV0YWlsTW9kYWwoZmFsc2UpfVxyXG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicHgtNCBweS0yIHJvdW5kZWQteGwgYmctc2xhdGUtOTAwIHRleHQtd2hpdGUgZGFyazpiZy13aGl0ZSBkYXJrOnRleHQtc2xhdGUtOTAwIHRleHQteHMgZm9udC1ib2xkIGN1cnNvci1wb2ludGVyXCJcclxuICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICBDbG9zZVxyXG4gICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICApfVxyXG5cclxuICAgICAgey8qIE1PREFMIDI6IFJFU0NIRURVTEUgKi99XHJcbiAgICAgIHtzaG93UmVzY2hlZHVsZU1vZGFsICYmIHNlbGVjdGVkTWVldGluZyAmJiAoXHJcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmaXhlZCBpbnNldC0wIGJnLWJsYWNrLzcwIGJhY2tkcm9wLWJsdXItc20gei01MCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBwLTRcIj5cclxuICAgICAgICAgIDxmb3JtIG9uU3VibWl0PXtoYW5kbGVSZXNjaGVkdWxlU3VibWl0fSBjbGFzc05hbWU9XCJiZy1zdXJmYWNlIGJvcmRlciBib3JkZXItYm9yZGVyIHJvdW5kZWQtMnhsIHAtNiBtYXgtdy1tZCB3LWZ1bGwgc2hhZG93LTJ4bCByZWxhdGl2ZSBteS1hdXRvXCI+XHJcbiAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICB0eXBlPVwiYnV0dG9uXCJcclxuICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRTaG93UmVzY2hlZHVsZU1vZGFsKGZhbHNlKX1cclxuICAgICAgICAgICAgICBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtNCByaWdodC00IHAtMS41IHJvdW5kZWQtZnVsbCBob3ZlcjpiZy1zbGF0ZS0xMDAgZGFyazpob3ZlcjpiZy13aGl0ZS8xMCB0ZXh0LXRleHQtbXV0ZWQgaG92ZXI6dGV4dC10ZXh0LXByaW1hcnkgY3Vyc29yLXBvaW50ZXJcIlxyXG4gICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgPFggc2l6ZT17MTh9IC8+XHJcbiAgICAgICAgICAgIDwvYnV0dG9uPlxyXG5cclxuICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT1cInRleHQtbGcgZm9udC1ib2xkIHRleHQtdGV4dC1wcmltYXJ5IG1iLTFcIj5SZXNjaGVkdWxlIE1lZXRpbmc8L2gzPlxyXG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJ0ZXh0LXhzIHRleHQtdGV4dC1zZWNvbmRhcnkgbWItNFwiPlxyXG4gICAgICAgICAgICAgIFNlbGVjdCBhIG5ldyBkYXRlIGFuZCB0aW1lIGZvciB7c2VsZWN0ZWRNZWV0aW5nLmZ1bGxfbmFtZX0uIFRoZSBleGlzdGluZyBHb29nbGUgQ2FsZW5kYXIgZXZlbnQgd2lsbCBiZSB1cGRhdGVkLlxyXG4gICAgICAgICAgICA8L3A+XHJcblxyXG4gICAgICAgICAgICB7YWN0aW9uRXJyb3IgJiYgKFxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicC0zIG1iLTQgcm91bmRlZC14bCBiZy1yZWQtNTAwLzEwIGJvcmRlciBib3JkZXItcmVkLTUwMC8yMCB0ZXh0LXhzIHRleHQtcmVkLTUwMFwiPlxyXG4gICAgICAgICAgICAgICAge2FjdGlvbkVycm9yfVxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICApfVxyXG5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzcGFjZS15LTMgbWItNVwiPlxyXG4gICAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPVwiYmxvY2sgdGV4dC14cyBmb250LXNlbWlib2xkIHRleHQtdGV4dC1zZWNvbmRhcnkgbWItMVwiPk5ldyBEYXRlPC9sYWJlbD5cclxuICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICB0eXBlPVwiZGF0ZVwiXHJcbiAgICAgICAgICAgICAgICAgIHJlcXVpcmVkXHJcbiAgICAgICAgICAgICAgICAgIHZhbHVlPXtyZXNjaGVkdWxlRm9ybS5kYXRlfVxyXG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldFJlc2NoZWR1bGVGb3JtKHByZXYgPT4gKHsgLi4ucHJldiwgZGF0ZTogZS50YXJnZXQudmFsdWUgfSkpfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJ3LWZ1bGwgcHgtMyBweS0yIHJvdW5kZWQteGwgYmctYmFja2dyb3VuZCBib3JkZXIgYm9yZGVyLWJvcmRlciB0ZXh0LXhzIHRleHQtdGV4dC1wcmltYXJ5IGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpib3JkZXItWyMwMEE2RkZdXCJcclxuICAgICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPVwiYmxvY2sgdGV4dC14cyBmb250LXNlbWlib2xkIHRleHQtdGV4dC1zZWNvbmRhcnkgbWItMVwiPk5ldyBUaW1lIFNsb3Q8L2xhYmVsPlxyXG4gICAgICAgICAgICAgICAgPGlucHV0XHJcbiAgICAgICAgICAgICAgICAgIHR5cGU9XCJ0ZXh0XCJcclxuICAgICAgICAgICAgICAgICAgcmVxdWlyZWRcclxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJlLmcuIDEwOjAwIEFNIG9yIDM6MzAgUE1cIlxyXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17cmVzY2hlZHVsZUZvcm0udGltZX1cclxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRSZXNjaGVkdWxlRm9ybShwcmV2ID0+ICh7IC4uLnByZXYsIHRpbWU6IGUudGFyZ2V0LnZhbHVlIH0pKX1cclxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidy1mdWxsIHB4LTMgcHktMiByb3VuZGVkLXhsIGJnLWJhY2tncm91bmQgYm9yZGVyIGJvcmRlci1ib3JkZXIgdGV4dC14cyB0ZXh0LXRleHQtcHJpbWFyeSBmb2N1czpvdXRsaW5lLW5vbmUgZm9jdXM6Ym9yZGVyLVsjMDBBNkZGXVwiXHJcbiAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBqdXN0aWZ5LWVuZCBnYXAtMlwiPlxyXG4gICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgIHR5cGU9XCJidXR0b25cIlxyXG4gICAgICAgICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0U2hvd1Jlc2NoZWR1bGVNb2RhbChmYWxzZSl9XHJcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJweC00IHB5LTIgcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLWJvcmRlciB0ZXh0LXhzIGZvbnQtc2VtaWJvbGQgdGV4dC10ZXh0LXNlY29uZGFyeSBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgQ2FuY2VsXHJcbiAgICAgICAgICAgICAgPC9idXR0b24+XHJcbiAgICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgICAgdHlwZT1cInN1Ym1pdFwiXHJcbiAgICAgICAgICAgICAgICBkaXNhYmxlZD17c2F2aW5nfVxyXG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicHgtNSBweS0yIHJvdW5kZWQteGwgYmctWyMwMEE2RkZdIGhvdmVyOmJnLVsjMDA5MGUwXSB0ZXh0LXdoaXRlIHRleHQteHMgZm9udC1ib2xkIHRyYW5zaXRpb24tYWxsIGRpc2FibGVkOm9wYWNpdHktNTAgY3Vyc29yLXBvaW50ZXJcIlxyXG4gICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIHtzYXZpbmcgPyAnVXBkYXRpbmcgQ2FsZW5kYXIuLi4nIDogJ0NvbmZpcm0gUmVzY2hlZHVsZSd9XHJcbiAgICAgICAgICAgICAgPC9idXR0b24+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgPC9mb3JtPlxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICApfVxyXG5cclxuICAgICAgey8qIE1PREFMIDM6IENBTkNFTExBVElPTiAqL31cclxuICAgICAge3Nob3dDYW5jZWxNb2RhbCAmJiBzZWxlY3RlZE1lZXRpbmcgJiYgKFxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZml4ZWQgaW5zZXQtMCBiZy1ibGFjay83MCBiYWNrZHJvcC1ibHVyLXNtIHotNTAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcC00XCI+XHJcbiAgICAgICAgICA8Zm9ybSBvblN1Ym1pdD17aGFuZGxlQ2FuY2VsU3VibWl0fSBjbGFzc05hbWU9XCJiZy1zdXJmYWNlIGJvcmRlciBib3JkZXItYm9yZGVyIHJvdW5kZWQtMnhsIHAtNiBtYXgtdy1tZCB3LWZ1bGwgc2hhZG93LTJ4bCByZWxhdGl2ZSBteS1hdXRvXCI+XHJcbiAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICB0eXBlPVwiYnV0dG9uXCJcclxuICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRTaG93Q2FuY2VsTW9kYWwoZmFsc2UpfVxyXG4gICAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIHRvcC00IHJpZ2h0LTQgcC0xLjUgcm91bmRlZC1mdWxsIGhvdmVyOmJnLXNsYXRlLTEwMCBkYXJrOmhvdmVyOmJnLXdoaXRlLzEwIHRleHQtdGV4dC1tdXRlZCBob3Zlcjp0ZXh0LXRleHQtcHJpbWFyeSBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICA8WCBzaXplPXsxOH0gLz5cclxuICAgICAgICAgICAgPC9idXR0b24+XHJcblxyXG4gICAgICAgICAgICA8aDMgY2xhc3NOYW1lPVwidGV4dC1sZyBmb250LWJvbGQgdGV4dC1yZWQtNjAwIGRhcms6dGV4dC1yZWQtNDAwIG1iLTFcIj5DYW5jZWwgU3RyYXRlZ3kgQ2FsbDwvaDM+XHJcbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQteHMgdGV4dC10ZXh0LXNlY29uZGFyeSBtYi00XCI+XHJcbiAgICAgICAgICAgICAgVGhpcyB3aWxsIG1hcmsgdGhlIG1lZXRpbmcgYXMgY2FuY2VsbGVkLCBkZWxldGUgdGhlIEdvb2dsZSBDYWxlbmRhciBldmVudCwgbm90aWZ5IHRoZSBhdHRlbmRlZSwgYW5kIHJlbGVhc2UgdGhlIHNsb3QuXHJcbiAgICAgICAgICAgIDwvcD5cclxuXHJcbiAgICAgICAgICAgIHthY3Rpb25FcnJvciAmJiAoXHJcbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwLTMgbWItNCByb3VuZGVkLXhsIGJnLXJlZC01MDAvMTAgYm9yZGVyIGJvcmRlci1yZWQtNTAwLzIwIHRleHQteHMgdGV4dC1yZWQtNTAwXCI+XHJcbiAgICAgICAgICAgICAgICB7YWN0aW9uRXJyb3J9XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICl9XHJcblxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1iLTVcIj5cclxuICAgICAgICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPVwiYmxvY2sgdGV4dC14cyBmb250LXNlbWlib2xkIHRleHQtdGV4dC1zZWNvbmRhcnkgbWItMVwiPlxyXG4gICAgICAgICAgICAgICAgQ2FuY2VsbGF0aW9uIFJlYXNvbiAoT3B0aW9uYWwpXHJcbiAgICAgICAgICAgICAgPC9sYWJlbD5cclxuICAgICAgICAgICAgICA8dGV4dGFyZWFcclxuICAgICAgICAgICAgICAgIHJvd3M9ezN9XHJcbiAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj1cImUuZy4gQ2xpZW50IHJlcXVlc3RlZCBwb3N0cG9uZW1lbnQgb3Igc2NoZWR1bGUgY29uZmxpY3QuLi5cIlxyXG4gICAgICAgICAgICAgICAgdmFsdWU9e2NhbmNlbFJlYXNvbn1cclxuICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0Q2FuY2VsUmVhc29uKGUudGFyZ2V0LnZhbHVlKX1cclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInctZnVsbCBweC0zIHB5LTIgcm91bmRlZC14bCBiZy1iYWNrZ3JvdW5kIGJvcmRlciBib3JkZXItYm9yZGVyIHRleHQteHMgdGV4dC10ZXh0LXByaW1hcnkgcGxhY2Vob2xkZXI6dGV4dC10ZXh0LW11dGVkIGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpib3JkZXItcmVkLTUwMCByZXNpemUtbm9uZVwiXHJcbiAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXgganVzdGlmeS1lbmQgZ2FwLTJcIj5cclxuICAgICAgICAgICAgICA8YnV0dG9uXHJcbiAgICAgICAgICAgICAgICB0eXBlPVwiYnV0dG9uXCJcclxuICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFNob3dDYW5jZWxNb2RhbChmYWxzZSl9XHJcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJweC00IHB5LTIgcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLWJvcmRlciB0ZXh0LXhzIGZvbnQtc2VtaWJvbGQgdGV4dC10ZXh0LXNlY29uZGFyeSBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgR28gQmFja1xyXG4gICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgIHR5cGU9XCJzdWJtaXRcIlxyXG4gICAgICAgICAgICAgICAgZGlzYWJsZWQ9e3NhdmluZ31cclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInB4LTUgcHktMiByb3VuZGVkLXhsIGJnLXJlZC02MDAgaG92ZXI6YmctcmVkLTcwMCB0ZXh0LXdoaXRlIHRleHQteHMgZm9udC1ib2xkIHRyYW5zaXRpb24tYWxsIGRpc2FibGVkOm9wYWNpdHktNTAgY3Vyc29yLXBvaW50ZXJcIlxyXG4gICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIHtzYXZpbmcgPyAnQ2FuY2VsbGluZy4uLicgOiAnQ29uZmlybSBDYW5jZWxsYXRpb24nfVxyXG4gICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgIDwvZm9ybT5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgKX1cclxuXHJcbiAgICAgIHsvKiBNT0RBTCA0OiBTVEFUVVMgVVBEQVRFICovfVxyXG4gICAgICB7c2hvd1N0YXR1c01vZGFsICYmIHNlbGVjdGVkTWVldGluZyAmJiAoXHJcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmaXhlZCBpbnNldC0wIGJnLWJsYWNrLzcwIGJhY2tkcm9wLWJsdXItc20gei01MCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBwLTRcIj5cclxuICAgICAgICAgIDxmb3JtIG9uU3VibWl0PXtoYW5kbGVTdGF0dXNTdWJtaXR9IGNsYXNzTmFtZT1cImJnLXN1cmZhY2UgYm9yZGVyIGJvcmRlci1ib3JkZXIgcm91bmRlZC0yeGwgcC02IG1heC13LXNtIHctZnVsbCBzaGFkb3ctMnhsIHJlbGF0aXZlIG15LWF1dG9cIj5cclxuICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgIHR5cGU9XCJidXR0b25cIlxyXG4gICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFNob3dTdGF0dXNNb2RhbChmYWxzZSl9XHJcbiAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiYWJzb2x1dGUgdG9wLTQgcmlnaHQtNCBwLTEuNSByb3VuZGVkLWZ1bGwgaG92ZXI6Ymctc2xhdGUtMTAwIGRhcms6aG92ZXI6Ymctd2hpdGUvMTAgdGV4dC10ZXh0LW11dGVkIGhvdmVyOnRleHQtdGV4dC1wcmltYXJ5IGN1cnNvci1wb2ludGVyXCJcclxuICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgIDxYIHNpemU9ezE4fSAvPlxyXG4gICAgICAgICAgICA8L2J1dHRvbj5cclxuXHJcbiAgICAgICAgICAgIDxoMyBjbGFzc05hbWU9XCJ0ZXh0LWxnIGZvbnQtYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBtYi0zXCI+VXBkYXRlIFN0YXR1czwvaDM+XHJcblxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1iLTRcIj5cclxuICAgICAgICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPVwiYmxvY2sgdGV4dC14cyBmb250LXNlbWlib2xkIHRleHQtdGV4dC1zZWNvbmRhcnkgbWItMVwiPlN0YXR1czwvbGFiZWw+XHJcbiAgICAgICAgICAgICAgPHNlbGVjdFxyXG4gICAgICAgICAgICAgICAgdmFsdWU9e3N0YXR1c1ZhbH1cclxuICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0U3RhdHVzVmFsKGUudGFyZ2V0LnZhbHVlKX1cclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInctZnVsbCBweC0zIHB5LTIgcm91bmRlZC14bCBiZy1iYWNrZ3JvdW5kIGJvcmRlciBib3JkZXItYm9yZGVyIHRleHQteHMgdGV4dC10ZXh0LXByaW1hcnkgZm9jdXM6b3V0bGluZS1ub25lIGZvY3VzOmJvcmRlci1bIzAwQTZGRl0gY3Vyc29yLXBvaW50ZXJcIlxyXG4gICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJwZW5kaW5nXCI+UGVuZGluZzwvb3B0aW9uPlxyXG4gICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImNvbmZpcm1lZFwiPkNvbmZpcm1lZDwvb3B0aW9uPlxyXG4gICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImNvbXBsZXRlZFwiPkNvbXBsZXRlZDwvb3B0aW9uPlxyXG4gICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImNhbmNlbGxlZFwiPkNhbmNlbGxlZDwvb3B0aW9uPlxyXG4gICAgICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImZhaWxlZFwiPkZhaWxlZDwvb3B0aW9uPlxyXG4gICAgICAgICAgICAgIDwvc2VsZWN0PlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBqdXN0aWZ5LWVuZCBnYXAtMlwiPlxyXG4gICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgIHR5cGU9XCJidXR0b25cIlxyXG4gICAgICAgICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0U2hvd1N0YXR1c01vZGFsKGZhbHNlKX1cclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInB4LTQgcHktMiByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItYm9yZGVyIHRleHQteHMgZm9udC1zZW1pYm9sZCB0ZXh0LXRleHQtc2Vjb25kYXJ5IGN1cnNvci1wb2ludGVyXCJcclxuICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICBDYW5jZWxcclxuICAgICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgICAgICA8YnV0dG9uXHJcbiAgICAgICAgICAgICAgICB0eXBlPVwic3VibWl0XCJcclxuICAgICAgICAgICAgICAgIGRpc2FibGVkPXtzYXZpbmd9XHJcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJweC01IHB5LTIgcm91bmRlZC14bCBiZy1bIzAwQTZGRl0gdGV4dC13aGl0ZSB0ZXh0LXhzIGZvbnQtYm9sZCBjdXJzb3ItcG9pbnRlclwiXHJcbiAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAge3NhdmluZyA/ICdTYXZpbmcuLi4nIDogJ1NhdmUnfVxyXG4gICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgIDwvZm9ybT5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgKX1cclxuICAgIDwvZGl2PlxyXG4gIClcclxufVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgTWVldGluZ3NcclxuIl0sImZpbGUiOiJDOi9Vc2Vycy9IUC9EZXNrdG9wL1RHUy9UYXJhal9HbG9iYWxsL2NsaWVudC9zcmMvcGFnZXMvQWRtaW4vTWVldGluZ3MuanN4In0=

@@ -1,0 +1,318 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;
+import { motion } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+import {
+  Database,
+  Share2,
+  Eye,
+  TrendingUp,
+  Layers,
+  CheckCircle2,
+  ShieldCheck
+} from "/node_modules/.vite/deps/lucide-react.js?v=2f1d9042";
+import { useReducedMotion } from "/src/hooks/useReducedMotion.js";
+const VALUE_PILLARS = [
+  {
+    num: "01",
+    title: "ONE SOURCE OF TRUTH",
+    desc: "Keep essential business information centralized and accessible.",
+    icon: Database,
+    color: "#00A6FF",
+    details: "Eliminate siloed data between sales, HR, operations, and leadership with unified records."
+  },
+  {
+    num: "02",
+    title: "CONNECTED WORKFLOWS",
+    desc: "Connect teams and business processes through a unified platform.",
+    icon: Share2,
+    color: "#00D2FF",
+    details: "Trigger seamless handoffs from lead discovery to qualification, contract signature, and delivery."
+  },
+  {
+    num: "03",
+    title: "REAL-TIME VISIBILITY",
+    desc: "Get a clearer view of business activities, progress and performance.",
+    icon: Eye,
+    color: "#FF6D00",
+    details: "Live telemetry across client campaign pacing, employee attendance, and revenue conversion metrics."
+  },
+  {
+    num: "04",
+    title: "SCALABLE OPERATIONS",
+    desc: "Support growing teams and increasingly complex business operations.",
+    icon: TrendingUp,
+    color: "#72D669",
+    details: "Architected to handle multi-pod scaling, international time zones, and expanding service suites."
+  }
+];
+const WhyOnePlatform = () => {
+  _s();
+  const prefersReducedMotion = useReducedMotion();
+  return /* @__PURE__ */ jsxDEV(
+    "section",
+    {
+      id: "why-one-platform",
+      className: "relative py-16 sm:py-20 lg:py-24 bg-background overflow-hidden",
+      "aria-label": "Why One Platform",
+      children: /* @__PURE__ */ jsxDEV("div", { className: "relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8", children: [
+        /* @__PURE__ */ jsxDEV("div", { className: "max-w-3xl mx-auto text-center mb-12 sm:mb-16", children: [
+          /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              initial: prefersReducedMotion ? {} : { opacity: 0, y: 14 },
+              whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.5 },
+              className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary mb-3.5 backdrop-blur-md",
+              children: [
+                /* @__PURE__ */ jsxDEV(Layers, { className: "w-3.5 h-3.5 text-primary" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                  lineNumber: 88,
+                  columnNumber: 13
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "text-xs font-mono font-bold tracking-[0.2em] uppercase", children: "The Unified Advantage" }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                  lineNumber: 89,
+                  columnNumber: 13
+                }, this)
+              ]
+            },
+            void 0,
+            true,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+              lineNumber: 81,
+              columnNumber: 11
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.h2,
+            {
+              initial: prefersReducedMotion ? {} : { opacity: 0, y: 18 },
+              whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.6, delay: 0.1 },
+              className: "text-2.5xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-4",
+              children: [
+                "Less Switching.",
+                " ",
+                /* @__PURE__ */ jsxDEV("span", { className: "bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent", children: "More Control." }, void 0, false, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                  lineNumber: 102,
+                  columnNumber: 13
+                }, this)
+              ]
+            },
+            void 0,
+            true,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+              lineNumber: 94,
+              columnNumber: 11
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            motion.p,
+            {
+              initial: prefersReducedMotion ? {} : { opacity: 0, y: 16 },
+              whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.6, delay: 0.2 },
+              className: "text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl mx-auto font-normal",
+              children: "Disjointed software breeds confusion, lost leads, and administrative friction. DemandFlow Bridge provides the structural foundation for consistent execution."
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+              lineNumber: 107,
+              columnNumber: 11
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+          lineNumber: 80,
+          columnNumber: 9
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6", children: VALUE_PILLARS.map((pillar, idx) => {
+          const Icon = pillar.icon;
+          return /* @__PURE__ */ jsxDEV(
+            motion.div,
+            {
+              initial: prefersReducedMotion ? {} : { opacity: 0, y: 20 },
+              whileInView: prefersReducedMotion ? {} : { opacity: 1, y: 0 },
+              viewport: { once: true, margin: "-40px" },
+              transition: {
+                duration: 0.5,
+                delay: prefersReducedMotion ? 0 : idx * 0.08,
+                ease: [0.22, 1, 0.36, 1]
+              },
+              whileHover: prefersReducedMotion ? {} : {
+                y: -6,
+                transition: { duration: 0.22, ease: "easeOut" }
+              },
+              className: "group relative p-6 sm:p-7 rounded-2xl border border-border bg-surface hover:border-primary/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default",
+              children: [
+                /* @__PURE__ */ jsxDEV(
+                  "div",
+                  {
+                    className: "absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                    style: {
+                      background: `linear-gradient(90deg, transparent, ${pillar.color}, transparent)`
+                    }
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                    lineNumber: 145,
+                    columnNumber: 17
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV("div", { children: [
+                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between mb-5", children: [
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-xs font-mono font-bold tracking-widest text-text-secondary", children: pillar.num }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                      lineNumber: 154,
+                      columnNumber: 21
+                    }, this),
+                    /* @__PURE__ */ jsxDEV(
+                      "div",
+                      {
+                        className: "w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110",
+                        style: {
+                          backgroundColor: `${pillar.color}15`,
+                          color: pillar.color,
+                          border: `1px solid ${pillar.color}35`
+                        },
+                        children: /* @__PURE__ */ jsxDEV(Icon, { className: "w-5 h-5" }, void 0, false, {
+                          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                          lineNumber: 166,
+                          columnNumber: 23
+                        }, this)
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                        lineNumber: 158,
+                        columnNumber: 21
+                      },
+                      this
+                    )
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                    lineNumber: 153,
+                    columnNumber: 19
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("h3", { className: "text-base sm:text-lg font-black tracking-tight text-text-primary mb-2 group-hover:text-primary transition-colors", children: pillar.title }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                    lineNumber: 170,
+                    columnNumber: 19
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("p", { className: "text-xs sm:text-sm font-semibold text-text-primary leading-snug mb-2", children: pillar.desc }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                    lineNumber: 174,
+                    columnNumber: 19
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("p", { className: "text-xs text-text-secondary leading-relaxed font-normal", children: pillar.details }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                    lineNumber: 178,
+                    columnNumber: 19
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                  lineNumber: 152,
+                  columnNumber: 17
+                }, this),
+                /* @__PURE__ */ jsxDEV("div", { className: "pt-4 mt-4 border-t border-border/60 flex items-center gap-1.5 text-[11px] font-mono text-text-secondary group-hover:text-primary transition-colors", children: [
+                  /* @__PURE__ */ jsxDEV(CheckCircle2, { className: "w-3.5 h-3.5 text-emerald-500" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                    lineNumber: 184,
+                    columnNumber: 19
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("span", { children: "Platform Standard" }, void 0, false, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                    lineNumber: 185,
+                    columnNumber: 19
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+                  lineNumber: 183,
+                  columnNumber: 17
+                }, this)
+              ]
+            },
+            pillar.num,
+            true,
+            {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+              lineNumber: 124,
+              columnNumber: 15
+            },
+            this
+          );
+        }) }, void 0, false, {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+          lineNumber: 119,
+          columnNumber: 9
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+        lineNumber: 77,
+        columnNumber: 7
+      }, this)
+    },
+    void 0,
+    false,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx",
+      lineNumber: 72,
+      columnNumber: 5
+    },
+    this
+  );
+};
+_s(WhyOnePlatform, "VVlbsF4XHDtJtLWyDw/S3b1ysqw=", false, function() {
+  return [useReducedMotion];
+});
+_c = WhyOnePlatform;
+export default WhyOnePlatform;
+var _c;
+$RefreshReg$(_c, "WhyOnePlatform");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/pages/DemandFlowBridge/components/WhyOnePlatform.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6IkFBb0VZOzs7Ozs7Ozs7Ozs7Ozs7OztBQXBFWixPQUFPQSxXQUFXO0FBQ2xCLFNBQVNDLGNBQWM7QUFDdkI7QUFBQSxFQUNFQztBQUFBQSxFQUNBQztBQUFBQSxFQUNBQztBQUFBQSxFQUNBQztBQUFBQSxFQUNBQztBQUFBQSxFQUNBQztBQUFBQSxFQUNBQztBQUFBQSxPQUNLO0FBQ1AsU0FBU0Msd0JBQXdCO0FBRWpDLE1BQU1DLGdCQUFnQjtBQUFBLEVBQ3BCO0FBQUEsSUFDRUMsS0FBSztBQUFBLElBQ0xDLE9BQU87QUFBQSxJQUNQQyxNQUFNO0FBQUEsSUFDTkMsTUFBTVo7QUFBQUEsSUFDTmEsT0FBTztBQUFBLElBQ1BDLFNBQVM7QUFBQSxFQUNYO0FBQUEsRUFDQTtBQUFBLElBQ0VMLEtBQUs7QUFBQSxJQUNMQyxPQUFPO0FBQUEsSUFDUEMsTUFBTTtBQUFBLElBQ05DLE1BQU1YO0FBQUFBLElBQ05ZLE9BQU87QUFBQSxJQUNQQyxTQUFTO0FBQUEsRUFDWDtBQUFBLEVBQ0E7QUFBQSxJQUNFTCxLQUFLO0FBQUEsSUFDTEMsT0FBTztBQUFBLElBQ1BDLE1BQU07QUFBQSxJQUNOQyxNQUFNVjtBQUFBQSxJQUNOVyxPQUFPO0FBQUEsSUFDUEMsU0FBUztBQUFBLEVBQ1g7QUFBQSxFQUNBO0FBQUEsSUFDRUwsS0FBSztBQUFBLElBQ0xDLE9BQU87QUFBQSxJQUNQQyxNQUFNO0FBQUEsSUFDTkMsTUFBTVQ7QUFBQUEsSUFDTlUsT0FBTztBQUFBLElBQ1BDLFNBQVM7QUFBQSxFQUNYO0FBQUM7QUFHSCxNQUFNQyxpQkFBaUJBLE1BQU07QUFBQUMsS0FBQTtBQUMzQixRQUFNQyx1QkFBdUJWLGlCQUFpQjtBQUU5QyxTQUNFO0FBQUEsSUFBQztBQUFBO0FBQUEsTUFDQyxJQUFHO0FBQUEsTUFDSCxXQUFVO0FBQUEsTUFDVixjQUFXO0FBQUEsTUFFWCxpQ0FBQyxTQUFJLFdBQVUsd0RBR2I7QUFBQSwrQkFBQyxTQUFJLFdBQVUsZ0RBQ2I7QUFBQTtBQUFBLFlBQUMsT0FBTztBQUFBLFlBQVA7QUFBQSxjQUNDLFNBQVNVLHVCQUF1QixDQUFDLElBQUksRUFBRUMsU0FBUyxHQUFHQyxHQUFHLEdBQUc7QUFBQSxjQUN6RCxhQUFhRix1QkFBdUIsQ0FBQyxJQUFJLEVBQUVDLFNBQVMsR0FBR0MsR0FBRyxFQUFFO0FBQUEsY0FDNUQsVUFBVSxFQUFFQyxNQUFNLEtBQUs7QUFBQSxjQUN2QixZQUFZLEVBQUVDLFVBQVUsSUFBSTtBQUFBLGNBQzVCLFdBQVU7QUFBQSxjQUVWO0FBQUEsdUNBQUMsVUFBTyxXQUFVLDhCQUFsQjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUE0QztBQUFBLGdCQUM1Qyx1QkFBQyxVQUFLLFdBQVUsMERBQXdELHFDQUF4RTtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUVBO0FBQUE7QUFBQTtBQUFBLFlBVkY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFVBV0E7QUFBQSxVQUVBO0FBQUEsWUFBQyxPQUFPO0FBQUEsWUFBUDtBQUFBLGNBQ0MsU0FBU0osdUJBQXVCLENBQUMsSUFBSSxFQUFFQyxTQUFTLEdBQUdDLEdBQUcsR0FBRztBQUFBLGNBQ3pELGFBQWFGLHVCQUF1QixDQUFDLElBQUksRUFBRUMsU0FBUyxHQUFHQyxHQUFHLEVBQUU7QUFBQSxjQUM1RCxVQUFVLEVBQUVDLE1BQU0sS0FBSztBQUFBLGNBQ3ZCLFlBQVksRUFBRUMsVUFBVSxLQUFLQyxPQUFPLElBQUk7QUFBQSxjQUN4QyxXQUFVO0FBQUEsY0FBbUc7QUFBQTtBQUFBLGdCQUU3RjtBQUFBLGdCQUNoQix1QkFBQyxVQUFLLFdBQVUsc0VBQW9FLDZCQUFwRjtBQUFBO0FBQUE7QUFBQTtBQUFBLHVCQUVBO0FBQUE7QUFBQTtBQUFBLFlBVkY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFVBV0E7QUFBQSxVQUVBO0FBQUEsWUFBQyxPQUFPO0FBQUEsWUFBUDtBQUFBLGNBQ0MsU0FBU0wsdUJBQXVCLENBQUMsSUFBSSxFQUFFQyxTQUFTLEdBQUdDLEdBQUcsR0FBRztBQUFBLGNBQ3pELGFBQWFGLHVCQUF1QixDQUFDLElBQUksRUFBRUMsU0FBUyxHQUFHQyxHQUFHLEVBQUU7QUFBQSxjQUM1RCxVQUFVLEVBQUVDLE1BQU0sS0FBSztBQUFBLGNBQ3ZCLFlBQVksRUFBRUMsVUFBVSxLQUFLQyxPQUFPLElBQUk7QUFBQSxjQUN4QyxXQUFVO0FBQUEsY0FBd0Y7QUFBQTtBQUFBLFlBTHBHO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxVQVFBO0FBQUEsYUFuQ0Y7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQW9DQTtBQUFBLFFBR0EsdUJBQUMsU0FBSSxXQUFVLHdEQUNaZCx3QkFBY2UsSUFBSSxDQUFDQyxRQUFRQyxRQUFRO0FBQ2xDLGdCQUFNQyxPQUFPRixPQUFPWjtBQUVwQixpQkFDRTtBQUFBLFlBQUMsT0FBTztBQUFBLFlBQVA7QUFBQSxjQUVDLFNBQVNLLHVCQUF1QixDQUFDLElBQUksRUFBRUMsU0FBUyxHQUFHQyxHQUFHLEdBQUc7QUFBQSxjQUN6RCxhQUFhRix1QkFBdUIsQ0FBQyxJQUFJLEVBQUVDLFNBQVMsR0FBR0MsR0FBRyxFQUFFO0FBQUEsY0FDNUQsVUFBVSxFQUFFQyxNQUFNLE1BQU1PLFFBQVEsUUFBUTtBQUFBLGNBQ3hDLFlBQVk7QUFBQSxnQkFDVk4sVUFBVTtBQUFBLGdCQUNWQyxPQUFPTCx1QkFBdUIsSUFBSVEsTUFBTTtBQUFBLGdCQUN4Q0csTUFBTSxDQUFDLE1BQU0sR0FBRyxNQUFNLENBQUM7QUFBQSxjQUN6QjtBQUFBLGNBQ0EsWUFDRVgsdUJBQ0ksQ0FBQyxJQUNEO0FBQUEsZ0JBQ0VFLEdBQUc7QUFBQSxnQkFDSFUsWUFBWSxFQUFFUixVQUFVLE1BQU1PLE1BQU0sVUFBVTtBQUFBLGNBQ2hEO0FBQUEsY0FFTixXQUFVO0FBQUEsY0FHVjtBQUFBO0FBQUEsa0JBQUM7QUFBQTtBQUFBLG9CQUNDLFdBQVU7QUFBQSxvQkFDVixPQUFPO0FBQUEsc0JBQ0xFLFlBQVksdUNBQXVDTixPQUFPWCxLQUFLO0FBQUEsb0JBQ2pFO0FBQUE7QUFBQSxrQkFKRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsZ0JBSUk7QUFBQSxnQkFHSix1QkFBQyxTQUNDO0FBQUEseUNBQUMsU0FBSSxXQUFVLDBDQUNiO0FBQUEsMkNBQUMsVUFBSyxXQUFVLG1FQUNiVyxpQkFBT2YsT0FEVjtBQUFBO0FBQUE7QUFBQTtBQUFBLDJCQUVBO0FBQUEsb0JBRUE7QUFBQSxzQkFBQztBQUFBO0FBQUEsd0JBQ0MsV0FBVTtBQUFBLHdCQUNWLE9BQU87QUFBQSwwQkFDTHNCLGlCQUFpQixHQUFHUCxPQUFPWCxLQUFLO0FBQUEsMEJBQ2hDQSxPQUFPVyxPQUFPWDtBQUFBQSwwQkFDZG1CLFFBQVEsYUFBYVIsT0FBT1gsS0FBSztBQUFBLHdCQUNuQztBQUFBLHdCQUVBLGlDQUFDLFFBQUssV0FBVSxhQUFoQjtBQUFBO0FBQUE7QUFBQTtBQUFBLCtCQUF5QjtBQUFBO0FBQUEsc0JBUjNCO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxvQkFTQTtBQUFBLHVCQWRGO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBZUE7QUFBQSxrQkFFQSx1QkFBQyxRQUFHLFdBQVUsb0hBQ1hXLGlCQUFPZCxTQURWO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBRUE7QUFBQSxrQkFFQSx1QkFBQyxPQUFFLFdBQVUsd0VBQ1ZjLGlCQUFPYixRQURWO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBRUE7QUFBQSxrQkFFQSx1QkFBQyxPQUFFLFdBQVUsMkRBQ1ZhLGlCQUFPVixXQURWO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBRUE7QUFBQSxxQkE1QkY7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkE2QkE7QUFBQSxnQkFFQSx1QkFBQyxTQUFJLFdBQVUsc0pBQ2I7QUFBQSx5Q0FBQyxnQkFBYSxXQUFVLGtDQUF4QjtBQUFBO0FBQUE7QUFBQTtBQUFBLHlCQUFzRDtBQUFBLGtCQUN0RCx1QkFBQyxVQUFLLGlDQUFOO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBQXVCO0FBQUEscUJBRnpCO0FBQUE7QUFBQTtBQUFBO0FBQUEsdUJBR0E7QUFBQTtBQUFBO0FBQUEsWUE3REtVLE9BQU9mO0FBQUFBLFlBRGQ7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxVQStEQTtBQUFBLFFBRUosQ0FBQyxLQXRFSDtBQUFBO0FBQUE7QUFBQTtBQUFBLGVBdUVBO0FBQUEsV0FqSEY7QUFBQTtBQUFBO0FBQUE7QUFBQSxhQW1IQTtBQUFBO0FBQUEsSUF4SEY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLEVBeUhBO0FBRUo7QUFBQ08sR0EvSEtELGdCQUFjO0FBQUEsVUFDV1IsZ0JBQWdCO0FBQUE7QUFBQSxLQUR6Q1E7QUFpSU4sZUFBZUE7QUFBYyxJQUFBa0I7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJtb3Rpb24iLCJEYXRhYmFzZSIsIlNoYXJlMiIsIkV5ZSIsIlRyZW5kaW5nVXAiLCJMYXllcnMiLCJDaGVja0NpcmNsZTIiLCJTaGllbGRDaGVjayIsInVzZVJlZHVjZWRNb3Rpb24iLCJWQUxVRV9QSUxMQVJTIiwibnVtIiwidGl0bGUiLCJkZXNjIiwiaWNvbiIsImNvbG9yIiwiZGV0YWlscyIsIldoeU9uZVBsYXRmb3JtIiwiX3MiLCJwcmVmZXJzUmVkdWNlZE1vdGlvbiIsIm9wYWNpdHkiLCJ5Iiwib25jZSIsImR1cmF0aW9uIiwiZGVsYXkiLCJtYXAiLCJwaWxsYXIiLCJpZHgiLCJJY29uIiwibWFyZ2luIiwiZWFzZSIsInRyYW5zaXRpb24iLCJiYWNrZ3JvdW5kIiwiYmFja2dyb3VuZENvbG9yIiwiYm9yZGVyIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiV2h5T25lUGxhdGZvcm0uanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IG1vdGlvbiB9IGZyb20gJ2ZyYW1lci1tb3Rpb24nXG5pbXBvcnQge1xuICBEYXRhYmFzZSxcbiAgU2hhcmUyLFxuICBFeWUsXG4gIFRyZW5kaW5nVXAsXG4gIExheWVycyxcbiAgQ2hlY2tDaXJjbGUyLFxuICBTaGllbGRDaGVjayxcbn0gZnJvbSAnbHVjaWRlLXJlYWN0J1xuaW1wb3J0IHsgdXNlUmVkdWNlZE1vdGlvbiB9IGZyb20gJ0Bob29rcy91c2VSZWR1Y2VkTW90aW9uJ1xuXG5jb25zdCBWQUxVRV9QSUxMQVJTID0gW1xuICB7XG4gICAgbnVtOiAnMDEnLFxuICAgIHRpdGxlOiAnT05FIFNPVVJDRSBPRiBUUlVUSCcsXG4gICAgZGVzYzogJ0tlZXAgZXNzZW50aWFsIGJ1c2luZXNzIGluZm9ybWF0aW9uIGNlbnRyYWxpemVkIGFuZCBhY2Nlc3NpYmxlLicsXG4gICAgaWNvbjogRGF0YWJhc2UsXG4gICAgY29sb3I6ICcjMDBBNkZGJyxcbiAgICBkZXRhaWxzOiAnRWxpbWluYXRlIHNpbG9lZCBkYXRhIGJldHdlZW4gc2FsZXMsIEhSLCBvcGVyYXRpb25zLCBhbmQgbGVhZGVyc2hpcCB3aXRoIHVuaWZpZWQgcmVjb3Jkcy4nLFxuICB9LFxuICB7XG4gICAgbnVtOiAnMDInLFxuICAgIHRpdGxlOiAnQ09OTkVDVEVEIFdPUktGTE9XUycsXG4gICAgZGVzYzogJ0Nvbm5lY3QgdGVhbXMgYW5kIGJ1c2luZXNzIHByb2Nlc3NlcyB0aHJvdWdoIGEgdW5pZmllZCBwbGF0Zm9ybS4nLFxuICAgIGljb246IFNoYXJlMixcbiAgICBjb2xvcjogJyMwMEQyRkYnLFxuICAgIGRldGFpbHM6ICdUcmlnZ2VyIHNlYW1sZXNzIGhhbmRvZmZzIGZyb20gbGVhZCBkaXNjb3ZlcnkgdG8gcXVhbGlmaWNhdGlvbiwgY29udHJhY3Qgc2lnbmF0dXJlLCBhbmQgZGVsaXZlcnkuJyxcbiAgfSxcbiAge1xuICAgIG51bTogJzAzJyxcbiAgICB0aXRsZTogJ1JFQUwtVElNRSBWSVNJQklMSVRZJyxcbiAgICBkZXNjOiAnR2V0IGEgY2xlYXJlciB2aWV3IG9mIGJ1c2luZXNzIGFjdGl2aXRpZXMsIHByb2dyZXNzIGFuZCBwZXJmb3JtYW5jZS4nLFxuICAgIGljb246IEV5ZSxcbiAgICBjb2xvcjogJyNGRjZEMDAnLFxuICAgIGRldGFpbHM6ICdMaXZlIHRlbGVtZXRyeSBhY3Jvc3MgY2xpZW50IGNhbXBhaWduIHBhY2luZywgZW1wbG95ZWUgYXR0ZW5kYW5jZSwgYW5kIHJldmVudWUgY29udmVyc2lvbiBtZXRyaWNzLicsXG4gIH0sXG4gIHtcbiAgICBudW06ICcwNCcsXG4gICAgdGl0bGU6ICdTQ0FMQUJMRSBPUEVSQVRJT05TJyxcbiAgICBkZXNjOiAnU3VwcG9ydCBncm93aW5nIHRlYW1zIGFuZCBpbmNyZWFzaW5nbHkgY29tcGxleCBidXNpbmVzcyBvcGVyYXRpb25zLicsXG4gICAgaWNvbjogVHJlbmRpbmdVcCxcbiAgICBjb2xvcjogJyM3MkQ2NjknLFxuICAgIGRldGFpbHM6ICdBcmNoaXRlY3RlZCB0byBoYW5kbGUgbXVsdGktcG9kIHNjYWxpbmcsIGludGVybmF0aW9uYWwgdGltZSB6b25lcywgYW5kIGV4cGFuZGluZyBzZXJ2aWNlIHN1aXRlcy4nLFxuICB9LFxuXVxuXG5jb25zdCBXaHlPbmVQbGF0Zm9ybSA9ICgpID0+IHtcbiAgY29uc3QgcHJlZmVyc1JlZHVjZWRNb3Rpb24gPSB1c2VSZWR1Y2VkTW90aW9uKClcblxuICByZXR1cm4gKFxuICAgIDxzZWN0aW9uXG4gICAgICBpZD1cIndoeS1vbmUtcGxhdGZvcm1cIlxuICAgICAgY2xhc3NOYW1lPVwicmVsYXRpdmUgcHktMTYgc206cHktMjAgbGc6cHktMjQgYmctYmFja2dyb3VuZCBvdmVyZmxvdy1oaWRkZW5cIlxuICAgICAgYXJpYS1sYWJlbD1cIldoeSBPbmUgUGxhdGZvcm1cIlxuICAgID5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmVsYXRpdmUgbWF4LXctWzEzNjBweF0gbXgtYXV0byBweC00IHNtOnB4LTYgbGc6cHgtOFwiPlxuICAgICAgICBcbiAgICAgICAgey8qIFNlY3Rpb24gSGVhZGVyICovfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1heC13LTN4bCBteC1hdXRvIHRleHQtY2VudGVyIG1iLTEyIHNtOm1iLTE2XCI+XG4gICAgICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgICAgIGluaXRpYWw9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDAsIHk6IDE0IH19XG4gICAgICAgICAgICB3aGlsZUluVmlldz17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgICAgdmlld3BvcnQ9e3sgb25jZTogdHJ1ZSB9fVxuICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC41IH19XG4gICAgICAgICAgICBjbGFzc05hbWU9XCJpbmxpbmUtZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgcHgtMy41IHB5LTEgcm91bmRlZC1mdWxsIGJvcmRlciBib3JkZXItcHJpbWFyeS8zMCBiZy1wcmltYXJ5LzEwIHRleHQtcHJpbWFyeSBtYi0zLjUgYmFja2Ryb3AtYmx1ci1tZFwiXG4gICAgICAgICAgPlxuICAgICAgICAgICAgPExheWVycyBjbGFzc05hbWU9XCJ3LTMuNSBoLTMuNSB0ZXh0LXByaW1hcnlcIiAvPlxuICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwidGV4dC14cyBmb250LW1vbm8gZm9udC1ib2xkIHRyYWNraW5nLVswLjJlbV0gdXBwZXJjYXNlXCI+XG4gICAgICAgICAgICAgIFRoZSBVbmlmaWVkIEFkdmFudGFnZVxuICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgIDwvbW90aW9uLmRpdj5cblxuICAgICAgICAgIDxtb3Rpb24uaDJcbiAgICAgICAgICAgIGluaXRpYWw9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDAsIHk6IDE4IH19XG4gICAgICAgICAgICB3aGlsZUluVmlldz17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgICAgdmlld3BvcnQ9e3sgb25jZTogdHJ1ZSB9fVxuICAgICAgICAgICAgdHJhbnNpdGlvbj17eyBkdXJhdGlvbjogMC42LCBkZWxheTogMC4xIH19XG4gICAgICAgICAgICBjbGFzc05hbWU9XCJ0ZXh0LTIuNXhsIHNtOnRleHQtNHhsIGxnOnRleHQtNXhsIGZvbnQtYmxhY2sgdHJhY2tpbmctdGlnaHQgbGVhZGluZy10aWdodCB0ZXh0LXRleHQtcHJpbWFyeSBtYi00XCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICBMZXNzIFN3aXRjaGluZy57JyAnfVxuICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiYmctZ3JhZGllbnQtdG8tciBmcm9tLXByaW1hcnkgdG8tY3RhIGJnLWNsaXAtdGV4dCB0ZXh0LXRyYW5zcGFyZW50XCI+XG4gICAgICAgICAgICAgIE1vcmUgQ29udHJvbC5cbiAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICA8L21vdGlvbi5oMj5cblxuICAgICAgICAgIDxtb3Rpb24ucFxuICAgICAgICAgICAgaW5pdGlhbD17cHJlZmVyc1JlZHVjZWRNb3Rpb24gPyB7fSA6IHsgb3BhY2l0eTogMCwgeTogMTYgfX1cbiAgICAgICAgICAgIHdoaWxlSW5WaWV3PXtwcmVmZXJzUmVkdWNlZE1vdGlvbiA/IHt9IDogeyBvcGFjaXR5OiAxLCB5OiAwIH19XG4gICAgICAgICAgICB2aWV3cG9ydD17eyBvbmNlOiB0cnVlIH19XG4gICAgICAgICAgICB0cmFuc2l0aW9uPXt7IGR1cmF0aW9uOiAwLjYsIGRlbGF5OiAwLjIgfX1cbiAgICAgICAgICAgIGNsYXNzTmFtZT1cInRleHQtc20gc206dGV4dC1iYXNlIHRleHQtdGV4dC1zZWNvbmRhcnkgbGVhZGluZy1yZWxheGVkIG1heC13LTJ4bCBteC1hdXRvIGZvbnQtbm9ybWFsXCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICBEaXNqb2ludGVkIHNvZnR3YXJlIGJyZWVkcyBjb25mdXNpb24sIGxvc3QgbGVhZHMsIGFuZCBhZG1pbmlzdHJhdGl2ZSBmcmljdGlvbi4gRGVtYW5kRmxvdyBCcmlkZ2UgcHJvdmlkZXMgdGhlIHN0cnVjdHVyYWwgZm91bmRhdGlvbiBmb3IgY29uc2lzdGVudCBleGVjdXRpb24uXG4gICAgICAgICAgPC9tb3Rpb24ucD5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgey8qIDQgQ2FyZHMgR3JpZCAqL31cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkIGdyaWQtY29scy0xIHNtOmdyaWQtY29scy0yIGxnOmdyaWQtY29scy00IGdhcC02XCI+XG4gICAgICAgICAge1ZBTFVFX1BJTExBUlMubWFwKChwaWxsYXIsIGlkeCkgPT4ge1xuICAgICAgICAgICAgY29uc3QgSWNvbiA9IHBpbGxhci5pY29uXG5cbiAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgIDxtb3Rpb24uZGl2XG4gICAgICAgICAgICAgICAga2V5PXtwaWxsYXIubnVtfVxuICAgICAgICAgICAgICAgIGluaXRpYWw9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDAsIHk6IDIwIH19XG4gICAgICAgICAgICAgICAgd2hpbGVJblZpZXc9e3ByZWZlcnNSZWR1Y2VkTW90aW9uID8ge30gOiB7IG9wYWNpdHk6IDEsIHk6IDAgfX1cbiAgICAgICAgICAgICAgICB2aWV3cG9ydD17eyBvbmNlOiB0cnVlLCBtYXJnaW46ICctNDBweCcgfX1cbiAgICAgICAgICAgICAgICB0cmFuc2l0aW9uPXt7XG4gICAgICAgICAgICAgICAgICBkdXJhdGlvbjogMC41LFxuICAgICAgICAgICAgICAgICAgZGVsYXk6IHByZWZlcnNSZWR1Y2VkTW90aW9uID8gMCA6IGlkeCAqIDAuMDgsXG4gICAgICAgICAgICAgICAgICBlYXNlOiBbMC4yMiwgMSwgMC4zNiwgMV0sXG4gICAgICAgICAgICAgICAgfX1cbiAgICAgICAgICAgICAgICB3aGlsZUhvdmVyPXtcbiAgICAgICAgICAgICAgICAgIHByZWZlcnNSZWR1Y2VkTW90aW9uXG4gICAgICAgICAgICAgICAgICAgID8ge31cbiAgICAgICAgICAgICAgICAgICAgOiB7XG4gICAgICAgICAgICAgICAgICAgICAgICB5OiAtNixcbiAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zaXRpb246IHsgZHVyYXRpb246IDAuMjIsIGVhc2U6ICdlYXNlT3V0JyB9LFxuICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiZ3JvdXAgcmVsYXRpdmUgcC02IHNtOnAtNyByb3VuZGVkLTJ4bCBib3JkZXIgYm9yZGVyLWJvcmRlciBiZy1zdXJmYWNlIGhvdmVyOmJvcmRlci1wcmltYXJ5LzUwIHNoYWRvdy1zbSBob3ZlcjpzaGFkb3cteGwgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMzAwIGZsZXggZmxleC1jb2wganVzdGlmeS1iZXR3ZWVuIG92ZXJmbG93LWhpZGRlbiBjdXJzb3ItZGVmYXVsdFwiXG4gICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICB7LyogVG9wIGdsb3cgc3RyaXBlICovfVxuICAgICAgICAgICAgICAgIDxkaXZcbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImFic29sdXRlIHRvcC0wIGxlZnQtMCByaWdodC0wIGgtWzJweF0gb3BhY2l0eS0wIGdyb3VwLWhvdmVyOm9wYWNpdHktMTAwIHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi0zMDBcIlxuICAgICAgICAgICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZDogYGxpbmVhci1ncmFkaWVudCg5MGRlZywgdHJhbnNwYXJlbnQsICR7cGlsbGFyLmNvbG9yfSwgdHJhbnNwYXJlbnQpYCxcbiAgICAgICAgICAgICAgICAgIH19XG4gICAgICAgICAgICAgICAgLz5cblxuICAgICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBtYi01XCI+XG4gICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQteHMgZm9udC1tb25vIGZvbnQtYm9sZCB0cmFja2luZy13aWRlc3QgdGV4dC10ZXh0LXNlY29uZGFyeVwiPlxuICAgICAgICAgICAgICAgICAgICAgIHtwaWxsYXIubnVtfVxuICAgICAgICAgICAgICAgICAgICA8L3NwYW4+XG5cbiAgICAgICAgICAgICAgICAgICAgPGRpdlxuICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInctMTEgaC0xMSByb3VuZGVkLXhsIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRyYW5zaXRpb24tdHJhbnNmb3JtIGR1cmF0aW9uLTMwMCBncm91cC1ob3ZlcjpzY2FsZS0xMTBcIlxuICAgICAgICAgICAgICAgICAgICAgIHN0eWxlPXt7XG4gICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6IGAke3BpbGxhci5jb2xvcn0xNWAsXG4gICAgICAgICAgICAgICAgICAgICAgICBjb2xvcjogcGlsbGFyLmNvbG9yLFxuICAgICAgICAgICAgICAgICAgICAgICAgYm9yZGVyOiBgMXB4IHNvbGlkICR7cGlsbGFyLmNvbG9yfTM1YCxcbiAgICAgICAgICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICAgICAgPEljb24gY2xhc3NOYW1lPVwidy01IGgtNVwiIC8+XG4gICAgICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICAgICAgICAgIDxoMyBjbGFzc05hbWU9XCJ0ZXh0LWJhc2Ugc206dGV4dC1sZyBmb250LWJsYWNrIHRyYWNraW5nLXRpZ2h0IHRleHQtdGV4dC1wcmltYXJ5IG1iLTIgZ3JvdXAtaG92ZXI6dGV4dC1wcmltYXJ5IHRyYW5zaXRpb24tY29sb3JzXCI+XG4gICAgICAgICAgICAgICAgICAgIHtwaWxsYXIudGl0bGV9XG4gICAgICAgICAgICAgICAgICA8L2gzPlxuXG4gICAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJ0ZXh0LXhzIHNtOnRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXRleHQtcHJpbWFyeSBsZWFkaW5nLXNudWcgbWItMlwiPlxuICAgICAgICAgICAgICAgICAgICB7cGlsbGFyLmRlc2N9XG4gICAgICAgICAgICAgICAgICA8L3A+XG5cbiAgICAgICAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQteHMgdGV4dC10ZXh0LXNlY29uZGFyeSBsZWFkaW5nLXJlbGF4ZWQgZm9udC1ub3JtYWxcIj5cbiAgICAgICAgICAgICAgICAgICAge3BpbGxhci5kZXRhaWxzfVxuICAgICAgICAgICAgICAgICAgPC9wPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwdC00IG10LTQgYm9yZGVyLXQgYm9yZGVyLWJvcmRlci82MCBmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMS41IHRleHQtWzExcHhdIGZvbnQtbW9ubyB0ZXh0LXRleHQtc2Vjb25kYXJ5IGdyb3VwLWhvdmVyOnRleHQtcHJpbWFyeSB0cmFuc2l0aW9uLWNvbG9yc1wiPlxuICAgICAgICAgICAgICAgICAgPENoZWNrQ2lyY2xlMiBjbGFzc05hbWU9XCJ3LTMuNSBoLTMuNSB0ZXh0LWVtZXJhbGQtNTAwXCIgLz5cbiAgICAgICAgICAgICAgICAgIDxzcGFuPlBsYXRmb3JtIFN0YW5kYXJkPC9zcGFuPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICA8L21vdGlvbi5kaXY+XG4gICAgICAgICAgICApXG4gICAgICAgICAgfSl9XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICA8L2Rpdj5cbiAgICA8L3NlY3Rpb24+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgV2h5T25lUGxhdGZvcm1cbiJdLCJmaWxlIjoiQzovVXNlcnMvSFAvRGVza3RvcC9UR1MvVGFyYWpfR2xvYmFsbC9jbGllbnQvc3JjL3BhZ2VzL0RlbWFuZEZsb3dCcmlkZ2UvY29tcG9uZW50cy9XaHlPbmVQbGF0Zm9ybS5qc3gifQ==

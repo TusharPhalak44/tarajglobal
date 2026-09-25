@@ -1,0 +1,339 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/cookies/CookieBanner.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=2f1d9042"; const Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"]; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=2f1d9042"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useState = __vite__cjsImport3_react["useState"];
+import { motion, AnimatePresence } from "/node_modules/.vite/deps/framer-motion.js?v=2f1d9042";
+import { Link } from "/node_modules/.vite/deps/react-router-dom.js?v=2f1d9042";
+import { X } from "/node_modules/.vite/deps/lucide-react.js?v=2f1d9042";
+import { useCookies } from "/src/components/cookies/CookieContext.jsx";
+import { useTheme } from "/src/context/ThemeContext.jsx";
+import { LiquidMetalButton } from "/src/components/ui/LiquidMetalButton.jsx";
+const CookieBanner = () => {
+  _s();
+  const { isBannerVisible, acceptAll, openPreferences, closeBanner } = useCookies();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const [isHoveredClose, setIsHoveredClose] = useState(false);
+  if (!isBannerVisible) return null;
+  return /* @__PURE__ */ jsxDEV(AnimatePresence, { children: /* @__PURE__ */ jsxDEV(
+    motion.div,
+    {
+      initial: { y: 100, opacity: 0, scale: 0.94 },
+      animate: { y: 0, opacity: 1, scale: 1 },
+      exit: { y: 100, opacity: 0, scale: 0.94 },
+      transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+      className: "fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 w-[430px] max-w-[calc(100vw-32px)] sm:max-w-[92%] md:bottom-8 md:left-8 md:w-[460px]",
+      role: "dialog",
+      "aria-labelledby": "cookie-banner-title",
+      "aria-describedby": "cookie-banner-description",
+      children: /* @__PURE__ */ jsxDEV(
+        "div",
+        {
+          className: "relative rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 select-none",
+          style: {
+            backgroundColor: isDark ? "#0C111C" : "#FFFFFF",
+            border: isDark ? "1px solid rgba(0, 166, 255, 0.28)" : "1px solid #E2E8F0",
+            boxShadow: isDark ? "0 25px 60px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 166, 255, 0.16)" : "0 20px 45px -10px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.04)"
+          },
+          children: [
+            /* @__PURE__ */ jsxDEV("div", { className: "h-1 w-full bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00]" }, void 0, false, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+              lineNumber: 60,
+              columnNumber: 11
+            }, this),
+            isDark && /* @__PURE__ */ jsxDEV(Fragment, { children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "absolute top-0 right-0 w-48 h-48 bg-[#00A6FF]/10 blur-3xl rounded-full pointer-events-none -z-0" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                lineNumber: 65,
+                columnNumber: 15
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "absolute bottom-0 left-0 w-36 h-36 bg-[#FF6D00]/8 blur-2xl rounded-full pointer-events-none -z-0" }, void 0, false, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                lineNumber: 66,
+                columnNumber: 15
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+              lineNumber: 64,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "relative z-10 p-5 sm:p-6", children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "flex items-start justify-between gap-3 mb-3", children: [
+                /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-2.5", children: [
+                  /* @__PURE__ */ jsxDEV(
+                    "div",
+                    {
+                      className: "w-9 h-9 rounded-xl flex items-center justify-center text-lg shrink-0 shadow-xs",
+                      style: {
+                        backgroundColor: isDark ? "rgba(0, 166, 255, 0.12)" : "rgba(0, 166, 255, 0.08)",
+                        border: isDark ? "1px solid rgba(0, 166, 255, 0.3)" : "1px solid rgba(0, 166, 255, 0.2)"
+                      },
+                      children: "🍪"
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                      lineNumber: 76,
+                      columnNumber: 17
+                    },
+                    this
+                  ),
+                  /* @__PURE__ */ jsxDEV("div", { children: [
+                    /* @__PURE__ */ jsxDEV("div", { className: "flex items-center gap-1.5", children: /* @__PURE__ */ jsxDEV(
+                      "span",
+                      {
+                        className: "text-[9px] font-mono font-bold tracking-[0.2em] uppercase",
+                        style: { color: isDark ? "#38BDF8" : "#0066CC" },
+                        children: "PRIVACY & DATA"
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                        lineNumber: 87,
+                        columnNumber: 21
+                      },
+                      this
+                    ) }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                      lineNumber: 86,
+                      columnNumber: 19
+                    }, this),
+                    /* @__PURE__ */ jsxDEV(
+                      "h3",
+                      {
+                        id: "cookie-banner-title",
+                        className: "text-base sm:text-lg font-black tracking-tight",
+                        style: { color: isDark ? "#FFFFFF" : "#0F172A" },
+                        children: "We use cookies"
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                        lineNumber: 94,
+                        columnNumber: 19
+                      },
+                      this
+                    )
+                  ] }, void 0, true, {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                    lineNumber: 85,
+                    columnNumber: 17
+                  }, this)
+                ] }, void 0, true, {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                  lineNumber: 75,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV(
+                  "button",
+                  {
+                    onClick: closeBanner,
+                    onMouseEnter: () => setIsHoveredClose(true),
+                    onMouseLeave: () => setIsHoveredClose(false),
+                    className: "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 cursor-pointer",
+                    style: {
+                      backgroundColor: isHoveredClose ? isDark ? "rgba(255, 255, 255, 0.12)" : "#E2E8F0" : isDark ? "rgba(255, 255, 255, 0.05)" : "#F1F5F9",
+                      border: isDark ? "1px solid rgba(255, 255, 255, 0.12)" : "1px solid #CBD5E1",
+                      color: isHoveredClose ? isDark ? "#FFFFFF" : "#0F172A" : isDark ? "#94A3B8" : "#64748B"
+                    },
+                    "aria-label": "Close cookie banner",
+                    title: "Close",
+                    children: /* @__PURE__ */ jsxDEV(X, { size: 16 }, void 0, false, {
+                      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                      lineNumber: 122,
+                      columnNumber: 17
+                    }, this)
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                    lineNumber: 105,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                lineNumber: 74,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV(
+                "p",
+                {
+                  id: "cookie-banner-description",
+                  className: "text-xs sm:text-sm leading-relaxed mb-5",
+                  style: { color: isDark ? "#CBD5E1" : "#475569" },
+                  children: [
+                    "We use cookies to improve your browsing experience, analyze website traffic, and enhance our services. You can manage your preferences anytime by visiting our",
+                    " ",
+                    /* @__PURE__ */ jsxDEV(
+                      Link,
+                      {
+                        to: "/cookies",
+                        className: "font-semibold underline underline-offset-2 transition-colors",
+                        style: { color: "#00A6FF" },
+                        onMouseEnter: (e) => e.currentTarget.style.color = "#FF6D00",
+                        onMouseLeave: (e) => e.currentTarget.style.color = "#00A6FF",
+                        children: "Cookie Settings"
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                        lineNumber: 133,
+                        columnNumber: 15
+                      },
+                      this
+                    ),
+                    " ",
+                    "or",
+                    " ",
+                    /* @__PURE__ */ jsxDEV(
+                      Link,
+                      {
+                        to: "/cookies",
+                        className: "font-semibold underline underline-offset-2 transition-colors",
+                        style: { color: "#00A6FF" },
+                        onMouseEnter: (e) => e.currentTarget.style.color = "#FF6D00",
+                        onMouseLeave: (e) => e.currentTarget.style.color = "#00A6FF",
+                        children: "Privacy Policy"
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                        lineNumber: 143,
+                        columnNumber: 15
+                      },
+                      this
+                    ),
+                    "."
+                  ]
+                },
+                void 0,
+                true,
+                {
+                  fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                  lineNumber: 127,
+                  columnNumber: 13
+                },
+                this
+              ),
+              /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-2 gap-3 pt-2 w-full", children: [
+                /* @__PURE__ */ jsxDEV(
+                  LiquidMetalButton,
+                  {
+                    label: "Customize",
+                    onClick: openPreferences,
+                    width: "100%",
+                    height: 44,
+                    borderRadius: "14px",
+                    backgroundColor: isDark ? "linear-gradient(180deg, #1E293B 0%, #0F172A 100%)" : "linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%)",
+                    textColor: isDark ? "#F8FAFC" : "#0F172A"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                    lineNumber: 158,
+                    columnNumber: 15
+                  },
+                  this
+                ),
+                /* @__PURE__ */ jsxDEV(
+                  LiquidMetalButton,
+                  {
+                    label: "Accept All",
+                    onClick: acceptAll,
+                    width: "100%",
+                    height: 44,
+                    borderRadius: "14px",
+                    backgroundColor: isDark ? "linear-gradient(135deg, #00A6FF 0%, #0077EE 50%, #FF6D00 100%)" : "linear-gradient(135deg, #00A6FF 0%, #0066CC 55%, #FF6D00 100%)",
+                    textColor: "#FFFFFF"
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                    lineNumber: 173,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+                lineNumber: 156,
+                columnNumber: 13
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+              lineNumber: 71,
+              columnNumber: 11
+            }, this)
+          ]
+        },
+        void 0,
+        true,
+        {
+          fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+          lineNumber: 49,
+          columnNumber: 9
+        },
+        this
+      )
+    },
+    void 0,
+    false,
+    {
+      fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+      lineNumber: 38,
+      columnNumber: 7
+    },
+    this
+  ) }, void 0, false, {
+    fileName: "C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx",
+    lineNumber: 37,
+    columnNumber: 5
+  }, this);
+};
+_s(CookieBanner, "VBTHztENbeI7ibMyf5mBpQw0w5U=", false, function() {
+  return [useCookies, useTheme];
+});
+_c = CookieBanner;
+export default CookieBanner;
+var _c;
+$RefreshReg$(_c, "CookieBanner");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/HP/Desktop/TGS/Taraj_Globall/client/src/components/cookies/CookieBanner.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QkFFTixXQUFVO0FBQUE7QUFBQSxrQkFYWjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsZ0JBV3FCO0FBQUEsbUJBNUJ2QjtBQUFBO0FBQUE7QUFBQTtBQUFBLHFCQThCQTtBQUFBLGlCQW5IRjtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQXFIQTtBQUFBO0FBQUE7QUFBQSxRQTNJRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsTUE0SUE7QUFBQTtBQUFBLElBdkpGO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxFQXdKQSxLQXpKRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBMEpBO0FBRUo7QUFBQ04sR0FyS0tELGNBQVk7QUFBQSxVQUNxREgsWUFDbkRDLFFBQVE7QUFBQTtBQUFBLEtBRnRCRTtBQXVLTixlQUFlQTtBQUFZLElBQUFzQjtBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSZWFjdCIsInVzZVN0YXRlIiwibW90aW9uIiwiQW5pbWF0ZVByZXNlbmNlIiwiTGluayIsIlgiLCJ1c2VDb29raWVzIiwidXNlVGhlbWUiLCJMaXF1aWRNZXRhbEJ1dHRvbiIsIkNvb2tpZUJhbm5lciIsIl9zIiwiaXNCYW5uZXJWaXNpYmxlIiwiYWNjZXB0QWxsIiwib3BlblByZWZlcmVuY2VzIiwiY2xvc2VCYW5uZXIiLCJ0aGVtZSIsImlzRGFyayIsImlzSG92ZXJlZENsb3NlIiwic2V0SXNIb3ZlcmVkQ2xvc2UiLCJ5Iiwib3BhY2l0eSIsInNjYWxlIiwiZHVyYXRpb24iLCJlYXNlIiwiYmFja2dyb3VuZENvbG9yIiwiYm9yZGVyIiwiYm94U2hhZG93IiwiY29sb3IiLCJlIiwiY3VycmVudFRhcmdldCIsInN0eWxlIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiQ29va2llQmFubmVyLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IG1vdGlvbiwgQW5pbWF0ZVByZXNlbmNlIH0gZnJvbSAnZnJhbWVyLW1vdGlvbidcbmltcG9ydCB7IExpbmsgfSBmcm9tICdyZWFjdC1yb3V0ZXItZG9tJ1xuaW1wb3J0IHsgWCB9IGZyb20gJ2x1Y2lkZS1yZWFjdCdcbmltcG9ydCB7IHVzZUNvb2tpZXMgfSBmcm9tICcuL0Nvb2tpZUNvbnRleHQnXG5pbXBvcnQgeyB1c2VUaGVtZSB9IGZyb20gJ0Bjb250ZXh0L1RoZW1lQ29udGV4dCdcbmltcG9ydCB7IExpcXVpZE1ldGFsQnV0dG9uIH0gZnJvbSAnLi4vdWkvTGlxdWlkTWV0YWxCdXR0b24nXG5cbmNvbnN0IENvb2tpZUJhbm5lciA9ICgpID0+IHtcbiAgY29uc3QgeyBpc0Jhbm5lclZpc2libGUsIGFjY2VwdEFsbCwgb3BlblByZWZlcmVuY2VzLCBjbG9zZUJhbm5lciB9ID0gdXNlQ29va2llcygpXG4gIGNvbnN0IHsgdGhlbWUgfSA9IHVzZVRoZW1lKClcbiAgY29uc3QgaXNEYXJrID0gdGhlbWUgPT09ICdkYXJrJ1xuICBjb25zdCBbaXNIb3ZlcmVkQ2xvc2UsIHNldElzSG92ZXJlZENsb3NlXSA9IHVzZVN0YXRlKGZhbHNlKVxuXG4gIGlmICghaXNCYW5uZXJWaXNpYmxlKSByZXR1cm4gbnVsbFxuXG4gIHJldHVybiAoXG4gICAgPEFuaW1hdGVQcmVzZW5jZT5cbiAgICAgIDxtb3Rpb24uZGl2XG4gICAgICAgIGluaXRpYWw9e3sgeTogMTAwLCBvcGFjaXR5OiAwLCBzY2FsZTogMC45NCB9fVxuICAgICAgICBhbmltYXRlPXt7IHk6IDAsIG9wYWNpdHk6IDEsIHNjYWxlOiAxIH19XG4gICAgICAgIGV4aXQ9e3sgeTogMTAwLCBvcGFjaXR5OiAwLCBzY2FsZTogMC45NCB9fVxuICAgICAgICB0cmFuc2l0aW9uPXt7IGR1cmF0aW9uOiAwLjQsIGVhc2U6IFswLjIyLCAxLCAwLjM2LCAxXSB9fVxuICAgICAgICBjbGFzc05hbWU9XCJmaXhlZCBib3R0b20tNCBsZWZ0LTQgc206Ym90dG9tLTYgc206bGVmdC02IHotNTAgdy1bNDMwcHhdIG1heC13LVtjYWxjKDEwMHZ3LTMycHgpXSBzbTptYXgtdy1bOTIlXSBtZDpib3R0b20tOCBtZDpsZWZ0LTggbWQ6dy1bNDYwcHhdXCJcbiAgICAgICAgcm9sZT1cImRpYWxvZ1wiXG4gICAgICAgIGFyaWEtbGFiZWxsZWRieT1cImNvb2tpZS1iYW5uZXItdGl0bGVcIlxuICAgICAgICBhcmlhLWRlc2NyaWJlZGJ5PVwiY29va2llLWJhbm5lci1kZXNjcmlwdGlvblwiXG4gICAgICA+XG4gICAgICAgIHsvKiBNYWluIENhcmQgQ29udGFpbmVyICovfVxuICAgICAgICA8ZGl2XG4gICAgICAgICAgY2xhc3NOYW1lPVwicmVsYXRpdmUgcm91bmRlZC0yeGwgc206cm91bmRlZC0zeGwgb3ZlcmZsb3ctaGlkZGVuIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTMwMCBzZWxlY3Qtbm9uZVwiXG4gICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgIGJhY2tncm91bmRDb2xvcjogaXNEYXJrID8gJyMwQzExMUMnIDogJyNGRkZGRkYnLFxuICAgICAgICAgICAgYm9yZGVyOiBpc0RhcmsgPyAnMXB4IHNvbGlkIHJnYmEoMCwgMTY2LCAyNTUsIDAuMjgpJyA6ICcxcHggc29saWQgI0UyRThGMCcsXG4gICAgICAgICAgICBib3hTaGFkb3c6IGlzRGFya1xuICAgICAgICAgICAgICA/ICcwIDI1cHggNjBweCAtMTBweCByZ2JhKDAsIDAsIDAsIDAuOTUpLCAwIDAgMjVweCByZ2JhKDAsIDE2NiwgMjU1LCAwLjE2KSdcbiAgICAgICAgICAgICAgOiAnMCAyMHB4IDQ1cHggLTEwcHggcmdiYSgwLCAwLCAwLCAwLjE0KSwgMCAycHggOHB4IHJnYmEoMCwgMCwgMCwgMC4wNCknLFxuICAgICAgICAgIH19XG4gICAgICAgID5cbiAgICAgICAgICB7LyogVG9wIEJyYW5kIExhc2VyIExpbmUgQWNjZW50ICovfVxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaC0xIHctZnVsbCBiZy1ncmFkaWVudC10by1yIGZyb20tWyMwMEE2RkZdIHZpYS1bIzM4QkRGOF0gdG8tWyNGRjZEMDBdXCIgLz5cblxuICAgICAgICAgIHsvKiBBbWJpZW50IEJhY2tncm91bmQgR2xvdyAoRGFyayBNb2RlIE9ubHkpICovfVxuICAgICAgICAgIHtpc0RhcmsgJiYgKFxuICAgICAgICAgICAgPD5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtMCByaWdodC0wIHctNDggaC00OCBiZy1bIzAwQTZGRl0vMTAgYmx1ci0zeGwgcm91bmRlZC1mdWxsIHBvaW50ZXItZXZlbnRzLW5vbmUgLXotMFwiIC8+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYWJzb2x1dGUgYm90dG9tLTAgbGVmdC0wIHctMzYgaC0zNiBiZy1bI0ZGNkQwMF0vOCBibHVyLTJ4bCByb3VuZGVkLWZ1bGwgcG9pbnRlci1ldmVudHMtbm9uZSAtei0wXCIgLz5cbiAgICAgICAgICAgIDwvPlxuICAgICAgICAgICl9XG5cbiAgICAgICAgICB7LyogSW5uZXIgQ29udGVudCAqL31cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlIHotMTAgcC01IHNtOnAtNlwiPlxuICAgICAgICAgICAgXG4gICAgICAgICAgICB7LyogSGVhZGVyOiBCYWRnZSArIFRpdGxlICsgQ2xvc2UgQnV0dG9uICovfVxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLXN0YXJ0IGp1c3RpZnktYmV0d2VlbiBnYXAtMyBtYi0zXCI+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIuNVwiPlxuICAgICAgICAgICAgICAgIDxkaXZcbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInctOSBoLTkgcm91bmRlZC14bCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciB0ZXh0LWxnIHNocmluay0wIHNoYWRvdy14c1wiXG4gICAgICAgICAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6IGlzRGFyayA/ICdyZ2JhKDAsIDE2NiwgMjU1LCAwLjEyKScgOiAncmdiYSgwLCAxNjYsIDI1NSwgMC4wOCknLFxuICAgICAgICAgICAgICAgICAgICBib3JkZXI6IGlzRGFyayA/ICcxcHggc29saWQgcmdiYSgwLCAxNjYsIDI1NSwgMC4zKScgOiAnMXB4IHNvbGlkIHJnYmEoMCwgMTY2LCAyNTUsIDAuMiknLFxuICAgICAgICAgICAgICAgICAgfX1cbiAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICDwn42qXG4gICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEuNVwiPlxuICAgICAgICAgICAgICAgICAgICA8c3BhblxuICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInRleHQtWzlweF0gZm9udC1tb25vIGZvbnQtYm9sZCB0cmFja2luZy1bMC4yZW1dIHVwcGVyY2FzZVwiXG4gICAgICAgICAgICAgICAgICAgICAgc3R5bGU9e3sgY29sb3I6IGlzRGFyayA/ICcjMzhCREY4JyA6ICcjMDA2NkNDJyB9fVxuICAgICAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICAgICAgUFJJVkFDWSAmYW1wOyBEQVRBXG4gICAgICAgICAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgICAgPGgzXG4gICAgICAgICAgICAgICAgICAgIGlkPVwiY29va2llLWJhbm5lci10aXRsZVwiXG4gICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInRleHQtYmFzZSBzbTp0ZXh0LWxnIGZvbnQtYmxhY2sgdHJhY2tpbmctdGlnaHRcIlxuICAgICAgICAgICAgICAgICAgICBzdHlsZT17eyBjb2xvcjogaXNEYXJrID8gJyNGRkZGRkYnIDogJyMwRjE3MkEnIH19XG4gICAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICAgIFdlIHVzZSBjb29raWVzXG4gICAgICAgICAgICAgICAgICA8L2gzPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgICB7LyogRGlzbWlzcyAvIENsb3NlIEJ1dHRvbiAoV29ya2luZykgKi99XG4gICAgICAgICAgICAgIDxidXR0b25cbiAgICAgICAgICAgICAgICBvbkNsaWNrPXtjbG9zZUJhbm5lcn1cbiAgICAgICAgICAgICAgICBvbk1vdXNlRW50ZXI9eygpID0+IHNldElzSG92ZXJlZENsb3NlKHRydWUpfVxuICAgICAgICAgICAgICAgIG9uTW91c2VMZWF2ZT17KCkgPT4gc2V0SXNIb3ZlcmVkQ2xvc2UoZmFsc2UpfVxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInctOCBoLTggcm91bmRlZC1sZyBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0yMDAgY3Vyc29yLXBvaW50ZXJcIlxuICAgICAgICAgICAgICAgIHN0eWxlPXt7XG4gICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6IGlzSG92ZXJlZENsb3NlXG4gICAgICAgICAgICAgICAgICAgID8gKGlzRGFyayA/ICdyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMTIpJyA6ICcjRTJFOEYwJylcbiAgICAgICAgICAgICAgICAgICAgOiAoaXNEYXJrID8gJ3JnYmEoMjU1LCAyNTUsIDI1NSwgMC4wNSknIDogJyNGMUY1RjknKSxcbiAgICAgICAgICAgICAgICAgIGJvcmRlcjogaXNEYXJrID8gJzFweCBzb2xpZCByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMTIpJyA6ICcxcHggc29saWQgI0NCRDVFMScsXG4gICAgICAgICAgICAgICAgICBjb2xvcjogaXNIb3ZlcmVkQ2xvc2VcbiAgICAgICAgICAgICAgICAgICAgPyAoaXNEYXJrID8gJyNGRkZGRkYnIDogJyMwRjE3MkEnKVxuICAgICAgICAgICAgICAgICAgICA6IChpc0RhcmsgPyAnIzk0QTNCOCcgOiAnIzY0NzQ4QicpLFxuICAgICAgICAgICAgICAgIH19XG4gICAgICAgICAgICAgICAgYXJpYS1sYWJlbD1cIkNsb3NlIGNvb2tpZSBiYW5uZXJcIlxuICAgICAgICAgICAgICAgIHRpdGxlPVwiQ2xvc2VcIlxuICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgPFggc2l6ZT17MTZ9IC8+XG4gICAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICAgIHsvKiBEZXNjcmlwdGlvbiBCb2R5ICovfVxuICAgICAgICAgICAgPHBcbiAgICAgICAgICAgICAgaWQ9XCJjb29raWUtYmFubmVyLWRlc2NyaXB0aW9uXCJcbiAgICAgICAgICAgICAgY2xhc3NOYW1lPVwidGV4dC14cyBzbTp0ZXh0LXNtIGxlYWRpbmctcmVsYXhlZCBtYi01XCJcbiAgICAgICAgICAgICAgc3R5bGU9e3sgY29sb3I6IGlzRGFyayA/ICcjQ0JENUUxJyA6ICcjNDc1NTY5JyB9fVxuICAgICAgICAgICAgPlxuICAgICAgICAgICAgICBXZSB1c2UgY29va2llcyB0byBpbXByb3ZlIHlvdXIgYnJvd3NpbmcgZXhwZXJpZW5jZSwgYW5hbHl6ZSB3ZWJzaXRlIHRyYWZmaWMsIGFuZCBlbmhhbmNlIG91ciBzZXJ2aWNlcy4gWW91IGNhbiBtYW5hZ2UgeW91ciBwcmVmZXJlbmNlcyBhbnl0aW1lIGJ5IHZpc2l0aW5nIG91cnsnICd9XG4gICAgICAgICAgICAgIDxMaW5rXG4gICAgICAgICAgICAgICAgdG89XCIvY29va2llc1wiXG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiZm9udC1zZW1pYm9sZCB1bmRlcmxpbmUgdW5kZXJsaW5lLW9mZnNldC0yIHRyYW5zaXRpb24tY29sb3JzXCJcbiAgICAgICAgICAgICAgICBzdHlsZT17eyBjb2xvcjogJyMwMEE2RkYnIH19XG4gICAgICAgICAgICAgICAgb25Nb3VzZUVudGVyPXsoZSkgPT4gKGUuY3VycmVudFRhcmdldC5zdHlsZS5jb2xvciA9ICcjRkY2RDAwJyl9XG4gICAgICAgICAgICAgICAgb25Nb3VzZUxlYXZlPXsoZSkgPT4gKGUuY3VycmVudFRhcmdldC5zdHlsZS5jb2xvciA9ICcjMDBBNkZGJyl9XG4gICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICBDb29raWUgU2V0dGluZ3NcbiAgICAgICAgICAgICAgPC9MaW5rPlxuICAgICAgICAgICAgICB7JyAnfW9yeycgJ31cbiAgICAgICAgICAgICAgPExpbmtcbiAgICAgICAgICAgICAgICB0bz1cIi9jb29raWVzXCJcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJmb250LXNlbWlib2xkIHVuZGVybGluZSB1bmRlcmxpbmUtb2Zmc2V0LTIgdHJhbnNpdGlvbi1jb2xvcnNcIlxuICAgICAgICAgICAgICAgIHN0eWxlPXt7IGNvbG9yOiAnIzAwQTZGRicgfX1cbiAgICAgICAgICAgICAgICBvbk1vdXNlRW50ZXI9eyhlKSA9PiAoZS5jdXJyZW50VGFyZ2V0LnN0eWxlLmNvbG9yID0gJyNGRjZEMDAnKX1cbiAgICAgICAgICAgICAgICBvbk1vdXNlTGVhdmU9eyhlKSA9PiAoZS5jdXJyZW50VGFyZ2V0LnN0eWxlLmNvbG9yID0gJyMwMEE2RkYnKX1cbiAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgIFByaXZhY3kgUG9saWN5XG4gICAgICAgICAgICAgIDwvTGluaz5cbiAgICAgICAgICAgICAgLlxuICAgICAgICAgICAgPC9wPlxuXG4gICAgICAgICAgICB7LyogQWN0aW9uIEJ1dHRvbnM6IExpcXVpZCBNZXRhbCBCdXR0b25zICovfVxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJncmlkIGdyaWQtY29scy0yIGdhcC0zIHB0LTIgdy1mdWxsXCI+XG4gICAgICAgICAgICAgIHsvKiBDdXN0b21pemUgQnV0dG9uIChMaXF1aWQgTWV0YWwpICovfVxuICAgICAgICAgICAgICA8TGlxdWlkTWV0YWxCdXR0b25cbiAgICAgICAgICAgICAgICBsYWJlbD1cIkN1c3RvbWl6ZVwiXG4gICAgICAgICAgICAgICAgb25DbGljaz17b3BlblByZWZlcmVuY2VzfVxuICAgICAgICAgICAgICAgIHdpZHRoPVwiMTAwJVwiXG4gICAgICAgICAgICAgICAgaGVpZ2h0PXs0NH1cbiAgICAgICAgICAgICAgICBib3JkZXJSYWRpdXM9XCIxNHB4XCJcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I9e1xuICAgICAgICAgICAgICAgICAgaXNEYXJrXG4gICAgICAgICAgICAgICAgICAgID8gXCJsaW5lYXItZ3JhZGllbnQoMTgwZGVnLCAjMUUyOTNCIDAlLCAjMEYxNzJBIDEwMCUpXCJcbiAgICAgICAgICAgICAgICAgICAgOiBcImxpbmVhci1ncmFkaWVudCgxODBkZWcsICNGRkZGRkYgMCUsICNGMUY1RjkgMTAwJSlcIlxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICB0ZXh0Q29sb3I9e2lzRGFyayA/IFwiI0Y4RkFGQ1wiIDogXCIjMEYxNzJBXCJ9XG4gICAgICAgICAgICAgIC8+XG5cbiAgICAgICAgICAgICAgey8qIEFjY2VwdCBBbGwgQnV0dG9uIChMaXF1aWQgTWV0YWwpICovfVxuICAgICAgICAgICAgICA8TGlxdWlkTWV0YWxCdXR0b25cbiAgICAgICAgICAgICAgICBsYWJlbD1cIkFjY2VwdCBBbGxcIlxuICAgICAgICAgICAgICAgIG9uQ2xpY2s9e2FjY2VwdEFsbH1cbiAgICAgICAgICAgICAgICB3aWR0aD1cIjEwMCVcIlxuICAgICAgICAgICAgICAgIGhlaWdodD17NDR9XG4gICAgICAgICAgICAgICAgYm9yZGVyUmFkaXVzPVwiMTRweFwiXG4gICAgICAgICAgICAgICAgYmFja2dyb3VuZENvbG9yPXtcbiAgICAgICAgICAgICAgICAgIGlzRGFya1xuICAgICAgICAgICAgICAgICAgICA/IFwibGluZWFyLWdyYWRpZW50KDEzNWRlZywgIzAwQTZGRiAwJSwgIzAwNzdFRSA1MCUsICNGRjZEMDAgMTAwJSlcIlxuICAgICAgICAgICAgICAgICAgICA6IFwibGluZWFyLWdyYWRpZW50KDEzNWRlZywgIzAwQTZGRiAwJSwgIzAwNjZDQyA1NSUsICNGRjZEMDAgMTAwJSlcIlxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICB0ZXh0Q29sb3I9XCIjRkZGRkZGXCJcbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9tb3Rpb24uZGl2PlxuICAgIDwvQW5pbWF0ZVByZXNlbmNlPlxuICApXG59XG5cbmV4cG9ydCBkZWZhdWx0IENvb2tpZUJhbm5lclxuIl0sImZpbGUiOiJDOi9Vc2Vycy9IUC9EZXNrdG9wL1RHUy9UYXJhal9HbG9iYWxsL2NsaWVudC9zcmMvY29tcG9uZW50cy9jb29raWVzL0Nvb2tpZUJhbm5lci5qc3gifQ==

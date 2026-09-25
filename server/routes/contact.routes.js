@@ -4,28 +4,12 @@ import { validate } from '../middleware/validation.middleware.js'
 import { authenticate, authorize } from '../middleware/auth.middleware.js'
 import Contact from '../models/Contact.js'
 import Meeting from '../models/Meeting.js'
-import nodemailer from 'nodemailer'
 import db from '../config/db.js'
 import notificationHelper from '../helpers/notificationHelper.js'
+import { sendLeadNotification } from '../services/email.service.js'
+import { createMeeting } from '../controllers/meeting.controller.js'
 
 const router = express.Router()
-
-// Email transporter configuration using SMTP
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-  port: process.env.EMAIL_PORT || 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER || 'careers@tarajglobal.com',
-    pass: process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS || 'your-email-password'
-  }
-})
-
-// Admin email for notifications
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'info@tarajglobal.com'
-const FROM_EMAIL = process.env.EMAIL_FROM || 'careers@tarajglobal.com'
-
-import { createMeeting } from '../controllers/meeting.controller.js'
 
 // @route   POST /api/contact/meeting
 // @desc    Book a meeting (delegates to centralized meeting controller)
@@ -71,11 +55,19 @@ router.post('/', [
       req.headers.referer || req.headers.origin || '/'
     ])
     
-    // Notify admins about new lead
+    // Notify admins about new lead in DB notifications
     try {
       await notificationHelper.notifyAdmins(notificationHelper.notifications.newLead(name, result.insertId))
     } catch (notificationError) {
       console.error('Failed to create notification:', notificationError)
+    }
+
+    // Send lead notification email to admin via Hostinger SMTP
+    try {
+      const adminEmail = process.env.MEETING_NOTIFICATION_EMAIL || process.env.ADMIN_EMAIL || 'info@tarajglobal.com'
+      await sendLeadNotification({ name, email, phone, company, message, subject }, adminEmail)
+    } catch (emailError) {
+      console.warn('Failed to send contact notification email:', emailError.message)
     }
     
     res.status(201).json({ 
