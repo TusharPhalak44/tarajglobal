@@ -248,7 +248,7 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
               variants={prefersReducedMotion ? {} : imageVariants}
               whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-76 lg:h-76 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20 cursor-pointer"
+              className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20 cursor-pointer"
               style={{
                 boxShadow:
                   '0 20px 40px -12px rgba(var(--primary-rgb), 0.22), 0 0 0 4px rgba(var(--primary-rgb), 0.1)',
@@ -312,7 +312,7 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
             animate={isRowInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-1.5 sm:mb-2 tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-1.5 sm:mb-2 tracking-tight"
           >
             {member.name}
           </motion.h3>
@@ -429,7 +429,7 @@ export const OurTeam = () => {
           viewport={{ once: true, amount: 0.2 }}
           className="text-center mb-10 sm:mb-12 lg:mb-14"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-3 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-3 tracking-tight">
             MEET OUR{' '}
             <span className="bg-gradient-to-r from-purple-500 to-violet-500 bg-clip-text text-transparent">
               LEADERS

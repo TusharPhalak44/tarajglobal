@@ -18,7 +18,7 @@ const WhyChooseUsHeader = () => {
         </motion.div>
 
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md shadow-xs">
-          <span className="text-[10px] sm:text-[11px] font-mono font-bold text-primary uppercase tracking-[0.2em]">
+          <span className="text-sm sm:text-sm font-mono font-bold text-primary uppercase tracking-[0.2em]">
             Strategic Advantage
           </span>
         </div>
@@ -62,3 +62,4 @@ const WhyChooseUsHeader = () => {
 }
 
 export default WhyChooseUsHeader
+

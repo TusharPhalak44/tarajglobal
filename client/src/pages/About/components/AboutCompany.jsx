@@ -445,22 +445,22 @@ export const AboutCompany = () => {
 
   return (
     <div className="relative overflow-hidden bg-background text-text-primary transition-colors duration-500">
-      
+
       {/* ── HIGH-TECH AMBIENT NEURAL LIGHTING ──────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         {/* Soft Radial Gradient Blobs */}
         <div className="absolute -top-40 left-1/4 w-[750px] h-[600px] rounded-full bg-primary/15 dark:bg-[#00A6FF]/12 blur-[160px] animate-pulse" style={{ animationDuration: '8s' }} />
         <div className="absolute top-1/3 -right-20 w-[650px] h-[550px] rounded-full bg-cta/15 dark:bg-[#FF6D00]/12 blur-[160px] animate-pulse" style={{ animationDuration: '10s' }} />
         <div className="absolute top-2/3 -left-20 w-[650px] h-[550px] rounded-full bg-purple-500/10 dark:bg-purple-600/10 blur-[170px]" />
-        
+
         {/* Subtle Cybernetic Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(120,150,200,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(120,150,200,0.04)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_30%,#000_70%,transparent_100%)]" />
       </div>
 
       {/* ── SECTION 01: HERO — THE TARAJ GLOBAL DNA ──────────────────── */}
-      <section className="relative pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-18 lg:pb-14 overflow-hidden">
+      <section className="relative pt-32 pb-10 sm:pt-21 sm:pb-12 lg:pt-30 lg:pb-14 overflow-hidden">
         <div className="max-w-[1360px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          
+
           {/* Eyebrow with Beacon Animation */}
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
@@ -472,7 +472,7 @@ export const AboutCompany = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
             </span>
-            <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-text-secondary via-text-primary to-text-secondary dark:from-slate-300 dark:via-white dark:to-slate-300 bg-clip-text text-transparent">
+            <span className="text-sm sm:text-sm font-mono font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-text-secondary via-text-primary to-text-secondary dark:from-slate-300 dark:via-white dark:to-slate-300 bg-clip-text text-transparent">
               ABOUT TARAJ GLOBAL &bull; GLOBAL B2B DEMAND GENERATION
             </span>
           </motion.div>
@@ -493,7 +493,7 @@ export const AboutCompany = () => {
                   },
                 },
               }}
-              className="text-4xl sm:text-5xl lg:text-[52px] xl:text-[58px] font-black tracking-tight text-text-primary leading-[1.08]"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-text-primary leading-[1.08]"
             >
               <motion.span
                 variants={{
@@ -557,7 +557,7 @@ export const AboutCompany = () => {
               )}
 
               {/* Button Glass Inner Body */}
-              <span className="relative inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/95 dark:bg-[#0E0E0E]/95 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 text-xs sm:text-sm font-semibold text-slate-800 dark:text-white transition-colors duration-200">
+              <span className="relative inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/95 dark:bg-[#0E0E0E]/95 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 text-sm sm:text-sm font-semibold text-slate-800 dark:text-white transition-colors duration-200">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
@@ -581,7 +581,7 @@ export const AboutCompany = () => {
             {/* Center Minimal Brand Marker */}
             <div className="flex items-center justify-center gap-3 mb-5 sm:mb-6 text-center">
               <span className="h-[1px] w-8 sm:w-12 bg-border/60 dark:bg-white/10" />
-              <span className="text-[10px] sm:text-[10.5px] font-mono tracking-[0.25em] uppercase text-text-muted">
+              <span className="text-sm sm:text-sm font-mono tracking-[0.25em] uppercase text-text-muted">
                 TARAJ GLOBAL &bull; EST. B2B GROWTH SYSTEM
               </span>
               <span className="h-[1px] w-8 sm:w-12 bg-border/60 dark:bg-white/10" />
@@ -763,11 +763,10 @@ export const AboutCompany = () => {
                         style={{
                           transform: isActive ? 'translateZ(45px)' : 'translateZ(14px)',
                         }}
-                        className={`group relative p-3.5 sm:p-4 rounded-2xl transition-all duration-300 cursor-pointer [transform-style:preserve-3d] ${
-                          isActive
-                            ? 'bg-surface/90 dark:bg-[#0E1522]/90 border border-[#00A6FF]/40 shadow-[0_8px_30px_rgba(0,166,255,0.18)]'
-                            : 'bg-surface/30 dark:bg-white/[0.02] border border-border/40 dark:border-white/5 hover:bg-surface/70 dark:hover:bg-white/[0.04] hover:border-[#00A6FF]/25 hover:translate-y-[-2px]'
-                        }`}
+                        className={`group relative p-3.5 sm:p-4 rounded-2xl transition-all duration-300 cursor-pointer [transform-style:preserve-3d] ${isActive
+                          ? 'bg-surface/90 dark:bg-[#0E1522]/90 border border-[#00A6FF]/40 shadow-[0_8px_30px_rgba(0,166,255,0.18)]'
+                          : 'bg-surface/30 dark:bg-white/[0.02] border border-border/40 dark:border-white/5 hover:bg-surface/70 dark:hover:bg-white/[0.04] hover:border-[#00A6FF]/25 hover:translate-y-[-2px]'
+                          }`}
                       >
                         {/* 3D Ground Pedestal Glow Ring */}
                         {isActive && (
@@ -788,22 +787,20 @@ export const AboutCompany = () => {
                             </>
                           )}
                           <div
-                            className={`relative z-10 w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                              isActive
-                                ? 'bg-[#00E5FF] shadow-[0_0_16px_#00E5FF] scale-125 ring-2 ring-white/80 dark:ring-white/95'
-                                : 'bg-border/80 dark:bg-white/20 group-hover:bg-[#00A6FF]/70'
-                            }`}
+                            className={`relative z-10 w-2.5 h-2.5 rounded-full transition-all duration-300 ${isActive
+                              ? 'bg-[#00E5FF] shadow-[0_0_16px_#00E5FF] scale-125 ring-2 ring-white/80 dark:ring-white/95'
+                              : 'bg-border/80 dark:bg-white/20 group-hover:bg-[#00A6FF]/70'
+                              }`}
                           />
                         </div>
 
                         {/* 3D High-Tech Badge Number */}
                         <div className="flex items-center justify-center mb-1">
                           <span
-                            className={`inline-flex items-center font-mono text-[11px] font-bold px-2 py-0.5 rounded-md transition-all duration-300 ${
-                              isActive
-                                ? 'bg-[#00A6FF]/15 text-[#00E5FF] border border-[#00A6FF]/35 shadow-[0_0_12px_rgba(0,166,255,0.35)]'
-                                : 'text-text-muted group-hover:text-text-secondary'
-                            }`}
+                            className={`inline-flex items-center font-mono text-sm font-bold px-2 py-0.5 rounded-md transition-all duration-300 ${isActive
+                              ? 'bg-[#00A6FF]/15 text-[#00E5FF] border border-[#00A6FF]/35 shadow-[0_0_12px_rgba(0,166,255,0.35)]'
+                              : 'text-text-muted group-hover:text-text-secondary'
+                              }`}
                           >
                             {node.step}
                           </span>
@@ -811,20 +808,18 @@ export const AboutCompany = () => {
 
                         {/* Label */}
                         <h3
-                          className={`text-sm lg:text-base font-bold tracking-wider uppercase transition-colors duration-300 mb-1 ${
-                            isActive
-                              ? 'text-text-primary font-extrabold drop-shadow-xs'
-                              : 'text-text-secondary group-hover:text-text-primary'
-                          }`}
+                          className={`text-sm lg:text-base font-bold tracking-wider uppercase transition-colors duration-300 mb-1 ${isActive
+                            ? 'text-text-primary font-extrabold drop-shadow-xs'
+                            : 'text-text-secondary group-hover:text-text-primary'
+                            }`}
                         >
                           {node.label}
                         </h3>
 
                         {/* Short Supporting Text */}
                         <p
-                          className={`text-xs text-text-muted transition-colors duration-300 leading-relaxed ${
-                            isActive ? 'text-text-secondary' : 'group-hover:text-text-secondary'
-                          }`}
+                          className={`text-sm text-text-muted transition-colors duration-300 leading-relaxed ${isActive ? 'text-text-secondary' : 'group-hover:text-text-secondary'
+                            }`}
                         >
                           {node.desc}
                         </p>
@@ -860,29 +855,26 @@ export const AboutCompany = () => {
                     className="relative group transition-transform duration-250 hover:-translate-y-[1px] cursor-pointer"
                   >
                     <div
-                      className={`absolute -left-[35px] top-1 w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 ${
-                        isActive
-                          ? 'bg-[#00A6FF] border-white dark:border-[#0E0E0E] shadow-[0_0_8px_rgba(0,166,255,0.85)]'
-                          : 'bg-background border-border dark:border-white/20'
-                      }`}
+                      className={`absolute -left-[35px] top-1 w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 ${isActive
+                        ? 'bg-[#00A6FF] border-white dark:border-[#0E0E0E] shadow-[0_0_8px_rgba(0,166,255,0.85)]'
+                        : 'bg-background border-border dark:border-white/20'
+                        }`}
                     />
                     <div className="flex items-baseline gap-2 mb-0.5">
                       <span
-                        className={`font-mono text-xs font-bold transition-colors duration-300 ${
-                          isActive ? 'text-[#00A6FF]' : 'text-text-muted'
-                        }`}
+                        className={`font-mono text-sm font-bold transition-colors duration-300 ${isActive ? 'text-[#00A6FF]' : 'text-text-muted'
+                          }`}
                       >
                         {node.step}
                       </span>
                       <h3
-                        className={`text-sm font-bold tracking-wider uppercase transition-colors duration-300 ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary'
-                        }`}
+                        className={`text-sm font-bold tracking-wider uppercase transition-colors duration-300 ${isActive ? 'text-text-primary' : 'text-text-secondary'
+                          }`}
                       >
                         {node.label}
                       </h3>
                     </div>
-                    <p className="text-xs text-text-muted leading-tight">{node.desc}</p>
+                    <p className="text-sm text-text-muted leading-tight">{node.desc}</p>
                   </div>
                 )
               })}
@@ -905,13 +897,13 @@ export const AboutCompany = () => {
         </div>
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* ── DESKTOP SPLIT-SCREEN (55% LEFT / 45% RIGHT) & MOBILE EDITORIAL FLOW ── */}
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            
+
             {/* ── LEFT / STORY COLUMN (55% on Desktop) ── */}
             <div className="w-full lg:col-span-7 flex flex-col space-y-4 sm:space-y-5 order-1 lg:order-1">
-              
+
               {/* Eyebrow & Headline (Order 1 on mobile) */}
               <div className="space-y-3 sm:space-y-4">
                 {/* Eyebrow */}
@@ -921,7 +913,7 @@ export const AboutCompany = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="text-xs font-mono font-bold tracking-[0.24em] uppercase text-text-muted">
+                  <span className="text-sm font-mono font-bold tracking-[0.24em] uppercase text-text-muted">
                     OUR HERITAGE <span className="text-text-muted/40">•</span> <span className="text-[#00A6FF]">PRECISION SCALE</span>
                   </span>
                 </motion.div>
@@ -932,7 +924,7 @@ export const AboutCompany = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: prefersReducedMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold tracking-tight leading-[1.18] text-text-primary"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18] text-text-primary"
                 >
                   Built on a simple truth:{' '}
                   <span className="block sm:inline text-text-primary">
@@ -961,7 +953,7 @@ export const AboutCompany = () => {
 
             {/* ── RIGHT COLUMN (~45% on Desktop): “PRECISION FIELD” INTELLIGENCE VISUALIZATION ── */}
             <div className="w-full lg:col-span-5 flex items-center justify-center order-2 lg:order-2 my-2 lg:my-0">
-              
+
               {/* Visual Container */}
               <motion.div
                 initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.96 }}
@@ -1028,9 +1020,8 @@ export const AboutCompany = () => {
                         stroke={isNodeActive ? '#00A6FF' : 'currentColor'}
                         strokeOpacity={isNodeActive ? 0.75 : 0.12}
                         strokeWidth={isNodeActive ? 1.8 : 1}
-                        className={`transition-all duration-300 ${
-                          isNodeActive ? '' : 'stroke-slate-400 dark:stroke-white'
-                        }`}
+                        className={`transition-all duration-300 ${isNodeActive ? '' : 'stroke-slate-400 dark:stroke-white'
+                          }`}
                       />
                     )
                   })}
@@ -1056,9 +1047,8 @@ export const AboutCompany = () => {
                             stroke={isNodeActive ? '#00A6FF' : 'currentColor'}
                             strokeOpacity={isNodeActive ? 0.45 : 0.08}
                             strokeWidth="0.8"
-                            className={`transition-all duration-300 ${
-                              isNodeActive ? '' : 'stroke-slate-400 dark:stroke-white'
-                            }`}
+                            className={`transition-all duration-300 ${isNodeActive ? '' : 'stroke-slate-400 dark:stroke-white'
+                              }`}
                           />
                         ))}
                         {/* Cluster Dots */}
@@ -1070,9 +1060,8 @@ export const AboutCompany = () => {
                             r={isNodeActive ? 2.5 : 1.8}
                             fill={isNodeActive ? '#00A6FF' : 'currentColor'}
                             fillOpacity={isNodeActive ? 0.75 : 0.2}
-                            className={`transition-all duration-300 ${
-                              isNodeActive ? '' : 'text-slate-400 dark:text-white'
-                            }`}
+                            className={`transition-all duration-300 ${isNodeActive ? '' : 'text-slate-400 dark:text-white'
+                              }`}
                           />
                         ))}
                       </g>
@@ -1138,7 +1127,7 @@ export const AboutCompany = () => {
                     <text
                       y="-28"
                       textAnchor="middle"
-                      className="font-mono text-[11px] font-extrabold tracking-[0.2em] fill-[#00A6FF] uppercase"
+                      className="font-mono text-sm font-extrabold tracking-[0.2em] fill-[#00A6FF] uppercase"
                     >
                       PRECISION
                     </text>
@@ -1147,14 +1136,14 @@ export const AboutCompany = () => {
                     <text
                       y="32"
                       textAnchor="middle"
-                      className="font-mono text-[8px] font-semibold tracking-wider fill-text-muted uppercase"
+                      className="font-mono text-sm font-semibold tracking-wider fill-text-muted uppercase"
                     >
                       VERIFIED
                     </text>
                     <text
                       y="42"
                       textAnchor="middle"
-                      className="font-mono text-[8px] font-semibold tracking-wider fill-text-muted uppercase"
+                      className="font-mono text-sm font-semibold tracking-wider fill-text-muted uppercase"
                     >
                       DECISION-MAKER DATA
                     </text>
@@ -1189,30 +1178,27 @@ export const AboutCompany = () => {
                         {/* Outer Marker Ring */}
                         <circle
                           r={isNodeActive ? 12 : 9}
-                          className={`transition-all duration-300 ${
-                            isNodeActive
-                              ? 'fill-background stroke-[#00A6FF] stroke-[2]'
-                              : 'fill-background stroke-slate-300 dark:stroke-white/20 stroke-[1.2]'
-                          }`}
+                          className={`transition-all duration-300 ${isNodeActive
+                            ? 'fill-background stroke-[#00A6FF] stroke-[2]'
+                            : 'fill-background stroke-slate-300 dark:stroke-white/20 stroke-[1.2]'
+                            }`}
                         />
 
                         {/* Inner Bullet */}
                         <circle
                           r={isNodeActive ? 4.5 : 3}
-                          className={`transition-all duration-300 ${
-                            isNodeActive ? 'fill-[#00A6FF]' : 'fill-slate-400 dark:fill-white/40'
-                          }`}
+                          className={`transition-all duration-300 ${isNodeActive ? 'fill-[#00A6FF]' : 'fill-slate-400 dark:fill-white/40'
+                            }`}
                         />
 
                         {/* Label Badge */}
                         <text
                           y={node.y > 220 ? 24 : -18}
                           textAnchor="middle"
-                          className={`font-mono text-[11px] font-extrabold tracking-wider transition-colors duration-300 ${
-                            isNodeActive
-                              ? 'fill-[#00A6FF]'
-                              : 'fill-text-primary'
-                          }`}
+                          className={`font-mono text-sm font-extrabold tracking-wider transition-colors duration-300 ${isNodeActive
+                            ? 'fill-[#00A6FF]'
+                            : 'fill-text-primary'
+                            }`}
                         >
                           {node.label}
                         </text>
@@ -1221,11 +1207,10 @@ export const AboutCompany = () => {
                         <text
                           y={node.y > 220 ? 34 : -28}
                           textAnchor="middle"
-                          className={`font-mono text-[8px] tracking-wider uppercase transition-colors duration-300 ${
-                            isNodeActive
-                              ? 'fill-[#00A6FF]/80 font-semibold'
-                              : 'fill-text-muted'
-                          }`}
+                          className={`font-mono text-sm tracking-wider uppercase transition-colors duration-300 ${isNodeActive
+                            ? 'fill-[#00A6FF]/80 font-semibold'
+                            : 'fill-text-muted'
+                            }`}
                         >
                           {node.sublabel}
                         </text>
@@ -1236,7 +1221,7 @@ export const AboutCompany = () => {
 
                 {/* Micro hover indicator badge */}
                 {hoveredFieldNode && (
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-background/90 border border-[#00A6FF]/30 backdrop-blur text-[10px] font-mono text-[#00A6FF] tracking-wider uppercase shadow-sm">
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-background/90 border border-[#00A6FF]/30 backdrop-blur text-sm font-mono text-[#00A6FF] tracking-wider uppercase shadow-sm">
                     {INTELLIGENCE_FIELD_NODES.find((n) => n.id === hoveredFieldNode)?.relatedLabels.join(' • ')}
                   </div>
                 )}
@@ -1263,9 +1248,9 @@ export const AboutCompany = () => {
             animate={
               isIntelligenceInView
                 ? {
-                    opacity: isDark ? 0.05 : 0.035,
-                    backgroundPosition: !prefersReducedMotion ? ['0px 0px', '24px 24px'] : '0px 0px',
-                  }
+                  opacity: isDark ? 0.05 : 0.035,
+                  backgroundPosition: !prefersReducedMotion ? ['0px 0px', '24px 24px'] : '0px 0px',
+                }
                 : { opacity: 0 }
             }
             transition={{
@@ -1329,7 +1314,7 @@ export const AboutCompany = () => {
         </div>
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* ── COMPACT SECTION HEADER (REVEAL TIMINGS: 150ms -> 250ms -> 400ms) ── */}
           <div className="max-w-3xl mb-10 sm:mb-12">
             {/* Eyebrow (150ms + growing accent line) */}
@@ -1345,7 +1330,7 @@ export const AboutCompany = () => {
                 )}
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
               </span>
-              <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#00A6FF]">
+              <span className="text-sm sm:text-sm font-mono font-bold tracking-[0.2em] uppercase text-[#00A6FF]">
                 FOUNDATIONAL VALUES
               </span>
 
@@ -1363,7 +1348,7 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
               animate={isIntelligenceInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
               transition={{ duration: 0.55, delay: prefersReducedMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-text-primary leading-[1.12] mb-2.5"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary leading-[1.12] mb-2.5"
             >
               OUR MISSION, VISION &amp;{' '}
               <span className="bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#38BDF8] bg-clip-text text-transparent">
@@ -1384,10 +1369,10 @@ export const AboutCompany = () => {
 
           {/* ── TWO-COLUMN STRATEGIC & INTELLIGENCE NETWORK COMPOSITION ───── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            
+
             {/* ── LEFT COLUMN: MISSION (500ms) & VISION (600ms) STRATEGIC BLOCKS (50%) ───── */}
             <div className="lg:col-span-6 space-y-6 sm:space-y-8">
-              
+
               {/* Mission Block (500ms entrance + visible black/dark elevation shadow + subtle hover) */}
               {(() => {
                 const isMissionActive = hoveredStrategicBlock === 'mission'
@@ -1399,38 +1384,35 @@ export const AboutCompany = () => {
                     animate={
                       isIntelligenceInView
                         ? {
-                            opacity: isMissionMuted ? 0.75 : 1,
-                            y: isMissionActive && !prefersReducedMotion ? -3 : 0,
-                          }
+                          opacity: isMissionMuted ? 0.75 : 1,
+                          y: isMissionActive && !prefersReducedMotion ? -3 : 0,
+                        }
                         : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }
                     }
                     transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.50, ease: [0.22, 1, 0.36, 1] }}
                     onMouseEnter={() => setHoveredStrategicBlock('mission')}
                     onMouseLeave={() => setHoveredStrategicBlock(null)}
                     onClick={() => setHoveredStrategicBlock((prev) => (prev === 'mission' ? null : 'mission'))}
-                    className={`group p-6 sm:p-7 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer select-none bg-white dark:bg-[#141414] border ${
-                      isMissionActive
-                        ? 'border-[#00A6FF]/60 dark:border-[#00A6FF]/70 shadow-[0_12px_32px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.52),0_4px_12px_rgba(0,0,0,0.35)]'
-                        : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.18),0_2px_8px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#00A6FF]/40'
-                    }`}
+                    className={`group p-6 sm:p-7 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer select-none bg-white dark:bg-[#141414] border ${isMissionActive
+                      ? 'border-[#00A6FF]/60 dark:border-[#00A6FF]/70 shadow-[0_12px_32px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.52),0_4px_12px_rgba(0,0,0,0.35)]'
+                      : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.18),0_2px_8px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#00A6FF]/40'
+                      }`}
                   >
                     {/* Top Subtle Inner Highlight Line for Layered Depth */}
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
 
                     {/* Left Brand Accent Bar */}
                     <div
-                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b from-[#00A6FF] to-[#00E5FF] transition-all duration-350 ${
-                        isMissionActive
-                          ? 'w-[4px] shadow-[0_0_10px_rgba(0,166,255,0.6)]'
-                          : 'w-[3px]'
-                      }`}
+                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b from-[#00A6FF] to-[#00E5FF] transition-all duration-350 ${isMissionActive
+                        ? 'w-[4px] shadow-[0_0_10px_rgba(0,166,255,0.6)]'
+                        : 'w-[3px]'
+                        }`}
                     />
 
                     {/* Faint Internal Blue Decorative Arc */}
                     <svg
-                      className={`absolute -right-3 -bottom-3 w-36 h-36 pointer-events-none transition-all duration-500 overflow-visible ${
-                        isMissionActive ? 'opacity-25' : 'opacity-10 dark:opacity-15'
-                      }`}
+                      className={`absolute -right-3 -bottom-3 w-36 h-36 pointer-events-none transition-all duration-500 overflow-visible ${isMissionActive ? 'opacity-25' : 'opacity-10 dark:opacity-15'
+                        }`}
                       viewBox="0 0 100 100"
                     >
                       <path
@@ -1471,9 +1453,8 @@ export const AboutCompany = () => {
                             />
                           </svg>
                           <span
-                            className={`font-mono text-xs font-bold text-[#00A6FF] transition-all duration-350 ${
-                              isMissionActive ? 'scale-[1.10] -rotate-3' : 'scale-100 rotate-0'
-                            }`}
+                            className={`font-mono text-sm font-bold text-[#00A6FF] transition-all duration-350 ${isMissionActive ? 'scale-[1.10] -rotate-3' : 'scale-100 rotate-0'
+                              }`}
                           >
                             01
                           </span>
@@ -1497,9 +1478,8 @@ export const AboutCompany = () => {
 
                         {/* Heading Shift */}
                         <span
-                          className={`font-mono text-xs font-bold tracking-[0.2em] uppercase transition-all duration-350 ${
-                            isMissionActive ? 'translate-x-1 text-[#00A6FF]' : 'text-text-primary'
-                          }`}
+                          className={`font-mono text-sm font-bold tracking-[0.2em] uppercase transition-all duration-350 ${isMissionActive ? 'translate-x-1 text-[#00A6FF]' : 'text-text-primary'
+                            }`}
                         >
                           OUR MISSION
                         </span>
@@ -1507,11 +1487,10 @@ export const AboutCompany = () => {
 
                       {/* Strategic Purpose Label */}
                       <span
-                        className={`text-[10px] font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded border transition-all duration-350 ${
-                          isMissionActive
-                            ? 'bg-[#00A6FF]/15 text-text-primary border-[#00A6FF]/40'
-                            : 'text-text-muted bg-surface/70 dark:bg-white/5 border-border/60 dark:border-white/5'
-                        }`}
+                        className={`text-sm font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded border transition-all duration-350 ${isMissionActive
+                          ? 'bg-[#00A6FF]/15 text-text-primary border-[#00A6FF]/40'
+                          : 'text-text-muted bg-surface/70 dark:bg-white/5 border-border/60 dark:border-white/5'
+                          }`}
                       >
                         STRATEGIC PURPOSE
                       </span>
@@ -1519,9 +1498,8 @@ export const AboutCompany = () => {
 
                     {/* Mission Paragraph (Rises 2px on hover) */}
                     <p
-                      className={`text-[15px] sm:text-[16px] text-text-primary leading-[1.65] font-normal relative z-10 transition-transform duration-350 ${
-                        isMissionActive ? '-translate-y-[2px]' : 'translate-y-0'
-                      }`}
+                      className={`text-[15px] sm:text-[16px] text-text-primary leading-[1.65] font-normal relative z-10 transition-transform duration-350 ${isMissionActive ? '-translate-y-[2px]' : 'translate-y-0'
+                        }`}
                     >
                       To empower B2B SaaS and technology enterprises with predictable, high-converting demand generation engines and verified decision-maker intelligence that consistently turn market opportunity into measurable revenue outcomes.
                     </p>
@@ -1540,38 +1518,35 @@ export const AboutCompany = () => {
                     animate={
                       isIntelligenceInView
                         ? {
-                            opacity: isVisionMuted ? 0.75 : 1,
-                            y: isVisionActive && !prefersReducedMotion ? -3 : 0,
-                          }
+                          opacity: isVisionMuted ? 0.75 : 1,
+                          y: isVisionActive && !prefersReducedMotion ? -3 : 0,
+                        }
                         : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }
                     }
                     transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.60, ease: [0.22, 1, 0.36, 1] }}
                     onMouseEnter={() => setHoveredStrategicBlock('vision')}
                     onMouseLeave={() => setHoveredStrategicBlock(null)}
                     onClick={() => setHoveredStrategicBlock((prev) => (prev === 'vision' ? null : 'vision'))}
-                    className={`group p-6 sm:p-7 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer select-none bg-white dark:bg-[#141414] border ${
-                      isVisionActive
-                        ? 'border-[#72D669]/60 dark:border-[#72D669]/70 shadow-[0_12px_32px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.52),0_4px_12px_rgba(0,0,0,0.35)]'
-                        : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.18),0_2px_8px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#72D669]/40'
-                    }`}
+                    className={`group p-6 sm:p-7 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer select-none bg-white dark:bg-[#141414] border ${isVisionActive
+                      ? 'border-[#72D669]/60 dark:border-[#72D669]/70 shadow-[0_12px_32px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.52),0_4px_12px_rgba(0,0,0,0.35)]'
+                      : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.18),0_2px_8px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#72D669]/40'
+                      }`}
                   >
                     {/* Top Subtle Inner Highlight Line for Layered Depth */}
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
 
                     {/* Left Brand Accent Bar */}
                     <div
-                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b from-[#72D669] to-[#FFA600] transition-all duration-350 ${
-                        isVisionActive
-                          ? 'w-[4px] shadow-[0_0_10px_rgba(114,214,105,0.6)]'
-                          : 'w-[3px]'
-                      }`}
+                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b from-[#72D669] to-[#FFA600] transition-all duration-350 ${isVisionActive
+                        ? 'w-[4px] shadow-[0_0_10px_rgba(114,214,105,0.6)]'
+                        : 'w-[3px]'
+                        }`}
                     />
 
                     {/* Faint Internal Green/Amber Decorative Arc */}
                     <svg
-                      className={`absolute -right-3 -bottom-3 w-36 h-36 pointer-events-none transition-all duration-500 overflow-visible ${
-                        isVisionActive ? 'opacity-25' : 'opacity-10 dark:opacity-15'
-                      }`}
+                      className={`absolute -right-3 -bottom-3 w-36 h-36 pointer-events-none transition-all duration-500 overflow-visible ${isVisionActive ? 'opacity-25' : 'opacity-10 dark:opacity-15'
+                        }`}
                       viewBox="0 0 100 100"
                     >
                       <path
@@ -1612,9 +1587,8 @@ export const AboutCompany = () => {
                             />
                           </svg>
                           <span
-                            className={`font-mono text-xs font-bold text-[#72D669] transition-all duration-350 ${
-                              isVisionActive ? 'scale-[1.10] rotate-3' : 'scale-100 rotate-0'
-                            }`}
+                            className={`font-mono text-sm font-bold text-[#72D669] transition-all duration-350 ${isVisionActive ? 'scale-[1.10] rotate-3' : 'scale-100 rotate-0'
+                              }`}
                           >
                             02
                           </span>
@@ -1638,9 +1612,8 @@ export const AboutCompany = () => {
 
                         {/* Heading Shift */}
                         <span
-                          className={`font-mono text-xs font-bold tracking-[0.2em] uppercase transition-all duration-350 ${
-                            isVisionActive ? 'translate-x-1 text-[#72D669]' : 'text-text-primary'
-                          }`}
+                          className={`font-mono text-sm font-bold tracking-[0.2em] uppercase transition-all duration-350 ${isVisionActive ? 'translate-x-1 text-[#72D669]' : 'text-text-primary'
+                            }`}
                         >
                           OUR VISION
                         </span>
@@ -1648,11 +1621,10 @@ export const AboutCompany = () => {
 
                       {/* North Star Label */}
                       <span
-                        className={`text-[10px] font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded border transition-all duration-350 ${
-                          isVisionActive
-                            ? 'bg-[#72D669]/15 text-text-primary border-[#72D669]/40'
-                            : 'text-text-muted bg-surface/70 dark:bg-white/5 border-border/60 dark:border-white/5'
-                        }`}
+                        className={`text-sm font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded border transition-all duration-350 ${isVisionActive
+                          ? 'bg-[#72D669]/15 text-text-primary border-[#72D669]/40'
+                          : 'text-text-muted bg-surface/70 dark:bg-white/5 border-border/60 dark:border-white/5'
+                          }`}
                       >
                         NORTH STAR
                       </span>
@@ -1660,9 +1632,8 @@ export const AboutCompany = () => {
 
                     {/* Vision Paragraph (Rises 2px on hover) */}
                     <p
-                      className={`text-[15px] sm:text-[16px] text-text-primary leading-[1.65] font-normal relative z-10 transition-transform duration-350 ${
-                        isVisionActive ? '-translate-y-[2px]' : 'translate-y-0'
-                      }`}
+                      className={`text-[15px] sm:text-[16px] text-text-primary leading-[1.65] font-normal relative z-10 transition-transform duration-350 ${isVisionActive ? '-translate-y-[2px]' : 'translate-y-0'
+                        }`}
                     >
                       To stand as the world's most dependable B2B growth architecture partner, trusted by global category leaders to pioneer intelligent, data-driven revenue systems across international markets.
                     </p>
@@ -1671,7 +1642,7 @@ export const AboutCompany = () => {
               })()}
 
               {/* Strategic Architecture Note */}
-              <div className="flex items-center gap-3 px-3 py-1.5 text-xs font-mono text-text-muted">
+              <div className="flex items-center gap-3 px-3 py-1.5 text-sm font-mono text-text-muted">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
                 <span>MISSION &amp; VISION POWER STRATEGY &bull; 4 PRINCIPLES POWER EXECUTION</span>
               </div>
@@ -1679,7 +1650,7 @@ export const AboutCompany = () => {
 
             {/* ── RIGHT COLUMN: ABSTRACT INTELLIGENCE CORE (650ms) & INTERACTIVE NODES (50%) ── */}
             <div className="lg:col-span-6 space-y-4">
-              
+
               {/* Central Intelligence Core Display (650ms scale + opacity entrance) */}
               <motion.div
                 initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.75 }}
@@ -1689,13 +1660,13 @@ export const AboutCompany = () => {
               >
                 {/* Visual SVG Network Matrix */}
                 <div className="relative flex items-center justify-between gap-4 py-2">
-                  
+
                   {/* Left Flow Nodes Indicator */}
                   <div className="space-y-1">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-[#00A6FF] font-bold block">
+                    <span className="font-mono text-sm uppercase tracking-widest text-[#00A6FF] font-bold block">
                       NODE 01 &bull; 03
                     </span>
-                    <span className="text-xs text-text-muted font-medium">Data &amp; Hygiene</span>
+                    <span className="text-sm text-text-muted font-medium">Data &amp; Hygiene</span>
                   </div>
 
                   {/* Central Animated Geometric Intelligence Core */}
@@ -1805,10 +1776,10 @@ export const AboutCompany = () => {
 
                   {/* Right Flow Nodes Indicator */}
                   <div className="space-y-1 text-right">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-[#FF6D00] font-bold block">
+                    <span className="font-mono text-sm uppercase tracking-widest text-[#FF6D00] font-bold block">
                       NODE 02 &bull; 04
                     </span>
-                    <span className="text-xs text-text-muted font-medium">Cadence &amp; Integration</span>
+                    <span className="text-sm text-text-muted font-medium">Cadence &amp; Integration</span>
                   </div>
                 </div>
 
@@ -1830,14 +1801,14 @@ export const AboutCompany = () => {
 
               {/* Active Scroll Progression Bar (like HowWeWork) */}
               <div className="relative w-full px-0.5 py-1">
-                <div className="flex items-center justify-between text-[11px] font-mono font-bold tracking-wider mb-1.5 text-text-muted">
+                <div className="flex items-center justify-between text-sm font-mono font-bold tracking-wider mb-1.5 text-text-muted">
                   <span className="flex items-center gap-1.5 transition-colors duration-300" style={{ color: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color }}>
                     <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color }} />
                     <span className="uppercase">
                       STAGE 0{activePrincipleIndex + 1} &bull; {GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].shortTitle}
                     </span>
                   </span>
-                  <span className="text-[10px] text-text-muted font-mono">
+                  <span className="text-sm text-text-muted font-mono">
                     STAGE SEQUENCE &bull; {scrollProgressPct}%
                   </span>
                 </div>
@@ -1884,11 +1855,10 @@ export const AboutCompany = () => {
                             : `0 6px 18px -4px ${principle.color}22`
                           : undefined,
                       }}
-                      className={`w-full text-left p-4 sm:p-4.5 rounded-xl border transition-all duration-350 group cursor-pointer focus:outline-none relative overflow-hidden ${
-                        isActive
-                          ? 'bg-surface/90 dark:bg-white/[0.04] -translate-y-1 scale-[1.01]'
-                          : 'bg-surface/30 dark:bg-white/[0.015] border-border/60 dark:border-white/10 hover:opacity-100 hover:bg-surface/50 hover:-translate-y-0.5'
-                      }`}
+                      className={`w-full text-left p-4 sm:p-4.5 rounded-xl border transition-all duration-350 group cursor-pointer focus:outline-none relative overflow-hidden ${isActive
+                        ? 'bg-surface/90 dark:bg-white/[0.04] -translate-y-1 scale-[1.01]'
+                        : 'bg-surface/30 dark:bg-white/[0.015] border-border/60 dark:border-white/10 hover:opacity-100 hover:bg-surface/50 hover:-translate-y-0.5'
+                        }`}
                     >
                       {/* Active / Hover Circular Glow Ring */}
                       {isActive && (
@@ -1929,7 +1899,7 @@ export const AboutCompany = () => {
                               />
                             )}
                             <span
-                              className="font-mono text-xs font-bold tracking-widest transition-all duration-300"
+                              className="font-mono text-sm font-bold tracking-widest transition-all duration-300"
                               style={{ color: isActive ? principle.color : undefined }}
                             >
                               {principle.num}
@@ -1940,11 +1910,10 @@ export const AboutCompany = () => {
 
                           {/* Principle Title (Shifts 2-3px on active/hover) */}
                           <h4
-                            className={`text-sm sm:text-[15px] font-bold uppercase tracking-tight transition-all duration-300 ${
-                              isActive
-                                ? 'text-text-primary translate-x-1'
-                                : 'text-text-secondary group-hover:text-text-primary group-hover:translate-x-0.5'
-                            }`}
+                            className={`text-sm sm:text-[15px] font-bold uppercase tracking-tight transition-all duration-300 ${isActive
+                              ? 'text-text-primary translate-x-1'
+                              : 'text-text-secondary group-hover:text-text-primary group-hover:translate-x-0.5'
+                              }`}
                           >
                             {principle.title}
                           </h4>
@@ -1952,19 +1921,17 @@ export const AboutCompany = () => {
 
                         <div className="flex items-center gap-2">
                           <span
-                            className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded transition-all duration-300 ${
-                              isActive
-                                ? 'bg-surface dark:bg-white/10 text-text-primary border border-border/60 dark:border-white/10'
-                                : 'text-text-muted opacity-0 group-hover:opacity-100'
-                            }`}
+                            className={`text-sm font-mono font-semibold px-2 py-0.5 rounded transition-all duration-300 ${isActive
+                              ? 'bg-surface dark:bg-white/10 text-text-primary border border-border/60 dark:border-white/10'
+                              : 'text-text-muted opacity-0 group-hover:opacity-100'
+                              }`}
                           >
                             {principle.badge}
                           </span>
                           <ArrowRight
                             size={14}
-                            className={`transition-all duration-300 ${
-                              isActive ? 'translate-x-0' : '-translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
-                            }`}
+                            className={`transition-all duration-300 ${isActive ? 'translate-x-0' : '-translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
+                              }`}
                             style={{ color: isActive ? principle.color : undefined }}
                           />
                         </div>
@@ -1980,7 +1947,7 @@ export const AboutCompany = () => {
                             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                             className="overflow-hidden mt-2.5 pt-2.5 border-t border-border/40 dark:border-white/5 relative z-10"
                           >
-                            <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed font-normal">
+                            <p className="text-sm sm:text-[13px] text-text-secondary leading-relaxed font-normal">
                               {principle.desc}
                             </p>
                           </motion.div>
@@ -2017,10 +1984,10 @@ export const AboutCompany = () => {
                 activeCapabilityIndex === 0
                   ? 'radial-gradient(circle, rgba(0,166,255,0.18) 0%, transparent 70%)'
                   : activeCapabilityIndex === 1
-                  ? 'radial-gradient(circle, rgba(255,109,0,0.18) 0%, transparent 70%)'
-                  : activeCapabilityIndex === 2
-                  ? 'radial-gradient(circle, rgba(114,214,105,0.18) 0%, transparent 70%)'
-                  : 'radial-gradient(circle, rgba(0,229,255,0.18) 0%, transparent 70%)',
+                    ? 'radial-gradient(circle, rgba(255,109,0,0.18) 0%, transparent 70%)'
+                    : activeCapabilityIndex === 2
+                      ? 'radial-gradient(circle, rgba(114,214,105,0.18) 0%, transparent 70%)'
+                      : 'radial-gradient(circle, rgba(0,229,255,0.18) 0%, transparent 70%)',
             }}
           />
           {/* Subtle Cybernetic Grid Pattern */}
@@ -2032,7 +1999,7 @@ export const AboutCompany = () => {
         </motion.div>
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* ══ STEP 1–4: TOP INTRODUCTION (Staggered Scroll Power-On Entrance) ═════════════════ */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
             {/* Step 02: Eyebrow (+20px upward reveal) */}
@@ -2040,7 +2007,7 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               animate={isCapabilitiesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-wider uppercase mb-3 shadow-xs"
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-mono font-bold tracking-wider uppercase mb-3 shadow-xs"
             >
               <Zap size={12} className="text-[#00A6FF] animate-pulse" />
               <span>Full-Funnel Capabilities</span>
@@ -2051,7 +2018,7 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
               animate={isCapabilitiesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
               transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight text-text-primary mb-4 leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary mb-4 leading-tight"
             >
               What We{' '}
               <span className="bg-gradient-to-r from-primary via-[#00E5FF] to-cta bg-clip-text text-transparent">
@@ -2072,7 +2039,7 @@ export const AboutCompany = () => {
 
           {/* ══ DESKTOP / TABLET CONNECTED ECOSYSTEM LAYOUT (lg and above) ════ */}
           <div className="hidden lg:block relative max-w-5xl mx-auto">
-            
+
             {/* ── STEP 07: SVG TELEMETRY DATA CONNECTOR NETWORK (Progressive Digital Draw) ── */}
             <svg
               className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
@@ -2210,10 +2177,10 @@ export const AboutCompany = () => {
                     animate={
                       isCapabilitiesInView
                         ? {
-                            opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
-                            y: isActive && !prefersReducedMotion ? -5 : 0,
-                            scale: isActive ? 1.03 : 1,
-                          }
+                          opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
+                          y: isActive && !prefersReducedMotion ? -5 : 0,
+                          scale: isActive ? 1.03 : 1,
+                        }
                         : { opacity: 0, y: prefersReducedMotion ? 0 : -25 }
                     }
                     transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.70, ease: [0.22, 1, 0.36, 1] }}
@@ -2232,27 +2199,25 @@ export const AboutCompany = () => {
                     }}
                     role="button"
                     aria-label={`Capability 01: ${cap.title}`}
-                    className={`w-full max-w-[460px] p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#00A6FF]/50 ${
-                      isActive
-                        ? 'border-[#00A6FF]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
-                        : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#00A6FF]/40'
-                    }`}
+                    className={`w-full max-w-[460px] p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#00A6FF]/50 ${isActive
+                      ? 'border-[#00A6FF]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
+                      : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#00A6FF]/40'
+                      }`}
                   >
                     {/* Top Layer Highlight */}
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
-                    
+
                     {/* Brand Left Accent Bar */}
                     <div
-                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${
-                        isActive ? 'w-[4px] shadow-[0_0_12px_rgba(0,166,255,0.6)]' : 'w-[3px]'
-                      }`}
+                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${isActive ? 'w-[4px] shadow-[0_0_12px_rgba(0,166,255,0.6)]' : 'w-[3px]'
+                        }`}
                     />
 
                     {/* Header Row: 01 Badge + Crosshair Icon + Category Tag */}
                     <div className="flex items-center justify-between mb-2 relative z-10">
                       <div className="flex items-center gap-3">
                         <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border border-[#00A6FF]/30">
-                          <span className={`font-mono text-xs font-bold text-[#00A6FF] transition-all duration-350 ${isActive ? 'scale-110' : 'scale-100'}`}>
+                          <span className={`font-mono text-sm font-bold text-[#00A6FF] transition-all duration-350 ${isActive ? 'scale-110' : 'scale-100'}`}>
                             {cap.number}
                           </span>
                         </div>
@@ -2265,7 +2230,7 @@ export const AboutCompany = () => {
                       </div>
 
                       {/* Verified Metric Badge with Micro Animation */}
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border border-[#00A6FF]/25 text-[11px] font-mono font-bold text-[#00A6FF] shadow-xs">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border border-[#00A6FF]/25 text-sm font-mono font-bold text-[#00A6FF] shadow-xs">
                         <Check size={11} className={isActive ? 'scale-125 transition-transform text-[#00A6FF]' : 'text-slate-400 dark:text-white/40'} />
                         <span>{cap.metric}</span>
                       </div>
@@ -2288,7 +2253,7 @@ export const AboutCompany = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-[13.5px] text-text-secondary leading-relaxed font-normal relative z-10 pl-0.5">
+                    <p className="text-sm sm:text-[13.5px] text-text-secondary leading-relaxed font-normal relative z-10 pl-0.5">
                       {cap.description}
                     </p>
 
@@ -2303,7 +2268,7 @@ export const AboutCompany = () => {
 
             {/* ── MIDDLE ROW: CAPABILITY 03 (LEFT) + STRATEGIC CORE (CENTER) + CAPABILITY 02 (RIGHT) ── */}
             <div className="grid grid-cols-12 gap-6 items-center my-2 relative z-10">
-              
+
               {/* LEFT: 03 — Research & Intelligence (delay: 1.00s) */}
               <div className="col-span-4 flex justify-end">
                 {(() => {
@@ -2316,10 +2281,10 @@ export const AboutCompany = () => {
                       animate={
                         isCapabilitiesInView
                           ? {
-                              opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
-                              x: isActive && !prefersReducedMotion ? -4 : 0,
-                              scale: isActive ? 1.03 : 1,
-                            }
+                            opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
+                            x: isActive && !prefersReducedMotion ? -4 : 0,
+                            scale: isActive ? 1.03 : 1,
+                          }
                           : { opacity: 0, x: prefersReducedMotion ? 0 : -30 }
                       }
                       transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 1.00, ease: [0.22, 1, 0.36, 1] }}
@@ -2338,31 +2303,29 @@ export const AboutCompany = () => {
                       }}
                       role="button"
                       aria-label={`Capability 03: ${cap.title}`}
-                      className={`w-full max-w-[340px] p-5 sm:p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#72D669]/50 ${
-                        isActive
-                          ? 'border-[#72D669]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
-                          : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#72D669]/40'
-                      }`}
+                      className={`w-full max-w-[340px] p-5 sm:p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#72D669]/50 ${isActive
+                        ? 'border-[#72D669]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
+                        : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#72D669]/40'
+                        }`}
                     >
                       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
-                      
+
                       <div
-                        className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${
-                          isActive ? 'w-[4px] shadow-[0_0_12px_rgba(114,214,105,0.6)]' : 'w-[3px]'
-                        }`}
+                        className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${isActive ? 'w-[4px] shadow-[0_0_12px_rgba(114,214,105,0.6)]' : 'w-[3px]'
+                          }`}
                       />
 
                       <div className="flex items-center justify-between mb-2 relative z-10">
                         <div className="flex items-center gap-2.5">
                           <div className="relative flex items-center justify-center w-6 h-6 rounded-lg bg-[#72D669]/10 dark:bg-[#72D669]/15 border border-[#72D669]/30">
-                            <span className={`font-mono text-[11px] font-bold text-[#72D669] ${isActive ? 'scale-110' : ''}`}>
+                            <span className={`font-mono text-sm font-bold text-[#72D669] ${isActive ? 'scale-110' : ''}`}>
                               {cap.number}
                             </span>
                           </div>
                           <Compass size={17} className={`text-[#72D669] transition-all duration-350 ${isActive ? 'rotate-45 scale-110' : ''}`} />
                         </div>
 
-                        <span className="text-[10px] font-mono font-semibold tracking-wider text-[#72D669] uppercase px-2 py-0.5 rounded bg-[#72D669]/10 border border-[#72D669]/20">
+                        <span className="text-sm font-mono font-semibold tracking-wider text-[#72D669] uppercase px-2 py-0.5 rounded bg-[#72D669]/10 border border-[#72D669]/20">
                           {cap.category}
                         </span>
                       </div>
@@ -2387,11 +2350,11 @@ export const AboutCompany = () => {
                         {cap.title}
                       </h3>
 
-                      <h4 className="text-xs font-semibold text-primary dark:text-[#00E5FF] mb-2">
+                      <h4 className="text-sm font-semibold text-primary dark:text-[#00E5FF] mb-2">
                         {cap.subtitle}
                       </h4>
 
-                      <p className="text-xs text-text-secondary leading-relaxed font-normal relative z-10">
+                      <p className="text-sm text-text-secondary leading-relaxed font-normal relative z-10">
                         {cap.description}
                       </p>
                     </motion.div>
@@ -2454,7 +2417,7 @@ export const AboutCompany = () => {
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
 
                     {/* Central Status Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-[10px] font-mono font-bold tracking-wider uppercase border border-primary/20">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/20">
                       <span className="relative flex h-1.5 w-1.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
                         <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00A6FF]" />
@@ -2467,7 +2430,7 @@ export const AboutCompany = () => {
                       <h4 className="text-[15px] font-extrabold text-text-primary tracking-tight leading-snug mb-1">
                         Powering Predictable B2B Pipeline
                       </h4>
-                      <p className="text-[11px] text-text-secondary leading-snug font-normal line-clamp-3">
+                      <p className="text-sm text-text-secondary leading-snug font-normal line-clamp-3">
                         We bridge the gap between sales and marketing by converting target account intent into highly qualified pipeline meetings.
                       </p>
                     </div>
@@ -2475,7 +2438,7 @@ export const AboutCompany = () => {
                     {/* Step 08: Center Minimal CTA: Explore All Services with Hover Shift */}
                     <Link
                       to="/services"
-                      className="group inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-xs font-mono font-bold text-primary dark:text-[#00E5FF] transition-all duration-200 shadow-xs hover:-translate-y-[2px]"
+                      className="group inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-sm font-mono font-bold text-primary dark:text-[#00E5FF] transition-all duration-200 shadow-xs hover:-translate-y-[2px]"
                     >
                       <span>Explore All Services</span>
                       <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1.5 text-primary dark:text-[#00E5FF]" />
@@ -2496,10 +2459,10 @@ export const AboutCompany = () => {
                       animate={
                         isCapabilitiesInView
                           ? {
-                              opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
-                              x: isActive && !prefersReducedMotion ? 4 : 0,
-                              scale: isActive ? 1.03 : 1,
-                            }
+                            opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
+                            x: isActive && !prefersReducedMotion ? 4 : 0,
+                            scale: isActive ? 1.03 : 1,
+                          }
                           : { opacity: 0, x: prefersReducedMotion ? 0 : 30 }
                       }
                       transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -2518,31 +2481,29 @@ export const AboutCompany = () => {
                       }}
                       role="button"
                       aria-label={`Capability 02: ${cap.title}`}
-                      className={`w-full max-w-[340px] p-5 sm:p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#FF6D00]/50 ${
-                        isActive
-                          ? 'border-[#FF6D00]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
-                          : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#FF6D00]/40'
-                      }`}
+                      className={`w-full max-w-[340px] p-5 sm:p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#FF6D00]/50 ${isActive
+                        ? 'border-[#FF6D00]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
+                        : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#FF6D00]/40'
+                        }`}
                     >
                       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
-                      
+
                       <div
-                        className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${
-                          isActive ? 'w-[4px] shadow-[0_0_12px_rgba(255,109,0,0.6)]' : 'w-[3px]'
-                        }`}
+                        className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${isActive ? 'w-[4px] shadow-[0_0_12px_rgba(255,109,0,0.6)]' : 'w-[3px]'
+                          }`}
                       />
 
                       <div className="flex items-center justify-between mb-2 relative z-10">
                         <div className="flex items-center gap-2.5">
                           <div className="relative flex items-center justify-center w-6 h-6 rounded-lg bg-[#FF6D00]/10 dark:bg-[#FF6D00]/15 border border-[#FF6D00]/30">
-                            <span className={`font-mono text-[11px] font-bold text-[#FF6D00] ${isActive ? 'scale-110' : ''}`}>
+                            <span className={`font-mono text-sm font-bold text-[#FF6D00] ${isActive ? 'scale-110' : ''}`}>
                               {cap.number}
                             </span>
                           </div>
                           <Share2 size={17} className={`text-[#FF6D00] transition-all duration-350 ${isActive ? 'scale-110' : ''}`} />
                         </div>
 
-                        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FF6D00]/10 border border-[#FF6D00]/20 text-[10px] font-mono font-bold text-[#FF6D00] dark:text-[#FFA600]">
+                        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FF6D00]/10 border border-[#FF6D00]/20 text-sm font-mono font-bold text-[#FF6D00] dark:text-[#FFA600]">
                           <Zap size={10} className={isActive ? 'animate-bounce' : ''} />
                           <span>{cap.metric}</span>
                         </div>
@@ -2568,7 +2529,7 @@ export const AboutCompany = () => {
                         {cap.title}
                       </h3>
 
-                      <p className="text-xs text-text-secondary leading-relaxed font-normal relative z-10">
+                      <p className="text-sm text-text-secondary leading-relaxed font-normal relative z-10">
                         {cap.description}
                       </p>
                     </motion.div>
@@ -2590,10 +2551,10 @@ export const AboutCompany = () => {
                     animate={
                       isCapabilitiesInView
                         ? {
-                            opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
-                            y: isActive && !prefersReducedMotion ? 5 : 0,
-                            scale: isActive ? 1.03 : 1,
-                          }
+                          opacity: activeCapabilityIndex !== null && !isActive ? 0.75 : 1,
+                          y: isActive && !prefersReducedMotion ? 5 : 0,
+                          scale: isActive ? 1.03 : 1,
+                        }
                         : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }
                     }
                     transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 1.15, ease: [0.22, 1, 0.36, 1] }}
@@ -2612,11 +2573,10 @@ export const AboutCompany = () => {
                     }}
                     role="button"
                     aria-label={`Capability 04: ${cap.title}`}
-                    className={`w-full max-w-[460px] p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#00E5FF]/50 ${
-                      isActive
-                        ? 'border-[#00E5FF]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
-                        : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#00E5FF]/40'
-                    }`}
+                    className={`w-full max-w-[460px] p-6 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer bg-white dark:bg-[#141414] border focus:outline-hidden focus:ring-2 focus:ring-[#00E5FF]/50 ${isActive
+                      ? 'border-[#00E5FF]/70 shadow-[0_14px_35px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_14px_35px_rgba(0,0,0,0.55),0_4px_12px_rgba(0,0,0,0.35)]'
+                      : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.16),0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#00E5FF]/40'
+                      }`}
                   >
                     {/* Top Connecting Port Marker */}
                     <div className="absolute top-1 left-1/2 -translate-x-1/2 flex items-center gap-1">
@@ -2624,17 +2584,16 @@ export const AboutCompany = () => {
                     </div>
 
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
-                    
+
                     <div
-                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${
-                        isActive ? 'w-[4px] shadow-[0_0_12px_rgba(0,229,255,0.6)]' : 'w-[3px]'
-                      }`}
+                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b ${cap.accentGrad} transition-all duration-350 ${isActive ? 'w-[4px] shadow-[0_0_12px_rgba(0,229,255,0.6)]' : 'w-[3px]'
+                        }`}
                     />
 
                     <div className="flex items-center justify-between mb-1.5 relative z-10">
                       <div className="flex items-center gap-3">
                         <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-[#00E5FF]/10 dark:bg-[#00E5FF]/15 border border-[#00E5FF]/30">
-                          <span className={`font-mono text-xs font-bold text-[#00E5FF] transition-all duration-350 ${isActive ? 'scale-110' : ''}`}>
+                          <span className={`font-mono text-sm font-bold text-[#00E5FF] transition-all duration-350 ${isActive ? 'scale-110' : ''}`}>
                             {cap.number}
                           </span>
                         </div>
@@ -2646,7 +2605,7 @@ export const AboutCompany = () => {
                         </div>
                       </div>
 
-                      <span className="text-[10px] font-mono font-semibold tracking-wider text-primary dark:text-[#00E5FF] uppercase px-2.5 py-1 rounded bg-[#00E5FF]/10 border border-[#00E5FF]/20">
+                      <span className="text-sm font-mono font-semibold tracking-wider text-primary dark:text-[#00E5FF] uppercase px-2.5 py-1 rounded bg-[#00E5FF]/10 border border-[#00E5FF]/20">
                         {cap.subtitle}
                       </span>
                     </div>
@@ -2667,7 +2626,7 @@ export const AboutCompany = () => {
                       )}
                     </div>
 
-                    <p className="text-xs sm:text-[13.5px] text-text-secondary leading-relaxed font-normal relative z-10 pl-0.5">
+                    <p className="text-sm sm:text-[13.5px] text-text-secondary leading-relaxed font-normal relative z-10 pl-0.5">
                       {cap.description}
                     </p>
                   </motion.div>
@@ -2679,7 +2638,7 @@ export const AboutCompany = () => {
 
           {/* ══ MOBILE & TABLET VERTICAL TELEMETRY FLOW (< lg) ════════════════ */}
           <div className="block lg:hidden max-w-xl mx-auto space-y-5">
-            
+
             {/* Mobile Strategic Core Panel */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -2688,7 +2647,7 @@ export const AboutCompany = () => {
               transition={{ duration: 0.5 }}
               className="p-6 rounded-3xl text-center bg-white dark:bg-[#141414] border border-primary/30 dark:border-white/10 shadow-[0_8px_25px_rgba(0,0,0,0.16)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45)] relative overflow-hidden mb-6"
             >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-[10px] font-mono font-bold tracking-wider uppercase mb-3 border border-primary/20">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase mb-3 border border-primary/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-ping" />
                 <span>Strategic Growth Engine</span>
               </div>
@@ -2697,13 +2656,13 @@ export const AboutCompany = () => {
                 Powering Predictable B2B Pipeline
               </h3>
 
-              <p className="text-xs text-text-secondary leading-relaxed font-normal mb-4 max-w-md mx-auto">
+              <p className="text-sm text-text-secondary leading-relaxed font-normal mb-4 max-w-md mx-auto">
                 We bridge the gap between sales and marketing by converting target account intent into highly qualified pipeline meetings.
               </p>
 
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-primary/10 dark:bg-white/5 hover:bg-primary/20 text-primary dark:text-[#00E5FF] text-xs font-mono font-bold tracking-wider uppercase border border-primary/30 dark:border-white/10 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-primary/10 dark:bg-white/5 hover:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/30 dark:border-white/10 transition-colors"
               >
                 <span>Explore All Services</span>
                 <ArrowRight size={14} />
@@ -2725,24 +2684,22 @@ export const AboutCompany = () => {
                     onClick={() => handleSelectCapability(idx)}
                     role="button"
                     tabIndex={0}
-                    className={`p-5 rounded-2xl relative overflow-hidden transition-all duration-300 bg-white dark:bg-[#141414] border ${
-                      isActive
-                        ? 'border-primary shadow-lg ring-1 ring-primary/30'
-                        : 'border-slate-200/90 dark:border-white/[0.08] shadow-sm'
-                    }`}
+                    className={`p-5 rounded-2xl relative overflow-hidden transition-all duration-300 bg-white dark:bg-[#141414] border ${isActive
+                      ? 'border-primary shadow-lg ring-1 ring-primary/30'
+                      : 'border-slate-200/90 dark:border-white/[0.08] shadow-sm'
+                      }`}
                   >
                     {/* Left Node Pin */}
                     <span
-                      className={`absolute -left-[23px] sm:-left-[31px] top-6 w-3 h-3 rounded-full border-2 transition-all ${
-                        isActive
-                          ? 'bg-primary border-white dark:border-[#0E0E0E] shadow-[0_0_8px_#00A6FF]'
-                          : 'bg-slate-300 dark:bg-white/20 border-white dark:border-[#0E0E0E]'
-                      }`}
+                      className={`absolute -left-[23px] sm:-left-[31px] top-6 w-3 h-3 rounded-full border-2 transition-all ${isActive
+                        ? 'bg-primary border-white dark:border-[#0E0E0E] shadow-[0_0_8px_#00A6FF]'
+                        : 'bg-slate-300 dark:bg-white/20 border-white dark:border-[#0E0E0E]'
+                        }`}
                     />
 
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2.5">
-                        <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">
+                        <span className="font-mono text-sm font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">
                           {cap.number}
                         </span>
                         <h4 className="font-bold text-sm sm:text-[15px] text-text-primary">
@@ -2751,19 +2708,19 @@ export const AboutCompany = () => {
                       </div>
 
                       {cap.metric && (
-                        <span className="text-[10px] font-mono font-bold text-primary dark:text-[#00E5FF] px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
+                        <span className="text-sm font-mono font-bold text-primary dark:text-[#00E5FF] px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
                           {cap.metric}
                         </span>
                       )}
                     </div>
 
                     {cap.subtitle && (
-                      <span className="text-[11px] font-semibold text-primary dark:text-[#00E5FF] block mb-1.5">
+                      <span className="text-sm font-semibold text-primary dark:text-[#00E5FF] block mb-1.5">
                         {cap.subtitle}
                       </span>
                     )}
 
-                    <p className="text-xs text-text-secondary leading-relaxed font-normal">
+                    <p className="text-sm text-text-secondary leading-relaxed font-normal">
                       {cap.description}
                     </p>
                   </motion.div>

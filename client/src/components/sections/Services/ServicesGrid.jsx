@@ -191,7 +191,7 @@ const ServicesGrid = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />
                     
                     {/* Mobile Tap Indicator */}
-                    <div className="absolute top-4 left-4 lg:hidden px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] text-white font-medium flex items-center gap-1.5 shadow-md">
+                    <div className="absolute top-4 left-4 lg:hidden px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-sm text-white font-medium flex items-center gap-1.5 shadow-md">
                       <span>Tap for details</span>
                       <span className="text-primary font-bold">↻</span>
                     </div>
@@ -206,7 +206,7 @@ const ServicesGrid = () => {
                       <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-2">
                         {activeService.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-white/80">
+                      <p className="text-sm sm:text-sm text-white/80">
                         {activeService.desc}
                       </p>
                     </div>
@@ -232,7 +232,7 @@ const ServicesGrid = () => {
                         e.stopPropagation()
                         setIsFlipped(false)
                       }}
-                      className="lg:hidden absolute top-3.5 right-4 z-30 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-[10px] font-semibold text-primary flex items-center gap-1 min-h-[32px]"
+                      className="lg:hidden absolute top-3.5 right-4 z-30 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-sm font-semibold text-primary flex items-center gap-1 min-h-[32px]"
                       aria-label="Flip card back to cover"
                     >
                       <span>Flip Back ↻</span>
@@ -247,7 +247,7 @@ const ServicesGrid = () => {
                       {/* Top Eyebrow Tag + Horizontal Accent Line */}
                       <div className="flex items-center gap-3">
                         <div className="px-3.5 py-1 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/25 shadow-xs">
-                          <span className="text-[10px] sm:text-xs font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent uppercase tracking-[0.22em]">
+                          <span className="text-sm sm:text-sm font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent uppercase tracking-[0.22em]">
                             {activeService.eyebrow}
                           </span>
                         </div>
@@ -378,14 +378,14 @@ const ServicesGrid = () => {
                           repeatDelay: 1
                         }}
                       >
-                        <span className="text-[10px] font-mono font-extrabold text-primary">
+                        <span className="text-sm font-mono font-extrabold text-primary">
                           0{index + 1}
                         </span>
                       </motion.div>
 
                       {/* Eyebrow / Category Label */}
                       <motion.p
-                        className={`text-[9px] uppercase tracking-[0.22em] font-extrabold mb-0.5 transition-colors ${
+                        className={`text-sm uppercase tracking-[0.22em] font-extrabold mb-0.5 transition-colors ${
                           isActive
                             ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent'
                             : 'text-text-muted dark:text-gray-400'
@@ -404,7 +404,7 @@ const ServicesGrid = () => {
 
                       {/* Card Title */}
                       <motion.h4
-                        className={`text-xs sm:text-sm font-extrabold tracking-tight leading-tight transition-colors ${
+                        className={`text-sm sm:text-sm font-extrabold tracking-tight leading-tight transition-colors ${
                           isActive ? 'text-text-primary dark:text-white' : 'text-text-secondary group-hover:text-text-primary dark:text-gray-300 dark:group-hover:text-white'
                         }`}
                         animate={{ 
@@ -417,7 +417,7 @@ const ServicesGrid = () => {
 
                       {/* Short Description */}
                       <motion.p
-                        className={`text-[10px] mt-0.5 leading-normal font-medium transition-colors hidden sm:block ${
+                        className={`text-sm mt-0.5 leading-normal font-medium transition-colors hidden sm:block ${
                           isActive ? 'text-text-secondary dark:text-gray-300' : 'text-text-muted dark:text-gray-400'
                         }`}
                         initial={{ opacity: 0, y: 5 }}
@@ -508,3 +508,4 @@ const ServicesGrid = () => {
 }
 
 export default ServicesGrid
+

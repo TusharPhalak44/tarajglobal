@@ -130,7 +130,7 @@ export const FloatingSignals = () => {
 
             {/* Label & Sub */}
             <div className="leading-tight">
-              <span className="text-[9px] font-mono font-bold tracking-wider text-slate-200 block">
+              <span className="text-sm font-mono font-bold tracking-wider text-slate-200 block">
                 {sig.label}
               </span>
               <span className="text-[7.5px] font-mono text-slate-400 block" style={{ color: sig.color }}>
@@ -145,3 +145,4 @@ export const FloatingSignals = () => {
 }
 
 export default FloatingSignals
+

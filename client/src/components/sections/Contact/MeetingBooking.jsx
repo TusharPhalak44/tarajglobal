@@ -219,7 +219,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                     )}
                   </div>
                   <span
-                    className={`text-xs mt-1 ${
+                    className={`text-sm mt-1 ${
                       currentStep === step.number
                         ? 'text-primary font-medium'
                         : currentStep > step.number
@@ -274,7 +274,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-text-muted text-center mb-1 uppercase">
+                  <p className="text-sm text-text-muted text-center mb-1 uppercase">
                     {bookingData.date?.toLocaleDateString('en-US', { month: 'short' })}
                   </p>
                   <h4 className="text-base font-semibold text-text-primary text-center mb-2">
@@ -341,7 +341,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                     {/* Calendar Grid */}
                     <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-6">
                       {dayNames.map(day => (
-                        <div key={day} className="text-center text-xs sm:text-sm font-medium text-text-muted py-1.5 sm:py-2">
+                        <div key={day} className="text-center text-sm sm:text-sm font-medium text-text-muted py-1.5 sm:py-2">
                           {day}
                         </div>
                       ))}
@@ -351,7 +351,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                           disabled={day?.isPast || day?.isWeekend || !day}
                           onClick={() => handleDateSelect(day)}
                           className={`
-                            aspect-square rounded-lg flex items-center justify-center text-xs sm:text-sm font-medium transition-all
+                            aspect-square rounded-lg flex items-center justify-center text-sm sm:text-sm font-medium transition-all
                             ${!day ? 'invisible' : ''}
                             ${day?.isPast || day?.isWeekend 
                               ? 'text-text-muted cursor-not-allowed opacity-40' 
@@ -368,7 +368,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                       ))}
                     </div>
 
-                    <p className="text-xs sm:text-sm text-text-muted text-center">
+                    <p className="text-sm sm:text-sm text-text-muted text-center">
                       Select a date to continue. Weekends and past dates are not available.
                     </p>
                   </motion.div>
@@ -397,7 +397,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                           key={time}
                           onClick={() => handleTimeSelect(time)}
                           className={`
-                            p-2.5 sm:p-4 rounded-xl border-2 text-xs sm:text-sm font-medium min-h-[44px] flex items-center justify-center transition-all
+                            p-2.5 sm:p-4 rounded-xl border-2 text-sm sm:text-sm font-medium min-h-[44px] flex items-center justify-center transition-all
                             ${bookingData.time === time
                               ? 'border-primary bg-primary/10 text-primary'
                               : 'border-border hover:border-primary/50 text-text-primary hover:bg-surface/80'
@@ -556,3 +556,4 @@ const MeetingBooking = ({ isOpen, onClose }) => {
 }
 
 export default MeetingBooking
+

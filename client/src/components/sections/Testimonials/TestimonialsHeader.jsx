@@ -10,7 +10,7 @@ const TestimonialsHeader = () => {
       transition={{ duration: 0.8 }}
       className="text-center max-w-4xl mx-auto mb-0"
     >
-      <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-1">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary mb-4 tracking-tight leading-[1.16]">
         B2B Marketing Success Stories
       </h2>
       <motion.div
@@ -28,3 +28,4 @@ const TestimonialsHeader = () => {
 }
 
 export default TestimonialsHeader
+

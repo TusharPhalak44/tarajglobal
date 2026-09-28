@@ -30,17 +30,17 @@ export const TelemetryStatusBadge = () => {
         {/* Micro Category Tag */}
         <div className="flex items-center gap-1.5 pl-0.5 border-r border-slate-700/60 dark:border-white/10 pr-2.5">
           <ShieldCheck size={12} className="text-emerald-400" />
-          <span className="text-[10px] font-mono font-bold tracking-widest text-emerald-400 uppercase">
+          <span className="text-sm font-mono font-bold tracking-widest text-emerald-400 uppercase">
             SLA GUARANTEED
           </span>
         </div>
 
         {/* Text */}
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-slate-100 whitespace-nowrap">
+          <span className="text-sm font-semibold text-slate-100 whitespace-nowrap">
             100% Validated Data Records
           </span>
-          <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden sm:inline-block">
+          <span className="text-sm font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden sm:inline-block">
             0% RE-SYNC
           </span>
         </div>
@@ -67,17 +67,17 @@ export const TelemetryStatusBadge = () => {
         {/* Micro Category Tag */}
         <div className="flex items-center gap-1.5 pl-0.5 border-r border-slate-700/60 dark:border-white/10 pr-2.5">
           <Activity size={12} className="text-[#00A6FF]" />
-          <span className="text-[10px] font-mono font-bold tracking-widest text-[#00A6FF] uppercase">
+          <span className="text-sm font-mono font-bold tracking-widest text-[#00A6FF] uppercase">
             GROWTH SIGNAL INDEX
           </span>
         </div>
 
         {/* Text */}
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-slate-100 whitespace-nowrap">
+          <span className="text-sm font-semibold text-slate-100 whitespace-nowrap">
             Predictable Telemetry
           </span>
-          <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 hidden sm:inline-block">
+          <span className="text-sm font-mono font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 hidden sm:inline-block">
             ACTIVE PIPELINE
           </span>
         </div>
@@ -91,3 +91,4 @@ export const TelemetryStatusBadge = () => {
 }
 
 export default TelemetryStatusBadge
+

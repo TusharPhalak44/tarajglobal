@@ -43,7 +43,7 @@ const HeroImage = () => {
       >
         <div className="text-center">
           <div className="text-2xl font-bold text-primary">25%</div>
-          <div className="text-xs text-gray-600">Growth</div>
+          <div className="text-sm text-gray-600">Growth</div>
         </div>
       </motion.div>
 
@@ -54,7 +54,7 @@ const HeroImage = () => {
       >
         <div className="text-center">
           <div className="text-xl font-bold text-primary">A+</div>
-          <div className="text-xs text-gray-600">Rating</div>
+          <div className="text-sm text-gray-600">Rating</div>
         </div>
       </motion.div>
     </motion.div>
@@ -62,3 +62,4 @@ const HeroImage = () => {
 }
 
 export default HeroImage
+

@@ -71,7 +71,7 @@ export const LiveOutboundEngine = () => {
       <div className="absolute -inset-6 bg-[#00A6FF]/8 dark:bg-[#00A6FF]/12 rounded-[36px] blur-3xl pointer-events-none -z-10" />
 
       {/* ── Subtle Decorative Data Signal Trail (Top Tag) ─────────────── */}
-      <div className="hidden sm:flex items-center justify-between px-3 mb-2 text-[10px] font-mono tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+      <div className="hidden sm:flex items-center justify-between px-3 mb-2 text-sm font-mono tracking-wider text-slate-500 dark:text-slate-400 uppercase">
         <span className="flex items-center gap-1">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF]" />
           DATA
@@ -96,14 +96,14 @@ export const LiveOutboundEngine = () => {
               )}
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
             </span>
-            <span className="text-xs font-mono font-bold tracking-wider text-slate-900 dark:text-white uppercase">
+            <span className="text-sm font-mono font-bold tracking-wider text-slate-900 dark:text-white uppercase">
               LIVE ENGINE
             </span>
           </div>
 
-          <div className="flex items-center gap-2 text-[11px] font-mono">
+          <div className="flex items-center gap-2 text-sm font-mono">
             <span className="text-slate-500 dark:text-slate-400 hidden sm:inline">Live Outbound Activity</span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20 text-[10px]">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20 text-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               Synchronized
             </span>
@@ -160,17 +160,17 @@ export const LiveOutboundEngine = () => {
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <span className={`text-xs font-bold truncate transition-colors ${
+                      <span className={`text-sm font-bold truncate transition-colors ${
                         isActive ? 'text-slate-900 dark:text-white' : 'text-slate-800 dark:text-slate-200'
                       }`}>
                         {item.company}
                       </span>
-                      <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${item.tagBg}`}>
+                      <span className={`text-sm font-mono font-bold px-1.5 py-0.5 rounded border ${item.tagBg}`}>
                         {item.tag}
                       </span>
                     </div>
 
-                    <p className="text-[11px] text-slate-600 dark:text-slate-400 truncate flex items-center gap-1.5">
+                    <p className="text-sm text-slate-600 dark:text-slate-400 truncate flex items-center gap-1.5">
                       <span>{item.contact}</span>
                       <span className="text-slate-400 dark:text-slate-600">•</span>
                       <span className={`font-semibold ${item.statusColor}`}>
@@ -180,7 +180,7 @@ export const LiveOutboundEngine = () => {
                   </div>
 
                   {/* Timestamp */}
-                  <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 shrink-0">
+                  <span className="text-sm font-mono text-slate-500 dark:text-slate-400 shrink-0">
                     {item.time}
                   </span>
                 </div>
@@ -190,7 +190,7 @@ export const LiveOutboundEngine = () => {
         </div>
 
         {/* ── Panel Footer Metrics Strip ───────────────────────────────── */}
-        <div className="px-5 py-2.5 bg-slate-50/80 dark:bg-white/[0.02] border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+        <div className="px-5 py-2.5 bg-slate-50/80 dark:bg-white/[0.02] border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-sm font-mono text-slate-500 dark:text-slate-400">
           <span className="flex items-center gap-1 text-slate-700 dark:text-slate-300 font-semibold">
             <Activity size={12} className="text-[#00A6FF]" />
             Pipeline Velocity: High
@@ -207,3 +207,4 @@ export const LiveOutboundEngine = () => {
 }
 
 export default LiveOutboundEngine
+

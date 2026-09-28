@@ -61,7 +61,7 @@ export const GetToKnowUs = () => {
             className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700/60 mb-3 transition-colors duration-300 shadow-xs"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00E5FF] animate-pulse" />
-            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-primary dark:text-[#00E5FF] uppercase">
+            <span className="text-sm font-mono font-bold tracking-[0.2em] text-primary dark:text-[#00E5FF] uppercase">
               ENTERPRISE GROWTH ARCHITECTURE
             </span>
           </motion.div>
@@ -86,7 +86,7 @@ export const GetToKnowUs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-xl mx-auto transition-colors duration-300"
+            className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-xl mx-auto transition-colors duration-300"
           >
             Taraj Global is a B2B demand generation and technology marketing partner helping organizations connect with the right companies, decision-makers, and buying audiences. We combine audience intelligence, verified B2B data, targeted outreach, and full-funnel marketing strategies to create qualified opportunities and support sustainable pipeline growth.
           </motion.p>
@@ -108,3 +108,4 @@ export const GetToKnowUs = () => {
 }
 
 export default GetToKnowUs
+

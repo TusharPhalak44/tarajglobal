@@ -52,7 +52,7 @@ export const GrowthStageSelector = ({
   return (
     <div className="flex flex-col gap-3.5 w-full">
       {/* Rail Subhead */}
-      <div className="flex items-center justify-between px-1 text-[10px] font-mono text-slate-400 uppercase tracking-widest">
+      <div className="flex items-center justify-between px-1 text-sm font-mono text-slate-400 uppercase tracking-widest">
         <span>CONTROL RAIL // STAGES</span>
         <span className="text-slate-400">SELECT TO INSPECT</span>
       </div>
@@ -86,12 +86,12 @@ export const GrowthStageSelector = ({
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <span 
-                  className="font-mono text-xs font-black tracking-tight"
+                  className="font-mono text-sm font-black tracking-tight"
                   style={{ color: isActive ? theme.subColor : '#94a3b8' }}
                 >
                   STAGE {stage.number}
                 </span>
-                <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded border uppercase tracking-wider ${theme.tagBg}`}>
+                <span className={`text-sm font-mono font-bold px-2 py-0.5 rounded border uppercase tracking-wider ${theme.tagBg}`}>
                   {stage.statement}
                 </span>
               </div>
@@ -110,7 +110,7 @@ export const GrowthStageSelector = ({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <div 
-                  className="w-6 h-6 rounded-lg flex items-center justify-center text-xs transition-colors shrink-0"
+                  className="w-6 h-6 rounded-lg flex items-center justify-center text-sm transition-colors shrink-0"
                   style={{
                     backgroundColor: isActive ? `${theme.accentColor}25` : 'rgba(255,255,255,0.04)',
                     color: isActive ? theme.subColor : '#94a3b8',
@@ -133,7 +133,7 @@ export const GrowthStageSelector = ({
             </div>
 
             {/* Subtitle Description */}
-            <p className="text-[11px] sm:text-xs text-slate-400 font-normal leading-relaxed mt-1.5 pl-8.5">
+            <p className="text-sm sm:text-sm text-slate-400 font-normal leading-relaxed mt-1.5 pl-8.5">
               {stage.desc}
             </p>
 
@@ -155,3 +155,4 @@ export const GrowthStageSelector = ({
 }
 
 export default GrowthStageSelector
+

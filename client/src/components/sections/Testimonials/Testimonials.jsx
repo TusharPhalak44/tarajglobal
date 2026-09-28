@@ -87,7 +87,7 @@ export const Testimonials = () => {
 
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md shadow-xs">
               <Sparkles size={12} className="text-primary animate-pulse" />
-              <span className="text-[10px] sm:text-[11px] font-mono font-bold text-primary uppercase tracking-[0.2em]">
+              <span className="text-sm sm:text-sm font-mono font-bold text-primary uppercase tracking-[0.2em]">
                 Client Testimonials
               </span>
             </div>
@@ -182,7 +182,7 @@ export const Testimonials = () => {
                         />
                       </motion.div>
                     ))}
-                    <span className="text-[11px] font-mono font-bold text-text-primary ml-1">5.0</span>
+                    <span className="text-sm font-mono font-bold text-text-primary ml-1">5.0</span>
                   </div>
                 </div>
 
@@ -214,3 +214,4 @@ export const Testimonials = () => {
 }
 
 export default Testimonials
+

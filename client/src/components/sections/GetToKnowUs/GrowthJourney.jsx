@@ -125,7 +125,7 @@ const Station01Visual = ({ isHovered }) => {
       </div>
 
       {/* Target Conversion Hierarchy */}
-      <div className="flex-1 pl-4 space-y-1.5 text-[9px] font-mono">
+      <div className="flex-1 pl-4 space-y-1.5 text-sm font-mono">
         <div className="flex items-center justify-between px-2.5 py-1 rounded-lg bg-slate-900/90 border border-primary/20 text-slate-300">
           <span className="text-[#00E5FF] flex items-center gap-1">
             <Layers size={10} />
@@ -158,7 +158,7 @@ const Station02Visual = ({ isHovered }) => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#10B98110_1px,transparent_1px),linear-gradient(to_bottom,#10B98110_1px,transparent_1px)] bg-[size:14px_14px] opacity-40" />
 
       {/* Top Telemetry Header */}
-      <div className="relative z-10 flex items-center justify-between text-[9px] font-mono text-slate-400 border-b border-slate-800 pb-1.5">
+      <div className="relative z-10 flex items-center justify-between text-sm font-mono text-slate-400 border-b border-slate-800 pb-1.5">
         <span className="text-emerald-400 font-bold flex items-center gap-1">
           <Database size={10} />
           <span>MULTI-PASS PIPELINE</span>
@@ -195,7 +195,7 @@ const Station02Visual = ({ isHovered }) => {
       </div>
 
       {/* Bottom Telemetry Bar */}
-      <div className="relative z-10 flex items-center justify-between text-[8px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
+      <div className="relative z-10 flex items-center justify-between text-sm font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
         <span>ACCURACY GUARANTEE:</span>
         <span className="font-bold">99.8% VALIDATED SLA</span>
       </div>
@@ -214,7 +214,7 @@ const Station03Visual = ({ isHovered }) => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#FF6D0010_1px,transparent_1px),linear-gradient(to_bottom,#FF6D0010_1px,transparent_1px)] bg-[size:14px_14px] opacity-40" />
 
       {/* Top Header */}
-      <div className="relative z-10 flex items-center justify-between text-[9px] font-mono text-slate-400 border-b border-slate-800 pb-1.5">
+      <div className="relative z-10 flex items-center justify-between text-sm font-mono text-slate-400 border-b border-slate-800 pb-1.5">
         <span className="text-cta font-bold flex items-center gap-1">
           <Zap size={10} />
           <span>PIPELINE VELOCITY</span>
@@ -226,29 +226,29 @@ const Station03Visual = ({ isHovered }) => {
       <div className="relative z-10 flex items-center justify-between gap-2 px-1">
         {/* Stage 1: Outreach */}
         <div className="flex-1 text-center p-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
-          <span className="text-[8px] font-mono text-slate-400 block">01 REACH</span>
-          <span className="text-[9px] font-mono font-bold text-white block mt-0.5">Multi-Touch</span>
+          <span className="text-sm font-mono text-slate-400 block">01 REACH</span>
+          <span className="text-sm font-mono font-bold text-white block mt-0.5">Multi-Touch</span>
         </div>
 
         <ChevronRight size={12} className="text-slate-600 shrink-0" />
 
         {/* Stage 2: Appointments */}
         <div className="flex-1 text-center p-1.5 rounded-lg bg-slate-900/80 border border-cta/30">
-          <span className="text-[8px] font-mono text-cta block">02 SQL APPT</span>
-          <span className="text-[9px] font-mono font-bold text-white block mt-0.5">Confirmed</span>
+          <span className="text-sm font-mono text-cta block">02 SQL APPT</span>
+          <span className="text-sm font-mono font-bold text-white block mt-0.5">Confirmed</span>
         </div>
 
         <ChevronRight size={12} className="text-slate-600 shrink-0" />
 
         {/* Stage 3: Revenue Growth */}
         <div className="flex-1 text-center p-1.5 rounded-lg bg-cta/20 border border-cta/60 shadow-[0_0_12px_rgba(255,109,0,0.3)]">
-          <span className="text-[8px] font-mono text-amber-300 font-bold block">03 GROWTH</span>
-          <span className="text-[9px] font-mono font-black text-white block mt-0.5">PREDICTABLE</span>
+          <span className="text-sm font-mono text-amber-300 font-bold block">03 GROWTH</span>
+          <span className="text-sm font-mono font-black text-white block mt-0.5">PREDICTABLE</span>
         </div>
       </div>
 
       {/* Bottom Conversion Status Bar */}
-      <div className="relative z-10 flex items-center justify-between text-[8px] font-mono text-amber-400 bg-cta/10 px-2 py-0.5 rounded">
+      <div className="relative z-10 flex items-center justify-between text-sm font-mono text-amber-400 bg-cta/10 px-2 py-0.5 rounded">
         <span>DEMAND CONVERSION:</span>
         <span className="font-bold">SUSTAINABLE REVENUE</span>
       </div>
@@ -328,13 +328,13 @@ export const GrowthJourney = () => {
       <div className="flex items-center justify-between mb-8 px-4 sm:px-8 py-3 rounded-2xl bg-[#090D17]/90 border border-slate-800 backdrop-blur-xl overflow-x-auto custom-scrollbar">
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-200 uppercase">
+          <span className="text-sm sm:text-sm font-mono font-bold tracking-widest text-slate-200 uppercase">
             THE B2B GROWTH JOURNEY
           </span>
         </div>
 
         {/* Step Flow Ribbon */}
-        <div className="flex items-center gap-2 sm:gap-4 text-[9px] sm:text-[10px] font-mono shrink-0 pl-6">
+        <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-sm font-mono shrink-0 pl-6">
           {journeySteps.map((step, idx) => (
             <React.Fragment key={step.label}>
               <div className="flex items-center gap-1.5">
@@ -431,7 +431,7 @@ export const GrowthJourney = () => {
                   <span className="text-3xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00E5FF]">
                     01
                   </span>
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-primary/15 text-[#00E5FF] border border-primary/30 uppercase">
+                  <span className="text-sm font-mono font-bold px-2 py-0.5 rounded bg-primary/15 text-[#00E5FF] border border-primary/30 uppercase">
                     TAM MAPPED
                   </span>
                 </div>
@@ -439,7 +439,7 @@ export const GrowthJourney = () => {
                 <div className="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_#00A6FF]" />
               </div>
 
-              <span className="text-xs font-mono font-bold text-slate-400 block tracking-widest uppercase">
+              <span className="text-sm font-mono font-bold text-slate-400 block tracking-widest uppercase">
                 STATION 01 - AUDIENCE INTEL
               </span>
 
@@ -447,7 +447,7 @@ export const GrowthJourney = () => {
                 TAM MAPPED
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed min-h-[44px]">
+              <p className="text-sm sm:text-sm text-slate-300 leading-relaxed min-h-[44px]">
                 Precision ICP identification &amp; buying committee calibration across total addressable market.
               </p>
             </div>
@@ -463,7 +463,7 @@ export const GrowthJourney = () => {
                 <div className="text-3xl sm:text-4xl font-mono font-black text-white tracking-tight">
                   <AnimatedCounter targetValue={100} decimal={0} suffix="%" />
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#00E5FF] block mt-0.5">
+                <span className="text-sm font-mono font-bold uppercase tracking-wider text-[#00E5FF] block mt-0.5">
                   ICP PRECISION
                 </span>
               </div>
@@ -495,7 +495,7 @@ export const GrowthJourney = () => {
                   <span className="text-3xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-[#72D669]">
                     02
                   </span>
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 uppercase">
+                  <span className="text-sm font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 uppercase">
                     DIRECT DIALS
                   </span>
                 </div>
@@ -503,7 +503,7 @@ export const GrowthJourney = () => {
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10B981]" />
               </div>
 
-              <span className="text-xs font-mono font-bold text-slate-400 block tracking-widest uppercase">
+              <span className="text-sm font-mono font-bold text-slate-400 block tracking-widest uppercase">
                 STATION 02 - VERIFIED DATA
               </span>
 
@@ -511,7 +511,7 @@ export const GrowthJourney = () => {
                 DIRECT DIALS
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed min-h-[44px]">
+              <p className="text-sm sm:text-sm text-slate-300 leading-relaxed min-h-[44px]">
                 Multi-pass direct-dial verification &amp; zero re-syndication SLA for guaranteed reach.
               </p>
             </div>
@@ -527,7 +527,7 @@ export const GrowthJourney = () => {
                 <div className="text-3xl sm:text-4xl font-mono font-black text-white tracking-tight">
                   <AnimatedCounter targetValue={99.8} decimal={1} suffix="%" />
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 block mt-0.5">
+                <span className="text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 block mt-0.5">
                   ACCURACY
                 </span>
               </div>
@@ -559,7 +559,7 @@ export const GrowthJourney = () => {
                   <span className="text-3xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6D00]">
                     03
                   </span>
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-cta/15 text-cta border border-cta/30 uppercase">
+                  <span className="text-sm font-mono font-bold px-2 py-0.5 rounded bg-cta/15 text-cta border border-cta/30 uppercase">
                     PIPELINE WON
                   </span>
                 </div>
@@ -567,7 +567,7 @@ export const GrowthJourney = () => {
                 <div className="w-2.5 h-2.5 rounded-full bg-cta shadow-[0_0_8px_#FF6D00]" />
               </div>
 
-              <span className="text-xs font-mono font-bold text-slate-400 block tracking-widest uppercase">
+              <span className="text-sm font-mono font-bold text-slate-400 block tracking-widest uppercase">
                 STATION 03 - FULL FUNNEL
               </span>
 
@@ -575,7 +575,7 @@ export const GrowthJourney = () => {
                 PIPELINE WON
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed min-h-[44px]">
+              <p className="text-sm sm:text-sm text-slate-300 leading-relaxed min-h-[44px]">
                 Closed-loop demand generation &amp; executive appointment setting driving sales pipeline.
               </p>
             </div>
@@ -591,7 +591,7 @@ export const GrowthJourney = () => {
                 <div className="text-3xl sm:text-4xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6D00]">
                   GROWTH
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 block mt-0.5">
+                <span className="text-sm font-mono font-bold uppercase tracking-wider text-amber-400 block mt-0.5">
                   PREDICTABLE
                 </span>
               </div>
@@ -605,7 +605,7 @@ export const GrowthJourney = () => {
         </div>
 
         {/* ── 3. Destination Terminus: Sustainable Enterprise Growth ───── */}
-        <div className="mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+        <div className="mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-mono">
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-slate-300">
@@ -631,3 +631,4 @@ export const GrowthJourney = () => {
 }
 
 export default GrowthJourney
+

@@ -80,7 +80,7 @@ const FeatureCard = ({ icon: Icon, title, description, index, bgImage, darkBgIma
                 <Icon className="w-5 h-5" />
               </div>
             )}
-            <span className="text-[10px] font-mono font-bold text-text-muted opacity-60">
+            <span className="text-sm font-mono font-bold text-text-muted opacity-60">
               0{index + 1}
             </span>
           </div>
@@ -91,7 +91,7 @@ const FeatureCard = ({ icon: Icon, title, description, index, bgImage, darkBgIma
           </h3>
 
           {/* Description */}
-          <p className="text-text-secondary leading-relaxed text-xs">
+          <p className="text-text-secondary leading-relaxed text-sm">
             {description}
           </p>
         </div>
@@ -104,3 +104,4 @@ const FeatureCard = ({ icon: Icon, title, description, index, bgImage, darkBgIma
 }
 
 export default FeatureCard
+

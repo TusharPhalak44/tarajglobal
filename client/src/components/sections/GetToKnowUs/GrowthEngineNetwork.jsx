@@ -184,7 +184,7 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[460px] rounded-full bg-radial from-primary/18 via-[#FF6D00]/6 to-transparent blur-[130px] pointer-events-none -z-10" />
 
       {/* ── Top Telemetry HUD Status Bar ────────────────────────────── */}
-      <div className="flex items-center justify-between px-3 sm:px-6 py-2 mb-2.5 rounded-xl bg-[#090D17]/90 border border-slate-800 dark:border-white/10 backdrop-blur-md text-[10px] font-mono text-slate-400">
+      <div className="flex items-center justify-between px-3 sm:px-6 py-2 mb-2.5 rounded-xl bg-[#090D17]/90 border border-slate-800 dark:border-white/10 backdrop-blur-md text-sm font-mono text-slate-400">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-slate-200 font-bold uppercase tracking-wider">
@@ -302,10 +302,10 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
 
           {/* Core Label Badge */}
           <div className="mt-1 px-3 py-1 rounded-full bg-[#0a0f1d]/90 border border-slate-700 dark:border-white/15 shadow-xl backdrop-blur-md inline-block">
-            <span className="text-[10px] sm:text-[11px] font-mono font-black tracking-widest text-white uppercase block">
+            <span className="text-sm sm:text-sm font-mono font-black tracking-widest text-white uppercase block">
               TARAJ GLOBAL
             </span>
-            <span className="text-[8px] sm:text-[9px] font-mono font-bold text-[#00E5FF] uppercase block tracking-wider">
+            <span className="text-sm sm:text-sm font-mono font-bold text-[#00E5FF] uppercase block tracking-wider">
               GROWTH ENGINE
             </span>
           </div>
@@ -367,11 +367,11 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
                 {/* Node Text & Data */}
                 <div className="min-w-0 pr-1 text-left">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-tight text-white block truncate group-hover:text-primary transition-colors">
+                    <span className="text-sm sm:text-sm font-mono font-bold tracking-tight text-white block truncate group-hover:text-primary transition-colors">
                       {node.title}
                     </span>
                   </div>
-                  <span className="text-[8px] font-mono text-slate-400 block leading-tight truncate">
+                  <span className="text-sm font-mono text-slate-400 block leading-tight truncate">
                     {node.sub}
                   </span>
                 </div>
@@ -396,14 +396,14 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
                     transition={{ duration: 0.18 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 p-2.5 rounded-xl bg-[#090D17] border border-white/20 shadow-2xl z-50 pointer-events-none text-left"
                   >
-                    <div className="flex items-center justify-between pb-1 border-b border-white/10 text-[9px] font-mono font-bold">
+                    <div className="flex items-center justify-between pb-1 border-b border-white/10 text-sm font-mono font-bold">
                       <span style={{ color: node.color }}>STAGE {node.stage}</span>
                       <span className="text-emerald-400">TELEMETRY OK</span>
                     </div>
-                    <p className="text-[10px] text-slate-300 mt-1 font-sans">
+                    <p className="text-sm text-slate-300 mt-1 font-sans">
                       {node.desc}
                     </p>
-                    <div className="mt-1.5 flex items-center justify-between text-[9px] font-mono text-slate-400">
+                    <div className="mt-1.5 flex items-center justify-between text-sm font-mono text-slate-400">
                       <span>VERIFICATION:</span>
                       <span className="text-white font-bold">{node.metric}</span>
                     </div>
@@ -415,7 +415,7 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
         })}
 
         {/* ── Bottom Step Flow Indicator ────────────────────────────── */}
-        <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[9px] font-mono text-slate-400 pointer-events-none">
+        <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-sm font-mono text-slate-400 pointer-events-none">
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             <span>01 AUDIENCE INTEL</span>
@@ -439,3 +439,4 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
 }
 
 export default GrowthEngineNetwork
+

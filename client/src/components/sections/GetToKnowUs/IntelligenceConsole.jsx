@@ -93,7 +93,7 @@ export const IntelligenceConsole = () => {
       <div className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-white/25 rounded-br-sm pointer-events-none" />
 
       {/* ── Top Console HUD Bar ─────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-2.5 mb-6 rounded-2xl bg-[#06080F]/90 border border-slate-800/80 text-[10px] font-mono text-slate-400">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-2.5 mb-6 rounded-2xl bg-[#06080F]/90 border border-slate-800/80 text-sm font-mono text-slate-400">
         <div className="flex items-center gap-2.5">
           <Terminal size={13} className="text-[#00E5FF]" />
           <span className="text-white font-bold tracking-widest uppercase">
@@ -135,7 +135,7 @@ export const IntelligenceConsole = () => {
       </div>
 
       {/* ── Bottom Console Status Strip ─────────────────────────────── */}
-      <div className="mt-6 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] font-mono text-slate-400">
+      <div className="mt-6 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-mono text-slate-400">
         <div className="flex items-center gap-2">
           <span className="text-slate-400">INFRASTRUCTURE STATUS:</span>
           <span className="text-emerald-400 font-bold">ALL SYSTEMS LIVE &amp; CALIBRATED</span>
@@ -151,3 +151,4 @@ export const IntelligenceConsole = () => {
 }
 
 export default IntelligenceConsole
+

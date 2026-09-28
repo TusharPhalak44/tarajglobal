@@ -127,7 +127,7 @@ const GetInTouch = ({ onBookMeeting }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.85 }}
-                className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 rounded-full text-xs font-semibold text-white flex items-center gap-2"
+                className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold text-white flex items-center gap-2"
                 style={{
                   background: 'rgba(18,18,28,0.95)',
                   border: '1px solid rgba(0,166,255,0.3)',
@@ -259,3 +259,4 @@ const GetInTouch = ({ onBookMeeting }) => {
 }
 
 export default GetInTouch
+

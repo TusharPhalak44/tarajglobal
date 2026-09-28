@@ -92,7 +92,7 @@ export default function ContactHero({ onBookMeeting }) {
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="text-xs sm:text-sm md:text-base font-light tracking-[0.35em] sm:tracking-[0.45em] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] uppercase mb-8 sm:mb-10 pl-1"
+          className="text-sm sm:text-sm md:text-base font-light tracking-[0.35em] sm:tracking-[0.45em] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] uppercase mb-8 sm:mb-10 pl-1"
         >
           C O N N E C T &nbsp; W I T H &nbsp; T A R A J &nbsp; G L O B A L
         </motion.div>
@@ -137,7 +137,7 @@ export default function ContactHero({ onBookMeeting }) {
             opacity: { delay: 0.5, duration: 0.5 },
             y: { repeat: Infinity, duration: 2, ease: 'easeInOut' },
           }}
-          className="mt-6 inline-flex items-center gap-1.5 text-xs text-white/60 hover:text-white transition-colors cursor-pointer"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors cursor-pointer"
         >
           <span>Or send us a message below</span>
           <ArrowDown className="w-3.5 h-3.5" />
@@ -147,3 +147,4 @@ export default function ContactHero({ onBookMeeting }) {
     </section>
   )
 }
+

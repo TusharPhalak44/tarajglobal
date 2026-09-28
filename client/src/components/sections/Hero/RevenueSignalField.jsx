@@ -157,7 +157,7 @@ export const RevenueSignalField = ({ mousePos = { x: 0, y: 0 } }) => {
 
           {/* Precision Target Lock Badge */}
           <div className="px-3.5 py-1.5 rounded-full bg-surface/90 dark:bg-[#080C14]/90 border border-cta/40 dark:border-cta/50 shadow-xl backdrop-blur-md">
-            <span className="text-[10px] font-mono font-black tracking-widest text-text-primary uppercase flex items-center gap-1.5">
+            <span className="text-sm font-mono font-black tracking-widest text-text-primary uppercase flex items-center gap-1.5">
               <Target size={12} className="text-cta" />
               <span>TARGET LOCKED // RIGHT AUDIENCE</span>
             </span>
@@ -165,10 +165,10 @@ export const RevenueSignalField = ({ mousePos = { x: 0, y: 0 } }) => {
 
           {/* Telemetry metadata */}
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-[8px] font-mono font-semibold px-2 py-0.5 rounded-full bg-cta/10 text-cta border border-cta/20">
+            <span className="text-sm font-mono font-semibold px-2 py-0.5 rounded-full bg-cta/10 text-cta border border-cta/20">
               100% ICP MATCH
             </span>
-            <span className="text-[8px] font-mono text-text-muted">
+            <span className="text-sm font-mono text-text-muted">
               C-SUITE DIRECT DIAL
             </span>
           </div>
@@ -200,10 +200,10 @@ export const RevenueSignalField = ({ mousePos = { x: 0, y: 0 } }) => {
 
               {/* Minimalist Editorial Tech Chip */}
               <div className="px-2 py-1 rounded-lg bg-surface/85 dark:bg-[#070B12]/85 border border-border/70 dark:border-white/10 shadow-sm backdrop-blur-md transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-md hidden sm:block">
-                <span className="text-[9px] font-mono font-bold text-text-primary block whitespace-nowrap leading-tight">
+                <span className="text-sm font-mono font-bold text-text-primary block whitespace-nowrap leading-tight">
                   {node.label}
                 </span>
-                <span className="text-[8px] font-mono text-text-muted flex items-center gap-1 leading-none mt-0.5 whitespace-nowrap">
+                <span className="text-sm font-mono text-text-muted flex items-center gap-1 leading-none mt-0.5 whitespace-nowrap">
                   <span>{node.signal}</span>
                   <span className="text-emerald-500 font-bold">[{node.intent}]</span>
                 </span>
@@ -213,11 +213,11 @@ export const RevenueSignalField = ({ mousePos = { x: 0, y: 0 } }) => {
         })}
 
         {/* Technical Coordinate Overlay Marks */}
-        <div className="absolute top-2 left-4 text-[9px] font-mono text-text-muted/60 tracking-wider flex items-center gap-1.5 hidden md:flex">
+        <div className="absolute top-2 left-4 text-sm font-mono text-text-muted/60 tracking-wider flex items-center gap-1.5 hidden md:flex">
           <Globe2 size={11} className="text-primary" />
           <span>GLOBAL REVENUE SIGNAL // ACTIVE TELEMETRY</span>
         </div>
-        <div className="absolute bottom-2 right-4 text-[9px] font-mono text-text-muted/60 tracking-wider flex items-center gap-1.5 hidden md:flex">
+        <div className="absolute bottom-2 right-4 text-sm font-mono text-text-muted/60 tracking-wider flex items-center gap-1.5 hidden md:flex">
           <Activity size={11} className="text-emerald-500 animate-pulse" />
           <span>SLA: 99.8% VERIFIED DATA</span>
         </div>
@@ -229,3 +229,4 @@ export const RevenueSignalField = ({ mousePos = { x: 0, y: 0 } }) => {
 }
 
 export default RevenueSignalField
+

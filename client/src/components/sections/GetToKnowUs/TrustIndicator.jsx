@@ -32,7 +32,7 @@ export const TrustIndicator = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-20px' }}
       transition={{ duration: 0.5, delay: 0.45 }}
-      className="mt-6 sm:mt-8 pt-4 border-t border-slate-200/80 dark:border-white/5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2.5 text-[10px] sm:text-[11px] font-mono text-slate-600 dark:text-slate-400 select-none transition-colors duration-300"
+      className="mt-6 sm:mt-8 pt-4 border-t border-slate-200/80 dark:border-white/5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2.5 text-sm sm:text-sm font-mono text-slate-600 dark:text-slate-400 select-none transition-colors duration-300"
     >
       
       {/* ── Indicator 01: SLA Guaranteed (with animated ○ -> ✓ check) ── */}
@@ -103,3 +103,4 @@ export const TrustIndicator = () => {
 }
 
 export default TrustIndicator
+

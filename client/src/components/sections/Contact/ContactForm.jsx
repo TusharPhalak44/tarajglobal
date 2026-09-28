@@ -237,10 +237,10 @@ const ContactForm = () => {
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
               Message Transmitted!
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+            <p className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
               Thank you for reaching out. Our growth strategists have received your brief and will connect with you within 2 hours.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 text-xs font-mono">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 text-sm font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Priority Ingestion Active
             </div>
@@ -307,11 +307,11 @@ const ContactForm = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-4 sm:mb-5"
         >
-          <h2 className="section-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase !mb-2">
+          <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.16] uppercase !mb-4">
             <span className="text-slate-900 dark:text-white">Send Us a </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">Message</span>
           </h2>
-          <p className="section-subtitle text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400 !mb-0 font-normal">
+          <p className="section-subtitle text-sm sm:text-sm md:text-base text-slate-600 dark:text-slate-400 !mb-0 font-normal">
             Fill out the form below and we'll get back to you shortly.
           </p>
         </motion.div>
@@ -362,11 +362,11 @@ const ContactForm = () => {
                 {/* Live Status Pill */}
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/25 dark:border-[#00A6FF]/30 bg-primary/10 dark:bg-[#00A6FF]/10 text-primary dark:text-[#00d2ff] mb-2.5 shadow-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00d2ff] animate-ping" />
-                  <span className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase">
+                  <span className="text-sm font-mono font-bold tracking-[0.18em] uppercase">
                     Direct Inquiry
                   </span>
                   <span className="text-slate-300 dark:text-white/20">|</span>
-                  <span className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300">
+                  <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
                     &lt; 2h Response
                   </span>
                 </div>
@@ -380,13 +380,13 @@ const ContactForm = () => {
                 </h3>
 
                 {/* Context Description */}
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed font-normal">
+                <p className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed font-normal">
                   Select your objective below. Our growth architects will tailor a dedicated outreach strategy for your team.
                 </p>
 
                 {/* ── Quick Requirement Selector ── */}
                 <div className="mt-3.5 pt-3 border-t border-slate-200/70 dark:border-white/10">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 block mb-1.5">
+                  <span className="text-sm font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 block mb-1.5">
                     Select Requirement:
                   </span>
                   <div className="flex flex-wrap gap-2">
@@ -397,7 +397,7 @@ const ContactForm = () => {
                           key={tag}
                           type="button"
                           onClick={() => handleSelectTag(tag)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer border ${
+                          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer border ${
                             isSelected
                               ? 'bg-primary text-white border-primary shadow-xs dark:bg-[#00A6FF] dark:text-black dark:border-[#00A6FF] font-bold'
                               : 'bg-white dark:bg-white/5 border-slate-300 dark:border-white/15 text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-white/30 hover:text-primary dark:hover:text-white shadow-xs'
@@ -429,10 +429,10 @@ const ContactForm = () => {
                           <Icon size={15} />
                         </div>
                         <div>
-                          <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                          <div className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
                             {metric.title}
                           </div>
-                          <div className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          <div className="text-sm text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                             {metric.desc}
                           </div>
                         </div>
@@ -443,7 +443,7 @@ const ContactForm = () => {
               </div>
 
               {/* Direct Help Footnote */}
-              <div className="mt-4 pt-3 border-t border-slate-200/70 dark:border-white/10 text-xs text-slate-600 dark:text-slate-400">
+              <div className="mt-4 pt-3 border-t border-slate-200/70 dark:border-white/10 text-sm text-slate-600 dark:text-slate-400">
                 Prefer direct email?{' '}
                 <a
                   href="mailto:info@tarajglobal.com"
@@ -466,13 +466,13 @@ const ContactForm = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {/* First Name */}
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
+                    <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                       <label htmlFor="form-firstName" className="flex items-center gap-1 cursor-pointer">
                         <span>First Name</span>
                         <span className="text-[#FF6D00] font-bold leading-none">*</span>
                       </label>
                       {errors.firstName && (
-                        <span className="text-xs font-semibold text-rose-500">{errors.firstName}</span>
+                        <span className="text-sm font-semibold text-rose-500">{errors.firstName}</span>
                       )}
                     </div>
                     <div className="relative group">
@@ -486,7 +486,7 @@ const ContactForm = () => {
                         value={formData.firstName}
                         onChange={handleChange}
                         placeholder="e.g. Rahul"
-                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-xs sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
+                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
                           errors.firstName
                             ? 'border-rose-500 ring-1 ring-rose-500/20'
                             : 'border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 shadow-xs'
@@ -497,13 +497,13 @@ const ContactForm = () => {
 
                   {/* Last Name */}
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
+                    <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                       <label htmlFor="form-lastName" className="flex items-center gap-1 cursor-pointer">
                         <span>Last Name</span>
                         <span className="text-[#FF6D00] font-bold leading-none">*</span>
                       </label>
                       {errors.lastName && (
-                        <span className="text-xs font-semibold text-rose-500">{errors.lastName}</span>
+                        <span className="text-sm font-semibold text-rose-500">{errors.lastName}</span>
                       )}
                     </div>
                     <div className="relative group">
@@ -517,7 +517,7 @@ const ContactForm = () => {
                         value={formData.lastName}
                         onChange={handleChange}
                         placeholder="e.g. Sharma"
-                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-xs sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
+                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
                           errors.lastName
                             ? 'border-rose-500 ring-1 ring-rose-500/20'
                             : 'border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 shadow-xs'
@@ -531,13 +531,13 @@ const ContactForm = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {/* Business Email */}
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
+                    <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                       <label htmlFor="form-email" className="flex items-center gap-1 cursor-pointer">
                         <span>Business Email</span>
                         <span className="text-[#FF6D00] font-bold leading-none">*</span>
                       </label>
                       {errors.email && (
-                        <span className="text-xs font-semibold text-rose-500">{errors.email}</span>
+                        <span className="text-sm font-semibold text-rose-500">{errors.email}</span>
                       )}
                     </div>
                     <div className="relative group">
@@ -551,7 +551,7 @@ const ContactForm = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="name@company.com"
-                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-xs sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
+                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
                           errors.email
                             ? 'border-rose-500 ring-1 ring-rose-500/20'
                             : 'border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 shadow-xs'
@@ -562,13 +562,13 @@ const ContactForm = () => {
 
                   {/* Phone */}
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
+                    <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                       <label htmlFor="form-phone" className="flex items-center gap-1 cursor-pointer">
                         <span>Phone Number</span>
                         <span className="text-[#FF6D00] font-bold leading-none">*</span>
                       </label>
                       {errors.phone && (
-                        <span className="text-xs font-semibold text-rose-500">{errors.phone}</span>
+                        <span className="text-sm font-semibold text-rose-500">{errors.phone}</span>
                       )}
                     </div>
                     <div className="relative group">
@@ -582,7 +582,7 @@ const ContactForm = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+1 (555) 000-0000"
-                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-xs sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
+                        className={`w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 ${
                           errors.phone
                             ? 'border-rose-500 ring-1 ring-rose-500/20'
                             : 'border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 shadow-xs'
@@ -596,13 +596,13 @@ const ContactForm = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {/* Country */}
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
+                    <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                       <label htmlFor="form-country" className="flex items-center gap-1 cursor-pointer">
                         <span>Country</span>
                         <span className="text-[#FF6D00] font-bold leading-none">*</span>
                       </label>
                       {errors.country && (
-                        <span className="text-xs font-semibold text-rose-500">{errors.country}</span>
+                        <span className="text-sm font-semibold text-rose-500">{errors.country}</span>
                       )}
                     </div>
                     <div className="relative group">
@@ -614,7 +614,7 @@ const ContactForm = () => {
                         name="country"
                         value={formData.country}
                         onChange={handleChange}
-                        className={`w-full pl-10 pr-8 py-2.5 sm:py-2.5 text-xs sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white cursor-pointer ${
+                        className={`w-full pl-10 pr-8 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white cursor-pointer ${
                           errors.country
                             ? 'border-rose-500 ring-1 ring-rose-500/20'
                             : 'border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 shadow-xs'
@@ -632,10 +632,10 @@ const ContactForm = () => {
 
                   {/* Subject / Need */}
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
+                    <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                       <label htmlFor="form-subject" className="flex items-center gap-1 cursor-pointer">
                         <span>Subject / Need</span>
-                        <span className="text-slate-400 text-xs font-normal">(Optional)</span>
+                        <span className="text-slate-400 text-sm font-normal">(Optional)</span>
                       </label>
                     </div>
                     <div className="relative group">
@@ -649,7 +649,7 @@ const ContactForm = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         placeholder="e.g. Pipeline Growth"
-                        className="w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-xs sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-xs"
+                        className="w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-xs"
                       />
                     </div>
                   </div>
@@ -657,16 +657,16 @@ const ContactForm = () => {
 
                 {/* Row 4: Message (Comfortable 3 rows) */}
                 <div className="space-y-1">
-                  <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
+                  <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                     <label htmlFor="form-message" className="flex items-center gap-1 cursor-pointer">
                       <span>Message Brief</span>
                       <span className="text-[#FF6D00] font-bold leading-none">*</span>
                     </label>
                     <div className="flex items-center gap-2">
                       {errors.message && (
-                        <span className="text-xs font-semibold text-rose-500">{errors.message}</span>
+                        <span className="text-sm font-semibold text-rose-500">{errors.message}</span>
                       )}
-                      <span className="text-xs font-mono font-medium text-slate-500 dark:text-slate-400">
+                      <span className="text-sm font-mono font-medium text-slate-500 dark:text-slate-400">
                         {formData.message.length}/1000
                       </span>
                     </div>
@@ -683,7 +683,7 @@ const ContactForm = () => {
                       rows={3}
                       maxLength={1000}
                       placeholder="Share details about your target audience, volume expectations, or timeline..."
-                      className={`w-full pl-10 pr-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 resize-none min-h-[72px] ${
+                      className={`w-full pl-10 pr-3.5 py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 resize-none min-h-[72px] ${
                         errors.message
                           ? 'border-rose-500 ring-1 ring-rose-500/20'
                           : 'border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 shadow-xs'
@@ -704,18 +704,18 @@ const ContactForm = () => {
                         onChange={handleChange}
                         className="w-4 h-4 rounded border-slate-300 dark:border-white/20 text-primary dark:text-[#00A6FF] focus:ring-primary/30 cursor-pointer accent-[#00A6FF]"
                       />
-                      <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200">
+                      <span className="text-sm sm:text-sm font-medium text-slate-700 dark:text-slate-200">
                         I agree to the <span className="underline font-semibold hover:text-primary dark:hover:text-[#00d2ff]">Privacy Policy</span> *
                       </span>
                     </label>
                     {errors.agreeToPrivacy && (
-                      <div className="text-xs font-semibold text-rose-500 pl-6">{errors.agreeToPrivacy}</div>
+                      <div className="text-sm font-semibold text-rose-500 pl-6">{errors.agreeToPrivacy}</div>
                     )}
                   </div>
 
                   {/* Submission Error Banner if any */}
                   {errors.submit && (
-                    <div className="text-xs font-semibold text-rose-500 bg-rose-500/10 px-3.5 py-1 rounded-lg border border-rose-500/20">
+                    <div className="text-sm font-semibold text-rose-500 bg-rose-500/10 px-3.5 py-1 rounded-lg border border-rose-500/20">
                       {errors.submit}
                     </div>
                   )}
@@ -727,7 +727,7 @@ const ContactForm = () => {
                       disabled={isSubmitting}
                       whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 min-h-[44px] rounded-xl font-bold text-xs sm:text-sm text-white transition-all duration-300 cursor-pointer disabled:opacity-60 shadow-md hover:shadow-xl group"
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 min-h-[44px] rounded-xl font-bold text-sm sm:text-sm text-white transition-all duration-300 cursor-pointer disabled:opacity-60 shadow-md hover:shadow-xl group"
                       style={{
                         background: 'linear-gradient(90deg, #FF6D00 0%, #FF8C00 50%, #00A6FF 100%)',
                         boxShadow: '0 4px 18px rgba(255, 109, 0, 0.35)',
@@ -751,7 +751,7 @@ const ContactForm = () => {
                       onClick={handleReset}
                       whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center justify-center gap-1 px-3.5 py-3 min-h-[44px] min-w-[44px] rounded-xl font-semibold text-xs text-slate-700 dark:text-slate-300 bg-slate-200/80 dark:bg-white/10 border border-slate-300 dark:border-white/15 hover:bg-slate-300/80 dark:hover:bg-white/15 transition-colors cursor-pointer"
+                      className="inline-flex items-center justify-center gap-1 px-3.5 py-3 min-h-[44px] min-w-[44px] rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-300 bg-slate-200/80 dark:bg-white/10 border border-slate-300 dark:border-white/15 hover:bg-slate-300/80 dark:hover:bg-white/15 transition-colors cursor-pointer"
                       title="Clear fields"
                     >
                       <RotateCcw className="w-4 h-4" />
@@ -772,3 +772,5 @@ const ContactForm = () => {
 }
 
 export default ContactForm
+
+

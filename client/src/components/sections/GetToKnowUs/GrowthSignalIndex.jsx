@@ -37,16 +37,16 @@ export const GrowthSignalIndex = () => {
         <div>
           <div className="flex items-center gap-2">
             <Activity size={13} className="text-[#00E5FF]" />
-            <h4 className="text-xs font-mono font-bold tracking-widest text-white uppercase">
+            <h4 className="text-sm font-mono font-bold tracking-widest text-white uppercase">
               GROWTH SIGNAL INDEX
             </h4>
           </div>
-          <span className="text-[10px] font-mono text-slate-400 mt-0.5 block">
+          <span className="text-sm font-mono text-slate-400 mt-0.5 block">
             Predictable Telemetry // Live Stream
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[9px] font-mono text-emerald-400 font-bold">
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-sm font-mono text-emerald-400 font-bold">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span>REAL-TIME</span>
         </div>
@@ -109,21 +109,21 @@ export const GrowthSignalIndex = () => {
               <ShieldCheck size={16} />
             </div>
             <div>
-              <span className="text-[10px] font-mono font-bold tracking-widest text-emerald-400 uppercase block">
+              <span className="text-sm font-mono font-bold tracking-widest text-emerald-400 uppercase block">
                 SLA GUARANTEED
               </span>
-              <span className="text-xs font-semibold text-slate-100 block">
+              <span className="text-sm font-semibold text-slate-100 block">
                 100% Validated Data Records
               </span>
             </div>
           </div>
-          <div className="text-right text-[9px] font-mono text-slate-400 hidden sm:block">
+          <div className="text-right text-sm font-mono text-slate-400 hidden sm:block">
             <span>ZERO RE-SYNC</span>
           </div>
         </div>
 
         {/* Technical Footer Metadata */}
-        <div className="mt-3 flex items-center justify-between text-[8px] font-mono text-slate-400 px-1">
+        <div className="mt-3 flex items-center justify-between text-sm font-mono text-slate-400 px-1">
           <span>ENCRYPTION: 256-BIT</span>
           <span>LATENCY: 8ms</span>
           <span>SLA: 0% BOUNCE</span>
@@ -135,3 +135,4 @@ export const GrowthSignalIndex = () => {
 }
 
 export default GrowthSignalIndex
+

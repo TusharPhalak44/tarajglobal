@@ -301,7 +301,7 @@ export const Stats = () => {
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex items-center gap-3 mb-4"
             >
-              <span className="text-[11px] font-mono font-bold tracking-[0.24em] text-[#FF6D00] uppercase">
+              <span className="text-sm font-mono font-bold tracking-[0.24em] text-[#FF6D00] uppercase">
                 BUSINESS OUTCOMES / 01
               </span>
               <div className="w-16 sm:w-24 h-px bg-gradient-to-r from-[#FF6D00] to-transparent opacity-80" />
@@ -343,11 +343,11 @@ export const Stats = () => {
               className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] dark:bg-white/[0.04] border border-slate-900/10 dark:border-white/10 w-fit backdrop-blur-md shadow-xs"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-              <span className="text-[10px] font-mono font-bold tracking-wider text-slate-700 dark:text-slate-300 uppercase">
+              <span className="text-sm font-mono font-bold tracking-wider text-slate-700 dark:text-slate-300 uppercase">
                 GROWTH ENGINE
               </span>
               <span className="text-slate-400 dark:text-slate-600">//</span>
-              <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+              <span className="text-sm font-mono font-bold text-emerald-600 dark:text-emerald-400">
                 SYSTEM READY
               </span>
             </motion.div>
@@ -380,7 +380,7 @@ export const Stats = () => {
                         >
                           <Icon size={14} />
                         </div>
-                        <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400">
+                        <span className="text-sm font-mono font-bold text-slate-500 dark:text-slate-400">
                           {c.index}
                         </span>
                       </div>
@@ -397,11 +397,11 @@ export const Stats = () => {
                       </div>
 
                       <span
-                        className="text-[10px] sm:text-[11px] font-mono font-bold tracking-wider uppercase block leading-tight mb-1 text-slate-800 dark:text-slate-200"
+                        className="text-sm sm:text-sm font-mono font-bold tracking-wider uppercase block leading-tight mb-1 text-slate-800 dark:text-slate-200"
                       >
                         {c.name}
                       </span>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">
                         {c.label}
                       </p>
 
@@ -421,19 +421,19 @@ export const Stats = () => {
 
               {/* Outcome Core for Mobile */}
               <div className="mt-4 p-4 rounded-2xl flex flex-col items-center justify-center bg-white/95 dark:bg-[#070B14]/95 border border-primary/30 dark:border-primary/40 shadow-lg backdrop-blur-xl text-center">
-                <div className="flex items-center gap-1.5 mb-1 text-[9px] font-mono font-bold tracking-widest text-primary">
+                <div className="flex items-center gap-1.5 mb-1 text-sm font-mono font-bold tracking-widest text-primary">
                   <Cpu size={12} className="animate-pulse" />
                   <span>OUTCOME CORE // ENGINE ACTIVE</span>
                 </div>
                 <span className="text-xl font-black tracking-wider text-slate-900 dark:text-white uppercase font-mono">
                   OUTCOME
                 </span>
-                <span className="text-[9px] font-mono tracking-widest text-[#00A6FF] uppercase mt-0.5 font-bold">
+                <span className="text-sm font-mono tracking-widest text-[#00A6FF] uppercase mt-0.5 font-bold">
                   PIPELINE IMPACT
                 </span>
                 <div className="mt-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  <span className="text-[9px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                  <span className="text-sm font-mono font-bold text-emerald-600 dark:text-emerald-400">
                     CONVERSION ACTIVE
                   </span>
                 </div>
@@ -443,7 +443,7 @@ export const Stats = () => {
             {/* Desktop Canvas (lg:block hidden) */}
             <div 
               ref={engineCanvasRef}
-              className="hidden lg:block relative w-full h-[320px] sm:h-[360px] lg:h-[380px] xl:h-[400px] select-none"
+              className="hidden lg:block relative w-full aspect-[760/360] max-w-[1000px] mx-auto select-none"
               style={{
                 transform: `translate3d(${mousePos.x * 5}px, ${mousePos.y * 5}px, 0)`,
                 transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
@@ -527,19 +527,19 @@ export const Stats = () => {
                 return (
                   <div
                     key={c.id}
-                    className="absolute -translate-x-1/2 pointer-events-auto cursor-pointer transition-all duration-300"
+                    className="absolute pointer-events-auto cursor-pointer transition-all duration-300"
                     style={{
                       left: `${leftPct}%`,
                       top: `${topPct}%`,
                       zIndex: 30,
-                      transform: `translateX(-50%) translateY(${isHovered ? '-6px' : '0px'})`,
+                      transform: `translate(-50%, -50%) translateY(${isHovered ? '-6px' : '0px'})`,
                     }}
                     onMouseEnter={() => setHoveredChamber(idx)}
                     onMouseLeave={() => setHoveredChamber(null)}
                   >
                     {/* Structural Input Chamber Box */}
                     <div
-                      className="w-32 sm:w-36 lg:w-36 p-2.5 sm:p-3 rounded-xl border backdrop-blur-md flex flex-col transition-all duration-300"
+                      className="w-36 lg:w-40 h-[104px] lg:h-[112px] flex flex-col justify-between p-2.5 sm:p-3 rounded-xl border backdrop-blur-md transition-all duration-300"
                       style={{
                         backgroundColor: isDark
                           ? (isActive ? 'rgba(7, 11, 20, 0.95)' : 'rgba(7, 11, 20, 0.75)')
@@ -565,7 +565,7 @@ export const Stats = () => {
                           <Icon size={13} />
                         </div>
                         <div className="flex items-center gap-1">
-                          <span className="text-[9px] font-mono font-bold text-slate-500 dark:text-slate-400">
+                          <span className="text-sm font-mono font-bold text-slate-500 dark:text-slate-400">
                             {c.index}
                           </span>
                           <span
@@ -592,7 +592,7 @@ export const Stats = () => {
 
                       {/* Chamber Heading */}
                       <span
-                        className="text-[9px] sm:text-[10px] font-mono font-bold tracking-wider uppercase block leading-tight mb-1"
+                        className="text-[12px] sm:text-sm font-mono font-bold tracking-wider uppercase block leading-tight mb-1 whitespace-nowrap overflow-hidden text-ellipsis"
                         style={{ color: isActive ? c.color : (isDark ? '#F1F5F9' : '#1E293B') }}
                       >
                         {c.name}
@@ -616,7 +616,7 @@ export const Stats = () => {
               {/* ── 4. Central Geometric Outcome Core (The Processing Unit) ─ */}
               <div
                 ref={coreRef}
-                className="absolute left-1/2 top-[58%] sm:top-[60%] -translate-x-1/2 -translate-y-1/2 w-40 sm:w-46 h-24 sm:h-28 rounded-2xl flex flex-col items-center justify-center bg-white/95 dark:bg-[#070B14]/95 border border-primary/30 dark:border-primary/40 shadow-[0_10px_35px_-5px_rgba(0,166,255,0.22)] dark:shadow-[0_0_40px_rgba(0,166,255,0.35)] backdrop-blur-xl z-20 pointer-events-auto cursor-default transition-all duration-300"
+                className="absolute left-1/2 top-[58%] sm:top-[60%] w-44 sm:w-52 h-28 sm:h-32 rounded-2xl flex flex-col items-center justify-center bg-white/95 dark:bg-[#070B14]/95 border border-primary/30 dark:border-primary/40 shadow-[0_10px_35px_-5px_rgba(0,166,255,0.22)] dark:shadow-[0_0_40px_rgba(0,166,255,0.35)] backdrop-blur-xl z-20 pointer-events-auto cursor-default transition-all duration-300"
                 style={{
                   transform: `translate(-50%, -50%) translate3d(${mousePos.x * 7}px, ${mousePos.y * 7}px, 0)`,
                 }}
@@ -628,7 +628,7 @@ export const Stats = () => {
                 <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-primary/50 dark:border-primary/70" />
 
                 {/* Core Processing Telemetry */}
-                <div className="flex items-center gap-1.5 mb-1 text-[8px] font-mono font-bold tracking-widest text-primary">
+                <div className="flex items-center gap-1.5 mb-1 text-sm font-mono font-bold tracking-widest text-primary">
                   <Cpu size={11} className="animate-pulse" />
                   <span>OUTCOME CORE</span>
                 </div>
@@ -637,14 +637,14 @@ export const Stats = () => {
                   OUTCOME
                 </span>
 
-                <span className="text-[8px] font-mono tracking-widest text-[#00A6FF] uppercase mt-0.5 font-bold">
+                <span className="text-sm font-mono tracking-widest text-[#00A6FF] uppercase mt-0.5 font-bold">
                   PIPELINE IMPACT
                 </span>
 
                 {/* Live Throughput Badge */}
                 <div className="mt-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  <span className="text-[7px] sm:text-[8px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                  <span className="text-[8px] sm:text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
                     CONVERSION ACTIVE
                   </span>
                 </div>
@@ -664,3 +664,4 @@ export const Stats = () => {
 }
 
 export default Stats
+

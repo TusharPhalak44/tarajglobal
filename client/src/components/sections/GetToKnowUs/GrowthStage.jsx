@@ -78,12 +78,12 @@ export const GrowthStage = ({
       {/* ── Sub-header: Stage Number & Sub-label Pill (Shifted cleanly below the line) ── */}
       <div className="flex items-center gap-2 mb-2">
         <span 
-          className="text-xs font-mono font-bold tracking-wider transition-colors duration-200"
+          className="text-sm font-mono font-bold tracking-wider transition-colors duration-200"
           style={{ color: stage.color }}
         >
           {stage.number}
         </span>
-        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 uppercase tracking-wider transition-colors duration-300">
+        <span className="text-sm font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 uppercase tracking-wider transition-colors duration-300">
           {stage.sub}
         </span>
       </div>
@@ -97,7 +97,7 @@ export const GrowthStage = ({
         }`}>
           {stage.title}
         </h3>
-        <p className="text-xs sm:text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed font-normal transition-colors duration-300">
+        <p className="text-sm sm:text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed font-normal transition-colors duration-300">
           {stage.desc}
         </p>
       </div>
@@ -107,7 +107,7 @@ export const GrowthStage = ({
         isHovered ? '-translate-y-1' : ''
       }`}>
         <span 
-          className={`text-xs sm:text-sm font-mono font-bold tracking-wider transition-all duration-300 ${
+          className={`text-sm sm:text-sm font-mono font-bold tracking-wider transition-all duration-300 ${
             isStageActive || isHovered ? 'opacity-100' : 'opacity-80'
           }`}
           style={{ color: stage.color }}
@@ -121,3 +121,4 @@ export const GrowthStage = ({
 }
 
 export default GrowthStage
+

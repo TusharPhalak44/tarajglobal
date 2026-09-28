@@ -95,7 +95,7 @@ export const OurClients = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
             </span>
-            <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.22em] text-[#00A6FF] uppercase">
+            <span className="text-sm sm:text-sm font-mono font-bold tracking-[0.22em] text-[#00A6FF] uppercase">
               {settings.eyebrow}
             </span>
           </motion.div>
@@ -124,7 +124,7 @@ export const OurClients = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.5, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xs sm:text-sm lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl font-normal"
+              className="text-sm sm:text-sm lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl font-normal"
             >
               {settings.subtitle}
             </motion.p>
@@ -194,4 +194,5 @@ export const OurClients = () => {
 }
 
 export default OurClients
+
 

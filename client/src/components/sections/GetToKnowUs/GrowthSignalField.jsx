@@ -208,12 +208,12 @@ export const GrowthSignalField = ({ containerRef }) => {
 
           {/* Target Central Badge */}
           <div className="px-3 py-1 rounded-full bg-surface/90 dark:bg-[#0A0E18]/90 border border-border/80 dark:border-white/15 shadow-xl backdrop-blur-md">
-            <span className="text-[10px] font-mono font-black tracking-widest text-text-primary uppercase flex items-center gap-1.5">
+            <span className="text-sm font-mono font-black tracking-widest text-text-primary uppercase flex items-center gap-1.5">
               <Target size={11} className="text-cta" />
               <span>RIGHT AUDIENCE</span>
             </span>
           </div>
-          <span className="text-[8px] font-mono text-text-muted mt-1 tracking-wider uppercase">
+          <span className="text-sm font-mono text-text-muted mt-1 tracking-wider uppercase">
             TARGET FOCUS // ACTIVE
           </span>
         </div>
@@ -253,10 +253,10 @@ export const GrowthSignalField = ({ containerRef }) => {
 
               {/* Minimal Technical Label Badge */}
               <div className="px-2 py-1 rounded-lg bg-surface/90 dark:bg-[#0A0E18]/90 border border-border/70 dark:border-white/10 shadow-sm backdrop-blur-md transition-all duration-300 group-hover:border-primary/60">
-                <span className="text-[9px] font-mono font-extrabold tracking-wider text-text-primary block whitespace-nowrap">
+                <span className="text-sm font-mono font-extrabold tracking-wider text-text-primary block whitespace-nowrap">
                   {node.label}
                 </span>
-                <span className="text-[8px] font-mono text-text-muted block leading-none whitespace-nowrap">
+                <span className="text-sm font-mono text-text-muted block leading-none whitespace-nowrap">
                   {node.tag}
                 </span>
               </div>
@@ -265,10 +265,10 @@ export const GrowthSignalField = ({ containerRef }) => {
         })}
 
         {/* Technical Coordinate HUD Labels */}
-        <div className="absolute top-2 left-2 text-[8px] font-mono text-text-muted/50 tracking-wider">
+        <div className="absolute top-2 left-2 text-sm font-mono text-text-muted/50 tracking-wider">
           FREQ: 24.5 GHZ // TAM SCAN
         </div>
-        <div className="absolute bottom-2 right-2 text-[8px] font-mono text-text-muted/50 tracking-wider">
+        <div className="absolute bottom-2 right-2 text-sm font-mono text-text-muted/50 tracking-wider">
           SIGNAL: ACTIVE // 100% ICP
         </div>
 
@@ -279,3 +279,4 @@ export const GrowthSignalField = ({ containerRef }) => {
 }
 
 export default GrowthSignalField
+

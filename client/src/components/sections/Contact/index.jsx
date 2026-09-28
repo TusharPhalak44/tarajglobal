@@ -38,7 +38,7 @@ const Contact = () => {
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Contact Us
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mt-4 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary mb-4 tracking-tight leading-[1.16]">
             Let's Start a Conversation
           </h2>
           <p className="text-lg text-gray-600">
@@ -213,3 +213,4 @@ const Contact = () => {
 }
 
 export default Contact
+

@@ -128,19 +128,19 @@ export const HowWeWork = () => {
         <div className="max-w-3xl mb-4 lg:mb-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-2 shadow-xs">
             <Sparkles size={12} className="text-primary animate-pulse" />
-            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-mono font-bold tracking-[0.2em] text-primary uppercase">
               HOW WE WORK
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-text-primary tracking-tight leading-[1.14] mb-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-[1.16] mb-4">
             From Targetting{' '}
             <span className="bg-gradient-to-r from-primary via-[#00E5FF] to-cta bg-clip-text text-transparent">
               to Revenue.
             </span>
           </h2>
 
-          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-normal">
+          <p className="text-sm sm:text-sm text-text-secondary leading-relaxed font-normal">
             Every campaign follows a structured, data-driven revenue growth process designed to move the right prospects from initial targetting to qualified sales opportunities.
           </p>
         </div>
@@ -201,12 +201,12 @@ export const HowWeWork = () => {
                     {/* Stage Number & Title */}
                     <div className="space-y-0.5 w-full px-1">
                       <div className="flex items-center justify-center gap-1.5">
-                        <span className={`text-[10px] font-mono font-bold tracking-wider ${
+                        <span className={`text-sm font-mono font-bold tracking-wider ${
                           isActive ? 'text-primary' : 'text-text-muted'
                         }`}>
                           {st.num}
                         </span>
-                        <h4 className={`text-xs sm:text-sm font-extrabold tracking-tight transition-colors duration-300 ${
+                        <h4 className={`text-sm sm:text-sm font-extrabold tracking-tight transition-colors duration-300 ${
                           isActive ? 'text-text-primary' : 'text-text-muted/70'
                         }`}>
                           {st.title}
@@ -214,13 +214,13 @@ export const HowWeWork = () => {
                       </div>
 
                       {/* Sub-label & Description */}
-                      <p className={`text-[10px] font-semibold transition-opacity duration-300 line-clamp-1 ${
+                      <p className={`text-sm font-semibold transition-opacity duration-300 line-clamp-1 ${
                         isActive ? 'text-text-primary opacity-100' : 'text-text-muted opacity-50'
                       }`}>
                         {st.label}
                       </p>
 
-                      <p className={`text-[9px] leading-relaxed transition-all duration-300 line-clamp-1 ${
+                      <p className={`text-sm leading-relaxed transition-all duration-300 line-clamp-1 ${
                         isActive ? 'text-text-secondary opacity-100' : 'text-text-muted/60 opacity-40'
                       }`}>
                         {st.desc}
@@ -234,7 +234,7 @@ export const HowWeWork = () => {
 
           {/* ── Mobile (<768px): Horizontal Scrollable / Snap Row (Never Stacked) ── */}
           <div className="md:hidden">
-            <div className="flex items-center justify-between text-xs font-mono font-bold text-text-muted mb-2 px-1">
+            <div className="flex items-center justify-between text-sm font-mono font-bold text-text-muted mb-2 px-1">
               <span>PROCESS PROGRESSION (LEFT → RIGHT)</span>
               <span className="text-primary flex items-center gap-0.5">
                 Swipe <ArrowRight size={12} />
@@ -264,19 +264,19 @@ export const HowWeWork = () => {
                         >
                           <StageIcon size={16} />
                         </div>
-                        <span className="text-xs font-mono font-bold text-text-primary">
+                        <span className="text-sm font-mono font-bold text-text-primary">
                           {st.num} • {st.title}
                         </span>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-sm bg-primary/10 text-primary">
+                      <span className="text-sm font-mono px-2 py-0.5 rounded-sm bg-primary/10 text-primary">
                         Stage 0{idx + 1}
                       </span>
                     </div>
 
-                    <h5 className="text-xs font-bold text-text-primary mb-1">
+                    <h5 className="text-sm font-bold text-text-primary mb-1">
                       {st.label}
                     </h5>
-                    <p className="text-[11px] text-text-secondary leading-relaxed">
+                    <p className="text-sm text-text-secondary leading-relaxed">
                       {st.desc}
                     </p>
                   </div>
@@ -301,3 +301,5 @@ export const HowWeWork = () => {
 }
 
 export default HowWeWork
+
+

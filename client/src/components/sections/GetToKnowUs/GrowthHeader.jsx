@@ -29,11 +29,11 @@ export const GrowthHeader = () => {
             <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
           </div>
-          <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#00E5FF] uppercase">
+          <span className="text-sm font-mono font-bold tracking-[0.2em] text-[#00E5FF] uppercase">
             ENTERPRISE GROWTH ARCHITECTURE
           </span>
-          <span className="text-slate-600 font-mono text-[10px]">|</span>
-          <span className="text-[10px] font-mono font-bold text-emerald-400 tracking-wider">
+          <span className="text-slate-600 font-mono text-sm">|</span>
+          <span className="text-sm font-mono font-bold text-emerald-400 tracking-wider">
             SYSTEM ACTIVE
           </span>
         </motion.div>
@@ -44,7 +44,7 @@ export const GrowthHeader = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.08] mb-4"
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.16] mb-4"
         >
           <span className="block text-slate-100">POWERING</span>
           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#00A6FF] to-[#00E5FF] my-0.5">
@@ -82,12 +82,12 @@ export const GrowthHeader = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono font-bold tracking-widest text-emerald-400 uppercase">
+              <span className="text-sm font-mono font-bold tracking-widest text-emerald-400 uppercase">
                 SLA GUARANTEED
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
-            <span className="text-xs font-semibold text-slate-200 block">
+            <span className="text-sm font-semibold text-slate-200 block">
               100% Validated Data Records
             </span>
           </div>
@@ -106,12 +106,12 @@ export const GrowthHeader = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono font-bold tracking-widest text-[#00E5FF] uppercase">
+              <span className="text-sm font-mono font-bold tracking-widest text-[#00E5FF] uppercase">
                 GROWTH SIGNAL INDEX
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             </div>
-            <span className="text-xs font-semibold text-slate-200 block">
+            <span className="text-sm font-semibold text-slate-200 block">
               Predictable Telemetry
             </span>
           </div>
@@ -124,3 +124,5 @@ export const GrowthHeader = () => {
 }
 
 export default GrowthHeader
+
+

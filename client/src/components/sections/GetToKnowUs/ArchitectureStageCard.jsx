@@ -106,7 +106,7 @@ const Stage01Visualization = ({ isHovered }) => {
       </div>
 
       {/* Telemetry Target Info */}
-      <div className="flex-1 pl-3 space-y-1 text-[9px] font-mono">
+      <div className="flex-1 pl-3 space-y-1 text-sm font-mono">
         <div className="flex items-center justify-between px-2 py-1 rounded bg-slate-900/90 border border-primary/20 text-slate-300">
           <span className="flex items-center gap-1 text-[#00E5FF]">
             <Target size={10} />
@@ -147,10 +147,10 @@ const Stage02Visualization = ({ isHovered }) => {
             <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/60 flex items-center justify-center mb-1 text-emerald-400 shadow-[0_0_6px_#10B981]">
               <Check size={9} strokeWidth={3} />
             </div>
-            <span className="text-[9px] font-mono font-bold text-slate-200">
+            <span className="text-sm font-mono font-bold text-slate-200">
               {gate.title}
             </span>
-            <span className="text-[8px] font-mono text-slate-400 truncate w-full">
+            <span className="text-sm font-mono text-slate-400 truncate w-full">
               {gate.desc}
             </span>
           </div>
@@ -171,7 +171,7 @@ const Stage03Visualization = ({ isHovered }) => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#FF6D0012_1px,transparent_1px),linear-gradient(to_bottom,#FF6D0012_1px,transparent_1px)] bg-[size:12px_12px] opacity-40" />
 
       {/* Conversion Funnel Progress Velocity */}
-      <div className="w-full flex items-center justify-between gap-2 px-1 relative z-10 text-[9px] font-mono">
+      <div className="w-full flex items-center justify-between gap-2 px-1 relative z-10 text-sm font-mono">
         <div className="flex-1 space-y-1">
           <div className="flex items-center justify-between text-slate-300">
             <span className="text-cta">Outreach Sprint</span>
@@ -193,7 +193,7 @@ const Stage03Visualization = ({ isHovered }) => {
         {/* Growth Activation Emblem */}
         <div className="w-12 h-14 rounded-lg bg-cta/15 border border-cta/40 flex flex-col items-center justify-center shrink-0 text-cta shadow-[0_0_14px_rgba(255,109,0,0.35)]">
           <TrendingUp size={16} />
-          <span className="text-[8px] font-mono font-black mt-1 text-white">
+          <span className="text-sm font-mono font-black mt-1 text-white">
             GROWTH
           </span>
         </div>
@@ -290,10 +290,10 @@ export const ArchitectureStageCard = ({
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2.5">
-            <span className="text-xs font-mono font-extrabold px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">
+            <span className="text-sm font-mono font-extrabold px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">
               MODULE {stage.num}
             </span>
-            <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border uppercase tracking-wider ${currentTheme.tagBg}`}>
+            <span className={`text-sm font-mono font-bold px-2 py-0.5 rounded border uppercase tracking-wider ${currentTheme.tagBg}`}>
               {stage.pill}
             </span>
           </div>
@@ -313,7 +313,7 @@ export const ArchitectureStageCard = ({
         </h3>
 
         {/* Stage Editorial Description */}
-        <p className="text-xs sm:text-sm text-slate-400 dark:text-slate-300 leading-relaxed min-h-[44px]">
+        <p className="text-sm sm:text-sm text-slate-400 dark:text-slate-300 leading-relaxed min-h-[44px]">
           {stage.subtitle}
         </p>
       </div>
@@ -337,7 +337,7 @@ export const ArchitectureStageCard = ({
               </span>
             )}
           </div>
-          <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 block mt-0.5">
+          <span className="text-sm sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 block mt-0.5">
             {stage.metricLabel}
           </span>
         </div>
@@ -360,3 +360,4 @@ export const ArchitectureStageCard = ({
 }
 
 export default ArchitectureStageCard
+

@@ -127,13 +127,13 @@ export const PipelineMilestone = ({
         {/* Milestone Meta Bar */}
         <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
           <span 
-            className="text-xs font-mono font-black tracking-tight"
+            className="text-sm font-mono font-black tracking-tight"
             style={{ color: milestone.color }}
           >
             STAGE {milestone.number}
           </span>
-          <span className="text-slate-600 font-mono text-[10px]">|</span>
-          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300 uppercase tracking-wider">
+          <span className="text-slate-600 font-mono text-sm">|</span>
+          <span className="text-sm font-mono font-bold px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300 uppercase tracking-wider">
             {milestone.subLabel}
           </span>
         </div>
@@ -144,7 +144,7 @@ export const PipelineMilestone = ({
         </h3>
 
         {/* Milestone Description */}
-        <p className="text-xs sm:text-sm text-slate-400 dark:text-slate-300 font-normal leading-relaxed max-w-lg mb-4">
+        <p className="text-sm sm:text-sm text-slate-400 dark:text-slate-300 font-normal leading-relaxed max-w-lg mb-4">
           {milestone.description}
         </p>
 
@@ -160,7 +160,7 @@ export const PipelineMilestone = ({
                 </span>
               )}
             </div>
-            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block -mt-0.5">
+            <span className="text-sm font-mono font-bold uppercase tracking-wider text-slate-400 block -mt-0.5">
               {milestone.metricLabel}
             </span>
           </div>
@@ -178,3 +178,4 @@ export const PipelineMilestone = ({
 }
 
 export default PipelineMilestone
+

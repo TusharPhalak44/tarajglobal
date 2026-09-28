@@ -59,11 +59,11 @@ const Stage01Display = () => {
 
       {/* ── Top Console HUD Header ───────────────────────────────────── */}
       <div className="relative z-10 flex items-center justify-between pb-3 border-b border-slate-800">
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-white">
+        <div className="flex items-center gap-2 text-sm font-mono font-bold text-white">
           <Target size={14} className="text-[#00E5FF]" />
           <span>TAM AUDIENCE MESH // ICP CALIBRATION</span>
         </div>
-        <div className="flex items-center gap-2 text-[10px] font-mono text-emerald-400">
+        <div className="flex items-center gap-2 text-sm font-mono text-emerald-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span>LOCK: 100% PRECISION</span>
         </div>
@@ -108,7 +108,7 @@ const Stage01Display = () => {
 
             {/* Tooltip on ICP nodes */}
             {acc.isICP && (
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block z-30 pointer-events-none whitespace-nowrap px-2 py-1 rounded bg-slate-900 border border-primary/50 text-[9px] font-mono text-white shadow-xl">
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block z-30 pointer-events-none whitespace-nowrap px-2 py-1 rounded bg-slate-900 border border-primary/50 text-sm font-mono text-white shadow-xl">
                 <span className="text-[#00E5FF] font-bold block">{acc.name}</span>
                 <span className="text-slate-400 block">{acc.tag}</span>
               </div>
@@ -119,7 +119,7 @@ const Stage01Display = () => {
         {/* Central Core Bullseye Readout */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
           <div className="px-3 py-1 rounded-full bg-slate-900/90 border border-primary/60 shadow-xl backdrop-blur-md inline-block">
-            <span className="text-[10px] font-mono font-black tracking-widest text-white uppercase block">
+            <span className="text-sm font-mono font-black tracking-widest text-white uppercase block">
               TARGET AUDIENCE
             </span>
             <span className="text-[8.5px] font-mono font-bold text-[#00E5FF] uppercase block">
@@ -131,7 +131,7 @@ const Stage01Display = () => {
       </div>
 
       {/* ── Bottom Telemetry Footer ──────────────────────────────────── */}
-      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono">
+      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
         <div className="text-slate-400">
           TRANSFORMATION: <strong className="text-slate-200">BROAD MARKET (TAM) → IDENTIFIED ICP ACCOUNTS</strong>
         </div>
@@ -177,11 +177,11 @@ const Stage02Display = () => {
 
       {/* ── Top Console HUD Header ───────────────────────────────────── */}
       <div className="relative z-10 flex items-center justify-between pb-3 border-b border-slate-800">
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-white">
+        <div className="flex items-center gap-2 text-sm font-mono font-bold text-white">
           <Database size={14} className="text-emerald-400" />
           <span>MULTI-PASS DIRECT-DIAL VERIFICATION</span>
         </div>
-        <div className="flex items-center gap-2 text-[10px] font-mono text-emerald-400">
+        <div className="flex items-center gap-2 text-sm font-mono text-emerald-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span>ZERO RE-SYNC SLA</span>
         </div>
@@ -191,7 +191,7 @@ const Stage02Display = () => {
       <div className="relative z-10 flex-1 my-3 flex flex-col justify-center gap-2.5">
         
         {/* Verification Pipeline Step Tracker */}
-        <div className="grid grid-cols-3 gap-2 text-center text-[9px] font-mono pb-1">
+        <div className="grid grid-cols-3 gap-2 text-center text-sm font-mono pb-1">
           <div className="px-2 py-1 rounded bg-slate-900 border border-slate-800 text-slate-400">
             01 RAW RECORD INFLOW
           </div>
@@ -217,14 +217,14 @@ const Stage02Display = () => {
                 <Check size={14} strokeWidth={3} />
               </div>
               <div>
-                <h5 className="text-xs font-bold text-white font-sans">{rec.title}</h5>
-                <span className="text-[10px] text-slate-400 font-mono block">{rec.company}</span>
+                <h5 className="text-sm font-bold text-white font-sans">{rec.title}</h5>
+                <span className="text-sm text-slate-400 font-mono block">{rec.company}</span>
               </div>
             </div>
 
             <div className="text-right">
-              <span className="text-[10px] font-mono font-bold text-emerald-400 block">{rec.status}</span>
-              <span className="text-[9px] font-mono text-slate-400 block">{rec.pass}</span>
+              <span className="text-sm font-mono font-bold text-emerald-400 block">{rec.status}</span>
+              <span className="text-sm font-mono text-slate-400 block">{rec.pass}</span>
             </div>
           </motion.div>
         ))}
@@ -232,7 +232,7 @@ const Stage02Display = () => {
       </div>
 
       {/* ── Bottom Telemetry Footer ──────────────────────────────────── */}
-      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono">
+      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
         <div className="text-slate-400">
           DELIVERABILITY METRIC: <strong className="text-emerald-400">99.8% VERIFIED DIRECT DIALS</strong>
         </div>
@@ -260,11 +260,11 @@ const Stage03Display = () => {
 
       {/* ── Top Console HUD Header ───────────────────────────────────── */}
       <div className="relative z-10 flex items-center justify-between pb-3 border-b border-slate-800">
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-white">
+        <div className="flex items-center gap-2 text-sm font-mono font-bold text-white">
           <TrendingUp size={14} className="text-cta" />
           <span>FULL FUNNEL PIPELINE VELOCITY</span>
         </div>
-        <div className="flex items-center gap-2 text-[10px] font-mono text-amber-400">
+        <div className="flex items-center gap-2 text-sm font-mono text-amber-400">
           <span className="w-1.5 h-1.5 rounded-full bg-cta animate-pulse" />
           <span>CLOSED-LOOP REVENUE ENGINE</span>
         </div>
@@ -293,17 +293,17 @@ const Stage03Display = () => {
               }`}
             >
               <div className="flex items-center gap-2.5">
-                <span className="font-mono text-xs font-black" style={{ color: funnel.color }}>
+                <span className="font-mono text-sm font-black" style={{ color: funnel.color }}>
                   {funnel.step}
                 </span>
                 <div>
-                  <h6 className="text-xs font-bold text-white leading-none">{funnel.title}</h6>
+                  <h6 className="text-sm font-bold text-white leading-none">{funnel.title}</h6>
                   <span className="text-[9.5px] text-slate-400 font-mono mt-0.5 block">{funnel.desc}</span>
                 </div>
               </div>
 
               <div className="text-right">
-                <span className="text-xs font-mono font-black" style={{ color: funnel.color }}>
+                <span className="text-sm font-mono font-black" style={{ color: funnel.color }}>
                   {funnel.pct}
                 </span>
               </div>
@@ -314,7 +314,7 @@ const Stage03Display = () => {
       </div>
 
       {/* ── Bottom Telemetry Footer ──────────────────────────────────── */}
-      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono">
+      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
         <div className="text-slate-400">
           REVENUE OUTCOME: <strong className="text-amber-400">PREDICTABLE PIPELINE SCALE</strong>
         </div>
@@ -380,3 +380,4 @@ export const IntelligenceVisualization = ({ activeStage }) => {
 }
 
 export default IntelligenceVisualization
+
