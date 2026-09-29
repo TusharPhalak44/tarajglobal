@@ -141,7 +141,7 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-2 px-8 py-4 hero-button-primary text-white rounded-xl font-semibold text-lg cursor-pointer"
+              className="bg-[#1E3A8A] text-white group flex items-center gap-2 px-8 py-4  text-white rounded-xl font-semibold text-lg cursor-pointer"
             >
               Get Started
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

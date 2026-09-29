@@ -189,7 +189,7 @@ const ServicesGrid = () => {
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />
-                    
+
                     {/* Mobile Tap Indicator */}
                     <div className="absolute top-4 left-4 lg:hidden px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-sm text-white font-medium flex items-center gap-1.5 shadow-md">
                       <span>Tap for details</span>
@@ -197,7 +197,7 @@ const ServicesGrid = () => {
                     </div>
 
                     {/* Giant Faint Watermark Step Number */}
-                    <div className="absolute top-1 right-4 sm:right-7 text-[50px] sm:text-[80px] lg:text-[100px] font-black text-white/10 leading-none select-none pointer-events-none">
+                    <div className="absolute top-1 right-4 sm:right-7 text-[20px] sm:text-[40px] lg:text-[55px] font-bold text-white/10 leading-none select-none pointer-events-none">
                       0{activeIndex + 1}
                     </div>
 
@@ -216,7 +216,7 @@ const ServicesGrid = () => {
                 {/* Back Side - Content */}
                 <motion.div
                   className="absolute inset-0 backface-hidden"
-                  style={{ 
+                  style={{
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                     pointerEvents: isCardFlipped ? 'auto' : 'none'
@@ -239,7 +239,7 @@ const ServicesGrid = () => {
                     </button>
 
                     {/* Giant Faint Watermark Step Number */}
-                    <div className="absolute top-1 right-4 sm:right-7 text-[50px] sm:text-[80px] lg:text-[100px] font-black text-primary/10 dark:text-primary/15 leading-none select-none pointer-events-none">
+                    <div className="absolute top-1 right-4 sm:right-7 text-[40px] sm:text-[60px] lg:text-[75px] font-bold text-primary/10 dark:text-primary/15 leading-none select-none pointer-events-none">
                       0{activeIndex + 1}
                     </div>
 
@@ -287,7 +287,7 @@ const ServicesGrid = () => {
                         <Link
                           to={activeService.link}
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 w-full sm:w-auto"
+                          className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[#1E3A8A] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#1E3A8A]/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:ring-offset-2 w-full sm:w-auto"
                         >
                           {activeService.ctaText}
                           <ArrowRight size={16} />
@@ -301,26 +301,11 @@ const ServicesGrid = () => {
           </AnimatePresence>
         </div>
 
-        {/* Right Pane: Interactive Tiered Step Stack */}
-        <div className="lg:col-span-5 flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-[440px] flex flex-col items-center">
-            {/* Center Vertical Laser Line */}
-            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-primary/20 hidden md:block">
-              <motion.div
-                animate={{
-                  top: [
-                    `${(100 / services.length) * activeIndex}%`,
-                    `${(100 / services.length) * (activeIndex + 1)}%`
-                  ],
-                  opacity: [0.3, 1, 0.3]
-                }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute left-1/2 -translate-x-1/2 w-2.5 h-16 bg-gradient-to-b from-primary via-accent to-transparent blur-[2px] z-10"
-              />
-            </div>
-
-            {/* Stack of Cards */}
-            <div className="w-full flex flex-col items-center gap-3 relative z-20">
+        {/* Right Pane: Interactive 2x2 Grid Stack */}
+        <div className="lg:col-span-5 flex items-center justify-center">
+          <div className="relative w-full max-w-[500px]">
+            {/* Grid of Cards */}
+            <div className="w-full grid grid-cols-2 gap-3 relative z-20">
               {services.map((service, index) => {
                 const isActive = activeIndex === index
 
@@ -328,12 +313,12 @@ const ServicesGrid = () => {
                   <motion.button
                     key={service.id}
                     initial={{ opacity: 0, x: -50 }}
-                    animate={{ 
-                      opacity: 1, 
+                    animate={{
+                      opacity: 1,
                       x: 0,
                       scale: isActive ? 1.03 : 1
                     }}
-                    transition={{ 
+                    transition={{
                       delay: index * 0.1,
                       duration: 0.5,
                       ease: [0.22, 1, 0.36, 1]
@@ -344,12 +329,11 @@ const ServicesGrid = () => {
                     className="group relative transition-all duration-300 w-full text-left cursor-pointer"
                   >
                     <motion.div
-                      className={`relative px-4 sm:px-5 py-3.5 text-center rounded-2xl overflow-hidden border transition-all duration-300 ${
-                        isActive
-                          ? 'bg-surface border-primary/70 shadow-[0_12px_32px_rgba(0,166,255,0.22)] dark:shadow-[0_0_30px_-5px_rgba(0,166,255,0.75),0_0_12px_rgba(0,229,255,0.4)] dark:bg-gray-800 dark:border-primary z-30 ring-1 ring-primary/40'
-                          : 'bg-surface/85 dark:bg-gray-800/60 border-border/80 dark:border-gray-600 shadow-xs hover:border-primary/40 dark:hover:shadow-[0_0_22px_-3px_rgba(0,166,255,0.6)] dark:hover:border-primary/70 z-20'
-                      }`}
-                      whileHover={{ 
+                      className={`relative px-4 sm:px-5 py-3.5 text-center rounded-2xl overflow-hidden border transition-all duration-300 ${isActive
+                        ? 'bg-surface border-primary/70 shadow-[0_12px_32px_rgba(0,166,255,0.22)] dark:shadow-[0_0_30px_-5px_rgba(0,166,255,0.75),0_0_12px_rgba(0,229,255,0.4)] dark:bg-gray-800 dark:border-primary z-30 ring-1 ring-primary/40'
+                        : 'bg-surface/85 dark:bg-gray-800/60 border-border/80 dark:border-gray-600 shadow-xs hover:border-primary/40 dark:hover:shadow-[0_0_22px_-3px_rgba(0,166,255,0.6)] dark:hover:border-primary/70 z-20'
+                        }`}
+                      whileHover={{
                         scale: 1.02,
                         y: -2
                       }}
@@ -366,13 +350,13 @@ const ServicesGrid = () => {
                       )}
 
                       {/* Step Number Badge */}
-                      <motion.div 
+                      <motion.div
                         className="absolute top-2.5 left-3.5"
-                        animate={{ 
+                        animate={{
                           scale: isActive ? [1, 1.2, 1] : 1,
                           opacity: isActive ? 1 : 0.7
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 0.5,
                           repeat: isActive ? Infinity : 0,
                           repeatDelay: 1
@@ -385,15 +369,14 @@ const ServicesGrid = () => {
 
                       {/* Eyebrow / Category Label */}
                       <motion.p
-                        className={`text-sm uppercase tracking-[0.22em] font-extrabold mb-0.5 transition-colors ${
-                          isActive
-                            ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent'
-                            : 'text-text-muted dark:text-gray-400'
-                        }`}
-                        animate={{ 
+                        className={`text-sm uppercase tracking-[0.22em] font-extrabold mb-0.5 transition-colors ${isActive
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent'
+                          : 'text-text-muted dark:text-gray-400'
+                          }`}
+                        animate={{
                           y: isActive ? [0, -2, 0] : 0
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 2,
                           repeat: isActive ? Infinity : 0,
                           ease: "easeInOut"
@@ -404,10 +387,9 @@ const ServicesGrid = () => {
 
                       {/* Card Title */}
                       <motion.h4
-                        className={`text-sm sm:text-sm font-extrabold tracking-tight leading-tight transition-colors ${
-                          isActive ? 'text-text-primary dark:text-white' : 'text-text-secondary group-hover:text-text-primary dark:text-gray-300 dark:group-hover:text-white'
-                        }`}
-                        animate={{ 
+                        className={`text-sm sm:text-sm font-extrabold tracking-tight leading-tight transition-colors ${isActive ? 'text-text-primary dark:text-white' : 'text-text-secondary group-hover:text-text-primary dark:text-gray-300 dark:group-hover:text-white'
+                          }`}
+                        animate={{
                           scale: isActive ? 1.05 : 1
                         }}
                         transition={{ duration: 0.3 }}
@@ -417,11 +399,10 @@ const ServicesGrid = () => {
 
                       {/* Short Description */}
                       <motion.p
-                        className={`text-sm mt-0.5 leading-normal font-medium transition-colors hidden sm:block ${
-                          isActive ? 'text-text-secondary dark:text-gray-300' : 'text-text-muted dark:text-gray-400'
-                        }`}
+                        className={`text-sm mt-0.5 leading-normal font-medium transition-colors hidden sm:block ${isActive ? 'text-text-secondary dark:text-gray-300' : 'text-text-muted dark:text-gray-400'
+                          }`}
                         initial={{ opacity: 0, y: 5 }}
-                        animate={{ 
+                        animate={{
                           opacity: isActive ? 1 : 0.6,
                           y: isActive ? 0 : 5
                         }}
@@ -435,7 +416,7 @@ const ServicesGrid = () => {
                         <motion.div
                           className="absolute bottom-0 left-0 h-[2.5px] bg-gradient-to-r from-primary to-accent"
                           style={{ width: `${progress}%` }}
-                          animate={{ 
+                          animate={{
                             boxShadow: [
                               "0 0 0px rgba(0, 166, 255, 0)",
                               "0 0 10px rgba(0, 166, 255, 0.5)",
@@ -453,17 +434,17 @@ const ServicesGrid = () => {
                             <motion.div
                               key={i}
                               className="absolute w-1 h-1 bg-primary rounded-full"
-                              initial={{ 
+                              initial={{
                                 x: Math.random() * 100,
                                 y: Math.random() * 100,
                                 opacity: 0
                               }}
-                              animate={{ 
+                              animate={{
                                 y: [0, -20, 0],
                                 x: [0, (Math.random() - 0.5) * 20, 0],
                                 opacity: [0, 1, 0]
                               }}
-                              transition={{ 
+                              transition={{
                                 duration: 2,
                                 repeat: Infinity,
                                 delay: i * 0.3
@@ -479,11 +460,11 @@ const ServicesGrid = () => {
                       <motion.div
                         layoutId="activeGlow"
                         className="absolute -inset-1 bg-gradient-to-r from-primary/25 to-accent/25 blur-2xl -z-10 rounded-full"
-                        animate={{ 
+                        animate={{
                           opacity: [0.5, 1, 0.5],
                           scale: [1, 1.1, 1]
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 2,
                           repeat: Infinity,
                           ease: "easeInOut"

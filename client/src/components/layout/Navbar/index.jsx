@@ -241,7 +241,7 @@ const Navbar = () => {
               {/* Logo */}
               <NavLink 
                 to="/" 
-                className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+                className="bg-[#1E3A8A] text-white flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
                 aria-label="Taraj Global Home"
               >
                 {logoUrl ? (
@@ -305,7 +305,7 @@ const Navbar = () => {
                         className={({ isActive }) => `text-sm font-medium transition-all duration-300 relative py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg ${
                           isActive
                             ? 'text-primary'
-                            : 'text-text-primary hover:text-accent'
+                            : ' hover:text-accent'
                         } ${
                           isNavHovered && hoveredItem !== link.name
                             ? 'opacity-30 blur-[3px] scale-95'
@@ -336,7 +336,7 @@ const Navbar = () => {
                               <div className="relative">
                                 <button
                                   onClick={() => setActiveSubDropdown(activeSubDropdown === itemIndex ? null : itemIndex)}
-                                  className="w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/10 flex items-center justify-between"
+                                  className="w-full text-left px-4 py-2 text-sm  hover:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/10 flex items-center justify-between"
                                   role="menuitem"
                                 >
                                   {item.name}
@@ -353,7 +353,7 @@ const Navbar = () => {
                                       <NavLink
                                         key={subItem.name}
                                         to={subItem.path}
-                                        className="block px-4 py-2 text-sm text-text-primary hover:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/10"
+                                        className="block px-4 py-2 text-sm  hover:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/10"
                                         role="menuitem"
                                       >
                                         {subItem.name}
@@ -365,7 +365,7 @@ const Navbar = () => {
                             ) : (
                               <NavLink
                                 to={item.path}
-                                className="block px-4 py-2 text-sm text-text-primary hover:bg-primary/10 hover:text-primary focus:outline-none focus:bg-primary/10"
+                                className="block px-4 py-2 text-sm  hover:bg-primary/10 hover:text-primary focus:outline-none focus:bg-primary/10"
                                 role="menuitem"
                               >
                                 {item.name}
@@ -393,7 +393,7 @@ const Navbar = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cta to-accent text-text-primary hover:from-cta-hover hover:to-accent focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20"
+                    className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300     hover: hover: focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20"
                   >
                     Get Started
                   </motion.button>

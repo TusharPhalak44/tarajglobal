@@ -291,7 +291,7 @@ export const PremiumNavbar = () => {
           <div className="flex items-center">
             <Link
               to="/"
-              className="flex items-center gap-2.5 sm:gap-3.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0 group cursor-pointer select-none"
+              className="bg-[#1E3A8A] text-white flex items-center gap-2.5 sm:gap-3.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0 group cursor-pointer select-none"
               aria-label={logoData.logo_alt || logoData.logo_text || "Taraj Global Home"}
             >
               {/* Ultra-premium animated SVG TG Emblem / Logo */}
@@ -372,7 +372,7 @@ export const PremiumNavbar = () => {
 
                           <div className="relative bg-white/95 dark:bg-[#0C1220]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl p-6 overflow-hidden">
                             {/* Top Ambient Glow Hairline */}
-                            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent" />
+                            <div className="absolute top-0 left-0 right-0 h-[2px]    " />
 
                             {/* 3 Columns Grid */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -516,10 +516,10 @@ export const PremiumNavbar = () => {
             >
               <Link
                 to="/contact"
-                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00A6FF] via-[#0088EE] to-[#FF6D00] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-sky-500/25 transition-all overflow-hidden group cursor-pointer"
+                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl     text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-sky-500/25 transition-all overflow-hidden group cursor-pointer"
               >
                 {/* Ambient Shimmer Light Bar */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700     pointer-events-none" />
                 <span>Get Started</span>
                 <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>

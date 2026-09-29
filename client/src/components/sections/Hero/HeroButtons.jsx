@@ -13,7 +13,7 @@ const HeroButtons = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="px-8 py-4 bg-gradient-to-r from-cta to-accent text-text-primary rounded-lg font-semibold hover:from-cta-hover hover:to-accent transition-all flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20"
+        className="bg-[#1E3A8A] text-white px-8 py-4     rounded-lg font-semibold hover: hover: transition-all flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20"
       >
         <span>Get Started</span>
         <ArrowRight size={20} />
