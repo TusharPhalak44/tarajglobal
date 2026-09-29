@@ -53,7 +53,7 @@ const EngineCounter = ({ target, duration = 1800, delay = 0, shouldAnimate }) =>
     }
   }, [shouldAnimate, target, duration, delay, prefersReducedMotion])
 
-  return <span>{prefersReducedMotion ? target.toLocaleString() : display.toLocaleString()}</span>
+  return <span >{prefersReducedMotion ? target.toLocaleString() : display.toLocaleString()}</span>
 }
 
 export const Stats = () => {
@@ -257,7 +257,7 @@ export const Stats = () => {
       className="relative py-24 lg:py-32 overflow-hidden bg-[#FAFAFA] dark:bg-[#03060D] text-slate-900 dark:text-white select-none transition-colors duration-300"
       style={{
         position: 'relative',
-        zIndex: 1,
+        zIndex: 1
       }}
       aria-label="Built on Experience. Focused on Outcomes. — The Growth Engine"
     >
@@ -286,7 +286,7 @@ export const Stats = () => {
         style={{ top: '15%' }}
       />
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-3 sm:px-5 lg:px-12">
         
         {/* ── HEADING & COPY (LEFT) + OUTCOME CORE DIAGRAM (RIGHT / OPPOSITE) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -301,7 +301,7 @@ export const Stats = () => {
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex items-center gap-3 mb-4"
             >
-              <span className="text-sm font-mono font-bold tracking-[0.24em] text-[#FF6D00] uppercase">
+              <span className="text-sm font-mono font-bold tracking-[0.24em] text-[#FF6D00] ml-7 uppercase">
                 BUSINESS OUTCOMES / 01
               </span>
               <div className="w-16 sm:w-24 h-px bg-gradient-to-r from-[#FF6D00] to-transparent opacity-80" />
@@ -313,14 +313,14 @@ export const Stats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-5 font-heading"
+              className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-7 ml-7 font-heading"
             >
-              <span className="block">BUILT ON</span>
-              <span className="block text-slate-800 dark:text-slate-100 mb-1">EXPERIENCE.</span>
-              <span className="block text-slate-900 dark:text-white">FOCUSED ON</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#0088FF] to-cta font-black">
+              <div className="block">BUILT ON</div>
+              <div className="block text-slate-800 dark:text-slate-100 mb-1">EXPERIENCE.</div>
+              <div className="block text-slate-900 dark:text-white">FOCUSED ON</div>
+              <div className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#0088FF] to-cta font-black">
                 OUTCOMES.
-              </span>
+              </div>
             </motion.h2>
 
             {/* User-Requested Detailed Description */}
@@ -329,7 +329,7 @@ export const Stats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="text-sm sm:text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-xl mb-6"
+              className="text-sm sm:text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-xl mb-6 ml-7"
             >
               We work with the leading business firms globally to deliver what actually drives them providing consumer leads that increase their sales. We motivate consumers to embrace your business and build a long term relationship with you. We are experienced in creating digital experiences that generate high quality leads that increase the growth of any business.
             </motion.p>
@@ -340,7 +340,7 @@ export const Stats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] dark:bg-white/[0.04] border border-slate-900/10 dark:border-white/10 w-fit backdrop-blur-md shadow-xs"
+              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] dark:bg-white/[0.04] border border-slate-900/10 dark:border-white/10 w-fit backdrop-blur-md shadow-xs ml-7"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
               <span className="text-sm font-mono font-bold tracking-wider text-slate-700 dark:text-slate-300 uppercase">
@@ -354,7 +354,7 @@ export const Stats = () => {
           </div>
 
           {/* Right Column (Span 7 / Directly Opposite): Outcome Core Diagram Canvas */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 mr-10">
             {/* ── Mobile/Tablet Responsive Flow (< 1024px) ── */}
             <div className="block lg:hidden mt-2">
               <div className="grid grid-cols-2 gap-2.5 sm:gap-4">

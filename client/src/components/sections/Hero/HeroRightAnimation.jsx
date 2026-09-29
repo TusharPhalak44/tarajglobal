@@ -946,33 +946,45 @@ const BusinessCharacter = ({ isWalking, scene, direction }) => {
   };
 
   return (
-    <div className="relative flex flex-col items-center z-50 mix-blend-screen h-full justify-end pb-2">
+    <div className="relative flex flex-col items-center z-50">
       <motion.div
-        animate={{ y: isWalking ? [0, -2, 0] : [0, 0, 0] }}
-        transition={{ repeat: Infinity, duration: 0.5, ease: 'easeInOut' }}
-        className="relative z-10 origin-bottom mix-blend-screen"
+        animate={{
+          y: isWalking ? [0, -2, 0] : [0, 0, 0]
+        }}
+        transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
+        className="relative z-10 origin-bottom"
       >
-        <div className="w-[120px] h-[140px] sm:w-[140px] sm:h-[160px] relative flex items-center justify-center overflow-visible pointer-events-none mix-blend-screen">
+        {/* Video Container */}
+        <div className="w-[140px] h-40 sm:w-40 sm:h-52 relative flex items-center justify-center overflow-visible pointer-events-none">
+
+          {/* Forward (Right) Video - Native Screen Blend */}
           <video
             ref={videoRef}
             src="/rightvdo.mp4"
             muted
             playsInline
             onTimeUpdate={handleTimeUpdate}
-            className={`absolute bottom-0 left-0 w-full h-full object-cover transition-opacity duration-300 mix-blend-screen ${direction === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-            style={{ filter: 'contrast(1.3) brightness(0.8)', transform: 'scale(0.95)', transformOrigin: 'bottom' }}
-            onError={(e) => { e.target.style.display = 'none'; }}
+            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 mt-30 ${direction === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            style={{ mixBlendMode: 'screen', filter: "none", transform: "scale(1.1)" }}
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
           />
+
+          {/* Backward (Left) Video - Flipped Right Video to preserve perfect background! */}
           <video
             ref={leftVideoRef}
             src="/rightvdo.mp4"
             muted
             playsInline
             onTimeUpdate={handleTimeUpdate}
-            className={`absolute bottom-0 left-0 w-full h-full object-cover transition-opacity duration-300 mix-blend-screen ${direction === -1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-            style={{ filter: 'contrast(1.3) brightness(0.8)', transform: 'scaleX(-1) scale(0.95)', transformOrigin: 'bottom' }}
-            onError={(e) => { e.target.style.display = 'none'; }}
+            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 mt-30 ${direction === -1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            style={{ mixBlendMode: 'screen', filter: "none", transform: "scaleX(-1) scale(1.1)" }}
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
           />
+
         </div>
       </motion.div>
     </div>
@@ -1075,29 +1087,18 @@ export const HeroRightAnimation = () => {
   }, [scene, prefersReducedMotion]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative min-h-[450px] sm:min-h-[500px] lg:min-h-[580px] px-2 sm:px-4 mt-[-0px] sm:mt-5 xl:mt-0 select-none">
-      {/* Main Interactive 3D Container */}
+    <div className="w-full h-full flex flex-col items-center justify-center relative min-h-[400px] sm:min-h-[500px] lg:min-h-[580px] px-2 sm:px-4 mt-[-0px] sm:mt-5 xl:mt-0 select-none mix-blend-screen">
+      {/* Main Interactive 3D Container (Viewport) */}
       <motion.div
-        className="relative w-full max-w-[700px] h-[450px] sm:h-[550px] bg-transparent overflow-hidden transition-all duration-500 flex flex-col"
+        className="relative w-full max-w-[700px] h-[400px] sm:h-[550px] bg-transparent overflow-hidden transition-all duration-500 flex flex-col mix-blend-screen"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        animate={{ filter: isHovered ? 'brightness(1.05)' : 'brightness(1)' }}
       >
-        <div className="absolute top-3 right-3 z-40 flex items-center gap-1.5 bg-[#000]/60 border border-white/10 px-2.5 py-1 rounded-full backdrop-blur-md">
-          <Play size={8} className="text-primary" />
-          <span className="text-[8px] font-extrabold uppercase tracking-widest text-white/80">Explore The Journey</span>
+        {/* Explore The Journey Indicator */}
+        <div className="absolute top-4 right-4 z-40 flex items-center gap-1.5 bg-[#000]/60 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md pointer-events-none transition-opacity duration-300">
+          <Play size={10} className="text-primary" />
+          <span className="text-[8px] sm:text-[9px] font-extrabold uppercase tracking-widest text-white/80">Explore The Journey</span>
         </div>
-
-        {/* Subtle grid background covering everything */}
-        <motion.div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: `linear-gradient(to right, #00A6FF 1px, transparent 1px), linear-gradient(to bottom, #00A6FF 1px, transparent 1px)`,
-            backgroundSize: '24px 24px',
-          }}
-          animate={{ backgroundPosition: ['0px 0px', '24px 24px'] }}
-          transition={{ duration: 10, ease: 'linear', repeat: Infinity }}
-        />
 
         {/* UPPER 70%: UI & Visual Storytelling Area */}
         <div className="relative w-full h-[70%] z-20 overflow-hidden">
