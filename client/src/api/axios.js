@@ -11,8 +11,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
-    // Add token for admin routes and authenticated endpoints
-    if (token && (config.url.includes('/admin') || config.url.includes('/career-gallery') || config.url.includes('/upload'))) {
+    if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
     return config
@@ -26,10 +25,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Only redirect to login on 401 if it's NOT the login request itself
+    // Only redirect to login on 401 if it's NOT login or change-password verification
     if (
       error.response?.status === 401 &&
-      !error.config?.url?.includes('/auth/login')
+      !error.config?.url?.includes('/auth/login') &&
+      !error.config?.url?.includes('/auth/change-password')
     ) {
       localStorage.removeItem('token')
       localStorage.removeItem('refreshToken')

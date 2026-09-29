@@ -1,216 +1,86 @@
 import React, { useState, useEffect } from 'react'
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import SEO from '@components/common/SEO'
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Briefcase, 
-  Users, 
-  Image, 
-  FolderOpen, 
-  User, 
-  Bell, 
-  Settings, 
-  LogOut,
-  Menu,
-  X,
-  ChevronRight,
-  Globe,
-  Building,
-  Activity,
-  FileEdit,
-  Archive,
-  LayoutTemplate,
-  Footprints,
-  Users as UsersIcon,
-  BarChart2,
-  CreditCard
-} from 'lucide-react'
-import { useAuth } from '@context/AuthContext'
+import AdminHeader from '@components/admin/AdminHeader'
+import AdminSidebar from '@components/admin/AdminSidebar'
+import AdminCommandPalette from '@components/admin/AdminCommandPalette'
 
 const AdminLayout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(() => {
-    return typeof window !== 'undefined' ? window.innerWidth >= 1024 : false
-  })
-  const location = useLocation()
-  const navigate = useNavigate()
-  const { user, logout } = useAuth()
-
-  // Auto-close sidebar on route change on mobile devices
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      setSidebarOpen(false)
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
+  const [desktopCollapsed, setDesktopCollapsed] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('tgs_admin_sidebar_collapsed') === 'true'
     }
+    return false
+  })
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false)
+  const location = useLocation()
+
+  // Auto-close mobile sidebar on route navigation
+  useEffect(() => {
+    setMobileSidebarOpen(false)
   }, [location.pathname])
 
-  const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
-    { icon: FileText, label: 'Blogs', path: '/admin/blogs' },
-    { icon: FileEdit, label: 'Drafts', path: '/admin/drafts' },
-    { icon: Archive, label: 'Archives', path: '/admin/archives' },
-    { icon: Briefcase, label: 'Jobs', path: '/admin/jobs' },
-    { icon: Users, label: 'Applications', path: '/admin/applications' },
-    { icon: Image, label: 'Media Library', path: '/admin/media' },
-    { icon: FolderOpen, label: 'Categories', path: '/admin/categories' },
-    { icon: User, label: 'Authors', path: '/admin/authors' },
-    { icon: Users, label: 'Users', path: '/admin/users' },
-    { icon: LayoutTemplate, label: 'Header & Navbar', path: '/admin/cms/navbar' },
-    { icon: Footprints, label: 'Footer Management', path: '/admin/footer' },
-    { icon: Image, label: 'Career Gallery', path: '/admin/career-gallery' },
-    { icon: UsersIcon, label: 'Our Clients', path: '/admin/cms/clients' },
-    { icon: Globe, label: 'SEO', path: '/admin/seo' },
-    { icon: BarChart2, label: 'SEO Analytics', path: '/admin/seo-analytics' },
-    { icon: Building, label: 'Leads', path: '/admin/leads' },
-    { icon: Activity, label: 'Audit Logs', path: '/admin/audit-logs' },
-    { icon: Bell, label: 'Notifications', path: '/admin/notifications' },
-    { icon: CreditCard, label: 'Payments', path: '/admin/payments' },
-    { icon: Settings, label: 'Settings', path: '/admin/settings' },
-  ]
-
-  const handleLogout = async () => {
-    await logout()
-    navigate('/loginadmin')
+  // Save desktop collapse preference
+  const toggleDesktopCollapse = () => {
+    setDesktopCollapsed(prev => {
+      const next = !prev
+      localStorage.setItem('tgs_admin_sidebar_collapsed', String(next))
+      return next
+    })
   }
+
+  // Global keydown listener for Command Palette (Ctrl+K or Cmd+K)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        setCommandPaletteOpen(prev => !prev)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
     <>
-      <SEO title="Admin Control Center | Taraj Global" noIndex={true} />
-      <div className="fixed inset-0 flex bg-background overflow-hidden">
-      {/* Sidebar */}
-      <aside 
-        className={`w-64 flex-shrink-0 h-full bg-surface border-r border-border flex flex-col z-50 transform transition-transform duration-300 ease-in-out ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 fixed inset-y-0 left-0 lg:static`}
-      >
-        {/* Logo */}
-        <div className="flex-none flex items-center justify-between p-6 border-b border-border">
-            <Link to="/admin/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-cta flex items-center justify-center">
-                <span className="text-white font-bold text-xl">T</span>
-              </div>
-              <span className="text-xl font-bold text-text-primary">TaRaj Admin</span>
-            </Link>
-            <button 
-              onClick={() => setSidebarOpen(false)}
-              className="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text-primary rounded-lg transition-colors"
-              aria-label="Close sidebar"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
+      <SEO title="TGS Command Center | Taraj Global" noIndex={true} />
 
-        {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto p-4 [&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:h-0 [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent="true" style={{ WebkitOverflowScrolling: 'touch' }}>
-            <ul className="space-y-2">
-              {menuItems.map((item) => {
-                const Icon = item.icon
-                const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/')
-                
-                return (
-                  <li key={item.path}>
-                    <Link
-                      to={item.path}
-                      className={`flex items-center gap-3 px-4 py-3 min-h-[44px] rounded-lg transition-colors ${
-                        isActive 
-                          ? 'bg-primary/10 text-primary' 
-                          : 'text-text-secondary hover:bg-surface/80 hover:text-text-primary'
-                      }`}
-                    >
-                      <Icon className="w-5 h-5" />
-                      <span>{item.label}</span>
-                      {isActive && <ChevronRight className="w-4 h-4 ml-auto" />}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </nav>
-
-        {/* User Section */}
-        <div className="flex-none p-4 border-t border-border mt-auto">
-            <button
-              onClick={() => navigate('/admin/profile')}
-              className="flex items-center gap-3 w-full mb-4 p-2 min-h-[44px] rounded-lg hover:bg-surface/80 transition-colors"
-            >
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <User className="w-5 h-5 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0 text-left">
-                <p className="text-sm font-medium text-text-primary truncate">
-                  {user?.name || 'Admin User'}
-                </p>
-                <p className="text-xs text-text-muted truncate">
-                  {user?.role || 'Admin'}
-                </p>
-              </div>
-            </button>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-3 w-full px-4 py-2.5 min-h-[44px] text-text-secondary hover:text-error hover:bg-error/10 rounded-lg transition-colors"
-            >
-              <LogOut className="w-5 h-5" />
-              <span>Logout</span>
-            </button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0 h-full relative">
-        {/* Top Header */}
-        <header className="flex-none z-40 bg-surface border-b border-border px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text-primary rounded-lg transition-colors"
-              aria-label="Open sidebar"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-            
-            <div className="flex items-center gap-4 ml-auto">
-              {/* Notifications */}
-              <button 
-                className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors"
-                aria-label="Notifications"
-              >
-                <Bell className="w-5 h-5" />
-                <span className="absolute top-2 right-2 w-2 h-2 bg-cta rounded-full"></span>
-              </button>
-
-              {/* Profile */}
-              <button
-                onClick={() => navigate('/admin/profile')}
-                className="flex items-center gap-3 pl-3 sm:pl-4 border-l border-border hover:bg-surface/80 rounded-lg p-1.5 sm:p-2 min-h-[44px] transition-colors"
-              >
-                <div className="text-right hidden sm:block">
-                  <p className="text-sm font-medium text-text-primary">
-                    {user?.name || 'Admin User'}
-                  </p>
-                  <p className="text-xs text-text-muted">
-                    {user?.role || 'Admin'}
-                  </p>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <User className="w-5 h-5 text-primary" />
-                </div>
-              </button>
-            </div>
-          </div>
-        </header>
-
-        {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6" data-lenis-prevent="true" style={{ WebkitOverflowScrolling: 'touch' }}>
-          <Outlet />
-        </main>
-      </div>
-
-      {/* Mobile Overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
+      <div className="admin-layout-root flex h-screen overflow-hidden bg-[var(--admin-bg-base)]">
+        {/* Left Sidebar */}
+        <AdminSidebar
+          isOpen={mobileSidebarOpen}
+          onClose={() => setMobileSidebarOpen(false)}
+          isCollapsed={desktopCollapsed}
+          onToggleCollapse={toggleDesktopCollapse}
         />
-      )}
+
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative">
+          {/* Top Header */}
+          <AdminHeader
+            onToggleSidebar={() => setMobileSidebarOpen(prev => !prev)}
+            onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+            sidebarCollapsed={desktopCollapsed}
+          />
+
+          {/* Page View with Futuristic Tech Grid */}
+          <main 
+            className="flex-1 overflow-y-auto admin-tech-grid admin-scrollbar p-4 sm:p-6 lg:p-8"
+            data-lenis-prevent="true"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
+            <div className="max-w-7xl mx-auto space-y-6">
+              <Outlet />
+            </div>
+          </main>
+        </div>
+
+        {/* Global Command Palette */}
+        <AdminCommandPalette
+          isOpen={commandPaletteOpen}
+          onClose={() => setCommandPaletteOpen(false)}
+        />
       </div>
     </>
   )

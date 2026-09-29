@@ -4,12 +4,13 @@ import {
   Wand2,
   AlertCircle,
   CheckCircle2,
-  FileCheck,
+  MailX,
   Sparkles,
   Trash2,
   TrendingUp,
   RefreshCw,
   Database,
+  FileSpreadsheet,
   ShieldCheck,
   Zap,
   ArrowRight,
@@ -47,7 +48,7 @@ const FLOW_ITEMS = [
     problem: {
       title: 'Bounces & Blacklists',
       sub: 'Hard bounce spikes throttling domain',
-      icon: FileCheck,
+      icon: MailX,
     },
     solution: {
       title: 'Sub-1% Bounce Rate',
@@ -109,7 +110,7 @@ const FLOW_ITEMS = [
     solution: {
       title: 'Full Multi-Field Enrich',
       sub: 'Direct dials & software stacks added',
-      icon: CheckCircle2,
+      icon: FileSpreadsheet,
     },
     color: '#EC4899',
     gradient: 'from-[#EC4899] to-[#BE185D]',

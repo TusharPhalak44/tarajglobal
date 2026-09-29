@@ -7,9 +7,9 @@ import { useTheme } from '@context/ThemeContext'
 import { HeroRightAnimation } from './HeroRightAnimation'
 import { gsap, ScrollTrigger } from '@animations/gsap'
 import { useReducedMotion } from '@hooks/useReducedMotion'
-
+ 
 import { SectionLaserDivider } from '@components/animations'
-
+ 
 /**
  * Hero — "The Revenue Signal"
  * Master Editorial Hero for Taraj Global:
@@ -26,9 +26,9 @@ export const Hero = () => {
   const prefersReducedMotion = useReducedMotion()
   const { theme } = useTheme()
   const isDark = theme === 'dark'
-
+ 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-
+ 
   // Subtle Mouse Parallax Tracking (Desktop Only, Max 14px displacement)
   const handleMouseMove = useCallback((e) => {
     if (prefersReducedMotion || typeof window === 'undefined' || window.innerWidth < 1024) return
@@ -39,11 +39,11 @@ export const Hero = () => {
     const y = (clientY / innerHeight - 0.5) * 2
     setMousePos({ x, y })
   }, [prefersReducedMotion])
-
+ 
   // GSAP ScrollTrigger Scrub Transition into next section (NO Pinning)
   useEffect(() => {
     if (prefersReducedMotion || !heroRef.current) return
-
+ 
     const ctx = gsap.context(() => {
       // Gentle scroll parallax as user scrolls down
       gsap.to(contentRef.current, {
@@ -57,7 +57,7 @@ export const Hero = () => {
           scrub: 1,
         },
       })
-
+ 
       gsap.to(visualRef.current, {
         y: 65,
         scale: 1.02,
@@ -70,10 +70,10 @@ export const Hero = () => {
         },
       })
     }, heroRef)
-
+ 
     return () => ctx.revert()
   }, [prefersReducedMotion])
-
+ 
   return (
     <section
       ref={heroRef}
@@ -85,7 +85,7 @@ export const Hero = () => {
       }}
       aria-label="Taraj Global Hero — The Revenue Signal"
     >
-
+ 
       {/* ── Background Layer: Fine Dotted Grid & Atmospheric Specular Light ─ */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <div
@@ -99,9 +99,9 @@ export const Hero = () => {
         <div className="absolute top-1/4 left-1/5 w-[650px] h-[650px] rounded-full blur-[150px] bg-primary/6 dark:bg-primary/9" />
         <div className="absolute bottom-1/4 right-1/5 w-[550px] h-[550px] rounded-full blur-[140px] bg-cta/5 dark:bg-cta/8" />
       </div>
-
+ 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 my-auto">
-
+ 
         {/* ── Top Eyebrow & Live Telemetry Badge ───────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -115,19 +115,19 @@ export const Hero = () => {
               TARAJ GLOBAL // REVENUE INTELLIGENCE
             </span>
           </div>
-
+ 
           <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-text-muted text-sm font-mono">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             <span>GLOBAL B2B ICP RADAR: ACTIVE</span>
           </div>
         </motion.div>
-
+ 
         {/* ── Asymmetric Editorial Grid: Typography & Revenue Signal Field */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-10 lg:gap-8 items-center">
-
+ 
           {/* ══ Left Editorial Block (Span 7) ══════════════════════════ */}
           <div ref={contentRef} className="lg:col-span-7 flex flex-col justify-center">
-
+ 
             {/* Main Editorial Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
@@ -143,7 +143,7 @@ export const Hero = () => {
                 and Build a Stronger Sales Pipeline
               </span>
             </motion.h1>
-
+ 
             {/* Supporting Copy constrained to max 560px */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -153,7 +153,7 @@ export const Hero = () => {
             >
               Taraj Global helps B2B SaaS and technology companies generate high-quality B2B leads, connect with the right decision-makers, and build a stronger sales pipeline through data-driven demand generation, targeted lead generation, account-based marketing, and personalized outreach.
             </motion.p>
-
+ 
             {/* Enterprise CTA Action Center */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -164,8 +164,8 @@ export const Hero = () => {
               {/* Primary CTA */}
               <Link to="/contact" className="w-full sm:w-auto inline-block">
                 <StarButton
-                  lightColor={isDark ? "#0031d1ff" : "#FF8533"}
-                  backgroundColor={isDark ? "currentColor" : "rgba(255,109,0,0.15)"}
+                  lightColor="#00A6FF"
+                  backgroundColor="rgba(0,166,255,0.15)"
                   className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
                 >
                   <span className="flex items-center justify-center gap-2 min-h-[44px]">
@@ -174,12 +174,12 @@ export const Hero = () => {
                   </span>
                 </StarButton>
               </Link>
-
+ 
               {/* Secondary CTA */}
               <Link to="/services" className="w-full sm:w-auto inline-block">
                 <StarButton
-                  lightColor={isDark ? "#0031d1ff" : "#FF8533"}
-                  backgroundColor={isDark ? "currentColor" : "rgba(255,109,0,0.15)"}
+                  lightColor="#00A6FF"
+                  backgroundColor="rgba(0,166,255,0.15)"
                   className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
                 >
                   <span className="flex items-center justify-center min-h-[44px]">
@@ -188,7 +188,7 @@ export const Hero = () => {
                 </StarButton>
               </Link>
             </motion.div>
-
+ 
             {/* Live Trust & SLA Metrics Strip */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -201,36 +201,35 @@ export const Hero = () => {
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 <span>99.8% Data Accuracy SLA</span>
               </div>
-
+ 
               {/* Trust Badge 2 */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-sm font-semibold text-text-primary">
                 <Target size={13} className="text-primary" />
                 <span>100% ICP Calibration</span>
               </div>
-
+ 
               {/* Trust Badge 3 */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-sm font-semibold text-text-primary hidden sm:inline-flex">
                 <Sparkles size={13} className="text-cta" />
                 <span>$18M+ Pipeline Generated</span>
               </div>
             </motion.div>
-
+ 
           </div>
-
+ 
           {/* ══ Right Visual Block: Signature Revenue Signal Field (Span 5) ═ */}
           <div ref={visualRef} className="lg:col-span-5 flex justify-center relative w-full h-full min-h-[400px] sm:min-h-[500px] mix-blend-screen">
             <HeroRightAnimation />
           </div>
-
+ 
         </div>
-
+ 
       </div>
-
+ 
       {/* ── Bottom Laser Divider ────────────────────────────────────────── */}
       <SectionLaserDivider variant="cyan" position="bottom" />
     </section>
   )
 }
-
+ 
 export default Hero
-

@@ -1,9 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react'
 import {
-  Plus, Edit, Trash2, Save, X, Eye, EyeOff, Upload,
-  CheckCircle, XCircle, Settings, ImageIcon, ExternalLink, RefreshCw
+  Plus,
+  Edit2,
+  Trash2,
+  Save,
+  X,
+  Eye,
+  EyeOff,
+  Upload,
+  CheckCircle,
+  AlertCircle,
+  Settings,
+  Image as ImageIcon,
+  ExternalLink,
+  RefreshCw,
+  Sparkles,
+  Building2,
+  Layers,
+  ArrowUpRight
 } from 'lucide-react'
 import { adminAPI } from '@api'
+import PageHeader from '@components/admin/PageHeader'
+import StatusBadge from '@components/admin/StatusBadge'
+import EmptyState from '@components/admin/EmptyState'
+import LoadingSkeleton from '@components/admin/LoadingSkeleton'
+import ConfirmModal from '@components/admin/ConfirmModal'
 
 /* ─── helpers ─── */
 const BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''
@@ -12,7 +33,7 @@ const imgSrc = (path) => {
   if (!path) return null
   if (path.startsWith('http') || path.startsWith('//')) return path
   if (path.startsWith('/uploads/')) return `${BASE_URL}${path}`
-  return path  // public folder (e.g. /mitel.png)
+  return path // public folder (e.g. /mitel.png)
 }
 
 const EMPTY_CLIENT = { client_name: '', logo_path: '', website_url: '', display_order: 0, is_active: true }
@@ -24,20 +45,22 @@ const EMPTY_SETTINGS = {
   is_visible: true,
 }
 
-/* ─── Main Component ─── */
 const CMSOurClients = () => {
-  const [loading, setLoading]               = useState(true)
-  const [clients, setClients]               = useState([])
-  const [sectionSettings, setSettings]      = useState(EMPTY_SETTINGS)
-  const [editingClient, setEditing]         = useState(null)
-  const [showModal, setShowModal]           = useState(false)
-  const [saving, setSaving]                 = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [clients, setClients] = useState([])
+  const [sectionSettings, setSettings] = useState(EMPTY_SETTINGS)
+  const [editingClient, setEditing] = useState(null)
+  const [showModal, setShowModal] = useState(false)
+  const [saving, setSaving] = useState(false)
   const [savingSettings, setSavingSettings] = useState(false)
-  const [uploadingLogo, setUploadingLogo]   = useState(false)
-  const [message, setMessage]               = useState({ type: '', text: '' })
+  const [uploadingLogo, setUploadingLogo] = useState(false)
+  const [message, setMessage] = useState({ type: '', text: '' })
+  const [deleteConfirm, setDeleteConfirm] = useState({ open: false, id: null, name: '' })
   const fileRef = useRef(null)
 
-  useEffect(() => { loadAll() }, [])
+  useEffect(() => {
+    loadAll()
+  }, [])
 
   const loadAll = async () => {
     try {
@@ -51,7 +74,7 @@ const CMSOurClients = () => {
       if (settingsRes.data?.data) setSettings(settingsRes.data.data)
     } catch (err) {
       console.error('Failed to load:', err)
-      flash('error', 'Failed to load data')
+      flash('error', 'Failed to load client roster data')
     } finally {
       setLoading(false)
     }
@@ -59,17 +82,18 @@ const CMSOurClients = () => {
 
   const flash = (type, text) => {
     setMessage({ type, text })
-    setTimeout(() => setMessage({ type: '', text: '' }), 3500)
+    setTimeout(() => setMessage({ type: '', text: '' }), 4000)
   }
 
   /* ── Section Settings ── */
-  const handleSaveSettings = async () => {
+  const handleSaveSettings = async (e) => {
+    e?.preventDefault()
     try {
       setSavingSettings(true)
       await adminAPI.updateClientSectionSettings(sectionSettings)
-      flash('success', 'Section settings saved!')
+      flash('success', 'Client section parameters updated and deployed!')
     } catch {
-      flash('error', 'Failed to save settings')
+      flash('error', 'Failed to save section settings')
     } finally {
       setSavingSettings(false)
     }
@@ -86,7 +110,10 @@ const CMSOurClients = () => {
     setShowModal(true)
   }
 
-  const closeModal = () => { setShowModal(false); setEditing(null) }
+  const closeModal = () => {
+    setShowModal(false)
+    setEditing(null)
+  }
 
   const handleLogoUpload = async (file) => {
     if (!file) return
@@ -97,37 +124,40 @@ const CMSOurClients = () => {
       const res = await adminAPI.uploadClientLogo(fd)
       const url = res.data?.url || res.data?.path || ''
       setEditing(prev => ({ ...prev, logo_path: url }))
-      flash('success', 'Logo uploaded!')
+      flash('success', 'Partner logo uploaded successfully!')
     } catch {
-      flash('error', 'Logo upload failed')
+      flash('error', 'Logo upload failed. Please verify file format.')
     } finally {
       setUploadingLogo(false)
     }
   }
 
-  const handleSaveClient = async () => {
+  const handleSaveClient = async (e) => {
+    e?.preventDefault()
     if (!editingClient?.client_name?.trim()) return flash('error', 'Client name is required')
-    if (!editingClient?.logo_path?.trim()) return flash('error', 'Logo path / upload is required')
+    if (!editingClient?.logo_path?.trim()) return flash('error', 'Logo path or uploaded image is required')
+
     try {
       setSaving(true)
       const payload = {
-        client_name: editingClient.client_name,
-        logo_path: editingClient.logo_path,
-        website_url: editingClient.website_url || null,
-        display_order: editingClient.display_order || 0,
+        client_name: editingClient.client_name.trim(),
+        logo_path: editingClient.logo_path.trim(),
+        website_url: editingClient.website_url?.trim() || null,
+        display_order: Number(editingClient.display_order) || 0,
         is_active: editingClient.is_active ? 1 : 0,
       }
+
       if (editingClient.id) {
         await adminAPI.updateClient(editingClient.id, payload)
-        flash('success', 'Client updated!')
+        flash('success', `Client "${payload.client_name}" updated!`)
       } else {
         await adminAPI.createClient(payload)
-        flash('success', 'Client added!')
+        flash('success', `Client "${payload.client_name}" added to showcase!`)
       }
       closeModal()
       loadAll()
     } catch {
-      flash('error', 'Failed to save client')
+      flash('error', 'Failed to save client details')
     } finally {
       setSaving(false)
     }
@@ -135,18 +165,21 @@ const CMSOurClients = () => {
 
   const handleToggleActive = async (client) => {
     try {
-      await adminAPI.updateClient(client.id, { ...client, is_active: client.is_active ? 0 : 1 })
+      const nextStatus = client.is_active ? 0 : 1
+      await adminAPI.updateClient(client.id, { ...client, is_active: nextStatus })
       setClients(prev => prev.map(c => c.id === client.id ? { ...c, is_active: !c.is_active } : c))
+      flash('success', `Client "${client.client_name}" ${nextStatus ? 'activated' : 'deactivated'}`)
     } catch {
-      flash('error', 'Failed to toggle status')
+      flash('error', 'Failed to toggle client visibility status')
     }
   }
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Delete this client? This cannot be undone.')) return
+  const executeDelete = async () => {
+    if (!deleteConfirm.id) return
     try {
-      await adminAPI.deleteClient(id)
-      flash('success', 'Client deleted')
+      await adminAPI.deleteClient(deleteConfirm.id)
+      flash('success', `Client "${deleteConfirm.name}" removed`)
+      setDeleteConfirm({ open: false, id: null, name: '' })
       loadAll()
     } catch {
       flash('error', 'Failed to delete client')
@@ -155,9 +188,9 @@ const CMSOurClients = () => {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 280, gap: 12 }}>
-        <RefreshCw style={{ width: 20, height: 20, animation: 'spin 1s linear infinite', color: 'var(--color-primary)' }} />
-        <span style={{ color: 'var(--color-text-secondary)' }}>Loading clients…</span>
+      <div className="space-y-6">
+        <PageHeader title="Enterprise Clients CMS" subtitle="Showcase global brand partnerships and verified client logos" />
+        <LoadingSkeleton type="table" rows={6} />
       </div>
     )
   }
@@ -165,166 +198,266 @@ const CMSOurClients = () => {
   const activeClients = clients.filter(c => !!c.is_active)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+    <div className="space-y-6 max-w-7xl mx-auto pb-16">
+      <PageHeader
+        title="Enterprise Clients CMS"
+        subtitle="Manage brand showcase, section copy, and client logo reel on the live website"
+        badge="Showcase Engine"
+        actions={[
+          {
+            label: 'Add Client Logo',
+            icon: Plus,
+            onClick: openAdd,
+            variant: 'primary'
+          }
+        ]}
+      />
 
-      {/* Flash Message */}
+      {/* Alert Notification */}
       {message.text && (
-        <div style={{
-          padding: '14px 18px', borderRadius: 10, fontWeight: 500, fontSize: 14,
-          background: message.type === 'success' ? 'rgba(34,197,94,.12)' : 'rgba(239,68,68,.12)',
-          color: message.type === 'success' ? '#4ade80' : '#f87171',
-          border: `1px solid ${message.type === 'success' ? 'rgba(34,197,94,.3)' : 'rgba(239,68,68,.3)'}`,
-          display: 'flex', alignItems: 'center', gap: 8
-        }}>
-          {message.type === 'success' ? <CheckCircle size={16} /> : <XCircle size={16} />}
-          {message.text}
+        <div
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+            message.type === 'success'
+              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+              : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+          }`}
+        >
+          {message.type === 'success' ? <CheckCircle className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
+          <span>{message.text}</span>
         </div>
       )}
 
-      {/* Page Header */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-        <div>
-          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--color-text-primary)', margin: 0 }}>
-            Our Clients — CMS
-          </h1>
-          <p style={{ color: 'var(--color-text-secondary)', marginTop: 4, fontSize: 14 }}>
-            Manage section content and client logos shown on the homepage
-          </p>
+      {/* Summary KPI Strip */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="admin-card p-4 flex items-center justify-between">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Total Brands</div>
+            <div className="text-2xl font-black text-text-primary mt-1">{clients.length}</div>
+          </div>
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+            <Building2 className="w-5 h-5" />
+          </div>
         </div>
-        <button onClick={openAdd} style={btnPrimary}>
-          <Plus size={16} /> Add Client
-        </button>
+
+        <div className="admin-card p-4 flex items-center justify-between">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Active in Marquee</div>
+            <div className="text-2xl font-black text-emerald-400 mt-1">{activeClients.length}</div>
+          </div>
+          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+            <CheckCircle className="w-5 h-5" />
+          </div>
+        </div>
+
+        <div className="admin-card p-4 flex items-center justify-between">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Section State</div>
+            <div className="text-sm font-bold mt-1.5">
+              {sectionSettings.is_visible ? (
+                <span className="text-emerald-400">Live on Site</span>
+              ) : (
+                <span className="text-text-muted">Hidden</span>
+              )}
+            </div>
+          </div>
+          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
+            <Eye className="w-5 h-5" />
+          </div>
+        </div>
+
+        <div className="admin-card p-4 flex items-center justify-between">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Reel Speed</div>
+            <div className="text-xs font-mono font-bold text-text-primary mt-1.5">Continuous 20s</div>
+          </div>
+          <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
+            <Sparkles className="w-5 h-5" />
+          </div>
+        </div>
       </div>
 
       {/* Section Settings Card */}
-      <div style={card}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--color-border)', paddingBottom: 16, marginBottom: 20 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Settings size={18} style={{ color: 'var(--color-primary)' }} />
-            <span style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-text-primary)' }}>Section Settings</span>
+      <div className="admin-card p-6 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[var(--admin-border)]">
+          <div>
+            <h2 className="text-base font-bold text-text-primary flex items-center gap-2">
+              <Settings className="w-4 h-4 text-primary" />
+              Homepage Clients Section Parameters
+            </h2>
+            <p className="text-xs text-text-muted mt-0.5">Customize the heading, gradient accents, and subtext displayed above the marquee</p>
           </div>
-          <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Controls text shown above the logo strip</span>
+          <div className="flex items-center gap-3">
+            <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+              <input
+                type="checkbox"
+                checked={sectionSettings.is_visible}
+                onChange={(e) => setSettings(s => ({ ...s, is_visible: e.target.checked }))}
+                className="w-4 h-4 rounded text-primary"
+              />
+              <span>Display Section on Homepage</span>
+            </label>
+            <button
+              onClick={handleSaveSettings}
+              disabled={savingSettings}
+              className="admin-btn-primary text-xs flex items-center gap-2"
+            >
+              <Save className="w-3.5 h-3.5" />
+              {savingSettings ? 'Deploying...' : 'Save Parameters'}
+            </button>
+          </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
-          <Field label="Eyebrow Badge Text">
-            <input style={inp} value={sectionSettings.eyebrow}
-              onChange={e => setSettings(s => ({ ...s, eyebrow: e.target.value }))}
-              placeholder="e.g. GLOBAL PARTNERSHIPS" />
-          </Field>
-          <Field label="Title — White Part">
-            <input style={inp} value={sectionSettings.title_white}
-              onChange={e => setSettings(s => ({ ...s, title_white: e.target.value }))}
-              placeholder="e.g. TRUSTED BY" />
-          </Field>
-          <Field label="Title — Gradient Part">
-            <input style={inp} value={sectionSettings.title_gradient}
-              onChange={e => setSettings(s => ({ ...s, title_gradient: e.target.value }))}
-              placeholder="e.g. LEADING B2B BRANDS" />
-          </Field>
-          <Field label="Subtitle / Supporting Text">
-            <textarea style={{ ...inp, resize: 'vertical', minHeight: 68 }} value={sectionSettings.subtitle}
-              onChange={e => setSettings(s => ({ ...s, subtitle: e.target.value }))} rows={2} />
-          </Field>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+              Eyebrow Badge Text
+            </label>
+            <input
+              type="text"
+              value={sectionSettings.eyebrow || ''}
+              onChange={(e) => setSettings(s => ({ ...s, eyebrow: e.target.value }))}
+              placeholder="GLOBAL PARTNERSHIPS"
+              className="admin-input font-mono text-xs"
+            />
+          </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, flexWrap: 'wrap', gap: 12 }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
-            <div style={{
-              position: 'relative', width: 44, height: 24, borderRadius: 12,
-              background: sectionSettings.is_visible ? 'var(--color-primary)' : 'var(--color-border)',
-              transition: 'background .25s', cursor: 'pointer'
-            }} onClick={() => setSettings(s => ({ ...s, is_visible: !s.is_visible }))}>
-              <div style={{
-                position: 'absolute', top: 3, left: sectionSettings.is_visible ? 22 : 3,
-                width: 18, height: 18, borderRadius: 9, background: '#fff', transition: 'left .25s'
-              }} />
-            </div>
-            <span style={{ fontSize: 14, color: 'var(--color-text-secondary)' }}>
-              {sectionSettings.is_visible
-                ? <><Eye size={14} style={{ display: 'inline', marginRight: 4 }} />Section Visible on Homepage</>
-                : <><EyeOff size={14} style={{ display: 'inline', marginRight: 4 }} />Section Hidden from Homepage</>
-              }
-            </span>
-          </label>
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+              Title (White Part)
+            </label>
+            <input
+              type="text"
+              value={sectionSettings.title_white || ''}
+              onChange={(e) => setSettings(s => ({ ...s, title_white: e.target.value }))}
+              placeholder="TRUSTED BY"
+              className="admin-input"
+            />
+          </div>
 
-          <button onClick={handleSaveSettings} disabled={savingSettings} style={btnPrimary}>
-            <Save size={15} />
-            {savingSettings ? 'Saving…' : 'Save Settings'}
-          </button>
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+              Title (Gradient Highlight)
+            </label>
+            <input
+              type="text"
+              value={sectionSettings.title_gradient || ''}
+              onChange={(e) => setSettings(s => ({ ...s, title_gradient: e.target.value }))}
+              placeholder="LEADING B2B BRANDS"
+              className="admin-input"
+            />
+          </div>
+
+          <div className="md:col-span-3">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+              Supporting Subtitle Text
+            </label>
+            <textarea
+              value={sectionSettings.subtitle || ''}
+              onChange={(e) => setSettings(s => ({ ...s, subtitle: e.target.value }))}
+              rows={2}
+              className="admin-textarea text-xs"
+              placeholder="Building demand with the technology ecosystem trusted by modern enterprises."
+            />
+          </div>
         </div>
       </div>
 
-      {/* Clients Table */}
-      <div style={card}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
-          <span style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-text-primary)' }}>
-            Client Logos
-            <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 400, color: 'var(--color-text-muted)', background: 'rgba(255,255,255,.06)', padding: '2px 8px', borderRadius: 20 }}>
-              {clients.length} total · {activeClients.length} active
-            </span>
-          </span>
-          <button onClick={openAdd} style={{ ...btnOutline, fontSize: 13, padding: '7px 14px' }}>
-            <Plus size={14} /> Add Logo
+      {/* Clients Roster Table */}
+      <div className="admin-card overflow-hidden">
+        <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
+          <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-primary" />
+            Client Brand Roster ({clients.length})
+          </h3>
+          <button onClick={openAdd} className="admin-btn-primary text-xs flex items-center gap-2">
+            <Plus className="w-3.5 h-3.5" />
+            Add Partner Logo
           </button>
         </div>
 
         {clients.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '52px 0', color: 'var(--color-text-muted)' }}>
-            <ImageIcon size={40} style={{ margin: '0 auto 12px', opacity: .4 }} />
-            <p>No clients yet. Click "Add Logo" to get started.</p>
-          </div>
+          <EmptyState
+            title="No Client Logos Configured"
+            description="Add enterprise logos to start showing trusted brand proof on the website."
+            actionLabel="Add Client Logo"
+            onAction={openAdd}
+          />
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <div className="overflow-x-auto">
+            <table className="admin-table">
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--color-border)' }}>
-                  {['Logo', 'Client Name', 'Website', 'Order', 'Status', 'Actions'].map(h => (
-                    <th key={h} style={{ padding: '10px 14px', textAlign: h === 'Actions' ? 'right' : 'left', fontSize: 12, fontWeight: 600, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: .5, whiteSpace: 'nowrap' }}>{h}</th>
-                  ))}
+                <tr>
+                  <th>Brand Asset</th>
+                  <th>Client / Enterprise</th>
+                  <th>Website Link</th>
+                  <th>Sort Order</th>
+                  <th>Status</th>
+                  <th className="text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {clients.map((client) => (
-                  <tr key={client.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
-                    <td style={{ padding: '10px 14px' }}>
-                      <div style={{ width: 80, height: 44, borderRadius: 8, background: 'rgba(255,255,255,.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '1px solid var(--color-border)' }}>
-                        {imgSrc(client.logo_path)
-                          ? <img src={imgSrc(client.logo_path)} alt={client.client_name}
-                              style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', padding: 4 }}
-                              onError={e => { e.target.style.display = 'none' }} />
-                          : <ImageIcon size={20} style={{ color: 'var(--color-text-muted)' }} />
-                        }
+                  <tr key={client.id}>
+                    <td>
+                      <div className="w-20 h-10 rounded-lg bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 overflow-hidden">
+                        {imgSrc(client.logo_path) ? (
+                          <img
+                            src={imgSrc(client.logo_path)}
+                            alt={client.client_name}
+                            className="max-w-full max-h-full object-contain"
+                            onError={(e) => { e.target.style.display = 'none' }}
+                          />
+                        ) : (
+                          <ImageIcon className="w-4 h-4 text-text-muted opacity-40" />
+                        )}
                       </div>
                     </td>
-                    <td style={{ padding: '10px 14px', fontWeight: 500, color: 'var(--color-text-primary)', fontSize: 14 }}>
+                    <td className="font-semibold text-text-primary text-sm">
                       {client.client_name}
                     </td>
-                    <td style={{ padding: '10px 14px' }}>
-                      {client.website_url
-                        ? <a href={client.website_url} target="_blank" rel="noopener noreferrer"
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--color-primary)', fontSize: 13 }}>
-                            <ExternalLink size={13} /> Visit
-                          </a>
-                        : <span style={{ color: 'var(--color-text-muted)', fontSize: 13 }}>—</span>
-                      }
+                    <td>
+                      {client.website_url ? (
+                        <a
+                          href={client.website_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-mono text-primary hover:underline inline-flex items-center gap-1"
+                        >
+                          <span>{client.website_url.replace(/^https?:\/\//, '')}</span>
+                          <ArrowUpRight className="w-3 h-3" />
+                        </a>
+                      ) : (
+                        <span className="text-text-muted text-xs">—</span>
+                      )}
                     </td>
-                    <td style={{ padding: '10px 14px', color: 'var(--color-text-secondary)', fontSize: 13 }}>
-                      {client.display_order}
+                    <td className="font-mono text-xs text-text-secondary">
+                      #{client.display_order}
                     </td>
-                    <td style={{ padding: '10px 14px' }}>
-                      <button onClick={() => handleToggleActive(client)} style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 5, padding: '3px 10px', borderRadius: 20, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 500,
-                        background: client.is_active ? 'rgba(34,197,94,.15)' : 'rgba(107,114,128,.15)',
-                        color: client.is_active ? '#4ade80' : '#9ca3af',
-                      }}>
-                        {client.is_active ? <><CheckCircle size={11} />Active</> : <><XCircle size={11} />Inactive</>}
+                    <td>
+                      <button
+                        onClick={() => handleToggleActive(client)}
+                        className="cursor-pointer"
+                        title="Click to toggle active state"
+                      >
+                        <StatusBadge status={client.is_active ? 'active' : 'inactive'} />
                       </button>
                     </td>
-                    <td style={{ padding: '10px 14px', textAlign: 'right' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
-                        <button onClick={() => openEdit(client)} style={iconBtn} title="Edit"><Edit size={15} /></button>
-                        <button onClick={() => handleDelete(client.id)} style={{ ...iconBtn, color: '#f87171' }} title="Delete"><Trash2 size={15} /></button>
+                    <td className="text-right">
+                      <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          onClick={() => openEdit(client)}
+                          className="admin-btn-icon"
+                          title="Edit Client"
+                        >
+                          <Edit2 className="w-4 h-4 text-text-secondary" />
+                        </button>
+                        <button
+                          onClick={() => setDeleteConfirm({ open: true, id: client.id, name: client.client_name })}
+                          className="admin-btn-icon hover:text-rose-400"
+                          title="Delete Client"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -335,43 +468,47 @@ const CMSOurClients = () => {
         )}
       </div>
 
-      {/* Live Preview Marquee */}
+      {/* Live Homepage Marquee Simulation */}
       {activeClients.length > 0 && (
-        <div style={card}>
-          <div style={{ marginBottom: 14 }}>
-            <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--color-text-primary)' }}>Live Homepage Preview</span>
-            <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--color-text-muted)' }}>Showing {activeClients.length} active logos</span>
+        <div className="admin-card p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold uppercase tracking-wider text-text-muted flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary" /> Live Client Strip Preview
+            </span>
+            <span className="text-xs text-text-muted font-mono">{activeClients.length} logos in active stream</span>
           </div>
 
-          <div style={{ textAlign: 'center', marginBottom: 20, padding: '20px 0 16px', borderRadius: 10, background: 'rgba(0,0,0,.25)' }}>
-            {sectionSettings.eyebrow && (
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, color: 'var(--color-primary)', marginBottom: 8, textTransform: 'uppercase' }}>
-                {sectionSettings.eyebrow}
-              </div>
-            )}
-            <div style={{ fontSize: 22, fontWeight: 800, lineHeight: 1.2 }}>
-              <span style={{ color: '#fff' }}>{sectionSettings.title_white} </span>
-              <span style={{ background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                {sectionSettings.title_gradient}
-              </span>
+          <div className="p-6 rounded-2xl bg-[#07090E] border border-[var(--admin-border)] overflow-hidden">
+            <div className="text-center mb-6">
+              {sectionSettings.eyebrow && (
+                <div className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase mb-1">
+                  {sectionSettings.eyebrow}
+                </div>
+              )}
+              <h4 className="text-lg font-black text-white">
+                <span>{sectionSettings.title_white} </span>
+                <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
+                  {sectionSettings.title_gradient}
+                </span>
+              </h4>
             </div>
-            {sectionSettings.subtitle && (
-              <p style={{ fontSize: 12, color: 'var(--color-text-muted)', marginTop: 8, maxWidth: 420, marginInline: 'auto' }}>
-                {sectionSettings.subtitle}
-              </p>
-            )}
-          </div>
 
-          <div style={{ overflow: 'hidden', borderRadius: 8 }}>
-            <div style={{ display: 'flex', gap: 32, alignItems: 'center', animation: 'marqueeScroll 20s linear infinite', width: 'max-content' }}>
-              {[...activeClients, ...activeClients].map((c, i) => (
-                <div key={`${c.id}-${i}`} style={{ width: 110, height: 56, borderRadius: 10, background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 8, flexShrink: 0 }}>
-                  {imgSrc(c.logo_path)
-                    ? <img src={imgSrc(c.logo_path)} alt={c.client_name}
-                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: .7 }}
-                        onError={e => { e.target.style.display = 'none' }} />
-                    : <span style={{ fontSize: 11, color: 'var(--color-text-muted)', textAlign: 'center' }}>{c.client_name}</span>
-                  }
+            <div className="flex gap-6 items-center justify-center flex-wrap">
+              {activeClients.map((c) => (
+                <div
+                  key={c.id}
+                  className="w-28 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2.5 transition-transform hover:scale-105"
+                  title={c.client_name}
+                >
+                  {imgSrc(c.logo_path) ? (
+                    <img
+                      src={imgSrc(c.logo_path)}
+                      alt={c.client_name}
+                      className="max-h-full max-w-full object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
+                    />
+                  ) : (
+                    <span className="text-xs text-text-muted font-semibold">{c.client_name}</span>
+                  )}
                 </div>
               ))}
             </div>
@@ -379,114 +516,162 @@ const CMSOurClients = () => {
         </div>
       )}
 
-      {/* Add/Edit Modal */}
+      {/* Create / Edit Client Modal */}
       {showModal && editingClient && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, padding: 16, backdropFilter: 'blur(4px)' }}>
-          <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 16, width: '100%', maxWidth: 520, maxHeight: '90vh', overflowY: 'auto' }}>
-            <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text-primary)', margin: 0 }}>
-                {editingClient.id ? 'Edit Client' : 'Add Client'}
-              </h2>
-              <button onClick={closeModal} style={{ background: 'none', border: 'none', color: 'var(--color-text-muted)', cursor: 'pointer', padding: 4 }}>
-                <X size={20} />
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-content max-w-lg">
+            <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-bold text-text-primary">
+                  {editingClient.id ? 'Edit Client Record' : 'Register New Partner'}
+                </h3>
+                <p className="text-xs text-text-muted mt-0.5">Configure client brand identity and external URL</p>
+              </div>
+              <button onClick={closeModal} className="admin-btn-icon">
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 18 }}>
-
-              {/* Logo upload */}
+            <form onSubmit={handleSaveClient} className="p-6 space-y-4">
+              {/* Logo file upload / path */}
               <div>
-                <label style={lbl}>Logo Image</label>
-                <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                  <div style={{ width: 100, height: 60, borderRadius: 10, background: 'rgba(255,255,255,.07)', border: '2px dashed var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, overflow: 'hidden' }}>
-                    {editingClient.logo_path && imgSrc(editingClient.logo_path)
-                      ? <img src={imgSrc(editingClient.logo_path)} alt="preview"
-                          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', padding: 4 }}
-                          onError={e => { e.target.style.display = 'none' }} />
-                      : <ImageIcon size={24} style={{ color: 'var(--color-text-muted)', opacity: .5 }} />
-                    }
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Client Logo Asset *
+                </label>
+                <div className="flex gap-3 items-center">
+                  <div className="w-20 h-14 rounded-xl bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 shrink-0 overflow-hidden">
+                    {editingClient.logo_path && imgSrc(editingClient.logo_path) ? (
+                      <img
+                        src={imgSrc(editingClient.logo_path)}
+                        alt="preview"
+                        className="max-w-full max-h-full object-contain"
+                        onError={(e) => { e.target.style.display = 'none' }}
+                      />
+                    ) : (
+                      <ImageIcon className="w-6 h-6 text-text-muted opacity-40" />
+                    )}
                   </div>
 
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    <button onClick={() => fileRef.current?.click()} disabled={uploadingLogo}
-                      style={{ ...btnOutline, justifyContent: 'center', width: '100%', padding: '8px 0' }}>
-                      <Upload size={14} /> {uploadingLogo ? 'Uploading…' : 'Upload Image'}
+                  <div className="flex-1 space-y-2">
+                    <button
+                      type="button"
+                      onClick={() => fileRef.current?.click()}
+                      disabled={uploadingLogo}
+                      className="admin-btn-secondary w-full text-xs flex items-center justify-center gap-2"
+                    >
+                      <Upload className="w-3.5 h-3.5 text-primary" />
+                      {uploadingLogo ? 'Uploading Asset...' : 'Upload Image File'}
                     </button>
-                    <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }}
-                      onChange={e => handleLogoUpload(e.target.files?.[0])} />
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <div style={{ flex: 1, height: 1, background: 'var(--color-border)' }} />
-                      <span style={{ fontSize: 11, color: 'var(--color-text-muted)' }}>or paste path</span>
-                      <div style={{ flex: 1, height: 1, background: 'var(--color-border)' }} />
-                    </div>
-
-                    <input style={inp} value={editingClient.logo_path}
-                      onChange={e => setEditing(prev => ({ ...prev, logo_path: e.target.value }))}
-                      placeholder="/logo.png or https://..." />
+                    <input
+                      ref={fileRef}
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handleLogoUpload(e.target.files?.[0])}
+                    />
                   </div>
+                </div>
+
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    value={editingClient.logo_path || ''}
+                    onChange={(e) => setEditing(prev => ({ ...prev, logo_path: e.target.value }))}
+                    placeholder="/mitel.png or https://example.com/logo.svg"
+                    className="admin-input text-xs font-mono"
+                    required
+                  />
                 </div>
               </div>
 
-              <Field label="Client Name *">
-                <input style={inp} value={editingClient.client_name}
-                  onChange={e => setEditing(p => ({ ...p, client_name: e.target.value }))}
-                  placeholder="e.g. Microsoft" disabled={saving} />
-              </Field>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Client / Enterprise Name *
+                </label>
+                <input
+                  type="text"
+                  value={editingClient.client_name || ''}
+                  onChange={(e) => setEditing(p => ({ ...p, client_name: e.target.value }))}
+                  placeholder="e.g. Mitel Networks"
+                  className="admin-input"
+                  required
+                />
+              </div>
 
-              <Field label="Website URL (optional)">
-                <input style={inp} value={editingClient.website_url || ''}
-                  onChange={e => setEditing(p => ({ ...p, website_url: e.target.value }))}
-                  placeholder="https://example.com" disabled={saving} />
-              </Field>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Official Website URL (Optional)
+                </label>
+                <input
+                  type="url"
+                  value={editingClient.website_url || ''}
+                  onChange={(e) => setEditing(p => ({ ...p, website_url: e.target.value }))}
+                  placeholder="https://mitel.com"
+                  className="admin-input font-mono text-xs"
+                />
+              </div>
 
-              <Field label="Display Order">
-                <input type="number" style={{ ...inp, width: 120 }} value={editingClient.display_order}
-                  onChange={e => setEditing(p => ({ ...p, display_order: parseInt(e.target.value) || 0 }))}
-                  min={0} disabled={saving} />
-              </Field>
-
-              <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
-                <div style={{ position: 'relative', width: 40, height: 22, borderRadius: 11, background: editingClient.is_active ? 'var(--color-primary)' : 'var(--color-border)', transition: 'background .2s', cursor: 'pointer', flexShrink: 0 }}
-                  onClick={() => setEditing(p => ({ ...p, is_active: !p.is_active }))}>
-                  <div style={{ position: 'absolute', top: 2, left: editingClient.is_active ? 19 : 2, width: 18, height: 18, borderRadius: 9, background: '#fff', transition: 'left .2s' }} />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                    Sort Order
+                  </label>
+                  <input
+                    type="number"
+                    value={editingClient.display_order}
+                    onChange={(e) => setEditing(p => ({ ...p, display_order: parseInt(e.target.value) || 0 }))}
+                    className="admin-input font-mono"
+                    min={0}
+                  />
                 </div>
-                <span style={{ fontSize: 14, color: 'var(--color-text-secondary)' }}>
-                  {editingClient.is_active ? 'Active (shown on homepage)' : 'Inactive (hidden)'}
-                </span>
-              </label>
+                <div className="flex items-center pt-6">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+                    <input
+                      type="checkbox"
+                      checked={editingClient.is_active}
+                      onChange={(e) => setEditing(p => ({ ...p, is_active: e.target.checked }))}
+                      className="w-4 h-4 rounded text-primary"
+                    />
+                    <span>Active in Marquee</span>
+                  </label>
+                </div>
+              </div>
 
-              <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', paddingTop: 8 }}>
-                <button onClick={closeModal} disabled={saving} style={btnOutline}>Cancel</button>
-                <button onClick={handleSaveClient} disabled={saving || uploadingLogo} style={btnPrimary}>
-                  <Save size={15} /> {saving ? 'Saving…' : 'Save Client'}
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border)]">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="admin-btn-secondary"
+                  disabled={saving || uploadingLogo}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving || uploadingLogo}
+                  className="admin-btn-primary flex items-center gap-2"
+                >
+                  <Save className="w-4 h-4" />
+                  {saving ? 'Saving...' : 'Save Client'}
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
-      <style>{`
-        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      `}</style>
+      {/* Delete Confirm Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.open}
+        title="Remove Enterprise Client"
+        message={`Are you sure you want to delete "${deleteConfirm.name}"? This brand logo will immediately be removed from the public website marquee.`}
+        confirmLabel="Delete Client"
+        variant="danger"
+        onConfirm={executeDelete}
+        onCancel={() => setDeleteConfirm({ open: false, id: null, name: '' })}
+      />
     </div>
   )
 }
-
-const Field = ({ label, children }) => (
-  <div>
-    <label style={lbl}>{label}</label>
-    {children}
-  </div>
-)
-
-const card = { background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 14, padding: '22px 24px' }
-const inp = { width: '100%', padding: '9px 13px', borderRadius: 8, background: 'var(--color-background)', border: '1px solid var(--color-border)', color: 'var(--color-text-primary)', fontSize: 14, outline: 'none', boxSizing: 'border-box' }
-const lbl = { display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 6, letterSpacing: .3 }
-const btnPrimary = { display: 'inline-flex', alignItems: 'center', gap: 6, padding: '9px 18px', background: 'var(--color-primary)', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, fontSize: 14, cursor: 'pointer', whiteSpace: 'nowrap' }
-const btnOutline = { display: 'inline-flex', alignItems: 'center', gap: 6, padding: '9px 16px', background: 'transparent', color: 'var(--color-text-primary)', border: '1px solid var(--color-border)', borderRadius: 8, fontWeight: 500, fontSize: 14, cursor: 'pointer', whiteSpace: 'nowrap' }
-const iconBtn = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: 7, border: '1px solid var(--color-border)', background: 'transparent', color: 'var(--color-text-muted)', cursor: 'pointer' }
 
 export default CMSOurClients

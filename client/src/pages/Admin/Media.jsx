@@ -2,61 +2,60 @@ import React, { useEffect, useState } from 'react'
 import { 
   Upload, 
   Search, 
-  Filter, 
-  MoreVertical, 
   Trash2, 
-  Download,
-  Image as ImageIcon,
-  FileText,
-  Grid,
-  List,
-  Eye,
-  Copy,
-  X,
-  CheckCircle
+  Download, 
+  Image as ImageIcon, 
+  Grid, 
+  List, 
+  Copy, 
+  X, 
+  CheckCircle2, 
+  FileVideo 
 } from 'lucide-react'
 import { adminAPI } from '@api'
+import PageHeader from '@components/admin/PageHeader'
+import EmptyState from '@components/admin/EmptyState'
+import ConfirmModal from '@components/admin/ConfirmModal'
+import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Media = () => {
-  console.log('Media component rendering')
   const [loading, setLoading] = useState(true)
   const [media, setMedia] = useState([])
   const [viewMode, setViewMode] = useState('grid')
   const [pagination, setPagination] = useState({ page: 1, limit: 20, total: 0, totalPages: 0 })
   const [filters, setFilters] = useState({ type: '', search: '' })
-  const [activeMenu, setActiveMenu] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
   const [message, setMessage] = useState({ type: '', text: '' })
+  const [uploading, setUploading] = useState(false)
+  const [previewItem, setPreviewItem] = useState(null)
 
   useEffect(() => {
-    console.log('Media component mounted, fetching media')
     fetchMedia()
-  }, [filters, pagination.page])
+  }, [filters.type, pagination.page])
+
+  // Debounce search
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchMedia()
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [filters.search])
 
   const fetchMedia = async () => {
     try {
       setLoading(true)
-      console.log('Fetching media with filters:', filters)
       const response = await adminAPI.getMedia({
         ...filters,
         page: pagination.page,
         limit: pagination.limit
       })
-      console.log('Media API response:', response)
-      console.log('Response data:', response.data)
       const mediaData = response.data?.data?.media || response.data?.media || response.data || []
       const paginationData = response.data?.data?.pagination || response.data?.pagination || pagination
-      console.log('Media data:', mediaData)
-      console.log('Pagination data:', paginationData)
-      console.log('Is media array?', Array.isArray(mediaData))
       setMedia(Array.isArray(mediaData) ? mediaData : [])
       setPagination(paginationData)
     } catch (error) {
       console.error('Failed to fetch media:', error)
-      console.error('Error response:', error.response)
-      console.error('Error message:', error.message)
-      setMessage({ type: 'error', text: `Failed to load media: ${error.message}` })
-      setTimeout(() => setMessage({ type: '', text: '' }), 5000)
+      setMessage({ type: 'error', text: 'Failed to load media assets.' })
       setMedia([])
     } finally {
       setLoading(false)
@@ -65,366 +64,352 @@ const Media = () => {
 
   const handleFileUpload = async (e) => {
     const files = e.target.files
-    if (files.length === 0) return
+    if (!files || files.length === 0) return
 
+    setUploading(true)
     for (const file of files) {
       const formData = new FormData()
       formData.append('file', file)
       
       try {
         await adminAPI.uploadMedia(formData)
-        fetchMedia()
-        setMessage({ type: 'success', text: 'File uploaded successfully' })
+        setMessage({ type: 'success', text: `"${file.name}" uploaded successfully.` })
         setTimeout(() => setMessage({ type: '', text: '' }), 3000)
       } catch (error) {
         console.error('Failed to upload file:', error)
-        setMessage({ type: 'error', text: 'Failed to upload file' })
+        setMessage({ type: 'error', text: `Failed to upload "${file.name}"` })
         setTimeout(() => setMessage({ type: '', text: '' }), 3000)
       }
     }
-  }
-
-  const handleView = (item) => {
-    const fullUrl = item.file_url.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
-    window.open(fullUrl, '_blank')
+    setUploading(false)
+    fetchMedia()
   }
 
   const handleCopyLink = (item) => {
-    const fullUrl = item.file_url.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
+    const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
     navigator.clipboard.writeText(fullUrl).then(() => {
-      setMessage({ type: 'success', text: 'Link copied to clipboard' })
-      setTimeout(() => setMessage({ type: '', text: '' }), 3000)
+      setMessage({ type: 'success', text: 'Asset URL copied.' })
+      setTimeout(() => setMessage({ type: '', text: '' }), 2500)
     })
   }
 
   const handleDownload = async (item) => {
     try {
-      const fullUrl = item.file_url.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
-      console.log('Downloading from:', fullUrl)
-      
+      const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
       const response = await fetch(fullUrl)
-      if (!response.ok) {
-        throw new Error('Failed to download file')
-      }
+      if (!response.ok) throw new Error('Download failed')
       
       const blob = await response.blob()
       const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
-      link.download = item.original_name
+      link.download = item.original_name || 'asset'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
       window.URL.revokeObjectURL(url)
-      
-      setMessage({ type: 'success', text: 'File downloaded successfully' })
-      setTimeout(() => setMessage({ type: '', text: '' }), 3000)
-    } catch (error) {
-      console.error('Failed to download file:', error)
-      setMessage({ type: 'error', text: 'Failed to download file' })
-      setTimeout(() => setMessage({ type: '', text: '' }), 3000)
+    } catch (err) {
+      alert('Failed to download asset.')
     }
   }
 
-  const getFileUrl = (item) => {
-    return item.file_url.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
-  }
-
-  const handleDelete = async (item) => {
+  const handleDeleteMedia = async () => {
+    if (!deleteConfirm) return
     try {
-      console.log('Deleting media item:', item.id, item.original_name)
-      await adminAPI.deleteMedia(item.id)
+      await adminAPI.deleteMedia(deleteConfirm.id)
+      if (previewItem?.id === deleteConfirm.id) {
+        setPreviewItem(null)
+      }
       setDeleteConfirm(null)
-      setActiveMenu(null)
       fetchMedia()
-      setMessage({ type: 'success', text: 'Media deleted successfully' })
-      setTimeout(() => setMessage({ type: '', text: '' }), 3000)
-    } catch (error) {
-      console.error('Failed to delete media:', error)
-      console.error('Error response:', error.response)
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to delete media'
-      setMessage({ type: 'error', text: `Failed to delete media: ${errorMessage}` })
-      setTimeout(() => setMessage({ type: '', text: '' }), 5000)
+      setMessage({ type: 'success', text: 'Asset deleted permanently.' })
+      setTimeout(() => setMessage({ type: '', text: '' }), 2500)
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to delete asset')
     }
   }
-
-  const isImage = (mimeType) => mimeType?.startsWith('image/')
-
-  if (loading) {
-    console.log('Media component: showing loading state')
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-text-muted">Loading media...</div>
-      </div>
-    )
-  }
-
-  console.log('Media component: rendering with', media.length, 'items')
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">Media Library</h1>
-          <p className="text-text-secondary">Manage your media files</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setViewMode('list')}
-            className={`flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors ${viewMode === 'list' ? 'border-primary' : ''}`}
-          >
-            <List className={`w-5 h-5`} />
-          </button>
-          <button 
-            onClick={() => setViewMode('grid')}
-            className={`flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors ${viewMode === 'grid' ? 'border-primary' : ''}`}
-          >
-            <Grid className={`w-5 h-5`} />
-          </button>
-          <label className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors cursor-pointer">
-            <Upload className="w-5 h-5" />
-            Upload
-            <input type="file" multiple onChange={handleFileUpload} className="hidden" accept="image/*,.pdf" />
+      <PageHeader
+        title="Media Vault"
+        subtitle="Manage brand digital assets, photography, logos, and documents."
+        breadcrumbs={[{ label: 'Media Vault' }]}
+        onRefresh={fetchMedia}
+        isRefreshing={loading}
+        actions={
+          <label className="admin-btn admin-btn-primary shadow-md cursor-pointer">
+            <Upload className="w-4 h-4" />
+            <span>{uploading ? 'Uploading...' : 'Upload Asset'}</span>
+            <input
+              type="file"
+              multiple
+              onChange={handleFileUpload}
+              className="hidden"
+              disabled={uploading}
+            />
           </label>
-        </div>
-      </div>
+        }
+      />
 
       {message.text && (
-        <div className={`flex items-center gap-2 px-4 py-3 rounded-lg ${
-          message.type === 'success' ? 'bg-green-500/10 border border-green-500/30 text-green-400' : 'bg-error/10 border border-error/30 text-error'
+        <div className={`p-3.5 rounded-xl text-xs flex items-center justify-between shadow-sm ${
+          message.type === 'success' 
+            ? 'bg-[var(--admin-bg-surface)] text-[var(--admin-success)] border border-[var(--admin-success)]' 
+            : 'bg-[var(--admin-bg-surface)] text-[var(--admin-danger)] border border-[var(--admin-danger)]'
         }`}>
-          {message.type === 'success' ? <CheckCircle className="w-5 h-5" /> : <X className="w-5 h-5" />}
-          {message.text}
+          <div className="flex items-center gap-2 font-semibold">
+            {message.type === 'success' ? <CheckCircle2 className="w-4 h-4" /> : <X className="w-4 h-4" />}
+            <span>{message.text}</span>
+          </div>
+          <button onClick={() => setMessage({ type: '', text: '' })}>
+            <X className="w-3.5 h-3.5" />
+          </button>
         </div>
       )}
 
-      {/* Filters */}
-      <div className="flex items-center gap-4">
-        <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
+      {/* Filter and View Mode Switcher */}
+      <div className="admin-card p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="relative w-full sm:w-80">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--admin-text-muted)]" />
           <input
             type="text"
-            placeholder="Search media..."
+            placeholder="Search media files..."
             value={filters.search}
             onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-            className="w-full pl-10 pr-4 py-2 bg-surface border border-border rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary"
+            className="admin-input pl-10 pr-8 w-full"
           />
+          {filters.search && (
+            <button
+              onClick={() => setFilters({ ...filters, search: '' })}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
-        <select
-          value={filters.type}
-          onChange={(e) => setFilters({ ...filters, type: e.target.value })}
-          className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-        >
-          <option value="">All Types</option>
-          <option value="image">Images</option>
-          <option value="application/pdf">PDFs</option>
-        </select>
-        <button className="flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors">
-          <Filter className="w-5 h-5" />
-          Filters
-        </button>
+
+        <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+          <select
+            value={filters.type}
+            onChange={(e) => setFilters({ ...filters, type: e.target.value })}
+            className="admin-select min-w-[140px]"
+          >
+            <option value="">All Formats</option>
+            <option value="image">Images</option>
+            <option value="video">Videos</option>
+            <option value="pdf">Documents</option>
+          </select>
+
+          <div className="flex items-center p-1 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)]">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-1.5 rounded-lg transition-colors ${
+                viewMode === 'grid' ? 'bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] font-bold' : 'text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]'
+              }`}
+              title="Grid view"
+            >
+              <Grid className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-1.5 rounded-lg transition-colors ${
+                viewMode === 'list' ? 'bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] font-bold' : 'text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]'
+              }`}
+              title="List view"
+            >
+              <List className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Media Grid */}
-      {viewMode === 'grid' ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {media.map((item) => (
-            <div key={item.id} className="group relative bg-surface rounded-lg border border-border overflow-hidden hover:border-primary/50 transition-colors">
-              <div className="aspect-square bg-background flex items-center justify-center">
-                {isImage(item.mime_type) ? (
-                  <img 
-                    src={getFileUrl(item)} 
-                    alt={item.alt_text || item.original_name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <FileText className="w-12 h-12 text-text-muted" />
-                )}
+      {/* Media Grid / List */}
+      {loading ? (
+        <TableSkeleton rows={6} cols={4} />
+      ) : media.length === 0 ? (
+        <EmptyState
+          icon={ImageIcon}
+          title="Media library is empty"
+          description="Upload marketing media, assets, or documents to populate your vault."
+        />
+      ) : viewMode === 'grid' ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {media.map((item) => {
+            const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
+            const isVideo = item.file_type?.includes('video') || item.file_url?.endsWith('.mp4')
+
+            return (
+              <div
+                key={item.id}
+                onClick={() => setPreviewItem(item)}
+                className="admin-card overflow-hidden flex flex-col group cursor-pointer"
+              >
+                <div className="aspect-square bg-[var(--admin-bg-elevated)] relative overflow-hidden flex items-center justify-center">
+                  {isVideo ? (
+                    <div className="flex flex-col items-center justify-center text-[var(--admin-text-muted)]">
+                      <FileVideo className="w-10 h-10 mb-1 text-[var(--admin-primary)]" />
+                      <span className="text-[10px] font-bold">Video</span>
+                    </div>
+                  ) : item.file_url ? (
+                    <img
+                      src={fullUrl}
+                      alt={item.original_name || 'Media'}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                        e.target.parentElement.innerHTML = '<div class="p-3 text-center text-xs text-[var(--admin-text-muted)]">Preview</div>'
+                      }}
+                    />
+                  ) : (
+                    <ImageIcon className="w-8 h-8 text-[var(--admin-text-muted)]" />
+                  )}
+
+                  {/* Actions overlay */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleCopyLink(item)
+                      }}
+                      className="p-2 rounded-lg bg-[var(--admin-bg-surface)] text-[var(--admin-text-primary)] hover:text-[var(--admin-primary)] shadow-md transition-colors"
+                      title="Copy URL"
+                    >
+                      <Copy className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setDeleteConfirm(item)
+                      }}
+                      className="p-2 rounded-lg bg-[var(--admin-bg-surface)] text-[var(--admin-danger)] hover:bg-[var(--admin-danger)] hover:text-white shadow-md transition-colors"
+                      title="Delete"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-[var(--admin-bg-surface)] border-t border-[var(--admin-border-subtle)] flex items-center justify-between text-xs">
+                  <p className="font-bold text-[var(--admin-text-primary)] truncate" title={item.original_name}>
+                    {item.original_name || `Asset #${item.id}`}
+                  </p>
+                  <span className="text-[11px] font-medium text-[var(--admin-text-muted)] shrink-0">
+                    {item.file_size ? `${Math.round(item.file_size / 1024)}KB` : ''}
+                  </span>
+                </div>
               </div>
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                <button 
-                  onClick={() => handleDownload(item)}
-                  className="p-2 bg-white/10 rounded-lg text-white hover:bg-white/20 transition-colors"
-                >
-                  <Download className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={() => setDeleteConfirm(item)}
-                  className="p-2 bg-error/20 rounded-lg text-error hover:bg-error/30 transition-colors"
-                >
-                  <Trash2 className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="p-2">
-                <p className="text-xs text-text-primary truncate">{item.original_name}</p>
-                <p className="text-xs text-text-muted">{(item.file_size / 1024).toFixed(1)} KB</p>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       ) : (
-        <div className="bg-surface rounded-xl border border-border overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">File</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Size</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Uploaded</th>
-                  <th className="w-12 px-6 py-4 text-right text-sm font-medium text-text-secondary">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {media.map((item) => (
-                  <tr key={item.id} className="border-b border-border hover:bg-surface/50 transition-colors">
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        {isImage(item.mime_type) ? (
-                          <img 
-                            src={getFileUrl(item)} 
-                            alt={item.alt_text || item.original_name}
-                            className="w-12 h-12 rounded object-cover"
-                          />
-                        ) : (
-                          <div className="w-12 h-12 rounded bg-background flex items-center justify-center">
-                            <FileText className="w-6 h-6 text-text-muted" />
-                          </div>
-                        )}
-                        <div>
-                          <p className="font-medium text-text-primary truncate max-w-xs">{item.original_name}</p>
-                          {item.alt_text && <p className="text-sm text-text-muted truncate max-w-xs">{item.alt_text}</p>}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-text-secondary">{item.mime_type}</td>
-                    <td className="px-6 py-4 text-text-secondary">{(item.file_size / 1024).toFixed(1)} KB</td>
-                    <td className="px-6 py-4 text-text-secondary">
-                      {new Date(item.created_at).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <div className="relative">
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setActiveMenu(activeMenu === item.id ? null : item.id)
-                          }}
-                          className="p-2 text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors"
-                        >
-                          <MoreVertical className="w-5 h-5" />
-                        </button>
-                        {activeMenu === item.id && (
-                          <>
-                            <div 
-                              className="fixed inset-0 z-10"
-                              onClick={() => setActiveMenu(null)}
-                            />
-                            <div className="absolute right-0 top-full mt-2 w-48 bg-surface border border-border rounded-lg shadow-lg z-20">
-                              <button 
-                                onClick={() => { handleView(item); setActiveMenu(null) }}
-                                className="flex items-center gap-3 w-full px-4 py-2 text-left text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors"
-                              >
-                                <Eye className="w-4 h-4" />
-                                View
-                              </button>
-                              <button 
-                                onClick={() => { handleCopyLink(item); setActiveMenu(null) }}
-                                className="flex items-center gap-3 w-full px-4 py-2 text-left text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors"
-                              >
-                                <Copy className="w-4 h-4" />
-                                Copy Link
-                              </button>
-                              <button 
-                                onClick={() => { handleDownload(item); setActiveMenu(null) }}
-                                className="flex items-center gap-3 w-full px-4 py-2 text-left text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors"
-                              >
-                                <Download className="w-4 h-4" />
-                                Download
-                              </button>
-                              <button 
-                                onClick={() => { setDeleteConfirm(item); setActiveMenu(null) }}
-                                className="flex items-center gap-3 w-full px-4 py-2 text-left text-error hover:bg-error/10 transition-colors"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                                Delete
-                              </button>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+        <div className="space-y-2">
+          {media.map((item) => {
+            const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5000${item.file_url}`
 
-      {media.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <ImageIcon className="w-16 h-16 text-text-muted mb-4" />
-          <p className="text-text-secondary mb-2">No media found</p>
-          <p className="text-text-muted text-sm">Upload files to get started</p>
-        </div>
-      )}
+            return (
+              <div 
+                key={item.id} 
+                onClick={() => setPreviewItem(item)}
+                className="admin-card p-3 flex items-center justify-between gap-4 cursor-pointer"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <img
+                    src={fullUrl}
+                    alt=""
+                    className="w-10 h-10 rounded-lg object-cover bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] shrink-0"
+                    onError={(e) => { e.target.style.display = 'none' }}
+                  />
+                  <div className="min-w-0 space-y-0.5">
+                    <p className="text-xs font-bold text-[var(--admin-text-primary)] truncate">
+                      {item.original_name || `Asset #${item.id}`}
+                    </p>
+                    <p className="text-[11px] text-[var(--admin-text-muted)] truncate">
+                      {item.file_type || 'image'} • {item.file_size ? `${Math.round(item.file_size / 1024)} KB` : '-'}
+                    </p>
+                  </div>
+                </div>
 
-      {/* Pagination */}
-      {pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-text-muted">
-            Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} files
-          </p>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setPagination({ ...pagination, page: pagination.page - 1 })}
-              disabled={pagination.page === 1}
-              className="px-3 py-1.5 bg-surface border border-border rounded-lg text-text-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface/80 transition-colors"
-            >
-              Previous
-            </button>
-            <span className="text-text-primary">
-              Page {pagination.page} of {pagination.totalPages}
-            </span>
-            <button
-              onClick={() => setPagination({ ...pagination, page: pagination.page + 1 })}
-              disabled={pagination.page === pagination.totalPages}
-              className="px-3 py-1.5 bg-surface border border-border rounded-lg text-text-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface/80 transition-colors"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Delete Confirmation Modal */}
-      {deleteConfirm && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-surface rounded-xl border border-border w-full max-w-md">
-            <div className="p-6">
-              <h3 className="text-lg font-bold text-text-primary mb-2">Delete Media</h3>
-              <p className="text-text-secondary mb-4">
-                Are you sure you want to delete "{deleteConfirm.original_name}"? This action cannot be undone.
-              </p>
-              <div className="flex items-center justify-end gap-3">
-                <button
-                  onClick={() => setDeleteConfirm(null)}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={() => handleDelete(deleteConfirm)}
-                  className="px-4 py-2 bg-error text-white rounded-lg hover:bg-error/90 transition-colors"
-                >
-                  Delete
-                </button>
+                <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                  <button
+                    onClick={() => handleCopyLink(item)}
+                    className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-primary)] transition-colors"
+                    title="Copy Link"
+                  >
+                    <Copy className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDownload(item)}
+                    className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors"
+                    title="Download"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => setDeleteConfirm(item)}
+                    className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-danger)] transition-colors"
+                    title="Delete"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
+            )
+          })}
+        </div>
+      )}
+
+      {/* Lightbox / Preview Modal */}
+      {previewItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-fade-in">
+          <div className="fixed inset-0" onClick={() => setPreviewItem(null)} />
+          <div className="relative max-w-2xl w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
+              <p className="text-sm font-bold text-[var(--admin-text-primary)] truncate">
+                {previewItem.original_name}
+              </p>
+              <button onClick={() => setPreviewItem(null)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="max-h-[50vh] flex items-center justify-center bg-[var(--admin-bg-elevated)] rounded-xl p-3 overflow-hidden border border-[var(--admin-border-subtle)]">
+              <img
+                src={previewItem.file_url?.startsWith('http') ? previewItem.file_url : `http://localhost:5000${previewItem.file_url}`}
+                alt=""
+                className="max-h-[45vh] object-contain rounded-lg"
+              />
+            </div>
+
+            <div className="flex items-center justify-between pt-3 border-t border-[var(--admin-border-subtle)] text-xs">
+              <button
+                onClick={() => handleCopyLink(previewItem)}
+                className="admin-btn admin-btn-secondary h-8 px-3 text-xs"
+              >
+                <Copy className="w-3.5 h-3.5" />
+                <span>Copy URL</span>
+              </button>
+              <button
+                onClick={() => handleDownload(previewItem)}
+                className="admin-btn admin-btn-primary h-8 px-3 text-xs shadow-sm"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download</span>
+              </button>
             </div>
           </div>
         </div>
       )}
+
+      {/* Delete Confirmation */}
+      <ConfirmModal
+        isOpen={Boolean(deleteConfirm)}
+        onClose={() => setDeleteConfirm(null)}
+        onConfirm={handleDeleteMedia}
+        title="Delete Media Asset"
+        message={`Permanently delete "${deleteConfirm?.original_name}"?`}
+        confirmText="Delete Asset"
+      />
     </div>
   )
 }

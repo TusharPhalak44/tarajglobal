@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ShieldCheck, Activity, Database, Sparkles } from 'lucide-react'
-
+ 
 /**
  * GrowthHeader
  * Editorial top area of the B2B Growth Command Center:
@@ -13,10 +13,10 @@ import { ShieldCheck, Activity, Database, Sparkles } from 'lucide-react'
 export const GrowthHeader = () => {
   return (
     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-8 lg:mb-12">
-      
+     
       {/* ── Left Column: Eyebrow + Dominant 3-Line Headline + Description ── */}
       <div className="max-w-2xl">
-        
+       
         {/* Technical Eyebrow with Pulsing Live Status Dot */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -37,7 +37,7 @@ export const GrowthHeader = () => {
             SYSTEM ACTIVE
           </span>
         </motion.div>
-
+ 
         {/* Large Editorial Headline */}
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
@@ -52,7 +52,7 @@ export const GrowthHeader = () => {
           </span>
           <span className="block text-slate-100">GROWTH</span>
         </motion.h2>
-
+ 
         {/* Controlled Paragraph Width (~560px) */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -63,12 +63,12 @@ export const GrowthHeader = () => {
         >
           Taraj Global is a B2B demand generation and technology marketing partner helping organizations connect with the right companies, decision-makers, and buying audiences. We combine audience intelligence, verified B2B data, targeted outreach, and full-funnel marketing strategies to create qualified opportunities and support sustainable pipeline growth.
         </motion.p>
-
+ 
       </div>
-
+ 
       {/* ── Right Column: Live Intelligence Interface Indicators ── */}
       <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:pb-1">
-        
+       
         {/* Readout 01: SLA Guaranteed */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
@@ -92,7 +92,7 @@ export const GrowthHeader = () => {
             </span>
           </div>
         </motion.div>
-
+ 
         {/* Readout 02: Growth Signal Index */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
@@ -116,13 +116,12 @@ export const GrowthHeader = () => {
             </span>
           </div>
         </motion.div>
-
+ 
       </div>
-
+ 
     </div>
   )
 }
-
+ 
 export default GrowthHeader
-
-
+ 

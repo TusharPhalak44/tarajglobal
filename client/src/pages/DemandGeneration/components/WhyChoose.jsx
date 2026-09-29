@@ -5,8 +5,8 @@ import {
   Crosshair,
   Briefcase,
   SlidersHorizontal,
-  PieChart,
-  CheckCheck,
+  MousePointerClick,
+  Target,
 } from 'lucide-react'
 
 const PILLARS = [
@@ -38,7 +38,7 @@ const PILLARS = [
     num: '04',
     title: 'Buyer Engagement',
     desc: 'Deliver high-value educational content and multi-touch cadences aligned with audience context, creating authentic buyer interest and category authority.',
-    icon: PieChart,
+    icon: MousePointerClick,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
@@ -46,7 +46,7 @@ const PILLARS = [
     num: '05',
     title: 'Sales Pipeline Support',
     desc: 'Turn top-of-funnel engagement into validated, sales-ready opportunities. Rigorous qualification ensures your sales reps focus strictly on high-intent accounts with active timelines.',
-    icon: CheckCheck,
+    icon: Target,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },

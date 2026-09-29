@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { Bell, Check, Trash2, CheckCircle, Clock, AlertCircle, Info, X } from 'lucide-react'
+import { 
+  Bell, 
+  Check, 
+  Trash2, 
+  CheckCircle, 
+  Clock, 
+  AlertCircle, 
+  Info, 
+  X,
+  Sparkles,
+  CheckCheck
+} from 'lucide-react'
 import { adminAPI } from '@api'
+import PageHeader from '@components/admin/PageHeader'
+import EmptyState from '@components/admin/EmptyState'
+import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Notifications = () => {
   const [loading, setLoading] = useState(true)
@@ -60,119 +74,142 @@ const Notifications = () => {
     }
     const Icon = icons[type] || Bell
     const colors = {
-      info: 'text-blue-400',
-      success: 'text-green-400',
-      warning: 'text-yellow-400',
-      error: 'text-red-400'
+      info: 'text-[#00A6FF] bg-[#00A6FF]/10 border-[#00A6FF]/20',
+      success: 'text-[#72D669] bg-[#72D669]/10 border-[#72D669]/20',
+      warning: 'text-[#FFA600] bg-[#FFA600]/10 border-[#FFA600]/20',
+      error: 'text-[#F43F5E] bg-[#F43F5E]/10 border-[#F43F5E]/20'
     }
-    return { Icon, color: colors[type] || 'text-primary' }
+    return { Icon, colorClass: colors[type] || 'text-[#00A6FF] bg-[#00A6FF]/10 border-[#00A6FF]/20' }
   }
 
   const unreadCount = notifications.filter(n => !n.is_read).length
 
-  if (loading) {
-    return <div className="flex items-center justify-center h-64 text-text-muted">Loading notifications...</div>
-  }
-
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">Notifications</h1>
-          <p className="text-text-secondary">
-            {unreadCount > 0 ? `${unreadCount} unread notification${unreadCount > 1 ? 's' : ''}` : 'All caught up!'}
-          </p>
-        </div>
-        {unreadCount > 0 && (
+    <div className="space-y-6 max-w-4xl mx-auto pb-12">
+      <PageHeader
+        title="Notification Feed"
+        subtitle="Platform operational notices, candidate intake alerts, and lead assignment pings."
+        breadcrumbs={[{ label: 'Notifications' }]}
+        onRefresh={fetchNotifications}
+        isRefreshing={loading}
+        actions={
+          unreadCount > 0 ? (
+            <button
+              onClick={handleMarkAllAsRead}
+              className="admin-btn admin-btn-primary text-xs shadow-md shadow-[#00A6FF]/20"
+            >
+              <CheckCheck className="w-4 h-4" />
+              <span>Mark All Read</span>
+            </button>
+          ) : null
+        }
+      />
+
+      {/* Filter Tabs */}
+      <div className="admin-card p-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
-            onClick={handleMarkAllAsRead}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+            onClick={() => setFilter('all')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+              filter === 'all'
+                ? 'bg-[var(--admin-primary)] text-white'
+                : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+            }`}
           >
-            <Check className="w-5 h-5" />
-            Mark All as Read
+            All Notices ({notifications.length})
           </button>
-        )}
+          <button
+            onClick={() => setFilter('unread')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 ${
+              filter === 'unread'
+                ? 'bg-[var(--admin-primary)] text-white'
+                : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+            }`}
+          >
+            <span>Unread</span>
+            {unreadCount > 0 && (
+              <span className="w-2 h-2 rounded-full bg-[#FF6D00]" />
+            )}
+          </button>
+        </div>
+
+        <span className="text-xs text-[var(--admin-text-muted)]">
+          {unreadCount > 0 ? `${unreadCount} unread` : 'All read'}
+        </span>
       </div>
 
-      <div className="flex items-center gap-4">
-        <button
-          onClick={() => setFilter('all')}
-          className={`px-4 py-2 rounded-lg transition-colors ${filter === 'all' ? 'bg-primary text-white' : 'bg-surface text-text-primary hover:bg-surface/80'}`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setFilter('unread')}
-          className={`px-4 py-2 rounded-lg transition-colors ${filter === 'unread' ? 'bg-primary text-white' : 'bg-surface text-text-primary hover:bg-surface/80'}`}
-        >
-          Unread
-        </button>
-      </div>
+      {/* Notifications List */}
+      {loading ? (
+        <TableSkeleton rows={5} cols={3} />
+      ) : notifications.length === 0 ? (
+        <div className="admin-card">
+          <EmptyState
+            icon={Bell}
+            title="All notifications cleared"
+            description="You have no pending unread notifications in your active queue."
+          />
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {notifications.map((n) => {
+            const { Icon, colorClass } = getNotificationIcon(n.type)
 
-      <div className="space-y-4">
-        {notifications.length === 0 ? (
-          <div className="bg-surface rounded-xl border border-border p-12 text-center">
-            <Bell className="w-16 h-16 text-text-muted mx-auto mb-4" />
-            <p className="text-text-secondary mb-2">No notifications</p>
-            <p className="text-text-muted text-sm">
-              {filter === 'unread' ? 'No unread notifications' : 'No notifications yet'}
-            </p>
-          </div>
-        ) : (
-          notifications.map((notification) => {
-            const { Icon, color } = getNotificationIcon(notification.type)
             return (
               <div
-                key={notification.id}
-                className={`bg-surface rounded-xl border ${!notification.is_read ? 'border-primary/50 bg-primary/5' : 'border-border'} p-6 transition-colors`}
+                key={n.id}
+                className={`admin-card p-4 transition-all flex items-start justify-between gap-4 ${
+                  !n.is_read 
+                    ? 'border-l-4 border-l-[#00A6FF] bg-[var(--admin-bg-card)]' 
+                    : 'opacity-85'
+                }`}
               >
-                <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-lg ${notification.is_read ? 'bg-surface' : 'bg-primary/20'}`}>
-                    <Icon className={`w-6 h-6 ${color}`} />
+                <div className="flex items-start gap-3.5 min-w-0">
+                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${colorClass}`}>
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between gap-4 mb-2">
-                      <h3 className={`font-semibold ${!notification.is_read ? 'text-text-primary' : 'text-text-secondary'}`}>
-                        {notification.title}
-                      </h3>
-                      <div className="flex items-center gap-2">
-                        {!notification.is_read && (
-                          <button
-                            onClick={() => handleMarkAsRead(notification.id)}
-                            className="p-1.5 text-text-muted hover:text-primary rounded-lg hover:bg-surface/80 transition-colors"
-                            title="Mark as read"
-                          >
-                            <Check className="w-4 h-4" />
-                          </button>
-                        )}
-                        <button
-                          onClick={() => handleDelete(notification.id)}
-                          className="p-1.5 text-text-muted hover:text-error rounded-lg hover:bg-error/10 transition-colors"
-                          title="Delete"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                    <p className="text-text-secondary text-sm mb-3">{notification.message}</p>
-                    <div className="flex items-center gap-4 text-xs text-text-muted">
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {new Date(notification.created_at).toLocaleString()}
-                      </div>
-                      {notification.link && (
-                        <a href={notification.link} className="text-primary hover:underline">
-                          View →
-                        </a>
+
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-xs sm:text-sm font-bold text-[var(--admin-text-primary)] truncate">
+                        {n.title || n.action || 'System Notification'}
+                      </h4>
+                      {!n.is_read && (
+                        <span className="w-2 h-2 rounded-full bg-[#00A6FF] shrink-0" />
                       )}
                     </div>
+                    <p className="text-xs text-[var(--admin-text-secondary)] mt-1 leading-relaxed">
+                      {n.message || n.details}
+                    </p>
+                    <span className="text-[10px] text-[var(--admin-text-dim)] mt-2 flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      <span>{new Date(n.created_at || Date.now()).toLocaleString()}</span>
+                    </span>
                   </div>
+                </div>
+
+                <div className="flex items-center gap-1 shrink-0">
+                  {!n.is_read && (
+                    <button
+                      onClick={() => handleMarkAsRead(n.id)}
+                      className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[#72D669] hover:bg-[#72D669]/10 transition-colors"
+                      title="Mark as read"
+                    >
+                      <Check className="w-4 h-4" />
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleDelete(n.id)}
+                    className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[#F43F5E] hover:bg-[#F43F5E]/10 transition-colors"
+                    title="Dismiss"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             )
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
     </div>
   )
 }

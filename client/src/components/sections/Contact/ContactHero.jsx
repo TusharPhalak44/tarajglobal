@@ -2,11 +2,11 @@ import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Phone, ArrowDown, Sparkles } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
-
+ 
 export default function ContactHero({ onBookMeeting }) {
   const heroRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
-
+ 
   const handleScrollToForm = () => {
     const el = document.getElementById('contact-form') || document.querySelector('.contact-form-section')
     if (el) {
@@ -19,7 +19,7 @@ export default function ContactHero({ onBookMeeting }) {
       onBookMeeting()
     }
   }
-
+ 
   return (
     <section
       ref={heroRef}
@@ -46,7 +46,7 @@ export default function ContactHero({ onBookMeeting }) {
             backgroundPosition: 'center 15%',
           }}
         />
-
+ 
         {/* Ambient Specular Beam Glow */}
         <motion.div
           animate={
@@ -68,15 +68,15 @@ export default function ContactHero({ onBookMeeting }) {
               'radial-gradient(ellipse at center, rgba(255, 190, 0, 0.45) 0%, rgba(255, 140, 0, 0.2) 50%, transparent 75%)',
           }}
         />
-
+ 
         {/* Subtle Top & Bottom Cinematic Gradient Vignetters */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
       </div>
-
+ 
       {/* ── Foreground Content: Typography & Book a Strategy Call Button ── */}
       <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
-        
+       
         {/* Main Heading: CONTACT US */}
         <motion.h1
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 22 }}
@@ -86,7 +86,7 @@ export default function ContactHero({ onBookMeeting }) {
         >
           CONTACT US
         </motion.h1>
-
+ 
         {/* Spaced Subtitle: CONNECT WITH TARAJ GLOBAL */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
@@ -96,7 +96,7 @@ export default function ContactHero({ onBookMeeting }) {
         >
           C O N N E C T &nbsp; W I T H &nbsp; T A R A J &nbsp; G L O B A L
         </motion.div>
-
+ 
         {/* Primary CTA Button: BOOK A STRATEGY CALL */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.92, y: 16 }}
@@ -119,14 +119,14 @@ export default function ContactHero({ onBookMeeting }) {
                   'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%)',
               }}
             />
-
+ 
             <span className="relative z-10 flex items-center gap-2.5">
               <Calendar className="w-4 h-4 text-black" />
               <span>BOOK A STRATEGY CALL</span>
             </span>
           </motion.button>
         </motion.div>
-
+ 
         {/* Subtle Down Scroll Indicator */}
         <motion.button
           type="button"
@@ -142,9 +142,9 @@ export default function ContactHero({ onBookMeeting }) {
           <span>Or send us a message below</span>
           <ArrowDown className="w-3.5 h-3.5" />
         </motion.button>
-
+ 
       </div>
     </section>
   )
 }
-
+ 

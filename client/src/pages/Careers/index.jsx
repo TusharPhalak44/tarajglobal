@@ -362,9 +362,8 @@ const EditorialGalleryItem = ({
         <div className="flex items-end justify-between gap-3">
           <div className="min-w-0 flex-1">
             <h3
-              className={`font-bold text-white tracking-tight leading-snug drop-shadow-sm transition-all duration-300 ${
-                isFeatured ? 'text-lg sm:text-2xl lg:text-[26px]' : 'text-sm sm:text-base lg:text-lg'
-              }`}
+              className={`font-bold text-white tracking-tight leading-snug drop-shadow-sm transition-all duration-300 ${isFeatured ? 'text-lg sm:text-2xl lg:text-[26px]' : 'text-sm sm:text-base lg:text-lg'
+                }`}
             >
               {photo.title}
             </h3>
@@ -547,11 +546,10 @@ const TypographicWordBlock = ({
       {/* Number Badge (Clean Number Only, No Lines, No Dots) */}
       <div className="flex items-center mb-1.5 relative z-10">
         <span
-          className={`font-mono text-xs tracking-widest transition-all duration-300 ${
-            isActive
+          className={`font-mono text-xs tracking-widest transition-all duration-300 ${isActive
               ? 'text-[#00A6FF] font-black'
               : 'text-text-tertiary/60 font-semibold group-hover:text-text-secondary'
-          }`}
+            }`}
         >
           {pillar.num}
         </span>
@@ -582,13 +580,11 @@ const TypographicWordBlock = ({
             transition={{
               duration: prefersReducedMotion ? 0 : 0.3,
             }}
-            className={`block uppercase leading-[0.90] transition-colors duration-300 ${
-              pillar.sizeClass || 'text-lg sm:text-xl xl:text-2xl'
-            } ${
-              isActive
+            className={`block uppercase leading-[0.90] transition-colors duration-300 ${pillar.sizeClass || 'text-lg sm:text-xl xl:text-2xl'
+              } ${isActive
                 ? 'font-black text-slate-950 dark:text-white drop-shadow-[0_4px_24px_rgba(0,166,255,0.45)]'
                 : 'font-bold text-text-secondary/45 dark:text-white/35 group-hover:text-text-primary dark:group-hover:text-white/70'
-            }`}
+              }`}
           >
             {line}
           </motion.span>
@@ -670,13 +666,12 @@ const EditorialInfoPanel = ({
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div
               key={i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === activePillar
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === activePillar
                   ? 'w-6 bg-[#00A6FF]'
                   : i < activePillar
-                  ? 'w-2 bg-[#00A6FF]/40'
-                  : 'w-2 bg-border/80 dark:bg-white/15'
-              }`}
+                    ? 'w-2 bg-[#00A6FF]/40'
+                    : 'w-2 bg-border/80 dark:bg-white/15'
+                }`}
             />
           ))}
         </div>
@@ -752,17 +747,15 @@ const MobileEditorialList = ({
             >
               <div className="space-y-1 min-w-0">
                 <span
-                  className={`font-mono text-xs font-bold tracking-widest transition-colors ${
-                    isActive ? 'text-[#00A6FF]' : 'text-text-tertiary'
-                  }`}
+                  className={`font-mono text-xs font-bold tracking-widest transition-colors ${isActive ? 'text-[#00A6FF]' : 'text-text-tertiary'
+                    }`}
                 >
                   {pillar.num}
                 </span>
 
                 <h3
-                  className={`text-base sm:text-lg font-extrabold uppercase tracking-tight transition-colors ${
-                    isActive ? 'text-text-primary dark:text-[#F5F7FA]' : 'text-text-secondary dark:text-[#A7ADB7]'
-                  }`}
+                  className={`text-base sm:text-lg font-extrabold uppercase tracking-tight transition-colors ${isActive ? 'text-text-primary dark:text-[#F5F7FA]' : 'text-text-secondary dark:text-[#A7ADB7]'
+                    }`}
                 >
                   {pillar.title}
                 </h3>
@@ -771,9 +764,8 @@ const MobileEditorialList = ({
               <motion.div
                 animate={{ rotate: isActive ? 90 : 0 }}
                 transition={{ duration: 0.2 }}
-                className={`shrink-0 mt-2 transition-colors ${
-                  isActive ? 'text-[#00A6FF]' : 'text-text-tertiary'
-                }`}
+                className={`shrink-0 mt-2 transition-colors ${isActive ? 'text-[#00A6FF]' : 'text-text-tertiary'
+                  }`}
               >
                 <ArrowRight size={16} />
               </motion.div>
@@ -817,11 +809,10 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.35, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={onHover}
-      className={`group rounded-2xl transition-all duration-300 relative overflow-hidden ${
-        isOpen
+      className={`group rounded-2xl transition-all duration-300 relative overflow-hidden ${isOpen
           ? 'bg-white dark:bg-[#141928] border-2 border-[#00A6FF] shadow-[0_8px_24px_rgba(0,166,255,0.09)] dark:shadow-[0_8px_24px_rgba(0,166,255,0.12)] ring-1 ring-[#00A6FF]/20'
           : 'bg-white dark:bg-[#12141a] border border-border/80 dark:border-white/10 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:shadow-[0_8px_20px_rgba(0,166,255,0.08)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_8px_20px_rgba(0,166,255,0.10)]'
-      }`}
+        }`}
     >
       {/* Animated Left Accent Indicator Bar when open */}
       <AnimatePresence>
@@ -849,20 +840,18 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
               scale: isOpen ? 1.05 : 1
             }}
             transition={{ duration: 0.2 }}
-            className={`font-mono text-xs font-bold px-2.5 py-1 rounded-lg shrink-0 transition-all duration-200 ${
-              isOpen
+            className={`font-mono text-xs font-bold px-2.5 py-1 rounded-lg shrink-0 transition-all duration-200 ${isOpen
                 ? 'bg-[#00A6FF] text-white shadow-[0_0_12px_rgba(0,166,255,0.4)]'
                 : 'bg-black/[0.05] dark:bg-white/10 text-text-tertiary group-hover:bg-[#00A6FF]/15 group-hover:text-[#00A6FF]'
-            }`}
+              }`}
           >
             {faq.num}
           </motion.span>
           <span
-            className={`text-sm sm:text-base font-semibold transition-colors duration-200 leading-snug ${
-              isOpen
+            className={`text-sm sm:text-base font-semibold transition-colors duration-200 leading-snug ${isOpen
                 ? 'text-[#00A6FF] dark:text-[#38BDF8]'
                 : 'text-text-primary dark:text-white/90 group-hover:text-[#00A6FF]'
-            }`}
+              }`}
           >
             {faq.q}
           </span>
@@ -874,11 +863,10 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
             scale: isOpen ? 1.08 : 1
           }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-            isOpen
+          className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${isOpen
               ? 'bg-[#00A6FF]/15 text-[#00A6FF] shadow-xs'
               : 'bg-black/[0.04] dark:bg-white/5 text-text-tertiary group-hover:bg-[#00A6FF]/10 group-hover:text-[#00A6FF]'
-          }`}
+            }`}
         >
           <ChevronDown size={17} />
         </motion.div>
@@ -1308,7 +1296,7 @@ function Careers() {
       />
 
       <div className="min-h-screen bg-[#F7F8FA] dark:bg-[#050505] text-[#111318] dark:text-[#F5F7FA] transition-colors duration-500 relative overflow-hidden">
-        
+
         {/* ── 1. HERO BACKGROUND: CLEAN SPACIOUS EDITORIAL ATMOSPHERE ──────── */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
           {/* Subtle architectural micro-grid */}
@@ -1336,7 +1324,7 @@ function Careers() {
 
           {/* Main Hero Foreground Content */}
           <div className="max-w-[1360px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
-            
+
             {/* Top Eyebrow Pill */}
             <motion.div
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
@@ -1453,7 +1441,7 @@ function Careers() {
           className="py-14 sm:py-18 lg:py-24 border-t border-border/60 dark:border-white/10 bg-slate-50/50 dark:bg-[#0B0E17]/60 relative"
         >
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
+
             <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/20 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2.5">
                 <Briefcase size={12} />
@@ -1558,7 +1546,7 @@ function Careers() {
                             <AnimatePresence>
                               {isExpanded && (
                                 <motion.div
-                                   initial={{ opacity: 0, height: 0 }}
+                                  initial={{ opacity: 0, height: 0 }}
                                   animate={{ opacity: 1, height: 'auto' }}
                                   exit={{ opacity: 0, height: 0 }}
                                   className="overflow-hidden mt-2.5 pt-2.5 border-t border-border/40 dark:border-white/5 space-y-1.5"
@@ -1616,7 +1604,7 @@ function Careers() {
           <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[600px] h-[350px] bg-[#FF6D00]/[0.025] dark:bg-[#FF6D00]/[0.04] rounded-full blur-[130px] pointer-events-none -z-10" />
 
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
+
             {/* ── SECTION HEADER: THE PEOPLE BEHIND THE PROGRESS ── */}
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <motion.div
@@ -1650,10 +1638,10 @@ function Careers() {
             {/* ── ASYMMETRIC EDITORIAL GALLERY COMPOSITION ── */}
             {filteredPhotos.length >= 6 && (
               <div className="flex flex-col gap-6 lg:gap-8">
-                
+
                 {/* Upper Block: Hero Featured Photo (7 cols) + Asymmetric Vertical Stack (5 cols) */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                  
+
                   {/* Photo 01: Hero Featured Image (~55% width desktop) */}
                   <div className="lg:col-span-7">
                     <EditorialGalleryItem
@@ -1699,7 +1687,7 @@ function Careers() {
 
                 {/* Lower Block: The Overlapping Moment (Photo 04) + Photo 05 + Photo 06 */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch relative">
-                  
+
                   {/* Photo 04: RnR Spring Accolades (Positioned without overlap) */}
                   <div className="lg:col-span-4 relative z-10">
                     <EditorialGalleryItem
@@ -1779,7 +1767,7 @@ function Careers() {
 
           {/* ── 1. DESKTOP PINNED SCROLL EXPERIENCE (GSAP SCROLLTRIGGER PIN) ── */}
           <div ref={pillarsDesktopPinRef} className="hidden lg:flex flex-col justify-between relative z-10 max-w-[1360px] mx-auto px-6 lg:px-8 py-2">
-            
+
             {/* Section Header */}
             <div className="max-w-3xl mb-4 xl:mb-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/20 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2">
@@ -1801,7 +1789,7 @@ function Careers() {
 
             {/* 12-Column Asymmetric Poster Grid */}
             <div className="grid grid-cols-12 gap-8 xl:gap-12 items-center relative my-auto">
-              
+
               {/* Left 7 Cols: The Asymmetric Typographic Wall */}
               <div className="col-span-7 relative">
                 {/* Header Annotation */}
@@ -1913,13 +1901,13 @@ function Careers() {
           />
 
           <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
+
             {/* ── 2-COLUMN CORPORATE LAYOUT ── */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-              
+
               {/* ── LEFT COLUMN: FAQ SECTION (lg:col-span-7) ── */}
               <div className="lg:col-span-7 space-y-6">
-                
+
                 {/* FAQ Header */}
                 <motion.div
                   initial={{ opacity: 0, y: 18 }}
@@ -1964,7 +1952,7 @@ function Careers() {
                 className="lg:col-span-5 self-start lg:mt-16 xl:mt-20"
               >
                 <div className="group/card p-6 sm:p-7 xl:p-8 rounded-3xl bg-white dark:bg-[#121622] border border-slate-200/90 dark:border-white/10 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 shadow-[0_10px_30px_rgba(15,23,42,0.04)] hover:shadow-[0_16px_36px_rgba(0,166,255,0.11)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.4)] dark:hover:shadow-[0_16px_36px_rgba(0,166,255,0.14)] relative overflow-hidden transition-all duration-300">
-                  
+
                   {/* Top Gradient Accent Hairline */}
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#FF6D00]" />
 
@@ -2000,7 +1988,7 @@ function Careers() {
 
                   {/* 3 Executive Interactive Contact Tiles */}
                   <div className="space-y-3 relative z-10 mb-6">
-                    
+
                     {/* Email Tile */}
                     <div className="group relative p-3.5 rounded-2xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 transition-all duration-200">
                       <div className="flex items-center justify-between gap-3">

@@ -1,41 +1,60 @@
 import React, { useEffect, useState } from 'react'
-import { Search, Globe, Share2, Twitter, Save, Loader2, LayoutPanelLeft, FileText, Briefcase } from 'lucide-react'
+import { 
+  Search, 
+  Globe, 
+  Share2, 
+  Twitter, 
+  Save, 
+  Loader2, 
+  LayoutPanelLeft, 
+  FileText, 
+  Briefcase,
+  Sparkles,
+  CheckCircle2,
+  AlertCircle,
+  ExternalLink,
+  HelpCircle,
+  Eye,
+  Layers
+} from 'lucide-react'
 import { adminAPI } from '@api'
+import PageHeader from '@components/admin/PageHeader'
+
+const STATIC_PAGES = [
+  { id: 'home', title: 'Home Landing Page' },
+  { id: 'about', title: 'About Us' },
+  { id: 'services', title: 'Services Overview' },
+  { id: 'contact', title: 'Contact Us' },
+  { id: 'careers', title: 'Careers' },
+  { id: 'blog', title: 'Blog Listings' },
+  { id: 'content-syndication', title: 'Content Syndication' },
+  { id: 'bant-lead-generation', title: 'BANT Lead Generation' },
+  { id: 'mql-services', title: 'MQL Services' },
+  { id: 'hql-services', title: 'HQL Services' },
+  { id: 'sql-services', title: 'SQL Services' },
+  { id: 'b2b-appointment-setting', title: 'B2B Appointment Setting' },
+  { id: 'b2b-email-marketing', title: 'B2B Email Marketing' },
+  { id: 'demandflow-bridge', title: 'DemandFlow Bridge' },
+  { id: 'abm', title: 'Account Based Marketing (ABM)' },
+  { id: 'webinar-services', title: 'Webinar Services' },
+  { id: 'lead-nurturing', title: 'Lead Nurturing' },
+  { id: 'demand-generation', title: 'Demand Generation' },
+  { id: 'b2b-list-building', title: 'B2B List Building' },
+  { id: 'database-cleansing', title: 'Database Cleansing' },
+  { id: 'privacy', title: 'Privacy Policy' },
+  { id: 'terms', title: 'Terms & Conditions' },
+  { id: 'cookies', title: 'Cookie Policy' }
+]
 
 const SEO = () => {
   const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [selectedType, setSelectedType] = useState('page')
-  const [selectedId, setSelectedId] = useState('')
+  const [selectedId, setSelectedId] = useState('home')
   const [seoData, setSeoData] = useState(null)
   const [blogs, setBlogs] = useState([])
   const [activeTab, setActiveTab] = useState('basic')
-
-  const STATIC_PAGES = [
-    { id: 'home', title: 'Home Page' },
-    { id: 'about', title: 'About Us' },
-    { id: 'services', title: 'Services Overview' },
-    { id: 'contact', title: 'Contact Us' },
-    { id: 'careers', title: 'Careers' },
-    { id: 'blog', title: 'Blog Overview' },
-    { id: 'content-syndication', title: 'Content Syndication' },
-    { id: 'bant-lead-generation', title: 'BANT Lead Generation' },
-    { id: 'mql-services', title: 'MQL Services' },
-    { id: 'hql-services', title: 'HQL Services' },
-    { id: 'sql-services', title: 'SQL Services' },
-    { id: 'b2b-appointment-setting', title: 'B2B Appointment Setting' },
-    { id: 'b2b-email-marketing', title: 'B2B Email Marketing' },
-    { id: 'demandflow-bridge', title: 'DemandFlow Bridge' },
-    { id: 'abm', title: 'Account Based Marketing (ABM)' },
-    { id: 'webinar-services', title: 'Webinar Services' },
-    { id: 'lead-nurturing', title: 'Lead Nurturing' },
-    { id: 'demand-generation', title: 'Demand Generation' },
-    { id: 'b2b-list-building', title: 'B2B List Building' },
-    { id: 'database-cleansing', title: 'Database Cleansing' },
-    { id: 'privacy', title: 'Privacy Policy' },
-    { id: 'terms', title: 'Terms & Conditions' },
-    { id: 'cookies', title: 'Cookie Policy' }
-  ]
+  const [saveSuccess, setSaveSuccess] = useState(false)
 
   useEffect(() => {
     if (selectedType === 'blog') {
@@ -65,10 +84,32 @@ const SEO = () => {
     try {
       setLoading(true)
       const response = await adminAPI.getSEO(selectedType, selectedId)
-      setSeoData(response.data?.data || response.data || null)
+      setSeoData(response.data?.data || response.data || {
+        meta_title: '',
+        meta_description: '',
+        keywords: '',
+        canonical_url: '',
+        og_title: '',
+        og_description: '',
+        og_image: '',
+        twitter_title: '',
+        twitter_description: '',
+        twitter_image: ''
+      })
     } catch (error) {
       console.error('Failed to fetch SEO data:', error)
-      setSeoData(null)
+      setSeoData({
+        meta_title: '',
+        meta_description: '',
+        keywords: '',
+        canonical_url: '',
+        og_title: '',
+        og_description: '',
+        og_image: '',
+        twitter_title: '',
+        twitter_description: '',
+        twitter_image: ''
+      })
     } finally {
       setLoading(false)
     }
@@ -80,323 +121,367 @@ const SEO = () => {
     try {
       setSaving(true)
       await adminAPI.saveSEO(selectedType, selectedId, seoData || {})
+      setSaveSuccess(true)
+      setTimeout(() => setSaveSuccess(false), 3000)
     } catch (error) {
       console.error('Failed to save SEO data:', error)
+      alert(`Failed to save SEO metadata: ${error.response?.data?.message || error.message}`)
     } finally {
       setSaving(false)
     }
   }
 
   const handleChange = (field, value) => {
-    setSeoData({ ...seoData, [field]: value })
+    setSeoData(prev => ({ ...prev, [field]: value }))
   }
 
+  const currentTitle = seoData?.meta_title || (selectedType === 'page' ? STATIC_PAGES.find(p => p.id === selectedId)?.title : selectedId) || 'Taraj Global Solutions'
+  const currentDesc = seoData?.meta_description || 'High-performance B2B demand generation and pipeline acceleration solutions.'
+
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">SEO Management</h1>
-          <p className="text-text-secondary">Optimize how your pages appear on search engines and social media.</p>
+    <div className="space-y-6 max-w-7xl mx-auto pb-12">
+      <PageHeader
+        title="SEO Metadata & OpenGraph Engine"
+        subtitle="Configure search engine indexing rules, social metadata tags, and preview live SERP snippets."
+        breadcrumbs={[{ label: 'SEO Metadata' }]}
+        actions={
+          <button
+            onClick={handleSave}
+            disabled={saving || !selectedId}
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+          >
+            {saving ? <><Loader2 className="w-4 h-4 animate-spin" /> Saving Tags...</> : <><Save className="w-4 h-4" /> Save Metadata</>}
+          </button>
+        }
+      />
+
+      {saveSuccess && (
+        <div className="p-4 rounded-xl bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669] text-xs font-semibold flex items-center gap-2 animate-slide-down">
+          <CheckCircle2 className="w-4 h-4" />
+          <span>SEO Metadata successfully saved and published!</span>
         </div>
-      </div>
+      )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Left Column: Content Selector */}
+        <div className="lg:col-span-4 space-y-4">
+          <div className="admin-card p-5 space-y-4">
+            <h3 className="text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider flex items-center gap-2">
+              <Search className="w-4 h-4 text-[var(--admin-primary)]" />
+              <span>Target Content</span>
+            </h3>
 
-        {/* Left Column: Entity Selector */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="bg-surface rounded-2xl border border-border overflow-hidden shadow-sm">
-            <div className="p-5 border-b border-border bg-background/50">
-              <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
-                <Search className="w-5 h-5 text-primary" />
-                Select Content
-              </h3>
-              <p className="text-sm text-text-muted mt-1">Choose a page or post to edit its SEO.</p>
+            {/* Content Type Selector */}
+            <div className="grid grid-cols-3 gap-1.5 p-1 bg-[var(--admin-bg-elevated)] rounded-xl border border-[var(--admin-border-subtle)]">
+              <button
+                onClick={() => { setSelectedType('page'); setSelectedId('home'); }}
+                className={`py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
+                  selectedType === 'page' ? 'bg-[var(--admin-primary)] text-white' : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+                }`}
+              >
+                <LayoutPanelLeft className="w-3.5 h-3.5" />
+                <span>Pages</span>
+              </button>
+              <button
+                onClick={() => { setSelectedType('blog'); setSelectedId(blogs[0]?.id || ''); }}
+                className={`py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
+                  selectedType === 'blog' ? 'bg-[var(--admin-primary)] text-white' : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+                }`}
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Blogs</span>
+              </button>
+              <button
+                onClick={() => { setSelectedType('job'); setSelectedId(''); }}
+                className={`py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
+                  selectedType === 'job' ? 'bg-[var(--admin-primary)] text-white' : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+                }`}
+              >
+                <Briefcase className="w-3.5 h-3.5" />
+                <span>Jobs</span>
+              </button>
             </div>
 
-            <div className="p-5 space-y-5">
-              {/* Content Type Selector (Pills) */}
-              <div>
-                <label className="block text-sm font-semibold text-text-secondary mb-3">Content Type</label>
-                <div className="flex bg-background border border-border p-1 rounded-xl">
-                  <button
-                    onClick={() => { setSelectedType('page'); setSelectedId(''); }}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 text-sm font-medium rounded-lg transition-all ${selectedType === 'page' ? 'bg-primary text-white shadow-md' : 'text-text-secondary hover:bg-surface'}`}
-                  >
-                    <LayoutPanelLeft className="w-4 h-4" /> Pages
-                  </button>
-                  <button
-                    onClick={() => { setSelectedType('blog'); setSelectedId(''); }}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 text-sm font-medium rounded-lg transition-all ${selectedType === 'blog' ? 'bg-primary text-white shadow-md' : 'text-text-secondary hover:bg-surface'}`}
-                  >
-                    <FileText className="w-4 h-4" /> Blogs
-                  </button>
-                  <button
-                    onClick={() => { setSelectedType('job'); setSelectedId(''); }}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 text-sm font-medium rounded-lg transition-all ${selectedType === 'job' ? 'bg-primary text-white shadow-md' : 'text-text-secondary hover:bg-surface'}`}
-                  >
-                    <Briefcase className="w-4 h-4" /> Jobs
-                  </button>
-                </div>
-              </div>
-
-              {/* Item Selector */}
-              <div>
-                <label className="block text-sm font-semibold text-text-secondary mb-3">
-                  Select {selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}
-                </label>
+            {/* Target Select Dropdown */}
+            <div>
+              <label className="block text-xs font-bold text-[var(--admin-text-muted)] uppercase tracking-wider mb-1.5">
+                Select Route / Item
+              </label>
+              {selectedType === 'page' && (
                 <select
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none cursor-pointer"
-                  style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%236b7280\'%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M19 9l-7 7-7-7\'%3E%3C/path%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}
+                  className="admin-select text-xs font-medium"
                 >
-                  <option value="" disabled>Choose a {selectedType}...</option>
-                  {selectedType === 'page' ? (
-                    STATIC_PAGES.map((page) => (
-                      <option key={page.id} value={page.id}>{page.title}</option>
-                    ))
-                  ) : selectedType === 'blog' ? (
-                    blogs.map((blog) => (
-                      <option key={blog.id} value={blog.id}>{blog.title}</option>
-                    ))
-                  ) : (
-                    <option value="" disabled>Coming soon...</option>
-                  )}
+                  {STATIC_PAGES.map((p) => (
+                    <option key={p.id} value={p.id}>{p.title} (/{p.id === 'home' ? '' : p.id})</option>
+                  ))}
                 </select>
-              </div>
-
-              {selectedId && (
-                <button
-                  onClick={handleSave}
-                  disabled={saving || loading}
-                  className="w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary-dark transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30"
-                >
-                  {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-                  {saving ? 'Saving Changes...' : 'Save SEO Data'}
-                </button>
               )}
+
+              {selectedType === 'blog' && (
+                <select
+                  value={selectedId}
+                  onChange={(e) => setSelectedId(e.target.value)}
+                  className="admin-select text-xs font-medium"
+                >
+                  <option value="">Select a blog post...</option>
+                  {blogs.map((b) => (
+                    <option key={b.id} value={b.id}>{b.title}</option>
+                  ))}
+                </select>
+              )}
+
+              {selectedType === 'job' && (
+                <input
+                  type="text"
+                  placeholder="Enter Job ID..."
+                  value={selectedId}
+                  onChange={(e) => setSelectedId(e.target.value)}
+                  className="admin-input text-xs"
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Live Search Engine Preview Snippet */}
+          <div className="admin-card p-5 space-y-3">
+            <h4 className="text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider flex items-center gap-1.5">
+              <Eye className="w-4 h-4 text-[#72D669]" />
+              <span>Google SERP Preview</span>
+            </h4>
+
+            <div className="p-4 rounded-xl bg-white dark:bg-[#0d121f] border border-slate-200 dark:border-white/10 space-y-1 text-left">
+              <div className="flex items-center gap-1.5 text-[11px] text-[#202124] dark:text-[#bdc1c6] truncate">
+                <span className="font-medium">tarajglobal.com</span>
+                <span className="text-[10px]">›</span>
+                <span className="text-slate-500 dark:text-slate-400 font-mono">
+                  {selectedType === 'page' ? (selectedId === 'home' ? '' : selectedId) : selectedType}
+                </span>
+              </div>
+              <h5 className="text-sm font-semibold text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer leading-tight truncate">
+                {currentTitle} | Taraj Global Solutions
+              </h5>
+              <p className="text-xs text-[#4d5156] dark:text-[#bdc1c6] line-clamp-2 leading-relaxed">
+                {currentDesc}
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Right Column: SEO Form & Previews */}
-        <div className="lg:col-span-8">
-          {!selectedId ? (
-            <div className="bg-surface rounded-2xl border border-border p-16 text-center shadow-sm h-full flex flex-col items-center justify-center min-h-[400px]">
-              <div className="w-20 h-20 bg-background rounded-full flex items-center justify-center border border-border shadow-inner mb-6">
-                <Globe className="w-10 h-10 text-primary/40" />
-              </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2">No Content Selected</h3>
-              <p className="text-text-muted max-w-sm mx-auto">Please select a page, blog post, or job from the left sidebar to start managing its SEO metadata.</p>
-            </div>
-          ) : loading ? (
-            <div className="bg-surface rounded-2xl border border-border p-16 text-center shadow-sm h-full flex flex-col items-center justify-center min-h-[400px]">
-              <Loader2 className="w-10 h-10 text-primary mx-auto mb-4 animate-spin" />
-              <p className="text-text-secondary font-medium">Fetching SEO data...</p>
-            </div>
-          ) : (
-            <div className="space-y-6">
+        {/* Right Column: SEO Editor Tabs */}
+        <div className="lg:col-span-8 space-y-6">
+          <div className="admin-card overflow-hidden">
+            {/* Tab Bar */}
+            <div className="flex items-center border-b border-[var(--admin-border-subtle)] bg-[var(--admin-bg-elevated)] px-4">
+              <button
+                onClick={() => setActiveTab('basic')}
+                className={`py-3.5 px-4 text-xs font-bold border-b-2 transition-colors flex items-center gap-2 ${
+                  activeTab === 'basic'
+                    ? 'border-[#00A6FF] text-[#00A6FF]'
+                    : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+                }`}
+              >
+                <Globe className="w-4 h-4" />
+                <span>Search Engine Meta</span>
+              </button>
 
-              {/* Google Search Preview */}
-              <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-sm">
-                <div className="bg-background/50 px-5 py-3 border-b border-border flex items-center gap-2">
-                  <Search className="w-4 h-4 text-text-secondary" />
-                  <span className="text-sm font-semibold text-text-secondary uppercase tracking-wider">Search Engine Preview</span>
-                </div>
-                <div className="p-6">
-                  <div className="flex flex-col max-w-[600px]">
-                    <span className="text-[#202124] text-[14px] leading-[1.3] font-normal font-sans flex items-center gap-1">
-                      {seoData?.canonical_url || 'https://tarajglobal.com'} <span className="text-[#5f6368] text-[12px]">▼</span>
-                    </span>
-                    <span className="text-[#1a0dab] text-[20px] leading-[1.3] font-medium font-sans mt-1 hover:underline cursor-pointer truncate">
-                      {seoData?.meta_title || 'Your Page Title | Taraj Global'}
-                    </span>
-                    <span className="text-[#4d5156] text-[14px] leading-[1.58] font-sans mt-1 line-clamp-2">
-                      {seoData?.meta_description || 'Provide a compelling description that encourages users to click. Keep it under 160 characters for best results on search engines.'}
-                    </span>
+              <button
+                onClick={() => setActiveTab('og')}
+                className={`py-3.5 px-4 text-xs font-bold border-b-2 transition-colors flex items-center gap-2 ${
+                  activeTab === 'og'
+                    ? 'border-[#00A6FF] text-[#00A6FF]'
+                    : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+                }`}
+              >
+                <Share2 className="w-4 h-4" />
+                <span>Open Graph (FB / LinkedIn)</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('twitter')}
+                className={`py-3.5 px-4 text-xs font-bold border-b-2 transition-colors flex items-center gap-2 ${
+                  activeTab === 'twitter'
+                    ? 'border-[#00A6FF] text-[#00A6FF]'
+                    : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
+                }`}
+              >
+                <Twitter className="w-4 h-4" />
+                <span>Twitter Card</span>
+              </button>
+            </div>
+
+            <div className="p-6 space-y-5">
+              {activeTab === 'basic' && (
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
+                        Meta Title Tag
+                      </label>
+                      <span className={`text-[11px] font-mono ${
+                        (seoData?.meta_title?.length || 0) > 60 ? 'text-[#FFA600]' : 'text-[var(--admin-text-muted)]'
+                      }`}>
+                        {seoData?.meta_title?.length || 0}/60 chars
+                      </span>
+                    </div>
+                    <input
+                      type="text"
+                      value={seoData?.meta_title || ''}
+                      onChange={(e) => handleChange('meta_title', e.target.value)}
+                      placeholder="e.g., Enterprise B2B Lead Generation & ABM Pipeline Services"
+                      className="admin-input"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
+                        Meta Description Tag
+                      </label>
+                      <span className={`text-[11px] font-mono ${
+                        (seoData?.meta_description?.length || 0) > 160 ? 'text-[#FFA600]' : 'text-[var(--admin-text-muted)]'
+                      }`}>
+                        {seoData?.meta_description?.length || 0}/160 chars
+                      </span>
+                    </div>
+                    <textarea
+                      value={seoData?.meta_description || ''}
+                      onChange={(e) => handleChange('meta_description', e.target.value)}
+                      rows={3}
+                      placeholder="e.g., Accelerate qualified revenue pipeline with high-conversion MQL, SQL, and ABM campaign syndication from Taraj Global Solutions."
+                      className="admin-input resize-none text-xs leading-relaxed"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                        Target Keywords
+                      </label>
+                      <input
+                        type="text"
+                        value={seoData?.keywords || ''}
+                        onChange={(e) => handleChange('keywords', e.target.value)}
+                        placeholder="b2b lead gen, abm, demand generation"
+                        className="admin-input text-xs"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                        Canonical URL
+                      </label>
+                      <input
+                        type="url"
+                        value={seoData?.canonical_url || ''}
+                        onChange={(e) => handleChange('canonical_url', e.target.value)}
+                        placeholder="https://tarajglobal.com/..."
+                        className="admin-input text-xs font-mono"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
-              {/* Editor Tabs */}
-              <div className="bg-surface rounded-2xl border border-border shadow-sm overflow-hidden">
-                <div className="flex items-center border-b border-border bg-background/50 px-2 pt-2">
-                  <button
-                    onClick={() => setActiveTab('basic')}
-                    className={`px-6 py-3 text-sm font-semibold border-b-2 transition-all flex items-center gap-2 ${activeTab === 'basic' ? 'border-primary text-primary bg-surface' : 'border-transparent text-text-secondary hover:text-text-primary hover:bg-background'}`}
-                  >
-                    <Globe className="w-4 h-4" /> Basic SEO
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('social')}
-                    className={`px-6 py-3 text-sm font-semibold border-b-2 transition-all flex items-center gap-2 ${activeTab === 'social' ? 'border-primary text-primary bg-surface' : 'border-transparent text-text-secondary hover:text-text-primary hover:bg-background'}`}
-                  >
-                    <Share2 className="w-4 h-4" /> Social Media Tags
-                  </button>
+              {activeTab === 'og' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      OpenGraph Title (og:title)
+                    </label>
+                    <input
+                      type="text"
+                      value={seoData?.og_title || ''}
+                      onChange={(e) => handleChange('og_title', e.target.value)}
+                      placeholder="Title for social media embeds"
+                      className="admin-input"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      OpenGraph Description (og:description)
+                    </label>
+                    <textarea
+                      value={seoData?.og_description || ''}
+                      onChange={(e) => handleChange('og_description', e.target.value)}
+                      rows={3}
+                      placeholder="Social share summary description..."
+                      className="admin-input resize-none text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      OpenGraph Banner Image URL (og:image)
+                    </label>
+                    <input
+                      type="url"
+                      value={seoData?.og_image || ''}
+                      onChange={(e) => handleChange('og_image', e.target.value)}
+                      placeholder="https://tarajglobal.com/assets/og-image.jpg"
+                      className="admin-input text-xs font-mono"
+                    />
+                  </div>
                 </div>
+              )}
 
-                <div className="p-6">
-                  {/* Basic SEO Tab */}
-                  {activeTab === 'basic' && (
-                    <div className="space-y-5 animate-in fade-in slide-in-from-bottom-2 duration-300">
-                      <div>
-                        <div className="flex justify-between mb-2">
-                          <label className="text-sm font-semibold text-text-primary">Meta Title</label>
-                          <span className={`text-xs font-medium ${(seoData?.meta_title?.length || 0) > 60 ? 'text-red-500' : 'text-text-muted'}`}>
-                            {(seoData?.meta_title || '').length} / 60
-                          </span>
-                        </div>
-                        <input
-                          type="text"
-                          value={seoData?.meta_title || ''}
-                          onChange={(e) => handleChange('meta_title', e.target.value)}
-                          placeholder="e.g. B2B Lead Generation Services | Taraj Global"
-                          className="w-full px-4 py-3 bg-background border border-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                        />
-                      </div>
+              {activeTab === 'twitter' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      Twitter Card Title
+                    </label>
+                    <input
+                      type="text"
+                      value={seoData?.twitter_title || ''}
+                      onChange={(e) => handleChange('twitter_title', e.target.value)}
+                      placeholder="Twitter card headline"
+                      className="admin-input"
+                    />
+                  </div>
 
-                      <div>
-                        <div className="flex justify-between mb-2">
-                          <label className="text-sm font-semibold text-text-primary">Meta Description</label>
-                          <span className={`text-xs font-medium ${(seoData?.meta_description?.length || 0) > 160 ? 'text-red-500' : 'text-text-muted'}`}>
-                            {(seoData?.meta_description || '').length} / 160
-                          </span>
-                        </div>
-                        <textarea
-                          value={seoData?.meta_description || ''}
-                          onChange={(e) => handleChange('meta_description', e.target.value)}
-                          placeholder="Write a brief, engaging summary of this page..."
-                          rows={3}
-                          className="w-full px-4 py-3 bg-background border border-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
-                        />
-                      </div>
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      Twitter Card Description
+                    </label>
+                    <textarea
+                      value={seoData?.twitter_description || ''}
+                      onChange={(e) => handleChange('twitter_description', e.target.value)}
+                      rows={3}
+                      placeholder="Twitter card summary..."
+                      className="admin-input resize-none text-xs"
+                    />
+                  </div>
 
-                      <div>
-                        <label className="block text-sm font-semibold text-text-primary mb-2">Target Keywords</label>
-                        <input
-                          type="text"
-                          value={seoData?.meta_keywords || ''}
-                          onChange={(e) => handleChange('meta_keywords', e.target.value)}
-                          placeholder="e.g. b2b marketing, lead generation, abm (comma separated)"
-                          className="w-full px-4 py-3 bg-background border border-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                        />
-                        <p className="text-xs text-text-muted mt-2">Keywords are less important today, but still help define page topic.</p>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 border-t border-border">
-                        <div>
-                          <label className="block text-sm font-semibold text-text-primary mb-2">Canonical URL</label>
-                          <input
-                            type="url"
-                            value={seoData?.canonical_url || ''}
-                            onChange={(e) => handleChange('canonical_url', e.target.value)}
-                            placeholder="https://tarajglobal.com/page-slug"
-                            className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary transition-all text-sm"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-text-primary mb-2">Robots Tag</label>
-                          <input
-                            type="text"
-                            value={seoData?.robots || ''}
-                            onChange={(e) => handleChange('robots', e.target.value)}
-                            placeholder="index, follow"
-                            className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary transition-all text-sm"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Social Media Tab */}
-                  {activeTab === 'social' && (
-                    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
-
-                      {/* Facebook / LinkedIn (Open Graph) */}
-                      <div>
-                        <h4 className="text-sm font-bold text-[#1877F2] uppercase tracking-wider mb-4 flex items-center gap-2">
-                          <Share2 className="w-4 h-4" /> Facebook & LinkedIn (Open Graph)
-                        </h4>
-                        <div className="space-y-4 bg-background/50 p-5 rounded-xl border border-border">
-                          <div>
-                            <label className="block text-sm font-semibold text-text-primary mb-2">OG Title</label>
-                            <input
-                              type="text"
-                              value={seoData?.og_title || ''}
-                              onChange={(e) => handleChange('og_title', e.target.value)}
-                              placeholder="Title for social sharing (leave empty to use Meta Title)"
-                              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-[#1877F2]/50 transition-all text-sm"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-semibold text-text-primary mb-2">OG Description</label>
-                            <textarea
-                              value={seoData?.og_description || ''}
-                              onChange={(e) => handleChange('og_description', e.target.value)}
-                              placeholder="Description for social sharing (leave empty to use Meta Description)"
-                              rows={2}
-                              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-[#1877F2]/50 transition-all resize-none text-sm"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-semibold text-text-primary mb-2">OG Image URL</label>
-                            <input
-                              type="url"
-                              value={seoData?.og_image || ''}
-                              onChange={(e) => handleChange('og_image', e.target.value)}
-                              placeholder="https://tarajglobal.com/social-banner.jpg"
-                              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-[#1877F2]/50 transition-all text-sm"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Twitter */}
-                      <div>
-                        <h4 className="text-sm font-bold text-[#1DA1F2] uppercase tracking-wider mb-4 flex items-center gap-2">
-                          <Twitter className="w-4 h-4" /> Twitter Card
-                        </h4>
-                        <div className="space-y-4 bg-background/50 p-5 rounded-xl border border-border">
-                          <div>
-                            <label className="block text-sm font-semibold text-text-primary mb-2">Twitter Title</label>
-                            <input
-                              type="text"
-                              value={seoData?.twitter_title || ''}
-                              onChange={(e) => handleChange('twitter_title', e.target.value)}
-                              placeholder="Title for Twitter (leave empty to use OG Title)"
-                              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-[#1DA1F2]/50 transition-all text-sm"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-semibold text-text-primary mb-2">Twitter Description</label>
-                            <textarea
-                              value={seoData?.twitter_description || ''}
-                              onChange={(e) => handleChange('twitter_description', e.target.value)}
-                              placeholder="Description for Twitter (leave empty to use OG Description)"
-                              rows={2}
-                              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-[#1DA1F2]/50 transition-all resize-none text-sm"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-semibold text-text-primary mb-2">Twitter Image URL</label>
-                            <input
-                              type="url"
-                              value={seoData?.twitter_image || ''}
-                              onChange={(e) => handleChange('twitter_image', e.target.value)}
-                              placeholder="https://tarajglobal.com/twitter-banner.jpg"
-                              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-[#1DA1F2]/50 transition-all text-sm"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                  )}
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      Twitter Card Image URL
+                    </label>
+                    <input
+                      type="url"
+                      value={seoData?.twitter_image || ''}
+                      onChange={(e) => handleChange('twitter_image', e.target.value)}
+                      placeholder="https://..."
+                      className="admin-input text-xs font-mono"
+                    />
+                  </div>
                 </div>
-              </div>
-
+              )}
             </div>
-          )}
+
+            {/* Bottom Save Bar */}
+            <div className="p-4 bg-[var(--admin-bg-surface)] border-t border-[var(--admin-border-subtle)] flex items-center justify-end">
+              <button
+                onClick={handleSave}
+                disabled={saving || !selectedId}
+                className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+              >
+                {saving ? <><Loader2 className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save SEO Configuration</>}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

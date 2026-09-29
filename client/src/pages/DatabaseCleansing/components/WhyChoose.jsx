@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import {
   ShieldCheck,
-  RefreshCw,
-  Trash2,
+  UserPlus,
+  GitMerge,
   Phone,
-  CheckCircle2,
+  FolderSync,
   Star,
 } from 'lucide-react'
 
@@ -23,7 +23,7 @@ const PILLARS = [
     num: '02',
     title: 'Job Change Interception',
     desc: 'Detect departed contacts and track former champions to their new companies, turning turnover into qualified pipeline.',
-    icon: RefreshCw,
+    icon: UserPlus,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
@@ -31,7 +31,7 @@ const PILLARS = [
     num: '03',
     title: 'Intelligent Deduplication',
     desc: 'Advanced fuzzy-matching merges duplicate records across leads and accounts while preserving complete sales activity logs.',
-    icon: Trash2,
+    icon: GitMerge,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
@@ -47,7 +47,7 @@ const PILLARS = [
     num: '05',
     title: 'Native Bi-Directional Sync',
     desc: 'Seamless direct synchronization with Salesforce, HubSpot, and Marketo to automate continuous hygiene with zero manual export.',
-    icon: CheckCircle2,
+    icon: FolderSync,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },

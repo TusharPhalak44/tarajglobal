@@ -44,10 +44,10 @@ const BlogListings = () => {
 
   return (
     <div className="bg-background text-text-primary transition-colors duration-300">
-      
+
       {/* ── 1. PROFESSIONAL EDITORIAL HERO SECTION ────────────────────── */}
       <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden border-b border-slate-200/80 dark:border-white/5 bg-gradient-to-b from-slate-50/60 via-background to-background">
-        
+
         {/* Subtle Ambient Background Glow */}
         <div
           className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-[#00A6FF]/15 via-[#00E5FF]/10 to-transparent rounded-full blur-3xl pointer-events-none"
@@ -56,7 +56,7 @@ const BlogListings = () => {
 
         <Container>
           <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
-            
+
             {/* Professional Category Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -138,7 +138,7 @@ const BlogListings = () => {
       {/* ── 2. UNIFORM ARTICLES GRID SECTION ─────────────────────────── */}
       <section id="articles-grid" className="py-14 lg:py-20 scroll-mt-20">
         <Container>
-          
+
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-5 border-b border-slate-200/80 dark:border-white/5">
             <div>

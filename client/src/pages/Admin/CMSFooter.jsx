@@ -1,9 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import { Plus, Edit, Trash2, Save, X, AlertCircle } from 'lucide-react'
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  Save,
+  X,
+  AlertCircle,
+  CheckCircle,
+  Link2,
+  Share2,
+  ExternalLink,
+  Layers,
+  Globe,
+  Sliders
+} from 'lucide-react'
 import { adminAPI } from '@api'
+import PageHeader from '@components/admin/PageHeader'
+import StatusBadge from '@components/admin/StatusBadge'
+import EmptyState from '@components/admin/EmptyState'
+import LoadingSkeleton from '@components/admin/LoadingSkeleton'
+import ConfirmModal from '@components/admin/ConfirmModal'
 
 const CMSFooter = () => {
   const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState('links')
   const [footerLinks, setFooterLinks] = useState([])
   const [footerSocialLinks, setFooterSocialLinks] = useState([])
   const [editingLink, setEditingLink] = useState(null)
@@ -12,6 +32,7 @@ const CMSFooter = () => {
   const [showSocialModal, setShowSocialModal] = useState(false)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState({ type: '', text: '' })
+  const [deleteConfirm, setDeleteConfirm] = useState({ open: false, type: 'link', id: null, title: '' })
 
   useEffect(() => {
     fetchFooterData()
@@ -20,16 +41,13 @@ const CMSFooter = () => {
   const fetchFooterData = async () => {
     try {
       setLoading(true)
-      console.log('Fetching footer data...')
       const [linksRes, socialRes] = await Promise.all([
         adminAPI.getCMSFooterLinks(),
         adminAPI.getCMSFooterSocialLinks()
       ])
-      console.log('Footer data received:', { links: linksRes.data, social: socialRes.data })
       
-      // Ensure data is always an array
-      const linksData = Array.isArray(linksRes.data) ? linksRes.data : []
-      const socialData = Array.isArray(socialRes.data) ? socialRes.data : []
+      const linksData = Array.isArray(linksRes.data) ? linksRes.data : (linksRes.data?.data || [])
+      const socialData = Array.isArray(socialRes.data) ? socialRes.data : (socialRes.data?.data || [])
       
       setFooterLinks(linksData)
       setFooterSocialLinks(socialData)
@@ -37,7 +55,6 @@ const CMSFooter = () => {
       console.error('Failed to fetch footer data:', error)
       const errorMessage = error.response?.data?.message || error.message || 'Failed to load footer data'
       setMessage({ type: 'error', text: errorMessage })
-      // Set empty arrays on error to prevent map errors
       setFooterLinks([])
       setFooterSocialLinks([])
     } finally {
@@ -47,463 +64,570 @@ const CMSFooter = () => {
 
   const showMessage = (type, text) => {
     setMessage({ type, text })
-    setTimeout(() => setMessage({ type: '', text: '' }), 3000)
+    setTimeout(() => setMessage({ type: '', text: '' }), 4000)
   }
 
+  // --- Link Handlers ---
   const handleAddLink = () => {
-    setEditingLink({ section: 'Useful Links', title: '', url: '', display_order: footerLinks.length, is_active: true })
+    setEditingLink({ section: 'Useful Links', title: '', url: '', display_order: footerLinks.length + 1, is_active: true })
     setShowLinkModal(true)
   }
 
   const handleEditLink = (item) => {
-    setEditingLink({ ...item })
+    setEditingLink({ ...item, is_active: item.is_active === 1 || item.is_active === true })
     setShowLinkModal(true)
   }
 
-  const handleSaveLink = async () => {
+  const handleSaveLink = async (e) => {
+    e?.preventDefault()
+    if (!editingLink.title?.trim() || !editingLink.url?.trim()) {
+      showMessage('error', 'Link title and URL are required')
+      return
+    }
+
     try {
       setSaving(true)
-      
-      // Validate required fields
-      if (!editingLink.title || !editingLink.url) {
-        showMessage('error', 'Title and URL are required')
-        setSaving(false)
-        return
+      const payload = {
+        section: editingLink.section || 'Useful Links',
+        title: editingLink.title.trim(),
+        url: editingLink.url.trim(),
+        display_order: Number(editingLink.display_order) || 0,
+        is_active: editingLink.is_active ? 1 : 0
       }
 
       if (editingLink.id) {
-        await adminAPI.updateCMSFooterLink(editingLink.id, editingLink)
-        showMessage('success', 'Footer link updated successfully')
+        await adminAPI.updateCMSFooterLink(editingLink.id, payload)
+        showMessage('success', `Footer link "${payload.title}" updated`)
       } else {
-        await adminAPI.createCMSFooterLink(editingLink)
-        showMessage('success', 'Footer link created successfully')
+        await adminAPI.createCMSFooterLink(payload)
+        showMessage('success', `Footer link "${payload.title}" created`)
       }
       setShowLinkModal(false)
       setEditingLink(null)
       fetchFooterData()
     } catch (error) {
       console.error('Failed to save footer link:', error)
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to save footer link'
-      showMessage('error', errorMessage)
+      showMessage('error', error.response?.data?.message || 'Failed to save footer link')
     } finally {
       setSaving(false)
     }
   }
 
-  const handleDeleteLink = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this footer link?')) return
-    
-    try {
-      await adminAPI.deleteCMSFooterLink(id)
-      showMessage('success', 'Footer link deleted successfully')
-      fetchFooterData()
-    } catch (error) {
-      console.error('Failed to delete footer link:', error)
-      showMessage('error', 'Failed to delete footer link')
-    }
-  }
-
+  // --- Social Handlers ---
   const handleAddSocial = () => {
-    setEditingSocial({ platform: '', icon: '', url: '', display_order: footerSocialLinks.length, is_active: true })
+    setEditingSocial({ platform: '', icon: 'bi-globe', url: '', display_order: footerSocialLinks.length + 1, is_active: true })
     setShowSocialModal(true)
   }
 
   const handleEditSocial = (item) => {
-    setEditingSocial({ ...item })
+    setEditingSocial({ ...item, is_active: item.is_active === 1 || item.is_active === true })
     setShowSocialModal(true)
   }
 
-  const handleSaveSocial = async () => {
+  const handleSaveSocial = async (e) => {
+    e?.preventDefault()
+    if (!editingSocial.platform?.trim() || !editingSocial.url?.trim()) {
+      showMessage('error', 'Platform and URL are required')
+      return
+    }
+
     try {
       setSaving(true)
-      
-      // Validate required fields
-      if (!editingSocial.platform || !editingSocial.icon || !editingSocial.url) {
-        showMessage('error', 'Platform, Icon, and URL are required')
-        setSaving(false)
-        return
+      const payload = {
+        platform: editingSocial.platform.trim(),
+        icon: editingSocial.icon?.trim() || 'bi-globe',
+        url: editingSocial.url.trim(),
+        display_order: Number(editingSocial.display_order) || 0,
+        is_active: editingSocial.is_active ? 1 : 0
       }
 
       if (editingSocial.id) {
-        await adminAPI.updateCMSFooterSocialLink(editingSocial.id, editingSocial)
-        showMessage('success', 'Social link updated successfully')
+        await adminAPI.updateCMSFooterSocialLink(editingSocial.id, payload)
+        showMessage('success', `Social link "${payload.platform}" updated`)
       } else {
-        await adminAPI.createCMSFooterSocialLink(editingSocial)
-        showMessage('success', 'Social link created successfully')
+        await adminAPI.createCMSFooterSocialLink(payload)
+        showMessage('success', `Social link "${payload.platform}" created`)
       }
       setShowSocialModal(false)
       setEditingSocial(null)
       fetchFooterData()
     } catch (error) {
       console.error('Failed to save social link:', error)
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to save social link'
-      showMessage('error', errorMessage)
+      showMessage('error', error.response?.data?.message || 'Failed to save social link')
     } finally {
       setSaving(false)
     }
   }
 
-  const handleDeleteSocial = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this social link?')) return
-    
+  const executeDelete = async () => {
+    if (!deleteConfirm.id) return
     try {
-      await adminAPI.deleteCMSFooterSocialLink(id)
-      showMessage('success', 'Social link deleted successfully')
+      if (deleteConfirm.type === 'link') {
+        await adminAPI.deleteCMSFooterLink(deleteConfirm.id)
+        showMessage('success', `Footer link "${deleteConfirm.title}" removed`)
+      } else {
+        await adminAPI.deleteCMSFooterSocialLink(deleteConfirm.id)
+        showMessage('success', `Social link "${deleteConfirm.title}" removed`)
+      }
+      setDeleteConfirm({ open: false, type: 'link', id: null, title: '' })
       fetchFooterData()
     } catch (error) {
-      console.error('Failed to delete social link:', error)
-      showMessage('error', 'Failed to delete social link')
+      console.error('Delete error:', error)
+      showMessage('error', 'Failed to delete item')
     }
   }
 
   if (loading) {
-    return <div className="flex items-center justify-center h-64 text-text-muted">Loading...</div>
+    return (
+      <div className="space-y-6">
+        <PageHeader title="Footer Architecture CMS" subtitle="Configure footer columns, directory paths, and social channel endpoints" />
+        <LoadingSkeleton type="table" rows={6} />
+      </div>
+    )
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto pb-16">
+      <PageHeader
+        title="Footer Architecture CMS"
+        subtitle="Manage website footer directory columns, internal links, and social channel endpoints"
+        badge="Footer Engine"
+        actions={[
+          {
+            label: activeTab === 'links' ? 'Add Footer Link' : 'Add Social Channel',
+            icon: Plus,
+            onClick: activeTab === 'links' ? handleAddLink : handleAddSocial,
+            variant: 'primary'
+          }
+        ]}
+      />
+
       {message.text && (
-        <div className={`p-4 rounded-lg ${message.type === 'success' ? 'bg-green-500/10 text-green-400' : 'bg-error/10 text-error'}`}>
-          {message.text}
+        <div
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+            message.type === 'success'
+              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+              : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+          }`}
+        >
+          {message.type === 'success' ? <CheckCircle className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
+          <span>{message.text}</span>
         </div>
       )}
 
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">Footer</h1>
-          <p className="text-text-secondary">Manage footer links and social media</p>
-        </div>
+      {/* Tabs */}
+      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-x-auto pb-0.5">
+        <button
+          onClick={() => setActiveTab('links')}
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
+            activeTab === 'links'
+              ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
+              : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
+          }`}
+        >
+          <Link2 className="w-4 h-4" />
+          <span>Footer Directory Links ({footerLinks.length})</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('social')}
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
+            activeTab === 'social'
+              ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
+              : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
+          }`}
+        >
+          <Share2 className="w-4 h-4" />
+          <span>Social Endpoints ({footerSocialLinks.length})</span>
+        </button>
       </div>
 
-      {/* Footer Links Section */}
-      <div className="bg-surface rounded-xl border border-border p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-text-primary">Footer Links</h2>
-          <button 
-            onClick={handleAddLink}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            Add Link
-          </button>
-        </div>
+      {/* TAB 1: Links */}
+      {activeTab === 'links' && (
+        <div className="admin-card overflow-hidden">
+          <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
+            <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+              <Layers className="w-4 h-4 text-primary" />
+              Directory Navigation Links ({footerLinks.length})
+            </h3>
+            <button onClick={handleAddLink} className="admin-btn-primary text-xs flex items-center gap-2">
+              <Plus className="w-3.5 h-3.5" />
+              Add Link
+            </button>
+          </div>
 
-        <div className="bg-background rounded-lg border border-border overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Section</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Title</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">URL</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Order</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Status</th>
-                <th className="px-4 py-3 text-right text-sm font-medium text-text-secondary">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {footerLinks.map((item) => (
-                <tr key={item.id} className="border-b border-border hover:bg-surface/50">
-                  <td className="px-4 py-3 text-text-secondary">{item.section}</td>
-                  <td className="px-4 py-3 font-medium text-text-primary">{item.title}</td>
-                  <td className="px-4 py-3 text-text-secondary">{item.url}</td>
-                  <td className="px-4 py-3 text-text-secondary">{item.display_order}</td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.is_active ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'}`}>
-                      {item.is_active ? 'Active' : 'Inactive'}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button 
-                        onClick={() => handleEditLink(item)}
-                        className="p-2 text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors"
-                      >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      <button 
-                        onClick={() => handleDeleteLink(item.id)}
-                        className="p-2 text-text-muted hover:text-error rounded-lg hover:bg-error/10 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {footerLinks.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
-              <p className="text-text-secondary">No footer links found</p>
+          {footerLinks.length === 0 ? (
+            <EmptyState
+              title="No Footer Links Found"
+              description="Create navigation links to organize your website footer columns."
+              actionLabel="Add Link"
+              onAction={handleAddLink}
+            />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Column Section</th>
+                    <th>Link Title</th>
+                    <th>Target Destination</th>
+                    <th>Order</th>
+                    <th>Status</th>
+                    <th className="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {footerLinks.map((item) => (
+                    <tr key={item.id}>
+                      <td className="font-mono text-xs text-primary font-semibold">
+                        {item.section}
+                      </td>
+                      <td className="font-semibold text-text-primary text-sm">
+                        {item.title}
+                      </td>
+                      <td className="text-xs font-mono text-text-secondary">
+                        {item.url}
+                      </td>
+                      <td className="font-mono text-xs text-text-muted">
+                        #{item.display_order}
+                      </td>
+                      <td>
+                        <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
+                      </td>
+                      <td className="text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            onClick={() => handleEditLink(item)}
+                            className="admin-btn-icon"
+                            title="Edit Link"
+                          >
+                            <Edit2 className="w-4 h-4 text-text-secondary" />
+                          </button>
+                          <button
+                            onClick={() => setDeleteConfirm({ open: true, type: 'link', id: item.id, title: item.title })}
+                            className="admin-btn-icon hover:text-rose-400"
+                            title="Delete Link"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
-      </div>
+      )}
 
-      {/* Social Links Section */}
-      <div className="bg-surface rounded-xl border border-border p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-text-primary">Social Links</h2>
-          <button 
-            onClick={handleAddSocial}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            Add Social Link
-          </button>
-        </div>
+      {/* TAB 2: Social Links */}
+      {activeTab === 'social' && (
+        <div className="admin-card overflow-hidden">
+          <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
+            <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+              <Share2 className="w-4 h-4 text-primary" />
+              Social Media Endpoints ({footerSocialLinks.length})
+            </h3>
+            <button onClick={handleAddSocial} className="admin-btn-primary text-xs flex items-center gap-2">
+              <Plus className="w-3.5 h-3.5" />
+              Add Social Profile
+            </button>
+          </div>
 
-        <div className="bg-background rounded-lg border border-border overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Platform</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Icon</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">URL</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Order</th>
-                <th className="px-4 py-3 text-left text-sm font-medium text-text-secondary">Status</th>
-                <th className="px-4 py-3 text-right text-sm font-medium text-text-secondary">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {footerSocialLinks.map((item) => (
-                <tr key={item.id} className="border-b border-border hover:bg-surface/50">
-                  <td className="px-4 py-3 font-medium text-text-primary">{item.platform}</td>
-                  <td className="px-4 py-3 text-text-secondary">{item.icon}</td>
-                  <td className="px-4 py-3 text-text-secondary">{item.url}</td>
-                  <td className="px-4 py-3 text-text-secondary">{item.display_order}</td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.is_active ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'}`}>
-                      {item.is_active ? 'Active' : 'Inactive'}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button 
-                        onClick={() => handleEditSocial(item)}
-                        className="p-2 text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors"
-                      >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      <button 
-                        onClick={() => handleDeleteSocial(item.id)}
-                        className="p-2 text-text-muted hover:text-error rounded-lg hover:bg-error/10 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {footerSocialLinks.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
-              <p className="text-text-secondary">No social links found</p>
+          {footerSocialLinks.length === 0 ? (
+            <EmptyState
+              title="No Social Profiles Configured"
+              description="Add corporate social media handles to display across the website footer."
+              actionLabel="Add Social Channel"
+              onAction={handleAddSocial}
+            />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Platform</th>
+                    <th>Icon Token</th>
+                    <th>Target Profile URL</th>
+                    <th>Order</th>
+                    <th>Status</th>
+                    <th className="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {footerSocialLinks.map((item) => (
+                    <tr key={item.id}>
+                      <td className="font-semibold text-text-primary text-sm">
+                        {item.platform}
+                      </td>
+                      <td className="font-mono text-xs text-text-muted">
+                        {item.icon}
+                      </td>
+                      <td className="text-xs font-mono text-primary">
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                          <span>{item.url}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </td>
+                      <td className="font-mono text-xs text-text-muted">
+                        #{item.display_order}
+                      </td>
+                      <td>
+                        <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
+                      </td>
+                      <td className="text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            onClick={() => handleEditSocial(item)}
+                            className="admin-btn-icon"
+                            title="Edit Profile"
+                          >
+                            <Edit2 className="w-4 h-4 text-text-secondary" />
+                          </button>
+                          <button
+                            onClick={() => setDeleteConfirm({ open: true, type: 'social', id: item.id, title: item.platform })}
+                            className="admin-btn-icon hover:text-rose-400"
+                            title="Delete Profile"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
-      </div>
+      )}
 
-      {/* Link Modal */}
+      {/* Link Edit/Add Modal */}
       {showLinkModal && editingLink && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-surface rounded-xl border border-border w-full max-w-md">
-            <div className="p-6 border-b border-border flex items-center justify-between">
-              <h2 className="text-xl font-bold text-text-primary">
-                {editingLink.id ? 'Edit Footer Link' : 'Add Footer Link'}
-              </h2>
-              <button 
-                onClick={() => {
-                  setShowLinkModal(false)
-                  setEditingLink(null)
-                }}
-                className="text-text-muted hover:text-text-primary"
-              >
-                <X className="w-6 h-6" />
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-content max-w-md">
+            <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-bold text-text-primary">
+                  {editingLink.id ? 'Edit Directory Link' : 'Add Directory Link'}
+                </h3>
+                <p className="text-xs text-text-muted mt-0.5">Specify column assignment and URL route</p>
+              </div>
+              <button onClick={() => { setShowLinkModal(false); setEditingLink(null); }} className="admin-btn-icon">
+                <X className="w-5 h-5" />
               </button>
             </div>
-            
-            <div className="p-6 space-y-4">
+
+            <form onSubmit={handleSaveLink} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Section</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Column Section
+                </label>
                 <select
                   value={editingLink.section}
                   onChange={(e) => setEditingLink({ ...editingLink, section: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  className="admin-select"
                 >
                   <option value="Useful Links">Useful Links</option>
                   <option value="Company">Company</option>
+                  <option value="Services">Services</option>
+                  <option value="Resources">Resources</option>
+                  <option value="Legal">Legal</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Title *</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Link Title *
+                </label>
                 <input
                   type="text"
                   value={editingLink.title}
                   onChange={(e) => setEditingLink({ ...editingLink, title: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  placeholder="e.g. MQL Services"
+                  className="admin-input"
+                  required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">URL *</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Target URL *
+                </label>
                 <input
                   type="text"
                   value={editingLink.url}
                   onChange={(e) => setEditingLink({ ...editingLink, url: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  placeholder="/mql-services or https://..."
+                  className="admin-input font-mono text-xs"
+                  required
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Display Order</label>
-                <input
-                  type="number"
-                  value={editingLink.display_order}
-                  onChange={(e) => setEditingLink({ ...editingLink, display_order: parseInt(e.target.value) })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                    Order Index
+                  </label>
+                  <input
+                    type="number"
+                    value={editingLink.display_order}
+                    onChange={(e) => setEditingLink({ ...editingLink, display_order: parseInt(e.target.value) || 0 })}
+                    className="admin-input font-mono"
+                  />
+                </div>
+                <div className="flex items-center pt-6">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+                    <input
+                      type="checkbox"
+                      checked={editingLink.is_active}
+                      onChange={(e) => setEditingLink({ ...editingLink, is_active: e.target.checked })}
+                      className="w-4 h-4 rounded text-primary"
+                    />
+                    <span>Active in Footer</span>
+                  </label>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="link_active"
-                  checked={editingLink.is_active}
-                  onChange={(e) => setEditingLink({ ...editingLink, is_active: e.target.checked })}
-                  disabled={saving}
-                />
-                <label htmlFor="link_active" className="text-sm text-text-secondary">Active</label>
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border)]">
                 <button
-                  onClick={() => {
-                    setShowLinkModal(false)
-                    setEditingLink(null)
-                  }}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
+                  type="button"
+                  onClick={() => { setShowLinkModal(false); setEditingLink(null); }}
+                  className="admin-btn-secondary"
                   disabled={saving}
                 >
                   Cancel
                 </button>
                 <button
-                  onClick={handleSaveLink}
+                  type="submit"
                   disabled={saving}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
+                  className="admin-btn-primary flex items-center gap-2"
                 >
-                  {saving ? <><AlertCircle className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save</>}
+                  <Save className="w-4 h-4" />
+                  {saving ? 'Saving...' : 'Save Link'}
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
-      {/* Social Modal */}
+      {/* Social Edit/Add Modal */}
       {showSocialModal && editingSocial && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-surface rounded-xl border border-border w-full max-w-md">
-            <div className="p-6 border-b border-border flex items-center justify-between">
-              <h2 className="text-xl font-bold text-text-primary">
-                {editingSocial.id ? 'Edit Social Link' : 'Add Social Link'}
-              </h2>
-              <button 
-                onClick={() => {
-                  setShowSocialModal(false)
-                  setEditingSocial(null)
-                }}
-                className="text-text-muted hover:text-text-primary"
-              >
-                <X className="w-6 h-6" />
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-content max-w-md">
+            <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-bold text-text-primary">
+                  {editingSocial.id ? 'Edit Social Handle' : 'Add Social Channel'}
+                </h3>
+                <p className="text-xs text-text-muted mt-0.5">Configure platform name and link</p>
+              </div>
+              <button onClick={() => { setShowSocialModal(false); setEditingSocial(null); }} className="admin-btn-icon">
+                <X className="w-5 h-5" />
               </button>
             </div>
-            
-            <div className="p-6 space-y-4">
+
+            <form onSubmit={handleSaveSocial} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Platform *</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Platform Name *
+                </label>
                 <input
                   type="text"
                   value={editingSocial.platform}
                   onChange={(e) => setEditingSocial({ ...editingSocial, platform: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  placeholder="e.g. LinkedIn, GitHub"
+                  className="admin-input"
+                  required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Icon *</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Icon Identifier
+                </label>
                 <input
                   type="text"
                   value={editingSocial.icon}
                   onChange={(e) => setEditingSocial({ ...editingSocial, icon: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  placeholder="e.g. bi-linkedin"
+                  className="admin-input font-mono text-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">URL *</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  Profile URL *
+                </label>
                 <input
-                  type="text"
+                  type="url"
                   value={editingSocial.url}
                   onChange={(e) => setEditingSocial({ ...editingSocial, url: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  placeholder="https://linkedin.com/company/..."
+                  className="admin-input font-mono text-xs"
+                  required
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Display Order</label>
-                <input
-                  type="number"
-                  value={editingSocial.display_order}
-                  onChange={(e) => setEditingSocial({ ...editingSocial, display_order: parseInt(e.target.value) })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                    Order Index
+                  </label>
+                  <input
+                    type="number"
+                    value={editingSocial.display_order}
+                    onChange={(e) => setEditingSocial({ ...editingSocial, display_order: parseInt(e.target.value) || 0 })}
+                    className="admin-input font-mono"
+                  />
+                </div>
+                <div className="flex items-center pt-6">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+                    <input
+                      type="checkbox"
+                      checked={editingSocial.is_active}
+                      onChange={(e) => setEditingSocial({ ...editingSocial, is_active: e.target.checked })}
+                      className="w-4 h-4 rounded text-primary"
+                    />
+                    <span>Active in Footer</span>
+                  </label>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="social_active"
-                  checked={editingSocial.is_active}
-                  onChange={(e) => setEditingSocial({ ...editingSocial, is_active: e.target.checked })}
-                  disabled={saving}
-                />
-                <label htmlFor="social_active" className="text-sm text-text-secondary">Active</label>
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border)]">
                 <button
-                  onClick={() => {
-                    setShowSocialModal(false)
-                    setEditingSocial(null)
-                  }}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
+                  type="button"
+                  onClick={() => { setShowSocialModal(false); setEditingSocial(null); }}
+                  className="admin-btn-secondary"
                   disabled={saving}
                 >
                   Cancel
                 </button>
                 <button
-                  onClick={handleSaveSocial}
+                  type="submit"
                   disabled={saving}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
+                  className="admin-btn-primary flex items-center gap-2"
                 >
-                  {saving ? <><AlertCircle className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save</>}
+                  <Save className="w-4 h-4" />
+                  {saving ? 'Saving...' : 'Save Profile'}
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
+
+      {/* Delete Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.open}
+        title="Delete Footer Item"
+        message={`Are you sure you want to remove "${deleteConfirm.title}" from the footer configuration?`}
+        confirmLabel="Delete Item"
+        variant="danger"
+        onConfirm={executeDelete}
+        onCancel={() => setDeleteConfirm({ open: false, type: 'link', id: null, title: '' })}
+      />
     </div>
   )
 }

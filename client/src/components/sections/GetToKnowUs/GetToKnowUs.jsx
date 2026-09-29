@@ -3,13 +3,13 @@ import { motion } from 'framer-motion'
 import { GrowthConnector } from './GrowthConnector'
 import { TrustIndicator } from './TrustIndicator'
 import { useReducedMotion } from '@hooks/useReducedMotion'
-
+ 
 import { SectionLaserDivider } from '@components/animations'
-
+ 
 /**
  * Enterprise Growth Architecture Section (GetToKnowUs)
  * “DYNAMIC B2B GROWTH FLOW”
- * 
+ *
  * Simple + Professional + Modern + Compact + Premium
  * Medium height: ~500–650px on desktop.
  * Flow: AUDIENCE INTEL → VERIFIED DATA → FULL FUNNEL
@@ -17,7 +17,7 @@ import { SectionLaserDivider } from '@components/animations'
  */
 export const GetToKnowUs = () => {
   const prefersReducedMotion = useReducedMotion()
-
+ 
   return (
     <section
       id="enterprise-architecture"
@@ -27,7 +27,7 @@ export const GetToKnowUs = () => {
       {/* ── Background: Subtle Moving Architectural Grid & Radial Glow ─── */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         {/* Subtle Theme-Aware Coordinate Grid with Slow Movement */}
-        <motion.div 
+        <motion.div
           animate={prefersReducedMotion ? {} : {
             backgroundPosition: ['0px 0px', '40px 40px'],
           }}
@@ -42,16 +42,16 @@ export const GetToKnowUs = () => {
             backgroundSize: '40px 40px',
           }}
         />
-
+ 
         {/* Very Subtle Radial Ambient Light */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full blur-[140px] bg-primary/5 dark:bg-primary/8 pointer-events-none" />
       </div>
-
+ 
       <div className="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col justify-between">
-        
+       
         {/* ── 1. Compact Centered Top Introduction ───────────────────── */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          
+         
           {/* Small Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -65,7 +65,7 @@ export const GetToKnowUs = () => {
               ENTERPRISE GROWTH ARCHITECTURE
             </span>
           </motion.div>
-
+ 
           {/* Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 18 }}
@@ -79,7 +79,7 @@ export const GetToKnowUs = () => {
               B2B GROWTH
             </span>
           </motion.h2>
-
+ 
           {/* Centered Description */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -90,22 +90,21 @@ export const GetToKnowUs = () => {
           >
             Taraj Global is a B2B demand generation and technology marketing partner helping organizations connect with the right companies, decision-makers, and buying audiences. We combine audience intelligence, verified B2B data, targeted outreach, and full-funnel marketing strategies to create qualified opportunities and support sustainable pipeline growth.
           </motion.p>
-
+ 
         </div>
-
+ 
         {/* ── 2. Main Visual: Dynamic B2B Growth Flow (Three Connected Stages) ── */}
         <GrowthConnector />
-
+ 
         {/* ── 3. Compact Bottom Trust Indicators ───────────────────────── */}
         <TrustIndicator />
-
+ 
       </div>
-
+ 
       {/* ── Bottom Laser Divider ────────────────────────────────────────── */}
       <SectionLaserDivider variant="amber" position="bottom" />
     </section>
   )
 }
-
+ 
 export default GetToKnowUs
-

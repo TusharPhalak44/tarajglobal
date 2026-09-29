@@ -16,7 +16,8 @@ import {
   FileSpreadsheet,
   Zap,
   Database,
-  ShieldCheck
+  ShieldCheck,
+  RefreshCw
 } from 'lucide-react'
 import { cmsAPI } from '@api'
 import ThemeToggle from './ThemeToggle'
@@ -44,7 +45,7 @@ const SERVICES_DATA = [
     title: 'Demand & ABM',
     accent: '#FF6D00',
     items: [
-      { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage account engagement cadences', icon: TrendingUp },
+      { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage account engagement cadences', icon: RefreshCw },
       { name: 'Content Syndication', path: '/content-syndication', desc: 'Distribute whitepapers to targeted buying groups', icon: FileSpreadsheet },
       { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key account penetration', icon: Layers },
       { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive webinar attendees', icon: Sparkles },
@@ -55,7 +56,7 @@ const SERVICES_DATA = [
     title: 'Data & Operations',
     accent: '#10B981',
     items: [
-      { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Custom human-verified decision-maker lists', icon: Database },
+      { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Custom human-verified decision-maker lists', icon: Search },
       { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Data hygiene, enrichment and deduplication', icon: Database },
     ]
   }

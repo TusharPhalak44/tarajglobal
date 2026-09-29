@@ -38,13 +38,59 @@ router.post('/refresh', authController.refreshToken)
 // @access  Private
 router.get('/me', authenticate, authController.getMe)
 
+import multer from 'multer'
+import path from 'path'
+import fs from 'fs'
+
+// Multer storage for avatars
+const avatarStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadDir = 'uploads/avatars'
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true })
+    }
+    cb(null, uploadDir)
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, uniqueSuffix + path.extname(file.originalname).toLowerCase())
+  }
+})
+
+const avatarUpload = multer({
+  storage: avatarStorage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      return cb(null, true)
+    }
+    cb(new Error('Only image files (JPG, PNG, WebP, GIF) are allowed for avatars'))
+  }
+})
+
+// @route   POST /api/auth/me/avatar
+// @desc    Upload profile avatar for current user
+// @access  Private
+router.post('/me/avatar', authenticate, (req, res, next) => {
+  avatarUpload.fields([{ name: 'file', maxCount: 1 }, { name: 'avatar', maxCount: 1 }])(req, res, (err) => {
+    if (err) {
+      return res.status(400).json({ success: false, message: err.message })
+    }
+    if (req.files) {
+      req.file = req.files['file']?.[0] || req.files['avatar']?.[0]
+    }
+    next()
+  })
+}, authController.uploadAvatar)
+
 // @route   PUT /api/auth/me
 // @desc    Update current user profile
 // @access  Private
 router.put('/me', [
   authenticate,
   body('name').optional().trim().notEmpty().withMessage('Name is required'),
-  body('email').optional().isEmail().withMessage('Valid email is required')
+  body('email').optional().isEmail().withMessage('Valid email is required'),
+  body('avatar').optional()
 ], validate, authController.updateProfile)
 
 // @route   POST /api/auth/forgot-password

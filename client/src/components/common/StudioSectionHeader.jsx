@@ -75,9 +75,8 @@ export const StudioSectionHeader = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className={`text-text-secondary text-base sm:text-lg mt-4 leading-relaxed font-normal ${
-            isLeft ? '' : 'max-w-2xl mx-auto'
-          }`}
+          className={`text-text-secondary text-base sm:text-lg mt-4 leading-relaxed font-normal ${isLeft ? '' : 'max-w-2xl mx-auto'
+            }`}
         >
           {subtitle}
         </motion.p>
@@ -89,9 +88,8 @@ export const StudioSectionHeader = ({
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className={`w-20 h-0.5 bg-gradient-to-r from-primary via-[#00E5FF] to-cta rounded-full mt-6 ${
-          isLeft ? '' : 'mx-auto'
-        }`}
+        className={`w-20 h-0.5 bg-gradient-to-r from-primary via-[#00E5FF] to-cta rounded-full mt-6 ${isLeft ? '' : 'mx-auto'
+          }`}
       />
     </motion.div>
   )

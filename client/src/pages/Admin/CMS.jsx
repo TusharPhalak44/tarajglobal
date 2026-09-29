@@ -1,7 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Plus, Edit, Trash2, GripVertical, ExternalLink, Image as ImageIcon, Save, X, CheckCircle, AlertCircle } from 'lucide-react'
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  ExternalLink,
+  Image as ImageIcon,
+  Save,
+  X,
+  CheckCircle,
+  AlertCircle,
+  Link2,
+  Layers,
+  Building2,
+  Sliders,
+  Globe,
+  Share2
+} from 'lucide-react'
 import { adminAPI } from '@api'
 import { useLocation } from 'react-router-dom'
+import PageHeader from '@components/admin/PageHeader'
+import StatusBadge from '@components/admin/StatusBadge'
+import EmptyState from '@components/admin/EmptyState'
+import LoadingSkeleton from '@components/admin/LoadingSkeleton'
+import ConfirmModal from '@components/admin/ConfirmModal'
 
 const CMS = () => {
   const location = useLocation()
@@ -19,7 +40,7 @@ const CMS = () => {
     } else if (path.includes('/clients')) {
       setActiveTab('clients')
     } else {
-      setActiveTab('navbar') // default
+      setActiveTab('navbar')
     }
   }, [location.pathname])
   
@@ -43,6 +64,9 @@ const CMS = () => {
   const [editingClient, setEditingClient] = useState(null)
   const [showClientModal, setShowClientModal] = useState(false)
 
+  // Confirm delete state
+  const [deleteConfirm, setDeleteConfirm] = useState({ open: false, type: '', id: null, title: '' })
+
   useEffect(() => {
     fetchData()
   }, [activeTab])
@@ -52,17 +76,17 @@ const CMS = () => {
       setLoading(true)
       if (activeTab === 'navbar') {
         const response = await adminAPI.getNavbarItems()
-        setNavbarItems(response.data || [])
+        setNavbarItems(Array.isArray(response.data?.data) ? response.data.data : (response.data || []))
       } else if (activeTab === 'footer') {
         const [linksRes, socialRes] = await Promise.all([
           adminAPI.getFooterLinks(),
           adminAPI.getFooterSocialLinks()
         ])
-        setFooterLinks(linksRes.data || [])
-        setFooterSocialLinks(socialRes.data || [])
+        setFooterLinks(Array.isArray(linksRes.data?.data) ? linksRes.data.data : (linksRes.data || []))
+        setFooterSocialLinks(Array.isArray(socialRes.data?.data) ? socialRes.data.data : (socialRes.data || []))
       } else if (activeTab === 'clients') {
         const response = await adminAPI.getClients()
-        setClients(response.data || [])
+        setClients(Array.isArray(response.data?.data) ? response.data.data : (response.data || []))
       }
     } catch (error) {
       console.error('Failed to fetch data:', error)
@@ -74,22 +98,22 @@ const CMS = () => {
 
   const showMessage = (type, text) => {
     setMessage({ type, text })
-    setTimeout(() => setMessage({ type: '', text: '' }), 3000)
+    setTimeout(() => setMessage({ type: '', text: '' }), 4000)
   }
 
   // ==================== NAVBAR FUNCTIONS ====================
-  
   const handleAddNavbar = () => {
-    setEditingNavbar({ label: '', url: '', parent_id: null, display_order: navbarItems.length, is_active: true })
+    setEditingNavbar({ label: '', url: '', parent_id: null, display_order: navbarItems.length + 1, is_active: true })
     setShowNavbarModal(true)
   }
 
   const handleEditNavbar = (item) => {
-    setEditingNavbar({ ...item })
+    setEditingNavbar({ ...item, is_active: item.is_active === 1 || item.is_active === true })
     setShowNavbarModal(true)
   }
 
-  const handleSaveNavbar = async () => {
+  const handleSaveNavbar = async (e) => {
+    e?.preventDefault()
     try {
       if (editingNavbar.id) {
         await adminAPI.updateNavbarItem(editingNavbar.id, editingNavbar)
@@ -107,31 +131,19 @@ const CMS = () => {
     }
   }
 
-  const handleDeleteNavbar = async (id) => {
-    if (!confirm('Are you sure you want to delete this navbar item?')) return
-    try {
-      await adminAPI.deleteNavbarItem(id)
-      showMessage('success', 'Navbar item deleted successfully')
-      fetchData()
-    } catch (error) {
-      console.error('Failed to delete navbar item:', error)
-      showMessage('error', 'Failed to delete navbar item')
-    }
-  }
-
   // ==================== FOOTER LINKS FUNCTIONS ====================
-  
   const handleAddFooterLink = () => {
-    setEditingFooterLink({ section: 'Useful Links', title: '', url: '', display_order: footerLinks.length, is_active: true })
+    setEditingFooterLink({ section: 'Useful Links', title: '', url: '', display_order: footerLinks.length + 1, is_active: true })
     setShowFooterLinkModal(true)
   }
 
   const handleEditFooterLink = (item) => {
-    setEditingFooterLink({ ...item })
+    setEditingFooterLink({ ...item, is_active: item.is_active === 1 || item.is_active === true })
     setShowFooterLinkModal(true)
   }
 
-  const handleSaveFooterLink = async () => {
+  const handleSaveFooterLink = async (e) => {
+    e?.preventDefault()
     try {
       if (editingFooterLink.id) {
         await adminAPI.updateFooterLink(editingFooterLink.id, editingFooterLink)
@@ -149,31 +161,19 @@ const CMS = () => {
     }
   }
 
-  const handleDeleteFooterLink = async (id) => {
-    if (!confirm('Are you sure you want to delete this footer link?')) return
-    try {
-      await adminAPI.deleteFooterLink(id)
-      showMessage('success', 'Footer link deleted successfully')
-      fetchData()
-    } catch (error) {
-      console.error('Failed to delete footer link:', error)
-      showMessage('error', 'Failed to delete footer link')
-    }
-  }
-
   // ==================== FOOTER SOCIAL LINKS FUNCTIONS ====================
-  
   const handleAddSocialLink = () => {
-    setEditingSocialLink({ platform: '', icon: '', url: '', display_order: footerSocialLinks.length, is_active: true })
+    setEditingSocialLink({ platform: '', icon: 'bi-globe', url: '', display_order: footerSocialLinks.length + 1, is_active: true })
     setShowSocialLinkModal(true)
   }
 
   const handleEditSocialLink = (item) => {
-    setEditingSocialLink({ ...item })
+    setEditingSocialLink({ ...item, is_active: item.is_active === 1 || item.is_active === true })
     setShowSocialLinkModal(true)
   }
 
-  const handleSaveSocialLink = async () => {
+  const handleSaveSocialLink = async (e) => {
+    e?.preventDefault()
     try {
       if (editingSocialLink.id) {
         await adminAPI.updateFooterSocialLink(editingSocialLink.id, editingSocialLink)
@@ -191,31 +191,19 @@ const CMS = () => {
     }
   }
 
-  const handleDeleteSocialLink = async (id) => {
-    if (!confirm('Are you sure you want to delete this social link?')) return
-    try {
-      await adminAPI.deleteFooterSocialLink(id)
-      showMessage('success', 'Social link deleted successfully')
-      fetchData()
-    } catch (error) {
-      console.error('Failed to delete social link:', error)
-      showMessage('error', 'Failed to delete social link')
-    }
-  }
-
   // ==================== CLIENTS FUNCTIONS ====================
-  
   const handleAddClient = () => {
-    setEditingClient({ client_name: '', logo_path: '', website_url: '', display_order: clients.length, is_active: true })
+    setEditingClient({ client_name: '', logo_path: '', website_url: '', display_order: clients.length + 1, is_active: true })
     setShowClientModal(true)
   }
 
   const handleEditClient = (item) => {
-    setEditingClient({ ...item })
+    setEditingClient({ ...item, is_active: item.is_active === 1 || item.is_active === true })
     setShowClientModal(true)
   }
 
-  const handleSaveClient = async () => {
+  const handleSaveClient = async (e) => {
+    e?.preventDefault()
     try {
       if (editingClient.id) {
         await adminAPI.updateClient(editingClient.id, editingClient)
@@ -233,376 +221,453 @@ const CMS = () => {
     }
   }
 
-  const handleDeleteClient = async (id) => {
-    if (!confirm('Are you sure you want to delete this client?')) return
+  const executeDelete = async () => {
+    if (!deleteConfirm.id) return
     try {
-      await adminAPI.deleteClient(id)
-      showMessage('success', 'Client deleted successfully')
+      if (deleteConfirm.type === 'navbar') {
+        await adminAPI.deleteNavbarItem(deleteConfirm.id)
+        showMessage('success', 'Navbar item deleted successfully')
+      } else if (deleteConfirm.type === 'footerLink') {
+        await adminAPI.deleteFooterLink(deleteConfirm.id)
+        showMessage('success', 'Footer link deleted successfully')
+      } else if (deleteConfirm.type === 'socialLink') {
+        await adminAPI.deleteFooterSocialLink(deleteConfirm.id)
+        showMessage('success', 'Social link deleted successfully')
+      } else if (deleteConfirm.type === 'client') {
+        await adminAPI.deleteClient(deleteConfirm.id)
+        showMessage('success', 'Client deleted successfully')
+      }
+      setDeleteConfirm({ open: false, type: '', id: null, title: '' })
       fetchData()
     } catch (error) {
-      console.error('Failed to delete client:', error)
-      showMessage('error', 'Failed to delete client')
+      console.error('Delete error:', error)
+      showMessage('error', 'Failed to delete item')
     }
   }
 
   if (loading) {
-    return <div className="flex items-center justify-center h-64 text-text-muted">Loading...</div>
+    return (
+      <div className="space-y-6">
+        <PageHeader title="Content Management Engine" subtitle="Centralized website layout, menu routing, and brand asset management" />
+        <LoadingSkeleton type="table" rows={6} />
+      </div>
+    )
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">Website Content Management</h1>
-          <p className="text-text-secondary">Manage header, footer, and client logos</p>
-        </div>
-      </div>
+    <div className="space-y-6 max-w-7xl mx-auto pb-16">
+      <PageHeader
+        title="Content Management Engine"
+        subtitle="Manage public header routes, footer structure, and client logo showcase"
+        badge="Live CMS"
+        actions={[
+          {
+            label: activeTab === 'navbar' ? 'Add Menu Item' : activeTab === 'footer' ? 'Add Footer Link' : 'Add Client',
+            icon: Plus,
+            onClick: activeTab === 'navbar' ? handleAddNavbar : activeTab === 'footer' ? handleAddFooterLink : handleAddClient,
+            variant: 'primary'
+          }
+        ]}
+      />
 
       {message.text && (
-        <div className={`flex items-center gap-2 px-4 py-3 rounded-lg ${
-          message.type === 'success' ? 'bg-green-500/10 border border-green-500/30 text-green-400' : 'bg-error/10 border border-error/30 text-error'
-        }`}>
-          {message.type === 'success' ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
-          {message.text}
+        <div
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+            message.type === 'success'
+              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+              : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+          }`}
+        >
+          {message.type === 'success' ? <CheckCircle className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
+          <span>{message.text}</span>
         </div>
       )}
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-border">
+      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-x-auto pb-0.5">
         <button
           onClick={() => setActiveTab('navbar')}
-          className={`px-4 py-2 font-medium transition-colors ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
             activeTab === 'navbar'
-              ? 'text-primary border-b-2 border-primary'
-              : 'text-text-secondary hover:text-text-primary'
+              ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
+              : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
           }`}
         >
-          Header & Navbar
+          <Link2 className="w-4 h-4" />
+          <span>Header & Navbar Menu ({navbarItems.length})</span>
         </button>
         <button
           onClick={() => setActiveTab('footer')}
-          className={`px-4 py-2 font-medium transition-colors ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
             activeTab === 'footer'
-              ? 'text-primary border-b-2 border-primary'
-              : 'text-text-secondary hover:text-text-primary'
+              ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
+              : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
           }`}
         >
-          Footer
+          <Layers className="w-4 h-4" />
+          <span>Footer Structure ({footerLinks.length})</span>
         </button>
         <button
           onClick={() => setActiveTab('clients')}
-          className={`px-4 py-2 font-medium transition-colors ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
             activeTab === 'clients'
-              ? 'text-primary border-b-2 border-primary'
-              : 'text-text-secondary hover:text-text-primary'
+              ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
+              : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
           }`}
         >
-          Our Clients
+          <Building2 className="w-4 h-4" />
+          <span>Client Logos ({clients.length})</span>
         </button>
       </div>
 
       {/* Navbar Tab */}
       {activeTab === 'navbar' && (
-        <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-text-primary">Navbar Menu Items</h2>
-            <button
-              onClick={handleAddNavbar}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-            >
-              <Plus className="w-5 h-5" />
+        <div className="admin-card overflow-hidden">
+          <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
+            <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+              <Link2 className="w-4 h-4 text-primary" />
+              Main Navigation Links ({navbarItems.length})
+            </h3>
+            <button onClick={handleAddNavbar} className="admin-btn-primary text-xs flex items-center gap-2">
+              <Plus className="w-3.5 h-3.5" />
               Add Menu Item
             </button>
           </div>
 
-          <div className="bg-surface rounded-xl border border-border overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-background border-b border-border">
-                <tr>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Label</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">URL</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Order</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Status</th>
-                  <th className="text-right px-6 py-3 text-sm font-medium text-text-secondary">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {navbarItems.map((item) => (
-                  <tr key={item.id} className="border-b border-border last:border-b-0">
-                    <td className="px-6 py-4 text-text-primary">{item.label}</td>
-                    <td className="px-6 py-4 text-text-secondary">{item.url}</td>
-                    <td className="px-6 py-4 text-text-secondary">{item.display_order}</td>
-                    <td className="px-6 py-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        item.is_active ? 'bg-green-500/10 text-green-400' : 'bg-gray-500/10 text-gray-400'
-                      }`}>
-                        {item.is_active ? 'Active' : 'Inactive'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <div className="flex justify-end gap-2">
-                        <button
-                          onClick={() => handleEditNavbar(item)}
-                          className="p-2 hover:bg-background rounded-lg transition-colors"
-                        >
-                          <Edit className="w-4 h-4 text-text-secondary" />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteNavbar(item.id)}
-                          className="p-2 hover:bg-background rounded-lg transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4 text-error" />
-                        </button>
-                      </div>
-                    </td>
+          {navbarItems.length === 0 ? (
+            <EmptyState
+              title="No Navigation Items Found"
+              description="Configure header links to populate the public website navbar."
+              actionLabel="Add Menu Item"
+              onAction={handleAddNavbar}
+            />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Navigation Label</th>
+                    <th>Route / Destination</th>
+                    <th>Display Order</th>
+                    <th>Status</th>
+                    <th className="text-right">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {navbarItems.map((item) => (
+                    <tr key={item.id}>
+                      <td className="font-semibold text-text-primary text-sm">
+                        {item.label}
+                      </td>
+                      <td className="font-mono text-xs text-text-secondary">
+                        {item.url}
+                      </td>
+                      <td className="font-mono text-xs text-text-muted">
+                        #{item.display_order}
+                      </td>
+                      <td>
+                        <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
+                      </td>
+                      <td className="text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            onClick={() => handleEditNavbar(item)}
+                            className="admin-btn-icon"
+                            title="Edit Menu Item"
+                          >
+                            <Edit2 className="w-4 h-4 text-text-secondary" />
+                          </button>
+                          <button
+                            onClick={() => setDeleteConfirm({ open: true, type: 'navbar', id: item.id, title: item.label })}
+                            className="admin-btn-icon hover:text-rose-400"
+                            title="Delete Menu Item"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
 
       {/* Footer Tab */}
       {activeTab === 'footer' && (
         <div className="space-y-6">
-          {/* Footer Links */}
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-text-primary">Footer Links</h2>
-              <button
-                onClick={handleAddFooterLink}
-                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-              >
-                <Plus className="w-5 h-5" />
+          <div className="admin-card overflow-hidden">
+            <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+                <Layers className="w-4 h-4 text-primary" />
+                Footer Column Links ({footerLinks.length})
+              </h3>
+              <button onClick={handleAddFooterLink} className="admin-btn-primary text-xs flex items-center gap-2">
+                <Plus className="w-3.5 h-3.5" />
                 Add Link
               </button>
             </div>
 
-            <div className="bg-surface rounded-xl border border-border overflow-hidden">
-              <table className="w-full">
-                <thead className="bg-background border-b border-border">
-                  <tr>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Section</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Title</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">URL</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Order</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Status</th>
-                    <th className="text-right px-6 py-3 text-sm font-medium text-text-secondary">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {footerLinks.map((item) => (
-                    <tr key={item.id} className="border-b border-border last:border-b-0">
-                      <td className="px-6 py-4 text-text-primary">{item.section}</td>
-                      <td className="px-6 py-4 text-text-primary">{item.title}</td>
-                      <td className="px-6 py-4 text-text-secondary">{item.url || '-'}</td>
-                      <td className="px-6 py-4 text-text-secondary">{item.display_order}</td>
-                      <td className="px-6 py-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          item.is_active ? 'bg-green-500/10 text-green-400' : 'bg-gray-500/10 text-gray-400'
-                        }`}>
-                          {item.is_active ? 'Active' : 'Inactive'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex justify-end gap-2">
-                          <button
-                            onClick={() => handleEditFooterLink(item)}
-                            className="p-2 hover:bg-background rounded-lg transition-colors"
-                          >
-                            <Edit className="w-4 h-4 text-text-secondary" />
-                          </button>
-                          <button
-                            onClick={() => handleDeleteFooterLink(item.id)}
-                            className="p-2 hover:bg-background rounded-lg transition-colors"
-                          >
-                            <Trash2 className="w-4 h-4 text-error" />
-                          </button>
-                        </div>
-                      </td>
+            {footerLinks.length === 0 ? (
+              <EmptyState
+                title="No Footer Links Found"
+                description="Configure directory columns for the footer."
+                actionLabel="Add Link"
+                onAction={handleAddFooterLink}
+              />
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Column Group</th>
+                      <th>Title</th>
+                      <th>Target URL</th>
+                      <th>Order</th>
+                      <th>Status</th>
+                      <th className="text-right">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {footerLinks.map((item) => (
+                      <tr key={item.id}>
+                        <td className="font-mono text-xs text-primary font-semibold">{item.section}</td>
+                        <td className="font-semibold text-text-primary text-sm">{item.title}</td>
+                        <td className="font-mono text-xs text-text-secondary">{item.url || '-'}</td>
+                        <td className="font-mono text-xs text-text-muted">#{item.display_order}</td>
+                        <td>
+                          <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
+                        </td>
+                        <td className="text-right">
+                          <div className="flex items-center justify-end gap-1.5">
+                            <button
+                              onClick={() => handleEditFooterLink(item)}
+                              className="admin-btn-icon"
+                              title="Edit Link"
+                            >
+                              <Edit2 className="w-4 h-4 text-text-secondary" />
+                            </button>
+                            <button
+                              onClick={() => setDeleteConfirm({ open: true, type: 'footerLink', id: item.id, title: item.title })}
+                              className="admin-btn-icon hover:text-rose-400"
+                              title="Delete Link"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
 
-          {/* Social Links */}
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-text-primary">Social Media Links</h2>
-              <button
-                onClick={handleAddSocialLink}
-                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-              >
-                <Plus className="w-5 h-5" />
-                Add Social Link
+          {/* Social Links Section */}
+          <div className="admin-card overflow-hidden">
+            <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+                <Share2 className="w-4 h-4 text-primary" />
+                Social Media Links ({footerSocialLinks.length})
+              </h3>
+              <button onClick={handleAddSocialLink} className="admin-btn-primary text-xs flex items-center gap-2">
+                <Plus className="w-3.5 h-3.5" />
+                Add Social Channel
               </button>
             </div>
 
-            <div className="bg-surface rounded-xl border border-border overflow-hidden">
-              <table className="w-full">
-                <thead className="bg-background border-b border-border">
-                  <tr>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Platform</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Icon</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">URL</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Order</th>
-                    <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Status</th>
-                    <th className="text-right px-6 py-3 text-sm font-medium text-text-secondary">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {footerSocialLinks.map((item) => (
-                    <tr key={item.id} className="border-b border-border last:border-b-0">
-                      <td className="px-6 py-4 text-text-primary">{item.platform}</td>
-                      <td className="px-6 py-4 text-text-secondary">{item.icon}</td>
-                      <td className="px-6 py-4 text-text-secondary">{item.url}</td>
-                      <td className="px-6 py-4 text-text-secondary">{item.display_order}</td>
-                      <td className="px-6 py-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          item.is_active ? 'bg-green-500/10 text-green-400' : 'bg-gray-500/10 text-gray-400'
-                        }`}>
-                          {item.is_active ? 'Active' : 'Inactive'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex justify-end gap-2">
-                          <button
-                            onClick={() => handleEditSocialLink(item)}
-                            className="p-2 hover:bg-background rounded-lg transition-colors"
-                          >
-                            <Edit className="w-4 h-4 text-text-secondary" />
-                          </button>
-                          <button
-                            onClick={() => handleDeleteSocialLink(item.id)}
-                            className="p-2 hover:bg-background rounded-lg transition-colors"
-                          >
-                            <Trash2 className="w-4 h-4 text-error" />
-                          </button>
-                        </div>
-                      </td>
+            {footerSocialLinks.length === 0 ? (
+              <EmptyState
+                title="No Social Profiles Found"
+                description="Add social channels to display in the footer."
+                actionLabel="Add Social Channel"
+                onAction={handleAddSocialLink}
+              />
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Platform</th>
+                      <th>Icon Token</th>
+                      <th>Target Link</th>
+                      <th>Order</th>
+                      <th>Status</th>
+                      <th className="text-right">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {footerSocialLinks.map((item) => (
+                      <tr key={item.id}>
+                        <td className="font-semibold text-text-primary text-sm">{item.platform}</td>
+                        <td className="font-mono text-xs text-text-muted">{item.icon}</td>
+                        <td className="font-mono text-xs text-primary">
+                          <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                            <span>{item.url}</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </td>
+                        <td className="font-mono text-xs text-text-muted">#{item.display_order}</td>
+                        <td>
+                          <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
+                        </td>
+                        <td className="text-right">
+                          <div className="flex items-center justify-end gap-1.5">
+                            <button
+                              onClick={() => handleEditSocialLink(item)}
+                              className="admin-btn-icon"
+                              title="Edit Social Profile"
+                            >
+                              <Edit2 className="w-4 h-4 text-text-secondary" />
+                            </button>
+                            <button
+                              onClick={() => setDeleteConfirm({ open: true, type: 'socialLink', id: item.id, title: item.platform })}
+                              className="admin-btn-icon hover:text-rose-400"
+                              title="Delete Social Profile"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
       )}
 
       {/* Clients Tab */}
       {activeTab === 'clients' && (
-        <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-text-primary">Client Logos</h2>
-            <button
-              onClick={handleAddClient}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-            >
-              <Plus className="w-5 h-5" />
+        <div className="admin-card overflow-hidden">
+          <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
+            <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-primary" />
+              Client Brand Showcase ({clients.length})
+            </h3>
+            <button onClick={handleAddClient} className="admin-btn-primary text-xs flex items-center gap-2">
+              <Plus className="w-3.5 h-3.5" />
               Add Client
             </button>
           </div>
 
-          <div className="bg-surface rounded-xl border border-border overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-background border-b border-border">
-                <tr>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Client Name</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Logo</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Website URL</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Order</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-text-secondary">Status</th>
-                  <th className="text-right px-6 py-3 text-sm font-medium text-text-secondary">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {clients.map((item) => (
-                  <tr key={item.id} className="border-b border-border last:border-b-0">
-                    <td className="px-6 py-4 text-text-primary">{item.client_name}</td>
-                    <td className="px-6 py-4">
-                      <img src={item.logo_path} alt={item.client_name} className="h-8 w-auto" />
-                    </td>
-                    <td className="px-6 py-4 text-text-secondary">
-                      {item.website_url ? (
-                        <a href={item.website_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-primary hover:underline">
-                          <ExternalLink className="w-3 h-3" />
-                          {item.website_url}
-                        </a>
-                      ) : '-'}
-                    </td>
-                    <td className="px-6 py-4 text-text-secondary">{item.display_order}</td>
-                    <td className="px-6 py-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        item.is_active ? 'bg-green-500/10 text-green-400' : 'bg-gray-500/10 text-gray-400'
-                      }`}>
-                        {item.is_active ? 'Active' : 'Inactive'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <div className="flex justify-end gap-2">
-                        <button
-                          onClick={() => handleEditClient(item)}
-                          className="p-2 hover:bg-background rounded-lg transition-colors"
-                        >
-                          <Edit className="w-4 h-4 text-text-secondary" />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteClient(item.id)}
-                          className="p-2 hover:bg-background rounded-lg transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4 text-error" />
-                        </button>
-                      </div>
-                    </td>
+          {clients.length === 0 ? (
+            <EmptyState
+              title="No Client Logos Found"
+              description="Register enterprise logos to showcase on the homepage."
+              actionLabel="Add Client"
+              onAction={handleAddClient}
+            />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Logo Asset</th>
+                    <th>Enterprise Name</th>
+                    <th>Website URL</th>
+                    <th>Order</th>
+                    <th>Status</th>
+                    <th className="text-right">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {clients.map((item) => (
+                    <tr key={item.id}>
+                      <td>
+                        <div className="w-16 h-8 rounded-lg bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1">
+                          {item.logo_path ? (
+                            <img src={item.logo_path} alt={item.client_name} className="max-h-full max-w-full object-contain" />
+                          ) : (
+                            <ImageIcon className="w-3.5 h-3.5 text-text-muted opacity-40" />
+                          )}
+                        </div>
+                      </td>
+                      <td className="font-semibold text-text-primary text-sm">{item.client_name}</td>
+                      <td className="font-mono text-xs text-primary">
+                        {item.website_url ? (
+                          <a href={item.website_url} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                            <span>{item.website_url.replace(/^https?:\/\//, '')}</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        ) : '-'}
+                      </td>
+                      <td className="font-mono text-xs text-text-muted">#{item.display_order}</td>
+                      <td>
+                        <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
+                      </td>
+                      <td className="text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            onClick={() => handleEditClient(item)}
+                            className="admin-btn-icon"
+                            title="Edit Client"
+                          >
+                            <Edit2 className="w-4 h-4 text-text-secondary" />
+                          </button>
+                          <button
+                            onClick={() => setDeleteConfirm({ open: true, type: 'client', id: item.id, title: item.client_name })}
+                            className="admin-btn-icon hover:text-rose-400"
+                            title="Delete Client"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
 
       {/* Navbar Modal */}
-      {showNavbarModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-surface rounded-xl border border-border p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-text-primary">
+      {showNavbarModal && editingNavbar && (
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-content max-w-md">
+            <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <h3 className="text-lg font-bold text-text-primary">
                 {editingNavbar.id ? 'Edit Menu Item' : 'Add Menu Item'}
               </h3>
-              <button onClick={() => setShowNavbarModal(false)} className="text-text-secondary hover:text-text-primary">
+              <button onClick={() => setShowNavbarModal(false)} className="admin-btn-icon">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <form onSubmit={handleSaveNavbar} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Label</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Label</label>
                 <input
                   type="text"
                   value={editingNavbar.label}
                   onChange={(e) => setEditingNavbar({ ...editingNavbar, label: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  className="admin-input"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">URL</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
                 <input
                   type="text"
                   value={editingNavbar.url}
                   onChange={(e) => setEditingNavbar({ ...editingNavbar, url: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  className="admin-input font-mono text-xs"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Display Order</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingNavbar.display_order}
-                  onChange={(e) => setEditingNavbar({ ...editingNavbar, display_order: parseInt(e.target.value) })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  onChange={(e) => setEditingNavbar({ ...editingNavbar, display_order: parseInt(e.target.value) || 0 })}
+                  className="admin-input font-mono"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -611,49 +676,49 @@ const CMS = () => {
                   id="navbar-active"
                   checked={editingNavbar.is_active}
                   onChange={(e) => setEditingNavbar({ ...editingNavbar, is_active: e.target.checked })}
-                  className="w-4 h-4 rounded border-border"
+                  className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="navbar-active" className="text-sm text-text-secondary">Active</label>
+                <label htmlFor="navbar-active" className="text-xs font-semibold text-text-secondary">Active in Header</label>
               </div>
-              <div className="flex gap-2 pt-4">
+              <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button
-                  onClick={handleSaveNavbar}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-                >
-                  <Save className="w-4 h-4" />
-                  Save
-                </button>
-                <button
+                  type="button"
                   onClick={() => setShowNavbarModal(false)}
-                  className="px-4 py-2 bg-background border border-border rounded-lg hover:bg-border transition-colors"
+                  className="admin-btn-secondary flex-1"
                 >
                   Cancel
                 </button>
+                <button
+                  type="submit"
+                  className="admin-btn-primary flex-1 flex items-center justify-center gap-2"
+                >
+                  <Save className="w-4 h-4" /> Save
+                </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
       {/* Footer Link Modal */}
-      {showFooterLinkModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-surface rounded-xl border border-border p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-text-primary">
+      {showFooterLinkModal && editingFooterLink && (
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-content max-w-md">
+            <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <h3 className="text-lg font-bold text-text-primary">
                 {editingFooterLink.id ? 'Edit Footer Link' : 'Add Footer Link'}
               </h3>
-              <button onClick={() => setShowFooterLinkModal(false)} className="text-text-secondary hover:text-text-primary">
+              <button onClick={() => setShowFooterLinkModal(false)} className="admin-btn-icon">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <form onSubmit={handleSaveFooterLink} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Section</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Section</label>
                 <select
                   value={editingFooterLink.section}
                   onChange={(e) => setEditingFooterLink({ ...editingFooterLink, section: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  className="admin-select"
                 >
                   <option value="Useful Links">Useful Links</option>
                   <option value="Company">Company</option>
@@ -663,30 +728,32 @@ const CMS = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Title</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Title</label>
                 <input
                   type="text"
                   value={editingFooterLink.title}
                   onChange={(e) => setEditingFooterLink({ ...editingFooterLink, title: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  className="admin-input"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">URL</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
                 <input
                   type="text"
                   value={editingFooterLink.url}
                   onChange={(e) => setEditingFooterLink({ ...editingFooterLink, url: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  className="admin-input font-mono text-xs"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Display Order</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingFooterLink.display_order}
-                  onChange={(e) => setEditingFooterLink({ ...editingFooterLink, display_order: parseInt(e.target.value) })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  onChange={(e) => setEditingFooterLink({ ...editingFooterLink, display_order: parseInt(e.target.value) || 0 })}
+                  className="admin-input font-mono"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -695,79 +762,82 @@ const CMS = () => {
                   id="footerlink-active"
                   checked={editingFooterLink.is_active}
                   onChange={(e) => setEditingFooterLink({ ...editingFooterLink, is_active: e.target.checked })}
-                  className="w-4 h-4 rounded border-border"
+                  className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="footerlink-active" className="text-sm text-text-secondary">Active</label>
+                <label htmlFor="footerlink-active" className="text-xs font-semibold text-text-secondary">Active</label>
               </div>
-              <div className="flex gap-2 pt-4">
+              <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button
-                  onClick={handleSaveFooterLink}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-                >
-                  <Save className="w-4 h-4" />
-                  Save
-                </button>
-                <button
+                  type="button"
                   onClick={() => setShowFooterLinkModal(false)}
-                  className="px-4 py-2 bg-background border border-border rounded-lg hover:bg-border transition-colors"
+                  className="admin-btn-secondary flex-1"
                 >
                   Cancel
                 </button>
+                <button
+                  type="submit"
+                  className="admin-btn-primary flex-1 flex items-center justify-center gap-2"
+                >
+                  <Save className="w-4 h-4" /> Save
+                </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
       {/* Social Link Modal */}
-      {showSocialLinkModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-surface rounded-xl border border-border p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-text-primary">
+      {showSocialLinkModal && editingSocialLink && (
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-content max-w-md">
+            <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <h3 className="text-lg font-bold text-text-primary">
                 {editingSocialLink.id ? 'Edit Social Link' : 'Add Social Link'}
               </h3>
-              <button onClick={() => setShowSocialLinkModal(false)} className="text-text-secondary hover:text-text-primary">
+              <button onClick={() => setShowSocialLinkModal(false)} className="admin-btn-icon">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <form onSubmit={handleSaveSocialLink} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Platform</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Platform</label>
                 <input
                   type="text"
                   value={editingSocialLink.platform}
                   onChange={(e) => setEditingSocialLink({ ...editingSocialLink, platform: e.target.value })}
-                  placeholder="e.g., LinkedIn, Twitter"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  placeholder="e.g. LinkedIn"
+                  className="admin-input"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Icon Class</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Icon Class</label>
                 <input
                   type="text"
                   value={editingSocialLink.icon}
                   onChange={(e) => setEditingSocialLink({ ...editingSocialLink, icon: e.target.value })}
-                  placeholder="e.g., bi-linkedin"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  placeholder="bi-linkedin"
+                  className="admin-input font-mono text-xs"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">URL</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
                 <input
                   type="text"
                   value={editingSocialLink.url}
                   onChange={(e) => setEditingSocialLink({ ...editingSocialLink, url: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  placeholder="https://..."
+                  className="admin-input font-mono text-xs"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Display Order</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingSocialLink.display_order}
-                  onChange={(e) => setEditingSocialLink({ ...editingSocialLink, display_order: parseInt(e.target.value) })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  onChange={(e) => setEditingSocialLink({ ...editingSocialLink, display_order: parseInt(e.target.value) || 0 })}
+                  className="admin-input font-mono"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -776,79 +846,82 @@ const CMS = () => {
                   id="sociallink-active"
                   checked={editingSocialLink.is_active}
                   onChange={(e) => setEditingSocialLink({ ...editingSocialLink, is_active: e.target.checked })}
-                  className="w-4 h-4 rounded border-border"
+                  className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="sociallink-active" className="text-sm text-text-secondary">Active</label>
+                <label htmlFor="sociallink-active" className="text-xs font-semibold text-text-secondary">Active</label>
               </div>
-              <div className="flex gap-2 pt-4">
+              <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button
-                  onClick={handleSaveSocialLink}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-                >
-                  <Save className="w-4 h-4" />
-                  Save
-                </button>
-                <button
+                  type="button"
                   onClick={() => setShowSocialLinkModal(false)}
-                  className="px-4 py-2 bg-background border border-border rounded-lg hover:bg-border transition-colors"
+                  className="admin-btn-secondary flex-1"
                 >
                   Cancel
                 </button>
+                <button
+                  type="submit"
+                  className="admin-btn-primary flex-1 flex items-center justify-center gap-2"
+                >
+                  <Save className="w-4 h-4" /> Save
+                </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
       {/* Client Modal */}
-      {showClientModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-surface rounded-xl border border-border p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-text-primary">
+      {showClientModal && editingClient && (
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal-content max-w-md">
+            <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
+              <h3 className="text-lg font-bold text-text-primary">
                 {editingClient.id ? 'Edit Client' : 'Add Client'}
               </h3>
-              <button onClick={() => setShowClientModal(false)} className="text-text-secondary hover:text-text-primary">
+              <button onClick={() => setShowClientModal(false)} className="admin-btn-icon">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <form onSubmit={handleSaveClient} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Client Name</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Client Name *</label>
                 <input
                   type="text"
                   value={editingClient.client_name}
                   onChange={(e) => setEditingClient({ ...editingClient, client_name: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  placeholder="e.g. Microsoft"
+                  className="admin-input"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Logo Path</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Logo Path / URL *</label>
                 <input
                   type="text"
                   value={editingClient.logo_path}
                   onChange={(e) => setEditingClient({ ...editingClient, logo_path: e.target.value })}
-                  placeholder="/path/to/logo.png"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  placeholder="/mitel.png or https://..."
+                  className="admin-input font-mono text-xs"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Website URL</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Website URL</label>
                 <input
                   type="text"
-                  value={editingClient.website_url}
+                  value={editingClient.website_url || ''}
                   onChange={(e) => setEditingClient({ ...editingClient, website_url: e.target.value })}
-                  placeholder="https://example.com"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  placeholder="https://..."
+                  className="admin-input font-mono text-xs"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Display Order</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingClient.display_order}
-                  onChange={(e) => setEditingClient({ ...editingClient, display_order: parseInt(e.target.value) })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
+                  onChange={(e) => setEditingClient({ ...editingClient, display_order: parseInt(e.target.value) || 0 })}
+                  className="admin-input font-mono"
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -857,29 +930,40 @@ const CMS = () => {
                   id="client-active"
                   checked={editingClient.is_active}
                   onChange={(e) => setEditingClient({ ...editingClient, is_active: e.target.checked })}
-                  className="w-4 h-4 rounded border-border"
+                  className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="client-active" className="text-sm text-text-secondary">Active</label>
+                <label htmlFor="client-active" className="text-xs font-semibold text-text-secondary">Active</label>
               </div>
-              <div className="flex gap-2 pt-4">
+              <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button
-                  onClick={handleSaveClient}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-                >
-                  <Save className="w-4 h-4" />
-                  Save
-                </button>
-                <button
+                  type="button"
                   onClick={() => setShowClientModal(false)}
-                  className="px-4 py-2 bg-background border border-border rounded-lg hover:bg-border transition-colors"
+                  className="admin-btn-secondary flex-1"
                 >
                   Cancel
                 </button>
+                <button
+                  type="submit"
+                  className="admin-btn-primary flex-1 flex items-center justify-center gap-2"
+                >
+                  <Save className="w-4 h-4" /> Save
+                </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
+
+      {/* Delete Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.open}
+        title="Confirm Removal"
+        message={`Are you sure you want to delete "${deleteConfirm.title}"? This item will immediately be removed.`}
+        confirmLabel="Delete Item"
+        variant="danger"
+        onConfirm={executeDelete}
+        onCancel={() => setDeleteConfirm({ open: false, type: '', id: null, title: '' })}
+      />
     </div>
   )
 }

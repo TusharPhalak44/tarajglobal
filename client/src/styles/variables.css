@@ -20,6 +20,63 @@
   --error: #EF4444;
   --info: #3B82F6;
 
+  /* ── ONE GLOBAL TYPOGRAPHY SYSTEM (TGS BRAND STANDARD) ── */
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-heading: var(--font-family-primary);
+  --font-family-sans: var(--font-family-primary);
+  --font-family-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Base Typography Scale — Desktop */
+  --font-size-h1: 48px;
+  --font-size-h2: 36px;
+  --font-size-h3: 28px;
+  --font-size-h4: 22px;
+  --font-size-h5: 18px;
+  --font-size-h6: 16px;
+
+  --font-size-body: 16px;
+  --font-size-subtitle: 18px;
+  --font-size-small: 14px;
+  --font-size-caption: 12px;
+
+  /* UI Component Roles */
+  --font-size-nav: 16px;
+  --font-size-button: 16px;
+  --font-size-label: 14px;
+  --font-size-input: 16px;
+  --font-size-placeholder: 14px;
+
+  /* Line Heights */
+  --line-height-heading: 1.18;
+  --line-height-h1: 1.15;
+  --line-height-h2: 1.20;
+  --line-height-h3: 1.25;
+  --line-height-h4: 1.30;
+  --line-height-h5: 1.35;
+  --line-height-h6: 1.40;
+  --line-height-body: 1.60;
+  --line-height-subtitle: 1.50;
+  --line-height-small: 1.40;
+  --line-height-caption: 1.35;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Letter Spacing */
+  --letter-spacing-tighter: -0.025em;
+  --letter-spacing-tight: -0.015em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.12em;
+
+  /* Text Width Constraint */
+  --max-width-prose: 65ch;
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -67,7 +124,7 @@
   --surface: #FFFFFF;
   --surface-alt: #F5F7FA;
   --surface-elevated: #FFFFFF;
-  
+
   /* Brand Colors - Refined professional palette */
   --primary: #0066CC;
   --primary-light: #E6F0FF;
@@ -76,7 +133,7 @@
   --cta: #FF6B00;
   --cta-hover: #FF8533;
   --cta-light: #FFF0E6;
-  
+
   /* Status Colors */
   --success: #10B981;
   --success-light: #D1FAE5;
@@ -86,18 +143,18 @@
   --error-light: #FEE2E2;
   --info: #3B82F6;
   --info-light: #DBEAFE;
-  
+
   /* Text Colors - Sophisticated contrast */
   --text-primary: #1A1A2E;
   --text-secondary: #4A5568;
   --text-muted: #718096;
   --text-light: #A0AEC0;
-  
+
   /* Borders - Elegant light borders */
   --border: #E2E8F0;
   --border-light: #EDF2F7;
   --border-subtle: #F7FAFC;
-  
+
   /* Shadows - Premium soft shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
@@ -105,14 +162,47 @@
   --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.08);
   --shadow-glow-primary: 0 0 20px rgba(0, 102, 204, 0.15);
   --shadow-glow-accent: 0 0 20px rgba(255, 107, 0, 0.15);
-  
+
   /* Gradients - Subtle premium gradients */
   --gradient-primary: linear-gradient(135deg, #0066CC 0%, #0088FF 100%);
   --gradient-accent: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
   --gradient-subtle: linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%);
-  
+
   /* Hover States */
   --hover-bg: #F5F7FA;
   --hover-border: #CBD5E0;
   --hover-elevate: translateY(-2px);
+}
+
+/* ── Responsive Typography Scale: Tablet (max-width: 1024px) ── */
+@media (max-width: 1024px) {
+  :root {
+    --font-size-h1: 40px;
+    --font-size-h2: 30px;
+    --font-size-h3: 24px;
+    --font-size-h4: 20px;
+    --font-size-h5: 17px;
+    --font-size-h6: 15px;
+    --font-size-body: 16px;
+    --font-size-subtitle: 17px;
+    --font-size-nav: 15px;
+    --font-size-button: 15px;
+  }
+}
+
+/* ── Responsive Typography Scale: Mobile (max-width: 640px) ── */
+@media (max-width: 640px) {
+  :root {
+    --font-size-h1: 32px;
+    --font-size-h2: 26px;
+    --font-size-h3: 22px;
+    --font-size-h4: 18px;
+    --font-size-h5: 16px;
+    --font-size-h6: 14px;
+    --font-size-body: 16px;
+    --font-size-subtitle: 16px;
+    --font-size-small: 13px;
+    --font-size-nav: 15px;
+    --font-size-button: 15px;
+  }
 }

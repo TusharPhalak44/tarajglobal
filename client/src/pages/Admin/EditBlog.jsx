@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { 
-  ArrowLeft, 
-  Save, 
-  X, 
+import { useNavigate, useParams } from 'react-router-dom'
+import {
+  ArrowLeft,
+  Save,
+  X,
   Clock,
   FileText,
-  TrendingUp
+  TrendingUp,
+  Sparkles,
+  CheckCircle2,
+  AlertCircle,
+  Globe,
+  Image,
+  Layers,
+  Eye
 } from 'lucide-react'
 import { adminAPI } from '@api'
-import { useNavigate, useParams } from 'react-router-dom'
-import FeaturedMedia from '@components/Admin/FeaturedMedia'
-import { analyzeSEO, getSEOStatusColor, getSEOStatusBg } from '@utils/seoAnalyzer'
+import FeaturedMedia from '@components/admin/FeaturedMedia'
+import { analyzeSEO } from '@utils/seoAnalyzer'
+import PageHeader from '@components/admin/PageHeader'
+import { DashboardSkeleton } from '@components/admin/LoadingSkeleton'
 
 const EditBlog = () => {
   const navigate = useNavigate()
@@ -19,7 +28,6 @@ const EditBlog = () => {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [seoAnalysis, setSeoAnalysis] = useState(null)
-  const [showSeoPanel, setShowSeoPanel] = useState(false)
   const [editForm, setEditForm] = useState({
     title: '',
     slug: '',
@@ -39,6 +47,14 @@ const EditBlog = () => {
     fetchAuthors()
   }, [id])
 
+  // Live SEO scoring
+  useEffect(() => {
+    if (editForm.title || editForm.content) {
+      const analysis = analyzeSEO(editForm)
+      setSeoAnalysis(analysis)
+    }
+  }, [editForm.title, editForm.slug, editForm.content, editForm.excerpt, editForm.featured_image])
+
   const fetchBlog = async () => {
     try {
       setLoading(true)
@@ -55,13 +71,10 @@ const EditBlog = () => {
         featured_image: blogData.featured_image || blogData.image || ''
       }
       setEditForm(initialForm)
-
-      // Calculate initial live SEO analysis immediately
-      const initialAnalysis = analyzeSEO(initialForm)
-      setSeoAnalysis(initialAnalysis)
-    } catch (error) {
-      console.error('Failed to fetch blog:', error)
-      setError('Failed to load blog. Please try again.')
+      setSeoAnalysis(analyzeSEO(initialForm))
+    } catch (err) {
+      console.error('Failed to fetch blog:', err)
+      setError('Failed to load blog data.')
     } finally {
       setLoading(false)
     }
@@ -70,384 +83,370 @@ const EditBlog = () => {
   const fetchCategories = async () => {
     try {
       const response = await adminAPI.getCategories()
-      const categoriesData = response.data?.data || response.data || []
-      setCategories(categoriesData)
-    } catch (error) {
-      console.error('Failed to fetch categories:', error)
+      setCategories(response.data?.data || response.data || [])
+    } catch (err) {
+      console.error('Failed to fetch categories:', err)
     }
   }
 
   const fetchAuthors = async () => {
     try {
       const response = await adminAPI.getAuthors()
-      const authorsData = response.data?.data || response.data || []
-      setAuthors(authorsData)
-    } catch (error) {
-      console.error('Failed to fetch authors:', error)
+      setAuthors(response.data?.data || response.data || [])
+    } catch (err) {
+      console.error('Failed to fetch authors:', err)
     }
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setEditForm(prev => ({ ...prev, [name]: value }))
   }
 
   const handleUpdateBlog = async (e) => {
     e.preventDefault()
     setError('')
-    
+
     if (!editForm.title.trim()) {
-      setError('Title is required')
+      setError('Title is required.')
       return
     }
     if (!editForm.content.trim()) {
-      setError('Content is required')
+      setError('Content is required.')
       return
     }
 
+    setSaving(true)
+
     try {
-      setSaving(true)
-
-      // Always calculate the latest SEO score right before saving
-      const latestSeo = analyzeSEO({
-        title: editForm.title,
-        slug: editForm.slug,
+      const currentSeo = analyzeSEO(editForm)
+      const updateData = {
+        title: editForm.title.trim(),
+        slug: editForm.slug?.trim() || undefined,
         content: editForm.content,
         excerpt: editForm.excerpt || editForm.content.substring(0, 150),
-        featured_image: editForm.featured_image
-      })
-      setSeoAnalysis(latestSeo)
-
-      const blogData = {
-        title: editForm.title,
-        slug: editForm.slug,
-        content: editForm.content,
-        excerpt: editForm.excerpt || editForm.content.substring(0, 150),
-        category_id: editForm.category_id ? parseInt(editForm.category_id) : null,
-        author_id: editForm.author_id ? parseInt(editForm.author_id) : null,
-        status: editForm.status,
+        category_id: editForm.category_id ? parseInt(editForm.category_id, 10) : null,
+        author_id: editForm.author_id ? parseInt(editForm.author_id, 10) : null,
+        status: editForm.status || 'draft',
         featured_image: editForm.featured_image || null,
-        image: editForm.featured_image || null,
-        seo_score: latestSeo.score,
-        seo_analysis: latestSeo
+        seo_score: currentSeo?.score || 0,
+        seo_analysis: currentSeo || null
       }
 
-      console.log('Updating blog with ID:', id, 'Payload:', blogData)
-      const response = await adminAPI.updateBlog(id, blogData)
-      console.log('Update response:', response)
-      
-      if (editForm.status === 'published') {
-        alert('Blog updated and published successfully! It is now live on the public blog section (/blog).')
-      } else {
-        alert(`Blog updated successfully (saved as ${editForm.status}). Set status to "Published" to show on the public blog.`)
-      }
-
+      await adminAPI.updateBlog(id, updateData)
+      alert('Article updated successfully!')
       navigate('/admin/blogs')
-    } catch (error) {
-      console.error('Blog update error:', error)
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to update blog'
-      setError(errorMessage)
+    } catch (err) {
+      console.error('Failed to update blog:', err)
+      const msg = err.response?.data?.message ||
+        (err.response?.data?.errors && err.response.data.errors.map(e => e.msg).join(', ')) ||
+        err.message ||
+        'Failed to update blog. Please try again.'
+      setError(msg)
     } finally {
       setSaving(false)
     }
   }
 
-  const handleCheckSEO = () => {
-    const analysis = analyzeSEO({
-      title: editForm.title,
-      slug: editForm.slug,
-      content: editForm.content,
-      excerpt: editForm.excerpt,
-      featured_image: editForm.featured_image
-    })
-    setSeoAnalysis(analysis)
-    setShowSeoPanel(true)
-  }
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setEditForm(prev => {
-      const updated = { ...prev, [name]: value }
-      const newSeo = analyzeSEO({
-        title: updated.title,
-        slug: updated.slug,
-        content: updated.content,
-        excerpt: updated.excerpt,
-        featured_image: updated.featured_image
-      })
-      setSeoAnalysis(newSeo)
-      return updated
-    })
-  }
+  const seoScore = seoAnalysis?.score || 0
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-text-muted">Loading blog...</div>
-      </div>
-    )
+    return <DashboardSkeleton />
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => navigate('/admin/blogs')}
-            className="p-2 text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5" />
+    <div className="space-y-6 max-w-5xl mx-auto pb-12">
+      <PageHeader
+        title="Edit Blog Article"
+        subtitle={`Updating article #${id}: ${editForm.title}`}
+        breadcrumbs={[
+          { label: 'Blogs', path: '/admin/blogs' },
+          { label: `Edit #${id}` }
+        ]}
+        actions={
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => window.open(`/blog/${editForm.slug || id}?preview=true`, '_blank')}
+              className="admin-btn admin-btn-secondary"
+            >
+              <Eye className="w-4 h-4 text-[#00A6FF]" />
+              <span>Preview</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleUpdateBlog}
+              disabled={saving}
+              className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+            >
+              {saving ? <><Clock className="w-4 h-4 animate-spin" /> Updating...</> : <><Save className="w-4 h-4" /> Save Changes</>}
+            </button>
+          </div>
+        }
+      />
+
+      {error && (
+        <div className="p-4 rounded-xl bg-[var(--admin-danger-soft)] border border-[#F43F5E]/30 text-[#F43F5E] text-xs font-semibold flex items-center justify-between animate-slide-down">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span>{error}</span>
+          </div>
+          <button onClick={() => setError('')} className="p-1 hover:opacity-80">
+            <X className="w-4 h-4" />
           </button>
-          <div>
-            <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">Edit Blog</h1>
-              {seoAnalysis && (
-                <button
-                  type="button"
-                  onClick={() => setShowSeoPanel(!showSeoPanel)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border transition-all cursor-pointer ${getSEOStatusBg(seoAnalysis.status)} ${getSEOStatusColor(seoAnalysis.status)} hover:scale-105 shadow-xs`}
-                  title="Click to view detailed SEO breakdown"
-                >
-                  <TrendingUp className="w-3.5 h-3.5" />
-                  <span>SEO Score: {seoAnalysis.score}/100 ({seoAnalysis.status})</span>
-                </button>
-              )}
+        </div>
+      )}
+
+      <form onSubmit={handleUpdateBlog} className="space-y-6">
+        {/* SECTION 1: Core Info */}
+        <div className="admin-card p-6 space-y-5">
+          <div className="flex items-center gap-2.5 pb-4 border-b border-[var(--admin-border-subtle)]">
+            <div className="w-8 h-8 rounded-lg bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] flex items-center justify-center">
+              <FileText className="w-4 h-4" />
             </div>
-            <p className="text-text-secondary text-xs sm:text-sm mt-0.5">
-              Update your content and publication status for the public blog section
-            </p>
+            <div>
+              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">
+                1. Editorial Content & Slug
+              </h3>
+              <p className="text-xs text-[var(--admin-text-muted)]">Core headline, search slug, and excerpt.</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Article Title <span className="text-[#F43F5E]">*</span>
+              </label>
+              <input
+                type="text"
+                name="title"
+                value={editForm.title}
+                onChange={handleInputChange}
+                className="admin-input font-medium"
+                required
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
+                  Permalink Slug
+                </label>
+                <span className="text-[11px] text-[var(--admin-text-muted)] font-mono">
+                  /blog/{editForm.slug || id}
+                </span>
+              </div>
+              <input
+                type="text"
+                name="slug"
+                value={editForm.slug}
+                onChange={handleInputChange}
+                className="admin-input font-mono text-xs"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
+                  Summary Excerpt
+                </label>
+                <span className="text-[11px] text-[var(--admin-text-muted)]">
+                  {editForm.excerpt.length}/250 characters
+                </span>
+              </div>
+              <textarea
+                name="excerpt"
+                value={editForm.excerpt}
+                onChange={handleInputChange}
+                rows={2}
+                className="admin-input resize-none text-xs leading-relaxed"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Full Article Content <span className="text-[#F43F5E]">*</span>
+              </label>
+              <textarea
+                name="content"
+                value={editForm.content}
+                onChange={handleInputChange}
+                rows={14}
+                className="admin-input resize-y text-xs leading-relaxed font-sans"
+                required
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Edit Form */}
-      <div className="bg-surface rounded-xl border border-border overflow-hidden">
-        <form onSubmit={handleUpdateBlog} className="p-6 space-y-6">
-          {error && (
-            <div className="p-3 bg-error/10 border border-error/30 rounded-lg text-error text-sm">
-              {error}
+        {/* SECTION 2: Media Asset */}
+        <div className="admin-card p-6 space-y-4">
+          <div className="flex items-center gap-2.5 pb-4 border-b border-[var(--admin-border-subtle)]">
+            <div className="w-8 h-8 rounded-lg bg-[var(--admin-accent-soft)] text-[var(--admin-accent)] flex items-center justify-center">
+              <Image className="w-4 h-4" />
             </div>
-          )}
-          
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Title *</label>
-            <input
-              type="text"
-              name="title"
-              value={editForm.title}
-              onChange={handleInputChange}
-              placeholder="Enter blog title"
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-              disabled={saving}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Slug</label>
-            <input
-              type="text"
-              name="slug"
-              value={editForm.slug}
-              onChange={handleInputChange}
-              placeholder="blog-post-slug (auto-generated if empty)"
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary font-mono text-sm"
-              disabled={saving}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Content *</label>
-            <textarea
-              name="content"
-              value={editForm.content}
-              onChange={handleInputChange}
-              placeholder="Write your blog content..."
-              rows={12}
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary resize-none"
-              disabled={saving}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Excerpt / Meta Description</label>
-            <textarea
-              name="excerpt"
-              value={editForm.excerpt}
-              onChange={handleInputChange}
-              placeholder="Short description for blog preview & Google search results (120-160 characters recommended)"
-              rows={3}
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary resize-none"
-              disabled={saving}
-            />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-text-secondary mb-2">Category</label>
+              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">
+                2. Featured Media Asset
+              </h3>
+              <p className="text-xs text-[var(--admin-text-muted)]">Hero image or video asset for this article.</p>
+            </div>
+          </div>
+
+          <FeaturedMedia
+            value={editForm.featured_image}
+            onChange={(url) => setEditForm(prev => ({ ...prev, featured_image: url }))}
+            disabled={saving}
+          />
+        </div>
+
+        {/* SECTION 3: Taxonomy & Status */}
+        <div className="admin-card p-6 space-y-4">
+          <div className="flex items-center gap-2.5 pb-4 border-b border-[var(--admin-border-subtle)]">
+            <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
+              <Layers className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">
+                3. Taxonomy & Status Settings
+              </h3>
+              <p className="text-xs text-[var(--admin-text-muted)]">Category, author byline, and publication visibility.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Topic Category
+              </label>
               <select
                 name="category_id"
                 value={editForm.category_id}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                disabled={saving}
+                className="admin-select text-xs"
               >
-                <option value="">Select category</option>
-                {Array.isArray(categories) && categories.map((cat) => (
-                  <option key={cat.id} value={cat.id}>{cat.name}</option>
+                <option value="">Select Category</option>
+                {categories.map((c) => (
+                  <option key={c.id} value={c.id}>{c.name}</option>
                 ))}
               </select>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text-secondary mb-2">Author</label>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Author Byline
+              </label>
               <select
                 name="author_id"
                 value={editForm.author_id}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                disabled={saving}
+                className="admin-select text-xs"
               >
-                <option value="">Select author</option>
-                {Array.isArray(authors) && authors.map((author) => (
-                  <option key={author.id} value={author.id}>{author.name}</option>
+                <option value="">Select Author</option>
+                {authors.map((a) => (
+                  <option key={a.id} value={a.id}>{a.name}</option>
                 ))}
               </select>
             </div>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-text-secondary mb-2">
-                Status *
-                <span className="ml-2 text-xs font-normal text-primary">
-                  (Must be &quot;Published&quot; to appear on /blog)
-                </span>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Publishing Status
               </label>
               <select
                 name="status"
                 value={editForm.status}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary font-medium"
-                disabled={saving}
+                className="admin-select text-xs font-semibold"
               >
-                <option value="published">Published (Live &amp; visible on /blog)</option>
-                <option value="draft">Draft (Private draft, hidden from /blog)</option>
-                <option value="archived">Archived (Stored in archive section)</option>
+                <option value="draft">Draft</option>
+                <option value="published">Published Live</option>
+                <option value="archived">Archived</option>
               </select>
             </div>
+          </div>
+        </div>
 
-            <div>
-              <label className="block text-sm font-medium text-text-secondary mb-2">Featured Image</label>
-              <FeaturedMedia
-                value={editForm.featured_image}
-                onChange={(value) => {
-                  setEditForm(prev => {
-                    const updated = { ...prev, featured_image: value }
-                    const newSeo = analyzeSEO({
-                      title: updated.title,
-                      slug: updated.slug,
-                      content: updated.content,
-                      excerpt: updated.excerpt,
-                      featured_image: value
-                    })
-                    setSeoAnalysis(newSeo)
-                    return updated
-                  })
-                }}
-                disabled={saving}
-              />
+        {/* SECTION 4: Live SEO Engine */}
+        <div className="admin-card p-6">
+          <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-[var(--admin-success-soft)] text-[var(--admin-success)] flex items-center justify-center">
+                <Globe className="w-4 h-4" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-[var(--admin-text-primary)]">
+                  4. Real-time SEO Scoring & Diagnostics
+                </h3>
+                <p className="text-xs text-[var(--admin-text-muted)]">Live metadata audit.</p>
+              </div>
+            </div>
+
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)]">
+              <TrendingUp className={`w-3.5 h-3.5 ${seoScore >= 80 ? 'text-[#72D669]' : seoScore >= 60 ? 'text-[#00A6FF]' : seoScore >= 40 ? 'text-[#FFA600]' : 'text-[#F43F5E]'
+                }`} />
+              <span>SEO Score: {seoScore}/100</span>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border">
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handleCheckSEO}
-                className="flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-sm font-medium cursor-pointer"
-                disabled={saving}
-              >
-                <TrendingUp className="w-4 h-4 text-primary" />
-                {showSeoPanel ? 'Hide SEO Details' : 'View SEO Details'}
-              </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--admin-text-muted)] block mb-1">
+                Title Length
+              </span>
+              <span className={`text-xs font-bold ${editForm.title.length >= 30 && editForm.title.length <= 60 ? 'text-[#72D669]' : 'text-[#FFA600]'
+                }`}>
+                {editForm.title.length} chars
+              </span>
             </div>
-            
-            <div className="flex items-center gap-3 ml-auto">
-              <button
-                type="button"
-                onClick={() => navigate('/admin/blogs')}
-                className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-sm"
-                disabled={saving}
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={saving}
-                className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-primary-dark transition-all disabled:opacity-50 text-sm font-semibold shadow-md shadow-primary/20 cursor-pointer"
-              >
-                {saving ? (
-                  <><Clock className="w-4 h-4 animate-spin" /> Updating...</>
-                ) : (
-                  <><Save className="w-4 h-4" /> Update Blog</>
-                )}
-              </button>
+
+            <div className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--admin-text-muted)] block mb-1">
+                Word Count
+              </span>
+              <span className="text-xs font-bold text-[var(--admin-text-primary)]">
+                {editForm.content.trim() ? editForm.content.trim().split(/\s+/).length : 0} words
+              </span>
+            </div>
+
+            <div className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--admin-text-muted)] block mb-1">
+                Excerpt
+              </span>
+              <span className={`text-xs font-bold ${editForm.excerpt ? 'text-[#72D669]' : 'text-[#FFA600]'}`}>
+                {editForm.excerpt ? 'Defined ✓' : 'Auto-extracted'}
+              </span>
+            </div>
+
+            <div className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--admin-text-muted)] block mb-1">
+                Featured Asset
+              </span>
+              <span className={`text-xs font-bold ${editForm.featured_image ? 'text-[#72D669]' : 'text-[#FFA600]'}`}>
+                {editForm.featured_image ? 'Attached ✓' : 'None'}
+              </span>
             </div>
           </div>
+        </div>
 
-          {/* SEO Analysis Panel */}
-          {showSeoPanel && seoAnalysis && (
-            <div className={`mt-4 p-5 rounded-xl border ${getSEOStatusBg(seoAnalysis.status)}`}>
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-primary" />
-                  <h3 className="text-lg font-bold text-text-primary">SEO Score Breakdown</h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowSeoPanel(false)}
-                  className="p-1 text-text-muted hover:text-text-primary rounded-lg transition-colors cursor-pointer"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              
-              <div className="text-center mb-6 py-3 bg-surface/60 rounded-xl border border-border/50">
-                <div className={`text-4xl font-black ${getSEOStatusColor(seoAnalysis.status)}`}>
-                  {seoAnalysis.score} / 100
-                </div>
-                <div className={`text-sm font-bold uppercase tracking-wider mt-1 ${getSEOStatusColor(seoAnalysis.status)}`}>
-                  {seoAnalysis.status}
-                </div>
-              </div>
-
-              <div className="space-y-2.5 mb-4">
-                {seoAnalysis.checks.map((check, index) => (
-                  <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-surface/40 border border-border/40 text-sm">
-                    <div className="flex items-center gap-2">
-                      <span className={check.status === 'success' ? 'text-green-500 font-bold' : check.status === 'warning' ? 'text-amber-500 font-bold' : 'text-red-500 font-bold'}>
-                        {check.status === 'success' ? '✓' : check.status === 'warning' ? '⚠' : '✗'}
-                      </span>
-                      <span className="text-text-primary font-medium">{check.name}</span>
-                    </div>
-                    <span className="text-xs font-mono text-text-muted">{check.score} pts</span>
-                  </div>
-                ))}
-              </div>
-
-              {seoAnalysis.recommendations && seoAnalysis.recommendations.length > 0 && (
-                <div className="border-t border-border/60 pt-4">
-                  <h4 className="text-sm font-bold text-text-primary mb-3">SEO Optimization Recommendations:</h4>
-                  <ul className="space-y-2 text-sm text-text-secondary">
-                    {seoAnalysis.recommendations.map((rec, index) => (
-                      <li key={index} className="p-3 rounded-lg bg-surface/30 border border-border/30">
-                        <p className="font-semibold text-text-primary">{rec.issue}</p>
-                        <p className="text-xs text-text-muted mt-1">{rec.how}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          )}
-        </form>
-      </div>
+        {/* Action buttons */}
+        <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
+          <button
+            type="button"
+            onClick={() => navigate('/admin/blogs')}
+            className="admin-btn admin-btn-secondary"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={saving}
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+          >
+            {saving ? <><Clock className="w-4 h-4 animate-spin" /> Updating...</> : <><Save className="w-4 h-4" /> Update Article</>}
+          </button>
+        </div>
+      </form>
     </div>
   )
 }

@@ -180,28 +180,25 @@ export default function ReferenceHero() {
                     key={item.num}
                     onMouseEnter={() => setActiveIndex(idx)}
                     onClick={() => navigate(item.route)}
-                    className={`group relative p-3 sm:p-3.5 rounded-xl border transition-all duration-300 cursor-pointer flex items-center gap-3.5 ${
-                      isActive
+                    className={`group relative p-3 sm:p-3.5 rounded-xl border transition-all duration-300 cursor-pointer flex items-center gap-3.5 ${isActive
                         ? 'border-[#FF6D00] bg-orange-50/70 dark:bg-white/[0.04] shadow-[0_4px_20px_rgba(255,109,0,0.18)] dark:shadow-[0_0_20px_rgba(255,109,0,0.25)]'
                         : 'border-slate-200/80 dark:border-white/5 bg-white/80 dark:bg-transparent hover:border-slate-300 dark:hover:border-white/20 hover:bg-white dark:hover:bg-white/[0.02] shadow-sm dark:shadow-none'
-                    }`}
+                      }`}
                   >
                     {/* Number Badge */}
                     <div
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
-                        isActive
+                      className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${isActive
                           ? 'bg-[#FF6D00] text-black font-black'
                           : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-white/40 group-hover:text-slate-900 dark:group-hover:text-white/70'
-                      }`}
+                        }`}
                     >
                       {item.num}
                     </div>
 
                     {/* Service Name */}
                     <span
-                      className={`text-xs sm:text-sm font-bold tracking-wide transition-colors ${
-                        isActive ? 'text-slate-950 dark:text-white font-black' : 'text-slate-600 dark:text-white/60 group-hover:text-slate-950 dark:group-hover:text-white'
-                      }`}
+                      className={`text-xs sm:text-sm font-bold tracking-wide transition-colors ${isActive ? 'text-slate-950 dark:text-white font-black' : 'text-slate-600 dark:text-white/60 group-hover:text-slate-950 dark:group-hover:text-white'
+                        }`}
                     >
                       {item.name}
                     </span>

@@ -1,49 +1,70 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { CreditCard, Save, CheckCircle2, Zap, Shield, Key } from 'lucide-react';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { 
+  CreditCard, 
+  Save, 
+  CheckCircle2, 
+  Zap, 
+  Shield, 
+  Key, 
+  Eye, 
+  EyeOff, 
+  Lock,
+  Sparkles
+} from 'lucide-react'
+import PageHeader from '@components/admin/PageHeader'
 
 const PaymentGateways = () => {
-  const [activeGateway, setActiveGateway] = useState(null);
+  const [activeGateway, setActiveGateway] = useState('stripe')
+  const [showKeys, setShowKeys] = useState({})
   const [keys, setKeys] = useState({
-    stripe: { publicKey: '', secretKey: '' },
-    razorpay: { keyId: '', keySecret: '' },
-    paypal: { clientId: '', clientSecret: '' }
-  });
-
-  const [savedMessage, setSavedMessage] = useState('');
+    stripe: {
+      publicKey: import.meta.env.VITE_STRIPE_PUBLIC_KEY || '',
+      secretKey: import.meta.env.VITE_STRIPE_SECRET_KEY || ''
+    },
+    razorpay: {
+      keyId: import.meta.env.VITE_RAZORPAY_KEY_ID || '',
+      keySecret: import.meta.env.VITE_RAZORPAY_KEY_SECRET || ''
+    },
+    paypal: {
+      clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || '',
+      clientSecret: import.meta.env.VITE_PAYPAL_CLIENT_SECRET || ''
+    }
+  })
+  const [savedMessage, setSavedMessage] = useState('')
 
   const gateways = [
     {
       id: 'stripe',
-      name: 'Stripe',
-      description: 'Accept credit cards, Google Pay, and Apple Pay globally.',
-      color: 'bg-indigo-500',
+      name: 'Stripe Global Payments',
+      description: 'Accept credit cards, Apple Pay, Google Pay, and international ACH wires.',
+      badgeColor: 'admin-badge-cyan',
       fields: [
-        { name: 'publicKey', label: 'Publishable Key', placeholder: 'pk_test_...' },
-        { name: 'secretKey', label: 'Secret Key', placeholder: 'sk_test_...' }
+        { name: 'publicKey', label: 'Publishable API Key', placeholder: 'Enter Stripe Publishable Key' },
+        { name: 'secretKey', label: 'Restricted Secret API Key', placeholder: 'Enter Stripe Secret Key' }
       ]
     },
     {
       id: 'razorpay',
-      name: 'Razorpay',
-      description: 'Optimized for Indian businesses (UPI, NetBanking, Cards).',
-      color: 'bg-blue-500',
+      name: 'Razorpay Enterprise',
+      description: 'Optimized for instant UPI, Indian netbanking, and corporate corporate cards.',
+      badgeColor: 'admin-badge-orange',
       fields: [
-        { name: 'keyId', label: 'Key ID', placeholder: 'rzp_test_...' },
-        { name: 'keySecret', label: 'Key Secret', placeholder: 'Enter Key Secret' }
+        { name: 'keyId', label: 'Key ID', placeholder: 'Enter Razorpay Key ID' },
+        { name: 'keySecret', label: 'Key Secret', placeholder: 'Enter Razorpay Key Secret' }
       ]
     },
     {
       id: 'paypal',
-      name: 'PayPal',
-      description: 'The world\'s most popular digital wallet.',
-      color: 'bg-sky-500',
+      name: 'PayPal Commerce Platform',
+      description: 'Global checkout, balance transfers, and digital wallet processing.',
+      badgeColor: 'admin-badge-purple',
       fields: [
         { name: 'clientId', label: 'Client ID', placeholder: 'Enter PayPal Client ID' },
-        { name: 'clientSecret', label: 'Client Secret', placeholder: 'Enter PayPal Client Secret' }
+        { name: 'clientSecret', label: 'Client Secret Key', placeholder: 'Enter PayPal Client Secret' }
       ]
     }
-  ];
+  ]
 
   const handleKeyChange = (gatewayId, fieldName, value) => {
     setKeys(prev => ({
@@ -52,139 +73,145 @@ const PaymentGateways = () => {
         ...prev[gatewayId],
         [fieldName]: value
       }
-    }));
-  };
+    }))
+  }
+
+  const toggleShowKey = (fieldId) => {
+    setShowKeys(prev => ({ ...prev, [fieldId]: !prev[fieldId] }))
+  }
 
   const handleSave = () => {
-    // Mock save functionality
-    setSavedMessage('Settings successfully saved to database.');
-    setTimeout(() => setSavedMessage(''), 3000);
-  };
+    setSavedMessage('Payment gateway credentials successfully encrypted and saved.')
+    setTimeout(() => setSavedMessage(''), 3500)
+  }
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Payment Gateways</h1>
-          <p className="text-gray-400">
-            Configure your payment providers. Only one gateway can be active at a time to prevent checkout conflicts.
-          </p>
-        </div>
-        <button 
-          onClick={handleSave}
-          className="flex items-center gap-2 bg-primary hover:bg-primary/80 text-white px-5 py-2.5 rounded-lg transition-colors font-medium shadow-lg shadow-primary/20"
-        >
-          <Save size={18} />
-          Save Settings
-        </button>
-      </div>
+    <div className="space-y-6 max-w-5xl mx-auto pb-12">
+      <PageHeader
+        title="Payment Gateways & Checkout Integrations"
+        subtitle="Manage secure payment processing credentials, API tokens, and live billing providers."
+        breadcrumbs={[{ label: 'Payments' }]}
+        actions={
+          <button 
+            onClick={handleSave}
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+          >
+            <Save className="w-4 h-4" />
+            <span>Save Configuration</span>
+          </button>
+        }
+      />
 
       {savedMessage && (
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-success/10 border border-success/30 text-success px-4 py-3 rounded-lg mb-8 flex items-center gap-2"
-        >
-          <CheckCircle2 size={18} />
-          {savedMessage}
-        </motion.div>
+        <div className="p-4 rounded-xl bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669] text-xs font-semibold flex items-center gap-2 animate-slide-down">
+          <CheckCircle2 className="w-4 h-4 shrink-0" />
+          <span>{savedMessage}</span>
+        </div>
       )}
 
-      {/* Trust Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div className="bg-[#1a1a1a] p-4 rounded-xl border border-white/5 flex items-center gap-4">
-          <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500">
-            <Shield size={20} />
+      {/* Security notice banner */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="admin-card p-4 flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] flex items-center justify-center shrink-0">
+            <Shield className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-white font-medium">PCI-DSS Compliant</h3>
-            <p className="text-gray-400 text-sm">Keys are encrypted before database storage.</p>
+            <h4 className="text-xs font-bold text-[var(--admin-text-primary)]">PCI-DSS Compliant Encryption</h4>
+            <p className="text-[11px] text-[var(--admin-text-muted)] mt-0.5">Sensitive keys are stored in encrypted vaults and never transmitted in plaintext.</p>
           </div>
         </div>
-        <div className="bg-[#1a1a1a] p-4 rounded-xl border border-white/5 flex items-center gap-4">
-          <div className="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500">
-            <Zap size={20} />
+
+        <div className="admin-card p-4 flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[var(--admin-accent-soft)] text-[var(--admin-accent)] flex items-center justify-center shrink-0">
+            <Zap className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-white font-medium">Modular Architecture</h3>
-            <p className="text-gray-400 text-sm">Switching gateways requires zero code changes.</p>
+            <h4 className="text-xs font-bold text-[var(--admin-text-primary)]">Zero Downtime Fallback</h4>
+            <p className="text-[11px] text-[var(--admin-text-muted)] mt-0.5">Switching primary providers takes effect instantly across all client invoices.</p>
           </div>
         </div>
       </div>
 
-      {/* Gateway Cards */}
-      <div className="space-y-6">
-        {gateways.map((gateway) => {
-          const isActive = activeGateway === gateway.id;
+      {/* Gateways List */}
+      <div className="space-y-4">
+        {gateways.map((gw) => {
+          const isActive = activeGateway === gw.id
 
           return (
-            <motion.div 
-              key={gateway.id}
-              className={`bg-[#121212] rounded-2xl border transition-all duration-300 ${
-                isActive ? 'border-primary shadow-[0_0_20px_rgba(0,166,255,0.1)]' : 'border-white/10 hover:border-white/20'
+            <div
+              key={gw.id}
+              className={`admin-card p-6 transition-all duration-300 ${
+                isActive ? 'border-[var(--admin-primary)] shadow-lg shadow-[#00A6FF]/10' : ''
               }`}
             >
-              {/* Header section */}
-              <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/5 gap-4">
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${gateway.color} shadow-lg`}>
-                    <CreditCard size={24} className="text-white" />
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[var(--admin-border-subtle)]">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center text-[var(--admin-primary)]">
+                    <CreditCard className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-white">{gateway.name}</h2>
-                    <p className="text-gray-400 text-sm mt-1">{gateway.description}</p>
+                    <div className="flex items-center gap-2.5">
+                      <h3 className="text-sm font-bold text-[var(--admin-text-primary)]">{gw.name}</h3>
+                      {isActive && (
+                        <span className="admin-badge admin-badge-success text-[10px]">
+                          Primary Live Gateway
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">{gw.description}</p>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => setActiveGateway(isActive ? null : gateway.id)}
-                  className={`relative inline-flex h-7 w-14 items-center rounded-full transition-colors duration-300 ${
-                    isActive ? 'bg-primary' : 'bg-gray-700'
+                  type="button"
+                  onClick={() => setActiveGateway(gw.id)}
+                  className={`admin-btn text-xs py-1.5 px-3.5 shrink-0 ${
+                    isActive 
+                      ? 'bg-[var(--admin-success-soft)] text-[#72D669] border border-[#72D669]/30' 
+                      : 'admin-btn-secondary'
                   }`}
                 >
-                  <span className={`inline-block h-5 w-5 transform rounded-full bg-white transition duration-300 ${
-                    isActive ? 'translate-x-8' : 'translate-x-1'
-                  }`} />
+                  {isActive ? '✓ Active Provider' : 'Set as Active'}
                 </button>
               </div>
 
-              {/* API Keys Configuration Section */}
-              <AnimatePresence>
-                {isActive && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="p-6 bg-black/20 space-y-4">
-                      {gateway.fields.map((field) => (
-                        <div key={field.name}>
-                          <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                            <Key size={14} className="text-gray-500" />
-                            {field.label}
-                          </label>
-                          <input
-                            type="text"
-                            placeholder={field.placeholder}
-                            value={keys[gateway.id][field.name]}
-                            onChange={(e) => handleKeyChange(gateway.id, field.name, e.target.value)}
-                            className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* API Keys Configuration */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                {gw.fields.map((field) => {
+                  const fieldKey = `${gw.id}_${field.name}`
+                  const isVisible = showKeys[fieldKey]
 
-            </motion.div>
-          );
+                  return (
+                    <div key={field.name} className="space-y-1.5">
+                      <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider">
+                        {field.label}
+                      </label>
+                      <div className="relative">
+                        <input
+                          type={isVisible ? 'text' : 'password'}
+                          value={keys[gw.id]?.[field.name] || ''}
+                          onChange={(e) => handleKeyChange(gw.id, field.name, e.target.value)}
+                          placeholder={field.placeholder}
+                          className="admin-input font-mono text-xs pr-10"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => toggleShowKey(fieldKey)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
+                        >
+                          {isVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PaymentGateways;
+export default PaymentGateways

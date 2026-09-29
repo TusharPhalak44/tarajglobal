@@ -199,31 +199,31 @@ function BlogDetails() {
   // Schema Markup
   const articleSchema = blog
     ? {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: blog.title,
-        description: blog.excerpt || blog.title,
-        image: featuredImg,
-        datePublished: blog.created_at || new Date().toISOString(),
-        dateModified: blog.updated_at || blog.created_at || new Date().toISOString(),
-        author: {
-          '@type': 'Person',
-          name: blog.author_name || 'Taraj Global Editorial Team'
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: 'Taraj Global',
-          url: 'https://tarajglobal.com',
-          logo: {
-            '@type': 'ImageObject',
-            url: 'https://tarajglobal.com/OnlyTG-%203.png'
-          }
-        },
-        mainEntityOfPage: {
-          '@type': 'WebPage',
-          '@id': `https://tarajglobal.com/blog/${slug}`
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: blog.title,
+      description: blog.excerpt || blog.title,
+      image: featuredImg,
+      datePublished: blog.created_at || new Date().toISOString(),
+      dateModified: blog.updated_at || blog.created_at || new Date().toISOString(),
+      author: {
+        '@type': 'Person',
+        name: blog.author_name || 'Taraj Global Editorial Team'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Taraj Global',
+        url: 'https://tarajglobal.com',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://tarajglobal.com/OnlyTG-%203.png'
         }
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://tarajglobal.com/blog/${slug}`
       }
+    }
     : null
 
   // ── LOADING STATE ──
@@ -302,12 +302,12 @@ function BlogDetails() {
             <span>Admin Preview Mode &bull; Status: <strong className="uppercase">{blog?.status || 'Draft'}</strong></span>
           </div>
         )}
-        
+
         {/* ── TOP BREADCRUMB & BACK ACTION ─────────────────────────── */}
         <section className="pt-24 pb-6 lg:pt-28 border-b border-slate-200/80 dark:border-white/5 bg-slate-50/50 dark:bg-black/20">
           <Container>
             <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
-              
+
               {/* Back to Blog */}
               <button
                 type="button"
@@ -341,7 +341,7 @@ function BlogDetails() {
         <section className="py-10 lg:py-14">
           <Container>
             <div className="max-w-4xl mx-auto space-y-6">
-              
+
               {/* Category Pill & Read Meta */}
               <div className="flex flex-wrap items-center gap-3">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/25 shadow-xs">
@@ -431,7 +431,7 @@ function BlogDetails() {
         <section className="pb-16">
           <Container>
             <div className={`max-w-6xl mx-auto ${tableOfContents.length > 0 ? 'grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start' : 'max-w-4xl'}`}>
-              
+
               {/* LEFT / CENTER: MAIN ARTICLE CONTENT */}
               <div className={tableOfContents.length > 0 ? 'lg:col-span-8' : 'w-full'}>
                 {/* Mobile Collapsible Table of Contents */}
@@ -462,7 +462,7 @@ function BlogDetails() {
                 )}
 
                 <article className="prose prose-slate dark:prose-invert max-w-none">
-                  
+
                   {/* Executive Key Takeaway Card */}
                   <div className="p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/10 mb-8 shadow-xs not-prose">
                     <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#00A6FF] mb-2.5">

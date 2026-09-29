@@ -123,7 +123,7 @@ export const getMe = async (req, res) => {
     }
     return res.json({
       success: true,
-      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      user: { id: user.id, name: user.name, email: user.email, role: user.role, avatar: user.avatar || null },
     })
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message })
@@ -133,7 +133,7 @@ export const getMe = async (req, res) => {
 // ── Update Profile ─────────────────────────────────────────────────────────
 export const updateProfile = async (req, res) => {
   try {
-    const { name, email } = req.body
+    const { name, email, avatar } = req.body
     const userId = req.user.id
 
     // Check if email is already taken by another user
@@ -156,6 +156,10 @@ export const updateProfile = async (req, res) => {
       updates.push('email = ?')
       values.push(email)
     }
+    if (avatar !== undefined) {
+      updates.push('avatar = ?')
+      values.push(avatar)
+    }
 
     if (updates.length === 0) {
       return res.status(400).json({ success: false, message: 'No fields to update' })
@@ -165,7 +169,7 @@ export const updateProfile = async (req, res) => {
     await db.execute(`UPDATE users SET ${updates.join(', ')} WHERE id = ?`, values)
 
     // Get updated user
-    const [users] = await db.execute('SELECT id, name, email, role FROM users WHERE id = ?', [userId])
+    const [users] = await db.execute('SELECT id, name, email, role, avatar FROM users WHERE id = ?', [userId])
     const updatedUser = users[0]
 
     return res.json({
@@ -175,6 +179,32 @@ export const updateProfile = async (req, res) => {
     })
   } catch (error) {
     console.error('Update profile error:', error)
+    return res.status(500).json({ success: false, message: error.message })
+  }
+}
+
+// ── Upload Avatar ──────────────────────────────────────────────────────────
+export const uploadAvatar = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No file uploaded' })
+    }
+
+    const fileUrl = `/uploads/avatars/${req.file.filename}`
+    const userId = req.user.id
+
+    await db.execute('UPDATE users SET avatar = ? WHERE id = ?', [fileUrl, userId])
+    const [users] = await db.execute('SELECT id, name, email, role, avatar FROM users WHERE id = ?', [userId])
+
+    return res.json({
+      success: true,
+      message: 'Profile photo uploaded successfully',
+      url: fileUrl,
+      file_url: fileUrl,
+      user: users[0]
+    })
+  } catch (error) {
+    console.error('Upload avatar error:', error)
     return res.status(500).json({ success: false, message: error.message })
   }
 }

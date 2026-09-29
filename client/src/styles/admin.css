@@ -1,0 +1,485 @@
+/* ==========================================================================
+   TGS ADVANCED CMS & ADMIN PANEL DESIGN SYSTEM
+   Bespoke Dark & Light Themes • Matching Hover Box Shadows • High-End SaaS UI
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. THEME TOKENS (Dark Mode Default)
+   -------------------------------------------------------------------------- */
+:root,
+html.dark,
+body.dark,
+.dark {
+  /* Surfaces & Backgrounds */
+  --admin-bg-base: #0B0F17;
+  --admin-bg-canvas: #0B0F17;
+  --admin-bg-surface: #111827;
+  --admin-bg-card: #151D30;
+  --admin-bg-elevated: #1B243B;
+  --admin-bg-hover: #222D47;
+  --admin-bg-active: rgba(0, 166, 255, 0.14);
+
+  /* Borders & Outlines */
+  --admin-border-subtle: rgba(255, 255, 255, 0.07);
+  --admin-border-base: rgba(255, 255, 255, 0.12);
+  --admin-border-hover: rgba(0, 166, 255, 0.5);
+  --admin-border-active: #00A6FF;
+
+  /* Typography */
+  --admin-text-primary: #F8FAFC;
+  --admin-text-secondary: #CBD5E1;
+  --admin-text-muted: #94A3B8;
+  --admin-text-dim: #64748B;
+
+  /* Brand Accents */
+  --admin-primary: #00A6FF;
+  --admin-primary-hover: #26B4FF;
+  --admin-primary-soft: rgba(0, 166, 255, 0.14);
+  --admin-primary-glow: rgba(0, 166, 255, 0.25);
+
+  --admin-accent: #FF6D00;
+  --admin-accent-soft: rgba(255, 109, 0, 0.14);
+  --admin-accent-glow: rgba(255, 109, 0, 0.25);
+
+  --admin-success: #10B981;
+  --admin-success-soft: rgba(16, 185, 129, 0.14);
+
+  --admin-warning: #F59E0B;
+  --admin-warning-soft: rgba(245, 158, 11, 0.14);
+
+  --admin-danger: #EF4444;
+  --admin-danger-soft: rgba(239, 68, 68, 0.14);
+
+  /* Shadows (Dark with Ambient Glow) */
+  --admin-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
+  --admin-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --admin-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --admin-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --admin-shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.65), 0 0 18px -2px rgba(0, 166, 255, 0.28);
+  --admin-shadow-accent-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.65), 0 0 18px -2px rgba(255, 109, 0, 0.28);
+
+  /* Scrollbars */
+  --admin-scrollbar-thumb: rgba(255, 255, 255, 0.14);
+  --admin-scrollbar-hover: rgba(0, 166, 255, 0.5);
+
+  /* Radius */
+  --admin-radius-sm: 8px;
+  --admin-radius-md: 12px;
+  --admin-radius-lg: 16px;
+  --admin-radius-xl: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   2. THEME TOKENS (Light Mode)
+   -------------------------------------------------------------------------- */
+html.light,
+body.light,
+.light {
+  /* Surfaces & Backgrounds */
+  --admin-bg-base: #F4F6F9;
+  --admin-bg-canvas: #F4F6F9;
+  --admin-bg-surface: #FFFFFF;
+  --admin-bg-card: #FFFFFF;
+  --admin-bg-elevated: #F8FAFC;
+  --admin-bg-hover: #F1F5F9;
+  --admin-bg-active: rgba(0, 166, 255, 0.10);
+
+  /* Borders & Outlines */
+  --admin-border-subtle: rgba(15, 23, 42, 0.06);
+  --admin-border-base: rgba(15, 23, 42, 0.12);
+  --admin-border-hover: rgba(0, 166, 255, 0.6);
+  --admin-border-active: #00A6FF;
+
+  /* Typography */
+  --admin-text-primary: #0F172A;
+  --admin-text-secondary: #334155;
+  --admin-text-muted: #64748B;
+  --admin-text-dim: #94A3B8;
+
+  /* Brand Accents */
+  --admin-primary: #0088DB;
+  --admin-primary-hover: #0077CC;
+  --admin-primary-soft: rgba(0, 136, 219, 0.10);
+  --admin-primary-glow: rgba(0, 136, 219, 0.20);
+
+  --admin-accent: #E65100;
+  --admin-accent-soft: rgba(230, 81, 0, 0.10);
+  --admin-accent-glow: rgba(230, 81, 0, 0.20);
+
+  --admin-success: #059669;
+  --admin-success-soft: rgba(5, 150, 105, 0.10);
+
+  --admin-warning: #D97706;
+  --admin-warning-soft: rgba(217, 119, 6, 0.10);
+
+  --admin-danger: #DC2626;
+  --admin-danger-soft: rgba(220, 38, 38, 0.10);
+
+  /* Shadows (Light with Clean Crisp Elevation) */
+  --admin-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --admin-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --admin-shadow-lg: 0 14px 32px rgba(15, 23, 42, 0.12);
+  --admin-shadow-card: 0 2px 6px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(15, 23, 42, 0.06);
+  --admin-shadow-hover: 0 12px 28px -4px rgba(0, 136, 219, 0.18), 0 6px 12px -2px rgba(15, 23, 42, 0.08);
+  --admin-shadow-accent-hover: 0 12px 28px -4px rgba(230, 81, 0, 0.18), 0 6px 12px -2px rgba(15, 23, 42, 0.08);
+
+  /* Scrollbars */
+  --admin-scrollbar-thumb: rgba(15, 23, 42, 0.15);
+  --admin-scrollbar-hover: rgba(0, 136, 219, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   3. ROOT LAYOUT & CONTAINERS
+   -------------------------------------------------------------------------- */
+.admin-layout-root {
+  background-color: var(--admin-bg-base);
+  color: var(--admin-text-primary);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   4. CARDS & PANELS WITH HOVER SHADOWS
+   -------------------------------------------------------------------------- */
+.admin-card {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-base);
+  border-radius: var(--admin-radius-lg);
+  box-shadow: var(--admin-shadow-card);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s ease,
+              background-color 0.22s ease;
+}
+
+.admin-card:hover,
+.admin-card-hover:hover {
+  border-color: var(--admin-border-hover);
+  box-shadow: var(--admin-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.admin-panel {
+  background: var(--admin-bg-surface);
+  border: 1px solid var(--admin-border-base);
+  border-radius: var(--admin-radius-lg);
+  box-shadow: var(--admin-shadow-sm);
+  transition: box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.admin-panel:hover {
+  border-color: var(--admin-border-hover);
+  box-shadow: var(--admin-shadow-md);
+}
+
+/* Section Box / Container */
+.admin-section {
+  background: var(--admin-bg-surface);
+  border: 1px solid var(--admin-border-base);
+  border-radius: var(--admin-radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--admin-shadow-card);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-section:hover {
+  border-color: var(--admin-border-hover);
+  box-shadow: var(--admin-shadow-hover);
+}
+
+/* --------------------------------------------------------------------------
+   5. INTERACTIVE ROWS & LIST ITEMS
+   -------------------------------------------------------------------------- */
+.admin-row {
+  border: 1px solid var(--admin-border-subtle);
+  background: var(--admin-bg-surface);
+  border-radius: var(--admin-radius-md);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-row:hover {
+  background: var(--admin-bg-elevated);
+  border-color: var(--admin-border-hover);
+  box-shadow: var(--admin-shadow-sm);
+  transform: translateX(2px);
+}
+
+/* --------------------------------------------------------------------------
+   6. INPUTS & FORM CONTROLS
+   -------------------------------------------------------------------------- */
+.admin-input,
+.admin-select {
+  height: 42px;
+  padding: 0 14px;
+  background: var(--admin-bg-surface);
+  border: 1px solid var(--admin-border-base);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-primary);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-input);
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.admin-input:hover,
+.admin-select:hover {
+  border-color: var(--admin-border-hover);
+  box-shadow: 0 2px 8px rgba(0, 166, 255, 0.12);
+}
+
+.admin-input:focus,
+.admin-select:focus {
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 3px var(--admin-primary-soft), var(--admin-shadow-md);
+}
+
+.admin-input::placeholder {
+  color: var(--admin-text-muted);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-placeholder);
+}
+
+.admin-textarea {
+  padding: 12px 14px;
+  background: var(--admin-bg-surface);
+  border: 1px solid var(--admin-border-base);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-primary);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-input);
+  outline: none;
+  transition: all 0.2s ease;
+  resize: vertical;
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.admin-textarea:hover {
+  border-color: var(--admin-border-hover);
+  box-shadow: 0 2px 8px rgba(0, 166, 255, 0.12);
+}
+
+.admin-textarea:focus {
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 3px var(--admin-primary-soft), var(--admin-shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   7. BUTTONS
+   -------------------------------------------------------------------------- */
+.admin-btn {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--admin-radius-md);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-button);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.admin-btn-primary {
+  background: linear-gradient(135deg, #00A6FF 0%, #0077CC 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(0, 166, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 166, 255, 0.28);
+}
+
+.admin-btn-primary:hover {
+  background: linear-gradient(135deg, #1AB0FF 0%, #0088DB 100%);
+  box-shadow: 0 6px 18px rgba(0, 166, 255, 0.45);
+  transform: translateY(-1.5px);
+}
+
+.admin-btn-secondary {
+  background: var(--admin-bg-elevated);
+  color: var(--admin-text-primary);
+  border: 1px solid var(--admin-border-base);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.admin-btn-secondary:hover {
+  background: var(--admin-bg-hover);
+  border-color: var(--admin-border-hover);
+  box-shadow: var(--admin-shadow-md);
+  transform: translateY(-1px);
+}
+
+.admin-btn-action {
+  background: linear-gradient(135deg, #FF6D00 0%, #E65100 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 109, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(255, 109, 0, 0.28);
+}
+
+.admin-btn-action:hover {
+  background: linear-gradient(135deg, #FF7D1A 0%, #F55B00 100%);
+  box-shadow: 0 6px 18px rgba(255, 109, 0, 0.45);
+  transform: translateY(-1.5px);
+}
+
+.admin-btn-danger {
+  background: var(--admin-danger-soft);
+  color: var(--admin-danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.admin-btn-danger:hover {
+  background: #EF4444;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   8. STATUS BADGES
+   -------------------------------------------------------------------------- */
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.admin-badge:hover {
+  transform: scale(1.03);
+}
+
+.admin-badge-blue {
+  background: var(--admin-primary-soft);
+  color: var(--admin-primary);
+  border-color: rgba(0, 166, 255, 0.3);
+}
+
+.admin-badge-green {
+  background: var(--admin-success-soft);
+  color: var(--admin-success);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.admin-badge-orange {
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+  border-color: rgba(255, 109, 0, 0.3);
+}
+
+.admin-badge-amber {
+  background: var(--admin-warning-soft);
+  color: var(--admin-warning);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.admin-badge-red {
+  background: var(--admin-danger-soft);
+  color: var(--admin-danger);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.admin-badge-neutral {
+  background: rgba(148, 163, 184, 0.14);
+  color: var(--admin-text-secondary);
+  border-color: var(--admin-border-base);
+}
+
+/* --------------------------------------------------------------------------
+   9. TABLES WITH HOVER ELEVATION
+   -------------------------------------------------------------------------- */
+.admin-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--admin-radius-lg);
+  border: 1px solid var(--admin-border-base);
+  box-shadow: var(--admin-shadow-card);
+  background: var(--admin-bg-surface);
+  transition: box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.admin-table-wrapper:hover {
+  border-color: var(--admin-border-hover);
+  box-shadow: var(--admin-shadow-md);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+}
+
+.admin-table th {
+  padding: 13px 18px;
+  background: var(--admin-bg-surface);
+  color: var(--admin-text-muted);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--admin-border-base);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--admin-border-subtle);
+  color: var(--admin-text-secondary);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-table tbody tr:hover {
+  background: var(--admin-bg-elevated);
+  box-shadow: inset 3px 0 0 var(--admin-primary);
+}
+
+.admin-table tbody tr:hover td {
+  color: var(--admin-text-primary);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   10. SCROLLBARS
+   -------------------------------------------------------------------------- */
+.admin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--admin-scrollbar-thumb);
+  border-radius: 9999px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-scrollbar-hover);
+}
+
+/* --------------------------------------------------------------------------
+   11. TECH GRID DECORATION (Subtle ambient)
+   -------------------------------------------------------------------------- */
+.admin-tech-grid {
+  background-color: var(--admin-bg-canvas);
+  background-image: radial-gradient(var(--admin-border-subtle) 1px, transparent 1px);
+  background-size: 32px 32px;
+}

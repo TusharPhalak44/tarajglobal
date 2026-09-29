@@ -1,28 +1,27 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import { 
   Plus, 
   Search, 
-  Filter, 
-  MoreVertical, 
-  Edit, 
   Trash2, 
-  Archive,
-  Briefcase,
-  Calendar,
-  Users,
-  MapPin,
-  X,
-  Save,
-  Clock,
-  Eye,
-  ExternalLink,
-  CheckCircle2,
-  RefreshCw,
-  RotateCcw,
-  FileText
+  Archive, 
+  Briefcase, 
+  Calendar, 
+  Users, 
+  MapPin, 
+  X, 
+  Clock, 
+  Eye, 
+  CheckCircle2, 
+  MoreVertical,
+  Edit
 } from 'lucide-react'
 import { adminAPI } from '@api'
-import { useNavigate } from 'react-router-dom'
+import PageHeader from '@components/admin/PageHeader'
+import StatusBadge from '@components/admin/StatusBadge'
+import EmptyState from '@components/admin/EmptyState'
+import ConfirmModal from '@components/admin/ConfirmModal'
+import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Jobs = () => {
   const navigate = useNavigate()
@@ -34,9 +33,11 @@ const Jobs = () => {
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [saving, setSaving] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
-  const [showViewModal, setShowViewModal] = useState(false)
   const [viewJob, setViewJob] = useState(null)
+  const [deleteConfirm, setDeleteConfirm] = useState(null)
   const [toastMessage, setToastMessage] = useState('')
+  const [error, setError] = useState('')
+
   const [createForm, setCreateForm] = useState({
     title: '',
     description: '',
@@ -46,22 +47,20 @@ const Jobs = () => {
     salary: '',
     status: 'draft'
   })
-  const [error, setError] = useState('')
 
   const showToast = (msg) => {
     setToastMessage(msg)
-    setTimeout(() => setToastMessage(''), 3500)
+    setTimeout(() => setToastMessage(''), 3000)
   }
 
   useEffect(() => {
     fetchJobs()
   }, [filters.status, pagination.page])
 
-  // Debounced search trigger for backend
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchJobs(true)
-    }, 350)
+    }, 300)
     return () => clearTimeout(timer)
   }, [filters.search])
 
@@ -95,34 +94,16 @@ const Jobs = () => {
     }
   }
 
-  // Client-side quick filter for instantaneous typing response
-  const filteredJobs = useMemo(() => {
-    return jobs.filter(job => {
-      if (filters.status && job.status !== filters.status) return false
-      if (filters.type && job.type !== filters.type) return false
-      if (filters.search) {
-        const q = filters.search.toLowerCase().trim()
-        const titleMatch = job.title?.toLowerCase().includes(q)
-        const locMatch = job.location?.toLowerCase().includes(q)
-        const typeMatch = job.type?.toLowerCase().includes(q)
-        const descMatch = job.description?.toLowerCase().includes(q)
-        const reqMatch = job.requirements?.toLowerCase().includes(q)
-        return titleMatch || locMatch || typeMatch || descMatch || reqMatch
-      }
-      return true
-    })
-  }, [jobs, filters])
-
   const handleCreateJob = async (e) => {
     e.preventDefault()
     setError('')
     
     if (!createForm.title.trim()) {
-      setError('Title is required')
+      setError('Job position title is required')
       return
     }
     if (!createForm.description.trim()) {
-      setError('Description is required')
+      setError('Job description is required')
       return
     }
 
@@ -139,736 +120,347 @@ const Jobs = () => {
         salary: '',
         status: 'draft'
       })
-      showToast('Job created successfully')
       fetchJobs()
+      showToast('Career position created successfully!')
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create job')
+      setError(err.response?.data?.message || 'Failed to create position')
     } finally {
       setSaving(false)
     }
   }
 
-  const getStatusBadge = (status) => {
-    const styles = {
-      draft: 'bg-yellow-500/15 text-yellow-400 border border-yellow-500/20',
-      published: 'bg-green-500/15 text-green-400 border border-green-500/20',
-      archived: 'bg-orange-500/15 text-orange-400 border border-orange-500/20'
-    }
-    return (
-      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${styles[status] || styles.draft}`}>
-        {status?.replace('_', ' ').toUpperCase() || 'DRAFT'}
-      </span>
-    )
-  }
-
-  const handleEdit = (job) => {
+  const handleStatusChange = async (job, newStatus) => {
     setActiveDropdown(null)
-    navigate(`/admin/jobs/edit/${job.id}`)
-  }
-
-  const handlePreview = (job) => {
-    setActiveDropdown(null)
-    window.open(`/careers?jobId=${job.id}`, '_blank')
-  }
-
-  const handleViewApplications = (job) => {
-    setActiveDropdown(null)
-    navigate(`/admin/applications?job_id=${job.id}&job_title=${encodeURIComponent(job.title)}`)
-  }
-
-  const handleViewJob = (job) => {
-    setActiveDropdown(null)
-    setViewJob(job)
-    setShowViewModal(true)
-  }
-
-  const handleArchive = async (job) => {
-    setActiveDropdown(null)
-    if (window.confirm(`Are you sure you want to archive "${job.title}"?`)) {
-      try {
-        await adminAPI.updateJob(job.id, { status: 'archived' })
-        setJobs(prev => prev.map(j => j.id === job.id ? { ...j, status: 'archived' } : j))
-        showToast(`"${job.title}" archived successfully`)
-      } catch (err) {
-        console.error('Failed to archive job:', err)
-        alert('Failed to archive job. Please try again.')
-      }
-    }
-  }
-
-  const handleRestore = async (job, targetStatus = 'published') => {
-    setActiveDropdown(null)
-    try {
-      await adminAPI.updateJob(job.id, { status: targetStatus })
-      setJobs(prev => prev.map(j => j.id === job.id ? { ...j, status: targetStatus } : j))
-      showToast(`"${job.title}" restored as ${targetStatus}`)
-    } catch (err) {
-      console.error('Failed to restore job:', err)
-      alert('Failed to restore job. Please try again.')
-    }
-  }
-
-  const handleTogglePublish = async (job) => {
-    setActiveDropdown(null)
-    const newStatus = job.status === 'published' ? 'draft' : 'published'
     try {
       await adminAPI.updateJob(job.id, { status: newStatus })
-      setJobs(prev => prev.map(j => j.id === job.id ? { ...j, status: newStatus } : j))
-      showToast(`"${job.title}" moved to ${newStatus}`)
+      fetchJobs(true)
+      showToast(`Position status updated.`)
     } catch (err) {
-      console.error('Failed to update job status:', err)
-      alert('Failed to update status. Please try again.')
+      alert(`Failed to update status: ${err.response?.data?.message || err.message}`)
     }
   }
 
-  const handleDelete = async (job) => {
-    setActiveDropdown(null)
-    if (window.confirm(`Are you sure you want to permanently delete "${job.title}"? This action cannot be undone.`)) {
-      try {
-        await adminAPI.deleteJob(job.id)
-        setJobs(prev => prev.filter(j => j.id !== job.id))
-        showToast(`Job "${job.title}" permanently deleted`)
-      } catch (err) {
-        console.error('Failed to delete job:', err)
-        alert(err.response?.data?.message || 'Failed to delete job. Please try again.')
-      }
+  const handleDeleteJob = async () => {
+    if (!deleteConfirm) return
+    try {
+      setSaving(true)
+      await adminAPI.deleteJob(deleteConfirm.id)
+      setDeleteConfirm(null)
+      fetchJobs(true)
+      showToast('Position deleted.')
+    } catch (err) {
+      alert(`Failed to delete: ${err.response?.data?.message || err.message}`)
+    } finally {
+      setSaving(false)
     }
   }
 
   return (
     <div className="space-y-6">
-      {/* Toast Notification */}
+      <PageHeader
+        title="Career Openings"
+        subtitle="Manage job requisitions, hiring requirements, and candidate pipelines."
+        breadcrumbs={[{ label: 'Jobs' }]}
+        onRefresh={() => fetchJobs(true)}
+        isRefreshing={isRefreshing}
+        actions={
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="admin-btn admin-btn-primary shadow-md"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Post Position</span>
+          </button>
+        }
+      />
+
       {toastMessage && (
-        <div className="fixed top-5 right-5 z-50 flex items-center gap-2 px-4 py-3 bg-primary text-white rounded-xl shadow-2xl animate-fade-in text-sm font-medium border border-white/20">
-          <CheckCircle2 className="w-4 h-4 text-white" />
-          {toastMessage}
+        <div className="p-3.5 rounded-xl bg-[var(--admin-bg-surface)] border border-[var(--admin-success)] text-[var(--admin-success)] text-xs flex items-center gap-2 shadow-sm">
+          <CheckCircle2 className="w-4 h-4" />
+          <span>{toastMessage}</span>
         </div>
       )}
 
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-1">Jobs</h1>
-          <p className="text-text-secondary text-sm">Manage job postings, requirements, and candidate applications</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => fetchJobs(true)}
-            className="p-2 bg-surface border border-border rounded-lg text-text-secondary hover:text-text-primary transition-colors hover:bg-surface/80"
-            title="Refresh jobs"
-          >
-            <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-primary' : ''}`} />
-          </button>
-          <button 
-            onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium text-sm shadow-md"
-          >
-            <Plus className="w-4 h-4" />
-            Create Job
-          </button>
-        </div>
-      </div>
-
-      {/* Filters Bar */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
-        {/* Search Job */}
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+      {/* Filter & Search Bar */}
+      <div className="admin-card p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="relative w-full sm:w-80">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--admin-text-muted)]" />
           <input
             type="text"
-            placeholder="Search job title, location, type, skills..."
+            placeholder="Search positions..."
             value={filters.search}
-            onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-            className="w-full pl-9 pr-9 py-2 bg-surface border border-border rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary text-sm"
+            onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+            className="admin-input pl-10 pr-8 w-full"
           />
           {filters.search && (
             <button
-              onClick={() => setFilters(prev => ({ ...prev, search: '' }))}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary p-0.5 rounded"
+              onClick={() => setFilters({ ...filters, search: '' })}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
             >
               <X className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
 
-        {/* All Status Filter */}
-        <div className="flex items-center gap-2">
-          <select
-            value={filters.status}
-            onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-            className="px-3 py-2 bg-surface border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm font-medium"
-          >
-            <option value="">All Status</option>
-            <option value="published">Published</option>
-            <option value="draft">Draft</option>
-            <option value="archived">Archived</option>
-          </select>
+        <select
+          value={filters.status}
+          onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+          className="admin-select min-w-[150px] w-full sm:w-auto"
+        >
+          <option value="">All Statuses</option>
+          <option value="active">Active</option>
+          <option value="draft">Draft</option>
+          <option value="archived">Archived</option>
+        </select>
+      </div>
 
-          <select
-            value={filters.type}
-            onChange={(e) => setFilters(prev => ({ ...prev, type: e.target.value }))}
-            className="px-3 py-2 bg-surface border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm font-medium"
-          >
-            <option value="">All Types</option>
-            <option value="full-time">Full-time</option>
-            <option value="part-time">Part-time</option>
-            <option value="contract">Contract</option>
-            <option value="internship">Internship</option>
-          </select>
-
-          {(filters.status || filters.search || filters.type) && (
-            <button
-              onClick={() => setFilters({ status: '', search: '', type: '' })}
-              className="flex items-center gap-1 px-3 py-2 text-xs font-medium text-text-muted hover:text-text-primary bg-surface border border-border rounded-lg hover:bg-surface/80 transition-colors"
+      {/* Jobs List */}
+      {loading ? (
+        <TableSkeleton rows={5} cols={5} />
+      ) : jobs.length === 0 ? (
+        <EmptyState
+          icon={Briefcase}
+          title="No career positions found"
+          description="Create job requisitions to attract candidate applications."
+          actionLabel="Post Position"
+          onAction={() => setShowCreateModal(true)}
+        />
+      ) : (
+        <div className="space-y-3">
+          {jobs.map((job) => (
+            <div 
+              key={job.id} 
+              className="admin-card p-4 sm:p-5 flex items-center justify-between gap-6 group"
             >
-              <X className="w-3.5 h-3.5" />
-              Reset
-            </button>
-          )}
-        </div>
-      </div>
+              <div className="min-w-0 flex-1 space-y-1.5">
+                <div className="flex items-center gap-3">
+                  <h3 
+                    onClick={() => setViewJob(job)}
+                    className="text-sm sm:text-base font-bold text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors cursor-pointer truncate"
+                  >
+                    {job.title}
+                  </h3>
+                  <StatusBadge status={job.status || 'draft'} />
+                </div>
 
-      {/* Active Filter Indicators */}
-      <div className="flex items-center gap-2 text-xs text-text-muted">
-        <span>Showing {filteredJobs.length} {filteredJobs.length === 1 ? 'job' : 'jobs'}</span>
-        {filters.status && (
-          <span className="px-2 py-0.5 bg-surface border border-border rounded text-text-secondary">
-            Status: <b className="text-text-primary uppercase">{filters.status}</b>
-          </span>
-        )}
-        {filters.type && (
-          <span className="px-2 py-0.5 bg-surface border border-border rounded text-text-secondary">
-            Type: <b className="text-text-primary">{filters.type}</b>
-          </span>
-        )}
-        {filters.search && (
-          <span className="px-2 py-0.5 bg-surface border border-border rounded text-text-secondary">
-            Query: "<b className="text-text-primary">{filters.search}</b>"
-          </span>
-        )}
-      </div>
+                <div className="flex items-center gap-3 text-xs text-[var(--admin-text-muted)] flex-wrap">
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-[var(--admin-primary)]" />
+                    <span className="text-[var(--admin-text-secondary)]">{job.location || 'Remote'}</span>
+                  </span>
+                  <span>•</span>
+                  <span className="capitalize font-medium text-[var(--admin-text-secondary)]">{job.type || 'Full-time'}</span>
+                  <span>•</span>
+                  <span className="text-[var(--admin-text-secondary)]">{job.salary || 'Competitive'}</span>
+                  <span>•</span>
+                  <Link 
+                    to={`/admin/applications?job_id=${job.id}&job_title=${encodeURIComponent(job.title)}`}
+                    className="text-[var(--admin-primary)] hover:underline font-bold"
+                  >
+                    {job.application_count ?? job.applications_count ?? 0} applicants →
+                  </Link>
+                </div>
+              </div>
 
-      {/* Jobs Table Container */}
-      <div className="bg-surface rounded-xl border border-border shadow-sm">
-        <div className="overflow-x-auto min-h-[300px]">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border bg-background/50 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">
-                <th className="px-6 py-3.5">Job Title</th>
-                <th className="px-6 py-3.5">Location</th>
-                <th className="px-6 py-3.5">Type</th>
-                <th className="px-6 py-3.5">Status</th>
-                <th className="px-6 py-3.5">Applications</th>
-                <th className="px-6 py-3.5">Posted</th>
-                <th className="px-6 py-3.5 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {loading && filteredJobs.length === 0 ? (
-                <tr>
-                  <td colSpan="7" className="px-6 py-16 text-center text-text-muted">
-                    <div className="flex items-center justify-center gap-2">
-                      <RefreshCw className="w-5 h-5 animate-spin text-primary" />
-                      <span>Loading jobs...</span>
-                    </div>
-                  </td>
-                </tr>
-              ) : filteredJobs.length === 0 ? (
-                <tr>
-                  <td colSpan="7" className="px-6 py-16 text-center">
-                    <div className="flex flex-col items-center justify-center">
-                      <Briefcase className="w-12 h-12 text-text-muted mb-3 opacity-60" />
-                      <p className="text-base font-semibold text-text-primary mb-1">No jobs found</p>
-                      <p className="text-text-muted text-xs mb-4">Try clearing filters or post a new job opening.</p>
-                      <button
-                        onClick={() => setShowCreateModal(true)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-medium hover:bg-primary-dark transition-colors"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                        Create New Job
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ) : (
-                filteredJobs.map((job, index) => {
-                  const isBottomHalf = index >= filteredJobs.length - 2 && index > 1
-                  const isDropdownOpen = activeDropdown === job.id
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => setViewJob(job)}
+                  className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors"
+                  title="View Position"
+                >
+                  <Eye className="w-4 h-4" />
+                </button>
 
-                  return (
-                    <tr 
-                      key={job.id} 
-                      className="hover:bg-surface/70 transition-colors group"
-                    >
-                      {/* Title */}
-                      <td className="px-6 py-4">
-                        <div className="font-semibold text-text-primary group-hover:text-primary transition-colors cursor-pointer" onClick={() => handleViewJob(job)}>
-                          {job.title}
-                        </div>
-                        {job.salary && (
-                          <span className="text-xs text-text-muted">{job.salary}</span>
-                        )}
-                      </td>
+                <button
+                  onClick={() => navigate(`/admin/jobs/edit/${job.id}`)}
+                  className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors"
+                  title="Edit Position"
+                >
+                  <Edit className="w-4 h-4" />
+                </button>
 
-                      {/* Location */}
-                      <td className="px-6 py-4 text-text-secondary">
-                        <div className="flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-text-muted flex-shrink-0" />
-                          <span>{job.location || 'Remote'}</span>
-                        </div>
-                      </td>
+                <div className="relative">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setActiveDropdown(activeDropdown === job.id ? null : job.id)
+                    }}
+                    className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors"
+                  >
+                    <MoreVertical className="w-4 h-4" />
+                  </button>
 
-                      {/* Employment Type */}
-                      <td className="px-6 py-4 text-text-secondary capitalize">
-                        {job.type || 'Full-time'}
-                      </td>
-
-                      {/* Status */}
-                      <td className="px-6 py-4">
-                        {getStatusBadge(job.status)}
-                      </td>
-
-                      {/* Applications Count */}
-                      <td className="px-6 py-4">
-                        <button
-                          onClick={() => handleViewApplications(job)}
-                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-background border border-border hover:border-primary/40 hover:text-primary transition-colors text-xs font-medium"
-                          title="View applications for this job"
-                        >
-                          <Users className="w-3.5 h-3.5 text-text-muted" />
-                          <span className="font-semibold text-text-primary">{job.application_count || 0}</span>
-                          <span className="text-text-muted hidden sm:inline">apps</span>
-                        </button>
-                      </td>
-
-                      {/* Posted Date */}
-                      <td className="px-6 py-4 text-text-secondary text-xs">
-                        <div className="flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-text-muted flex-shrink-0" />
-                          <span>{new Date(job.created_at).toLocaleDateString()}</span>
-                        </div>
-                      </td>
-
-                      {/* Action Dropdown */}
-                      <td className="px-6 py-4 text-right">
-                        <div className="relative inline-block text-left">
-                          <button 
-                            onClick={() => setActiveDropdown(isDropdownOpen ? null : job.id)}
-                            className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background border border-transparent hover:border-border transition-colors"
-                            aria-label="Job actions"
+                  {activeDropdown === job.id && (
+                    <>
+                      <div className="fixed inset-0 z-40" onClick={() => setActiveDropdown(null)} />
+                      <div className="absolute right-0 top-full mt-1.5 w-40 bg-[var(--admin-bg-card)] border border-[var(--admin-border-base)] rounded-xl shadow-xl p-1.5 z-50 text-xs admin-card-hover">
+                        {job.status !== 'active' ? (
+                          <button
+                            onClick={() => handleStatusChange(job, 'active')}
+                            className="w-full text-left px-3 py-2 text-[var(--admin-success)] hover:bg-[var(--admin-bg-elevated)] rounded-lg font-semibold"
                           >
-                            <MoreVertical className="w-4 h-4" />
+                            Set Active
                           </button>
-
-                          {/* Backdrop Click Dismiss */}
-                          {isDropdownOpen && (
-                            <div 
-                              className="fixed inset-0 z-40 bg-transparent" 
-                              onClick={() => setActiveDropdown(null)} 
-                            />
-                          )}
-
-                          {/* Dropdown Menu */}
-                          {isDropdownOpen && (
-                            <div 
-                              className={`absolute right-0 ${isBottomHalf ? 'bottom-full mb-2' : 'top-full mt-2'} w-52 bg-surface border border-border rounded-xl shadow-2xl z-50 py-1.5 backdrop-blur-md animate-in fade-in zoom-in-95`}
-                            >
-                              {/* View Details */}
-                              <button 
-                                onClick={() => handleViewJob(job)}
-                                className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-text-primary hover:bg-primary/10 hover:text-primary transition-colors text-left"
-                              >
-                                <Eye className="w-3.5 h-3.5 text-primary" />
-                                View Details
-                              </button>
-
-                              {/* Preview on Public Careers */}
-                              <button 
-                                onClick={() => handlePreview(job)}
-                                className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors text-left"
-                              >
-                                <ExternalLink className="w-3.5 h-3.5 text-text-muted" />
-                                Preview on Careers
-                              </button>
-
-                              {/* Edit Job */}
-                              <button 
-                                onClick={() => handleEdit(job)}
-                                className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors text-left"
-                              >
-                                <Edit className="w-3.5 h-3.5 text-text-muted" />
-                                Edit Job
-                              </button>
-
-                              {/* View Applications */}
-                              <button 
-                                onClick={() => handleViewApplications(job)}
-                                className="flex items-center justify-between w-full px-3.5 py-2 text-xs font-medium text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors text-left"
-                              >
-                                <span className="flex items-center gap-2.5">
-                                  <Users className="w-3.5 h-3.5 text-text-muted" />
-                                  View Applications
-                                </span>
-                                {job.application_count > 0 && (
-                                  <span className="px-1.5 py-0.2 bg-primary/20 text-primary text-[10px] rounded-full font-bold">
-                                    {job.application_count}
-                                  </span>
-                                )}
-                              </button>
-
-                              <div className="my-1 border-t border-border/70" />
-
-                              {/* Publish / Draft Toggle */}
-                              {job.status === 'published' ? (
-                                <button 
-                                  onClick={() => handleTogglePublish(job)}
-                                  className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-yellow-500 hover:bg-yellow-500/10 transition-colors text-left"
-                                >
-                                  <FileText className="w-3.5 h-3.5" />
-                                  Move to Draft
-                                </button>
-                              ) : (
-                                <button 
-                                  onClick={() => handleTogglePublish(job)}
-                                  className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-green-500 hover:bg-green-500/10 transition-colors text-left"
-                                >
-                                  <CheckCircle2 className="w-3.5 h-3.5" />
-                                  Publish Job
-                                </button>
-                              )}
-
-                              {/* Archive or Restore */}
-                              {job.status === 'archived' ? (
-                                <button 
-                                  onClick={() => handleRestore(job, 'published')}
-                                  className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-emerald-500 hover:bg-emerald-500/10 transition-colors text-left"
-                                >
-                                  <RotateCcw className="w-3.5 h-3.5" />
-                                  Restore & Publish
-                                </button>
-                              ) : (
-                                <button 
-                                  onClick={() => handleArchive(job)}
-                                  className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-orange-400 hover:bg-orange-500/10 transition-colors text-left"
-                                >
-                                  <Archive className="w-3.5 h-3.5" />
-                                  Archive
-                                </button>
-                              )}
-
-                              <div className="my-1 border-t border-border/70" />
-
-                              {/* Delete */}
-                              <button 
-                                onClick={() => handleDelete(job)}
-                                className="flex items-center gap-2.5 w-full px-3.5 py-2 text-xs font-medium text-red-500 hover:bg-red-500/10 transition-colors text-left"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                                Delete Permanently
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  )
-                })
-              )}
-            </tbody>
-          </table>
+                        ) : (
+                          <button
+                            onClick={() => handleStatusChange(job, 'draft')}
+                            className="w-full text-left px-3 py-2 text-[var(--admin-text-secondary)] hover:bg-[var(--admin-bg-elevated)] rounded-lg font-medium"
+                          >
+                            Move to Draft
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleStatusChange(job, 'archived')}
+                          className="w-full text-left px-3 py-2 text-[var(--admin-text-secondary)] hover:bg-[var(--admin-bg-elevated)] rounded-lg font-medium"
+                        >
+                          Archive
+                        </button>
+                        <button
+                          onClick={() => {
+                            setDeleteConfirm(job)
+                            setActiveDropdown(null)
+                          }}
+                          className="w-full text-left px-3 py-2 text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] rounded-lg font-semibold mt-1"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
+      )}
 
-        {/* Pagination Footer */}
-        {pagination.totalPages > 1 && (
-          <div className="flex items-center justify-between px-6 py-4 border-t border-border text-xs text-text-secondary">
-            <div>
-              Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} jobs
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setPagination(prev => ({ ...prev, page: prev.page - 1 }))}
-                disabled={pagination.page === 1}
-                className="px-3 py-1.5 bg-background border border-border rounded-lg text-text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface transition-colors"
-              >
-                Previous
-              </button>
-              <span className="font-semibold text-text-primary">
-                {pagination.page} / {pagination.totalPages}
-              </span>
-              <button
-                onClick={() => setPagination(prev => ({ ...prev, page: prev.page + 1 }))}
-                disabled={pagination.page === pagination.totalPages}
-                className="px-3 py-1.5 bg-background border border-border rounded-lg text-text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface transition-colors"
-              >
-                Next
+      {/* View Modal */}
+      {viewJob && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in">
+          <div className="fixed inset-0" onClick={() => setViewJob(null)} />
+          <div className="relative max-w-lg w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
+            <div className="flex items-start justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
+              <div>
+                <h3 className="text-base font-bold text-[var(--admin-text-primary)]">{viewJob.title}</h3>
+                <p className="text-xs text-[var(--admin-text-secondary)] mt-0.5">{viewJob.location || 'Remote'} • {viewJob.type || 'Full-time'}</p>
+              </div>
+              <button onClick={() => setViewJob(null)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
+                <X className="w-4 h-4" />
               </button>
             </div>
-          </div>
-        )}
-      </div>
 
-      {/* View Job Details Modal */}
-      {showViewModal && viewJob && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm animate-fade-in">
-          <div className="bg-surface rounded-2xl border border-border w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-6 border-b border-border flex items-center justify-between sticky top-0 bg-surface/95 backdrop-blur-sm z-10">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/10 rounded-xl text-primary">
-                  <Briefcase className="w-5 h-5" />
-                </div>
+            <div className="space-y-3 text-xs text-[var(--admin-text-secondary)]">
+              <div>
+                <span className="font-bold uppercase tracking-wider text-[var(--admin-text-muted)] block mb-1">Description</span>
+                <p className="leading-relaxed whitespace-pre-wrap bg-[var(--admin-bg-elevated)] p-3.5 rounded-xl border border-[var(--admin-border-base)]">{viewJob.description}</p>
+              </div>
+
+              {viewJob.requirements && (
                 <div>
-                  <h2 className="text-xl font-bold text-text-primary">{viewJob.title}</h2>
-                  <p className="text-xs text-text-muted">Job ID: #{viewJob.id} &bull; Created {new Date(viewJob.created_at).toLocaleDateString()}</p>
-                </div>
-              </div>
-              <button 
-                onClick={() => setShowViewModal(false)}
-                className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            
-            <div className="p-6 space-y-6">
-              {/* Quick Meta Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="p-3.5 bg-background rounded-xl border border-border">
-                  <span className="text-xs text-text-muted block mb-1">Status</span>
-                  {getStatusBadge(viewJob.status)}
-                </div>
-                <div className="p-3.5 bg-background rounded-xl border border-border">
-                  <span className="text-xs text-text-muted block mb-1">Employment</span>
-                  <span className="font-semibold text-text-primary text-sm capitalize">{viewJob.type || 'Full-time'}</span>
-                </div>
-                <div className="p-3.5 bg-background rounded-xl border border-border">
-                  <span className="text-xs text-text-muted block mb-1">Location</span>
-                  <span className="font-semibold text-text-primary text-sm flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-primary" />
-                    {viewJob.location || 'Remote'}
-                  </span>
-                </div>
-                <div className="p-3.5 bg-background rounded-xl border border-border">
-                  <span className="text-xs text-text-muted block mb-1">Applications</span>
-                  <span className="font-semibold text-text-primary text-sm flex items-center gap-1">
-                    <Users className="w-3.5 h-3.5 text-primary" />
-                    {viewJob.application_count || 0} received
-                  </span>
-                </div>
-              </div>
-
-              {viewJob.salary && (
-                <div className="p-3 bg-primary/5 border border-primary/20 rounded-xl text-xs text-text-primary">
-                  <span className="text-text-muted font-medium">Offered Salary: </span>
-                  <span className="font-bold text-primary">{viewJob.salary}</span>
+                  <span className="font-bold uppercase tracking-wider text-[var(--admin-text-muted)] block mb-1">Requirements</span>
+                  <p className="leading-relaxed whitespace-pre-wrap bg-[var(--admin-bg-elevated)] p-3.5 rounded-xl border border-[var(--admin-border-base)]">{viewJob.requirements}</p>
                 </div>
               )}
+            </div>
 
-              {/* Description */}
-              <div>
-                <h4 className="text-sm font-bold text-text-primary mb-2 flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-primary" />
-                  Job Description
-                </h4>
-                <div className="p-4 bg-background rounded-xl border border-border text-text-secondary text-sm leading-relaxed whitespace-pre-wrap">
-                  {viewJob.description || 'No description provided.'}
-                </div>
-              </div>
-
-              {/* Requirements */}
-              <div>
-                <h4 className="text-sm font-bold text-text-primary mb-2 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-primary" />
-                  Key Requirements & Qualifications
-                </h4>
-                <div className="p-4 bg-background rounded-xl border border-border text-text-secondary text-sm leading-relaxed whitespace-pre-wrap">
-                  {viewJob.requirements || 'No specific requirements listed.'}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => handlePreview(viewJob)}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-background border border-border rounded-lg text-text-secondary hover:text-text-primary hover:border-primary/40 text-xs font-medium transition-colors"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    Preview on Careers
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowViewModal(false)
-                      handleViewApplications(viewJob)
-                    }}
-                    className="flex items-center gap-1.5 px-3 py-2 bg-background border border-border rounded-lg text-text-secondary hover:text-text-primary hover:border-primary/40 text-xs font-medium transition-colors"
-                  >
-                    <Users className="w-3.5 h-3.5" />
-                    View Applications ({viewJob.application_count || 0})
-                  </button>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => {
-                      setShowViewModal(false)
-                      handleEdit(viewJob)
-                    }}
-                    className="flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-xs font-medium"
-                  >
-                    <Edit className="w-3.5 h-3.5" />
-                    Edit Job
-                  </button>
-                  <button
-                    onClick={() => setShowViewModal(false)}
-                    className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-xs font-medium"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
+            <div className="flex items-center justify-end gap-2 pt-3 border-t border-[var(--admin-border-subtle)]">
+              <Link to={`/admin/jobs/edit/${viewJob.id}`} className="admin-btn admin-btn-primary h-9 px-4 text-xs">
+                Edit Position
+              </Link>
             </div>
           </div>
         </div>
       )}
 
-      {/* Create Job Modal */}
+      {/* Create Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm animate-fade-in">
-          <div className="bg-surface rounded-2xl border border-border w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-6 border-b border-border flex items-center justify-between sticky top-0 bg-surface/95 backdrop-blur-sm z-10">
-              <div>
-                <h2 className="text-xl font-bold text-text-primary">Create New Job</h2>
-                <p className="text-xs text-text-muted">Post a new career role on the website</p>
-              </div>
-              <button 
-                onClick={() => setShowCreateModal(false)}
-                className="p-1.5 text-text-muted hover:text-text-primary rounded-lg hover:bg-background transition-colors"
-              >
-                <X className="w-5 h-5" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in">
+          <div className="fixed inset-0" onClick={() => setShowCreateModal(false)} />
+          <div className="relative max-w-lg w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
+              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Post Career Position</h3>
+              <button onClick={() => setShowCreateModal(false)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
+                <X className="w-4 h-4" />
               </button>
             </div>
-            
-            <form onSubmit={handleCreateJob} className="p-6 space-y-4 text-sm">
-              {error && (
-                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs">
-                  {error}
-                </div>
-              )}
-              
+
+            {error && (
+              <div className="p-3 rounded-xl bg-[var(--admin-danger-soft)] border border-[var(--admin-danger)]/30 text-[var(--admin-danger)] text-xs font-semibold">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleCreateJob} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-text-secondary mb-1.5">Job Title *</label>
+                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Position Title *</label>
                 <input
                   type="text"
                   value={createForm.title}
                   onChange={(e) => setCreateForm({ ...createForm, title: e.target.value })}
-                  placeholder="e.g. Senior Full Stack Engineer"
-                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
-                  disabled={saving}
+                  placeholder="e.g. Senior B2B Demand Strategist"
+                  className="admin-input w-full"
+                  required
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-text-secondary mb-1.5">Description *</label>
-                <textarea
-                  value={createForm.description}
-                  onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
-                  placeholder="Detailed job description and day-to-day responsibilities..."
-                  rows={5}
-                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm resize-none"
-                  disabled={saving}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-text-secondary mb-1.5">Location</label>
+                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Location</label>
                   <input
                     type="text"
                     value={createForm.location}
                     onChange={(e) => setCreateForm({ ...createForm, location: e.target.value })}
-                    placeholder="e.g. Remote / New York"
-                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
-                    disabled={saving}
+                    placeholder="e.g. Remote / Hybrid"
+                    className="admin-input w-full"
                   />
                 </div>
-
                 <div>
-                  <label className="block text-xs font-semibold text-text-secondary mb-1.5">Employment Type</label>
+                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Employment Type</label>
                   <select
                     value={createForm.type}
                     onChange={(e) => setCreateForm({ ...createForm, type: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
-                    disabled={saving}
+                    className="admin-select w-full"
                   >
                     <option value="full-time">Full-time</option>
                     <option value="part-time">Part-time</option>
                     <option value="contract">Contract</option>
-                    <option value="internship">Internship</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-text-secondary mb-1.5">Offered Salary / Range</label>
-                  <input
-                    type="text"
-                    value={createForm.salary}
-                    onChange={(e) => setCreateForm({ ...createForm, salary: e.target.value })}
-                    placeholder="e.g. $70,000 - $95,000 / year"
-                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
-                    disabled={saving}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-text-secondary mb-1.5">Status</label>
-                  <select
-                    value={createForm.status}
-                    onChange={(e) => setCreateForm({ ...createForm, status: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm"
-                    disabled={saving}
-                  >
-                    <option value="draft">Draft (Private)</option>
-                    <option value="published">Published (Live on Careers)</option>
-                    <option value="archived">Archived</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-text-secondary mb-1.5">Requirements & Qualifications</label>
+                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Description *</label>
                 <textarea
-                  value={createForm.requirements}
-                  onChange={(e) => setCreateForm({ ...createForm, requirements: e.target.value })}
-                  placeholder="Required skills, years of experience, certifications..."
-                  rows={4}
-                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary text-sm resize-none"
-                  disabled={saving}
+                  value={createForm.description}
+                  onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
+                  rows={3}
+                  placeholder="Responsibilities and day-to-day role overview..."
+                  className="admin-textarea w-full"
+                  required
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
-                <button
-                  type="button"
-                  onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors text-xs font-medium"
-                  disabled={saving}
-                >
+              <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-[var(--admin-border-subtle)]">
+                <button type="button" onClick={() => setShowCreateModal(false)} className="admin-btn admin-btn-secondary h-9 px-4 text-xs">
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium text-xs disabled:opacity-50 shadow-md"
-                >
-                  {saving ? <><Clock className="w-3.5 h-3.5 animate-spin" /> Creating...</> : <><Save className="w-3.5 h-3.5" /> Post Job</>}
+                <button type="submit" disabled={saving} className="admin-btn admin-btn-primary h-9 px-4 text-xs shadow-md">
+                  {saving ? 'Posting...' : 'Post Position'}
                 </button>
               </div>
             </form>
           </div>
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={Boolean(deleteConfirm)}
+        onClose={() => setDeleteConfirm(null)}
+        onConfirm={handleDeleteJob}
+        title="Delete Career Position"
+        message={`Permanently delete position "${deleteConfirm?.title}"?`}
+        confirmText="Delete"
+      />
     </div>
   )
 }

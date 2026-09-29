@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { 
   Search, 
   Filter, 
@@ -13,11 +14,15 @@ import {
   FileEdit, 
   Briefcase, 
   CheckCircle,
-  RefreshCw
+  RefreshCw,
+  Plus
 } from 'lucide-react'
 import { adminAPI } from '@api'
-import { useNavigate } from 'react-router-dom'
 import { analyzeSEO } from '@utils/seoAnalyzer'
+import PageHeader from '@components/admin/PageHeader'
+import StatusBadge from '@components/admin/StatusBadge'
+import EmptyState from '@components/admin/EmptyState'
+import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Drafts = () => {
   const navigate = useNavigate()
@@ -35,20 +40,15 @@ const Drafts = () => {
     fetchDrafts(true)
   }, [])
 
-  // Reset pagination to page 1 on search or filter change
   useEffect(() => {
     setCurrentPage(1)
   }, [searchQuery, typeFilter])
 
   const fetchDrafts = async (isInitial = false) => {
     try {
-      if (isInitial) {
-        setLoading(true)
-      } else {
-        setRefreshing(true)
-      }
+      if (isInitial) setLoading(true)
+      else setRefreshing(true)
       
-      // Fetch draft blogs
       let blogsData = []
       try {
         const blogsResponse = await adminAPI.getBlogs({ status: 'draft', page: 1, limit: 100 })
@@ -58,7 +58,6 @@ const Drafts = () => {
         blogsData = []
       }
       
-      // Fetch draft jobs
       let jobsData = []
       try {
         const jobsResponse = await adminAPI.getJobs({ status: 'draft', page: 1, limit: 100 })
@@ -68,13 +67,11 @@ const Drafts = () => {
         jobsData = []
       }
       
-      // Combine drafts with type indicator
       const combined = [
         ...blogsData.map(item => ({ ...item, type: 'blog' })),
         ...jobsData.map(item => ({ ...item, type: 'job' }))
       ]
 
-      // Sort by updated_at or created_at descending
       combined.sort((a, b) => {
         const dateA = new Date(a.updated_at || a.created_at || 0).getTime()
         const dateB = new Date(b.updated_at || b.created_at || 0).getTime()
@@ -91,15 +88,9 @@ const Drafts = () => {
     }
   }
 
-  // Reactive and instant search filtering without page unmounting
   const filteredDrafts = useMemo(() => {
     return allDrafts.filter(draft => {
-      // Type filter
-      if (typeFilter && draft.type !== typeFilter) {
-        return false
-      }
-
-      // Search query filter
+      if (typeFilter && draft.type !== typeFilter) return false
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase().trim()
         const title = (draft.title || '').toLowerCase()
@@ -109,21 +100,17 @@ const Drafts = () => {
         const slug = (draft.slug || '').toLowerCase()
         const type = (draft.type || '').toLowerCase()
 
-        const matches = title.includes(query) ||
+        return title.includes(query) ||
           excerpt.includes(query) ||
           authorOrDept.includes(query) ||
           category.includes(query) ||
           slug.includes(query) ||
           type.includes(query)
-
-        if (!matches) return false
       }
-
       return true
     })
   }, [allDrafts, typeFilter, searchQuery])
 
-  // Paginated slice
   const totalPages = Math.ceil(filteredDrafts.length / pageSize) || 1
   const paginatedDrafts = useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize
@@ -132,9 +119,7 @@ const Drafts = () => {
 
   const handleSelectDraft = (id) => {
     setSelectedDrafts(prev => 
-      prev.includes(id) 
-        ? prev.filter(d => d !== id) 
-        : [...prev, id]
+      prev.includes(id) ? prev.filter(d => d !== id) : [...prev, id]
     )
   }
 
@@ -146,23 +131,6 @@ const Drafts = () => {
     }
   }
 
-  const getTypeBadge = (type) => {
-    const styles = {
-      blog: 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
-      job: 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-    }
-    return (
-      <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider ${styles[type] || styles.blog}`}>
-        {type || 'BLOG'}
-      </span>
-    )
-  }
-
-  const getTypeIcon = (type) => {
-    return type === 'job' ? Briefcase : FileText
-  }
-
-  // 1. PREVIEW Action: Opens draft in new tab with preview=true
   const handlePreview = (draft) => {
     setActiveDropdown(null)
     if (draft.type === 'blog') {
@@ -173,7 +141,6 @@ const Drafts = () => {
     }
   }
 
-  // 2. EDIT Action: Navigates to edit page
   const handleEdit = (draft) => {
     setActiveDropdown(null)
     if (draft.type === 'blog') {
@@ -183,56 +150,54 @@ const Drafts = () => {
     }
   }
 
-  // 3. PUBLISH Action: Sets status to published, recalculates SEO score, alerts user
   const handlePublish = async (draft) => {
     setActiveDropdown(null)
     try {
       if (draft.type === 'blog') {
-        const seoAnalysis = analyzeSEO(draft)
+        const seoResult = analyzeSEO({
+          title: draft.title,
+          slug: draft.slug,
+          content: draft.content,
+          excerpt: draft.excerpt,
+          featured_image: draft.featured_image || draft.image
+        })
         await adminAPI.updateBlog(draft.id, { 
           status: 'published',
-          seo_score: seoAnalysis.score
+          seo_score: seoResult.score,
+          seo_analysis: seoResult
         })
       } else if (draft.type === 'job') {
-        await adminAPI.updateJob(draft.id, { status: 'published' })
+        await adminAPI.updateJob(draft.id, { status: 'active' })
       }
       await fetchDrafts(false)
-      alert(`"${draft.title}" published successfully! It is now live on the website.`)
+      alert(`"${draft.title}" published live successfully!`)
     } catch (error) {
-      console.error('Failed to publish:', error)
-      const errorMsg = error.response?.data?.message || error.message || 'Failed to publish. Please try again.'
-      alert(`Failed to publish: ${errorMsg}`)
+      console.error('Failed to publish draft:', error)
+      alert(`Failed to publish: ${error.response?.data?.message || error.message}`)
     }
   }
 
-  // 4. ARCHIVE Action: Moves to archive
   const handleArchive = async (draft) => {
     setActiveDropdown(null)
-    if (window.confirm(`Are you sure you want to archive "${draft.title}"?`)) {
+    if (window.confirm(`Archive "${draft.title}"?`)) {
       try {
         if (draft.type === 'blog') {
-          const seoAnalysis = analyzeSEO(draft)
-          await adminAPI.updateBlog(draft.id, { 
-            status: 'archived',
-            seo_score: seoAnalysis.score
-          })
+          await adminAPI.updateBlog(draft.id, { status: 'archived' })
         } else if (draft.type === 'job') {
           await adminAPI.updateJob(draft.id, { status: 'archived' })
         }
         await fetchDrafts(false)
-        alert(`"${draft.title}" archived successfully!`)
+        alert(`"${draft.title}" archived successfully`)
       } catch (error) {
-        console.error('Failed to archive:', error)
-        const errorMsg = error.response?.data?.message || error.message || 'Failed to archive.'
-        alert(`Failed to archive: ${errorMsg}`)
+        console.error('Failed to archive draft:', error)
+        alert(`Failed to archive: ${error.response?.data?.message || error.message}`)
       }
     }
   }
 
-  // 5. DELETE Action: Permanently deletes draft
   const handleDelete = async (draft) => {
     setActiveDropdown(null)
-    if (window.confirm(`Are you sure you want to permanently delete "${draft.title}"? This action cannot be undone.`)) {
+    if (window.confirm(`Permanently delete "${draft.title}"? This action cannot be undone.`)) {
       try {
         if (draft.type === 'blog') {
           await adminAPI.deleteBlog(draft.id)
@@ -240,353 +205,296 @@ const Drafts = () => {
           await adminAPI.deleteJob(draft.id)
         }
         await fetchDrafts(false)
-        alert(`"${draft.title}" deleted successfully!`)
+        alert('Draft deleted successfully')
       } catch (error) {
-        console.error('Failed to delete:', error)
-        const errorMessage = error.response?.data?.message || error.message || 'Failed to delete'
-        alert(`Failed to delete: ${errorMessage}`)
+        console.error('Failed to delete draft:', error)
+        alert(`Failed to delete: ${error.response?.data?.message || error.message}`)
       }
     }
   }
 
-  // Bulk Actions
   const handleBulkPublish = async () => {
     if (selectedDrafts.length === 0) return
     try {
-      await Promise.all(selectedDrafts.map(id => {
-        const draft = allDrafts.find(d => d.id === id)
-        if (draft) {
-          if (draft.type === 'blog') {
-            const seoAnalysis = analyzeSEO(draft)
-            return adminAPI.updateBlog(draft.id, { 
-              status: 'published',
-              seo_score: seoAnalysis.score
-            })
-          } else if (draft.type === 'job') {
-            return adminAPI.updateJob(draft.id, { status: 'published' })
-          }
+      const selectedItems = allDrafts.filter(d => selectedDrafts.includes(d.id))
+      await Promise.all(selectedItems.map(item => {
+        if (item.type === 'blog') {
+          return adminAPI.updateBlog(item.id, { status: 'published' })
+        } else {
+          return adminAPI.updateJob(item.id, { status: 'active' })
         }
       }))
       setSelectedDrafts([])
-      await fetchDrafts(false)
-      alert(`${selectedDrafts.length} item(s) published successfully!`)
+      fetchDrafts(false)
+      alert(`${selectedItems.length} draft(s) published live!`)
     } catch (error) {
       console.error('Failed to bulk publish:', error)
-      alert('Failed to publish items. Please try again.')
+      alert('Failed to publish selected drafts.')
     }
   }
 
   const handleBulkArchive = async () => {
     if (selectedDrafts.length === 0) return
-    if (!window.confirm(`Are you sure you want to archive ${selectedDrafts.length} item(s)?`)) return
+    if (!window.confirm(`Archive ${selectedDrafts.length} draft(s)?`)) return
     try {
-      await Promise.all(selectedDrafts.map(id => {
-        const draft = allDrafts.find(d => d.id === id)
-        if (draft) {
-          if (draft.type === 'blog') {
-            const seoAnalysis = analyzeSEO(draft)
-            return adminAPI.updateBlog(draft.id, { 
-              status: 'archived',
-              seo_score: seoAnalysis.score
-            })
-          } else if (draft.type === 'job') {
-            return adminAPI.updateJob(draft.id, { status: 'archived' })
-          }
+      const selectedItems = allDrafts.filter(d => selectedDrafts.includes(d.id))
+      await Promise.all(selectedItems.map(item => {
+        if (item.type === 'blog') {
+          return adminAPI.updateBlog(item.id, { status: 'archived' })
+        } else {
+          return adminAPI.updateJob(item.id, { status: 'archived' })
         }
       }))
       setSelectedDrafts([])
-      await fetchDrafts(false)
-      alert(`${selectedDrafts.length} item(s) archived successfully!`)
+      fetchDrafts(false)
+      alert(`${selectedItems.length} draft(s) archived successfully`)
     } catch (error) {
       console.error('Failed to bulk archive:', error)
-      alert('Failed to archive items. Please try again.')
+      alert('Failed to archive selected drafts.')
     }
   }
 
   const handleBulkDelete = async () => {
     if (selectedDrafts.length === 0) return
-    if (!window.confirm(`Are you sure you want to permanently delete ${selectedDrafts.length} item(s)? This action cannot be undone.`)) return
+    if (!window.confirm(`Permanently delete ${selectedDrafts.length} draft(s)? This action cannot be undone.`)) return
     try {
-      await Promise.all(selectedDrafts.map(id => {
-        const draft = allDrafts.find(d => d.id === id)
-        if (draft) {
-          if (draft.type === 'blog') {
-            return adminAPI.deleteBlog(draft.id)
-          } else if (draft.type === 'job') {
-            return adminAPI.deleteJob(draft.id)
-          }
+      const selectedItems = allDrafts.filter(d => selectedDrafts.includes(d.id))
+      await Promise.all(selectedItems.map(item => {
+        if (item.type === 'blog') {
+          return adminAPI.deleteBlog(item.id)
+        } else {
+          return adminAPI.deleteJob(item.id)
         }
       }))
       setSelectedDrafts([])
-      await fetchDrafts(false)
-      alert(`${selectedDrafts.length} item(s) deleted successfully!`)
+      fetchDrafts(false)
+      alert(`${selectedItems.length} draft(s) deleted successfully`)
     } catch (error) {
       console.error('Failed to bulk delete:', error)
-      alert('Failed to delete items. Please try again.')
+      alert('Failed to delete selected drafts.')
     }
   }
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-1">Drafts</h1>
-          <p className="text-text-secondary text-sm">
-            Manage your unpublished draft blogs and career listings
-          </p>
-        </div>
-        <button
-          type="button"
-          onClick={() => fetchDrafts(false)}
-          disabled={refreshing}
-          className="flex items-center gap-2 px-3.5 py-2 bg-surface border border-border rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface/80 transition-colors text-sm cursor-pointer"
-          title="Refresh drafts list"
-        >
-          <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin text-primary' : ''}`} />
-          <span>Refresh</span>
-        </button>
-      </div>
+      <PageHeader
+        title="Draft Content & Listings"
+        subtitle="Unpublished blog articles and career requisitions currently in draft preparation."
+        breadcrumbs={[{ label: 'Drafts' }]}
+        onRefresh={() => fetchDrafts(false)}
+        isRefreshing={refreshing}
+        actions={
+          <button
+            onClick={() => navigate('/admin/blogs/create')}
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/20"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New Draft Article</span>
+          </button>
+        }
+      />
 
-      {/* Search & Filters Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-        {/* Search Input */}
-        <div className="relative flex-1 max-w-lg">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
+      {/* Filter Bar */}
+      <div className="admin-card p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="relative w-full md:w-96">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--admin-text-muted)]" />
           <input
             type="text"
-            placeholder="Search drafts by title, excerpt, author, category..."
+            placeholder="Search drafts by title, department, or keyword..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-10 py-2.5 bg-surface border border-border rounded-xl text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary text-sm transition-colors"
+            className="admin-input pl-10 pr-9 text-xs"
           />
           {searchQuery && (
-            <button
-              type="button"
+            <button 
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary p-0.5 rounded cursor-pointer"
-              title="Clear search"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
             >
               <X className="w-4 h-4" />
             </button>
           )}
         </div>
 
-        {/* Type Filter */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3 w-full md:w-auto">
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="px-3.5 py-2.5 bg-surface border border-border rounded-xl text-text-primary focus:outline-none focus:border-primary text-sm cursor-pointer"
+            className="admin-select text-xs min-w-[140px]"
           >
-            <option value="">All Types ({allDrafts.length})</option>
-            <option value="blog">Blogs ({allDrafts.filter(d => d.type === 'blog').length})</option>
-            <option value="job">Jobs ({allDrafts.filter(d => d.type === 'job').length})</option>
+            <option value="">All Content Types</option>
+            <option value="blog">Blog Articles</option>
+            <option value="job">Career Openings</option>
           </select>
         </div>
-
-        {/* Active search indicator */}
-        {(searchQuery || typeFilter) && (
-          <button
-            type="button"
-            onClick={() => {
-              setSearchQuery('')
-              setTypeFilter('')
-            }}
-            className="text-xs text-primary hover:underline self-center"
-          >
-            Reset filters
-          </button>
-        )}
       </div>
 
-      {/* Bulk Actions Bar */}
+      {/* Bulk Action Bar */}
       {selectedDrafts.length > 0 && (
-        <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-primary/10 border border-primary/30 rounded-xl">
-          <span className="text-text-primary text-sm font-medium">
-            {selectedDrafts.length} draft{selectedDrafts.length > 1 ? 's' : ''} selected
-          </span>
+        <div className="p-4 rounded-xl bg-[var(--admin-primary-soft)] border border-[var(--admin-border-active)] flex items-center justify-between gap-4 animate-slide-down flex-wrap">
           <div className="flex items-center gap-2">
-            <button 
-              type="button"
-              onClick={handleBulkPublish}
-              className="px-3 py-1.5 bg-primary text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-primary-dark transition-colors cursor-pointer"
-            >
-              Publish Selected
+            <span className="w-2 h-2 rounded-full bg-[#00A6FF] animate-ping" />
+            <span className="text-xs font-bold text-[var(--admin-text-primary)]">
+              {selectedDrafts.length} draft(s) selected
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            <button onClick={handleBulkPublish} className="admin-btn admin-btn-primary text-xs py-1.5 px-3">
+              Publish Live
             </button>
-            <button 
-              type="button"
-              onClick={handleBulkArchive}
-              className="px-3 py-1.5 bg-surface border border-border rounded-lg text-xs sm:text-sm font-medium hover:bg-surface/80 transition-colors cursor-pointer"
-            >
+            <button onClick={handleBulkArchive} className="admin-btn admin-btn-secondary text-xs py-1.5 px-3">
               Archive
             </button>
-            <button 
-              type="button"
-              onClick={handleBulkDelete}
-              className="px-3 py-1.5 bg-error/20 text-error rounded-lg text-xs sm:text-sm font-medium hover:bg-error/30 transition-colors cursor-pointer"
-            >
+            <button onClick={handleBulkDelete} className="admin-btn admin-btn-danger text-xs py-1.5 px-3">
               Delete
             </button>
           </div>
         </div>
       )}
 
-      {/* Loading state for initial load */}
-      {loading && allDrafts.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 bg-surface rounded-xl border border-border">
-          <RefreshCw className="w-8 h-8 text-primary animate-spin mb-3" />
-          <p className="text-text-secondary text-sm">Loading drafts...</p>
+      {/* Drafts Table */}
+      {loading ? (
+        <TableSkeleton rows={6} cols={5} />
+      ) : filteredDrafts.length === 0 ? (
+        <div className="admin-card">
+          <EmptyState
+            icon={FileEdit}
+            title="No draft records found"
+            description={searchQuery || typeFilter ? "No drafts match your current search criteria." : "All your platform content is published live. Create a new draft article anytime."}
+            actionLabel="Create New Draft"
+            onAction={() => navigate('/admin/blogs/create')}
+          />
         </div>
       ) : (
-        /* Drafts Table */
-        <div className="bg-surface rounded-xl border border-border">
-          <div className={`overflow-x-auto ${paginatedDrafts.length > 0 ? 'min-h-[380px] pb-24' : ''}`}>
-            <table className="w-full">
+        <div className="admin-card overflow-hidden">
+          <div className="admin-table-wrapper admin-scrollbar">
+            <table className="admin-table">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="w-12 px-6 py-4 text-left">
+                <tr>
+                  <th className="w-10">
                     <input
                       type="checkbox"
                       checked={selectedDrafts.length === paginatedDrafts.length && paginatedDrafts.length > 0}
                       onChange={handleSelectAll}
-                      className="rounded border-border cursor-pointer"
+                      className="rounded border-[var(--admin-border-base)] accent-[#00A6FF] cursor-pointer"
                     />
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Title</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Author / Department</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Last Modified</th>
-                  <th className="w-16 px-6 py-4 text-right text-sm font-medium text-text-secondary">Actions</th>
+                  <th>Draft Title & Details</th>
+                  <th>Content Type</th>
+                  <th>Category / Department</th>
+                  <th>Last Modified</th>
+                  <th className="text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {paginatedDrafts.map((draft, index) => {
-                  const TypeIcon = getTypeIcon(draft.type)
-                  const rowId = `${draft.type}-${draft.id}`
+                  const Icon = draft.type === 'job' ? Briefcase : FileText
+
                   return (
-                    <tr 
-                      key={rowId} 
-                      className="border-b border-border hover:bg-surface/50 transition-colors"
-                    >
-                      <td className="px-6 py-4">
+                    <tr key={`${draft.type}-${draft.id}`} className="group">
+                      <td>
                         <input
                           type="checkbox"
                           checked={selectedDrafts.includes(draft.id)}
                           onChange={() => handleSelectDraft(draft.id)}
-                          className="rounded border-border cursor-pointer"
+                          className="rounded border-[var(--admin-border-base)] accent-[#00A6FF] cursor-pointer"
                         />
                       </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-surface/80 border border-border/50 rounded-lg">
-                            <TypeIcon className="w-5 h-5 text-primary" />
+                      <td>
+                        <div className="flex items-center gap-3 min-w-[240px] max-w-sm">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border border-[var(--admin-border-subtle)] ${
+                            draft.type === 'job' ? 'bg-purple-500/10 text-purple-400' : 'bg-[#00A6FF]/10 text-[#00A6FF]'
+                          }`}>
+                            <Icon className="w-5 h-5" />
                           </div>
-                          <div className="max-w-md">
-                            <p className="font-semibold text-text-primary text-sm sm:text-base line-clamp-1">
+                          <div className="min-w-0">
+                            <p className="font-bold text-xs sm:text-sm text-[var(--admin-text-primary)] truncate group-hover:text-[var(--admin-primary)] transition-colors">
                               {draft.title}
                             </p>
-                            <p className="text-xs text-text-muted truncate max-w-sm">
-                              {draft.type === 'blog' ? (draft.excerpt || 'No excerpt') : (draft.description || 'No description')}
+                            <p className="text-[11px] text-[var(--admin-text-muted)] truncate mt-0.5">
+                              {draft.excerpt || draft.description || 'Draft work in progress'}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">{getTypeBadge(draft.type)}</td>
-                      <td className="px-6 py-4 text-sm text-text-secondary">
-                        {draft.type === 'blog' ? (draft.author_name || draft.category_name || '-') : (draft.department || draft.location || '-')}
+                      <td>
+                        <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider ${
+                          draft.type === 'job' 
+                            ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' 
+                            : 'bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20'
+                        }`}>
+                          {draft.type === 'job' ? 'Career Opening' : 'Article'}
+                        </span>
                       </td>
-                      <td className="px-6 py-4 text-text-secondary">
-                        <div className="flex items-center gap-1.5 text-xs sm:text-sm">
-                          <Calendar className="w-4 h-4 text-text-muted" />
-                          <span>{new Date(draft.updated_at || draft.created_at).toLocaleDateString()}</span>
+                      <td className="text-xs text-[var(--admin-text-secondary)] font-medium">
+                        {draft.category_name || draft.department || '-'}
+                      </td>
+                      <td className="text-xs text-[var(--admin-text-muted)]">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5" />
+                          <span>{new Date(draft.updated_at || draft.created_at || Date.now()).toLocaleDateString()}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="text-right">
                         <div className="relative inline-block text-left">
-                          <button 
+                          <button
                             type="button"
                             onClick={(e) => {
                               e.stopPropagation()
-                              setActiveDropdown(activeDropdown === rowId ? null : rowId)
+                              setActiveDropdown(activeDropdown === draft.id ? null : draft.id)
                             }}
-                            className="p-2 text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors cursor-pointer"
-                            aria-label="Draft actions"
+                            className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
                           >
-                            <MoreVertical className="w-5 h-5" />
+                            <MoreVertical className="w-4 h-4" />
                           </button>
-                          
-                          {activeDropdown === rowId && (
+
+                          {activeDropdown === draft.id && (
                             <>
-                              {/* Backdrop to close dropdown on click outside */}
-                              <div 
-                                className="fixed inset-0 z-40" 
-                                onClick={(e) => {
-                                  e.stopPropagation()
-                                  setActiveDropdown(null)
-                                }}
+                              <div
+                                className="fixed inset-0 z-40"
+                                onClick={() => setActiveDropdown(null)}
                               />
-
-                              {/* Dropdown Menu */}
-                              <div 
-                                className={`absolute right-0 ${
-                                  index >= Math.max(1, paginatedDrafts.length - 2) && paginatedDrafts.length > 2
-                                    ? 'bottom-full mb-2' 
-                                    : 'top-full mt-2'
-                                } w-52 bg-surface border border-border rounded-xl shadow-2xl z-50 py-1.5 divide-y divide-border/40 backdrop-blur-md`}
-                              >
+                              <div className={`absolute right-0 ${
+                                index >= Math.max(1, paginatedDrafts.length - 2) && paginatedDrafts.length > 2
+                                  ? 'bottom-full mb-2' 
+                                  : 'top-full mt-2'
+                              } w-48 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down`}>
                                 <div className="py-1">
-                                  {/* 1. PREVIEW */}
-                                  <button 
-                                    type="button"
+                                  <button
                                     onClick={() => handlePreview(draft)}
-                                    className="flex items-center gap-3 w-full px-4 py-2 text-left text-sm text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors cursor-pointer"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#00A6FF] hover:bg-[var(--admin-primary-soft)] rounded-lg transition-colors"
                                   >
-                                    <Eye className="w-4 h-4 text-[#00A6FF]" />
-                                    <span>Preview</span>
+                                    <Eye className="w-3.5 h-3.5 text-[#00A6FF]" />
+                                    <span>Preview Draft</span>
                                   </button>
-
-                                  {/* 2. EDIT */}
-                                  <button 
-                                    type="button"
+                                  <button
                                     onClick={() => handleEdit(draft)}
-                                    className="flex items-center gap-3 w-full px-4 py-2 text-left text-sm text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors cursor-pointer"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
                                   >
-                                    <Edit className="w-4 h-4 text-[#FF6D00]" />
+                                    <Edit className="w-3.5 h-3.5 text-[#FF6D00]" />
                                     <span>Edit</span>
                                   </button>
-                                </div>
-
-                                <div className="py-1">
-                                  {/* 3. PUBLISH */}
-                                  <button 
-                                    type="button"
+                                  <button
                                     onClick={() => handlePublish(draft)}
-                                    className="flex items-center gap-3 w-full px-4 py-2 text-left text-sm text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors cursor-pointer"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#72D669] hover:bg-[#72D669]/10 rounded-lg transition-colors"
                                   >
-                                    <CheckCircle className="w-4 h-4 text-emerald-500" />
-                                    <span>Publish</span>
+                                    <CheckCircle className="w-3.5 h-3.5 text-[#72D669]" />
+                                    <span>Publish Live</span>
                                   </button>
-
-                                  {/* 4. ARCHIVE */}
-                                  <button 
-                                    type="button"
+                                  <button
                                     onClick={() => handleArchive(draft)}
-                                    className="flex items-center gap-3 w-full px-4 py-2 text-left text-sm text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors cursor-pointer"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-purple-400 hover:bg-purple-500/10 rounded-lg transition-colors"
                                   >
-                                    <Archive className="w-4 h-4 text-purple-400" />
+                                    <Archive className="w-3.5 h-3.5 text-purple-400" />
                                     <span>Archive</span>
                                   </button>
                                 </div>
-
-                                <div className="py-1">
-                                  {/* 5. DELETE */}
-                                  <button 
-                                    type="button"
+                                <div className="pt-1">
+                                  <button
                                     onClick={() => handleDelete(draft)}
-                                    className="flex items-center gap-3 w-full px-4 py-2 text-left text-sm text-error hover:bg-error/10 transition-colors cursor-pointer"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
                                   >
-                                    <Trash2 className="w-4 h-4 text-error" />
+                                    <Trash2 className="w-3.5 h-3.5" />
                                     <span>Delete</span>
                                   </button>
                                 </div>
@@ -602,62 +510,34 @@ const Drafts = () => {
             </table>
           </div>
 
-          {/* Empty State */}
-          {filteredDrafts.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-16 text-center px-4">
-              <FileEdit className="w-14 h-14 text-text-muted mb-3" />
-              <p className="text-text-primary font-semibold text-base mb-1">
-                {searchQuery || typeFilter ? 'No matching drafts found' : 'No drafts found'}
-              </p>
-              <p className="text-text-muted text-xs sm:text-sm max-w-sm mb-4">
-                {searchQuery || typeFilter 
-                  ? `No drafts match "${searchQuery || typeFilter}". Try adjusting your filters.` 
-                  : 'Content saved as draft will appear here.'}
-              </p>
-              {(searchQuery || typeFilter) && (
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="p-4 border-t border-[var(--admin-border-subtle)] flex items-center justify-between gap-4 flex-wrap text-xs text-[var(--admin-text-muted)]">
+              <span>
+                Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, filteredDrafts.length)} of {filteredDrafts.length} drafts
+              </span>
+
+              <div className="flex items-center gap-2">
                 <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('')
-                    setTypeFilter('')
-                  }}
-                  className="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 rounded-lg text-xs font-medium transition-colors cursor-pointer"
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
                 >
-                  Clear search &amp; filters
+                  Previous
                 </button>
-              )}
+                <span className="font-semibold text-[var(--admin-text-primary)] px-2">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
+                >
+                  Next
+                </button>
+              </div>
             </div>
           )}
-        </div>
-      )}
-
-      {/* Pagination Controls */}
-      {totalPages > 1 && (
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-          <p className="text-xs sm:text-sm text-text-muted">
-            Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, filteredDrafts.length)} of {filteredDrafts.length} drafts
-          </p>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-              disabled={currentPage === 1}
-              className="px-3 py-1.5 bg-surface border border-border rounded-lg text-xs sm:text-sm text-text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface/80 transition-colors cursor-pointer"
-            >
-              Previous
-            </button>
-            <span className="text-xs sm:text-sm text-text-secondary px-2">
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              type="button"
-              onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-              disabled={currentPage === totalPages}
-              className="px-3 py-1.5 bg-surface border border-border rounded-lg text-xs sm:text-sm text-text-primary disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface/80 transition-colors cursor-pointer"
-            >
-              Next
-            </button>
-          </div>
         </div>
       )}
     </div>

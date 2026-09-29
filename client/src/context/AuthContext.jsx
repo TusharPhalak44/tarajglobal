@@ -83,8 +83,20 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const updateUser = (updatedData) => {
+    setUser(prev => {
+      const merged = typeof updatedData === 'function' ? updatedData(prev) : { ...prev, ...updatedData }
+      try {
+        localStorage.setItem('user', JSON.stringify(merged))
+      } catch (_) {}
+      return merged
+    })
+  }
+
   const value = {
     user,
+    setUser,
+    updateUser,
     isAuthenticated,
     isAdmin,
     loading,

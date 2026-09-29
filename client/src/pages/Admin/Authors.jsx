@@ -1,15 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import { Plus, Search, MoreVertical, Edit, Trash2, User, X, Save, Clock } from 'lucide-react'
+import React, { useEffect, useState, useMemo } from 'react'
+import { 
+  Plus, 
+  Search, 
+  MoreVertical, 
+  Edit, 
+  Trash2, 
+  User, 
+  X, 
+  Save, 
+  Clock, 
+  Mail, 
+  Briefcase,
+  CheckCircle2
+} from 'lucide-react'
 import { adminAPI } from '@api'
+import PageHeader from '@components/admin/PageHeader'
+import StatusBadge from '@components/admin/StatusBadge'
+import EmptyState from '@components/admin/EmptyState'
+import ConfirmModal from '@components/admin/ConfirmModal'
+import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Authors = () => {
   const [loading, setLoading] = useState(true)
   const [authors, setAuthors] = useState([])
+  const [searchQuery, setSearchQuery] = useState('')
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [editingAuthor, setEditingAuthor] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
   const [saving, setSaving] = useState(false)
+  const [activeMenu, setActiveMenu] = useState(null)
+  const [error, setError] = useState('')
+
   const [createForm, setCreateForm] = useState({
     name: '',
     slug: '',
@@ -28,7 +50,6 @@ const Authors = () => {
     profile_photo: '',
     status: 'active'
   })
-  const [error, setError] = useState('')
 
   useEffect(() => {
     fetchAuthors()
@@ -39,8 +60,8 @@ const Authors = () => {
       setLoading(true)
       const response = await adminAPI.getAuthors()
       setAuthors(response.data?.data || response.data || [])
-    } catch (error) {
-      console.error('Failed to fetch authors:', error)
+    } catch (err) {
+      console.error('Failed to fetch authors:', err)
       setAuthors([])
     } finally {
       setLoading(false)
@@ -74,8 +95,8 @@ const Authors = () => {
         status: 'active'
       })
       fetchAuthors()
-    } catch (error) {
-      setError(error.response?.data?.message || 'Failed to create author')
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to create author')
     } finally {
       setSaving(false)
     }
@@ -93,6 +114,7 @@ const Authors = () => {
       status: author.status || 'active'
     })
     setShowEditModal(true)
+    setActiveMenu(null)
   }
 
   const handleUpdateAuthor = async (e) => {
@@ -106,255 +128,295 @@ const Authors = () => {
 
     try {
       setSaving(true)
-      const authorData = {
-        ...editForm,
-        slug: editForm.slug || editForm.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '')
-      }
-      await adminAPI.updateAuthor(editingAuthor.id, authorData)
+      await adminAPI.updateAuthor(editingAuthor.id, editForm)
       setShowEditModal(false)
       setEditingAuthor(null)
-      setEditForm({
-        name: '',
-        slug: '',
-        email: '',
-        designation: '',
-        bio: '',
-        profile_photo: '',
-        status: 'active'
-      })
       fetchAuthors()
-    } catch (error) {
-      setError(error.response?.data?.message || 'Failed to update author')
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to update author')
     } finally {
       setSaving(false)
     }
   }
 
-  const handleDelete = async (author) => {
+  const handleDeleteAuthor = async () => {
+    if (!deleteConfirm) return
     try {
-      await adminAPI.deleteAuthor(author.id)
+      setSaving(true)
+      await adminAPI.deleteAuthor(deleteConfirm.id)
       setDeleteConfirm(null)
       fetchAuthors()
-    } catch (error) {
-      setError(error.response?.data?.message || 'Failed to delete author')
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to delete author')
+    } finally {
+      setSaving(false)
     }
   }
 
-  if (loading) {
-    return <div className="flex items-center justify-center h-64 text-text-muted">Loading authors...</div>
-  }
+  const filteredAuthors = useMemo(() => {
+    if (!searchQuery.trim()) return authors
+    const q = searchQuery.toLowerCase()
+    return authors.filter(a => 
+      a.name.toLowerCase().includes(q) ||
+      (a.email && a.email.toLowerCase().includes(q)) ||
+      (a.designation && a.designation.toLowerCase().includes(q))
+    )
+  }, [authors, searchQuery])
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">Authors</h1>
-          <p className="text-text-secondary">Manage blog authors</p>
+      <PageHeader
+        title="Editorial Authors & Contributors"
+        subtitle="Manage blog bylines, leadership bios, and editorial contributor profiles."
+        breadcrumbs={[{ label: 'Authors' }]}
+        onRefresh={fetchAuthors}
+        isRefreshing={loading}
+        actions={
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/20"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New Author</span>
+          </button>
+        }
+      />
+
+      {/* Filter / Search */}
+      <div className="admin-card p-4 flex items-center justify-between gap-4">
+        <div className="relative w-full md:w-96">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--admin-text-muted)]" />
+          <input
+            type="text"
+            placeholder="Search authors by name, email, or role..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="admin-input pl-10 pr-9 text-xs"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
         </div>
-        <button 
-          onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
-        >
-          <Plus className="w-5 h-5" />
-          Create Author
-        </button>
+
+        <span className="text-xs font-semibold text-[var(--admin-text-muted)]">
+          {filteredAuthors.length} authors
+        </span>
       </div>
 
-      <div className="bg-surface rounded-xl border border-border overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-border">
-              <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Author</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Designation</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Email</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Posts</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-text-secondary">Status</th>
-              <th className="w-12 px-6 py-4 text-right text-sm font-medium text-text-secondary">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {authors.map((author) => (
-              <tr key={author.id} className="border-b border-border hover:bg-surface/50 transition-colors">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    {author.profile_photo ? (
-                      <img src={author.profile_photo} alt="" className="w-10 h-10 rounded-full object-cover" />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                        <User className="w-5 h-5 text-primary" />
+      {/* Main Grid / Table */}
+      {loading ? (
+        <TableSkeleton rows={5} cols={4} />
+      ) : filteredAuthors.length === 0 ? (
+        <div className="admin-card">
+          <EmptyState
+            icon={User}
+            title="No authors found"
+            description="Add editorial authors and contributors to attribute articles and insights."
+            actionLabel="Add Author"
+            onAction={() => setShowCreateModal(true)}
+          />
+        </div>
+      ) : (
+        <div className="admin-card overflow-hidden">
+          <div className="admin-table-wrapper admin-scrollbar">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Author Profile</th>
+                  <th>Designation / Title</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th className="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredAuthors.map((author, index) => (
+                  <tr key={author.id} className="group">
+                    <td>
+                      <div className="flex items-center gap-3">
+                        {author.profile_photo ? (
+                          <img
+                            src={author.profile_photo}
+                            alt=""
+                            className="w-10 h-10 rounded-xl object-cover bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] shrink-0"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-sm text-[#00A6FF] shrink-0">
+                            {author.name.charAt(0)}
+                          </div>
+                        )}
+                        <div>
+                          <p className="font-bold text-xs sm:text-sm text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors">
+                            {author.name}
+                          </p>
+                          <p className="text-[11px] text-[var(--admin-text-muted)] font-mono">
+                            /author/{author.slug || author.id}
+                          </p>
+                        </div>
                       </div>
-                    )}
-                    <div>
-                      <p className="font-medium text-text-primary">{author.name}</p>
-                      <p className="text-sm text-text-muted">{author.slug}</p>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-text-secondary">{author.designation || '-'}</td>
-                <td className="px-6 py-4 text-text-secondary">{author.email || '-'}</td>
-                <td className="px-6 py-4 text-text-secondary">{author.post_count || 0}</td>
-                <td className="px-6 py-4">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${author.status === 'active' ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'}`}>
-                    {author.status?.toUpperCase() || 'ACTIVE'}
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <div className="relative group">
-                    <button className="p-2 text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors">
-                      <MoreVertical className="w-5 h-5" />
-                    </button>
-                    <div className="absolute right-0 top-full mt-2 w-48 bg-surface border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
-                      <button 
-                        onClick={() => handleEditClick(author)}
-                        className="flex items-center gap-3 w-full px-4 py-2 text-left text-text-secondary hover:bg-surface/80 hover:text-text-primary transition-colors"
-                      >
-                        <Edit className="w-4 h-4" />
-                        Edit
-                      </button>
-                      <button 
-                        onClick={() => setDeleteConfirm(author)}
-                        className="flex items-center gap-3 w-full px-4 py-2 text-left text-error hover:bg-error/10 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                    </td>
+                    <td className="text-xs text-[var(--admin-text-secondary)] font-medium">
+                      {author.designation || 'Contributing Author'}
+                    </td>
+                    <td className="text-xs text-[var(--admin-text-muted)]">
+                      {author.email || '-'}
+                    </td>
+                    <td>
+                      <StatusBadge status={author.status || 'active'} />
+                    </td>
+                    <td className="text-right">
+                      <div className="relative inline-block text-left">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            setActiveMenu(activeMenu === author.id ? null : author.id)
+                          }}
+                          className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
+                        >
+                          <MoreVertical className="w-4 h-4" />
+                        </button>
 
-        {authors.length === 0 && (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <User className="w-16 h-16 text-text-muted mb-4" />
-            <p className="text-text-secondary mb-2">No authors found</p>
+                        {activeMenu === author.id && (
+                          <>
+                            <div className="fixed inset-0 z-40" onClick={() => setActiveMenu(null)} />
+                            <div className={`absolute right-0 ${
+                              index >= Math.max(1, filteredAuthors.length - 2) && filteredAuthors.length > 2
+                                ? 'bottom-full mb-2'
+                                : 'top-full mt-2'
+                            } w-40 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down`}>
+                              <div className="py-1">
+                                <button
+                                  onClick={() => handleEditClick(author)}
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
+                                >
+                                  <Edit className="w-3.5 h-3.5 text-[#FF6D00]" />
+                                  <span>Edit</span>
+                                </button>
+                              </div>
+                              <div className="pt-1">
+                                <button
+                                  onClick={() => {
+                                    setDeleteConfirm(author)
+                                    setActiveMenu(null)
+                                  }}
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                  <span>Delete</span>
+                                </button>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Create Author Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-surface rounded-xl border border-border w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-border flex items-center justify-between">
-              <h2 className="text-xl font-bold text-text-primary">Create Author</h2>
-              <button 
-                onClick={() => setShowCreateModal(false)}
-                className="text-text-muted hover:text-text-primary"
-              >
-                <X className="w-6 h-6" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+          <div className="fixed inset-0" onClick={() => setShowCreateModal(false)} />
+          <div className="relative w-full max-w-lg bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up max-h-[90vh] overflow-y-auto admin-scrollbar">
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
+              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Add New Author</h3>
+              <button onClick={() => setShowCreateModal(false)} className="text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
+                <X className="w-5 h-5" />
               </button>
             </div>
-            
-            <form onSubmit={handleCreateAuthor} className="p-6 space-y-4">
-              {error && (
-                <div className="p-3 bg-error/10 border border-error/30 rounded-lg text-error text-sm">
-                  {error}
+
+            {error && (
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleCreateAuthor} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    Author Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={createForm.name}
+                    onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
+                    placeholder="e.g., Jane Doe"
+                    className="admin-input"
+                    required
+                  />
                 </div>
-              )}
-              
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Author Name *</label>
-                <input
-                  type="text"
-                  value={createForm.name}
-                  onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
-                  placeholder="e.g. John Doe"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
+
+                <div>
+                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    Designation / Title
+                  </label>
+                  <input
+                    type="text"
+                    value={createForm.designation}
+                    onChange={(e) => setCreateForm({ ...createForm, designation: e.target.value })}
+                    placeholder="e.g., VP of Growth"
+                    className="admin-input"
+                  />
+                </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Slug</label>
-                <input
-                  type="text"
-                  value={createForm.slug}
-                  onChange={(e) => setCreateForm({ ...createForm, slug: e.target.value })}
-                  placeholder="author-slug (auto-generated if empty)"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Email</label>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   value={createForm.email}
                   onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
-                  placeholder="author@example.com"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  placeholder="jane.doe@tarajglobal.com"
+                  className="admin-input"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Designation</label>
-                <input
-                  type="text"
-                  value={createForm.designation}
-                  onChange={(e) => setCreateForm({ ...createForm, designation: e.target.value })}
-                  placeholder="e.g. Senior Writer"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Bio</label>
-                <textarea
-                  value={createForm.bio}
-                  onChange={(e) => setCreateForm({ ...createForm, bio: e.target.value })}
-                  placeholder="Author biography (optional)"
-                  rows={3}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary resize-none"
-                  disabled={saving}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Profile Photo URL</label>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Profile Photo URL
+                </label>
                 <input
                   type="url"
                   value={createForm.profile_photo}
                   onChange={(e) => setCreateForm({ ...createForm, profile_photo: e.target.value })}
-                  placeholder="https://example.com/photo.jpg"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  placeholder="https://..."
+                  className="admin-input text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Status</label>
-                <select
-                  value={createForm.status}
-                  onChange={(e) => setCreateForm({ ...createForm, status: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Short Bio
+                </label>
+                <textarea
+                  value={createForm.bio}
+                  onChange={(e) => setCreateForm({ ...createForm, bio: e.target.value })}
+                  rows={3}
+                  placeholder="Brief author biography..."
+                  className="admin-input resize-none text-xs"
+                />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
-                  disabled={saving}
-                >
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
+                <button type="button" onClick={() => setShowCreateModal(false)} className="admin-btn admin-btn-secondary">
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
-                >
-                  {saving ? <><Clock className="w-4 h-4 animate-spin" /> Creating...</> : <><Save className="w-4 h-4" /> Create</>}
+                <button type="submit" disabled={saving} className="admin-btn admin-btn-primary">
+                  {saving ? 'Saving...' : 'Add Author'}
                 </button>
               </div>
             </form>
@@ -364,125 +426,106 @@ const Authors = () => {
 
       {/* Edit Author Modal */}
       {showEditModal && editingAuthor && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-surface rounded-xl border border-border w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-border flex items-center justify-between">
-              <h2 className="text-xl font-bold text-text-primary">Edit Author</h2>
-              <button 
-                onClick={() => setShowEditModal(false)}
-                className="text-text-muted hover:text-text-primary"
-              >
-                <X className="w-6 h-6" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+          <div className="fixed inset-0" onClick={() => setShowEditModal(false)} />
+          <div className="relative w-full max-w-lg bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up max-h-[90vh] overflow-y-auto admin-scrollbar">
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
+              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Edit Author</h3>
+              <button onClick={() => setShowEditModal(false)} className="text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
+                <X className="w-5 h-5" />
               </button>
             </div>
-            
-            <form onSubmit={handleUpdateAuthor} className="p-6 space-y-4">
-              {error && (
-                <div className="p-3 bg-error/10 border border-error/30 rounded-lg text-error text-sm">
-                  {error}
+
+            {error && (
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleUpdateAuthor} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    Author Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={editForm.name}
+                    onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                    className="admin-input"
+                    required
+                  />
                 </div>
-              )}
-              
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Author Name *</label>
-                <input
-                  type="text"
-                  value={editForm.name}
-                  onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                  placeholder="e.g. John Doe"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
+
+                <div>
+                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    Designation
+                  </label>
+                  <input
+                    type="text"
+                    value={editForm.designation}
+                    onChange={(e) => setEditForm({ ...editForm, designation: e.target.value })}
+                    className="admin-input"
+                  />
+                </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Slug</label>
-                <input
-                  type="text"
-                  value={editForm.slug}
-                  onChange={(e) => setEditForm({ ...editForm, slug: e.target.value })}
-                  placeholder="author-slug (auto-generated if empty)"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Email</label>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   value={editForm.email}
                   onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
-                  placeholder="author@example.com"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  className="admin-input"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Designation</label>
-                <input
-                  type="text"
-                  value={editForm.designation}
-                  onChange={(e) => setEditForm({ ...editForm, designation: e.target.value })}
-                  placeholder="e.g. Senior Writer"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Bio</label>
-                <textarea
-                  value={editForm.bio}
-                  onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
-                  placeholder="Author biography (optional)"
-                  rows={3}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary resize-none"
-                  disabled={saving}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Profile Photo URL</label>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Profile Photo URL
+                </label>
                 <input
                   type="url"
                   value={editForm.profile_photo}
                   onChange={(e) => setEditForm({ ...editForm, profile_photo: e.target.value })}
-                  placeholder="https://example.com/photo.jpg"
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  className="admin-input text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">Status</label>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Short Bio
+                </label>
+                <textarea
+                  value={editForm.bio}
+                  onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
+                  rows={3}
+                  className="admin-input resize-none text-xs"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Status
+                </label>
                 <select
                   value={editForm.status}
                   onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                  disabled={saving}
+                  className="admin-select text-xs"
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
                 </select>
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setShowEditModal(false)}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
-                  disabled={saving}
-                >
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
+                <button type="button" onClick={() => setShowEditModal(false)} className="admin-btn admin-btn-secondary">
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
-                >
-                  {saving ? <><Clock className="w-4 h-4 animate-spin" /> Updating...</> : <><Save className="w-4 h-4" /> Update</>}
+                <button type="submit" disabled={saving} className="admin-btn admin-btn-primary">
+                  {saving ? 'Updating...' : 'Save Changes'}
                 </button>
               </div>
             </form>
@@ -491,32 +534,15 @@ const Authors = () => {
       )}
 
       {/* Delete Confirmation Modal */}
-      {deleteConfirm && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-surface rounded-xl border border-border w-full max-w-md">
-            <div className="p-6">
-              <h3 className="text-lg font-bold text-text-primary mb-2">Delete Author</h3>
-              <p className="text-text-secondary mb-4">
-                Are you sure you want to delete "{deleteConfirm.name}"? This action cannot be undone.
-              </p>
-              <div className="flex items-center justify-end gap-3">
-                <button
-                  onClick={() => setDeleteConfirm(null)}
-                  className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={() => handleDelete(deleteConfirm)}
-                  className="px-4 py-2 bg-error text-white rounded-lg hover:bg-error/90 transition-colors"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ConfirmModal
+        isOpen={Boolean(deleteConfirm)}
+        onClose={() => setDeleteConfirm(null)}
+        onConfirm={handleDeleteAuthor}
+        title="Delete Author"
+        message={`Are you sure you want to remove "${deleteConfirm?.name}"?`}
+        confirmText="Delete Author"
+        isLoading={saving}
+      />
     </div>
   )
 }

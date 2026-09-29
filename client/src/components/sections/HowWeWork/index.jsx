@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { 
-  Target, 
-  Search, 
-  Zap, 
-  TrendingUp, 
-  CheckCircle2, 
-  Sparkles, 
-  ArrowRight, 
-  ChevronRight 
+import {
+  Target,
+  Search,
+  Zap,
+  TrendingUp,
+  CheckCircle2,
+  Sparkles,
+  ArrowRight,
+  ChevronRight
 } from 'lucide-react'
 import { AnimatedSectionBackground, SectionLaserDivider } from '@components/animations'
 import { RevenueProcessVisual } from './StageVisuals'
 import { gsap, ScrollTrigger } from '@animations/gsap'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import { useTheme } from '@context/ThemeContext'
-
+ 
 export const HowWeWork = () => {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
@@ -24,7 +24,7 @@ export const HowWeWork = () => {
   const sectionRef = useRef(null)
   const desktopPinRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
-
+ 
   const stages = [
     {
       num: '01',
@@ -72,16 +72,16 @@ export const HowWeWork = () => {
       glow: 'rgba(0,229,255,0.4)',
     },
   ]
-
+ 
   const activeStageRef = useRef(0)
   const progressLineRef = useRef(null)
-
+ 
   // GSAP ScrollTrigger Pinned Storytelling on Desktop
   // As user scrolls vertically DOWN, the timeline moves HORIZONTALLY (Left -> Right)
   useEffect(() => {
     const isDesktop = window.innerWidth >= 1024
     if (!isDesktop || prefersReducedMotion || !sectionRef.current || !desktopPinRef.current) return
-
+ 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -96,7 +96,7 @@ export const HowWeWork = () => {
           if (progressLineRef.current) {
             progressLineRef.current.style.width = `${pct}%`
           }
-
+ 
           // Update stage ONLY when changing between 0-4
           const currentStage = Math.min(Math.floor(p * stages.length), stages.length - 1)
           if (currentStage !== activeStageRef.current) {
@@ -106,10 +106,10 @@ export const HowWeWork = () => {
         },
       })
     }, sectionRef)
-
+ 
     return () => ctx.revert()
   }, [stages.length, prefersReducedMotion])
-
+ 
   return (
     <section
       ref={sectionRef}
@@ -121,9 +121,9 @@ export const HowWeWork = () => {
       aria-label="How We Work — From Targetting to Revenue"
     >
       <AnimatedSectionBackground accent="cyan" />
-
+ 
       <div ref={desktopPinRef} className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col justify-between">
-        
+       
         {/* ── 1. LEFT-ALIGNED EDITORIAL HEADER ───────────────────────── */}
         <div className="max-w-3xl mb-4 lg:mb-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-2 shadow-xs">
@@ -132,28 +132,28 @@ export const HowWeWork = () => {
               HOW WE WORK
             </span>
           </div>
-
+ 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-[1.16] mb-4">
             From Targetting{' '}
             <span className="bg-gradient-to-r from-primary via-[#00E5FF] to-cta bg-clip-text text-transparent">
               to Revenue.
             </span>
           </h2>
-
+ 
           <p className="text-sm sm:text-sm text-text-secondary leading-relaxed font-normal">
             Every campaign follows a structured, data-driven revenue growth process designed to move the right prospects from initial targetting to qualified sales opportunities.
           </p>
         </div>
-
+ 
         {/* ── 2. HORIZONTAL TIMELINE PROGRESSION (LEFT → RIGHT) ──────── */}
         <div className="relative w-full mb-4 lg:mb-5">
-          
+         
           {/* Desktop & Tablet: Fixed Horizontal Row (Same Axis) */}
           <div className="hidden md:block relative pt-2 pb-1">
-            
+           
             {/* Background Inactive Base Line */}
             <div className="absolute top-[28px] left-6 right-6 h-1 bg-black/10 dark:bg-white/10 rounded-full z-0" />
-
+ 
             {/* Active Physical Progress Line Growing Left -> Right */}
             <div
               ref={progressLineRef}
@@ -162,14 +162,14 @@ export const HowWeWork = () => {
                 width: `${Math.max(lineProgressPct, ((activeStage + 1) / stages.length) * 100 - 4)}%`,
               }}
             />
-
+ 
             {/* 5 Stages Grid strictly on the SAME HORIZONTAL ROW */}
             <div className="grid grid-cols-5 gap-2 lg:gap-4 relative z-10">
               {stages.map((st, idx) => {
                 const isActive = activeStage === idx
                 const isCompleted = activeStage > idx
                 const StageIcon = st.icon
-
+ 
                 return (
                   <button
                     key={st.num}
@@ -197,7 +197,7 @@ export const HowWeWork = () => {
                     >
                       <StageIcon size={17} style={{ color: st.color }} />
                     </motion.div>
-
+ 
                     {/* Stage Number & Title */}
                     <div className="space-y-0.5 w-full px-1">
                       <div className="flex items-center justify-center gap-1.5">
@@ -212,14 +212,14 @@ export const HowWeWork = () => {
                           {st.title}
                         </h4>
                       </div>
-
+ 
                       {/* Sub-label & Description */}
                       <p className={`text-sm font-semibold transition-opacity duration-300 line-clamp-1 ${
                         isActive ? 'text-text-primary opacity-100' : 'text-text-muted opacity-50'
                       }`}>
                         {st.label}
                       </p>
-
+ 
                       <p className={`text-sm leading-relaxed transition-all duration-300 line-clamp-1 ${
                         isActive ? 'text-text-secondary opacity-100' : 'text-text-muted/60 opacity-40'
                       }`}>
@@ -231,7 +231,7 @@ export const HowWeWork = () => {
               })}
             </div>
           </div>
-
+ 
           {/* ── Mobile (<768px): Horizontal Scrollable / Snap Row (Never Stacked) ── */}
           <div className="md:hidden">
             <div className="flex items-center justify-between text-sm font-mono font-bold text-text-muted mb-2 px-1">
@@ -240,12 +240,12 @@ export const HowWeWork = () => {
                 Swipe <ArrowRight size={12} />
               </span>
             </div>
-
+ 
             <div className="flex flex-row overflow-x-auto snap-x snap-mandatory gap-3 pb-4 pt-2 -mx-4 px-4 no-scrollbar">
               {stages.map((st, idx) => {
                 const isActive = activeStage === idx
                 const StageIcon = st.icon
-
+ 
                 return (
                   <div
                     key={st.num}
@@ -272,7 +272,7 @@ export const HowWeWork = () => {
                         Stage 0{idx + 1}
                       </span>
                     </div>
-
+ 
                     <h5 className="text-sm font-bold text-text-primary mb-1">
                       {st.label}
                     </h5>
@@ -284,22 +284,24 @@ export const HowWeWork = () => {
               })}
             </div>
           </div>
-
+ 
         </div>
-
+ 
         {/* ── 3. CENTRAL REVENUE PROCESS VISUAL (Full Width Card Placed Below Timeline) ── */}
         <div className="w-full">
           <RevenueProcessVisual activeStage={activeStage} />
         </div>
-
+ 
       </div>
-
+ 
       {/* ── Bottom Laser Divider ────────────────────────────────────────── */}
       <SectionLaserDivider variant="cyan" position="bottom" />
     </section>
   )
 }
-
+ 
 export default HowWeWork
-
-
+ 
+ 
+ 
+ 

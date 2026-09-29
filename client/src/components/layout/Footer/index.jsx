@@ -206,6 +206,7 @@ export const Footer = () => {
       links: [
         { label: 'About Us', url: '/about' },
         { label: 'All Solutions', url: '/services' },
+        { label: 'Industries We Serve', url: '/industries' },
         { label: 'Careers', url: '/careers' },
         { label: 'Blogs & Insights', url: '/blog' },
         { label: 'Contact Us', url: '/contact' },
@@ -305,19 +306,19 @@ export const Footer = () => {
           {/* ── COLUMN 1 (SPAN 3): BRAND & VALUE PROPOSITION ──────────────── */}
           <div className="sm:col-span-2 lg:col-span-3 space-y-5">
             {/* Logo & ISO Certification Badges Stack (Centered relative to the badges) */}
-            <div className="w-[185px] sm:w-[210px] md:w-[225px] flex flex-col items-center gap-2">
-              <Link to="/" className="inline-flex items-center justify-center group">
+            <div className="w-[200px] sm:w-[230px] md:w-[250px] flex flex-col items-center gap-3">
+              <Link to="/" className="inline-flex items-center justify-center group" aria-label="Taraj Global Home">
                 <TGAnimatedLogo
                   alt="Taraj Global"
-                  className="w-[60px] h-[60px] sm:w-[66px] sm:h-[66px]"
+                  className="!w-[88px] !h-[88px] sm:!w-[100px] sm:!h-[100px] md:!w-[112px] md:!h-[112px]"
                 />
               </Link>
 
-              <div className="pt-0.5 w-full flex justify-center">
+              <div className="pt-1 w-full flex justify-center">
                 <img
                   src="/footerimage.png"
                   alt="Taraj Global ISO 9001:2015 & ISO/IEC 27001:2022 Certified"
-                  className="w-full h-auto object-contain select-none"
+                  className="w-full h-auto object-contain select-none max-w-[210px] sm:max-w-[230px]"
                   loading="lazy"
                 />
               </div>
@@ -387,14 +388,14 @@ export const Footer = () => {
             const chevronColor = isAmber ? 'text-[#FF6D00]' : 'text-[#00A6FF]'
 
             return (
-              <div key={section.id} className="lg:col-span-2 space-y-3.5">
+              <div key={section.id} className="lg:col-span-2 space-y-4 pt-4 sm:pt-7 lg:pt-16">
                 <div className="flex items-center gap-1.5">
                   <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} />
                   <h4 className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider font-mono ${headingClass}`}>
                     {section.title}
                   </h4>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {section.links.map((link, lIdx) => {
                     const isCustomAction =
                       link.link_type === 'custom_action' ||
@@ -460,7 +461,7 @@ export const Footer = () => {
           })}
 
           {/* ── COLUMN 5 (SPAN 3): GLOBAL HUBS & CLOCKS ────────────── */}
-          <div className="lg:col-span-3 space-y-3.5">
+          <div className="lg:col-span-3 space-y-4 pt-4 sm:pt-7 lg:pt-16">
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <h4 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider font-mono text-slate-800 dark:text-slate-200">

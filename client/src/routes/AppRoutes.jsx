@@ -87,6 +87,8 @@ function AppRoutes() {
         <Route path="sql-services" element={<SqlServices />} />
         <Route path="b2b-appointment-setting" element={<B2bAppointmentSetting />} />
         <Route path="b2b-email-marketing" element={<B2bEmailMarketing />} />
+        <Route path="b2b-email-marketinig" element={<Navigate to="/b2b-email-marketing" replace />} />
+        <Route path="industries" element={<Navigate to="/services" replace />} />
         <Route path="demandflow-bridge" element={<DemandFlowBridge />} />
         <Route path="abm" element={<Abm />} />
         <Route path="content-syndication-new" element={<Navigate to="/content-syndication" replace />} />

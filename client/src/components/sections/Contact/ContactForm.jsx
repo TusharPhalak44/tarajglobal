@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Send,
@@ -704,8 +705,18 @@ const ContactForm = () => {
                         onChange={handleChange}
                         className="w-4 h-4 rounded border-slate-300 dark:border-white/20 text-primary dark:text-[#00A6FF] focus:ring-primary/30 cursor-pointer accent-[#00A6FF]"
                       />
-                      <span className="text-sm sm:text-sm font-medium text-slate-700 dark:text-slate-200">
-                        I agree to the <span className="underline font-semibold hover:text-primary dark:hover:text-[#00d2ff]">Privacy Policy</span> *
+                      <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200">
+                        I agree to the{' '}
+                        <Link
+                          to="/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="underline font-semibold text-primary dark:text-[#00A6FF] hover:text-primary-light"
+                        >
+                          Privacy Policy
+                        </Link>{' '}
+                        *
                       </span>
                     </label>
                     {errors.agreeToPrivacy && (

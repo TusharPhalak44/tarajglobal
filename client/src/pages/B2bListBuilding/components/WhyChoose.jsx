@@ -5,8 +5,8 @@ import {
   Crosshair,
   Briefcase,
   SlidersHorizontal,
-  PieChart,
-  CheckCheck,
+  FileCheck2,
+  FolderSync,
   Star,
 } from 'lucide-react'
 
@@ -39,7 +39,7 @@ const PILLARS = [
     num: '04',
     title: 'Compliance Certified Data',
     desc: 'Full adherence to GDPR, CCPA, CAN-SPAM, and PECR opt-out legislation. Every list is delivered with a compliance certification and a 30-day data replacement guarantee.',
-    icon: PieChart,
+    icon: FileCheck2,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
@@ -47,7 +47,7 @@ const PILLARS = [
     num: '05',
     title: 'CRM-Ready Delivery',
     desc: 'Lists are formatted and pre-mapped to your exact CRM schema — Salesforce, HubSpot, Apollo, or Outreach — for instant 1-click import and immediate campaign launch.',
-    icon: CheckCheck,
+    icon: FolderSync,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },

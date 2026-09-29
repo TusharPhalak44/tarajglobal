@@ -1,23 +1,23 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Target, 
-  Search, 
-  Zap, 
-  TrendingUp, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Users, 
-  Mail, 
-  MessageSquare, 
-  ArrowUpRight, 
+import {
+  Target,
+  Search,
+  Zap,
+  TrendingUp,
+  CheckCircle2,
+  ShieldCheck,
+  Users,
+  Mail,
+  MessageSquare,
+  ArrowUpRight,
   Database,
   Activity,
   Sparkles,
   BarChart3,
   Layers
 } from 'lucide-react'
-
+ 
 /**
  * RevenueProcessVisual
  * Large central visual console placed above the horizontal timeline.
@@ -32,12 +32,12 @@ export const RevenueProcessVisual = ({ activeStage }) => {
     { name: 'QUALIFY', badge: 'BANT & INTENT SCORING', color: '#FF6D00', glow: 'rgba(255,109,0,0.3)' },
     { name: 'CONVERT', badge: 'CLOSED-LOOP PIPELINE WON', color: '#00E5FF', glow: 'rgba(0,229,255,0.3)' }
   ]
-
+ 
   const currentMeta = stageMeta[activeStage] || stageMeta[0]
-
+ 
   return (
     <div className="relative w-full rounded-2xl sm:rounded-3xl border border-border/80 dark:border-white/10 bg-surface/95 dark:bg-[#090D18]/95 p-4 sm:p-5 lg:p-6 shadow-xl backdrop-blur-2xl overflow-hidden min-h-[230px] sm:min-h-[250px] lg:min-h-[260px] flex flex-col justify-between">
-      
+     
       {/* ── Background Subtle Tech Atmosphere ────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10 overflow-hidden">
         {/* Ambient Specular Glow shifting position/color */}
@@ -50,7 +50,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
           style={{ backgroundColor: currentMeta.glow }}
         />
         {/* Technical Coordinate Grid */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
           style={{
             backgroundImage: `linear-gradient(to right, #00A6FF 1px, transparent 1px), linear-gradient(to bottom, #00A6FF 1px, transparent 1px)`,
@@ -58,7 +58,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
           }}
         />
       </div>
-
+ 
       {/* Top Console Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 dark:border-white/8 pb-4 mb-5">
         <div className="flex items-center gap-3">
@@ -73,17 +73,17 @@ export const RevenueProcessVisual = ({ activeStage }) => {
             </span>
           </span>
         </div>
-
+ 
         <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-surface dark:bg-white/5 border border-border/70 dark:border-white/10 text-sm font-mono font-bold text-text-secondary">
           <Sparkles size={12} className="text-primary" />
           <span>{currentMeta.badge}</span>
         </div>
       </div>
-
+ 
       {/* Dynamic Content Graphic Area */}
       <div className="relative z-10 flex-1 flex items-center">
         <AnimatePresence mode="wait">
-          
+         
           {/* ── 01 DEFINE VISUAL ───────────────────────────────────────── */}
           {activeStage === 0 && (
             <motion.div
@@ -109,7 +109,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
                   <span>100% Parameter Validation Locked</span>
                 </div>
               </div>
-
+ 
               <div className="md:col-span-7 grid grid-cols-2 gap-2">
                 {[
                   { label: 'Target Sector', val: 'Enterprise Cloud & Cyber' },
@@ -129,7 +129,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
               </div>
             </motion.div>
           )}
-
+ 
           {/* ── 02 IDENTIFY VISUAL ─────────────────────────────────────── */}
           {activeStage === 1 && (
             <motion.div
@@ -155,7 +155,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
                   <span>24,500 Active Accounts Monitored</span>
                 </div>
               </div>
-
+ 
               <div className="md:col-span-7 space-y-2.5">
                 {[
                   { name: 'Apex Global Cloud Solutions', role: 'Chief Technology Officer', status: 'Direct Dial Verified', sync: '99.8%' },
@@ -178,7 +178,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
               </div>
             </motion.div>
           )}
-
+ 
           {/* ── 03 ENGAGE VISUAL ───────────────────────────────────────── */}
           {activeStage === 2 && (
             <motion.div
@@ -204,7 +204,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
                   <span>Deliverability Health: 99.6%</span>
                 </div>
               </div>
-
+ 
               <div className="md:col-span-7 grid grid-cols-3 gap-3">
                 <div className="p-4 rounded-2xl bg-surface/80 dark:bg-white/5 border border-border/70 dark:border-white/8 text-center">
                   <Mail size={22} className="mx-auto text-primary mb-2" />
@@ -212,14 +212,14 @@ export const RevenueProcessVisual = ({ activeStage }) => {
                   <span className="text-xl sm:text-2xl font-black text-text-primary">68.4%</span>
                   <span className="text-sm text-emerald-500 font-bold block mt-0.5">Open Rate</span>
                 </div>
-
+ 
                 <div className="p-4 rounded-2xl bg-surface/80 dark:bg-white/5 border border-border/70 dark:border-white/8 text-center">
                   <MessageSquare size={22} className="mx-auto text-[#00A6FF] mb-2" />
                   <span className="text-sm font-mono uppercase text-text-muted block">Exec Touch</span>
                   <span className="text-xl sm:text-2xl font-black text-text-primary">34.2%</span>
                   <span className="text-sm text-emerald-500 font-bold block mt-0.5">Reply Rate</span>
                 </div>
-
+ 
                 <div className="p-4 rounded-2xl bg-surface/80 dark:bg-white/5 border border-border/70 dark:border-white/8 text-center">
                   <Users size={22} className="mx-auto text-emerald-500 mb-2" />
                   <span className="text-sm font-mono uppercase text-text-muted block">Syndication</span>
@@ -229,7 +229,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
               </div>
             </motion.div>
           )}
-
+ 
           {/* ── 04 QUALIFY VISUAL ──────────────────────────────────────── */}
           {activeStage === 3 && (
             <motion.div
@@ -255,7 +255,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
                   <span>SLA: Zero Cold Contact Handover</span>
                 </div>
               </div>
-
+ 
               <div className="md:col-span-7 space-y-2.5">
                 {[
                   { label: 'FIT PARAMETER', pct: 94, bar: 'bg-primary' },
@@ -281,7 +281,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
               </div>
             </motion.div>
           )}
-
+ 
           {/* ── 05 CONVERT VISUAL ──────────────────────────────────────── */}
           {activeStage === 4 && (
             <motion.div
@@ -307,7 +307,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
                   <span>4.8x Pipeline Acceleration Multiplier</span>
                 </div>
               </div>
-
+ 
               <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 {[
                   { step: '01', title: 'Target Account', desc: 'TAM Filtered' },
@@ -324,10 +324,10 @@ export const RevenueProcessVisual = ({ activeStage }) => {
               </div>
             </motion.div>
           )}
-
+ 
         </AnimatePresence>
       </div>
-
+ 
       {/* Console Bottom Status Row */}
       <div className="flex items-center justify-between border-t border-border/70 dark:border-white/8 pt-3 text-sm font-mono text-text-muted">
         <span className="flex items-center gap-1.5 text-emerald-500 font-bold">
@@ -336,10 +336,11 @@ export const RevenueProcessVisual = ({ activeStage }) => {
         </span>
         <span>Taraj Global Growth Framework</span>
       </div>
-
+ 
     </div>
   )
 }
-
+ 
 export default RevenueProcessVisual
-
+ 
+ 

@@ -14,7 +14,8 @@ import {
   FileSpreadsheet,
   ArrowRight,
   ShieldCheck,
-  Sparkles
+  Sparkles,
+  RefreshCw
 } from 'lucide-react'
 
 const SOLUTIONS_COLUMNS = [
@@ -68,7 +69,7 @@ const SOLUTIONS_COLUMNS = [
         name: 'Lead Nurturing',
         path: '/lead-nurturing',
         desc: 'Multi-stage account engagement cadences',
-        icon: TrendingUp,
+        icon: RefreshCw,
       },
       {
         name: 'Content Syndication',

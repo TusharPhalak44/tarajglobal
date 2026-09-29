@@ -5,6 +5,7 @@
 @import './navbar.css';
 @import './footer.css';
 @import './layout.css';
+@import './admin.css';
 
 @tailwind base;
 @tailwind components;
@@ -72,11 +73,24 @@ body {
   padding-right: env(safe-area-inset-right, 0px);
 }
 
-p, h1, h2, h3, h4, h5, h6, span, a, button, label {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a,
+button,
+label {
   overflow-wrap: break-word;
 }
 
-img, video, canvas, svg {
+img,
+video,
+canvas,
+svg {
   max-width: 100%;
   height: auto;
 }
@@ -107,7 +121,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 20%, rgba(255, 109, 0, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(255, 166, 0, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 40% 60%, rgba(0, 166, 255, 0.03) 0%, transparent 40%);
@@ -121,41 +135,42 @@ body::before {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 109, 0, 0.1);
-  box-shadow: 
+  box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.4),
     0 0 40px rgba(255, 109, 0, 0.05);
 }
 
 /* Orange Glow Border */
 .glow-border-orange {
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(255, 109, 0, 0.2),
     0 0 20px rgba(255, 109, 0, 0.1);
 }
 
 /* Blue Glow Border */
 .glow-border-blue {
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(0, 166, 255, 0.2),
     0 0 20px rgba(0, 166, 255, 0.1);
 }
 
 /* Animated Gradient Background */
 .animated-gradient {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 109, 0, 0.1) 0%,
-    rgba(255, 166, 0, 0.05) 50%,
-    rgba(0, 166, 255, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 109, 0, 0.1) 0%,
+      rgba(255, 166, 0, 0.05) 50%,
+      rgba(0, 166, 255, 0.05) 100%);
   background-size: 200% 200%;
   animation: gradientShift 8s ease infinite;
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -165,6 +180,7 @@ body::before {
 .theme-blob-orange {
   background: rgba(255, 109, 0, 0.10);
 }
+
 .light .theme-blob-orange {
   background: rgba(255, 109, 0, 0.06);
 }
@@ -172,6 +188,7 @@ body::before {
 .theme-blob-blue {
   background: rgba(0, 166, 255, 0.08);
 }
+
 .light .theme-blob-blue {
   background: rgba(0, 166, 255, 0.05);
 }
@@ -182,6 +199,7 @@ body::before {
     radial-gradient(circle at 70% 60%, rgba(255, 166, 0, 0.10) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(0, 166, 255, 0.05) 0%, transparent 60%);
 }
+
 .light .theme-glow-overlay {
   background:
     radial-gradient(circle at 30% 40%, rgba(255, 109, 0, 0.06) 0%, transparent 50%),
@@ -418,6 +436,7 @@ body::before {
   from {
     box-shadow: 0 4px 20px rgba(0, 166, 255, 0.25), 0 0 10px rgba(0, 166, 255, 0.1);
   }
+
   to {
     box-shadow: 0 4px 30px rgba(0, 166, 255, 0.5), 0 0 20px rgba(0, 166, 255, 0.3), 0 0 30px rgba(0, 166, 255, 0.2);
   }
@@ -433,6 +452,7 @@ body::before {
   from {
     box-shadow: 0 0 40px rgba(0, 166, 255, 0.6), 0 0 25px rgba(0, 166, 255, 0.4), 0 0 35px rgba(0, 166, 255, 0.3);
   }
+
   to {
     box-shadow: 0 0 50px rgba(0, 166, 255, 0.8), 0 0 35px rgba(0, 166, 255, 0.5), 0 0 45px rgba(0, 166, 255, 0.4);
   }
@@ -451,6 +471,7 @@ body::before {
   from {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.05);
   }
+
   to {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.05);
   }
@@ -468,6 +489,7 @@ body::before {
   from {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.15);
   }
+
   to {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
   }
@@ -484,6 +506,7 @@ body::before {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .testimonials-scroll::-webkit-scrollbar {
   display: none;
 }

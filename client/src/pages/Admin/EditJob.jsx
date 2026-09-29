@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import { 
   ArrowLeft, 
   Save, 
   X, 
-  Clock,
-  Briefcase
+  Clock, 
+  Briefcase, 
+  Users, 
+  MapPin, 
+  DollarSign, 
+  AlertCircle 
 } from 'lucide-react'
 import { adminAPI } from '@api'
-import { useNavigate, useParams } from 'react-router-dom'
+import PageHeader from '@components/admin/PageHeader'
+import { DashboardSkeleton } from '@components/admin/LoadingSkeleton'
 
 const EditJob = () => {
   const navigate = useNavigate()
@@ -43,9 +49,9 @@ const EditJob = () => {
         salary: jobData.salary || '',
         status: jobData.status || 'draft'
       })
-    } catch (error) {
-      console.error('Failed to fetch job:', error)
-      setError('Failed to load job. Please try again.')
+    } catch (err) {
+      console.error('Failed to fetch job:', err)
+      setError('Failed to load career requisition.')
     } finally {
       setLoading(false)
     }
@@ -66,26 +72,12 @@ const EditJob = () => {
 
     try {
       setSaving(true)
-      const jobData = {
-        title: editForm.title,
-        description: editForm.description,
-        requirements: editForm.requirements,
-        location: editForm.location,
-        type: editForm.type,
-        salary: editForm.salary,
-        status: editForm.status
-      }
-      console.log('Updating job with ID:', id)
-      console.log('Job data:', jobData)
-      const response = await adminAPI.updateJob(id, jobData)
-      console.log('Update response:', response)
-      alert('Job updated successfully')
+      await adminAPI.updateJob(id, editForm)
+      alert('Career opportunity updated successfully!')
       navigate('/admin/jobs')
-    } catch (error) {
-      console.error('Job update error:', error)
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to update job'
-      console.error('Error message:', errorMessage)
-      setError(errorMessage)
+    } catch (err) {
+      console.error('Job update error:', err)
+      setError(err.response?.data?.message || err.message || 'Failed to update job')
     } finally {
       setSaving(false)
     }
@@ -97,157 +89,187 @@ const EditJob = () => {
   }
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-text-muted">Loading job...</div>
-      </div>
-    )
+    return <DashboardSkeleton />
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => navigate('/admin/jobs')}
-            className="p-2 text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5" />
+    <div className="space-y-6 max-w-4xl mx-auto pb-12">
+      <PageHeader
+        title="Edit Career Requisition"
+        subtitle={`Updating position #${id}: ${editForm.title}`}
+        breadcrumbs={[
+          { label: 'Jobs', path: '/admin/jobs' },
+          { label: `Edit #${id}` }
+        ]}
+        actions={
+          <div className="flex items-center gap-3">
+            <Link
+              to={`/admin/applications?job_id=${id}&job_title=${encodeURIComponent(editForm.title)}`}
+              className="admin-btn admin-btn-secondary"
+            >
+              <Users className="w-4 h-4 text-[#00A6FF]" />
+              <span>View Candidates</span>
+            </Link>
+            <button
+              type="button"
+              onClick={handleUpdateJob}
+              disabled={saving}
+              className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+            >
+              {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save Position</>}
+            </button>
+          </div>
+        }
+      />
+
+      {error && (
+        <div className="p-4 rounded-xl bg-[var(--admin-danger-soft)] border border-[#F43F5E]/30 text-[#F43F5E] text-xs font-semibold flex items-center justify-between animate-slide-down">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span>{error}</span>
+          </div>
+          <button onClick={() => setError('')} className="p-1 hover:opacity-80">
+            <X className="w-4 h-4" />
           </button>
-          <div>
-            <h1 className="text-3xl font-bold text-text-primary mb-2">Edit Job</h1>
-            <p className="text-text-secondary">Update job posting details</p>
-          </div>
         </div>
-      </div>
+      )}
 
-      {/* Edit Form */}
-      <div className="bg-surface rounded-xl border border-border overflow-hidden">
-        <form onSubmit={handleUpdateJob} className="p-6 space-y-6">
-          {error && (
-            <div className="p-3 bg-error/10 border border-error/30 rounded-lg text-error text-sm">
-              {error}
+      <form onSubmit={handleUpdateJob} className="space-y-6">
+        <div className="admin-card p-6 space-y-5">
+          <div className="flex items-center gap-2.5 pb-4 border-b border-[var(--admin-border-subtle)]">
+            <div className="w-8 h-8 rounded-lg bg-[var(--admin-accent-soft)] text-[var(--admin-accent)] flex items-center justify-center">
+              <Briefcase className="w-4 h-4" />
             </div>
-          )}
-          
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Job Title *</label>
-            <input
-              type="text"
-              name="title"
-              value={editForm.title}
-              onChange={handleInputChange}
-              placeholder="e.g. Senior Software Engineer"
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-              disabled={saving}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Description *</label>
-            <textarea
-              name="description"
-              value={editForm.description}
-              onChange={handleInputChange}
-              placeholder="Job description and responsibilities..."
-              rows={8}
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary resize-none"
-              disabled={saving}
-            />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-text-secondary mb-2">Location</label>
+              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">
+                Position Details & Logistics
+              </h3>
+              <p className="text-xs text-[var(--admin-text-muted)]">Title, location parameters, and remuneration.</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Position Title <span className="text-[#F43F5E]">*</span>
+              </label>
               <input
                 type="text"
-                name="location"
-                value={editForm.location}
+                name="title"
+                value={editForm.title}
                 onChange={handleInputChange}
-                placeholder="e.g. Remote, New York"
-                className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                disabled={saving}
+                className="admin-input font-medium"
+                required
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  value={editForm.location}
+                  onChange={handleInputChange}
+                  className="admin-input"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Employment Type
+                </label>
+                <select
+                  name="type"
+                  value={editForm.type}
+                  onChange={handleInputChange}
+                  className="admin-select text-xs"
+                >
+                  <option value="full-time">Full-Time</option>
+                  <option value="part-time">Part-Time</option>
+                  <option value="contract">Contract</option>
+                  <option value="internship">Internship</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Salary / Compensation
+                </label>
+                <input
+                  type="text"
+                  name="salary"
+                  value={editForm.salary}
+                  onChange={handleInputChange}
+                  className="admin-input"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Job Description <span className="text-[#F43F5E]">*</span>
+              </label>
+              <textarea
+                name="description"
+                value={editForm.description}
+                onChange={handleInputChange}
+                rows={6}
+                className="admin-input resize-y text-xs leading-relaxed"
+                required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text-secondary mb-2">Employment Type</label>
-              <select
-                name="type"
-                value={editForm.type}
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Requirements & Qualifications
+              </label>
+              <textarea
+                name="requirements"
+                value={editForm.requirements}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-                disabled={saving}
+                rows={5}
+                className="admin-input resize-y text-xs leading-relaxed"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Publication Status
+              </label>
+              <select
+                name="status"
+                value={editForm.status}
+                onChange={handleInputChange}
+                className="admin-select text-xs font-semibold"
               >
-                <option value="full-time">Full-time</option>
-                <option value="part-time">Part-time</option>
-                <option value="contract">Contract</option>
-                <option value="internship">Internship</option>
+                <option value="draft">Draft</option>
+                <option value="active">Active (Open to Public)</option>
+                <option value="archived">Archived (Closed)</option>
               </select>
             </div>
           </div>
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Salary</label>
-            <input
-              type="text"
-              name="salary"
-              value={editForm.salary}
-              onChange={handleInputChange}
-              placeholder="e.g. $50,000 - $80,000"
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-              disabled={saving}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Requirements</label>
-            <textarea
-              name="requirements"
-              value={editForm.requirements}
-              onChange={handleInputChange}
-              placeholder="Required qualifications and skills..."
-              rows={6}
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary resize-none"
-              disabled={saving}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-text-secondary mb-2">Status</label>
-            <select
-              name="status"
-              value={editForm.status}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary"
-              disabled={saving}
-            >
-              <option value="draft">Draft</option>
-              <option value="published">Published</option>
-              <option value="archived">Archived</option>
-            </select>
-          </div>
-
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
-            <button
-              type="button"
-              onClick={() => navigate('/admin/jobs')}
-              className="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
-              disabled={saving}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={saving}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
-            >
-              {saving ? <><Clock className="w-4 h-4 animate-spin" /> Updating...</> : <><Save className="w-4 h-4" /> Update Job</>}
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
+          <button
+            type="button"
+            onClick={() => navigate('/admin/jobs')}
+            className="admin-btn admin-btn-secondary"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={saving}
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+          >
+            {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save Position</>}
+          </button>
+        </div>
+      </form>
     </div>
   )
 }

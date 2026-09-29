@@ -1,128 +1,235 @@
-/* Font Families */
-:root {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'Fira Code', 'Courier New', monospace;
+/* ==========================================================================
+   ONE GLOBAL TYPOGRAPHY SYSTEM — TGS / TARAJ GLOBAL SOLUTIONS
+   Single Source of Truth for typography across all pages, sections, cards,
+   modals, forms, navigation, footer, and CMS/Admin.
+   ========================================================================== */
+
+/* ── 1. GLOBAL BASE HTML ELEMENTS ────────────────────────────────────────── */
+
+html {
+  font-size: 16px;
 }
 
-/* Font Sizes */
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+/* Headings Base Rules */
+h1, .text-page-title, .h1, .text-h1 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tighter);
+  color: var(--text-primary);
 }
 
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
+h2, .text-section-title, .h2, .text-h2 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+h3, .text-subsection-title, .h3, .text-h3 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+h4, .text-component-title, .h4, .text-h4 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+h5, .h5, .text-h5 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h5);
+  line-height: var(--line-height-h5);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+h6, .h6, .text-h6 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h6);
+  line-height: var(--line-height-h6);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+/* Paragraphs & Descriptions */
+p, .text-body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
+/* ── 2. GLOBAL ROLE UTILITIES ────────────────────────────────────────────── */
+
+.text-subtitle, .subtitle, .section-subtitle, .hero-subtitle {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-subtitle);
+  font-weight: var(--font-weight-regular);
 }
 
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
+.text-small, .small-text {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
 }
 
-/* Font Weights */
-.font-light {
-  font-weight: 300;
+.text-caption, .caption {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
 }
 
-.font-normal {
-  font-weight: 400;
+.text-nav, .nav-item, .nav-link {
+  font-size: var(--font-size-nav);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.text-button, button, .btn {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-button);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-label, label {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-medium);
+}
+
+.text-input, input, textarea, select {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-input);
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-size: var(--font-size-placeholder);
+  font-family: var(--font-family-primary);
+}
+
+/* ── 3. TEXT WIDTH CONSTRAINTS ───────────────────────────────────────────── */
+
+.prose-readable,
+.max-w-prose {
+  max-width: var(--max-width-prose);
+}
+
+.prose-content p {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  margin-bottom: 1.25rem;
+  max-width: var(--max-width-prose);
+}
+
+.prose-content h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.prose-content h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-content h4 {
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── 4. GLOBAL FONT WEIGHT UTILITIES ─────────────────────────────────────── */
+
+.font-regular {
+  font-weight: var(--font-weight-regular);
 }
 
 .font-medium {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .font-semibold {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .font-bold {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .font-extrabold {
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
 }
 
-/* Heading Styles */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--color-text-primary);
+/* ── 5. GLOBAL LETTER SPACING UTILITIES ──────────────────────────────────── */
+
+.tracking-tighter {
+  letter-spacing: var(--letter-spacing-tighter);
 }
 
-h1 {
-  font-size: 3rem;
+.tracking-tight {
+  letter-spacing: var(--letter-spacing-tight);
 }
 
-h2 {
-  font-size: 2.25rem;
+.tracking-normal {
+  letter-spacing: var(--letter-spacing-normal);
 }
 
-h3 {
-  font-size: 1.875rem;
+.tracking-wide {
+  letter-spacing: var(--letter-spacing-wide);
 }
 
-h4 {
-  font-size: 1.5rem;
+.tracking-wider {
+  letter-spacing: var(--letter-spacing-wider);
 }
 
-h5 {
-  font-size: 1.25rem;
+.tracking-widest {
+  letter-spacing: var(--letter-spacing-widest);
 }
 
-h6 {
-  font-size: 1.125rem;
+/* ── 6. GLOBAL LINE HEIGHT UTILITIES ─────────────────────────────────────── */
+
+.leading-heading {
+  line-height: var(--line-height-heading);
 }
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-  
-  h2 {
-    font-size: 1.875rem;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-  }
+.leading-body {
+  line-height: var(--line-height-body);
+}
+
+.leading-subtitle {
+  line-height: var(--line-height-subtitle);
+}
+
+.leading-small {
+  line-height: var(--line-height-small);
 }
