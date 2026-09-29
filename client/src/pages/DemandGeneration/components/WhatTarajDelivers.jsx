@@ -391,7 +391,7 @@ const WhatTarajDelivers = () => {
                   <div className="pt-2">
                     <Link
                       to="/demandflow-bridge"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#00A6FF] text-white hover:bg-[#00A6FF]/90 shadow-md shadow-[#00A6FF]/20 hover:shadow-[#00A6FF]/35 transition-all duration-300 hover:-translate-y-0.5 group"
+                      style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold  text-white hover:/90 shadow-md shadow-[#00A6FF]/20 hover:shadow-[#00A6FF]/35 transition-all duration-300 hover:-translate-y-0.5 group"
                     >
                       <span>Explore DemandFlow Bridge</span>
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

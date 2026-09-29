@@ -140,10 +140,10 @@ export default function KineticServicesHero({ onSelectCategory }) {
           <button
             type="button"
             onClick={() => scrollToCatalog('all')}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border bg-surface hover:bg-surface/80 text-text-primary text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer group"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer group"
           >
             <span>Explore All 12 Services</span>
-            <ChevronDown className="w-4 h-4 text-text-secondary group-hover:translate-y-0.5 transition-transform" />
+            <ChevronDown className="w-4 h-4  group-hover:translate-y-0.5 transition-transform" />
           </button>
         </motion.div>
 

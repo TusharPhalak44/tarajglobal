@@ -84,7 +84,7 @@ const FinalCTA = () => {
         >
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-white hover: shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
           >
             <span>Explore DemandFlow Bridge</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

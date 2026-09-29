@@ -281,7 +281,7 @@ const CTA = () => {
 
             <button
               onClick={handleExploreServices}
-              className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm text-text-primary border border-border bg-surface hover:bg-surface/80 transition-all duration-200 cursor-pointer shadow-xs"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  border border-border  hover: transition-all duration-200 cursor-pointer shadow-xs"
             >
               <span>Explore Our Services</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

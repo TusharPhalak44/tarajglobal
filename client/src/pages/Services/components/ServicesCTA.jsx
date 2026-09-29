@@ -50,8 +50,8 @@ export default function ServicesCTA() {
             <StarButton
               as="div"
               className="h-12 px-8 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
-              lightColor={isDark ? '#87CEEB' : '#FF8533'}
-              backgroundColor={isDark ? '#00A6FF' : '#FF6D00'}
+              lightColor="#00A6FF"
+              backgroundColor="rgba(0,166,255,0.15)"
             >
               <span>Talk to Our Team</span>
               <ArrowRight className="w-4 h-4 ml-1" />
@@ -61,7 +61,7 @@ export default function ServicesCTA() {
           <button
             type="button"
             onClick={handleScrollToTop}
-            className="h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider text-text-primary border border-border/80 hover:border-primary/60 hover:bg-surface/60 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider  border border-border/80 hover:border-primary/60 hover: transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer"
           >
             <span>Explore Solutions</span>
           </button>

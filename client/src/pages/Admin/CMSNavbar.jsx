@@ -1,3 +1,4 @@
+import { StarButton } from '@components/ui/StarButton'
 import React, { useEffect, useState, useRef } from 'react'
 import {
   Plus,
@@ -1227,13 +1228,17 @@ const CMSNavbar = () => {
 
                   {/* Right Action Button */}
                   <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#00A6FF] to-[#0077B5] hover:opacity-95 transition-all shadow-md shadow-[#00A6FF]/20 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>Let's Talk</span>
-                      <ArrowRight size={12} />
-                    </button>
+                    <StarButton
+              
+              lightColor="#00A6FF"
+              backgroundColor="rgba(0,166,255,0.15)"
+              className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
+            >
+              <span className="flex items-center justify-center gap-2 min-h-[44px] px-8">
+                <span>Let's Talk</span>
+                <ArrowRight size={15} />
+              </span>
+            </StarButton>
                   </div>
                 </div>
 

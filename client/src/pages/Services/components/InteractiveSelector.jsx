@@ -332,8 +332,8 @@ export default function InteractiveSelector() {
                     <StarButton
                       as="div"
                       className="h-11 px-6 text-xs font-bold uppercase tracking-wider text-white dark:text-neutral-900 flex items-center gap-2"
-                      lightColor={isDark ? '#87CEEB' : '#FF8533'}
-                      backgroundColor={isDark ? '#00A6FF' : '#FF6D00'}
+                      lightColor="#00A6FF"
+                      backgroundColor="rgba(0,166,255,0.15)"
                     >
                       <span>Explore Service</span>
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

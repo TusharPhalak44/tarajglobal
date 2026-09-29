@@ -415,8 +415,8 @@ const Hero = () => {
                 id="hero-cta-primary"
                 className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{
-                  background: 'linear-gradient(90deg, #00A6FF 0%, #0080CC 100%)',
-                  boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
+                  backgroundColor: '#1E3A8A',
+                  boxShadow: '0 4px 20px rgba(30,58,138,0.3)',
                 }}
               >
                 Start Your Email Campaign
@@ -426,11 +426,8 @@ const Hero = () => {
               <button
                 onClick={handleSeeHowItWorks}
                 id="hero-cta-secondary"
-                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-text-primary transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.12)',
-                }}
+                className="text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }}
               >
                 See How It Works
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />

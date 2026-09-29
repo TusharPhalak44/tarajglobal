@@ -1,3 +1,4 @@
+import { StarButton } from '@components/ui/StarButton'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -598,9 +599,17 @@ const Navbar = () => {
                 {/* Mobile CTA */}
                 <div className="mt-8">
                   <NavLink to="/contact" onClick={closeMobileMenu}>
-                    <button className="w-full py-3 bg-gradient-to-r from-cta to-accent text-text-primary rounded-lg font-semibold hover:from-cta-hover hover:to-accent transition-all focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20">
-                      Get Started
-                    </button>
+                    <StarButton
+              
+              lightColor="#00A6FF"
+              backgroundColor="rgba(0,166,255,0.15)"
+              className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
+            >
+              <span className="flex items-center justify-center gap-2 min-h-[44px] px-8">
+                <span>Get Started</span>
+                <ArrowRight size={15} />
+              </span>
+            </StarButton>
                   </NavLink>
                 </div>
               </div>

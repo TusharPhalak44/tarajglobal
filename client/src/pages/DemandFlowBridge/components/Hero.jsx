@@ -112,7 +112,7 @@ const Hero = () => {
 
             <button
               onClick={() => scrollToSection('ecosystem')}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-surface border border-border text-text-primary hover:border-primary/40 hover:bg-surface/80 transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
             >
               <span>See How It Works</span>
             </button>

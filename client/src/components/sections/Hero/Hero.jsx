@@ -176,7 +176,7 @@ export const Hero = () => {
               </Link>
  
               {/* Secondary CTA */}
-              <Link to="/services" className="w-full sm:w-auto inline-block">
+              <Link to="/services" style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white w-full sm:w-auto inline-block">
                 <StarButton
                   lightColor="#00A6FF"
                   backgroundColor="rgba(0,166,255,0.15)"

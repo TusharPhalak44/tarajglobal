@@ -80,7 +80,7 @@ export default function ReferenceHero() {
               <button
                 type="button"
                 onClick={scrollToCoreServices}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-full bg-[#FF6D00] hover:bg-[#FF8A00] text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg shadow-[#FF6D00]/25 cursor-pointer group w-full sm:w-auto"
+                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-full  hover: text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg shadow-[#FF6D00]/25 cursor-pointer group w-full sm:w-auto"
               >
                 <span>Explore Our Services</span>
                 <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />

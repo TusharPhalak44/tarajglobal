@@ -284,10 +284,10 @@ const Hero = () => {
 
           <button
             onClick={scrollToServices}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border bg-surface hover:bg-surface/80 text-text-primary text-sm font-bold hover:border-primary/40 active:scale-98 transition-all cursor-pointer shadow-xs"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-bold hover:border-primary/40 active:scale-98 transition-all cursor-pointer shadow-xs"
           >
             <span>Explore 12 Core Services</span>
-            <ChevronDown className="w-4 h-4 text-text-secondary" />
+            <ChevronDown className="w-4 h-4 " />
           </button>
         </div>
 

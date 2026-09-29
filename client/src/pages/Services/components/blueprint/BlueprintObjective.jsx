@@ -129,7 +129,7 @@ export default function BlueprintObjective() {
             </p>
             <button
               onClick={scrollToCoreServices}
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#E05300] transition-colors cursor-pointer group"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#E05300] transition-colors cursor-pointer group"
             >
               <span>View All Services</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

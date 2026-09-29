@@ -965,7 +965,7 @@ const BusinessCharacter = ({ isWalking, scene, direction }) => {
             playsInline
             onTimeUpdate={handleTimeUpdate}
             className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 mt-30 ${direction === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-            style={{ mixBlendMode: 'screen', filter: "none", transform: "scale(1.1)" }}
+            style={{ mixBlendMode: 'lighten', filter: 'contrast(1.4) brightness(0.8)', transform: "scale(1.1)" }}
             onError={(e) => {
               e.target.style.display = 'none';
             }}
@@ -979,7 +979,7 @@ const BusinessCharacter = ({ isWalking, scene, direction }) => {
             playsInline
             onTimeUpdate={handleTimeUpdate}
             className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 mt-30 ${direction === -1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-            style={{ mixBlendMode: 'screen', filter: "none", transform: "scaleX(-1) scale(1.1)" }}
+            style={{ mixBlendMode: 'lighten', filter: 'contrast(1.4) brightness(0.8)', transform: "scaleX(-1) scale(1.1)" }}
             onError={(e) => {
               e.target.style.display = 'none';
             }}

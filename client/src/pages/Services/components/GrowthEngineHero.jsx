@@ -185,13 +185,13 @@ export default function GrowthEngineHero() {
               <button
                 type="button"
                 onClick={handleScrollToSolutions}
-                className="group cursor-pointer"
+                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="group cursor-pointer"
               >
                 <StarButton
                   as="div"
                   className="h-12 px-7 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
-                  lightColor={isDark ? '#87CEEB' : '#FF8533'}
-                  backgroundColor={isDark ? '#00A6FF' : '#FF6D00'}
+                  lightColor="#00A6FF"
+                  backgroundColor="rgba(0,166,255,0.15)"
                 >
                   <span>Explore Solutions</span>
                   <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />

@@ -200,7 +200,7 @@ export default function ExperienceHero() {
           <button
             type="button"
             onClick={scrollToServices}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white text-xs sm:text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20  hover: text-white text-xs sm:text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
           >
             <span>Explore 12 Solutions</span>
             <ChevronDown className="w-4 h-4 text-white/60 group-hover:translate-y-0.5 transition-transform" />

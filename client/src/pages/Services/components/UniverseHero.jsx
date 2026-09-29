@@ -263,7 +263,7 @@ export default function UniverseHero() {
           type="button"
           onClick={handleScrollDown}
           className="group flex items-center gap-2 cursor-pointer font-mono text-xs font-bold uppercase tracking-widest transition-colors"
-          style={{ color: isDark ? '#38BDF8' : '#0284C7' }}
+          style={{ color: '#1E3A8A' }}
         >
           <span>SCROLL TO EXPLORE</span>
           <ArrowDown className="w-3.5 h-3.5 animate-bounce" />

@@ -144,10 +144,10 @@ export default function DevHero() {
             <button
               type="button"
               onClick={scrollToCatalog}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border bg-surface hover:bg-surface/80 text-text-primary text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer"
             >
               <span>Explore 12 Capabilities</span>
-              <ChevronRight className="w-4 h-4 text-text-secondary" />
+              <ChevronRight className="w-4 h-4 " />
             </button>
           </motion.div>
         </div>

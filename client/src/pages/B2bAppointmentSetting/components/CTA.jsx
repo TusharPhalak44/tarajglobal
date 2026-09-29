@@ -1,3 +1,4 @@
+import { StarButton } from '@components/ui/StarButton'
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, MessageSquare, Radar, Shield, Flame } from 'lucide-react'
@@ -212,14 +213,17 @@ const CTA = () => {
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
 
-            <button
-              id="cta-talk-to-team"
+            <StarButton
               onClick={handleTalkToTeam}
-              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-sm text-slate-800 dark:text-white bg-white dark:bg-white/[0.07] border border-slate-200 dark:border-white/15 hover:bg-slate-100 dark:hover:bg-white/10 shadow-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 w-full sm:w-auto justify-center cursor-pointer"
+              lightColor="#00A6FF"
+              backgroundColor="rgba(0,166,255,0.15)"
+              className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
             >
-              <MessageSquare className="w-4 h-4 text-primary dark:text-[#00A6FF]" />
-              Talk to Our Team
-            </button>
+              <span className="flex items-center justify-center gap-2 min-h-[44px] px-8">
+                <span>Talk to Our Team</span>
+                <ArrowRight size={15} />
+              </span>
+            </StarButton>
           </motion.div>
 
           {/* ── 1 Single Unified Trust Button with Rich Animation & Hover Effect ── */}

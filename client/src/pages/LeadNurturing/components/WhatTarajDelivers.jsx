@@ -335,7 +335,7 @@ const WhatTarajDelivers = () => {
               <div className="pt-2">
                 <Link
                   to="/demandflow-bridge"
-                  className="group inline-flex items-center gap-2 text-xs font-bold text-[#00A6FF] hover:text-sky-400 transition-colors"
+                  style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white group inline-flex items-center gap-2 text-xs font-bold text-[#00A6FF] hover:text-sky-400 transition-colors"
                 >
                   <span>Explore DemandFlow Bridge Platform</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

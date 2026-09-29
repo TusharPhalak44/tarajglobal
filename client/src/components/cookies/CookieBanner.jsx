@@ -142,11 +142,7 @@ const CookieBanner = () => {
                 width="100%"
                 height={44}
                 borderRadius="14px"
-                backgroundColor={
-                  isDark
-                    ? "linear-gradient(180deg, #1E293B 0%, #0F172A 100%)"
-                    : "linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%)"
-                }
+                backgroundColor="rgba(0,166,255,0.15)"
                 textColor={isDark ? "#F8FAFC" : "#0F172A"}
               />
 
@@ -157,11 +153,7 @@ const CookieBanner = () => {
                 width="100%"
                 height={44}
                 borderRadius="14px"
-                backgroundColor={
-                  isDark
-                    ? "linear-gradient(135deg, #00A6FF 0%, #0077EE 50%, #FF6D00 100%)"
-                    : "linear-gradient(135deg, #00A6FF 0%, #0066CC 55%, #FF6D00 100%)"
-                }
+                backgroundColor="rgba(0,166,255,0.15)"
                 textColor="#FFFFFF"
               />
             </div>
