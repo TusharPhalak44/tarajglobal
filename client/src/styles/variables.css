@@ -114,64 +114,71 @@
   --z-tooltip: 1070;
 }
 
-/* Light Theme - Premium Modern Design */
+/* =====================================================================
+   LIGHT THEME — Full Semantic Token System
+   Every token is intentionally designed for visual hierarchy.
+   Do NOT change these without testing both Light and Dark Mode.
+   ===================================================================== */
 .light {
-  /* Backgrounds - Premium off-white system */
-  --bg-primary: #FAFAFA;
-  --bg-secondary: #F5F7FA;
-  --background: #FAFAFA;
-  --hero: #FFFFFF;
-  --surface: #FFFFFF;
-  --surface-alt: #F5F7FA;
-  --surface-elevated: #FFFFFF;
+  /* ── Page Backgrounds — layered hierarchy ─────────────────────────── */
+  --bg-primary:        #E8EDF5;   /* page base — distinct light cool blue */
+  --bg-secondary:      #DFE6F0;   /* alternate section bg */
+  --background:        #E8EDF5;   /* root bg */
+  --hero:              #E8EDF5;   /* hero section */
+  --surface:           #FFFFFF;   /* card / panel surface */
+  --surface-alt:       #F2F6FA;   /* alternate card / section */
+  --surface-elevated:  #FFFFFF;   /* elevated modal / tooltip */
+  --surface-secondary: #DFE6F0;   /* deepest section bg */
 
-  /* Brand Colors - Refined professional palette */
-  --primary: #0066CC;
-  --primary-light: #E6F0FF;
-  --primary-dark: #0052A3;
-  --accent: #FF6B00;
-  --cta: #FF6B00;
-  --cta-hover: #FF8533;
-  --cta-light: #FFF0E6;
+  /* ── Brand Colors — Professional light palette ─────────────────────── */
+  --primary:           #0066CC;
+  --primary-light:     #E0EDFF;
+  --primary-dark:      #004FA3;
+  --accent:            #E85D00;
+  --cta:               #E85D00;
+  --cta-hover:         #FF7520;
+  --cta-light:         #FFF0E5;
 
-  /* Status Colors */
-  --success: #10B981;
-  --success-light: #D1FAE5;
-  --warning: #F59E0B;
-  --warning-light: #FEF3C7;
-  --error: #EF4444;
-  --error-light: #FEE2E2;
-  --info: #3B82F6;
-  --info-light: #DBEAFE;
+  /* ── Status Colors ─────────────────────────────────────────────────── */
+  --success:           #0E9F6E;
+  --success-light:     #D1FAE5;
+  --warning:           #D97706;
+  --warning-light:     #FEF3C7;
+  --error:             #DC2626;
+  --error-light:       #FEE2E2;
+  --info:              #2563EB;
+  --info-light:        #DBEAFE;
 
-  /* Text Colors - Sophisticated contrast */
-  --text-primary: #1A1A2E;
-  --text-secondary: #4A5568;
-  --text-muted: #718096;
-  --text-light: #A0AEC0;
+  /* ── Text Colors — Clear hierarchy ────────────────────────────────── */
+  --text-primary:      #111827;   /* headings, strong labels */
+  --text-secondary:    #374151;   /* body copy */
+  --text-tertiary:     #6B7280;   /* captions, helper text */
+  --text-muted:        #9CA3AF;   /* placeholders, disabled */
+  --text-light:        #D1D5DB;   /* decorative / very faint */
 
-  /* Borders - Elegant light borders */
-  --border: #E2E8F0;
-  --border-light: #EDF2F7;
-  --border-subtle: #F7FAFC;
+  /* ── Borders — Visible in light mode ──────────────────────────────── */
+  --border:            #D1D9E6;   /* standard border */
+  --border-light:      #E2E8F4;   /* subtle border */
+  --border-subtle:     #EDF2F9;   /* hairline */
+  --border-strong:     #A0AABB;   /* emphasis border */
 
-  /* Shadows - Premium soft shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.08);
-  --shadow-glow-primary: 0 0 20px rgba(0, 102, 204, 0.15);
-  --shadow-glow-accent: 0 0 20px rgba(255, 107, 0, 0.15);
+  /* ── Shadows — Soft, premium ───────────────────────────────────────── */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.05);
+  --shadow-xl:  0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-glow-primary: 0 0 20px rgba(0,102,204,0.14);
+  --shadow-glow-accent:  0 0 20px rgba(232,93,0,0.14);
 
-  /* Gradients - Subtle premium gradients */
+  /* ── Gradients ─────────────────────────────────────────────────────── */
   --gradient-primary: linear-gradient(135deg, #0066CC 0%, #0088FF 100%);
-  --gradient-accent: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
-  --gradient-subtle: linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%);
+  --gradient-accent:  linear-gradient(135deg, #E85D00 0%, #FF7520 100%);
+  --gradient-subtle:  linear-gradient(135deg, #F4F7FB 0%, #FFFFFF 100%);
 
-  /* Hover States */
-  --hover-bg: #F5F7FA;
-  --hover-border: #CBD5E0;
-  --hover-elevate: translateY(-2px);
+  /* ── Interactive States ────────────────────────────────────────────── */
+  --hover-bg:          #EBF0F8;
+  --hover-border:      #A0AABB;
+  --hover-elevate:     translateY(-2px);
 }
 
 /* ── Responsive Typography Scale: Tablet (max-width: 1024px) ── */

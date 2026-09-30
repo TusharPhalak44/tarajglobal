@@ -125,7 +125,7 @@ const ConnectedEcosystem = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary mb-3.5 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-3.5 backdrop-blur-md"
           >
             <Cpu className="w-3.5 h-3.5 text-primary" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
@@ -217,21 +217,21 @@ const ConnectedEcosystem = () => {
 
           {/* Central Hub Node */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-44 h-44 rounded-full border-2 border-primary/60 bg-slate-900 text-white shadow-2xl flex flex-col items-center justify-center p-4 text-center cursor-pointer transition-all duration-300 select-none group"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-44 h-44 rounded-full border-2 border-primary/60 bg-surface dark:bg-slate-900 text-white shadow-2xl flex flex-col items-center justify-center p-4 text-center cursor-pointer transition-all duration-300 select-none group"
             style={{
               boxShadow: '0 0 45px rgba(0,166,255,0.3)',
             }}
           >
-            <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-1.5 group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-full bg-primary/40 dark:bg-primary/20 border border-primary flex items-center justify-center text-primary mb-1.5 group-hover:scale-110 transition-transform">
               <Cpu className="w-5 h-5 animate-pulse" />
             </div>
             <span className="text-[10px] font-mono tracking-widest text-[#00A6FF] uppercase font-bold">
               Core Engine
             </span>
-            <span className="text-sm font-black tracking-tight text-white mt-0.5">
+            <span className="text-sm font-black tracking-tight text-text-primary dark:text-white mt-0.5">
               DemandFlow Bridge™
             </span>
-            <span className="text-[9.5px] font-mono text-slate-400 mt-1">
+            <span className="text-[9.5px] font-mono text-text-secondary dark:text-slate-400 mt-1">
               Real-Time Synchronization
             </span>
           </div>
@@ -295,13 +295,13 @@ const ConnectedEcosystem = () => {
         {/* ── MOBILE & TABLET TOPOLOGY VIEW (<1024px) ── */}
         <div className="block lg:hidden">
           {/* Central Highlight Badge */}
-          <div className="p-4 rounded-2xl border border-primary/40 bg-slate-900 text-white mb-6 text-center shadow-lg">
+          <div className="p-4 rounded-2xl border border-primary/40 bg-surface dark:bg-slate-900 text-white mb-6 text-center shadow-lg">
             <div className="inline-flex items-center gap-2 text-xs font-mono text-primary uppercase font-bold mb-1">
               <Cpu className="w-3.5 h-3.5 animate-pulse" />
               <span>Central Technology Hub</span>
             </div>
             <h3 className="text-xl font-black">DemandFlow Bridge™</h3>
-            <p className="text-xs text-slate-300 mt-1">
+            <p className="text-xs text-text-secondary dark:text-slate-300 mt-1">
               Connected to 8 operational business modules in one synchronized environment
             </p>
           </div>

@@ -124,7 +124,7 @@ export default function GrowthEngineHero() {
           }}
         />
         <div className="absolute top-1/4 left-1/5 w-[650px] h-[650px] rounded-full blur-[150px] bg-primary/6 dark:bg-primary/10 pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/5 w-[550px] h-[550px] rounded-full blur-[140px] bg-cta/5 dark:bg-cta/8 pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/5 w-[550px] h-[550px] rounded-full blur-[140px] bg-cta/25 dark:bg-cta/5 dark:bg-cta/8 pointer-events-none" />
       </div>
 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 my-auto">
@@ -138,7 +138,7 @@ export default function GrowthEngineHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-md mb-5 self-start"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 backdrop-blur-md mb-5 self-start"
             >
               <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
               <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.24em] text-primary">
@@ -189,7 +189,7 @@ export default function GrowthEngineHero() {
               >
                 <StarButton
                   as="div"
-                  className="h-12 px-7 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
+                  className="h-12 px-7 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-text-primary dark:text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
                   lightColor="#00A6FF"
                   backgroundColor="rgba(0,166,255,0.15)"
                 >

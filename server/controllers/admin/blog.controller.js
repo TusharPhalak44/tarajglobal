@@ -218,22 +218,14 @@ export const getBlogById = async (req, res) => {
     })
   } catch (error) {
     console.error('Get blog error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
 // @desc    Create new blog
 // @route   POST /api/admin/blogs
 export const createBlog = async (req, res) => {
-  try {
-    console.log('=== CREATE BLOG REQUEST ===')
-    console.log('Request body:', req.body)
-    console.log('User:', req.user)
-    
-    const {
+  try {    const {
       title,
       content,
       excerpt,
@@ -250,11 +242,7 @@ export const createBlog = async (req, res) => {
       seo_score,
       seo_analysis,
       scheduled_at
-    } = req.body
-
-    console.log('Extracted fields:', { title, content, excerpt, category_id, author_id, status, featured_image })
-
-    // Check which columns exist in the blogs table
+    } = req.body    // Check which columns exist in the blogs table
     const [columns] = await db.execute(`
       SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
       WHERE TABLE_NAME = 'blogs'
@@ -266,16 +254,12 @@ export const createBlog = async (req, res) => {
     if (columnNames.includes('slug')) {
       const [existingBlogs] = await db.execute('SELECT slug FROM blogs WHERE slug IS NOT NULL')
       const existingSlugs = existingBlogs.map(b => b.slug)
-      slug = generateSlug(title, existingSlugs)
-      console.log('Generated slug:', slug)
-    }
+      slug = generateSlug(title, existingSlugs)    }
 
     // Calculate reading time if column exists
     let reading_time = null
     if (columnNames.includes('reading_time')) {
-      reading_time = calculateReadingTime(content)
-      console.log('Reading time:', reading_time)
-    }
+      reading_time = calculateReadingTime(content)    }
 
     // Build dynamic INSERT query based on available columns
     const insertColumns = ['title', 'content', 'excerpt']
@@ -335,12 +319,8 @@ export const createBlog = async (req, res) => {
     // Always try to add status column, if it doesn't exist, add it to the table
     if (!columnNames.includes('status')) {
       try {
-        await db.execute(`ALTER TABLE blogs ADD COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft'`)
-        console.log('Added status column to blogs table')
-        columnNames.push('status')
-      } catch (alterError) {
-        console.log('Could not add status column:', alterError.message)
-      }
+        await db.execute(`ALTER TABLE blogs ADD COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft'`)        columnNames.push('status')
+      } catch (alterError) {      }
     } else {
       // If status column exists but has old enum values, update it
       try {
@@ -364,12 +344,8 @@ export const createBlog = async (req, res) => {
           await db.execute(`
             ALTER TABLE blogs 
             MODIFY COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft'
-          `)
-          console.log('Updated status column enum to draft, published, archived')
-        }
-      } catch (alterError) {
-        console.log('Could not update status column:', alterError.message)
-      }
+          `)        }
+      } catch (alterError) {      }
     }
     
     if (columnNames.includes('status')) {
@@ -439,15 +415,8 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('?')
     }
 
-    // Insert blog
-    console.log('Executing INSERT query...')
-    const query = `INSERT INTO blogs (${insertColumns.join(', ')}) VALUES (${valuePlaceholders.join(', ')})`
-    const [result] = await db.execute(query, insertValues)
-
-    console.log('INSERT result:', result)
-    console.log('Insert ID:', result.insertId)
-
-    const blogId = result.insertId
+    // Insert blog    const query = `INSERT INTO blogs (${insertColumns.join(', ')}) VALUES (${valuePlaceholders.join(', ')})`
+    const [result] = await db.execute(query, insertValues)    const blogId = result.insertId
 
     res.status(201).json({
       success: true,
@@ -456,10 +425,7 @@ export const createBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Create blog error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -612,9 +578,7 @@ export const updateBlog = async (req, res) => {
           seo_keywords: seo_keywords || currentBlog.seo_keywords,
           canonical_url: canonical_url || currentBlog.canonical_url
         }, req.user?.id || 1, 'Content updated')
-      } catch (revisionError) {
-        console.log('Revision creation skipped:', revisionError.message)
-      }
+      } catch (revisionError) {      }
     }
 
     // Update tags if provided
@@ -625,9 +589,7 @@ export const updateBlog = async (req, res) => {
           await db.execute('INSERT INTO blog_tags (blog_id, tag_id) VALUES (?, ?)', [id, tagId])
         }
         await db.execute('UPDATE tags SET post_count = (SELECT COUNT(*) FROM blog_tags WHERE tag_id = tags.id)')
-      } catch (tagErr) {
-        console.log('Tag update warning:', tagErr.message)
-      }
+      } catch (tagErr) {      }
     }
 
     // Safely update category post count if changed
@@ -640,9 +602,7 @@ export const updateBlog = async (req, res) => {
           await db.execute('UPDATE categories SET post_count = post_count + 1 WHERE id = ?', [category_id])
         }
       }
-    } catch (catErr) {
-      console.log('Category post count warning:', catErr.message)
-    }
+    } catch (catErr) {    }
 
     res.json({
       success: true,
@@ -651,10 +611,7 @@ export const updateBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Update blog error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -678,15 +635,11 @@ export const deleteBlog = async (req, res) => {
     // Delete related records safely before deleting the blog
     try {
       await db.execute('DELETE FROM blog_tags WHERE blog_id = ?', [id])
-    } catch (tagErr) {
-      console.log('Cleanup blog_tags notice:', tagErr.message)
-    }
+    } catch (tagErr) {    }
 
     try {
       await db.execute('DELETE FROM blog_revisions WHERE blog_id = ?', [id])
-    } catch (revErr) {
-      console.log('Cleanup blog_revisions notice:', revErr.message)
-    }
+    } catch (revErr) {    }
 
     // Delete blog
     await db.execute('DELETE FROM blogs WHERE id = ?', [id])
@@ -698,17 +651,13 @@ export const deleteBlog = async (req, res) => {
           'UPDATE categories SET post_count = GREATEST(0, post_count - 1) WHERE id = ?',
           [blog.category_id]
         )
-      } catch (catErr) {
-        console.log('Update category count notice:', catErr.message)
-      }
+      } catch (catErr) {      }
     }
 
     // Update tag post counts safely
     try {
       await db.execute('UPDATE tags SET post_count = (SELECT COUNT(*) FROM blog_tags WHERE tag_id = tags.id)')
-    } catch (tagCountErr) {
-      console.log('Update tag post count notice:', tagCountErr.message)
-    }
+    } catch (tagCountErr) {    }
 
     res.json({
       success: true,
@@ -716,10 +665,7 @@ export const deleteBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Delete blog error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -760,10 +706,7 @@ export const updateBlogStatus = async (req, res) => {
     })
   } catch (error) {
     console.error('Update blog status error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -831,10 +774,7 @@ export const duplicateBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Duplicate blog error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -860,10 +800,7 @@ export const getBlogRevisions = async (req, res) => {
     })
   } catch (error) {
     console.error('Get blog revisions error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -924,10 +861,7 @@ export const restoreBlogRevision = async (req, res) => {
     })
   } catch (error) {
     console.error('Restore blog revision error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -994,9 +928,6 @@ export const bulkBlogAction = async (req, res) => {
     })
   } catch (error) {
     console.error('Bulk blog action error:', error)
-    res.status(500).json({ 
-      success: false, 
-      message: error.message 
-    })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }

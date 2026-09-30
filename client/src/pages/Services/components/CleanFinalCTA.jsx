@@ -39,15 +39,15 @@ export default function CleanFinalCTA() {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         {/* Eyebrow Label */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border mb-8 border-white/10 bg-white/5">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border mb-8 border-border dark:border-white/10 bg-surface/80 dark:bg-white/5">
           <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
-          <span className="font-mono text-xs font-semibold tracking-widest uppercase text-slate-300">
+          <span className="font-mono text-xs font-semibold tracking-widest uppercase text-text-secondary dark:text-slate-300">
             08 // ACCELERATE YOUR PIPELINE
           </span>
         </div>
 
         {/* Heading */}
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] mb-6 text-white">
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] mb-6 text-text-primary dark:text-white">
           Ready to Build a{' '}
           <span className="text-sky-400">
             Stronger Pipeline?
@@ -55,7 +55,7 @@ export default function CleanFinalCTA() {
         </h2>
 
         {/* Short Supporting Sentence */}
-        <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-12 font-normal">
+        <p className="text-base sm:text-lg text-text-secondary dark:text-slate-300 leading-relaxed max-w-2xl mx-auto mb-12 font-normal">
           Connect with our growth strategists to evaluate your ICP, identify active in-market accounts, and deploy an enterprise outbound engine within days.
         </p>
 
@@ -78,7 +78,7 @@ export default function CleanFinalCTA() {
         </div>
 
         {/* 4 Clean Minimal Assurance Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-white/10 max-w-3xl mx-auto text-xs text-slate-400">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-border dark:border-white/10 max-w-3xl mx-auto text-xs text-text-secondary dark:text-slate-400">
           <div className="flex items-center justify-center gap-2">
             <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
             <span>Guaranteed Show-Rates</span>

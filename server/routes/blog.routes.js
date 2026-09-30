@@ -53,7 +53,7 @@ router.get('/', async (req, res) => {
     res.json({ success: true, data: formatted })
   } catch (error) {
     console.error('Get blogs error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -100,7 +100,7 @@ router.get('/:slug', async (req, res) => {
     res.json({ success: true, data: blog })
   } catch (error) {
     console.error('Get blog by slug error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -115,7 +115,7 @@ router.post('/', authenticate, authorize('admin'), [
     // This is handled by admin routes
     res.json({ success: true, message: 'Use /api/admin/blogs for blog management' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -130,7 +130,7 @@ router.put('/:id', authenticate, authorize('admin'), [
     // This is handled by admin routes
     res.json({ success: true, message: 'Use /api/admin/blogs for blog management' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -142,7 +142,7 @@ router.delete('/:id', authenticate, authorize('admin'), async (req, res) => {
     // This is handled by admin routes
     res.json({ success: true, message: 'Use /api/admin/blogs for blog management' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

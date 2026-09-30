@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import FlowButton from '@components/ui/FlowButton'
 
 const SERVICE_INDEX = [
   { num: '01', name: 'Lead Generation', route: '/sql-services', img: '/sql-lead-qualification-journey.jpg' },
@@ -26,7 +27,7 @@ export default function ReferenceHero() {
   return (
     <section
       id="reference-hero"
-      className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 lg:py-24 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-white overflow-hidden border-b border-slate-200 dark:border-white/10 select-none transition-colors duration-300"
+      className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 lg:py-24 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white overflow-hidden border-b border-slate-200 dark:border-white/10 select-none transition-colors duration-300"
     >
       {/* Subtle background glow */}
       <div className="absolute top-1/4 left-1/3 w-[600px] h-[400px] bg-[#FF6D00]/10 dark:bg-[#FF6D00]/10 rounded-full blur-[170px] pointer-events-none -z-10" />
@@ -53,7 +54,7 @@ export default function ReferenceHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-900 dark:text-white"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-900 dark:text-text-primary dark:text-white"
             >
               Strategic B2B Services <br />
               for <span className="text-[#FF6D00]">Sustainable Growth</span>
@@ -76,27 +77,18 @@ export default function ReferenceHero() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5"
             >
-              {/* Primary Orange Pill Button */}
-              <button
-                type="button"
-                onClick={scrollToCoreServices}
-                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-full  hover: text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg shadow-[#FF6D00]/25 cursor-pointer group w-full sm:w-auto"
-              >
-                <span>Explore Our Services</span>
-                <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              {/* Secondary Button with Circular Arrow */}
-              <button
-                type="button"
-                onClick={() => navigate('/contact')}
-                className="inline-flex items-center justify-center sm:justify-start gap-2.5 min-h-[44px] text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-white/80 hover:text-slate-950 dark:hover:text-white transition-colors cursor-pointer group"
-              >
-                <div className="w-8 h-8 rounded-full border border-slate-300 dark:border-white/20 bg-slate-100 dark:bg-white/5 flex items-center justify-center group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00]/10 transition-colors">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-700 dark:text-white/70 group-hover:text-[#FF6D00] group-hover:translate-x-0.5 transition-all" />
-                </div>
-                <span>Talk to Our Experts</span>
-              </button>
+              <FlowButton 
+                text="Explore Our Services" 
+                variant="primary" 
+                onClick={scrollToCoreServices} 
+                className="w-full sm:w-auto min-h-[44px]" 
+              />
+              <FlowButton 
+                text="Talk to Our Experts" 
+                variant="dark" 
+                onClick={() => navigate('/contact')} 
+                className="w-full sm:w-auto min-h-[44px]" 
+              />
             </motion.div>
           </div>
 
@@ -106,7 +98,7 @@ export default function ReferenceHero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-full aspect-[4/5] max-w-[380px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 bg-slate-900 shadow-2xl shadow-slate-300/60 dark:shadow-black/80"
+              className="relative w-full aspect-[4/5] max-w-[380px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 bg-surface dark:bg-slate-900 shadow-2xl shadow-slate-300/60 dark:shadow-black/80"
             >
               {/* Background Business Photo */}
               <motion.div

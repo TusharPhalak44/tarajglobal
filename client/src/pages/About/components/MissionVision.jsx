@@ -13,7 +13,7 @@ const MissionVision = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-4">
             Mission &
             <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
               {' '}Vision
@@ -29,7 +29,7 @@ const MissionVision = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.8 }}
             whileHover={{ y: -10 }}
-            className="relative p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden group"
+            className="relative p-10 rounded-3xl bg-surface/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-white/10 overflow-hidden group"
           >
             {/* Animated SVG background */}
             <motion.div
@@ -42,7 +42,7 @@ const MissionVision = () => {
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#00A6FF]/20 to-[#FF6D00]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Target className="w-10 h-10 text-[#00A6FF]" />
               </div>
-              <h3 className="text-3xl font-bold text-white mb-4">Our Mission</h3>
+              <h3 className="text-3xl font-bold text-text-primary dark:text-white mb-4">Our Mission</h3>
               <p className="text-gray-400 leading-relaxed">
                 To empower businesses with innovative technology, strategic digital solutions, and 
                 measurable business outcomes that accelerate growth, strengthen market presence, and 
@@ -62,7 +62,7 @@ const MissionVision = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.8 }}
             whileHover={{ y: -10 }}
-            className="relative p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden group"
+            className="relative p-10 rounded-3xl bg-surface/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-white/10 overflow-hidden group"
           >
             {/* Animated SVG background */}
             <motion.div
@@ -75,7 +75,7 @@ const MissionVision = () => {
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#FF6D00]/20 to-[#00A6FF]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Eye className="w-10 h-10 text-[#FF6D00]" />
               </div>
-              <h3 className="text-3xl font-bold text-white mb-4">Our Vision</h3>
+              <h3 className="text-3xl font-bold text-text-primary dark:text-white mb-4">Our Vision</h3>
               <p className="text-gray-400 leading-relaxed">
                 To be the most trusted global B2B technology partner, transforming businesses through 
                 innovation, intelligent digital experiences, and sustainable solutions that drive success 

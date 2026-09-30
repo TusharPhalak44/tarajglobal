@@ -220,7 +220,7 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
         >
           {/* Ambient Glow */}
           <div
-            className="absolute inset-0 rounded-full bg-primary/20 blur-3xl pointer-events-none"
+            className="absolute inset-0 rounded-full bg-primary/40 dark:bg-primary/20 blur-3xl pointer-events-none"
             style={{ transform: 'scale(1.2)' }}
           />
 
@@ -268,7 +268,7 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
                 }}
               />
               <div
-                className="absolute inset-0 flex items-center justify-center bg-primary/10"
+                className="absolute inset-0 flex items-center justify-center bg-primary/30 dark:bg-primary/10"
                 style={{ display: 'none' }}
               >
                 <span className="text-5xl">👤</span>
@@ -284,7 +284,7 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
               href={member.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm min-w-[44px] min-h-[44px]"
+              className="w-11 h-11 rounded-full bg-primary/30 dark:bg-primary/10 border-2 border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm min-w-[44px] min-h-[44px]"
               aria-label={`${member.name} LinkedIn`}
             >
               <Linkedin className="w-4.5 h-4.5" />
@@ -293,7 +293,7 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
               whileHover={{ scale: 1.08, y: -1 }}
               whileTap={{ scale: 0.96 }}
               href={`mailto:${member.social.email}`}
-              className="w-11 h-11 rounded-full bg-cta/10 border-2 border-cta/30 flex items-center justify-center text-cta hover:bg-cta hover:text-white hover:border-cta transition-all duration-300 shadow-sm min-w-[44px] min-h-[44px]"
+              className="w-11 h-11 rounded-full bg-cta/30 dark:bg-cta/10 border-2 border-cta/30 flex items-center justify-center text-cta hover:bg-cta hover:text-white hover:border-cta transition-all duration-300 shadow-sm min-w-[44px] min-h-[44px]"
               aria-label={`Email ${member.name}`}
             >
               <Mail className="w-4.5 h-4.5" />

@@ -248,7 +248,7 @@ export default function WorkflowTargetBadge({
               />
             ) : (
               <Target
-                className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white dark:text-[#00f0ff] drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]"
+                className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-text-primary dark:text-white dark:text-[#00f0ff] drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]"
                 strokeWidth={2.2}
               />
             )}
@@ -257,7 +257,7 @@ export default function WorkflowTargetBadge({
 
         {/* ── Target Outcome Typography ── */}
         <div className="space-y-0 z-10 leading-tight">
-          <span className="block text-white font-black text-[10px] sm:text-[11px] xl:text-[12px] tracking-wider uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+          <span className="block text-text-primary dark:text-white font-black text-[10px] sm:text-[11px] xl:text-[12px] tracking-wider uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
             QUALIFIED
           </span>
           <span className="block text-sky-200 dark:text-[#00f0ff] font-black text-[10px] sm:text-[11px] xl:text-[12px] tracking-wider uppercase drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]">

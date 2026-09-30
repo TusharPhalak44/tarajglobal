@@ -615,3 +615,545 @@ body::before {
 .btn-slide-arrow:active {
   transform: translateY(2px);
 }
+
+
+/* ============================================================
+   TARAJ GLOBAL — COMPREHENSIVE LIGHT MODE OVERRIDE LAYER
+   Generated: CSS-variable-aware overrides for all hardcoded
+   dark Tailwind classes. Dark Mode is 100% untouched.
+   ============================================================ */
+
+/* ── 1. BASE BODY & HTML ──────────────────────────────────────────────────── */
+.light body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* ── 2. HARDCODED DARK BACKGROUNDS → Light surfaces ─────────────────────── */
+/* These target Tailwind's arbitrary value classes that hardcode dark hex */
+.light [class*="bg-[#050505]"],
+.light [class*="bg-[#050D1A]"],
+.light [class*="bg-[#070D18]"],
+.light [class*="bg-[#060D1F]"],
+.light [class*="bg-[#0a0a0a]"],
+.light [class*="bg-[#030509]"],
+.light [class*="bg-[#0B0F1A]"],
+.light [class*="bg-[#0D1117]"],
+.light [class*="bg-[#111625]"],
+.light [class*="bg-[#0A1222]"],
+.light [class*="bg-[#0B1424]"],
+.light [class*="bg-[#0c0c0c]"] {
+  background-color: var(--background) !important;
+}
+
+/* Surface-level dark cards */
+.light [class*="bg-[#0d0d0d]"],
+.light [class*="bg-[#111111]"],
+.light [class*="bg-[#121212]"],
+.light [class*="bg-[#141414]"],
+.light [class*="bg-[#161616]"],
+.light [class*="bg-[#181818]"],
+.light [class*="bg-[#1a1a1a]"],
+.light [class*="bg-[#0a0f1e]"],
+.light [class*="bg-[#080c18]"] {
+  background-color: var(--surface) !important;
+}
+
+/* Elevated card darks */
+.light [class*="bg-slate-900"],
+.light [class*="bg-slate-950"],
+.light [class*="bg-gray-900"],
+.light [class*="bg-gray-950"],
+.light [class*="bg-zinc-900"],
+.light [class*="bg-zinc-950"],
+.light [class*="bg-neutral-900"],
+.light [class*="bg-neutral-950"] {
+  background-color: var(--surface) !important;
+}
+
+.light [class*="bg-slate-800"],
+.light [class*="bg-gray-800"],
+.light [class*="bg-zinc-800"] {
+  background-color: #F1F5F9 !important;
+}
+
+/* ── 3. WHITE/OPACITY BACKGROUNDS → Light-mode equivalents ──────────────── */
+/* Dark mode uses rgba(white, X) for glass cards. In light mode flip to slate */
+.light [class*="bg-white/5"],
+.light [class*="bg-white/[0.05]"] {
+  background-color: rgba(0,0,0,0.03) !important;
+}
+.light [class*="bg-white/10"],
+.light [class*="bg-white/[0.10]"],
+.light [class*="bg-white/[0.1]"] {
+  background-color: rgba(0,0,0,0.05) !important;
+}
+.light [class*="bg-white/20"],
+.light [class*="bg-white/[0.20]"],
+.light [class*="bg-white/[0.2]"] {
+  background-color: rgba(0,0,0,0.06) !important;
+}
+
+/* ── 4. BORDERS ──────────────────────────────────────────────────────────── */
+/* Dark mode uses white/opacity borders — replace with visible light borders */
+.light [class*="border-white/5"],
+.light [class*="border-white/8"],
+.light [class*="border-white/10"],
+.light [class*="border-white/[0.08]"],
+.light [class*="border-white/[0.1]"] {
+  border-color: var(--border) !important;
+}
+.light [class*="border-white/15"],
+.light [class*="border-white/20"],
+.light [class*="border-white/25"],
+.light [class*="border-white/30"] {
+  border-color: var(--border) !important;
+}
+.light [class*="border-slate-800"],
+.light [class*="border-slate-700"],
+.light [class*="border-gray-800"],
+.light [class*="border-gray-700"] {
+  border-color: var(--border) !important;
+}
+/* Fix border-border/30 (too faint in light) */
+.light [class*="border-border"] {
+  border-color: #D1D9E6 !important;
+}
+
+/* ── 5. TEXT COLORS ──────────────────────────────────────────────────────── */
+/* text-white without dark: prefix = invisible in light mode */
+.light [class*="text-white"]:not([class*="dark:"]):not([class*="bg-primary"]):not([class*="bg-cta"]):not([class*="bg-blue"]):not([class*="bg-gradient"]):not([class*="bg-[#00A6FF"]):not(button[class*="bg-"]) {
+  color: var(--text-primary) !important;
+}
+.light [class*="text-white/40"],
+.light [class*="text-white/50"],
+.light [class*="text-white/60"] {
+  color: var(--text-secondary) !important;
+}
+.light [class*="text-white/70"],
+.light [class*="text-white/80"] {
+  color: var(--text-primary) !important;
+}
+.light [class*="text-slate-400"],
+.light [class*="text-slate-500"] {
+  color: var(--text-secondary) !important;
+}
+.light [class*="text-slate-300"] {
+  color: var(--text-primary) !important;
+}
+.light [class*="text-gray-400"],
+.light [class*="text-gray-500"] {
+  color: var(--text-secondary) !important;
+}
+
+/* ── 6. NAVBAR & HEADER ──────────────────────────────────────────────────── */
+.light nav,
+.light header {
+  color: var(--text-primary);
+}
+
+/* Scrolled navbar in light */
+.light [class*="bg-hero/95"],
+.light [class*="bg-hero"] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Nav links */
+.light nav a,
+.light nav button {
+  color: var(--text-secondary);
+}
+.light nav a:hover,
+.light nav button:hover {
+  color: var(--primary);
+}
+
+/* Dropdown menus */
+.light [class*="bg-surface"] {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* ── 7. CARDS ────────────────────────────────────────────────────────────── */
+/* Any card that isn't explicitly colored becomes white with border */
+.light .glass-card,
+.light [class*="glass-card"] {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+}
+
+/* Generic dark cards become white */
+.light [class*="rounded-xl"][class*="border"],
+.light [class*="rounded-2xl"][class*="border"],
+.light [class*="rounded-lg"][class*="border"] {
+  border-color: var(--border) !important;
+}
+
+/* ── 8. SECTION BACKGROUNDS — Alternating light rhythm ──────────────────── */
+/* Give sections visual separation in light mode */
+.light section {
+  background-color: var(--background);
+}
+
+/* Sections with dark bg classes → clean light sections */
+.light section[class*="bg-[#"],
+.light section[class*="bg-slate-9"],
+.light section[class*="bg-gray-9"],
+.light section[class*="bg-black"] {
+  background-color: var(--background) !important;
+}
+
+/* ── 9. HERO SECTION ─────────────────────────────────────────────────────── */
+.light [aria-label*="Hero"],
+.light [aria-label*="hero"] {
+  background-color: var(--hero) !important;
+}
+
+/* Hero section grid/dot overlay - make visible */
+.light [style*="backgroundImage"][style*="linear-gradient"][style*="#00A6FF"] {
+  opacity: 0.08 !important;
+}
+
+/* ── 10. FORM ELEMENTS ───────────────────────────────────────────────────── */
+.light input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+.light textarea,
+.light select {
+  background-color: #FFFFFF !important;
+  border: 1px solid #D1D9E6 !important;
+  color: var(--text-primary) !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04) !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.12) !important;
+  outline: none !important;
+}
+
+/* ── 11. BUTTONS — Context-aware ─────────────────────────────────────────── */
+/* Outline/ghost buttons */
+.light button[class*="border-white"],
+.light a[class*="border-white"] {
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Keep brand-colored buttons intact */
+.light [class*="bg-primary"],
+.light [class*="bg-cta"],
+.light [class*="bg-accent"] {
+  /* Brand colors remain — no override */
+}
+
+/* Secondary button (glass style) */
+.light .hero-button-secondary {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--shadow-sm) !important;
+  animation: none !important;
+}
+
+.light .hero-button-secondary:hover {
+  background: var(--hover-bg) !important;
+  border-color: var(--hover-border) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* ── 12. DIVIDERS & SEPARATORS ───────────────────────────────────────────── */
+.light [class*="border-t"],
+.light [class*="border-b"],
+.light [class*="border-l"],
+.light [class*="border-r"] {
+  border-color: var(--border);
+}
+
+/* Horizontal rules */
+.light hr {
+  border-color: var(--border);
+}
+
+/* Section laser dividers */
+.light .section-divider,
+.light [class*="divider"] {
+  background: linear-gradient(90deg, transparent, var(--border), transparent) !important;
+}
+
+/* ── 13. ICON COLORS ─────────────────────────────────────────────────────── */
+/* SVG icons that inherit white become dark */
+.light svg[class*="text-white"],
+.light svg[class*="stroke-white"],
+.light [class*="text-white"] > svg,
+.light [class*="fill-white"] {
+  color: var(--text-secondary) !important;
+}
+
+/* ── 14. MOBILE MENU ─────────────────────────────────────────────────────── */
+.light .mobile-menu-content {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── 15. STATS & NUMBER CARDS ────────────────────────────────────────────── */
+.light [class*="text-white"][class*="font-bold"],
+.light [class*="text-white"][class*="font-black"],
+.light [class*="text-white"][class*="font-semibold"] {
+  color: var(--text-primary) !important;
+}
+
+/* ── 16. FOOTER ──────────────────────────────────────────────────────────── */
+.light footer,
+.light [class*="footer"],
+.light .footer-master-root {
+  background-color: var(--surface) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.light footer a,
+.light .footer-master-root a {
+  color: var(--text-secondary) !important;
+}
+
+.light footer a:hover,
+.light .footer-master-root a:hover {
+  color: var(--primary) !important;
+}
+
+/* ── 17. BACKDROP BLUR GLASSMORPHISM CONTAINERS ──────────────────────────── */
+.light [class*="backdrop-blur"] {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: var(--border) !important;
+}
+
+/* Exception: don't override elements that already have a brand color bg */
+.light [class*="bg-primary"][class*="backdrop-blur"],
+.light [class*="bg-cta"][class*="backdrop-blur"] {
+  background-color: revert !important;
+}
+
+/* ── 18. ANIMATION CONTAINERS — keep visible ─────────────────────────────── */
+/* HeroRightAnimation panels */
+.light [class*="bg-[#0a0a0a]"],
+.light [class*="bg-[#0A0A0A]"] {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* ── 19. SERVICE PAGE COMPONENTS ─────────────────────────────────────────── */
+.light [class*="bg-slate-50"] {
+  background-color: var(--background) !important;
+}
+
+/* Workflow cards */
+.light [class*="rounded"][class*="bg-slate"] {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* ── 20. SCROLLBAR ──────────────────────────────────────────────────────── */
+.light ::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #C4CADB;
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #A0AABB;
+}
+
+/* ── 21. SELECTION ───────────────────────────────────────────────────────── */
+.light ::selection {
+  background: rgba(0, 102, 204, 0.15);
+  color: var(--text-primary);
+}
+
+/* ── 22. BADGE & TAG COMPONENTS ──────────────────────────────────────────── */
+.light [class*="rounded-full"][class*="bg-white/"] {
+  background-color: rgba(0, 102, 204, 0.08) !important;
+  border-color: rgba(0, 102, 204, 0.2) !important;
+  color: var(--primary) !important;
+}
+
+/* ── 23. TABLE ───────────────────────────────────────────────────────────── */
+.light table {
+  border-color: var(--border);
+}
+
+.light th {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+.light td {
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.light tr:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+/* ── 24. MODAL / OVERLAY ─────────────────────────────────────────────────── */
+.light [role="dialog"],
+.light [class*="modal"] {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-xl) !important;
+  color: var(--text-primary) !important;
+}
+
+
+/* ── 25. DARK-ONLY DECORATIVE GLOWS — suppress in light ─────────────────── */
+/* Decorative glows are too faint on white — suppress and rely on subtle ones */
+.light [class*="shadow-[0_0_"][class*="rgba(0, 166, 255"],
+.light [class*="shadow-primary"] {
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* ── 26. TYPOGRAPHY — ensure all text is readable ────────────────────────── */
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+  color: var(--text-primary);
+}
+
+.light p {
+  color: var(--text-secondary);
+}
+
+/* Gradient text — preserve brand gradients */
+.light [class*="bg-gradient-to-"][class*="text-transparent"] {
+  /* Keep gradient text — intentional brand styling */
+}
+
+/* ── 27. TAILWIND 'dark:' CLASSES — already handled by Tailwind ───────────  
+   Note: Tailwind's darkMode:'class' means dark: only fires when html.dark.
+   When html.light is set, dark: classes DON'T fire. So any element with ONLY
+   dark: classes and no light variant will show the base (unstyled) value.
+   The overrides above handle the most common patterns. ────────────────────── */
+
+/* ── 28. SMALL & XS TYPOGRAPHY — boost weight & contrast in light ─────────── */
+/* Small text (text-xs, text-sm) needs darker color + slightly heavier weight 
+   in light mode to be as legible as it is on dark backgrounds */
+.light [class*="text-xs"],
+.light [class*="text-[10px]"],
+.light [class*="text-[11px]"],
+.light [class*="text-[12px]"] {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Labels & captions that use font-medium should stay semibold in light */
+.light [class*="text-xs"][class*="font-medium"],
+.light [class*="text-sm"][class*="font-medium"] {
+  font-weight: 600;
+}
+
+/* Ensure mono/tracking text like badges is dark enough */
+.light [class*="font-mono"],
+.light [class*="tracking-wide"],
+.light [class*="tracking-wider"],
+.light [class*="tracking-widest"],
+.light [class*="uppercase"] {
+  color: var(--text-secondary);
+}
+
+/* Override only when they are deliberately colored (primary, accent etc) */
+.light [class*="text-primary"] { color: var(--primary) !important; }
+.light [class*="text-cta"], .light [class*="text-accent"] { color: var(--cta) !important; }
+
+/* ── 29. TRANSPARENT BUTTON FIXES — most critical visibility issue ─────────── */
+/* Buttons with transparent/white-opacity backgrounds become invisible in light */
+
+/* Pattern: bg-white/5, bg-white/10 on buttons */
+.light button[class*="bg-white/"],
+.light a[role="button"][class*="bg-white/"] {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+}
+.light button[class*="bg-white/"]:hover,
+.light a[role="button"][class*="bg-white/"]:hover {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Pattern: glassmorphism buttons bg-surface/80 or similar */
+.light button[class*="bg-surface"],
+.light a[role="button"][class*="bg-surface"] {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border-strong) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+/* Secondary/ghost buttons with dark-only styling */
+.light button[class*="border-white/"]:not(.group\/star-button),
+.light button[class*="border-border/"]:not(.group\/star-button) {
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  color: var(--text-primary) !important;
+}
+.light button[class*="border-white/"]:not(.group\/star-button):hover,
+.light button[class*="border-border/"]:not(.group\/star-button):hover {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Buttons that use dark-text-white (no dark: prefix) */
+.light button:not([class*="bg-primary"]):not([class*="bg-cta"]):not([class*="bg-[#"]):not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-red"]):not([class*="text-text"]):not(.group\/star-button) {
+  color: var(--text-primary);
+}
+
+/* ── 30. HERO GRID — make grid visible without dark: prefix reliance ────────── */
+/* The Hero grid is now JS-driven (isDark ternary), so no override needed.
+   But page-level section grids may still use CSS only. Handle them here: */
+.light [style*="linear-gradient(to right, #00A6FF 1px"] {
+  opacity: 0.15 !important;
+  background-image: linear-gradient(to right, #94A3B8 1px, transparent 1px),
+                    linear-gradient(to bottom, #94A3B8 1px, transparent 1px) !important;
+}
+
+/* ── 31. NAV LINKS — ensure readability in light scrolled state ─────────────── */
+.light nav a:not([class*="bg-primary"]):not([class*="bg-cta"]) {
+  color: var(--text-secondary);
+}
+
+.light nav a:hover:not([class*="bg-primary"]):not([class*="bg-cta"]) {
+  color: var(--primary);
+}
+
+/* Active nav link */
+.light nav a[aria-current="page"] {
+  color: var(--primary);
+}
+
+/* ── 32. BADGE / PILL COMPONENTS ────────────────────────────────────────────── */
+/* Pill badges with dark-only opacity backgrounds */
+.light [class*="bg-primary/10"] { background-color: rgba(0, 102, 204, 0.10) !important; }
+.light [class*="bg-primary/20"] { background-color: rgba(0, 102, 204, 0.15) !important; }
+.light [class*="bg-cta/10"]    { background-color: rgba(232, 93, 0, 0.10) !important; }
+.light [class*="bg-cta/20"]    { background-color: rgba(232, 93, 0, 0.15) !important; }
+
+/* ── 33. SECTION BACKGROUNDS — alternating rhythm ──────────────────────────── */
+/* Sections that explicitly use surface-alt get a subtle tint */
+.light [class*="bg-surface-alt"],
+.light [class*="bg-surface\/"] {
+  background-color: var(--surface-alt) !important;
+}
+
+/* ── END LIGHT MODE LAYER ────────────────────────────────────────────────── */
+

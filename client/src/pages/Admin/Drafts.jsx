@@ -366,8 +366,8 @@ const Drafts = () => {
           />
         </div>
       ) : (
-        <div className="admin-card overflow-hidden">
-          <div className="admin-table-wrapper admin-scrollbar">
+        <div className="admin-card overflow-visible">
+          <div className="admin-table-wrapper admin-scrollbar !overflow-visible">
             <table className="admin-table">
               <thead>
                 <tr>

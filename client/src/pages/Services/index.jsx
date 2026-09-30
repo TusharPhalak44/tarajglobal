@@ -102,7 +102,7 @@ function Services() {
         schemaJson={servicesSchema}
       />
 
-      <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-white selection:bg-[#FF6D00]/30 selection:text-[#FF6D00] overflow-x-hidden font-sans transition-colors duration-300">
+      <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white selection:bg-[#FF6D00]/30 selection:text-[#FF6D00] overflow-x-hidden font-sans transition-colors duration-300">
         {/* Section 01: Hero Section */}
         <ReferenceHero />
 

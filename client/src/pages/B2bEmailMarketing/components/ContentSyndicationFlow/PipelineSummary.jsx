@@ -8,12 +8,12 @@ export default function PipelineSummary() {
   return (
     <div className="mt-16 sm:mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-surface/90 to-surface-alt/60 border border-border/80 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
       {/* Subtle background glow */}
-      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-primary/10 blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta/10 blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-primary/30 dark:bg-primary/10 blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-cta/30 dark:bg-cta/10 blur-3xl pointer-events-none -z-10" />
 
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10.5px] font-mono font-bold text-primary mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-[10.5px] font-mono font-bold text-primary mb-3">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span>OPERATIONAL ASSURANCE</span>
           </div>

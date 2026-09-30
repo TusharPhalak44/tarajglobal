@@ -18,7 +18,7 @@ router.get('/', checkPermission('blog.create'), async (req, res) => {
     `)
     res.json({ success: true, data: tags })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -40,7 +40,7 @@ router.post('/', [
     
     res.status(201).json({ success: true, data: { id: result.insertId, slug } })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -62,7 +62,7 @@ router.put('/:id', [
     
     res.json({ success: true, message: 'Tag updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -74,7 +74,7 @@ router.delete('/:id', checkPermission('blog.delete'), async (req, res) => {
     await req.db.execute('DELETE FROM tags WHERE id = ?', [req.params.id])
     res.json({ success: true, message: 'Tag deleted successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

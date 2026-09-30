@@ -53,7 +53,7 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-4">
             Why
             <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
               {' '}Choose Us
@@ -83,15 +83,15 @@ const WhyChooseUs = () => {
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                    className="absolute inset-0 rounded-full border-2 border-white/10"
+                    className="absolute inset-0 rounded-full border-2 border-border dark:border-white/10"
                   />
                   <motion.div
                     animate={{ rotate: -360 }}
                     transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-                    className="absolute inset-8 rounded-full border-2 border-white/5"
+                    className="absolute inset-8 rounded-full border-2 border-border dark:border-white/5"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-[#00A6FF]/20 to-[#FF6D00]/20 flex items-center justify-center backdrop-blur-xl border border-white/10">
+                    <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-[#00A6FF]/20 to-[#FF6D00]/20 flex items-center justify-center backdrop-blur-xl border border-border dark:border-white/10">
                       <div className="text-[#00A6FF]">{reason.icon}</div>
                     </div>
                   </div>
@@ -100,7 +100,7 @@ const WhyChooseUs = () => {
 
               {/* Content */}
               <div>
-                <h3 className="text-3xl font-bold text-white mb-4">{reason.title}</h3>
+                <h3 className="text-3xl font-bold text-text-primary dark:text-white mb-4">{reason.title}</h3>
                 <p className="text-gray-400 mb-6 leading-relaxed">{reason.description}</p>
                 <Link
                   to="#"

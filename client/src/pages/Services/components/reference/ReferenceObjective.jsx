@@ -135,7 +135,7 @@ export default function ReferenceObjective() {
   return (
     <section
       id="growth-objective-section"
-      className="relative py-24 lg:py-28 bg-white dark:bg-[#080B11] text-[#0F172A] dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden transition-colors duration-300"
+      className="relative py-24 lg:py-28 bg-white dark:bg-[#080B11] text-[#0F172A] dark:text-text-primary dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden transition-colors duration-300"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -148,7 +148,7 @@ export default function ReferenceObjective() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-tight">
               Choose Your <br />
               Growth Objective
             </h2>
@@ -161,7 +161,7 @@ export default function ReferenceObjective() {
               <button
                 type="button"
                 onClick={scrollToCoreServices}
-                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-800 dark:border-white/30  dark:text-white text-xs font-mono font-bold uppercase tracking-wider hover: hover:text-white dark:hover: dark:hover:text-black transition-all cursor-pointer group"
+                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border dark:border-slate-800 dark:border-white/30  dark:text-text-primary dark:text-white text-xs font-mono font-bold uppercase tracking-wider hover: hover:text-text-primary dark:text-white dark:hover: dark:hover:text-black transition-all cursor-pointer group"
               >
                 <span>View All Services</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -271,7 +271,7 @@ export default function ReferenceObjective() {
                     </button>
                     <div
                       onClick={() => navigate(current.recommended[0].route)}
-                      className="w-9 h-9 rounded-full bg-[#FF6D00] flex items-center justify-center text-white shadow-md shadow-[#FF6D00]/30 hover:scale-110 transition-transform cursor-pointer"
+                      className="w-9 h-9 rounded-full bg-[#FF6D00] flex items-center justify-center text-text-primary dark:text-white shadow-md shadow-[#FF6D00]/30 hover:scale-110 transition-transform cursor-pointer"
                       title="Open recommended solution"
                     >
                       <ArrowRight className="w-4 h-4" />
@@ -284,9 +284,9 @@ export default function ReferenceObjective() {
                       <div className="inline-flex items-center gap-2 mb-2 text-xs font-mono font-bold text-[#FF6D00]">
                         <span>OBJECTIVE {current.num}</span>
                         <span className="w-1.5 h-1.5 rounded-full bg-[#FF6D00]" />
-                        <span className="text-slate-400 dark:text-white/40">STEP {currentIndex + 1} OF 6</span>
+                        <span className="text-text-secondary dark:text-slate-400 dark:text-white/40">STEP {currentIndex + 1} OF 6</span>
                       </div>
-                      <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+                      <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-text-primary dark:text-white tracking-tight">
                         {current.heading}
                       </h3>
                       <p className="mt-3 text-sm text-slate-600 dark:text-white/70 leading-relaxed font-normal">

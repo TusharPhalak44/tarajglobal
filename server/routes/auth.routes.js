@@ -1,8 +1,19 @@
 import express from 'express'
 import { body } from 'express-validator'
+import rateLimit from 'express-rate-limit'
 import { validate } from '../middleware/validation.middleware.js'
 import { authenticate } from '../middleware/auth.middleware.js'
 import * as authController from '../controllers/auth.controller.js'
+
+// Brute-force protection: max 10 login attempts per 15 minutes per IP
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  skipSuccessfulRequests: true,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many login attempts. Please try again in 15 minutes.' }
+})
 
 const router = express.Router()
 
@@ -12,13 +23,17 @@ const router = express.Router()
 router.post('/register', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
-  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+  body('password')
+    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
+    .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
+    .matches(/[0-9]/).withMessage('Password must contain at least one number')
+    .matches(/[^A-Za-z0-9]/).withMessage('Password must contain at least one special character')
 ], validate, authController.register)
 
 // @route   POST /api/auth/login
 // @desc    Login user
 // @access  Public
-router.post('/login', [
+router.post('/login', loginLimiter, [
   body('email').isEmail().withMessage('Valid email is required'),
   body('password').notEmpty().withMessage('Password is required')
 ], validate, authController.login)
@@ -90,7 +105,9 @@ router.put('/me', [
   authenticate,
   body('name').optional().trim().notEmpty().withMessage('Name is required'),
   body('email').optional().isEmail().withMessage('Valid email is required'),
-  body('avatar').optional()
+  body('avatar').optional(),
+  body('phone').optional().trim(),
+  body('department').optional().trim()
 ], validate, authController.updateProfile)
 
 // @route   POST /api/auth/forgot-password
@@ -114,7 +131,11 @@ router.post('/reset-password', [
 router.post('/change-password', [
   authenticate,
   body('currentPassword').notEmpty().withMessage('Current password is required'),
-  body('newPassword').isLength({ min: 6 }).withMessage('New password must be at least 6 characters')
+  body('newPassword')
+    .isLength({ min: 8 }).withMessage('New password must be at least 8 characters')
+    .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
+    .matches(/[0-9]/).withMessage('Password must contain at least one number')
+    .matches(/[^A-Za-z0-9]/).withMessage('Password must contain at least one special character')
 ], validate, authController.changePassword)
 
 export default router

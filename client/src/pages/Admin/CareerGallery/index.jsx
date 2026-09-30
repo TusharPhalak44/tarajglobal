@@ -280,7 +280,7 @@ export default function CareerGalleryAdmin() {
               key={event.id}
               className="admin-card overflow-hidden group hover:border-primary/50 transition-all flex flex-col"
             >
-              <div className="aspect-video relative overflow-hidden bg-[#07090E]">
+              <div className="aspect-video relative overflow-hidden bg-background dark:bg-[#07090E]">
                 <img 
                   src={event.cover} 
                   alt={event.title}
@@ -293,21 +293,21 @@ export default function CareerGalleryAdmin() {
                 <div className="absolute top-3 right-3 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                   <button 
                     onClick={() => setViewingPhotosEvent(event)}
-                    className="p-2 rounded-lg bg-black/60 backdrop-blur text-white hover:bg-primary transition-colors"
+                    className="p-2 rounded-lg bg-background dark:bg-black/60 backdrop-blur text-white hover:bg-primary transition-colors"
                     title="View All Photos"
                   >
                     <Images className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={() => openModal(event)}
-                    className="p-2 rounded-lg bg-black/60 backdrop-blur text-white hover:bg-primary transition-colors"
+                    className="p-2 rounded-lg bg-background dark:bg-black/60 backdrop-blur text-white hover:bg-primary transition-colors"
                     title="Edit Event"
                   >
                     <Edit2 className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={() => setDeleteConfirm({ open: true, type: 'event', id: event.id, title: event.title })}
-                    className="p-2 rounded-lg bg-black/60 backdrop-blur text-white hover:bg-rose-500 transition-colors"
+                    className="p-2 rounded-lg bg-background dark:bg-black/60 backdrop-blur text-white hover:bg-rose-500 transition-colors"
                     title="Delete Event"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -315,12 +315,12 @@ export default function CareerGalleryAdmin() {
                 </div>
 
                 <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-md bg-black/70 backdrop-blur text-white text-xs font-mono font-bold flex items-center gap-1.5">
+                  <span className="px-2.5 py-1 rounded-md bg-background dark:bg-black/70 backdrop-blur text-white text-xs font-mono font-bold flex items-center gap-1.5">
                     <ImageIcon className="w-3 h-3 text-primary" />
                     <span>{event.photoCount || event.photos?.length || 0} Assets</span>
                   </span>
                   {event.quarter && (
-                    <span className="px-2 py-0.5 rounded-md bg-white/10 backdrop-blur text-text-secondary text-[11px] font-mono">
+                    <span className="px-2 py-0.5 rounded-md bg-surface/90 dark:bg-white/10 backdrop-blur text-text-secondary text-[11px] font-mono">
                       {event.quarter}
                     </span>
                   )}
@@ -331,7 +331,7 @@ export default function CareerGalleryAdmin() {
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
                     {event.category && (
-                      <span className="text-[10px] font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+                      <span className="text-[10px] font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
                         {event.category}
                       </span>
                     )}
@@ -506,12 +506,12 @@ export default function CareerGalleryAdmin() {
                 {previewUrls.length > 0 && (
                   <div className="grid grid-cols-4 sm:grid-cols-6 gap-2.5 mt-3">
                     {previewUrls.map((url, index) => (
-                      <div key={index} className="relative aspect-square rounded-xl overflow-hidden border border-[var(--admin-border)] group bg-black/10">
+                      <div key={index} className="relative aspect-square rounded-xl overflow-hidden border border-[var(--admin-border)] group bg-background dark:bg-black/10">
                         <img src={url} alt={`Preview ${index}`} className="w-full h-full object-cover" />
                         <button
                           type="button"
                           onClick={() => removeFile(index)}
-                          className="absolute top-1 right-1 p-1 bg-black/70 rounded-md text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-rose-500"
+                          className="absolute top-1 right-1 p-1 bg-background dark:bg-black/70 rounded-md text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-rose-500"
                         >
                           <X className="w-3.5 h-3.5" />
                         </button>
@@ -560,7 +560,7 @@ export default function CareerGalleryAdmin() {
                   {viewingPhotosEvent.title}
                 </h2>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-mono font-bold text-xs">
+                  <span className="px-2 py-0.5 rounded-full bg-primary/30 dark:bg-primary/10 text-primary font-mono font-bold text-xs">
                     {viewingPhotosEvent.category || 'General'}
                   </span>
                   <span className="text-xs text-text-muted">
@@ -580,7 +580,7 @@ export default function CareerGalleryAdmin() {
               {viewingPhotosEvent.photos && viewingPhotosEvent.photos.length > 0 ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
                   {viewingPhotosEvent.photos.map((photo, index) => (
-                    <div key={photo.id || index} className="group relative aspect-square rounded-xl overflow-hidden border border-[var(--admin-border)] bg-[#07090E]">
+                    <div key={photo.id || index} className="group relative aspect-square rounded-xl overflow-hidden border border-[var(--admin-border)] bg-background dark:bg-[#07090E]">
                       <img 
                         src={photo.src} 
                         alt={photo.title || `Photo ${index + 1}`}
@@ -592,7 +592,7 @@ export default function CareerGalleryAdmin() {
                       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                         <button 
                           onClick={(e) => { e.stopPropagation(); setEditingPhoto(photo) }}
-                          className="p-1.5 bg-black/60 backdrop-blur rounded-md text-white hover:bg-primary transition-colors"
+                          className="p-1.5 bg-background dark:bg-black/60 backdrop-blur rounded-md text-white hover:bg-primary transition-colors"
                           title="Edit Photo Details"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -602,7 +602,7 @@ export default function CareerGalleryAdmin() {
                             e.stopPropagation()
                             setDeleteConfirm({ open: true, type: 'photo', id: photo.id, title: photo.title || `Photo #${index + 1}` })
                           }}
-                          className="p-1.5 bg-black/60 backdrop-blur rounded-md text-white hover:bg-rose-500 transition-colors"
+                          className="p-1.5 bg-background dark:bg-black/60 backdrop-blur rounded-md text-white hover:bg-rose-500 transition-colors"
                           title="Delete Photo"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -611,10 +611,10 @@ export default function CareerGalleryAdmin() {
 
                       <div className="absolute bottom-0 left-0 right-0 p-2.5 opacity-0 group-hover:opacity-100 transition-opacity">
                         {photo.title && (
-                          <h4 className="text-white text-xs font-bold line-clamp-1">{photo.title}</h4>
+                          <h4 className="text-text-primary dark:text-white text-xs font-bold line-clamp-1">{photo.title}</h4>
                         )}
                         {photo.caption && (
-                          <p className="text-white/70 text-[10px] line-clamp-1">{photo.caption}</p>
+                          <p className="text-text-secondary dark:text-white/70 text-[10px] line-clamp-1">{photo.caption}</p>
                         )}
                       </div>
                     </div>
@@ -649,7 +649,7 @@ export default function CareerGalleryAdmin() {
             </div>
 
             <div className="p-5 space-y-4">
-              <div className="aspect-video w-full rounded-xl overflow-hidden bg-black/10 border border-[var(--admin-border)]">
+              <div className="aspect-video w-full rounded-xl overflow-hidden bg-background dark:bg-black/10 border border-[var(--admin-border)]">
                 <img src={editingPhoto.src} alt="Editing preview" className="w-full h-full object-contain" />
               </div>
               

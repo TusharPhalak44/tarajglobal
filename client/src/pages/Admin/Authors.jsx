@@ -326,7 +326,7 @@ const Authors = () => {
 
       {/* Create Author Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-sm animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowCreateModal(false)} />
           <div className="relative w-full max-w-lg bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up max-h-[90vh] overflow-y-auto admin-scrollbar">
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
@@ -426,7 +426,7 @@ const Authors = () => {
 
       {/* Edit Author Modal */}
       {showEditModal && editingAuthor && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-sm animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowEditModal(false)} />
           <div className="relative w-full max-w-lg bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up max-h-[90vh] overflow-y-auto admin-scrollbar">
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">

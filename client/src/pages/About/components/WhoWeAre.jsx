@@ -30,7 +30,7 @@ const WhoWeAre = () => {
                   key={i}
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20 + i * 5, repeat: Infinity, ease: 'linear' }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/10"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-border dark:border-white/10"
                   style={{
                     width: 150 + i * 80,
                     height: 150 + i * 80,
@@ -44,7 +44,7 @@ const WhoWeAre = () => {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#FF6D00] flex items-center justify-center"
               >
-                <Globe className="w-16 h-16 text-white" />
+                <Globe className="w-16 h-16 text-text-primary dark:text-white" />
               </motion.div>
 
               {/* Floating elements */}
@@ -58,7 +58,7 @@ const WhoWeAre = () => {
                     key={i}
                     animate={{ y: [0, -20, 0] }}
                     transition={{ duration: 3 + i * 0.5, repeat: Infinity, delay: i * 0.3 }}
-                    className="absolute top-1/2 left-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                    className="absolute top-1/2 left-1/2 w-12 h-12 rounded-full bg-surface/90 dark:bg-white/10 backdrop-blur-sm border border-border dark:border-white/20 flex items-center justify-center"
                     style={{
                       transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
                     }}
@@ -77,7 +77,7 @@ const WhoWeAre = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-6">
               Who
               <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
                 {' '}We Are

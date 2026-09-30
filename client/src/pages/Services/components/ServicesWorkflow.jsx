@@ -37,7 +37,7 @@ export default function ServicesWorkflow() {
   return (
     <section
       id="services-workflow-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Header */}
@@ -49,14 +49,14 @@ export default function ServicesWorkflow() {
                 EXECUTION PROTOCOL
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               How We Turn Cold Outbound <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Into Qualified Revenue
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             A battle-tested 4-step pipeline architecture delivering predictable sales conversations month over month.
           </p>
         </div>
@@ -73,15 +73,15 @@ export default function ServicesWorkflow() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.12 }}
-                className="group relative rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-[#FF6D00]/50 p-7 flex flex-col justify-between transition-all duration-300 shadow-lg"
+                className="group relative rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-[#FF6D00]/50 p-7 flex flex-col justify-between transition-all duration-300 shadow-lg"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <span className="text-3xl sm:text-4xl font-black font-mono text-[#FF6D00]">
                       {step.num}
                     </span>
-                    <div className="w-10 h-10 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center group-hover:border-[#FF6D00]/40 group-hover:bg-[#FF6D00]/10 transition-colors">
-                      <Icon className="w-5 h-5 text-white/70 group-hover:text-[#FF6D00] transition-colors" />
+                    <div className="w-10 h-10 rounded-2xl border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 flex items-center justify-center group-hover:border-[#FF6D00]/40 group-hover:bg-[#FF6D00]/10 transition-colors">
+                      <Icon className="w-5 h-5 text-text-secondary dark:text-white/70 group-hover:text-[#FF6D00] transition-colors" />
                     </div>
                   </div>
 
@@ -89,7 +89,7 @@ export default function ServicesWorkflow() {
                     {step.subtitle}
                   </span>
 
-                  <h3 className="text-xl font-bold uppercase text-white tracking-tight">
+                  <h3 className="text-xl font-bold uppercase text-text-primary dark:text-white tracking-tight">
                     {step.title}
                   </h3>
 
@@ -98,7 +98,7 @@ export default function ServicesWorkflow() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-white/40">
+                <div className="mt-6 pt-4 border-t border-border dark:border-white/5 flex items-center justify-between text-[11px] font-mono text-text-secondary dark:text-white/40">
                   <span>STAGE {step.num} / 04</span>
                   <span className="text-[#FF6D00] font-bold">ACTIVE PROTOCOL</span>
                 </div>

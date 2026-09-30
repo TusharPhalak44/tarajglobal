@@ -57,7 +57,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-sm"
             aria-hidden="true"
           />
 
@@ -86,7 +86,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                 <ThemeToggle />
                 <button
                   onClick={onClose}
-                  className="w-9 h-9 rounded-xl border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 cursor-pointer"
+                  className="w-9 h-9 rounded-xl border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 cursor-pointer"
                   aria-label="Close navigation"
                 >
                   <X size={18} />
@@ -109,14 +109,14 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                 }
               >
                 <span>Home</span>
-                <ChevronRight size={15} className="text-slate-400" />
+                <ChevronRight size={15} className="text-text-secondary dark:text-slate-400" />
               </NavLink>
 
               {/* Solutions Accordion */}
               <div>
                 <button
                   onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
-                  className="w-full flex items-center justify-between p-3 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer"
+                  className="w-full flex items-center justify-between p-3 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 transition-colors cursor-pointer"
                   aria-expanded={isSolutionsOpen}
                 >
                   <span className="flex items-center gap-2">
@@ -152,7 +152,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
 
                       {SOLUTIONS_GROUPS.map((grp) => (
                         <div key={grp.category} className="space-y-1">
-                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2 block">
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-text-secondary dark:text-slate-400 dark:text-slate-500 px-2 block">
                             {grp.category}
                           </span>
                           {grp.items.map((it) => (
@@ -184,7 +184,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                 }
               >
                 <span>About Us</span>
-                <ChevronRight size={15} className="text-slate-400" />
+                <ChevronRight size={15} className="text-text-secondary dark:text-slate-400" />
               </NavLink>
 
               {/* Blogs & Insights */}
@@ -199,7 +199,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                 }
               >
                 <span>Blogs &amp; Insights</span>
-                <ChevronRight size={15} className="text-slate-400" />
+                <ChevronRight size={15} className="text-text-secondary dark:text-slate-400" />
               </NavLink>
 
               {/* Careers */}
@@ -214,7 +214,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                 }
               >
                 <span>Careers</span>
-                <ChevronRight size={15} className="text-slate-400" />
+                <ChevronRight size={15} className="text-text-secondary dark:text-slate-400" />
               </NavLink>
 
               {/* Contact Us */}
@@ -229,7 +229,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                 }
               >
                 <span>Contact Us</span>
-                <ChevronRight size={15} className="text-slate-400" />
+                <ChevronRight size={15} className="text-text-secondary dark:text-slate-400" />
               </NavLink>
 
             </div>
@@ -241,7 +241,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
               <Link
                 to="/contact"
                 onClick={onClose}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-sky-500/25 active:scale-98 transition-all"
+                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] text-text-primary dark:text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-sky-500/25 active:scale-98 transition-all"
               >
                 <span>Start a Conversation</span>
                 <ArrowRight size={15} />

@@ -200,7 +200,7 @@ export const MegaMenu = ({ onClose }) => {
             <ShieldCheck size={13} className="text-emerald-500" />
             99.8% Data Accuracy SLA
           </span>
-          <span className="text-slate-300 dark:text-slate-700">|</span>
+          <span className="text-text-secondary dark:text-slate-300 dark:text-slate-700">|</span>
           <span className="text-[#FF6D00] font-semibold">
             48–72h Rapid Outbound
           </span>

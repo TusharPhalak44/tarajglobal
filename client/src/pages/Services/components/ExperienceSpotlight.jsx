@@ -171,7 +171,7 @@ export default function ExperienceSpotlight() {
   return (
     <section
       id="service-spotlight-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
@@ -183,14 +183,14 @@ export default function ExperienceSpotlight() {
                 FOCUSED SOLUTIONS
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               One Growth Problem. <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 One Focused Solution.
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Explore our complete suite of 12 specialized B2B capabilities designed to eliminate pipeline bottlenecks.
           </p>
         </div>
@@ -200,13 +200,13 @@ export default function ExperienceSpotlight() {
           {/* ══════════ LEFT COLUMN: 12-SERVICE SELECTOR & ACTIVE DETAILS (5 COLS) ══════════ */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             {/* Horizontal Mini-Scroller / Grid for 12 Services */}
-            <div className="p-4 rounded-2xl border border-white/10 bg-white/[0.02]">
-              <div className="flex items-center justify-between text-[11px] font-mono text-white/40 uppercase tracking-widest mb-3">
+            <div className="p-4 rounded-2xl border border-border dark:border-white/10 bg-white/[0.02]">
+              <div className="flex items-center justify-between text-[11px] font-mono text-text-secondary dark:text-white/40 uppercase tracking-widest mb-3">
                 <span className="flex items-center gap-1.5">
                   <Layers className="w-3.5 h-3.5 text-[#FF6D00]" />
                   SELECT SERVICE (12 TOTAL)
                 </span>
-                <span className="text-white font-bold">
+                <span className="text-text-primary dark:text-white font-bold">
                   {current.num} / 12
                 </span>
               </div>
@@ -243,7 +243,7 @@ export default function ExperienceSpotlight() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.3 }}
-                className="p-6 sm:p-8 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl"
+                className="p-6 sm:p-8 rounded-3xl border border-border dark:border-white/10 bg-white/[0.03] backdrop-blur-xl"
               >
                 <div className="flex items-center justify-between gap-3 mb-4">
                   <span className="text-xs font-mono font-bold text-[#FF6D00] uppercase tracking-widest">
@@ -252,14 +252,14 @@ export default function ExperienceSpotlight() {
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => setActiveIdx((prev) => (prev > 0 ? prev - 1 : SPOTLIGHT_SERVICES.length - 1))}
-                      className="w-8 h-8 rounded-lg border border-white/10 bg-white/5 hover:bg-white/15 flex items-center justify-center text-xs cursor-pointer"
+                      className="w-8 h-8 rounded-lg border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 hover:bg-white/15 flex items-center justify-center text-xs cursor-pointer"
                       title="Previous"
                     >
                       &larr;
                     </button>
                     <button
                       onClick={() => setActiveIdx((prev) => (prev < SPOTLIGHT_SERVICES.length - 1 ? prev + 1 : 0))}
-                      className="w-8 h-8 rounded-lg border border-white/10 bg-white/5 hover:bg-white/15 flex items-center justify-center text-xs cursor-pointer"
+                      className="w-8 h-8 rounded-lg border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 hover:bg-white/15 flex items-center justify-center text-xs cursor-pointer"
                       title="Next"
                     >
                       &rarr;
@@ -267,7 +267,7 @@ export default function ExperienceSpotlight() {
                   </div>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-black uppercase text-text-primary dark:text-white tracking-tight">
                   {current.name}
                 </h3>
 
@@ -277,7 +277,7 @@ export default function ExperienceSpotlight() {
                     <span className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold block mb-1">
                       THE BOTTLENECK
                     </span>
-                    <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-text-secondary dark:text-white/80 leading-relaxed">
                       {current.problem}
                     </p>
                   </div>
@@ -286,14 +286,14 @@ export default function ExperienceSpotlight() {
                     <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">
                       OUR ENGINEERED BLUEPRINT
                     </span>
-                    <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-text-secondary dark:text-white/80 leading-relaxed">
                       {current.solution}
                     </p>
                   </div>
                 </div>
 
                 {/* CTA Link */}
-                <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                <div className="mt-8 pt-6 border-t border-border dark:border-white/10 flex items-center justify-between">
                   <button
                     onClick={() => navigate(current.route)}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-white/90 text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-white/20 cursor-pointer group"
@@ -302,7 +302,7 @@ export default function ExperienceSpotlight() {
                     <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
                   </button>
 
-                  <span className="text-xs font-mono text-white/40">
+                  <span className="text-xs font-mono text-text-secondary dark:text-white/40">
                     SLA PROTECTED
                   </span>
                 </div>
@@ -319,7 +319,7 @@ export default function ExperienceSpotlight() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.4 }}
-                className="relative rounded-3xl border border-white/10 bg-white/[0.02] overflow-hidden shadow-2xl p-6 sm:p-10 flex flex-col justify-between min-h-[460px] lg:min-h-[520px]"
+                className="relative rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] overflow-hidden shadow-2xl p-6 sm:p-10 flex flex-col justify-between min-h-[460px] lg:min-h-[520px]"
               >
                 {/* Background visual artwork */}
                 <div
@@ -332,12 +332,12 @@ export default function ExperienceSpotlight() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,109,0,0.15),transparent_60%)]" />
 
                 {/* Top HUD Telemetry Bar */}
-                <div className="relative z-10 flex items-center justify-between border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-2 font-mono text-[11px] text-white/70">
+                <div className="relative z-10 flex items-center justify-between border-b border-border dark:border-white/10 pb-4">
+                  <div className="flex items-center gap-2 font-mono text-[11px] text-text-secondary dark:text-white/70">
                     <Activity className="w-4 h-4 text-[#FF6D00] animate-pulse" />
                     <span>PIPELINE ENGINE: ACTIVE</span>
                   </div>
-                  <span className="font-mono text-[11px] px-3 py-1 rounded-full border border-white/10 bg-white/5 text-white/80">
+                  <span className="font-mono text-[11px] px-3 py-1 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-text-secondary dark:text-white/80">
                     MODULE {current.num} / 12
                   </span>
                 </div>
@@ -348,24 +348,24 @@ export default function ExperienceSpotlight() {
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>BENCHMARKED IMPACT</span>
                   </div>
-                  <div className="text-5xl sm:text-7xl font-black font-mono text-white tracking-tight">
+                  <div className="text-5xl sm:text-7xl font-black font-mono text-text-primary dark:text-white tracking-tight">
                     {current.metricValue}
                   </div>
-                  <div className="text-sm sm:text-base font-mono uppercase tracking-widest text-white/60 mt-1">
+                  <div className="text-sm sm:text-base font-mono uppercase tracking-widest text-text-secondary dark:text-white/60 mt-1">
                     {current.metricLabel}
                   </div>
                 </div>
 
                 {/* Bottom Content: Verified Capabilities Checklist */}
-                <div className="relative z-10 pt-6 border-t border-white/10">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-white/40 block mb-3">
+                <div className="relative z-10 pt-6 border-t border-border dark:border-white/10">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-text-secondary dark:text-white/40 block mb-3">
                     DELIVERY ATTRIBUTES & STANDARDS
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {current.kpis.map((kpi, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-2 p-3 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md text-xs font-semibold text-white/90"
+                        className="flex items-center gap-2 p-3 rounded-xl border border-border dark:border-white/10 bg-white/[0.04] backdrop-blur-md text-xs font-semibold text-white/90"
                       >
                         <CheckCircle className="w-4 h-4 text-[#FF6D00] shrink-0" />
                         <span className="truncate">{kpi}</span>

@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, MessageSquare, Radar, Shield, Flame } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import { useTheme } from '@context/ThemeContext'
 
 // 3 Core Trust Pillars unified into the single animated button
 const TRUST_PILLARS = [
@@ -40,6 +41,8 @@ const DATA_POINTS = Array.from({ length: 18 }, (_, i) => ({
 }))
 
 const CTA = () => {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const navigate = useNavigate()
   const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef(null)
@@ -71,7 +74,7 @@ const CTA = () => {
     <section
       id="final-cta"
       ref={sectionRef}
-      className="relative py-10 sm:py-12 lg:py-16 overflow-hidden bg-slate-50 dark:bg-[#050D1A] text-slate-900 dark:text-white border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-10 sm:py-12 lg:py-16 overflow-hidden bg-slate-50 dark:bg-[#050D1A] text-slate-900 dark:text-text-primary dark:text-white border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="Ready to Turn Content Reach Into Sales Opportunities"
     >
       {/* ── Animated Technical Background ── */}
@@ -140,7 +143,7 @@ const CTA = () => {
         <motion.div style={prefersReducedMotion ? {} : { y }}>
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-3.5 border border-primary/30 dark:border-[#00A6FF]/25 bg-primary/10 dark:bg-[#00A6FF]/10 text-primary dark:text-[#00A6FF] shadow-xs"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-3.5 border border-primary/30 dark:border-[#00A6FF]/25 bg-primary/30 dark:bg-primary/10 dark:bg-[#00A6FF]/10 text-primary dark:text-[#00A6FF] shadow-xs"
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -160,7 +163,7 @@ const CTA = () => {
 
           {/* Headline */}
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 dark:text-white mb-3"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 dark:text-text-primary dark:text-white mb-3"
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 18 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -197,7 +200,7 @@ const CTA = () => {
             <button
               id="cta-start-campaign"
               onClick={handleStartCampaign}
-              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-sm text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto justify-center cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
+              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-sm text-text-primary dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto justify-center cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
               style={{
                 background: 'linear-gradient(90deg, #FF6D00 0%, #FF8C00 100%)',
                 boxShadow: '0 4px 24px rgba(255,109,0,0.35)',
@@ -281,7 +284,7 @@ const CTA = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -7 }}
                     transition={{ duration: 0.28, ease: 'easeOut' }}
-                    className="flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-slate-800 dark:text-white"
+                    className="flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-slate-800 dark:text-text-primary dark:text-white"
                   >
                     <Icon className="w-3.5 h-3.5 shrink-0" style={{ color: currPillar.color }} />
                     <span className="truncate">{currPillar.label}</span>

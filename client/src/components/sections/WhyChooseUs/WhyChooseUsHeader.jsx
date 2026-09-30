@@ -17,7 +17,7 @@ const WhyChooseUsHeader = () => {
           <Plus size={13} strokeWidth={3} />
         </motion.div>
 
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 backdrop-blur-md shadow-xs">
           <span className="text-sm sm:text-sm font-mono font-bold text-primary uppercase tracking-[0.2em]">
             Strategic Advantage
           </span>

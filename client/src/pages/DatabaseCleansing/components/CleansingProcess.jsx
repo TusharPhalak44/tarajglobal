@@ -61,7 +61,7 @@ const CleansingProcess = () => {
     <section
       id="cleansing-process"
       ref={sectionRef}
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="How Our Database Cleansing Process Works"
     >
       {/* ── Ambient Background Lighting ── */}
@@ -118,11 +118,11 @@ const CleansingProcess = () => {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-white">How Our </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">How Our </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               Cleansing Process
             </span>{' '}
-            <span className="text-slate-900 dark:text-white">Works</span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">Works</span>
           </motion.h2>
 
           <motion.p

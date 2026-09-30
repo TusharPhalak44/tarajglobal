@@ -54,7 +54,7 @@ router.get('/', checkPermission('analytics.view'), async (req, res) => {
       }
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -72,7 +72,7 @@ router.patch('/:id/status', checkPermission('analytics.view'), async (req, res) 
     
     res.json({ success: true, message: 'Lead updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

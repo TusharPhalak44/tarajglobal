@@ -125,7 +125,7 @@ export default function ContentSyndicationWorkflow() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-14">
           <div className="max-w-2xl">
             {/* Small Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-primary mb-3.5 shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-primary mb-3.5 shadow-xs">
               <Sparkles className="w-3 h-3 text-primary animate-pulse" />
               <span>CONTENT SYNDICATION • LEAD GENERATION</span>
             </div>

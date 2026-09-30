@@ -341,7 +341,7 @@ const Dashboard = () => {
 
           <Link
             to="/admin/leads"
-            className="p-3.5 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] hover:border-[#10B981] hover:bg-[#10B981]/10 transition-all text-center group"
+            className="p-3.5 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] hover:border-[#10B981] hover:bg-surface dark:bg-[#10B981]/10 transition-all text-center group"
           >
             <Building className="w-5 h-5 mx-auto mb-2 text-[#10B981] group-hover:scale-110 transition-transform" />
             <span className="text-xs font-semibold text-[var(--admin-text-primary)] block">Inbound CRM</span>

@@ -141,7 +141,7 @@ export default function WorkflowTargetBadge({
               animate={{ opacity: 1, y: -12, scale: 1.05 }}
               exit={{ opacity: 0, y: -26, scale: 0.9 }}
               transition={{ duration: 0.45, ease: 'easeOut' }}
-              className="px-2.5 py-0.5 rounded-full bg-slate-900/95 dark:bg-black/90 border border-primary/40 dark:border-[#00f0ff]/50 text-white font-mono text-[10px] font-bold shadow-lg whitespace-nowrap"
+              className="px-2.5 py-0.5 rounded-full bg-surface dark:bg-slate-900/95 dark:bg-black/90 border border-primary/40 dark:border-[#00f0ff]/50 text-white font-mono text-[10px] font-bold shadow-lg whitespace-nowrap"
             >
               {item.text}
             </motion.div>

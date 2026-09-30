@@ -41,7 +41,7 @@ const TestimonialCard = ({ company, rating, testimonial, companyLogo, index }) =
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-primary to-cta flex items-center justify-center">
-              <span className="text-white font-bold text-2xl">
+              <span className="text-text-primary dark:text-white font-bold text-2xl">
                 {company.charAt(0)}
               </span>
             </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
+import DOMPurify from 'dompurify'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import {
@@ -122,7 +123,7 @@ function BlogDetails() {
           <h2
             key={index}
             id={id}
-            className="text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary dark:text-white mt-12 mb-4 pt-6 border-t border-slate-100 dark:border-white/5 scroll-mt-28"
+            className="text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary dark:text-text-primary dark:text-white mt-12 mb-4 pt-6 border-t border-slate-100 dark:border-white/5 scroll-mt-28"
           >
             {text}
           </h2>
@@ -155,7 +156,7 @@ function BlogDetails() {
           <li key={index} className="text-text-secondary dark:text-[#CBD5E1] ml-6 mb-2.5 list-disc leading-relaxed text-sm sm:text-base">
             {parts.length > 1 ? (
               <>
-                <strong className="text-text-primary dark:text-white font-bold">{parts[0]}:</strong>
+                <strong className="text-text-primary dark:text-text-primary dark:text-white font-bold">{parts[0]}:</strong>
                 {parts.slice(1).join(':')}
               </>
             ) : (
@@ -170,7 +171,7 @@ function BlogDetails() {
           <li key={index} className="text-text-secondary dark:text-[#CBD5E1] ml-6 mb-2.5 list-decimal leading-relaxed text-sm sm:text-base">
             {parts.length > 1 ? (
               <>
-                <strong className="text-text-primary dark:text-white font-bold">{parts[0]}:</strong>
+                <strong className="text-text-primary dark:text-text-primary dark:text-white font-bold">{parts[0]}:</strong>
                 {parts.slice(1).join(':')}
               </>
             ) : (
@@ -189,7 +190,7 @@ function BlogDetails() {
           <p
             key={index}
             className="text-text-secondary dark:text-[#A7ADB7] mb-5 leading-relaxed text-sm sm:text-base lg:text-[17px] font-normal"
-            dangerouslySetInnerHTML={{ __html: html }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }}
           />
         )
       }
@@ -254,7 +255,7 @@ function BlogDetails() {
         <SEO title="Playbook Not Found | Taraj Global" noIndex={true} />
         <div className="min-h-[70vh] bg-background flex flex-col items-center justify-center p-4 text-center">
           <div className="p-8 rounded-3xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 max-w-md w-full">
-            <h2 className="text-2xl font-bold text-text-primary dark:text-white mb-2">
+            <h2 className="text-2xl font-bold text-text-primary dark:text-text-primary dark:text-white mb-2">
               Article Not Found
             </h2>
             <p className="text-sm text-text-secondary dark:text-[#A7ADB7] mb-6">
@@ -328,7 +329,7 @@ function BlogDetails() {
                   Blog
                 </Link>
                 <ChevronRight size={12} />
-                <span className="text-text-primary dark:text-white font-semibold truncate max-w-[200px]">
+                <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold truncate max-w-[200px]">
                   {blog.category_name || 'Playbook'}
                 </span>
               </div>
@@ -359,7 +360,7 @@ function BlogDetails() {
               </div>
 
               {/* Article Headline */}
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary dark:text-white leading-[1.18]">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary dark:text-text-primary dark:text-white leading-[1.18]">
                 {blog.title}
               </h1>
 
@@ -383,12 +384,12 @@ function BlogDetails() {
                       className="w-10 h-10 rounded-full object-cover border border-[#00A6FF]/40 shadow-xs"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#007AC0] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#007AC0] text-text-primary dark:text-white flex items-center justify-center font-bold text-sm shadow-xs">
                       {(blog.author_name || 'T').charAt(0)}
                     </div>
                   )}
                   <div>
-                    <div className="text-sm font-bold text-text-primary dark:text-white">
+                    <div className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white">
                       {blog.author_name || 'Taraj Global Editorial Team'}
                     </div>
                     <div className="text-xs text-text-tertiary font-mono">
@@ -525,7 +526,7 @@ function BlogDetails() {
                     <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#00A6FF]">
                       MORE FROM THE KNOWLEDGE HUB
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-text-primary dark:text-white mt-1">
+                    <h3 className="text-xl sm:text-2xl font-bold text-text-primary dark:text-text-primary dark:text-white mt-1">
                       Recommended Next Reads
                     </h3>
                   </div>

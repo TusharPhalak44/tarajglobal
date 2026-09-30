@@ -92,7 +92,7 @@ const CMSFooter = () => {
         title: editingLink.title.trim(),
         url: editingLink.url.trim(),
         display_order: Number(editingLink.display_order) || 0,
-        is_active: editingLink.is_active ? 1 : 0
+        is_active: Boolean(editingLink.is_active)
       }
 
       if (editingLink.id) {
@@ -138,7 +138,7 @@ const CMSFooter = () => {
         icon: editingSocial.icon?.trim() || 'bi-globe',
         url: editingSocial.url.trim(),
         display_order: Number(editingSocial.display_order) || 0,
-        is_active: editingSocial.is_active ? 1 : 0
+        is_active: Boolean(editingSocial.is_active)
       }
 
       if (editingSocial.id) {

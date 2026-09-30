@@ -68,7 +68,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
           </div>
           <span className="text-sm font-mono font-bold tracking-wider text-text-primary uppercase flex items-center gap-2">
             <span>REVENUE ENGINE CONSOLE</span>
-            <span className="px-2 py-0.5 rounded-sm bg-black/5 dark:bg-white/10 text-primary text-sm">
+            <span className="px-2 py-0.5 rounded-sm bg-background dark:bg-black/5 dark:bg-white/10 text-primary text-sm">
               PHASE 0{activeStage + 1}
             </span>
           </span>
@@ -268,7 +268,7 @@ export const RevenueProcessVisual = ({ activeStage }) => {
                       <span className="font-bold text-text-muted">{item.label}</span>
                       <span className="font-extrabold text-text-primary">{item.pct}%</span>
                     </div>
-                    <div className="h-1.5 w-full bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-background dark:bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${item.pct}%` }}

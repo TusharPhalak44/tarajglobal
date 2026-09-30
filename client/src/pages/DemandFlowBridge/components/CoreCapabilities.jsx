@@ -158,7 +158,7 @@ const CoreCapabilities = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary mb-3.5 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-3.5 backdrop-blur-md"
           >
             <Layers className="w-3.5 h-3.5 text-primary" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
@@ -273,23 +273,23 @@ const CoreCapabilities = () => {
                   }`}
                 >
                   {/* Browser/Application Frame */}
-                  <div className="rounded-2xl overflow-hidden border border-border bg-[#0B1424] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.12)] group transition-all duration-300 hover:border-primary/50">
+                  <div className="rounded-2xl overflow-hidden border border-border bg-surface dark:bg-[#0B1424] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.12)] group transition-all duration-300 hover:border-primary/50">
                     
                     {/* Frame Top Header */}
-                    <div className="flex items-center justify-between px-3.5 py-2.5 bg-slate-900 border-b border-white/10 select-none">
+                    <div className="flex items-center justify-between px-3.5 py-2.5 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10 select-none">
                       <div className="flex items-center gap-1.5">
                         <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
                         <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
                       </div>
 
-                      <div className="flex items-center gap-2 text-[11px] font-mono text-slate-300">
+                      <div className="flex items-center gap-2 text-[11px] font-mono text-text-secondary dark:text-slate-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span>DemandFlow Bridge™</span>
                         <span className="text-slate-500 hidden sm:inline">• {item.title}</span>
                       </div>
 
-                      <span className="text-[10px] font-mono text-slate-400 px-2 py-0.5 rounded bg-white/5 border border-white/10">
+                      <span className="text-[10px] font-mono text-text-secondary dark:text-slate-400 px-2 py-0.5 rounded bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10">
                         LIVE
                       </span>
                     </div>
@@ -297,7 +297,7 @@ const CoreCapabilities = () => {
                     {/* Content Viewport */}
                     {item.isTelemetryCard ? (
                       /* Dedicated Rich Telemetry Visual for HRMS or Payroll */
-                      <div className="p-6 sm:p-8 bg-slate-950 text-white min-h-[280px] sm:min-h-[320px] flex flex-col justify-between">
+                      <div className="p-6 sm:p-8 bg-background dark:bg-slate-950 text-text-primary dark:text-white min-h-[280px] sm:min-h-[320px] flex flex-col justify-between">
                         {item.telemetryType === 'hrms' ? (
                           <div className="space-y-4">
                             <div className="flex items-center justify-between">
@@ -306,8 +306,8 @@ const CoreCapabilities = () => {
                                   <UserCheck className="w-5 h-5" />
                                 </div>
                                 <div>
-                                  <div className="text-sm font-bold text-white">Workforce Governance Console</div>
-                                  <div className="text-xs text-slate-400 font-mono">148 Active Team Members Synchronized</div>
+                                  <div className="text-sm font-bold text-text-primary dark:text-white">Workforce Governance Console</div>
+                                  <div className="text-xs text-text-secondary dark:text-slate-400 font-mono">148 Active Team Members Synchronized</div>
                                 </div>
                               </div>
                               <span className="text-xs font-mono px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40">
@@ -316,24 +316,24 @@ const CoreCapabilities = () => {
                             </div>
 
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                              <div className="p-3 rounded-xl bg-slate-900/80 border border-white/10">
-                                <div className="text-[10.5px] font-mono text-slate-400">Daily Attendance</div>
+                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
+                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Daily Attendance</div>
                                 <div className="text-lg font-black text-emerald-400 mt-1">98.6%</div>
-                                <div className="text-[10px] text-slate-400">Shift verified</div>
+                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Shift verified</div>
                               </div>
-                              <div className="p-3 rounded-xl bg-slate-900/80 border border-white/10">
-                                <div className="text-[10.5px] font-mono text-slate-400">Departments</div>
-                                <div className="text-lg font-black text-white mt-1">6 Units</div>
-                                <div className="text-[10px] text-slate-400">Direct hierarchy</div>
+                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
+                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Departments</div>
+                                <div className="text-lg font-black text-text-primary dark:text-white mt-1">6 Units</div>
+                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Direct hierarchy</div>
                               </div>
-                              <div className="p-3 rounded-xl bg-slate-900/80 border border-white/10 col-span-2 sm:col-span-1">
-                                <div className="text-[10.5px] font-mono text-slate-400">Leave Workflows</div>
+                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10 col-span-2 sm:col-span-1">
+                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Leave Workflows</div>
                                 <div className="text-lg font-black text-primary mt-1">Automated</div>
-                                <div className="text-[10px] text-slate-400">1-click approvals</div>
+                                <div className="text-[10px] text-text-secondary dark:text-slate-400">1-click approvals</div>
                               </div>
                             </div>
 
-                            <div className="p-3 rounded-xl bg-slate-900/50 border border-white/5 flex items-center justify-between text-xs font-mono text-slate-300">
+                            <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/50 border border-border dark:border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary dark:text-slate-300">
                               <div className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
                                 <span>Role-Based Access Control</span>
@@ -349,8 +349,8 @@ const CoreCapabilities = () => {
                                   <CreditCard className="w-5 h-5" />
                                 </div>
                                 <div>
-                                  <div className="text-sm font-bold text-white">Automated Compensation Engine</div>
-                                  <div className="text-xs text-slate-400 font-mono">Synced with Attendance & Performance</div>
+                                  <div className="text-sm font-bold text-text-primary dark:text-white">Automated Compensation Engine</div>
+                                  <div className="text-xs text-text-secondary dark:text-slate-400 font-mono">Synced with Attendance & Performance</div>
                                 </div>
                               </div>
                               <span className="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
@@ -359,24 +359,24 @@ const CoreCapabilities = () => {
                             </div>
 
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                              <div className="p-3 rounded-xl bg-slate-900/80 border border-white/10">
-                                <div className="text-[10.5px] font-mono text-slate-400">Cycle Status</div>
+                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
+                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Cycle Status</div>
                                 <div className="text-lg font-black text-emerald-400 mt-1">Reconciled</div>
-                                <div className="text-[10px] text-slate-400">Zero discrepancies</div>
+                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Zero discrepancies</div>
                               </div>
-                              <div className="p-3 rounded-xl bg-slate-900/80 border border-white/10">
-                                <div className="text-[10.5px] font-mono text-slate-400">Incentive Sync</div>
+                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
+                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Incentive Sync</div>
                                 <div className="text-lg font-black text-amber-400 mt-1">Direct MQL/SQL</div>
-                                <div className="text-[10px] text-slate-400">Quota verified</div>
+                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Quota verified</div>
                               </div>
-                              <div className="p-3 rounded-xl bg-slate-900/80 border border-white/10 col-span-2 sm:col-span-1">
-                                <div className="text-[10.5px] font-mono text-slate-400">Compliance</div>
+                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10 col-span-2 sm:col-span-1">
+                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Compliance</div>
                                 <div className="text-lg font-black text-primary mt-1">Automated</div>
-                                <div className="text-[10px] text-slate-400">Tax & deductions</div>
+                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Tax & deductions</div>
                               </div>
                             </div>
 
-                            <div className="p-3 rounded-xl bg-slate-900/50 border border-white/5 flex items-center justify-between text-xs font-mono text-slate-300">
+                            <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/50 border border-border dark:border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary dark:text-slate-300">
                               <div className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
                                 <span>Bank Batch File Export</span>
@@ -388,7 +388,7 @@ const CoreCapabilities = () => {
                       </div>
                     ) : (
                       /* High-Resolution Application Screenshot */
-                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
+                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-background dark:bg-slate-950">
                         <img
                           src={item.image}
                           alt={`${item.title} Dashboard Screen in DemandFlow Bridge`}
@@ -397,8 +397,8 @@ const CoreCapabilities = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
                         
-                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-300">
-                          <span className="bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15">
+                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-text-secondary dark:text-slate-300">
+                          <span className="bg-surface dark:bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-border dark:border-white/15">
                             {item.screenTitle}
                           </span>
                           <span className="text-primary font-bold">

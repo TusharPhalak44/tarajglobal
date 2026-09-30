@@ -18,7 +18,7 @@ router.get('/', checkPermission('settings.manage'), async (req, res) => {
     
     res.json({ success: true, data: settingsObj })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -38,7 +38,7 @@ router.put('/', checkPermission('settings.manage'), async (req, res) => {
     
     res.json({ success: true, message: 'Settings updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

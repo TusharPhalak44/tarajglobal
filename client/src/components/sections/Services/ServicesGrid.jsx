@@ -153,7 +153,7 @@ const ServicesGrid = () => {
         {/* Left Pane: Detailed Display Card */}
         <div className="lg:col-span-7 relative h-full flex flex-col justify-center">
           {/* Ambient Glows Behind Card */}
-          <div className="absolute -top-12 -left-12 w-72 h-72 bg-primary/10 blur-[90px] rounded-full -z-10 pointer-events-none" />
+          <div className="absolute -top-12 -left-12 w-72 h-72 bg-primary/30 dark:bg-primary/10 blur-[90px] rounded-full -z-10 pointer-events-none" />
           <div className="absolute -bottom-12 right-0 w-64 h-64 bg-accent/10 blur-[80px] rounded-full -z-10 pointer-events-none" />
 
           <AnimatePresence mode="wait">
@@ -191,7 +191,7 @@ const ServicesGrid = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />
 
                     {/* Mobile Tap Indicator */}
-                    <div className="absolute top-4 left-4 lg:hidden px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-sm text-white font-medium flex items-center gap-1.5 shadow-md">
+                    <div className="absolute top-4 left-4 lg:hidden px-3 py-1 rounded-full bg-background dark:bg-black/60 backdrop-blur-md border border-border dark:border-white/20 text-sm text-white font-medium flex items-center gap-1.5 shadow-md">
                       <span>Tap for details</span>
                       <span className="text-primary font-bold">↻</span>
                     </div>
@@ -203,10 +203,10 @@ const ServicesGrid = () => {
 
                     {/* Title on Image */}
                     <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-2">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-text-primary dark:text-white mb-2">
                         {activeService.title}
                       </h3>
-                      <p className="text-sm sm:text-sm text-white/80">
+                      <p className="text-sm sm:text-sm text-text-secondary dark:text-white/80">
                         {activeService.desc}
                       </p>
                     </div>
@@ -232,7 +232,7 @@ const ServicesGrid = () => {
                         e.stopPropagation()
                         setIsFlipped(false)
                       }}
-                      className="lg:hidden absolute top-3.5 right-4 z-30 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-sm font-semibold text-primary flex items-center gap-1 min-h-[32px]"
+                      className="lg:hidden absolute top-3.5 right-4 z-30 px-2.5 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/30 text-sm font-semibold text-primary flex items-center gap-1 min-h-[32px]"
                       aria-label="Flip card back to cover"
                     >
                       <span>Flip Back ↻</span>
@@ -260,7 +260,7 @@ const ServicesGrid = () => {
                           <div className="w-13 h-13 sm:w-15 sm:h-15 rounded-2xl bg-gradient-to-br from-primary/15 to-accent/15 border border-primary/25 shadow-md flex items-center justify-center shrink-0">
                             <IconComponent className="w-7 h-7 sm:w-8 sm:h-8 text-primary" />
                           </div>
-                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-text-primary tracking-tight leading-tight dark:text-white">
+                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-text-primary tracking-tight leading-tight dark:text-text-primary dark:text-white">
                             {activeService.title}
                           </h3>
                         </div>
@@ -287,7 +287,7 @@ const ServicesGrid = () => {
                         <Link
                           to={activeService.link}
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[#1E3A8A] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#1E3A8A]/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:ring-offset-2 w-full sm:w-auto"
+                          className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-surface dark:bg-[#1E3A8A] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#1E3A8A]/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:ring-offset-2 w-full sm:w-auto"
                         >
                           {activeService.ctaText}
                           <ArrowRight size={16} />

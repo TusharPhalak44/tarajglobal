@@ -19,17 +19,17 @@ export default function WorkflowControls({
     >
       {/* Left: Active Stage Details */}
       <div className="flex items-center gap-2.5 text-left">
-        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary/10 dark:bg-[#0088ff]/20 border border-primary/30 dark:border-[#00d2ff]/40 flex items-center justify-center font-mono font-bold text-xs sm:text-sm text-primary dark:text-[#00f0ff] shrink-0">
+        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary/30 dark:bg-primary/10 dark:bg-[#0088ff]/20 border border-primary/30 dark:border-[#00d2ff]/40 flex items-center justify-center font-mono font-bold text-xs sm:text-sm text-primary dark:text-[#00f0ff] shrink-0">
           {currentStepIndex >= 9 ? '★' : String(currentStepIndex + 1).padStart(2, '0')}
         </div>
         <div>
           <div className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-[#00a6ff]">
             {currentStepIndex >= 9 ? 'Final Outcome' : `Active Step`}
           </div>
-          <div className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5">
+          <div className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white tracking-tight flex items-center gap-1.5">
             {currentStepData ? currentStepData.title : 'Qualified B2B Leads'}
             {currentStepIndex >= 9 && (
-              <span className="inline-flex items-center px-1.5 py-0.2 rounded-full bg-primary/10 dark:bg-[#00f0ff]/15 border border-primary/30 dark:border-[#00f0ff]/40 text-[8px] font-mono text-primary dark:text-[#00f0ff] animate-pulse">
+              <span className="inline-flex items-center px-1.5 py-0.2 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-[#00f0ff]/15 border border-primary/30 dark:border-[#00f0ff]/40 text-[8px] font-mono text-primary dark:text-[#00f0ff] animate-pulse">
                 Goal Hit
               </span>
             )}
@@ -68,7 +68,7 @@ export default function WorkflowControls({
           type="button"
           onClick={onPrev}
           disabled={currentStepIndex <= 0}
-          className="p-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-slate-600 dark:text-[#94a3b8] hover:text-primary dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+          className="p-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-slate-600 dark:text-[#94a3b8] hover:text-primary dark:hover:text-text-primary dark:text-white disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
           title="Previous Step"
           aria-label="Previous Step"
         >
@@ -104,7 +104,7 @@ export default function WorkflowControls({
           type="button"
           onClick={onNext}
           disabled={currentStepIndex >= totalSteps - 1}
-          className="p-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-slate-600 dark:text-[#94a3b8] hover:text-primary dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+          className="p-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-slate-600 dark:text-[#94a3b8] hover:text-primary dark:hover:text-text-primary dark:text-white disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
           title="Next Step"
           aria-label="Next Step"
         >

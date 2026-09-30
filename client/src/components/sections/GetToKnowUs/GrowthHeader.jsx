@@ -23,7 +23,7 @@ export const GrowthHeader = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-slate-900/90 border border-slate-700/80 dark:border-white/10 mb-5 shadow-inner"
+          className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-surface dark:bg-slate-900/90 border border-border dark:border-slate-700/80 dark:border-white/10 mb-5 shadow-inner"
         >
           <div className="relative flex items-center justify-center">
             <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 opacity-75" />
@@ -44,7 +44,7 @@ export const GrowthHeader = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.16] mb-4"
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary dark:text-white tracking-tight leading-[1.16] mb-4"
         >
           <span className="block text-slate-100">POWERING</span>
           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#00A6FF] to-[#00E5FF] my-0.5">
@@ -59,7 +59,7 @@ export const GrowthHeader = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-[560px]"
+          className="text-sm sm:text-base text-text-secondary dark:text-slate-300 font-normal leading-relaxed max-w-[560px]"
         >
           Taraj Global is a B2B demand generation and technology marketing partner helping organizations connect with the right companies, decision-makers, and buying audiences. We combine audience intelligence, verified B2B data, targeted outreach, and full-funnel marketing strategies to create qualified opportunities and support sustainable pipeline growth.
         </motion.p>
@@ -75,7 +75,7 @@ export const GrowthHeader = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0C101A]/90 border border-slate-800 dark:border-white/10 shadow-lg backdrop-blur-md"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-surface dark:bg-[#0C101A]/90 border border-border dark:border-slate-800 dark:border-white/10 shadow-lg backdrop-blur-md"
         >
           <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
             <ShieldCheck size={16} />
@@ -99,9 +99,9 @@ export const GrowthHeader = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0C101A]/90 border border-slate-800 dark:border-white/10 shadow-lg backdrop-blur-md"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-surface dark:bg-[#0C101A]/90 border border-border dark:border-slate-800 dark:border-white/10 shadow-lg backdrop-blur-md"
         >
-          <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-[#00E5FF] shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 border border-primary/30 flex items-center justify-center text-[#00E5FF] shrink-0">
             <Activity size={16} />
           </div>
           <div>

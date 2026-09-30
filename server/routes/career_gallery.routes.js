@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
     res.json({ success: true, data: albums })
   } catch (error) {
     console.error('Error fetching career gallery:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -79,7 +79,7 @@ router.post('/', authenticate, authorize('admin'), async (req, res) => {
     })
   } catch (error) {
     console.error('Error creating career event:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -110,7 +110,7 @@ router.put('/:id', authenticate, authorize('admin'), async (req, res) => {
     })
   } catch (error) {
     console.error('Error updating career event:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -148,7 +148,7 @@ router.post('/:id/photos', authenticate, authorize('admin'), async (req, res) =>
     })
   } catch (error) {
     console.error('Error adding photos:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -168,7 +168,7 @@ router.delete('/:id', authenticate, authorize('admin'), async (req, res) => {
     res.json({ success: true, message: 'Event deleted successfully' })
   } catch (error) {
     console.error('Error deleting event:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -192,7 +192,7 @@ router.put('/photos/:id', authenticate, authorize('admin'), async (req, res) => 
     res.json({ success: true, message: 'Photo updated successfully' })
   } catch (error) {
     console.error('Error updating photo:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -212,7 +212,7 @@ router.delete('/photos/:id', authenticate, authorize('admin'), async (req, res) 
     res.json({ success: true, message: 'Photo deleted successfully' })
   } catch (error) {
     console.error('Error deleting photo:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

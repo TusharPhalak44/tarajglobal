@@ -155,31 +155,31 @@ function CommandCenter({ prefersReducedMotion }) {
       {/* Top bar */}
       <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.06]">
         <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
         </div>
         <div className="ml-2 text-[11px] font-mono tracking-wider text-[#00A6FF] opacity-90 uppercase">
           DEMANDFLOW BRIDGE™ // SQL PIPELINE COMMAND
         </div>
         <div className="ml-auto flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#72D669] animate-pulse" />
-          <span className="text-[10px] font-mono text-white/50 tracking-wider">LIVE TELEMETRY</span>
+          <span className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider">LIVE TELEMETRY</span>
         </div>
       </div>
 
       {/* Metrics ticker bar */}
       <div className="grid grid-cols-3 gap-px bg-white/[0.05] border-b border-white/[0.06] text-center">
-        <div className="py-2.5 px-3 bg-[#050D1A]/80">
-          <div className="text-[10px] font-mono text-white/50 tracking-wider">SQL PIPELINE</div>
+        <div className="py-2.5 px-3 bg-background dark:bg-[#050D1A]/80">
+          <div className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider">SQL PIPELINE</div>
           <div className="text-sm font-black text-[#00A6FF] font-mono">1,845+</div>
         </div>
-        <div className="py-2.5 px-3 bg-[#050D1A]/80">
-          <div className="text-[10px] font-mono text-white/50 tracking-wider">SHOW-UP RATE</div>
+        <div className="py-2.5 px-3 bg-background dark:bg-[#050D1A]/80">
+          <div className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider">SHOW-UP RATE</div>
           <div className="text-sm font-black text-[#72D669] font-mono">85%+</div>
         </div>
-        <div className="py-2.5 px-3 bg-[#050D1A]/80">
-          <div className="text-[10px] font-mono text-white/50 tracking-wider">VELOCITY LIFT</div>
+        <div className="py-2.5 px-3 bg-background dark:bg-[#050D1A]/80">
+          <div className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider">VELOCITY LIFT</div>
           <div className="text-sm font-black text-[#FF6D00] font-mono">3.2x</div>
         </div>
       </div>
@@ -238,7 +238,7 @@ function CommandCenter({ prefersReducedMotion }) {
                 >
                   {stage.label}
                 </div>
-                <div className="text-[10px] font-mono text-white/40 truncate">{stage.sub}</div>
+                <div className="text-[10px] font-mono text-text-secondary dark:text-white/40 truncate">{stage.sub}</div>
               </div>
 
               {/* Stage status indicator */}
@@ -267,7 +267,7 @@ function CommandCenter({ prefersReducedMotion }) {
       {/* Bottom status pills */}
       <div className="px-5 py-3 border-t border-white/[0.06] flex items-center justify-between flex-wrap gap-2">
         {STATUS_PILLS.map((pill) => (
-          <div key={pill.label} className="flex items-center gap-1.5 text-[10px] font-mono text-white/60">
+          <div key={pill.label} className="flex items-center gap-1.5 text-[10px] font-mono text-text-secondary dark:text-white/60">
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: pill.dot }} />
             <span>{pill.label}</span>
           </div>
@@ -386,7 +386,7 @@ const Hero = () => {
               <button
                 onClick={handleStartCampaign}
                 id="hero-cta-primary"
-                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-text-primary dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{
                   background: 'linear-gradient(90deg, #00A6FF 0%, #0080CC 100%)',
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
@@ -399,7 +399,7 @@ const Hero = () => {
               <button
                 onClick={handleSeeHowItWorks}
                 id="hero-cta-secondary"
-                className="text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+                className="text-text-primary dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }}
               >
                 Explore Our Services

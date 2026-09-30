@@ -105,7 +105,7 @@ export const PipelineMilestone = ({
 
         {/* Milestone Node Disk */}
         <div 
-          className="relative z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0E121E] border-2 flex items-center justify-center transition-all duration-300 shadow-xl"
+          className="relative z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-surface dark:bg-[#0E121E] border-2 flex items-center justify-center transition-all duration-300 shadow-xl"
           style={{
             borderColor: milestone.color,
             boxShadow: `0 0 20px ${milestone.color}40`,
@@ -133,25 +133,25 @@ export const PipelineMilestone = ({
             STAGE {milestone.number}
           </span>
           <span className="text-slate-600 font-mono text-sm">|</span>
-          <span className="text-sm font-mono font-bold px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300 uppercase tracking-wider">
+          <span className="text-sm font-mono font-bold px-2 py-0.5 rounded bg-surface dark:bg-slate-900 border border-border dark:border-slate-800 text-text-secondary dark:text-slate-300 uppercase tracking-wider">
             {milestone.subLabel}
           </span>
         </div>
 
         {/* Milestone Title */}
-        <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2 group-hover:text-primary transition-colors">
+        <h3 className="text-xl sm:text-2xl font-black text-text-primary dark:text-white tracking-tight mb-2 group-hover:text-primary transition-colors">
           {milestone.label}
         </h3>
 
         {/* Milestone Description */}
-        <p className="text-sm sm:text-sm text-slate-400 dark:text-slate-300 font-normal leading-relaxed max-w-lg mb-4">
+        <p className="text-sm sm:text-sm text-text-secondary dark:text-slate-400 dark:text-slate-300 font-normal leading-relaxed max-w-lg mb-4">
           {milestone.description}
         </p>
 
         {/* Milestone Metric Display */}
-        <div className="inline-flex items-center gap-3 px-3.5 py-2 rounded-xl bg-[#090D17]/90 border border-slate-800">
+        <div className="inline-flex items-center gap-3 px-3.5 py-2 rounded-xl bg-surface dark:bg-[#090D17]/90 border border-border dark:border-slate-800">
           <div>
-            <div className="text-lg sm:text-xl font-mono font-black text-white tracking-tight">
+            <div className="text-lg sm:text-xl font-mono font-black text-text-primary dark:text-white tracking-tight">
               {milestone.number === '01' && <AnimatedMetricNumber targetValue={100} decimal={0} suffix="%" />}
               {milestone.number === '02' && <AnimatedMetricNumber targetValue={99.8} decimal={1} suffix="%" />}
               {milestone.number === '03' && (
@@ -160,7 +160,7 @@ export const PipelineMilestone = ({
                 </span>
               )}
             </div>
-            <span className="text-sm font-mono font-bold uppercase tracking-wider text-slate-400 block -mt-0.5">
+            <span className="text-sm font-mono font-bold uppercase tracking-wider text-text-secondary dark:text-slate-400 block -mt-0.5">
               {milestone.metricLabel}
             </span>
           </div>

@@ -92,7 +92,7 @@ export default function CapabilitiesStrip() {
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="max-w-3xl mb-14 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
             <span>FULL CAPABILITY STACK</span>
           </div>
 
@@ -165,7 +165,7 @@ export default function CapabilitiesStrip() {
                       {cap.category}
                     </span>
 
-                    <div className="w-8 h-8 rounded-full border border-border/70 flex items-center justify-center text-text-muted group-hover:text-primary group-hover:border-primary/60 group-hover:bg-primary/10 transition-all duration-300">
+                    <div className="w-8 h-8 rounded-full border border-border/70 flex items-center justify-center text-text-muted group-hover:text-primary group-hover:border-primary/60 group-hover:bg-primary/30 dark:bg-primary/10 transition-all duration-300">
                       <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>

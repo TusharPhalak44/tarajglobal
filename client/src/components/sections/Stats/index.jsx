@@ -254,7 +254,7 @@ export const Stats = () => {
     <section
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="relative py-24 lg:py-32 overflow-hidden bg-[#FAFAFA] dark:bg-[#03060D] text-slate-900 dark:text-white select-none transition-colors duration-300"
+      className="relative py-24 lg:py-32 overflow-hidden bg-[#FAFAFA] dark:bg-[#03060D] text-slate-900 dark:text-text-primary dark:text-white select-none transition-colors duration-300"
       style={{
         position: 'relative',
         zIndex: 1
@@ -275,7 +275,7 @@ export const Stats = () => {
           }}
         />
         {/* Soft Radial Ambient Lighting */}
-        <div className="absolute top-1/4 -left-24 w-[650px] h-[650px] rounded-full blur-[170px] bg-primary/5 dark:bg-primary/8" />
+        <div className="absolute top-1/4 -left-24 w-[650px] h-[650px] rounded-full blur-[170px] bg-primary/25 dark:bg-primary/5 dark:bg-primary/8" />
         <div className="absolute bottom-1/4 -right-24 w-[600px] h-[600px] rounded-full blur-[170px] bg-[#A855F7]/5 dark:bg-[#A855F7]/8" />
       </div>
 
@@ -313,11 +313,11 @@ export const Stats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-7 ml-7 font-heading"
+              className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-black text-slate-900 dark:text-text-primary dark:text-white tracking-tight leading-[1.08] mb-7 ml-7 font-heading"
             >
               <div className="block">BUILT ON</div>
               <div className="block text-slate-800 dark:text-slate-100 mb-1">EXPERIENCE.</div>
-              <div className="block text-slate-900 dark:text-white">FOCUSED ON</div>
+              <div className="block text-slate-900 dark:text-text-primary dark:text-white">FOCUSED ON</div>
               <div className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#0088FF] to-cta font-black">
                 OUTCOMES.
               </div>
@@ -340,13 +340,13 @@ export const Stats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] dark:bg-white/[0.04] border border-slate-900/10 dark:border-white/10 w-fit backdrop-blur-md shadow-xs ml-7"
+              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-surface dark:bg-slate-900/[0.04] dark:bg-white/[0.04] border border-slate-900/10 dark:border-white/10 w-fit backdrop-blur-md shadow-xs ml-7"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
               <span className="text-sm font-mono font-bold tracking-wider text-slate-700 dark:text-slate-300 uppercase">
                 GROWTH ENGINE
               </span>
-              <span className="text-slate-400 dark:text-slate-600">//</span>
+              <span className="text-text-secondary dark:text-slate-400 dark:text-slate-600">//</span>
               <span className="text-sm font-mono font-bold text-emerald-600 dark:text-emerald-400">
                 SYSTEM READY
               </span>
@@ -405,7 +405,7 @@ export const Stats = () => {
                         {c.label}
                       </p>
 
-                      <div className="w-full h-1 bg-slate-900/10 dark:bg-white/10 rounded-full mt-2.5 overflow-hidden">
+                      <div className="w-full h-1 bg-surface dark:bg-slate-900/10 dark:bg-white/10 rounded-full mt-2.5 overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{
@@ -425,7 +425,7 @@ export const Stats = () => {
                   <Cpu size={12} className="animate-pulse" />
                   <span>OUTCOME CORE // ENGINE ACTIVE</span>
                 </div>
-                <span className="text-xl font-black tracking-wider text-slate-900 dark:text-white uppercase font-mono">
+                <span className="text-xl font-black tracking-wider text-slate-900 dark:text-text-primary dark:text-white uppercase font-mono">
                   OUTCOME
                 </span>
                 <span className="text-sm font-mono tracking-widest text-[#00A6FF] uppercase mt-0.5 font-bold">
@@ -599,7 +599,7 @@ export const Stats = () => {
                       </span>
 
                       {/* Energy Level Bar */}
-                      <div className="w-full h-1 bg-slate-900/10 dark:bg-white/10 rounded-full mt-1.5 overflow-hidden">
+                      <div className="w-full h-1 bg-surface dark:bg-slate-900/10 dark:bg-white/10 rounded-full mt-1.5 overflow-hidden">
                         <div
                           className="h-full rounded-full transition-all duration-500"
                           style={{
@@ -633,7 +633,7 @@ export const Stats = () => {
                   <span>OUTCOME CORE</span>
                 </div>
 
-                <span className="text-lg sm:text-xl font-black tracking-wider text-slate-900 dark:text-white uppercase font-mono">
+                <span className="text-lg sm:text-xl font-black tracking-wider text-slate-900 dark:text-text-primary dark:text-white uppercase font-mono">
                   OUTCOME
                 </span>
 

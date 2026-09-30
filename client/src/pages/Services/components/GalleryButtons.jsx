@@ -118,7 +118,7 @@ export const CircularGalleryCTA = ({
       <div className="absolute inset-2 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-primary/5 opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Icon */}
-      <div className="relative z-10 w-9 h-9 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-2 transition-transform duration-500 group-hover:rotate-45 group-hover:bg-primary group-hover:text-black">
+      <div className="relative z-10 w-9 h-9 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-2 transition-transform duration-500 group-hover:rotate-45 group-hover:bg-primary group-hover:text-black">
         <ArrowUpRight className="w-5 h-5 transition-transform duration-300" />
       </div>
 

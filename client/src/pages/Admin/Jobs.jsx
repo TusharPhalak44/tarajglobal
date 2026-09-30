@@ -336,7 +336,7 @@ const Jobs = () => {
 
       {/* View Modal */}
       {viewJob && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-xs animate-fade-in">
           <div className="fixed inset-0" onClick={() => setViewJob(null)} />
           <div className="relative max-w-lg w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
             <div className="flex items-start justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
@@ -374,7 +374,7 @@ const Jobs = () => {
 
       {/* Create Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-xs animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowCreateModal(false)} />
           <div className="relative max-w-lg w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--admin-border-subtle)]">

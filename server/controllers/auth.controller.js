@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt'
 import db from '../config/db.js'
 import User from '../models/User.js'
-import { generateToken, generateRefreshToken, verifyRefreshToken } from '../utils/jwt.js'
+import { generateToken, generateRefreshToken, verifyRefreshToken, verifyToken } from '../utils/jwt.js'
+import { blacklistToken } from '../utils/tokenBlacklist.js'
 
 // ── Login ──────────────────────────────────────────────────────────────────
 export const login = async (req, res) => {
@@ -90,7 +91,16 @@ export const register = async (req, res) => {
 
 // ── Logout ─────────────────────────────────────────────────────────────────
 export const logout = async (req, res) => {
-  return res.json({ success: true, message: 'Logged out successfully' })
+  try {
+    const token = req.token // set by authenticate middleware
+    if (token) {
+      const decoded = verifyToken(token)
+      blacklistToken(token, decoded.exp) // invalidate until natural expiry
+    }
+    return res.json({ success: true, message: 'Logged out successfully' })
+  } catch {
+    return res.json({ success: true, message: 'Logged out successfully' })
+  }
 }
 
 // ── Refresh Token ──────────────────────────────────────────────────────────
@@ -123,17 +133,17 @@ export const getMe = async (req, res) => {
     }
     return res.json({
       success: true,
-      user: { id: user.id, name: user.name, email: user.email, role: user.role, avatar: user.avatar || null },
+      user: { id: user.id, name: user.name, email: user.email, role: user.role, avatar: user.avatar || null, phone: user.phone || null, department: user.department || null },
     })
   } catch (error) {
-    return res.status(500).json({ success: false, message: error.message })
+    return res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
 // ── Update Profile ─────────────────────────────────────────────────────────
 export const updateProfile = async (req, res) => {
   try {
-    const { name, email, avatar } = req.body
+    const { name, email, avatar, phone, department } = req.body
     const userId = req.user.id
 
     // Check if email is already taken by another user
@@ -148,17 +158,25 @@ export const updateProfile = async (req, res) => {
     const updates = []
     const values = []
 
-    if (name) {
+    if (name !== undefined) {
       updates.push('name = ?')
       values.push(name)
     }
-    if (email) {
+    if (email !== undefined) {
       updates.push('email = ?')
       values.push(email)
     }
     if (avatar !== undefined) {
       updates.push('avatar = ?')
       values.push(avatar)
+    }
+    if (phone !== undefined) {
+      updates.push('phone = ?')
+      values.push(phone)
+    }
+    if (department !== undefined) {
+      updates.push('department = ?')
+      values.push(department)
     }
 
     if (updates.length === 0) {
@@ -169,7 +187,7 @@ export const updateProfile = async (req, res) => {
     await db.execute(`UPDATE users SET ${updates.join(', ')} WHERE id = ?`, values)
 
     // Get updated user
-    const [users] = await db.execute('SELECT id, name, email, role, avatar FROM users WHERE id = ?', [userId])
+    const [users] = await db.execute('SELECT id, name, email, role, avatar, phone, department FROM users WHERE id = ?', [userId])
     const updatedUser = users[0]
 
     return res.json({
@@ -179,7 +197,7 @@ export const updateProfile = async (req, res) => {
     })
   } catch (error) {
     console.error('Update profile error:', error)
-    return res.status(500).json({ success: false, message: error.message })
+    return res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -194,7 +212,7 @@ export const uploadAvatar = async (req, res) => {
     const userId = req.user.id
 
     await db.execute('UPDATE users SET avatar = ? WHERE id = ?', [fileUrl, userId])
-    const [users] = await db.execute('SELECT id, name, email, role, avatar FROM users WHERE id = ?', [userId])
+    const [users] = await db.execute('SELECT id, name, email, role, avatar, phone, department FROM users WHERE id = ?', [userId])
 
     return res.json({
       success: true,
@@ -205,7 +223,7 @@ export const uploadAvatar = async (req, res) => {
     })
   } catch (error) {
     console.error('Upload avatar error:', error)
-    return res.status(500).json({ success: false, message: error.message })
+    return res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
 
@@ -250,6 +268,6 @@ export const changePassword = async (req, res) => {
 
     return res.json({ success: true, message: 'Password changed successfully' })
   } catch (error) {
-    return res.status(500).json({ success: false, message: error.message })
+    return res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }

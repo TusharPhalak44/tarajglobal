@@ -24,7 +24,7 @@ router.get('/:entityType/:entityId', checkPermission('blog.edit'), async (req, r
 
     res.json({ success: true, data: seoData[0] })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -110,7 +110,7 @@ router.post('/:entityType/:entityId', [
 
     res.json({ success: true, message: 'SEO metadata saved successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -128,7 +128,7 @@ router.delete('/:entityType/:entityId', checkPermission('blog.edit'), async (req
 
     res.json({ success: true, message: 'SEO metadata deleted successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

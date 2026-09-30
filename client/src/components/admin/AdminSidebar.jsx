@@ -94,7 +94,7 @@ export const AdminSidebar = ({
       {/* Mobile Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 lg:hidden"
+          className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-xs z-40 lg:hidden"
           onClick={onClose}
         />
       )}

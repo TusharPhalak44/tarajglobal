@@ -76,11 +76,11 @@ export const LiveOutboundEngine = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF]" />
           DATA
         </span>
-        <span className="text-slate-400 dark:text-slate-600">→</span>
+        <span className="text-text-secondary dark:text-slate-400 dark:text-slate-600">→</span>
         <span>TARGETING</span>
-        <span className="text-slate-400 dark:text-slate-600">→</span>
+        <span className="text-text-secondary dark:text-slate-400 dark:text-slate-600">→</span>
         <span>QUALIFICATION</span>
-        <span className="text-slate-400 dark:text-slate-600">→</span>
+        <span className="text-text-secondary dark:text-slate-400 dark:text-slate-600">→</span>
         <span className="text-[#00A6FF] font-bold">PIPELINE</span>
       </div>
 
@@ -96,7 +96,7 @@ export const LiveOutboundEngine = () => {
               )}
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
             </span>
-            <span className="text-sm font-mono font-bold tracking-wider text-slate-900 dark:text-white uppercase">
+            <span className="text-sm font-mono font-bold tracking-wider text-slate-900 dark:text-text-primary dark:text-white uppercase">
               LIVE ENGINE
             </span>
           </div>
@@ -172,7 +172,7 @@ export const LiveOutboundEngine = () => {
 
                     <p className="text-sm text-slate-600 dark:text-slate-400 truncate flex items-center gap-1.5">
                       <span>{item.contact}</span>
-                      <span className="text-slate-400 dark:text-slate-600">•</span>
+                      <span className="text-text-secondary dark:text-slate-400 dark:text-slate-600">•</span>
                       <span className={`font-semibold ${item.statusColor}`}>
                         {item.status}
                       </span>

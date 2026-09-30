@@ -84,25 +84,25 @@ export const IntelligenceConsole = () => {
     <div 
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative w-full rounded-3xl bg-[#090C16]/95 border border-slate-800/90 shadow-2xl backdrop-blur-2xl p-4 sm:p-6 lg:p-8 overflow-hidden select-none"
+      className="relative w-full rounded-3xl bg-surface dark:bg-[#090C16]/95 border border-border dark:border-slate-800/90 shadow-2xl backdrop-blur-2xl p-4 sm:p-6 lg:p-8 overflow-hidden select-none"
     >
       {/* ── Technical Corner Bracket Accents ────────────────────────── */}
-      <div className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-white/25 rounded-tl-sm pointer-events-none" />
-      <div className="absolute top-0 right-0 w-3.5 h-3.5 border-t-2 border-r-2 border-white/25 rounded-tr-sm pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-3.5 h-3.5 border-b-2 border-l-2 border-white/25 rounded-bl-sm pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-white/25 rounded-br-sm pointer-events-none" />
+      <div className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-border dark:border-white/25 rounded-tl-sm pointer-events-none" />
+      <div className="absolute top-0 right-0 w-3.5 h-3.5 border-t-2 border-r-2 border-border dark:border-white/25 rounded-tr-sm pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-3.5 h-3.5 border-b-2 border-l-2 border-border dark:border-white/25 rounded-bl-sm pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-border dark:border-white/25 rounded-br-sm pointer-events-none" />
 
       {/* ── Top Console HUD Bar ─────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-2.5 mb-6 rounded-2xl bg-[#06080F]/90 border border-slate-800/80 text-sm font-mono text-slate-400">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-2.5 mb-6 rounded-2xl bg-background dark:bg-[#06080F]/90 border border-border dark:border-slate-800/80 text-sm font-mono text-text-secondary dark:text-slate-400">
         <div className="flex items-center gap-2.5">
           <Terminal size={13} className="text-[#00E5FF]" />
-          <span className="text-white font-bold tracking-widest uppercase">
+          <span className="text-text-primary dark:text-white font-bold tracking-widest uppercase">
             GROWTH INTELLIGENCE CONSOLE // v3.4 ACTIVE
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-1" />
         </div>
 
-        <div className="flex items-center gap-4 text-slate-400">
+        <div className="flex items-center gap-4 text-text-secondary dark:text-slate-400">
           <span>PIPELINE TELEMETRY: <strong className="text-emerald-400">OPTIMAL</strong></span>
           <span className="hidden md:inline-block">SLA: <strong className="text-primary">100% VALIDATED</strong></span>
           <span>LATENCY: <strong className="text-cta">8ms</strong></span>
@@ -135,13 +135,13 @@ export const IntelligenceConsole = () => {
       </div>
 
       {/* ── Bottom Console Status Strip ─────────────────────────────── */}
-      <div className="mt-6 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-mono text-slate-400">
+      <div className="mt-6 pt-4 border-t border-border dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-mono text-text-secondary dark:text-slate-400">
         <div className="flex items-center gap-2">
-          <span className="text-slate-400">INFRASTRUCTURE STATUS:</span>
+          <span className="text-text-secondary dark:text-slate-400">INFRASTRUCTURE STATUS:</span>
           <span className="text-emerald-400 font-bold">ALL SYSTEMS LIVE &amp; CALIBRATED</span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-slate-400">AUTO-CYCLE: {isPaused ? 'PAUSED' : 'ACTIVE'}</span>
+          <span className="text-text-secondary dark:text-slate-400">AUTO-CYCLE: {isPaused ? 'PAUSED' : 'ACTIVE'}</span>
           <span className="text-primary font-bold">TARAJ GLOBAL PROPRIETARY PIPELINE</span>
         </div>
       </div>

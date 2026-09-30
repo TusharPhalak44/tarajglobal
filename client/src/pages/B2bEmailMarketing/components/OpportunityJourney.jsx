@@ -104,7 +104,7 @@ const OpportunityJourney = () => {
   return (
     <section
       id="from-inbox-to-sales-opportunity"
-      className="relative py-20 lg:py-28 overflow-hidden bg-white dark:bg-[#070B14] text-slate-900 dark:text-white border-t border-slate-200/80 dark:border-white/[0.06]"
+      className="relative py-20 lg:py-28 overflow-hidden bg-white dark:bg-[#070B14] text-slate-900 dark:text-text-primary dark:text-white border-t border-slate-200/80 dark:border-white/[0.06]"
       aria-label="From Inbox to Sales Opportunity"
     >
       {/* Background */}
@@ -193,7 +193,7 @@ const OpportunityJourney = () => {
                   </span>
 
                   {/* Label */}
-                  <h3 className="text-xs font-bold text-slate-900 dark:text-white mb-2 leading-tight">
+                  <h3 className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white mb-2 leading-tight">
                     {stage.label}
                   </h3>
 
@@ -257,7 +257,7 @@ const OpportunityJourney = () => {
                       <span className="text-[9px] font-mono font-black tracking-widest" style={{ color: stage.color }}>
                         {String(idx + 1).padStart(2, '0')}
                       </span>
-                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">{stage.label}</h3>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-text-primary dark:text-white">{stage.label}</h3>
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{stage.desc}</p>
                   </div>

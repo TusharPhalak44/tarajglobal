@@ -3,12 +3,15 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 export const DynamicScrollBackground = () => {
   const [isDark, setIsDark] = useState(false)
+
   const { scrollYProgress } = useScroll()
 
-  // Use scrollYProgress directly; Lenis already provides global hardware-accelerated smoothing
   const smoothScroll = scrollYProgress
 
-  // Multi-wave zoom in & zoom out transforms mapped across scroll depth
+  // ============================================================
+  // GRID ANIMATION
+  // ============================================================
+
   const gridScale = useTransform(
     smoothScroll,
     [0, 0.2, 0.4, 0.6, 0.8, 1],
@@ -21,186 +24,406 @@ export const DynamicScrollBackground = () => {
     [0, 2, -2, 0]
   )
 
-  // Radial ambient gradient blobs shifting & zooming with scroll
-  const blob1Y = useTransform(smoothScroll, [0, 1], [-80, 220])
-  const blob1X = useTransform(smoothScroll, [0, 0.5, 1], [-30, 25, -20])
+  // ============================================================
+  // BLUE ORB
+  // ============================================================
+
+  const blob1Y = useTransform(
+    smoothScroll,
+    [0, 1],
+    [-80, 220]
+  )
+
+  const blob1X = useTransform(
+    smoothScroll,
+    [0, 0.5, 1],
+    [-30, 25, -20]
+  )
+
   const blob1Scale = useTransform(
     smoothScroll,
     [0, 0.25, 0.5, 0.75, 1],
     [1.0, 1.25, 0.98, 1.3, 1.05]
   )
 
-  const blob2Y = useTransform(smoothScroll, [0, 1], [120, -180])
-  const blob2X = useTransform(smoothScroll, [0, 0.5, 1], [25, -30, 20])
+  // ============================================================
+  // ORANGE ORB
+  // ============================================================
+
+  const blob2Y = useTransform(
+    smoothScroll,
+    [0, 1],
+    [120, -180]
+  )
+
+  const blob2X = useTransform(
+    smoothScroll,
+    [0, 0.5, 1],
+    [25, -30, 20]
+  )
+
   const blob2Scale = useTransform(
     smoothScroll,
     [0, 0.25, 0.5, 0.75, 1],
     [1.15, 0.95, 1.25, 0.98, 1.18]
   )
 
-  const blob3Y = useTransform(smoothScroll, [0, 1], [30, -100])
+  // ============================================================
+  // EMERALD ORB
+  // ============================================================
+
+  const blob3Y = useTransform(
+    smoothScroll,
+    [0, 1],
+    [30, -100]
+  )
+
   const blob3Scale = useTransform(
     smoothScroll,
     [0, 0.35, 0.7, 1],
     [0.95, 1.25, 0.96, 1.2]
   )
 
-  // Light-Mode specific Iridescent Aurora Mesh translation
-  const auroraRotate = useTransform(smoothScroll, [0, 1], [0, 15])
-  const auroraScale = useTransform(
-    smoothScroll,
-    [0, 0.3, 0.6, 1],
-    [1.0, 1.15, 1.04, 1.18]
-  )
-  const auroraY = useTransform(smoothScroll, [0, 1], [-50, 120])
+  // ============================================================
+  // THEME DETECTION
+  // ============================================================
 
   useEffect(() => {
     const checkDark = () => {
-      setIsDark(document.documentElement.classList.contains('dark'))
+      const dark =
+        document.documentElement.classList.contains('dark')
+
+      setIsDark(dark)
     }
+
+    // Initial check
     checkDark()
+
+    // Watch for theme changes
     const observer = new MutationObserver(checkDark)
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
 
     return () => observer.disconnect()
   }, [])
 
+  // ============================================================
+  // RENDER
+  // ============================================================
+
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">
-      {/* Base Background Surface */}
-      <div className="absolute inset-0 bg-background transition-colors duration-500" />
+    <div
+      className="
+        fixed
+        inset-0
+        pointer-events-none
+        z-0
+        overflow-hidden
+        select-none
+      "
+      aria-hidden="true"
+    >
 
-      {/* Master Container */}
-      <div 
-        className="absolute inset-0 origin-center"
+      {/* ========================================================
+          BASE BACKGROUND
+          ======================================================== */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          transition-colors
+          duration-700
+        "
+        style={{
+          backgroundColor: isDark
+            ? '#050A14'
+            : '#E8EDF5',
+        }}
+      />
+
+      {/* ========================================================
+          MASTER BACKGROUND LAYER
+          ======================================================== */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          overflow-hidden
+          origin-center
+        "
       >
-        {/* ── LIGHT MODE: Prismatic Aurora Mesh & Caustic Glow Waves ────── */}
-        {!isDark && (
-          <motion.div
-            style={{
-              y: auroraY,
-              rotate: auroraRotate,
-              scale: auroraScale,
-            }}
-            className="absolute -inset-[20%] opacity-70 pointer-events-none origin-center"
-          >
-            {/* Iridescent Aurora Stream 1 (Sky Azure to Soft Violet) */}
-            <div 
-              className="absolute top-1/4 left-1/5 w-[850px] h-[500px] rounded-[100%] blur-[120px] opacity-65 transform -rotate-12"
-              style={{
-                background: 'linear-gradient(135deg, rgba(0, 166, 255, 0.28) 0%, rgba(139, 92, 246, 0.18) 50%, rgba(0, 229, 255, 0.12) 100%)'
-              }}
-            />
 
-            {/* Iridescent Aurora Stream 2 (Peach Gold to Coral Glow) */}
-            <div 
-              className="absolute top-1/2 right-1/5 w-[800px] h-[550px] rounded-[100%] blur-[130px] opacity-60 transform rotate-15"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 109, 0, 0.25) 0%, rgba(255, 183, 77, 0.20) 50%, rgba(255, 87, 34, 0.10) 100%)'
-              }}
-            />
+        {/* ======================================================
+            BLUE / CYAN AMBIENT ORB
+            ====================================================== */}
 
-            {/* Iridescent Aurora Stream 3 (Fresh Mint to Azure) */}
-            <div 
-              className="absolute bottom-1/5 left-1/3 w-[750px] h-[480px] rounded-[100%] blur-[140px] opacity-50 transform -rotate-6"
-              style={{
-                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(0, 166, 255, 0.18) 60%, transparent 100%)'
-              }}
-            />
-          </motion.div>
-        )}
-
-        {/* ── AMBIENT RADIAL COLOR ORBS (Both Themes with Theme Tuning) ── */}
-        {/* Cyan / Blue Orb */}
         <motion.div
+          className="
+            absolute
+            top-1/4
+            left-1/4
+            w-[750px]
+            h-[750px]
+            rounded-full
+            blur-[130px]
+            origin-center
+          "
           style={{
             y: blob1Y,
             x: blob1X,
             scale: blob1Scale,
             translateX: '-20%',
             translateY: '-20%',
+            willChange: 'transform',
           }}
-          className="absolute top-1/4 left-1/4 w-[750px] h-[750px] rounded-full blur-[130px] opacity-60 dark:opacity-35 origin-center"
           animate={{
             background: isDark
-              ? 'radial-gradient(circle, rgba(0, 166, 255, 0.45) 0%, rgba(0, 229, 255, 0.2) 50%, transparent 70%)'
-              : 'radial-gradient(circle, rgba(0, 166, 255, 0.35) 0%, rgba(0, 229, 255, 0.18) 50%, transparent 70%)',
+              ? `
+                radial-gradient(
+                  circle,
+                  rgba(0,166,255,0.45) 0%,
+                  rgba(0,229,255,0.20) 50%,
+                  transparent 70%
+                )
+              `
+              : `
+                radial-gradient(
+                  circle,
+                  rgba(37,99,235,0.22) 0%,
+                  rgba(59,130,246,0.13) 45%,
+                  transparent 72%
+                )
+              `,
+            opacity: isDark ? 0.35 : 0.85,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: 'easeOut',
           }}
         />
 
-        {/* Orange / Gold Orb */}
+        {/* ======================================================
+            ORANGE / GOLD AMBIENT ORB
+            ====================================================== */}
+
         <motion.div
+          className="
+            absolute
+            top-1/2
+            right-1/6
+            w-[700px]
+            h-[700px]
+            rounded-full
+            blur-[140px]
+            origin-center
+          "
           style={{
             y: blob2Y,
             x: blob2X,
             scale: blob2Scale,
             translateX: '20%',
             translateY: '20%',
+            willChange: 'transform',
           }}
-          className="absolute top-1/2 right-1/6 w-[700px] h-[700px] rounded-full blur-[140px] opacity-55 dark:opacity-30 origin-center"
           animate={{
             background: isDark
-              ? 'radial-gradient(circle, rgba(255, 109, 0, 0.4) 0%, rgba(255, 165, 0, 0.15) 50%, transparent 70%)'
-              : 'radial-gradient(circle, rgba(255, 109, 0, 0.30) 0%, rgba(255, 165, 0, 0.14) 50%, transparent 70%)',
+              ? `
+                radial-gradient(
+                  circle,
+                  rgba(255,109,0,0.40) 0%,
+                  rgba(255,165,0,0.15) 50%,
+                  transparent 70%
+                )
+              `
+              : `
+                radial-gradient(
+                  circle,
+                  rgba(249,115,22,0.18) 0%,
+                  rgba(251,146,60,0.10) 50%,
+                  transparent 72%
+                )
+              `,
+            opacity: isDark ? 0.30 : 0.80,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: 'easeOut',
           }}
         />
 
-        {/* Emerald / Electric Center Pulse */}
+        {/* ======================================================
+            EMERALD / TEAL AMBIENT ORB
+            ====================================================== */}
+
         <motion.div
+          className="
+            absolute
+            top-2/3
+            left-1/2
+            w-[650px]
+            h-[650px]
+            rounded-full
+            blur-[150px]
+            origin-center
+          "
           style={{
             y: blob3Y,
             scale: blob3Scale,
             translateX: '-50%',
             translateY: '-50%',
+            willChange: 'transform',
           }}
-          className="absolute top-2/3 left-1/2 w-[650px] h-[650px] rounded-full blur-[150px] opacity-45 dark:opacity-25 origin-center"
           animate={{
             background: isDark
-              ? 'radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, rgba(0, 166, 255, 0.15) 55%, transparent 70%)'
-              : 'radial-gradient(circle, rgba(16, 185, 129, 0.24) 0%, rgba(0, 166, 255, 0.14) 55%, transparent 70%)',
-          }}
-        />
-
-        {/* ── HIGH-PRECISION DOT & CYBERNETIC PERSPECTIVE GRID ───────────── */}
-        <motion.div
-          style={{
-            scale: gridScale,
-            rotate: gridRotate,
-          }}
-          className="absolute -inset-[30%] opacity-[0.045] dark:opacity-[0.05] pointer-events-none origin-center"
-          animate={{
-            backgroundImage: isDark
               ? `
-                linear-gradient(rgba(0, 166, 255, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 166, 255, 0.5) 1px, transparent 1px)
+                radial-gradient(
+                  circle,
+                  rgba(16,185,129,0.35) 0%,
+                  rgba(0,166,255,0.15) 55%,
+                  transparent 70%
+                )
               `
               : `
-                radial-gradient(circle, rgba(0, 102, 204, 0.7) 1.2px, transparent 1.2px)
+                radial-gradient(
+                  circle,
+                  rgba(16,185,129,0.15) 0%,
+                  rgba(14,165,233,0.11) 55%,
+                  transparent 72%
+                )
               `,
-            backgroundSize: isDark ? '48px 48px' : '32px 32px',
+            opacity: isDark ? 0.25 : 0.75,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: 'easeOut',
           }}
         />
 
-        {/* ── FLOATING CRYSTAL PRISM SPARKLES ON SCROLL ──────────────────── */}
-        <div className="absolute inset-0 opacity-40 dark:opacity-60 pointer-events-none">
+        {/* ======================================================
+            CYBERNETIC GRID
+            ====================================================== */}
+
+        <motion.div
+          className="
+            absolute
+            pointer-events-none
+            origin-center
+          "
+          style={{
+            top: '-30%',
+            left: '-30%',
+            width: '160%',
+            height: '160%',
+
+            scale: gridScale,
+            rotate: gridRotate,
+
+            backgroundImage: isDark
+              ? `
+                linear-gradient(
+                  rgba(0,166,255,0.50) 1px,
+                  transparent 1px
+                ),
+                linear-gradient(
+                  90deg,
+                  rgba(0,166,255,0.50) 1px,
+                  transparent 1px
+                )
+              `
+              : `
+                linear-gradient(
+                  rgba(51,65,85,0.32) 1px,
+                  transparent 1px
+                ),
+                linear-gradient(
+                  90deg,
+                  rgba(51,65,85,0.32) 1px,
+                  transparent 1px
+                )
+              `,
+
+            backgroundSize: '48px 48px',
+
+            /*
+             * Dark mode:
+             * Keep existing subtle cyber-blue appearance.
+             *
+             * Light mode:
+             * Stronger visibility + multiply blending.
+             */
+            opacity: isDark ? 0.06 : 0.85,
+
+            mixBlendMode: isDark
+              ? 'screen'
+              : 'multiply',
+
+            willChange: 'transform',
+          }}
+        />
+
+        {/* ======================================================
+            FLOATING SPARKLE DOTS
+            ====================================================== */}
+
+        <div
+          className="
+            absolute
+            inset-0
+            pointer-events-none
+          "
+          style={{
+            opacity: isDark ? 0.60 : 0.45,
+          }}
+        >
           {[...Array(16)].map((_, i) => {
             const isCyan = i % 2 === 0
             const size = (i % 3) + 3
+
             return (
               <motion.div
                 key={i}
-                className="absolute rounded-full pointer-events-none"
+                className="
+                  absolute
+                  rounded-full
+                  pointer-events-none
+                "
                 style={{
                   left: `${(i * 19 + 7) % 94}%`,
                   top: `${(i * 23 + 11) % 92}%`,
+
                   width: size,
                   height: size,
-                  background: isDark 
-                    ? (isCyan ? '#00A6FF' : '#FF6D00')
-                    : (isCyan ? '#0070F3' : '#FF7A00'),
+
+                  background: isDark
+                    ? (
+                      isCyan
+                        ? '#00A6FF'
+                        : '#FF6D00'
+                    )
+                    : (
+                      isCyan
+                        ? '#2563EB'
+                        : '#EA580C'
+                    ),
+
                   boxShadow: isDark
-                    ? (isCyan ? '0 0 10px #00A6FF' : '0 0 10px #FF6D00')
-                    : (isCyan ? '0 0 8px rgba(0,112,243,0.6)' : '0 0 8px rgba(255,122,0,0.6)'),
+                    ? (
+                      isCyan
+                        ? '0 0 10px #00A6FF'
+                        : '0 0 10px #FF6D00'
+                    )
+                    : (
+                      isCyan
+                        ? '0 0 8px rgba(37,99,235,0.45)'
+                        : '0 0 8px rgba(234,88,12,0.40)'
+                    ),
+
+                  willChange: 'transform, opacity',
                 }}
                 animate={{
                   y: [0, -25, 0],
@@ -218,13 +441,45 @@ export const DynamicScrollBackground = () => {
           })}
         </div>
 
-        {/* ── ULTRA-LUXURY ANALOG GRAIN / NOISE TEXTURE (a-lign studio signature) ── */}
-        <div 
-          className="absolute inset-0 opacity-[0.032] dark:opacity-[0.05] pointer-events-none mix-blend-overlay z-20"
+        {/* ======================================================
+            GRAIN / NOISE TEXTURE
+            ====================================================== */}
+
+        <div
+          className="
+            absolute
+            inset-0
+            pointer-events-none
+            mix-blend-overlay
+            z-20
+          "
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+            opacity: isDark ? 0.05 : 0.035,
+
+            backgroundImage: `
+              url("data:image/svg+xml,%3Csvg
+                viewBox='0 0 250 250'
+                xmlns='http://www.w3.org/2000/svg'
+              %3E
+                %3Cfilter id='noiseFilter'%3E
+                  %3CfeTurbulence
+                    type='fractalNoise'
+                    baseFrequency='0.85'
+                    numOctaves='3'
+                    stitchTiles='stitch'
+                  /%3E
+                %3C/filter%3E
+
+                %3Crect
+                  width='100%25'
+                  height='100%25'
+                  filter='url(%23noiseFilter)'
+                /%3E
+              %3C/svg%3E")
+            `,
           }}
         />
+
       </div>
     </div>
   )

@@ -170,7 +170,7 @@ export const Footer = () => {
     ? linksMap[legalSection.id]?.links || []
     : []
 
-  // Default fallback link sections if CMS returned no sections
+  // Default fallback link sections if CMS fetch completely fails
   const defaultSections = [
     {
       id: 'default-leadgen',
@@ -214,22 +214,23 @@ export const Footer = () => {
     },
   ]
 
-  // Prepared sections to render - guaranteed to always have all 3 columns fully populated with links
-  const sectionsToRender = [0, 1, 2].map((idx) => {
-    const s = contentSections[idx]
-    const defaultSec = defaultSections[idx]
-    if (!s) return defaultSec
-
-    const apiLinks = linksMap[s.id]?.links || (Array.isArray(s.links) ? s.links : [])
-    const finalLinks = apiLinks.length > 0 ? apiLinks : (defaultSec?.links || [])
-
-    return {
-      id: s.id || defaultSec.id,
-      title: s.title || defaultSec.title,
-      color: idx === 0 ? '#00A6FF' : idx === 1 ? '#FF6D00' : 'slate',
-      links: finalLinks,
-    }
-  })
+  // Prepared sections to render
+  let sectionsToRender = [];
+  if (footerData && footerData.sections) {
+    // If we have data from the CMS, use it strictly.
+    sectionsToRender = contentSections.map((s, idx) => {
+      const apiLinks = linksMap[s.id]?.links || (Array.isArray(s.links) ? s.links : [])
+      return {
+        id: s.id,
+        title: s.title,
+        color: idx === 0 ? '#00A6FF' : idx === 1 ? '#FF6D00' : 'slate',
+        links: apiLinks,
+      }
+    })
+  } else {
+    // Fallback if data hasn't loaded or failed
+    sectionsToRender = defaultSections
+  }
 
   // Active offices or defaults
   const officesToRender = rawOffices.filter((o) => o.is_visible !== 0)
@@ -258,7 +259,7 @@ export const Footer = () => {
     },
   ]
 
-  const activeOffices = officesToRender.length > 0
+  const activeOffices = (footerData && footerData.offices)
     ? officesToRender.map((o) => {
         const text = `${o.name || ''} ${o.city || ''} ${o.country || ''} ${o.state || ''}`.toLowerCase()
         const isPST = text.includes('francisco') || text.includes('usa') || text.includes('california') || text.includes('us')
@@ -307,12 +308,18 @@ export const Footer = () => {
           <div className="sm:col-span-2 lg:col-span-3 space-y-5">
             {/* Logo & ISO Certification Badges Stack (Centered relative to the badges) */}
             <div className="w-[200px] sm:w-[230px] md:w-[250px] flex flex-col items-center gap-3">
-              <Link to="/" className="inline-flex items-center justify-center group" aria-label="Taraj Global Home">
-                <TGAnimatedLogo
-                  alt="Taraj Global"
-                  className="!w-[88px] !h-[88px] sm:!w-[100px] sm:!h-[100px] md:!w-[112px] md:!h-[112px]"
-                />
-              </Link>
+              {settings.is_logo_visible !== 0 && settings.is_logo_visible !== false && (
+                <Link to="/" className="inline-flex items-center justify-center group" aria-label="Taraj Global Home">
+                  {settings.logo_url && settings.logo_url !== '/OnlyTG- 3.png' ? (
+                    <img src={settings.logo_url} alt="Taraj Global" className="w-[88px] h-auto sm:w-[100px] md:w-[112px]" loading="lazy" />
+                  ) : (
+                    <TGAnimatedLogo
+                      alt="Taraj Global"
+                      className="!w-[88px] !h-[88px] sm:!w-[100px] sm:!h-[100px] md:!w-[112px] md:!h-[112px]"
+                    />
+                  )}
+                </Link>
+              )}
 
               <div className="pt-1 w-full flex justify-center">
                 <img
@@ -325,14 +332,16 @@ export const Footer = () => {
             </div>
 
             {/* Description / Content (Clearly visible & high contrast) */}
-            <p className="text-slate-700 dark:text-slate-200 text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
-              {settings.company_description ||
-                'Taraj Global is an ISO certified demand generation agency.'}
-            </p>
+            {settings.is_description_visible !== 0 && settings.is_description_visible !== false && (
+              <p className="text-slate-700 dark:text-slate-200 text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
+                {settings.company_description ||
+                  'Taraj Global is an ISO certified demand generation agency.'}
+              </p>
+            )}
 
             {/* Social Links */}
             <div className="pt-2 flex flex-wrap items-center gap-2.5">
-              {activeSocials.length > 0 ? (
+              {(footerData && footerData.socialLinks) ? (
                 activeSocials.map((social) => (
                   <motion.a
                     key={social.id}
@@ -341,7 +350,7 @@ export const Footer = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:bg-[#0077B5] hover:border-[#0077B5] transition-all shadow-sm"
+                    className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-text-primary dark:text-white hover:bg-[#0077B5] hover:border-[#0077B5] transition-all shadow-sm"
                     aria-label={`Taraj Global ${social.platform} Profile`}
                     title={social.platform}
                   >
@@ -355,7 +364,7 @@ export const Footer = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.08, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:bg-[#0077B5] hover:border-[#0077B5] transition-all shadow-sm"
+                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-text-primary dark:text-white hover:bg-[#0077B5] hover:border-[#0077B5] transition-all shadow-sm"
                   aria-label="Taraj Global LinkedIn Profile"
                 >
                   <Linkedin size={18} />
@@ -483,7 +492,7 @@ export const Footer = () => {
                     } shadow-sm`}
                   >
                     <div className="flex flex-wrap min-[360px]:flex-nowrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-1.5 font-bold text-sm text-slate-900 dark:text-white">
+                      <div className="flex items-center gap-1.5 font-bold text-sm text-slate-900 dark:text-text-primary dark:text-white">
                         {isPST ? (
                           <Building2 size={14} className="text-[#FF6D00] flex-shrink-0" />
                         ) : (
@@ -554,7 +563,7 @@ export const Footer = () => {
 
             {/* Legal & Cookie Policy Navigation */}
             <div className="flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-5 gap-y-2 text-slate-600 dark:text-slate-300 text-xs">
-              {legalLinks.length > 0 ? (
+              {(footerData && footerData.sections) ? (
                 legalLinks.map((ll, idx) => {
                   const isCookieAction =
                     ll.link_type === 'custom_action' ||
@@ -563,7 +572,7 @@ export const Footer = () => {
 
                   return (
                     <React.Fragment key={ll.id || idx}>
-                      {idx > 0 && <span className="text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>}
+                      {idx > 0 && <span className="text-text-secondary dark:text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>}
                       {isCookieAction ? (
                         <button
                           onClick={openPreferences}
@@ -585,15 +594,15 @@ export const Footer = () => {
                   <Link to="/privacy" className="hover:text-[#00A6FF] transition-colors py-1">
                     Privacy Policy
                   </Link>
-                  <span className="text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
+                  <span className="text-text-secondary dark:text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
                   <Link to="/terms" className="hover:text-[#00A6FF] transition-colors py-1">
                     Terms of Service
                   </Link>
-                  <span className="text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
+                  <span className="text-text-secondary dark:text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
                   <Link to="/cookies" className="hover:text-[#00A6FF] transition-colors py-1">
                     Cookie Policy
                   </Link>
-                  <span className="text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
+                  <span className="text-text-secondary dark:text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
                   <button
                     onClick={openPreferences}
                     type="button"

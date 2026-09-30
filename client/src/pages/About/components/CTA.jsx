@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import FlowButton from '../../../components/ui/FlowButton'
 
 const CTA = () => {
   return (
@@ -21,7 +22,7 @@ const CTA = () => {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[100px]"
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-primary/30 dark:bg-primary/10 blur-[100px]"
         />
         <motion.div
           animate={{
@@ -42,7 +43,7 @@ const CTA = () => {
       {[...Array(10)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-white/5"
+          className="absolute rounded-full bg-surface/80 dark:bg-white/5"
           style={{
             width: Math.random() * 80 + 40,
             height: Math.random() * 80 + 40,
@@ -82,25 +83,11 @@ const CTA = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="group flex items-center gap-2 px-8 py-4 hero-button-primary text-white rounded-xl font-semibold text-lg cursor-pointer"
-              >
-                Start Your Project
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              <FlowButton text="Start Your Project" variant="primary" className="py-4 px-8 text-lg" />
             </Link>
 
             <Link to="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-8 py-4 hero-button-secondary rounded-xl font-semibold text-lg cursor-pointer"
-              >
-                <Mail className="w-5 h-5" />
-                Contact Us
-              </motion.button>
+              <FlowButton text="Contact Us" variant="secondary" className="py-4 px-8 text-lg" />
             </Link>
           </div>
         </motion.div>

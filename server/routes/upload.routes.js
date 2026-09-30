@@ -18,7 +18,7 @@ router.post('/single', authenticate, authorize('admin'), uploadSingle('file'), (
       file: req.file
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -36,7 +36,7 @@ router.post('/multiple', authenticate, authorize('admin'), uploadMultiple('files
       files: req.files
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

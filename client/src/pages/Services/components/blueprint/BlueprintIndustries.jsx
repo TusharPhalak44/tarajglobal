@@ -69,7 +69,7 @@ export default function BlueprintIndustries() {
                       <Icon className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
                     <div className="w-7 h-7 rounded-full border border-slate-200 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00] transition-all">
-                      <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-text-primary dark:text-white" />
                     </div>
                   </div>
 
@@ -81,7 +81,7 @@ export default function BlueprintIndustries() {
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-400 uppercase tracking-widest">
+                <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] font-mono text-text-secondary dark:text-slate-400 uppercase tracking-widest">
                   SPECIALIZED PRACTICE
                 </div>
               </motion.div>

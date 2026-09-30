@@ -259,7 +259,7 @@ export default function DevServicesCatalog() {
                   {/* Top Bar: Icon + Category Tag + SLA Metric */}
                   <div className="flex items-center justify-between gap-3 mb-5">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                         <Icon className="w-5 h-5" />
                       </div>
                       <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-text-muted bg-surface border border-border px-2 py-0.5 rounded-md">
@@ -267,7 +267,7 @@ export default function DevServicesCatalog() {
                       </span>
                     </div>
 
-                    <span className="font-mono text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-md border border-primary/20">
+                    <span className="font-mono text-[10px] font-bold text-primary bg-primary/30 dark:bg-primary/10 px-2 py-0.5 rounded-md border border-primary/20">
                       {service.metric}
                     </span>
                   </div>

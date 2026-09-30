@@ -47,7 +47,7 @@ export const GrowthMetrics = ({ activeStage }) => {
     <div className="flex flex-col justify-between gap-3.5 w-full h-full">
       
       {/* Subhead */}
-      <div className="flex items-center justify-between px-1 text-sm font-mono text-slate-400 uppercase tracking-widest">
+      <div className="flex items-center justify-between px-1 text-sm font-mono text-text-secondary dark:text-slate-400 uppercase tracking-widest">
         <span>LIVE TELEMETRY</span>
         <span className="text-emerald-400 flex items-center gap-1 font-bold">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -62,13 +62,13 @@ export const GrowthMetrics = ({ activeStage }) => {
           : 'bg-[#090D17]/80 border-slate-800/80'
       }`}>
         <div className="flex items-center justify-between text-sm font-mono mb-1">
-          <span className="text-slate-400">ICP PRECISION</span>
+          <span className="text-text-secondary dark:text-slate-400">ICP PRECISION</span>
           <span className="text-[#00E5FF] font-bold">TAM MAPPED</span>
         </div>
-        <div className="text-2xl sm:text-3xl font-mono font-black text-white tracking-tight">
+        <div className="text-2xl sm:text-3xl font-mono font-black text-text-primary dark:text-white tracking-tight">
           <AnimatedMetricNumber targetValue={100} decimal={0} suffix="%" />
         </div>
-        <span className="text-sm text-slate-400 font-mono mt-0.5 block">
+        <span className="text-sm text-text-secondary dark:text-slate-400 font-mono mt-0.5 block">
           Buying Committee Calibrated
         </span>
       </div>
@@ -80,13 +80,13 @@ export const GrowthMetrics = ({ activeStage }) => {
           : 'bg-[#090D17]/80 border-slate-800/80'
       }`}>
         <div className="flex items-center justify-between text-sm font-mono mb-1">
-          <span className="text-slate-400">DATA ACCURACY</span>
+          <span className="text-text-secondary dark:text-slate-400">DATA ACCURACY</span>
           <span className="text-emerald-400 font-bold">DIRECT DIALS</span>
         </div>
-        <div className="text-2xl sm:text-3xl font-mono font-black text-white tracking-tight">
+        <div className="text-2xl sm:text-3xl font-mono font-black text-text-primary dark:text-white tracking-tight">
           <AnimatedMetricNumber targetValue={99.8} decimal={1} suffix="%" />
         </div>
-        <span className="text-sm text-slate-400 font-mono mt-0.5 block">
+        <span className="text-sm text-text-secondary dark:text-slate-400 font-mono mt-0.5 block">
           Multi-Pass Direct Dial Verification
         </span>
       </div>
@@ -98,24 +98,24 @@ export const GrowthMetrics = ({ activeStage }) => {
           : 'bg-[#090D17]/80 border-slate-800/80'
       }`}>
         <div className="flex items-center justify-between text-sm font-mono mb-1">
-          <span className="text-slate-400">PIPELINE OUTCOME</span>
+          <span className="text-text-secondary dark:text-slate-400">PIPELINE OUTCOME</span>
           <span className="text-cta font-bold">WON</span>
         </div>
         <div className="text-2xl sm:text-3xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6D00] tracking-tight">
           GROWTH
         </div>
-        <span className="text-sm text-slate-400 font-mono mt-0.5 block">
+        <span className="text-sm text-text-secondary dark:text-slate-400 font-mono mt-0.5 block">
           Predictable Demand &amp; Appointments
         </span>
       </div>
 
       {/* Live Pipeline Health Bar */}
-      <div className="p-3.5 rounded-xl bg-[#090D17]/90 border border-slate-800/80">
+      <div className="p-3.5 rounded-xl bg-surface dark:bg-[#090D17]/90 border border-border dark:border-slate-800/80">
         <div className="flex items-center justify-between text-sm font-mono mb-1.5">
-          <span className="text-slate-300 font-bold">PIPELINE HEALTH INDEX</span>
+          <span className="text-text-secondary dark:text-slate-300 font-bold">PIPELINE HEALTH INDEX</span>
           <span className="text-emerald-400 font-bold">88% OPTIMAL</span>
         </div>
-        <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+        <div className="w-full h-1.5 rounded-full bg-surface dark:bg-slate-800 overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: '88%' }}

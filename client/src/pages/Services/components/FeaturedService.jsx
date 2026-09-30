@@ -50,12 +50,12 @@ export default function FeaturedService() {
       aria-label="Where Strategy Meets Execution — Featured Service"
     >
       {/* Background Soft Lighting */}
-      <div className="absolute top-1/2 -left-20 w-[500px] h-[500px] rounded-full blur-[140px] bg-primary/5 dark:bg-primary/8 pointer-events-none -z-10" />
+      <div className="absolute top-1/2 -left-20 w-[500px] h-[500px] rounded-full blur-[140px] bg-primary/25 dark:bg-primary/5 dark:bg-primary/8 pointer-events-none -z-10" />
 
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Section Sub-Eyebrow */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cta/10 border border-cta/25 text-cta text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cta/30 dark:bg-cta/10 border border-cta/25 text-cta text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em]">
             <Sparkles className="w-3 h-3" />
             <span>FEATURED SERVICE SHOWCASE</span>
           </div>

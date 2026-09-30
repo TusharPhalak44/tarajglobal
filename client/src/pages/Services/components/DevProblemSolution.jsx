@@ -74,7 +74,7 @@ export default function DevProblemSolution() {
                   {/* Card Header */}
                   <div className="flex items-center justify-between gap-4 pb-5 border-b border-border/60">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                      <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                         <Icon className="w-5 h-5" />
                       </div>
                       <span className="font-mono text-xs font-bold uppercase tracking-wider text-text-primary">
@@ -98,7 +98,7 @@ export default function DevProblemSolution() {
                   </div>
 
                   {/* Solution Block */}
-                  <div className="mt-4 p-4 rounded-xl bg-primary/5 border border-primary/20">
+                  <div className="mt-4 p-4 rounded-xl bg-primary/25 dark:bg-primary/5 border border-primary/20">
                     <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wide mb-1.5">
                       <CheckCircle2 className="w-4 h-4 shrink-0" />
                       <span>{card.solutionTitle}</span>

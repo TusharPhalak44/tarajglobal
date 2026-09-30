@@ -46,7 +46,7 @@ const CampaignMetrics = () => {
   return (
     <section
       id="measure-email-marketing-engagement"
-      className="relative py-20 lg:py-28 overflow-hidden bg-white dark:bg-[#070B14] text-slate-900 dark:text-white border-t border-slate-200/80 dark:border-white/[0.06]"
+      className="relative py-20 lg:py-28 overflow-hidden bg-white dark:bg-[#070B14] text-slate-900 dark:text-text-primary dark:text-white border-t border-slate-200/80 dark:border-white/[0.06]"
       aria-label="Measure Every Stage of Engagement"
     >
       {/* Background */}

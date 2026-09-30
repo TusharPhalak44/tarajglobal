@@ -71,7 +71,7 @@ function ServiceDetails() {
             </Link>
 
             <div className="bg-surface rounded-3xl border border-border p-8 md:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 text-primary text-xs font-semibold">
                 <span>Enterprise Service</span>
               </div>
 

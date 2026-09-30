@@ -25,9 +25,30 @@ import { errorHandler } from './middleware/error.middleware.js'
 
 const app = express()
 
-// Security middleware
+// Trust proxy — required for rate limiters to work correctly behind Nginx/Apache
+// Without this, all requests look like they come from the proxy IP, not the real client
+app.set('trust proxy', 1)
+
+// Security middleware — comprehensive HTTP security headers
 app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" }
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:", "blob:"],
+      connectSrc: ["'self'"],
+      frameSrc: ["'none'"],
+      objectSrc: ["'none'"],
+    },
+  },
+  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
+  noSniff: true,
+  frameguard: { action: 'deny' },
+  xssFilter: true,
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 }))
 
 // CORS configuration — allow all localhost ports in development
@@ -59,9 +80,44 @@ const limiter = rateLimit({
 })
 app.use('/api/', limiter)
 
+// Strict rate limiter for login — prevents brute-force attacks
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // only 10 login attempts per 15 min per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  skipSuccessfulRequests: true, // don't count successful logins
+  message: {
+    success: false,
+    message: 'Too many login attempts. Please try again in 15 minutes.'
+  }
+})
+
+// Strict rate limiter for public forms — prevents spam
+const formLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: isDev ? 1000 : 10, // 10 form submissions per IP per hour
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: 'Too many submissions from this IP. Please try again in an hour.'
+  }
+})
+
+// Analytics rate limiter — prevents data flooding
+const analyticsLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: isDev ? 10000 : 60, // 60 tracking calls per minute per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Rate limit exceeded.' }
+})
+
 // Body parser middleware
-app.use(express.json({ limit: '10mb' }))
-app.use(express.urlencoded({ extended: true, limit: '10mb' }))
+// Limit to 1mb for public routes to prevent ReDoS/DoS via large payloads
+app.use(express.json({ limit: '1mb' }))
+app.use(express.urlencoded({ extended: true, limit: '1mb' }))
 
 // Static files
 app.use('/uploads', express.static('uploads'))
@@ -73,13 +129,13 @@ app.use('/api/blog', blogRoutes)
 app.use('/api/jobs', jobRoutes)
 app.use('/api/categories', categoryRoutes)
 app.use('/api/authors', authorRoutes)
-app.use('/api/contact', contactRoutes)
+app.use('/api/contact', formLimiter, contactRoutes)
 app.use('/api/upload', uploadRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/cms', cmsRoutes)
 app.use('/api/footer', footerRoutes)
 app.use('/api/career-gallery', careerGalleryRoutes)
-app.use('/api/analytics', analyticsRoutes)
+app.use('/api/analytics', analyticsLimiter, analyticsRoutes)
 app.use('/api/seo', seoRoutes)
 
 // Health check

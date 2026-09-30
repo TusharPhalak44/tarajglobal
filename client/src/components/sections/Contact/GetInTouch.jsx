@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import FlowButton from '../../ui/FlowButton'
 import AnimatedGoldWave from './AnimatedGoldWave'
 import './Contact.css'
 
@@ -61,7 +62,7 @@ const GetInTouch = ({ onBookMeeting }) => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="absolute top-20 right-20 w-96 h-96 bg-cta/10 rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-96 h-96 bg-cta/30 dark:bg-cta/10 rounded-full blur-3xl"
         />
         
         <motion.div
@@ -127,7 +128,7 @@ const GetInTouch = ({ onBookMeeting }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.85 }}
-                className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold text-white flex items-center gap-2"
+                className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold text-text-primary dark:text-white flex items-center gap-2"
                 style={{
                   background: 'rgba(18,18,28,0.95)',
                   border: '1px solid rgba(0,166,255,0.3)',
@@ -199,7 +200,7 @@ const GetInTouch = ({ onBookMeeting }) => {
 
                 {/* Heading */}
                 <div className="text-center">
-                  <h3 className="text-white font-bold text-xl mb-1">Accelerate your growth</h3>
+                  <h3 className="text-text-primary dark:text-white font-bold text-xl mb-1">Accelerate your growth</h3>
                   <p className="text-text-secondary text-sm">Our team typically responds within a few hours.</p>
                 </div>
 
@@ -235,19 +236,12 @@ const GetInTouch = ({ onBookMeeting }) => {
                 </div>
 
                 {/* CTA button */}
-                <motion.button
-                  onClick={handleBookMeeting}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200"
-                  style={{
-                    background: 'linear-gradient(135deg, #00A6FF, #FF6D00)',
-                    boxShadow: '0 4px 20px rgba(0,166,255,0.25)',
-                  }}
-                >
-                  <Mail size={15} />
-                  Book a Meeting
-                </motion.button>
+                <FlowButton 
+                  onClick={handleBookMeeting} 
+                  text="Book a Meeting" 
+                  variant="primary" 
+                  className="w-full justify-center"
+                />
               </div>
 
             </div>

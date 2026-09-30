@@ -19,7 +19,7 @@ const ServicesHeader = () => {
           duration: 0.8, 
           ease: [0.22, 1, 0.36, 1] 
         }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-[1.16] mb-6 dark:text-white"
+        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-[1.16] mb-6 dark:text-text-primary dark:text-white"
       >
         <motion.span
           className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"

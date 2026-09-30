@@ -187,7 +187,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-[70] bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
+            className="fixed inset-0 z-[70] bg-background dark:bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
             onClick={onClose}
           />
 
@@ -198,11 +198,11 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed top-0 right-0 h-full w-full sm:w-[440px] z-[80] flex flex-col bg-white/98 dark:bg-[#080C14]/98 border-l border-slate-200 dark:border-white/10 shadow-2xl backdrop-blur-3xl text-slate-900 dark:text-white overflow-hidden"
+            className="fixed top-0 right-0 h-full w-full sm:w-[440px] z-[80] flex flex-col bg-white/98 dark:bg-[#080C14]/98 border-l border-slate-200 dark:border-white/10 shadow-2xl backdrop-blur-3xl text-slate-900 dark:text-text-primary dark:text-white overflow-hidden"
           >
             {/* Ambient Background Energy Flare */}
-            <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-primary/10 dark:bg-[#00A6FF]/12 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-cta/10 dark:bg-[#FF6D00]/10 blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-[#00A6FF]/12 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-cta/30 dark:bg-cta/10 dark:bg-[#FF6D00]/10 blur-3xl pointer-events-none" />
 
             {/* ── HEADER: BRAND + GLOBAL PORTAL ───────────────────────── */}
             <div className="relative z-10 flex items-center justify-between px-5 sm:px-7 py-4 sm:py-5 border-b border-slate-100 dark:border-white/10 flex-shrink-0 bg-slate-50/60 dark:bg-white/[0.02]">
@@ -213,7 +213,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                     alt={logoText || "Taraj Global"}
                   />
                   {logoText && (
-                    <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white font-display">
+                    <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-text-primary dark:text-white font-display">
                       {logoText}
                     </span>
                   )}
@@ -231,7 +231,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                 onClick={onClose}
                 whileHover={{ scale: 1.15, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center transition-all cursor-pointer shadow-2xs focus:outline-none"
+                className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-text-primary dark:text-white hover:bg-slate-200 dark:hover:bg-surface/90 dark:bg-white/10 flex items-center justify-center transition-all cursor-pointer shadow-2xs focus:outline-none"
                 aria-label="Close menu"
               >
                 <X size={18} strokeWidth={2.2} />
@@ -258,7 +258,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                         onClick={() => setIsServicesExpanded(!isServicesExpanded)}
                       >
                         <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
-                          <span className="font-mono text-[11px] font-bold shrink-0 text-slate-400 dark:text-slate-500">
+                          <span className="font-mono text-[11px] font-bold shrink-0 text-text-secondary dark:text-slate-400 dark:text-slate-500">
                             {item.index}
                           </span>
 
@@ -267,7 +267,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                           </div>
 
                           <div className="min-w-0">
-                            <h4 className="text-[15px] font-bold tracking-tight leading-snug text-slate-900 dark:text-white">
+                            <h4 className="text-[15px] font-bold tracking-tight leading-snug text-slate-900 dark:text-text-primary dark:text-white">
                               {item.name}
                             </h4>
                             <p className="text-[11px] text-slate-500 dark:text-slate-400 font-normal truncate mt-0.5">
@@ -295,7 +295,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                               setIsServicesExpanded(!isServicesExpanded)
                             }}
                             aria-label="Toggle services list"
-                            className="p-1 rounded-lg text-slate-400 hover:text-primary transition-transform"
+                            className="p-1 rounded-lg text-text-secondary dark:text-slate-400 hover:text-primary transition-transform"
                           >
                             <ChevronDown
                               size={16}
@@ -317,7 +317,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                           >
                             {SERVICES_SUBGROUPS.map((group) => (
                               <div key={group.category} className="space-y-1">
-                                <div className="flex items-center gap-2 px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                                <div className="flex items-center gap-2 px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-text-secondary dark:text-slate-400 dark:text-slate-500">
                                   <span
                                     className="w-2 h-2 rounded-full"
                                     style={{ backgroundColor: group.accent }}
@@ -330,7 +330,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                                       key={service.path}
                                       to={service.path}
                                       onClick={onClose}
-                                      className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-white/5 transition-colors min-h-[40px]"
+                                      className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 transition-colors min-h-[40px]"
                                     >
                                       <span>{service.name}</span>
                                       <ArrowRight size={12} className="opacity-40" />
@@ -365,14 +365,14 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                           className="p-3 sm:p-3.5 min-h-[48px] rounded-2xl border transition-all duration-200 flex items-center justify-between cursor-pointer relative overflow-hidden bg-slate-50/50 dark:bg-white/[0.02] border-slate-200/70 dark:border-white/5 hover:border-primary/40 dark:hover:border-[#00E5FF]/30 hover:bg-slate-100/80 dark:hover:bg-white/[0.06] shadow-2xs"
                         >
                           <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
-                            <span className="font-mono text-[11px] font-bold shrink-0 text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-[#00E5FF]">
+                            <span className="font-mono text-[11px] font-bold shrink-0 text-text-secondary dark:text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-[#00E5FF]">
                               {item.index}
                             </span>
                             <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
                               <Icon size={16} strokeWidth={2} />
                             </div>
                             <div className="min-w-0">
-                              <h4 className="text-[15px] font-bold tracking-tight leading-snug text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#00E5FF] transition-colors">
+                              <h4 className="text-[15px] font-bold tracking-tight leading-snug text-slate-900 dark:text-text-primary dark:text-white group-hover:text-primary dark:group-hover:text-[#00E5FF] transition-colors">
                                 {item.name}
                               </h4>
                               <p className="text-[11px] text-slate-500 dark:text-slate-400 font-normal truncate mt-0.5">
@@ -380,7 +380,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                               </p>
                             </div>
                           </div>
-                          <ArrowUpRight size={14} className="text-slate-400 group-hover:text-primary dark:group-hover:text-[#00E5FF] transition-transform duration-200 group-hover:translate-x-0.5" />
+                          <ArrowUpRight size={14} className="text-text-secondary dark:text-slate-400 group-hover:text-primary dark:group-hover:text-[#00E5FF] transition-transform duration-200 group-hover:translate-x-0.5" />
                         </motion.div>
                       </a>
                     </motion.div>
@@ -500,7 +500,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
               <Link
                 to="/contact"
                 onClick={onClose}
-                className="w-full py-2.5 px-4 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all flex items-center justify-center gap-1.5 shadow-2xs"
+                className="w-full py-2.5 px-4 rounded-xl bg-surface dark:bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all flex items-center justify-center gap-1.5 shadow-2xs"
               >
                 <span>Book Strategy Consultation</span>
                 <ArrowUpRight size={13} strokeWidth={2.2} />

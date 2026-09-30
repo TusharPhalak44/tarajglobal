@@ -297,7 +297,7 @@ const ProblemsSolved = () => {
     <section
       id="what-problems-mql-services-solve"
       ref={sectionRef}
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-[#FAFCFF] dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-[#FAFCFF] dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="What Problems Do MQL Services Solve"
     >
       {/* ── Soft Ambient Background Glow ── */}
@@ -603,7 +603,7 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
                           <span className="w-2 h-2 rounded-full animate-ping shrink-0 ml-1" style={{ backgroundColor: item.color }} />
@@ -627,7 +627,7 @@ const ProblemsSolved = () => {
                   scale: isCenterActive ? 1.08 : 1,
                 }}
                 transition={{ duration: 0.25 }}
-                className="mb-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
+                className="mb-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
               >
                 MQL ENGINE
               </motion.div>
@@ -682,7 +682,7 @@ const ProblemsSolved = () => {
                   }}
                 >
                   {/* Subtle Inner Ring */}
-                  <div className="absolute inset-1 rounded-full border border-white/15 pointer-events-none" />
+                  <div className="absolute inset-1 rounded-full border border-border dark:border-white/15 pointer-events-none" />
 
                   {/* Dynamic Problem -> Solution Transformation Illustration */}
                   <AnimatePresence mode="wait">
@@ -725,7 +725,7 @@ const ProblemsSolved = () => {
                         <motion.div
                           animate={{ x: [0, 2, 0], opacity: [0.5, 1, 0.5] }}
                           transition={{ duration: 0.8, repeat: Infinity }}
-                          className="text-white/80"
+                          className="text-text-secondary dark:text-white/80"
                         >
                           <ArrowRight className="w-3.5 h-3.5" />
                         </motion.div>
@@ -749,7 +749,7 @@ const ProblemsSolved = () => {
                       </div>
 
                       {/* Engine Action Headline */}
-                      <div className="text-[11px] lg:text-[11.5px] font-black uppercase tracking-tight text-white leading-tight text-center px-1">
+                      <div className="text-[11px] lg:text-[11.5px] font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight text-center px-1">
                         {currentItem.engineAction}
                       </div>
 
@@ -775,7 +775,7 @@ const ProblemsSolved = () => {
                   scale: isCenterActive ? 1.08 : 1,
                 }}
                 transition={{ duration: 0.25 }}
-                className="mt-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
+                className="mt-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
               >
                 QUALIFY
               </motion.div>
@@ -806,7 +806,7 @@ const ProblemsSolved = () => {
                   >
                     {/* Square Icon Badge */}
                     <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs"
+                      className="w-8 h-8 rounded-lg flex items-center justify-center text-text-primary dark:text-white shrink-0 shadow-xs"
                       style={{ backgroundColor: item.color }}
                     >
                       <Icon className="w-4 h-4" />
@@ -814,7 +814,7 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-tight truncate">
+                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate">
                         {item.solution.title}
                       </div>
                       <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
@@ -841,13 +841,13 @@ const ProblemsSolved = () => {
             style={{ borderColor: currentItem.color }}
           >
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-text-primary dark:text-white shrink-0"
               style={{ backgroundColor: currentItem.color }}
             >
               <currentItem.problem.icon className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white">{currentItem.problem.title}</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.problem.title}</div>
               <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.problem.sub}</div>
             </div>
           </div>
@@ -864,11 +864,11 @@ const ProblemsSolved = () => {
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
               <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
-                <currentItem.problem.icon className="w-3 h-3 text-white" />
+                <currentItem.problem.icon className="w-3 h-3 text-text-primary dark:text-white" />
               </div>
               <ArrowRight className="w-3 h-3 text-sky-300" />
               <div
-                className="w-6 h-6 rounded-md flex items-center justify-center text-white shadow-xs"
+                className="w-6 h-6 rounded-md flex items-center justify-center text-text-primary dark:text-white shadow-xs"
                 style={{ backgroundColor: currentItem.color }}
               >
                 <currentItem.solution.icon className="w-3 h-3" />
@@ -890,13 +890,13 @@ const ProblemsSolved = () => {
             style={{ borderColor: currentItem.color }}
           >
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-text-primary dark:text-white shrink-0"
               style={{ backgroundColor: currentItem.color }}
             >
               <currentItem.solution.icon className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white">{currentItem.solution.title}</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.solution.title}</div>
               <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.solution.sub}</div>
             </div>
           </div>

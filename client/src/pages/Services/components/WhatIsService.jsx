@@ -347,7 +347,7 @@ const WhatIsService = () => {
                             {srv.eyebrow}
                           </span>
                           <div
-                            className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs"
+                            className="w-8 h-8 rounded-lg flex items-center justify-center text-text-primary dark:text-white shrink-0 shadow-xs"
                             style={{ backgroundColor: srv.color }}
                           >
                             <Icon className="w-4 h-4" />
@@ -374,7 +374,7 @@ const WhatIsService = () => {
 
                         <Link
                           to={srv.path}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-primary bg-primary/10 hover:bg-primary hover:text-white transition-all cursor-pointer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-primary bg-primary/30 dark:bg-primary/10 hover:bg-primary hover:text-white transition-all cursor-pointer"
                         >
                           <span>Explore</span>
                           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

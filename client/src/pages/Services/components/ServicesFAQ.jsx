@@ -31,7 +31,7 @@ export default function ServicesFAQ() {
   return (
     <section
       id="services-faq-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1000px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Header */}
@@ -42,13 +42,13 @@ export default function ServicesFAQ() {
               FREQUENTLY ASKED QUESTIONS
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
             Everything You Need To Know <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
               Before Getting Started
             </span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-white/60 max-w-lg mx-auto">
+          <p className="mt-4 text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-lg mx-auto">
             Transparent answers on our qualification process, SLAs, and technical onboarding.
           </p>
         </div>
@@ -65,14 +65,14 @@ export default function ServicesFAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden transition-colors"
+                className="rounded-2xl border border-border dark:border-white/10 bg-white/[0.02] overflow-hidden transition-colors"
               >
                 <button
                   type="button"
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
                   className="w-full p-6 sm:p-7 flex items-center justify-between text-left cursor-pointer gap-4 group"
                 >
-                  <span className="text-base sm:text-lg font-bold text-white group-hover:text-[#FF6D00] transition-colors leading-snug">
+                  <span className="text-base sm:text-lg font-bold text-text-primary dark:text-white group-hover:text-[#FF6D00] transition-colors leading-snug">
                     {faq.q}
                   </span>
                   <div
@@ -91,7 +91,7 @@ export default function ServicesFAQ() {
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden px-6 sm:px-7 pb-6 text-sm text-white/70 leading-relaxed font-normal border-t border-white/5 pt-4"
+                      className="overflow-hidden px-6 sm:px-7 pb-6 text-sm text-text-secondary dark:text-white/70 leading-relaxed font-normal border-t border-border dark:border-white/5 pt-4"
                     >
                       {faq.a}
                     </motion.div>

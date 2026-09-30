@@ -91,7 +91,7 @@ export default function DevGrowthStages() {
                     <span className="font-mono text-xs font-bold text-primary tracking-widest uppercase">
                       {stage.stage}
                     </span>
-                    <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                    <div className="w-9 h-9 rounded-xl bg-primary/30 dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                       <Icon className="w-4 h-4" />
                     </div>
                   </div>

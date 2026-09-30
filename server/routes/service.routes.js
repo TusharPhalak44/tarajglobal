@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     // TODO: Implement get all services logic
     res.json({ success: true, message: 'Get all services endpoint' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
     // TODO: Implement get service by ID logic
     res.json({ success: true, message: 'Get service by ID endpoint' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -40,7 +40,7 @@ router.post('/', authenticate, authorize('admin'), [
     // TODO: Implement create service logic
     res.json({ success: true, message: 'Create service endpoint' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -55,7 +55,7 @@ router.put('/:id', authenticate, authorize('admin'), [
     // TODO: Implement update service logic
     res.json({ success: true, message: 'Update service endpoint' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -67,7 +67,7 @@ router.delete('/:id', authenticate, authorize('admin'), async (req, res) => {
     // TODO: Implement delete service logic
     res.json({ success: true, message: 'Delete service endpoint' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

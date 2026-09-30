@@ -20,7 +20,7 @@ const Hero = () => {
       {[...Array(30)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-primary/20"
+          className="absolute rounded-full bg-primary/40 dark:bg-primary/20"
           style={{
             width: Math.random() * 8 + 4,
             height: Math.random() * 8 + 4,
@@ -141,7 +141,7 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#1E3A8A] text-white group flex items-center gap-2 px-8 py-4  text-white rounded-xl font-semibold text-lg cursor-pointer"
+              className="bg-surface dark:bg-[#1E3A8A] text-white group flex items-center gap-2 px-8 py-4  text-white rounded-xl font-semibold text-lg cursor-pointer"
             >
               Get Started
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -168,7 +168,7 @@ const Hero = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2"
+          className="w-6 h-10 border-2 border-border dark:border-white/20 rounded-full flex justify-center pt-2"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}

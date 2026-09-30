@@ -3,28 +3,24 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 const ThemeContext = createContext(undefined)
 
 export const ThemeProvider = ({ children }) => {
-  // Initialize theme from localStorage immediately to prevent flash
+  // Hardcode theme to dark and disable theme toggling
   const getInitialTheme = () => {
-    const savedTheme = localStorage.getItem('theme')
-    if (savedTheme) return savedTheme
-    // Check OS preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    return prefersDark ? 'dark' : 'light'
+    return 'dark'
   }
 
   const [theme, setTheme] = useState(getInitialTheme)
 
   useEffect(() => {
     // Apply theme to document
-    document.documentElement.classList.remove('light', 'dark')
-    document.documentElement.classList.add(theme)
+    document.documentElement.classList.remove('light')
+    document.documentElement.classList.add('dark')
     
     // Save to localStorage
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    localStorage.setItem('theme', 'dark')
+  }, [])
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+    // Disabled functionality, app is locked to dark mode
   }
 
   return (

@@ -129,7 +129,7 @@ export default function BlueprintObjective() {
             </p>
             <button
               onClick={scrollToCoreServices}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#E05300] transition-colors cursor-pointer group"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#E05300] transition-colors cursor-pointer group"
             >
               <span>View All Services</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -209,7 +209,7 @@ export default function BlueprintObjective() {
 
                   {/* Recommended Services List */}
                   <div className="mt-8 pt-6 border-t border-slate-100">
-                    <div className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-4">
+                    <div className="text-xs font-mono uppercase tracking-widest text-text-secondary dark:text-slate-400 mb-4">
                       RECOMMENDED SERVICES:
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -222,7 +222,7 @@ export default function BlueprintObjective() {
                           <span className="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-[#FF6D00] transition-colors">
                             {srv.name}
                           </span>
-                          <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#FF6D00] group-hover:translate-x-0.5 transition-all" />
+                          <ArrowRight className="w-3.5 h-3.5 text-text-secondary dark:text-slate-400 group-hover:text-[#FF6D00] group-hover:translate-x-0.5 transition-all" />
                         </div>
                       ))}
                     </div>
@@ -233,10 +233,10 @@ export default function BlueprintObjective() {
                 <div className="mt-8 pt-6">
                   <button
                     onClick={() => navigate(current.services[0].route)}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#FF6D00] hover:bg-[#E05300] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-[#FF6D00]/30 cursor-pointer group"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#FF6D00] hover:bg-[#E05300] text-text-primary dark:text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-[#FF6D00]/30 cursor-pointer group"
                   >
                     <span>Explore Solution</span>
-                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 text-text-primary dark:text-white group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>

@@ -49,7 +49,7 @@ export const GrowthFlow = () => {
       {/* ── Desktop Animated Horizontal Connecting Line ──────────────── */}
       <div className="hidden md:block absolute top-[9px] left-3 right-3 h-px pointer-events-none z-0">
         {/* Base Track */}
-        <div className="w-full h-full bg-slate-800/80" />
+        <div className="w-full h-full bg-surface dark:bg-slate-800/80" />
         
         {/* Animated Drawing Gradient Line */}
         <motion.div
@@ -63,7 +63,7 @@ export const GrowthFlow = () => {
 
       {/* ── Mobile Animated Vertical Connecting Line ────────────────── */}
       <div className="md:hidden absolute top-2 bottom-6 left-[7px] w-px pointer-events-none z-0">
-        <div className="w-full h-full bg-slate-800/80" />
+        <div className="w-full h-full bg-surface dark:bg-slate-800/80" />
         <motion.div
           initial={{ scaleY: 0 }}
           whileInView={{ scaleY: 1 }}

@@ -34,7 +34,7 @@ const OfficeLocation = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="absolute top-20 right-20 w-96 h-96 bg-cta/10 rounded-full blur-3xl"
+        className="absolute top-20 right-20 w-96 h-96 bg-cta/30 dark:bg-cta/10 rounded-full blur-3xl"
       />
       
       <motion.div

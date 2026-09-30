@@ -57,7 +57,7 @@ router.get('/', async (req, res) => {
     })
   } catch (error) {
     console.error('Error fetching users:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -67,12 +67,17 @@ router.get('/', async (req, res) => {
 router.post('/', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
-  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
   body('role').optional().isIn(['super_admin', 'admin', 'editor', 'hr_recruiter', 'content_manager', 'user']).withMessage('Invalid role'),
   body('status').optional().isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status')
 ], validate, async (req, res) => {
   try {
     const { name, email, password, role = 'user', status = 'active' } = req.body
+    
+    // Privilege escalation guard: only super_admin can create super_admin accounts
+    if (role === 'super_admin' && req.user.role !== 'super_admin') {
+      return res.status(403).json({ success: false, message: 'Insufficient permissions to assign this role.' })
+    }
     
     // Check if user exists
     const [existing] = await db.execute('SELECT id FROM users WHERE email = ?', [email])
@@ -93,7 +98,7 @@ router.post('/', [
     res.status(201).json({ success: true, message: 'User created successfully', data: { id: result.insertId } })
   } catch (error) {
     console.error('Error creating user:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -124,6 +129,11 @@ router.put('/:id', [
       }
     }
     
+    // Privilege escalation guard: only super_admin can promote others to super_admin
+    if (role === 'super_admin' && req.user.role !== 'super_admin') {
+      return res.status(403).json({ success: false, message: 'Insufficient permissions to assign this role.' })
+    }
+    
     const updates = []
     const values = []
 
@@ -140,7 +150,7 @@ router.put('/:id', [
     res.json({ success: true, message: 'User updated successfully' })
   } catch (error) {
     console.error('Error updating user:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -193,7 +203,7 @@ router.delete('/:id', async (req, res) => {
     res.json({ success: true, message: `User "${existing[0].name}" deleted successfully` })
   } catch (error) {
     console.error('Error deleting user:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -231,7 +241,7 @@ router.patch('/:id/status', [
     res.json({ success: true, message: 'User status updated successfully' })
   } catch (error) {
     console.error('Error updating user status:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -239,7 +249,7 @@ router.patch('/:id/status', [
 // @desc    Reset user password
 // @access  Private
 router.post('/:id/reset-password', [
-  body('new_password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+  body('new_password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
 ], validate, async (req, res) => {
   try {
     const { new_password } = req.body
@@ -255,7 +265,7 @@ router.post('/:id/reset-password', [
     res.json({ success: true, message: 'Password reset successfully' })
   } catch (error) {
     console.error('Error resetting password:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

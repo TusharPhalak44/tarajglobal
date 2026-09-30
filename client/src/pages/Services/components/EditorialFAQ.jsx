@@ -46,7 +46,7 @@ export default function EditorialFAQ() {
           
           {/* ══════════ LEFT COLUMN: Heading & Supporting Text ══════════ */}
           <div className="lg:col-span-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
               <span>CLEAR ANSWERS</span>
             </div>
 

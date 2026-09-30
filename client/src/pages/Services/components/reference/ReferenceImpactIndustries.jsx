@@ -35,7 +35,7 @@ export default function ReferenceImpactIndustries() {
   return (
     <section
       id="impact-industries-section"
-      className="relative py-20 lg:py-24 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden select-none transition-colors duration-300"
+      className="relative py-20 lg:py-24 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden select-none transition-colors duration-300"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
@@ -48,7 +48,7 @@ export default function ReferenceImpactIndustries() {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-[1.15]">
               Measurable Results Across <br className="hidden sm:inline" />
               Target Industries
             </h2>
@@ -61,7 +61,7 @@ export default function ReferenceImpactIndustries() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           {/* ══════════ LEFT HALF: THE IMPACT (HIGH CONTRAST B2B STATS) (5 cols) ══════════ */}
-          <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-3xl border border-slate-800 dark:border-white/10 bg-slate-950 dark:bg-[#0B0F17]/60 backdrop-blur-xl relative overflow-hidden shadow-xl shadow-slate-300/40 dark:shadow-none text-white">
+          <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-3xl border border-border dark:border-slate-800 dark:border-white/10 bg-background dark:bg-slate-950 dark:bg-[#0B0F17]/60 backdrop-blur-xl relative overflow-hidden shadow-xl shadow-slate-300/40 dark:shadow-none text-text-primary dark:text-white">
             {/* Subtle orange ambient wave lines in background */}
             <div className="absolute -bottom-10 left-0 right-0 h-40 opacity-30 pointer-events-none">
               <svg className="w-full h-full" viewBox="0 0 400 150" fill="none">
@@ -89,7 +89,7 @@ export default function ReferenceImpactIndustries() {
                 </span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-text-primary dark:text-white leading-tight">
                 Real Results. <br />
                 Lasting Growth.
               </h2>
@@ -102,20 +102,20 @@ export default function ReferenceImpactIndustries() {
                   <div className="text-2xl sm:text-3xl lg:text-4xl font-black font-mono text-[#FF6D00] tracking-tight">
                     {m.num}
                   </div>
-                  <div className="text-[11px] font-mono text-white/60 uppercase tracking-wider mt-1 leading-tight">
+                  <div className="text-[11px] font-mono text-text-secondary dark:text-white/60 uppercase tracking-wider mt-1 leading-tight">
                     {m.label}
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="text-[11px] font-mono text-white/40 pt-4 border-t border-white/10">
+            <div className="text-[11px] font-mono text-text-secondary dark:text-white/40 pt-4 border-t border-border dark:border-white/10">
               AUDITED GLOBAL REVENUE IMPACT
             </div>
           </div>
 
           {/* ══════════ RIGHT HALF: INDUSTRIES WE SERVE (LIGHT/DARK ADAPTABLE) (7 cols) ══════════ */}
-          <div className="lg:col-span-7 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0B0F17] p-6 sm:p-8 text-[#0F172A] dark:text-white shadow-xl shadow-slate-200/50 dark:shadow-none flex flex-col justify-between transition-colors duration-300">
+          <div className="lg:col-span-7 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0B0F17] p-6 sm:p-8 text-[#0F172A] dark:text-text-primary dark:text-white shadow-xl shadow-slate-200/50 dark:shadow-none flex flex-col justify-between transition-colors duration-300">
             {/* Header of Industries box */}
             <div className="flex items-center justify-between pb-5 border-b border-slate-100 dark:border-white/10 mb-6">
               <div>
@@ -125,7 +125,7 @@ export default function ReferenceImpactIndustries() {
                     INDUSTRIES WE SERVE
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-text-primary dark:text-white">
                   Built for Modern B2B Teams
                 </h3>
               </div>
@@ -144,7 +144,7 @@ export default function ReferenceImpactIndustries() {
                     <div className="w-9 h-9 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white/80 group-hover:bg-[#FF6D00] group-hover:border-[#FF6D00] group-hover:text-black transition-colors mb-2">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-xs font-bold text-slate-800 dark:text-white/80 group-hover:text-slate-950 dark:group-hover:text-white tracking-tight">
+                    <span className="text-xs font-bold text-slate-800 dark:text-text-primary dark:text-white/80 group-hover:text-slate-950 dark:group-hover:text-text-primary dark:text-white tracking-tight">
                       {ind.name}
                     </span>
                   </div>

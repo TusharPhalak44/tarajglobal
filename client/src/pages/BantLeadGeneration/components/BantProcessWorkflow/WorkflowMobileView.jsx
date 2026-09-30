@@ -66,7 +66,7 @@ export default function WorkflowMobileView({
 
               {/* Connecting Mini Arrow between steps */}
               {idx < WORKFLOW_STEPS.length - 1 && (
-                <div className="flex items-center justify-start pl-3 py-0.5 text-slate-400 dark:text-[#00a6ff]/40">
+                <div className="flex items-center justify-start pl-3 py-0.5 text-text-secondary dark:text-slate-400 dark:text-[#00a6ff]/40">
                   <ArrowDown className="w-3.5 h-3.5" />
                 </div>
               )}

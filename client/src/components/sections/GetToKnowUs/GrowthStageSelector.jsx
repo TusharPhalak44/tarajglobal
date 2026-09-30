@@ -52,9 +52,9 @@ export const GrowthStageSelector = ({
   return (
     <div className="flex flex-col gap-3.5 w-full">
       {/* Rail Subhead */}
-      <div className="flex items-center justify-between px-1 text-sm font-mono text-slate-400 uppercase tracking-widest">
+      <div className="flex items-center justify-between px-1 text-sm font-mono text-text-secondary dark:text-slate-400 uppercase tracking-widest">
         <span>CONTROL RAIL // STAGES</span>
-        <span className="text-slate-400">SELECT TO INSPECT</span>
+        <span className="text-text-secondary dark:text-slate-400">SELECT TO INSPECT</span>
       </div>
 
       {stages.map((stage) => {
@@ -119,7 +119,7 @@ export const GrowthStageSelector = ({
                 >
                   <Icon size={13} strokeWidth={2.5} />
                 </div>
-                <h4 className="text-base sm:text-lg font-black tracking-tight text-white group-hover:text-primary transition-colors">
+                <h4 className="text-base sm:text-lg font-black tracking-tight text-text-primary dark:text-white group-hover:text-primary transition-colors">
                   {stage.label}
                 </h4>
               </div>
@@ -133,13 +133,13 @@ export const GrowthStageSelector = ({
             </div>
 
             {/* Subtitle Description */}
-            <p className="text-sm sm:text-sm text-slate-400 font-normal leading-relaxed mt-1.5 pl-8.5">
+            <p className="text-sm sm:text-sm text-text-secondary dark:text-slate-400 font-normal leading-relaxed mt-1.5 pl-8.5">
               {stage.desc}
             </p>
 
             {/* Active Auto-Rotation Progress Bar */}
             {isActive && (
-              <div className="mt-3.5 w-full h-[2px] rounded-full bg-slate-800 overflow-hidden">
+              <div className="mt-3.5 w-full h-[2px] rounded-full bg-surface dark:bg-slate-800 overflow-hidden">
                 <motion.div
                   className={`h-full ${theme.progressBar}`}
                   style={{ width: `${progress}%` }}

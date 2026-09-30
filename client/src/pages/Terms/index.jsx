@@ -124,7 +124,7 @@ function Terms() {
         <Container>
           {/* ══ Header / Hero Area ══════════════════════════════════════════ */}
           <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide mb-4">
               <Scale className="w-3.5 h-3.5 text-primary" />
               <span>Legal Service Agreement</span>
             </div>
@@ -177,7 +177,7 @@ function Terms() {
               </nav>
 
               <div className="mt-6 pt-4 border-t border-border/80">
-                <div className="p-3.5 rounded-xl bg-primary/5 border border-primary/15 text-xs text-text-secondary">
+                <div className="p-3.5 rounded-xl bg-primary/25 dark:bg-primary/5 border border-primary/15 text-xs text-text-secondary">
                   <div className="font-semibold text-text-primary mb-1 flex items-center gap-1.5">
                     <Scale className="w-3.5 h-3.5 text-primary" />
                     <span>Legal Inquiries</span>
@@ -240,7 +240,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Globe className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -261,7 +261,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Users className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -284,7 +284,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -310,7 +310,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Shield className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -335,7 +335,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <FileText className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -353,7 +353,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Mail className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -374,7 +374,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Briefcase className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -395,7 +395,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <BookOpen className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -416,7 +416,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Users className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -437,7 +437,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Mail className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -458,7 +458,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -476,7 +476,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 text-cta">
+                  <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center shrink-0 text-cta">
                     <AlertTriangle className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -494,7 +494,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <ExternalLink className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -515,7 +515,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Globe className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -533,7 +533,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center shrink-0 text-cta">
+                  <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center shrink-0 text-cta">
                     <AlertTriangle className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -556,7 +556,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Lock className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -579,7 +579,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Shield className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -597,7 +597,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Lock className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -615,7 +615,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Eye className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -633,7 +633,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Clock className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -654,7 +654,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Scale className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -675,7 +675,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <FileText className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -693,7 +693,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Scale className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -711,7 +711,7 @@ function Terms() {
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Mail className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
@@ -725,7 +725,7 @@ function Terms() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
                   <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start justify-between min-h-[110px]">
                     <div>
-                      <div className="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center text-cta mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center text-cta mb-2">
                         <Mail className="w-4 h-4" />
                       </div>
                       <span className="text-[11px] font-mono font-semibold text-text-muted tracking-wide block">Email</span>
@@ -737,7 +737,7 @@ function Terms() {
 
                   <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start justify-between min-h-[110px]">
                     <div>
-                      <div className="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center text-cta mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center text-cta mb-2">
                         <Phone className="w-4 h-4" />
                       </div>
                       <span className="text-[11px] font-mono font-semibold text-text-muted tracking-wide block">Direct Phone</span>
@@ -749,7 +749,7 @@ function Terms() {
 
                   <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start justify-between min-h-[110px]">
                     <div>
-                      <div className="w-8 h-8 rounded-lg bg-cta/10 flex items-center justify-center text-cta mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center text-cta mb-2">
                         <MapPin className="w-4 h-4" />
                       </div>
                       <span className="text-[11px] font-mono font-semibold text-text-muted tracking-wide block">Headquarters</span>

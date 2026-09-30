@@ -234,16 +234,16 @@ export const PremiumNavbar = () => {
     <>
       {/* ── TOP HEADER ANNOUNCEMENT BAR (CMS MANAGED) ───────────────────── */}
       {hasTopHeader && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 text-slate-300 border-b border-white/10 text-xs h-8 px-4 flex items-center backdrop-blur-md">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-950/95 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-white/10 text-xs h-8 px-4 flex items-center backdrop-blur-md">
           <div className="max-w-[1600px] w-full mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4 text-[11px] font-medium">
               {headerItems.filter(h => h.url.startsWith('mailto:') || h.url.startsWith('tel:')).map(item => (
                 <a
                   key={item.id}
                   href={item.url}
-                  className="inline-flex items-center gap-1.5 hover:text-[#00A6FF] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-[#0066CC] dark:hover:text-[#00A6FF] transition-colors"
                 >
-                  {item.url.startsWith('mailto:') ? <Mail size={12} className="text-[#00A6FF]" /> : <Phone size={12} className="text-[#00A6FF]" />}
+                  {item.url.startsWith('mailto:') ? <Mail size={12} className="text-[#0066CC] dark:text-[#00A6FF]" /> : <Phone size={12} className="text-[#0066CC] dark:text-[#00A6FF]" />}
                   <span>{item.label}</span>
                 </a>
               ))}
@@ -253,10 +253,10 @@ export const PremiumNavbar = () => {
                 <a
                   key={item.id}
                   href={item.url}
-                  className="inline-flex items-center gap-1.5 font-medium hover:text-[#00A6FF] transition-colors text-slate-200"
+                  className="inline-flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-200 hover:text-[#0066CC] dark:hover:text-[#00A6FF] transition-colors"
                 >
                   <span>{item.label}</span>
-                  <ArrowRight size={11} className="opacity-70 text-[#00A6FF]" />
+                  <ArrowRight size={11} className="opacity-70 text-[#0066CC] dark:text-[#00A6FF]" />
                 </a>
               ))}
             </div>
@@ -291,7 +291,7 @@ export const PremiumNavbar = () => {
           <div className="flex items-center">
             <Link
               to="/"
-              className="bg-[#1E3A8A] text-white flex items-center gap-2.5 sm:gap-3.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0 group cursor-pointer select-none"
+              className="flex items-center gap-2.5 sm:gap-3.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0 group cursor-pointer select-none"
               aria-label={logoData.logo_alt || logoData.logo_text || "Taraj Global Home"}
             >
               {/* Ultra-premium animated SVG TG Emblem / Logo */}
@@ -441,7 +441,7 @@ export const PremiumNavbar = () => {
                                   <ShieldCheck size={13} className="text-emerald-500" />
                                   99.8% Data Accuracy SLA
                                 </span>
-                                <span className="text-slate-300 dark:text-slate-700">|</span>
+                                <span className="text-text-secondary dark:text-slate-300 dark:text-slate-700">|</span>
                                 <span className="text-[#FF6D00] font-semibold flex items-center gap-1">
                                   <Zap size={13} className="text-[#FF6D00]" />
                                   48–72h Rapid Outbound
@@ -516,7 +516,7 @@ export const PremiumNavbar = () => {
             >
               <Link
                 to="/contact"
-                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl     text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-sky-500/25 transition-all overflow-hidden group cursor-pointer"
+                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00A6FF] hover:bg-[#00A6FF]/90 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-sky-500/25 transition-all overflow-hidden group cursor-pointer"
               >
                 {/* Ambient Shimmer Light Bar */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700     pointer-events-none" />

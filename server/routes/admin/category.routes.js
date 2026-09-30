@@ -37,7 +37,7 @@ router.post('/', [
     
     res.status(201).json({ success: true, data: { id: result.insertId, slug: categorySlug } })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -53,12 +53,20 @@ router.put('/:id', [
     
     await db.execute(
       'UPDATE categories SET name = COALESCE(?, name), description = COALESCE(?, description), image = COALESCE(?, image), seo_title = COALESCE(?, seo_title), seo_description = COALESCE(?, seo_description), status = COALESCE(?, status) WHERE id = ?',
-      [name, description, image ?? null, seo_title ?? null, seo_description ?? null, status, id]
+      [
+        name ?? null, 
+        description ?? null, 
+        image ?? null, 
+        seo_title ?? null, 
+        seo_description ?? null, 
+        status ?? null, 
+        id
+      ]
     )
     
     res.json({ success: true, message: 'Category updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -70,7 +78,7 @@ router.delete('/:id', async (req, res) => {
     await db.execute('DELETE FROM categories WHERE id = ?', [req.params.id])
     res.json({ success: true, message: 'Category deleted successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

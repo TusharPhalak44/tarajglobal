@@ -149,12 +149,12 @@ function CommandCenter({ prefersReducedMotion }) {
       />
 
       {/* Top Chrome Bar */}
-      <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] bg-black/20">
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] bg-background dark:bg-black/20">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500/60 inline-block" />
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500/60 inline-block" />
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/60 inline-block" />
-          <span className="text-[11px] font-mono text-white/40 ml-2">BANT Lead Qualification Engine</span>
+          <span className="text-[11px] font-mono text-text-secondary dark:text-white/40 ml-2">BANT Lead Qualification Engine</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -390,7 +390,7 @@ const Hero = () => {
               <button
                 onClick={handleStartCampaign}
                 id="hero-cta-primary"
-                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-text-primary dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{
                   background: 'linear-gradient(90deg, #00A6FF 0%, #0080CC 100%)',
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
@@ -403,7 +403,7 @@ const Hero = () => {
               <button
                 onClick={handleSeeHowItWorks}
                 id="hero-cta-secondary"
-                className="text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+                className="text-text-primary dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }}
               >
                 See How It Works

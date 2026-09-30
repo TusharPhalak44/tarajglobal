@@ -159,7 +159,7 @@ export default function WorkflowCard({
             ACTIVE
           </span>
         ) : (
-          <span className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 dark:text-white/60">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity text-text-secondary dark:text-slate-400 dark:text-white/60">
             Select
           </span>
         )}

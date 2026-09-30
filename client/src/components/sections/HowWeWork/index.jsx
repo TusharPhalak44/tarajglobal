@@ -126,7 +126,7 @@ export const HowWeWork = () => {
        
         {/* ── 1. LEFT-ALIGNED EDITORIAL HEADER ───────────────────────── */}
         <div className="max-w-3xl mb-4 lg:mb-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-2 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 mb-2 shadow-xs">
             <Sparkles size={12} className="text-primary animate-pulse" />
             <span className="text-sm font-mono font-bold tracking-[0.2em] text-primary uppercase">
               HOW WE WORK
@@ -152,7 +152,7 @@ export const HowWeWork = () => {
           <div className="hidden md:block relative pt-2 pb-1">
            
             {/* Background Inactive Base Line */}
-            <div className="absolute top-[28px] left-6 right-6 h-1 bg-black/10 dark:bg-white/10 rounded-full z-0" />
+            <div className="absolute top-[28px] left-6 right-6 h-1 bg-background dark:bg-black/10 dark:bg-white/10 rounded-full z-0" />
  
             {/* Active Physical Progress Line Growing Left -> Right */}
             <div
@@ -259,7 +259,7 @@ export const HowWeWork = () => {
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <div
-                          className="w-8 h-8 rounded-xl flex items-center justify-center text-white"
+                          className="w-8 h-8 rounded-xl flex items-center justify-center text-text-primary dark:text-white"
                           style={{ backgroundColor: st.color }}
                         >
                           <StageIcon size={16} />
@@ -268,7 +268,7 @@ export const HowWeWork = () => {
                           {st.num} • {st.title}
                         </span>
                       </div>
-                      <span className="text-sm font-mono px-2 py-0.5 rounded-sm bg-primary/10 text-primary">
+                      <span className="text-sm font-mono px-2 py-0.5 rounded-sm bg-primary/30 dark:bg-primary/10 text-primary">
                         Stage 0{idx + 1}
                       </span>
                     </div>

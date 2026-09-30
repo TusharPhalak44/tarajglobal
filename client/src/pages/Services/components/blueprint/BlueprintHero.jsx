@@ -27,10 +27,10 @@ export default function BlueprintHero() {
   return (
     <section
       id="blueprint-hero"
-      className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-center pt-28 pb-16 lg:py-24 bg-[#05070B] text-white overflow-hidden border-b border-white/10 select-none"
+      className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-center pt-28 pb-16 lg:py-24 bg-background dark:bg-[#05070B] text-text-primary dark:text-white overflow-hidden border-b border-border dark:border-white/10 select-none"
     >
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[160px] pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[400px] bg-primary/30 dark:bg-primary/10 rounded-full blur-[160px] pointer-events-none -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[350px] bg-[#FF6D00]/10 rounded-full blur-[160px] pointer-events-none -z-10" />
 
       {/* Subtle fine dot grid */}
@@ -64,7 +64,7 @@ export default function BlueprintHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.06] text-white"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.06] text-text-primary dark:text-white"
             >
               Strategic B2B Services for <br />
               <span className="text-[#FF6D00]">Sustainable Growth</span>
@@ -90,7 +90,7 @@ export default function BlueprintHero() {
               <button
                 type="button"
                 onClick={scrollToCoreServices}
-                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl  hover: text-black text-sm font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-[#FF6D00]/30 cursor-pointer group"
+                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl  hover: text-black text-sm font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-[#FF6D00]/30 cursor-pointer group"
               >
                 <span>Explore Our Services</span>
                 <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
@@ -99,7 +99,7 @@ export default function BlueprintHero() {
               <button
                 type="button"
                 onClick={() => navigate('/contact')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white text-sm font-semibold transition-all hover:border-[#FF6D00]/60 cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-border dark:border-white/20 bg-surface/80 dark:bg-white/5 hover:bg-surface/90 dark:bg-white/10 text-text-primary dark:text-white text-sm font-semibold transition-all hover:border-[#FF6D00]/60 cursor-pointer"
               >
                 <span>Talk to Our Experts</span>
               </button>
@@ -112,7 +112,7 @@ export default function BlueprintHero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group"
+              className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-border dark:border-white/10 shadow-2xl group"
             >
               {/* Dynamic Image driven by active index */}
               <motion.div
@@ -145,11 +145,11 @@ export default function BlueprintHero() {
               </svg>
 
               {/* Bottom Caption inside visual */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#05070B]/80 backdrop-blur-md border border-white/10">
+              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-background dark:bg-[#05070B]/80 backdrop-blur-md border border-border dark:border-white/10">
                 <div className="text-[10px] font-mono text-[#FF6D00] uppercase font-bold tracking-wider">
                   GROWTH BLUEPRINT
                 </div>
-                <div className="text-sm font-bold uppercase text-white tracking-wide mt-0.5">
+                <div className="text-sm font-bold uppercase text-text-primary dark:text-white tracking-wide mt-0.5">
                   {currentItem.name}
                 </div>
               </div>
@@ -162,9 +162,9 @@ export default function BlueprintHero() {
               initial={{ opacity: 0, x: 25 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-5 sm:p-6 shadow-2xl space-y-2"
+              className="rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-xl p-5 sm:p-6 shadow-2xl space-y-2"
             >
-              <div className="text-[10px] font-mono tracking-widest text-white/40 uppercase pb-3 mb-2 border-b border-white/10 flex items-center justify-between">
+              <div className="text-[10px] font-mono tracking-widest text-text-secondary dark:text-white/40 uppercase pb-3 mb-2 border-b border-border dark:border-white/10 flex items-center justify-between">
                 <span>SERVICE INDEX</span>
                 <span className="text-[#FF6D00]">06 MODULES</span>
               </div>

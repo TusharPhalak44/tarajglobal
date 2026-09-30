@@ -32,7 +32,7 @@ export default function ServicesHero() {
   return (
     <section
       id="services-hero"
-      className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center pt-28 pb-16 lg:py-24 bg-[#05070B] text-white overflow-hidden border-b border-white/10 select-none"
+      className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center pt-28 pb-16 lg:py-24 bg-background dark:bg-[#05070B] text-text-primary dark:text-white overflow-hidden border-b border-border dark:border-white/10 select-none"
     >
       {/* ══════════ AMBIENT BACKGROUND LIGHTING ══════════ */}
       {/* Smooth floating ambient orbs */}
@@ -49,7 +49,7 @@ export default function ServicesHero() {
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-1/5 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#FF6D00]/10 rounded-full blur-[170px] pointer-events-none -z-10"
       />
-      <div className="absolute top-1/3 left-1/4 w-[450px] h-[300px] bg-primary/12 rounded-full blur-[160px] pointer-events-none -z-10" />
+      <div className="absolute top-1/3 left-1/4 w-[450px] h-[300px] bg-primary/32 dark:bg-primary/12 rounded-full blur-[160px] pointer-events-none -z-10" />
 
       {/* Subtle fine dot grid */}
       <div
@@ -69,7 +69,7 @@ export default function ServicesHero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-6 shadow-sm hover:border-[#FF6D00]/40 transition-colors"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border dark:border-white/10 bg-white/[0.04] backdrop-blur-md mb-6 shadow-sm hover:border-[#FF6D00]/40 transition-colors"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6D00] opacity-75" />
@@ -89,7 +89,7 @@ export default function ServicesHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.06] text-white max-w-4xl"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.06] text-text-primary dark:text-white max-w-4xl"
         >
           Full-Funnel B2B Services <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/95 to-[#FF6D00]">
@@ -121,10 +121,10 @@ export default function ServicesHero() {
           <button
             type="button"
             onClick={scrollToCatalog}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/20  hover: text-white text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-border dark:border-white/20  hover: text-text-primary dark:text-white text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
           >
             <span>Explore All 12 Services</span>
-            <ChevronDown className="w-4 h-4 text-white/60 group-hover:translate-y-0.5 transition-transform" />
+            <ChevronDown className="w-4 h-4 text-text-secondary dark:text-white/60 group-hover:translate-y-0.5 transition-transform" />
           </button>
         </motion.div>
 
@@ -133,7 +133,7 @@ export default function ServicesHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-14 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 p-4 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl"
+          className="mt-14 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 p-4 sm:p-6 rounded-2xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-xl"
         >
           {STATS_RIBBON.map((stat, i) => {
             const Icon = stat.icon
@@ -142,10 +142,10 @@ export default function ServicesHero() {
                 key={i}
                 className="flex flex-col items-center justify-center p-3 text-center"
               >
-                <div className="flex items-center gap-1.5 text-2xl sm:text-3xl font-black font-mono text-white">
+                <div className="flex items-center gap-1.5 text-2xl sm:text-3xl font-black font-mono text-text-primary dark:text-white">
                   <span>{stat.value}</span>
                 </div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-white/50 mt-1 flex items-center gap-1.5 justify-center">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-text-secondary dark:text-white/50 mt-1 flex items-center gap-1.5 justify-center">
                   <Icon className="w-3 h-3 text-[#FF6D00]" />
                   <span>{stat.label}</span>
                 </div>

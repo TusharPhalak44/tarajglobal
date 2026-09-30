@@ -64,7 +64,7 @@ export const CardHover = ({
 
         {/* Expanding Bottom Accent Line */}
         {showBottomLine && (
-          <div className="relative w-full h-[2px] mt-4 overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
+          <div className="relative w-full h-[2px] mt-4 overflow-hidden rounded-full bg-background dark:bg-black/5 dark:bg-white/5">
             <motion.div
               className={`h-full w-full bg-gradient-to-r ${accentGradient} origin-left`}
               initial={false}

@@ -212,7 +212,7 @@ export default function WorkflowSection() {
   return (
     <section
       id="workflow-process-canvas"
-      className="relative py-12 sm:py-16 bg-[#030712] text-white overflow-hidden select-none border-t border-b border-[#00D2FF]/20"
+      className="relative py-12 sm:py-16 bg-[#030712] text-text-primary dark:text-white overflow-hidden select-none border-t border-b border-[#00D2FF]/20"
       style={{
         background: 'radial-gradient(ellipse at 50% 35%, #061536 0%, #030818 55%, #02050E 100%)',
       }}
@@ -427,8 +427,8 @@ export default function WorkflowSection() {
             {/* 1. Campaign Strategy (cx=280, cy=170) */}
             <foreignObject x="190" y="55" width="180" height="75">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Campaign Strategy</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Campaign Strategy</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Define campaign goals, audience segments, content themes and outreach strategy.
                 </div>
               </div>
@@ -440,8 +440,8 @@ export default function WorkflowSection() {
             {/* 2. Client Approval (cx=480, cy=170) */}
             <foreignObject x="390" y="55" width="180" height="75">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Client Approval</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Client Approval</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Share POC with the client for review and approval.
                 </div>
               </div>
@@ -453,8 +453,8 @@ export default function WorkflowSection() {
             {/* 3. ICP Data Collection (cx=880, cy=170) */}
             <foreignObject x="790" y="55" width="180" height="75">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">ICP Data Collection</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">ICP Data Collection</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Collect and segment target contacts based on the Ideal Customer Profile (ICP).
                 </div>
               </div>
@@ -471,8 +471,8 @@ export default function WorkflowSection() {
             </foreignObject>
             <foreignObject x="10" y="380" width="180" height="85">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Content Creation</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Content Creation</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Create compelling content (whitepapers, articles, eBooks, case studies, etc.) aligned with campaign objectives.
                 </div>
               </div>
@@ -484,8 +484,8 @@ export default function WorkflowSection() {
             </foreignObject>
             <foreignObject x="190" y="380" width="180" height="85">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Email Distribution</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Email Distribution</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Send targeted emails based on recipient timezones with personalized messaging.
                 </div>
               </div>
@@ -497,8 +497,8 @@ export default function WorkflowSection() {
             </foreignObject>
             <foreignObject x="390" y="380" width="180" height="85">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Engagement Tracking</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Engagement Tracking</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Track email opens, link clicks and asset downloads in real-time.
                 </div>
               </div>
@@ -510,8 +510,8 @@ export default function WorkflowSection() {
             </foreignObject>
             <foreignObject x="590" y="380" width="180" height="85">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Lead Capture</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Lead Capture</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Engaged contacts are captured as leads in our system.
                 </div>
               </div>
@@ -523,8 +523,8 @@ export default function WorkflowSection() {
             </foreignObject>
             <foreignObject x="790" y="380" width="180" height="85">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Human Verification</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Human Verification</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Our team manually verifies each lead for accuracy, relevance and campaign eligibility.
                 </div>
               </div>
@@ -538,8 +538,8 @@ export default function WorkflowSection() {
             </foreignObject>
             <foreignObject x="990" y="390" width="180" height="85">
               <div className="text-center">
-                <div className="text-[13px] font-bold text-white tracking-tight leading-snug">Qualified Lead Delivered</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
+                <div className="text-[13px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Qualified Lead Delivered</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[170px] mx-auto">
                   Verified and qualified leads are delivered to the client for further engagement.
                 </div>
               </div>
@@ -551,8 +551,8 @@ export default function WorkflowSection() {
             </foreignObject>
             <foreignObject x="460" y="566" width="240" height="70">
               <div className="text-center">
-                <div className="text-[12.5px] font-bold text-white tracking-tight leading-snug">Performance Analytics</div>
-                <div className="text-[9.5px] text-slate-300 leading-tight mt-1 max-w-[220px] mx-auto">
+                <div className="text-[12.5px] font-bold text-text-primary dark:text-white tracking-tight leading-snug">Performance Analytics</div>
+                <div className="text-[9.5px] text-text-secondary dark:text-slate-300 leading-tight mt-1 max-w-[220px] mx-auto">
                   Measure campaign performance and optimize for better results.
                 </div>
               </div>
@@ -581,8 +581,8 @@ export default function WorkflowSection() {
                     <TargetGraphic />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-white tracking-tight">{item.title}</div>
-                    <div className="text-[10px] text-slate-300 leading-snug mt-1">{item.desc}</div>
+                    <div className="text-sm font-bold text-text-primary dark:text-white tracking-tight">{item.title}</div>
+                    <div className="text-[10px] text-text-secondary dark:text-slate-300 leading-snug mt-1">{item.desc}</div>
                   </div>
                 </div>
               )
@@ -596,13 +596,13 @@ export default function WorkflowSection() {
                 {/* Cyan LED pin */}
                 <div className="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-[#00D2FF] shadow-[0_0_6px_#00D2FF]" />
                 
-                <div className="p-1.5 rounded-xl bg-[#081E44] border border-[#00D2FF]/30 shrink-0">
+                <div className="p-1.5 rounded-xl bg-surface dark:bg-[#081E44] border border-[#00D2FF]/30 shrink-0">
                   <Icon />
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <div className="text-xs font-bold text-white tracking-tight">{item.title}</div>
-                  <div className="text-[10px] text-slate-300 leading-tight mt-0.5">{item.desc}</div>
+                  <div className="text-xs font-bold text-text-primary dark:text-white tracking-tight">{item.title}</div>
+                  <div className="text-[10px] text-text-secondary dark:text-slate-300 leading-tight mt-0.5">{item.desc}</div>
                 </div>
               </div>
             )
@@ -612,7 +612,7 @@ export default function WorkflowSection() {
         {/* ── FOOTER TAGLINE ── */}
         <div className="flex items-center justify-center gap-4 mt-6 sm:mt-10 pt-4 border-t border-[#00D2FF]/20">
           <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-r from-transparent to-[#00D2FF]" />
-          <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.25em] text-slate-400 uppercase text-center">
+          <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.25em] text-text-secondary dark:text-slate-400 uppercase text-center">
             MORE CONTENT. BETTER CONVERSIONS. BRIGHTER OPPORTUNITIES.
           </span>
           <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-l from-transparent to-[#00D2FF]" />

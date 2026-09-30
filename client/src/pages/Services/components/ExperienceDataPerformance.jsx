@@ -34,7 +34,7 @@ export default function ExperienceDataPerformance() {
   return (
     <section
       id="data-performance-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       {/* Subtle grid pattern backdrop */}
       <div
@@ -55,20 +55,20 @@ export default function ExperienceDataPerformance() {
                 TELEMETRY & SCALE
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Data & Performance <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 At Global Scale
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Our infrastructure processes millions of data points monthly to deliver high-integrity revenue pipeline.
           </p>
         </div>
 
         {/* ══════════ OVERSIZED TYPOGRAPHY METRIC ROWS (NO GENERIC CARDS) ══════════ */}
-        <div className="border-t border-white/10 divide-y divide-white/10">
+        <div className="border-t border-border dark:border-white/10 divide-y divide-white/10">
           {METRICS.map((metric, idx) => {
             const Icon = metric.icon
 
@@ -86,7 +86,7 @@ export default function ExperienceDataPerformance() {
                   <span className="font-mono text-xs font-bold text-white/30 tracking-widest">
                     0{idx + 1}
                   </span>
-                  <div className="text-5xl sm:text-7xl lg:text-8xl font-black font-mono tracking-tighter text-white group-hover:text-[#FF6D00] transition-colors duration-300">
+                  <div className="text-5xl sm:text-7xl lg:text-8xl font-black font-mono tracking-tighter text-text-primary dark:text-white group-hover:text-[#FF6D00] transition-colors duration-300">
                     {metric.value}
                   </div>
                 </div>
@@ -95,11 +95,11 @@ export default function ExperienceDataPerformance() {
                 <div className="lg:max-w-md flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-2">
                     <Icon className="w-4 h-4 text-[#FF6D00]" />
-                    <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide text-white">
+                    <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide text-text-primary dark:text-white">
                       {metric.label}
                     </h3>
                   </div>
-                  <p className="text-sm text-white/60 leading-relaxed">
+                  <p className="text-sm text-text-secondary dark:text-white/60 leading-relaxed">
                     {metric.caption}
                   </p>
                 </div>

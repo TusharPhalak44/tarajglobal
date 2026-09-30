@@ -580,7 +580,7 @@ const CMS = () => {
                   {clients.map((item) => (
                     <tr key={item.id}>
                       <td>
-                        <div className="w-16 h-8 rounded-lg bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1">
+                        <div className="w-16 h-8 rounded-lg bg-background dark:bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1">
                           {item.logo_path ? (
                             <img src={item.logo_path} alt={item.client_name} className="max-h-full max-w-full object-contain" />
                           ) : (

@@ -1,8 +1,20 @@
 import multer from 'multer'
 import path from 'path'
+import crypto from 'crypto'
 import 'dotenv/config'
 
 import fs from 'fs'
+
+// Map MIME types to safe extensions - never trust user-supplied filename
+const MIME_TO_EXT = {
+  'image/jpeg': 'jpg',
+  'image/png': 'png',
+  'image/gif': 'gif',
+  'image/webp': 'webp',
+  'application/pdf': 'pdf',
+  'application/msword': 'doc',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -24,8 +36,10 @@ const storage = multer.diskStorage({
     cb(null, uploadPath)
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname))
+    // Derive extension from MIME type only — never from originalname (path traversal risk)
+    const ext = MIME_TO_EXT[file.mimetype] || 'bin'
+    const safeName = `${Date.now()}-${crypto.randomBytes(8).toString('hex')}.${ext}`
+    cb(null, safeName)
   }
 })
 

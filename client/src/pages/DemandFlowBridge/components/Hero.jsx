@@ -54,7 +54,7 @@ const Hero = () => {
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary mb-5 backdrop-blur-md shadow-xs"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-5 backdrop-blur-md shadow-xs"
           >
             <Cpu className="w-3.5 h-3.5 animate-pulse text-primary" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
@@ -112,7 +112,7 @@ const Hero = () => {
 
             <button
               onClick={() => scrollToSection('ecosystem')}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
             >
               <span>See How It Works</span>
             </button>
@@ -130,10 +130,10 @@ const Hero = () => {
           <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-cta/20 to-primary/30 rounded-3xl blur-xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
 
           {/* Browser / Application Frame */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-[#0B1424] shadow-2xl shadow-black/40 dark:shadow-[0_25px_60px_rgba(0,166,255,0.15)]">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-surface dark:bg-[#0B1424] shadow-2xl shadow-black/40 dark:shadow-[0_25px_60px_rgba(0,166,255,0.15)]">
             
             {/* Top Chrome / Address Bar */}
-            <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-white/10 select-none">
+            <div className="flex items-center justify-between px-4 py-3 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10 select-none">
               {/* Window Dots */}
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
@@ -142,9 +142,9 @@ const Hero = () => {
               </div>
 
               {/* Secure App URL */}
-              <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-md bg-slate-950/80 border border-white/10 text-xs font-mono text-slate-300">
+              <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-md bg-background dark:bg-slate-950/80 border border-border dark:border-white/10 text-xs font-mono text-text-secondary dark:text-slate-300">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="font-semibold text-white">demandflow.tarajglobal.com</span>
+                <span className="font-semibold text-text-primary dark:text-white">demandflow.tarajglobal.com</span>
                 <span className="text-slate-500">/bridge/overview</span>
               </div>
 
@@ -158,7 +158,7 @@ const Hero = () => {
             </div>
 
             {/* Application Screenshot Viewport */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-slate-950">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-background dark:bg-slate-950">
               <img
                 src="/demandflow-admin.png"
                 alt="DemandFlow Bridge Unified Business Operations Platform Dashboard"
@@ -170,26 +170,26 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none" />
 
               {/* Top Floating Badge */}
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-950/90 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-white shadow-lg">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background dark:bg-slate-950/90 backdrop-blur-md border border-border dark:border-white/15 text-xs font-mono font-bold text-text-primary dark:text-white shadow-lg">
                 <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
                 <span className="text-primary font-bold">DemandFlow Bridge™</span>
-                <span className="text-slate-300 hidden sm:inline">• Unified Business Operations Platform</span>
+                <span className="text-text-secondary dark:text-slate-300 hidden sm:inline">• Unified Business Operations Platform</span>
               </div>
 
               {/* Bottom Live Control Overlay */}
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 flex flex-wrap items-center justify-between gap-2 p-2.5 sm:p-3 rounded-xl bg-slate-900/80 backdrop-blur-md border border-white/10">
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 flex flex-wrap items-center justify-between gap-2 p-2.5 sm:p-3 rounded-xl bg-surface dark:bg-slate-900/80 backdrop-blur-md border border-border dark:border-white/10">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
+                  <div className="w-8 h-8 rounded-lg bg-primary/40 dark:bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
                     <Layers className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-mono font-bold text-white">Central Operations Hub</div>
-                    <div className="text-[11px] text-slate-400">8 Connected Core Business Modules Active</div>
+                    <div className="text-xs font-mono font-bold text-text-primary dark:text-white">Central Operations Hub</div>
+                    <div className="text-[11px] text-text-secondary dark:text-slate-400">8 Connected Core Business Modules Active</div>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-white/10 text-slate-200 border border-white/10">
+                  <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-surface/90 dark:bg-white/10 text-slate-200 border border-border dark:border-white/10">
                     ONE PLATFORM • REAL-TIME CONTROL
                   </span>
                 </div>

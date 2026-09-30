@@ -146,10 +146,10 @@ export default function JourneyFeaturedServices() {
                     {/* Overlay Badges */}
                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-10">
                       <div>
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/70 block mb-1">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-text-secondary dark:text-white/70 block mb-1">
                           PROVEN PERFORMANCE
                         </span>
-                        <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                        <div className="text-xl sm:text-2xl font-extrabold text-text-primary dark:text-white tracking-tight">
                           {item.kpi}
                         </div>
                       </div>

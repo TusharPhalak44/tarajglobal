@@ -147,7 +147,7 @@ export default function CommandGrowthFunnel() {
                       </span>
                       {!isLast && (
                         <ChevronRight
-                          className="w-4 h-4 text-slate-400 opacity-60"
+                          className="w-4 h-4 text-text-secondary dark:text-slate-400 opacity-60"
                         />
                       )}
                     </div>

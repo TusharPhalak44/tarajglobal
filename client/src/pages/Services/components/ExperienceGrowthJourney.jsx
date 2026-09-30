@@ -81,7 +81,7 @@ export default function ExperienceGrowthJourney() {
   return (
     <section
       id="growth-journey-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Header */}
@@ -93,14 +93,14 @@ export default function ExperienceGrowthJourney() {
                 UNIFIED PIPELINE PIPELINE
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               How Our Services <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Connect & Compound
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Our capabilities don’t live in silos. Each module feeds the next to produce a frictionless revenue compounder.
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function ExperienceGrowthJourney() {
         {/* ══════════ HORIZONTAL CONTINUOUS TIMELINE / NODES ══════════ */}
         <div className="relative mb-12">
           {/* Base Horizontal Connecting Track Line */}
-          <div className="hidden lg:block absolute top-[28px] left-[4%] right-[4%] h-[2px] bg-white/10 -z-0">
+          <div className="hidden lg:block absolute top-[28px] left-[4%] right-[4%] h-[2px] bg-surface/90 dark:bg-white/10 -z-0">
             {/* Animated Progress Filled Line */}
             <motion.div
               className="h-full bg-gradient-to-r from-[#FF6D00] via-[#FF8A00] to-[#FF6D00]"
@@ -157,10 +157,10 @@ export default function ExperienceGrowthJourney() {
                     />
                   </div>
 
-                  <span className="text-sm font-bold uppercase tracking-wider text-white">
+                  <span className="text-sm font-bold uppercase tracking-wider text-text-primary dark:text-white">
                     {stage.title}
                   </span>
-                  <span className="text-[10px] font-mono text-white/40 truncate w-full mt-0.5">
+                  <span className="text-[10px] font-mono text-text-secondary dark:text-white/40 truncate w-full mt-0.5">
                     {stage.subtitle.split('&')[0]}
                   </span>
                 </button>
@@ -177,29 +177,29 @@ export default function ExperienceGrowthJourney() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.35 }}
-            className="rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-6 sm:p-10 shadow-2xl"
+            className="rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-xl p-6 sm:p-10 shadow-2xl"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left narrative */}
               <div className="lg:col-span-6 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 font-mono text-[11px] text-[#FF6D00] uppercase">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 font-mono text-[11px] text-[#FF6D00] uppercase">
                   <span>STAGE {current.step} OF 06</span>
                   <span>//</span>
                   <span>{current.subtitle}</span>
                 </div>
 
-                <h3 className="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
+                <h3 className="text-3xl sm:text-4xl font-black uppercase text-text-primary dark:text-white tracking-tight">
                   {current.title}
                 </h3>
 
-                <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">
+                <p className="text-sm sm:text-base text-text-secondary dark:text-white/70 leading-relaxed max-w-xl">
                   {current.desc}
                 </p>
               </div>
 
               {/* Right connected services */}
               <div className="lg:col-span-6">
-                <div className="text-xs font-mono uppercase tracking-widest text-white/40 mb-3">
+                <div className="text-xs font-mono uppercase tracking-widest text-text-secondary dark:text-white/40 mb-3">
                   INTEGRATED ENGINE CAPABILITIES AT THIS STAGE:
                 </div>
 
@@ -208,7 +208,7 @@ export default function ExperienceGrowthJourney() {
                     <button
                       key={srv.route}
                       onClick={() => navigate(srv.route)}
-                      className="group flex items-center gap-3 px-5 py-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-[#FF6D00] hover:border-[#FF6D00] text-white hover:text-black transition-all duration-300 cursor-pointer shadow-sm"
+                      className="group flex items-center gap-3 px-5 py-3 rounded-xl border border-border dark:border-white/10 bg-white/[0.03] hover:bg-[#FF6D00] hover:border-[#FF6D00] text-text-primary dark:text-white hover:text-black transition-all duration-300 cursor-pointer shadow-sm"
                     >
                       <span className="text-xs sm:text-sm font-bold uppercase tracking-wide">
                         {srv.name}

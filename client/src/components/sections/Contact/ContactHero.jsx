@@ -23,7 +23,7 @@ export default function ContactHero({ onBookMeeting }) {
   return (
     <section
       ref={heroRef}
-      className="sticky top-0 w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] h-[88vh] sm:h-[92vh] lg:h-[95vh] flex flex-col justify-center items-center overflow-hidden bg-black text-white pt-16 sm:pt-20 pb-16 sm:pb-20 select-none z-0"
+      className="sticky top-0 w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] h-[88vh] sm:h-[92vh] lg:h-[95vh] flex flex-col justify-center items-center overflow-hidden bg-background dark:bg-black text-white pt-16 sm:pt-20 pb-16 sm:pb-20 select-none z-0"
       aria-label="Contact Taraj Global — Connect With Us"
     >
       {/* ── Background: Cinematic Golden Horizon & Telephone Handset ── */}
@@ -82,7 +82,7 @@ export default function ContactHero({ onBookMeeting }) {
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-wide text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] uppercase mb-3 sm:mb-4"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-wide text-text-primary dark:text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] uppercase mb-3 sm:mb-4"
         >
           CONTACT US
         </motion.h1>
@@ -137,7 +137,7 @@ export default function ContactHero({ onBookMeeting }) {
             opacity: { delay: 0.5, duration: 0.5 },
             y: { repeat: Infinity, duration: 2, ease: 'easeInOut' },
           }}
-          className="mt-6 inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors cursor-pointer"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm text-text-secondary dark:text-text-primary dark:text-white/60 hover:text-text-primary dark:text-white transition-colors cursor-pointer"
         >
           <span>Or send us a message below</span>
           <ArrowDown className="w-3.5 h-3.5" />

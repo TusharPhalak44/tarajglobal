@@ -47,7 +47,7 @@ export default function ExperienceIndustries() {
   return (
     <section
       id="industries-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Header */}
@@ -59,20 +59,20 @@ export default function ExperienceIndustries() {
                 VERTICAL SPECIALIZATION
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Industries We Power <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Across Global Markets
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Our pipeline specialists speak your industry's exact technical dialect, navigating complex enterprise sales cycles with credibility.
           </p>
         </div>
 
         {/* ══════════ FULL-WIDTH TYPOGRAPHY ROWS (NO CARDS) ══════════ */}
-        <div className="border-t border-white/10 divide-y divide-white/10">
+        <div className="border-t border-border dark:border-white/10 divide-y divide-white/10">
           {INDUSTRIES.map((ind, idx) => {
             const isHovered = hoveredIdx === idx
             const isAnyHovered = hoveredIdx !== null && !isHovered
@@ -114,7 +114,7 @@ export default function ExperienceIndustries() {
                     <span className="text-xs font-mono text-[#FF6D00] block uppercase tracking-wider">
                       {ind.focus}
                     </span>
-                    <span className="text-[11px] font-mono text-white/50 block mt-0.5">
+                    <span className="text-[11px] font-mono text-text-secondary dark:text-white/50 block mt-0.5">
                       {ind.roles}
                     </span>
                   </div>

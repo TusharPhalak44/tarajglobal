@@ -139,7 +139,7 @@ export default function WorkflowTargetBadge({
               animate={{ opacity: 1, y: -20, scale: 1.05 }}
               exit={{ opacity: 0, y: -45, scale: 0.9 }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
-              className="whitespace-nowrap px-3 py-1 rounded-full bg-slate-900/95 dark:bg-black/95 text-white text-xs font-mono font-bold shadow-xl border border-[#00f0ff]/50 backdrop-blur-md"
+              className="whitespace-nowrap px-3 py-1 rounded-full bg-surface dark:bg-slate-900/95 dark:bg-black/95 text-white text-xs font-mono font-bold shadow-xl border border-[#00f0ff]/50 backdrop-blur-md"
             >
               {chip.text}
             </motion.div>
@@ -201,7 +201,7 @@ export default function WorkflowTargetBadge({
         </span>
 
         {/* Goal Title */}
-        <span className="text-[9.5px] sm:text-[10px] font-black tracking-tight text-slate-900 dark:text-white uppercase leading-tight mt-0.5 max-w-[80px]">
+        <span className="text-[9.5px] sm:text-[10px] font-black tracking-tight text-slate-900 dark:text-text-primary dark:text-white uppercase leading-tight mt-0.5 max-w-[80px]">
           QUALIFIED MEETINGS
         </span>
 

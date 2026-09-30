@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronRight, ShieldCheck, Target, Sparkles, Activity } from 'lucide-react'
-import { StarButton } from '@components/ui/StarButton'
+import { FlowButton } from '@components/ui/FlowButton'
 import { useTheme } from '@context/ThemeContext'
 import { HeroRightAnimation } from './HeroRightAnimation'
 import { gsap, ScrollTrigger } from '@animations/gsap'
@@ -86,12 +86,16 @@ export const Hero = () => {
       aria-label="Taraj Global Hero — The Revenue Signal"
     >
 
-      {/* ── Background Layer: Fine Dotted Grid & Atmospheric Specular Light ─ */}
+      {/* ── Background Layer: Grid & Atmospheric Specular Light ─ */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        {/* Fine grid - dark mode uses blue #00A6FF, light mode uses visible dark gray */}
         <div
-          className="absolute inset-0 opacity-[0.025] dark:opacity-[0.035]"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: `linear-gradient(to right, #00A6FF 1px, transparent 1px), linear-gradient(to bottom, #00A6FF 1px, transparent 1px)`,
+            opacity: isDark ? 0.035 : 0.15,
+            backgroundImage: isDark
+              ? `linear-gradient(to right, #00A6FF 1px, transparent 1px), linear-gradient(to bottom, #00A6FF 1px, transparent 1px)`
+              : `linear-gradient(to right, #64748B 1px, transparent 1px), linear-gradient(to bottom, #64748B 1px, transparent 1px)`,
             backgroundSize: '48px 48px',
           }}
         />
@@ -163,29 +167,20 @@ export const Hero = () => {
             >
               {/* Primary CTA */}
               <Link to="/contact" className="w-full sm:w-auto inline-block">
-                <StarButton
-                  lightColor="#00A6FF"
-                  backgroundColor="rgba(0,166,255,0.15)"
-                  className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
-                >
-                  <span className="flex items-center justify-center gap-2 min-h-[44px]">
-                    <span>Start a Conversation</span>
-                    <ArrowRight size={15} />
-                  </span>
-                </StarButton>
+                <FlowButton
+                  text="Start a Conversation"
+                  variant="primary"
+                  className="w-full sm:w-auto min-h-[44px]"
+                />
               </Link>
 
               {/* Secondary CTA */}
               <Link to="/services" className="w-full sm:w-auto inline-block">
-                <StarButton
-                  lightColor="#00A6FF"
-                  backgroundColor="rgba(0,166,255,0.15)"
-                  className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
-                >
-                  <span className="flex items-center justify-center min-h-[44px]">
-                    Explore Our Services
-                  </span>
-                </StarButton>
+                <FlowButton
+                  text="Explore Our Services"
+                  variant="secondary"
+                  className="w-full sm:w-auto min-h-[44px]"
+                />
               </Link>
             </motion.div>
 
@@ -218,7 +213,7 @@ export const Hero = () => {
           </div>
 
           {/* ══ Right Visual Block: Signature Revenue Signal Field (Span 5) ═ */}
-          <div ref={visualRef} className="lg:col-span-5 flex justify-center relative w-full h-full min-h-[400px] sm:min-h-[500px] mix-blend-screen">
+          <div ref={visualRef} className={`lg:col-span-5 flex justify-center relative w-full h-full min-h-[400px] sm:min-h-[500px] ${isDark ? 'mix-blend-screen' : ''}`}>
             <HeroRightAnimation />
           </div>
 

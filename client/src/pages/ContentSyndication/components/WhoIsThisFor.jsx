@@ -64,7 +64,7 @@ const WhoIsThisFor = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-4">
             Who Is This
             <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
               {' '}Service For?
@@ -84,12 +84,12 @@ const WhoIsThisFor = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-[#00A6FF]/50 transition-all cursor-pointer"
+              className="p-6 rounded-2xl bg-surface/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-white/10 hover:border-[#00A6FF]/50 transition-all cursor-pointer"
             >
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#FF6D00]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <div className="text-[#00A6FF]">{industry.icon}</div>
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">{industry.title}</h3>
+              <h3 className="text-lg font-bold text-text-primary dark:text-white mb-2">{industry.title}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">{industry.description}</p>
             </motion.div>
           ))}

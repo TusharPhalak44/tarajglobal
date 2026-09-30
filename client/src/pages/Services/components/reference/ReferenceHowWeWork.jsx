@@ -43,7 +43,7 @@ export default function ReferenceHowWeWork() {
   return (
     <section
       id="how-we-work-section"
-      className="relative py-24 lg:py-32 bg-white dark:bg-[#05070B] text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden select-none transition-colors duration-300"
+      className="relative py-24 lg:py-32 bg-white dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden select-none transition-colors duration-300"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
@@ -56,7 +56,7 @@ export default function ReferenceHowWeWork() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-tight">
               From Target to <br />
               Pipeline, We Make It Happen
             </h2>
@@ -69,7 +69,7 @@ export default function ReferenceHowWeWork() {
               <button
                 type="button"
                 onClick={() => navigate('/about')}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer group hover:border-[#FF6D00]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-surface/90 dark:bg-white/10 text-slate-900 dark:text-text-primary dark:text-white text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer group hover:border-[#FF6D00]"
               >
                 <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 text-slate-600 dark:text-white/70 group-hover:text-[#FF6D00] group-hover:translate-x-1 transition-all" />
@@ -109,7 +109,7 @@ export default function ReferenceHowWeWork() {
                           : 'border-2 border-[#FF6D00]/60 bg-white dark:bg-[#05070B] text-slate-900 dark:text-white group-hover:border-[#FF6D00] group-hover:scale-105'
                       }`}
                     >
-                      <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-black' : 'bg-[#FF6D00]'}`} />
+                      <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-background dark:bg-black' : 'bg-[#FF6D00]'}`} />
                     </div>
 
                     {/* Step Number */}
@@ -118,7 +118,7 @@ export default function ReferenceHowWeWork() {
                     </span>
 
                     {/* Step Name */}
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-slate-900 dark:text-white group-hover:text-[#FF6D00] transition-colors">
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-slate-900 dark:text-text-primary dark:text-white group-hover:text-[#FF6D00] transition-colors">
                       {step.title}
                     </h3>
 

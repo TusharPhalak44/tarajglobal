@@ -56,14 +56,14 @@ const BlogCard = ({ blog, index, onReadMore }) => {
 
         {/* Category Pill Tag */}
         <div className="absolute top-4 left-4 z-10">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase backdrop-blur-md bg-black/50 text-[#00E5FF] border border-[#00E5FF]/30 shadow-xs">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase backdrop-blur-md bg-background dark:bg-black/50 text-[#00E5FF] border border-[#00E5FF]/30 shadow-xs">
             {category}
           </span>
         </div>
 
         {/* Read Time Tag */}
         <div className="absolute bottom-3 right-4 z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium backdrop-blur-md bg-black/60 text-white/90 border border-white/15">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium backdrop-blur-md bg-background dark:bg-black/60 text-white/90 border border-border dark:border-white/15">
             <Clock size={11} className="text-[#00A6FF]" />
             {estimateReadTime(blog.content)}
           </span>
@@ -80,7 +80,7 @@ const BlogCard = ({ blog, index, onReadMore }) => {
           </div>
 
           {/* Article Title */}
-          <h3 className="text-lg sm:text-xl font-bold text-text-primary dark:text-white tracking-tight leading-snug mb-2.5 line-clamp-2 group-hover:text-[#00A6FF] transition-colors duration-200">
+          <h3 className="text-lg sm:text-xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight leading-snug mb-2.5 line-clamp-2 group-hover:text-[#00A6FF] transition-colors duration-200">
             {blog.title}
           </h3>
 

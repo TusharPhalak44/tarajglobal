@@ -234,7 +234,7 @@ const CMSOurClients = () => {
             <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Total Brands</div>
             <div className="text-2xl font-black text-text-primary mt-1">{clients.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+          <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
             <Building2 className="w-5 h-5" />
           </div>
         </div>
@@ -399,7 +399,7 @@ const CMSOurClients = () => {
                 {clients.map((client) => (
                   <tr key={client.id}>
                     <td>
-                      <div className="w-20 h-10 rounded-lg bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 overflow-hidden">
+                      <div className="w-20 h-10 rounded-lg bg-background dark:bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 overflow-hidden">
                         {imgSrc(client.logo_path) ? (
                           <img
                             src={imgSrc(client.logo_path)}
@@ -478,14 +478,14 @@ const CMSOurClients = () => {
             <span className="text-xs text-text-muted font-mono">{activeClients.length} logos in active stream</span>
           </div>
 
-          <div className="p-6 rounded-2xl bg-[#07090E] border border-[var(--admin-border)] overflow-hidden">
+          <div className="p-6 rounded-2xl bg-background dark:bg-[#07090E] border border-[var(--admin-border)] overflow-hidden">
             <div className="text-center mb-6">
               {sectionSettings.eyebrow && (
                 <div className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase mb-1">
                   {sectionSettings.eyebrow}
                 </div>
               )}
-              <h4 className="text-lg font-black text-white">
+              <h4 className="text-lg font-black text-text-primary dark:text-white">
                 <span>{sectionSettings.title_white} </span>
                 <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
                   {sectionSettings.title_gradient}
@@ -497,7 +497,7 @@ const CMSOurClients = () => {
               {activeClients.map((c) => (
                 <div
                   key={c.id}
-                  className="w-28 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2.5 transition-transform hover:scale-105"
+                  className="w-28 h-14 rounded-xl bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 flex items-center justify-center p-2.5 transition-transform hover:scale-105"
                   title={c.client_name}
                 >
                   {imgSrc(c.logo_path) ? (
@@ -539,7 +539,7 @@ const CMSOurClients = () => {
                   Client Logo Asset *
                 </label>
                 <div className="flex gap-3 items-center">
-                  <div className="w-20 h-14 rounded-xl bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 shrink-0 overflow-hidden">
+                  <div className="w-20 h-14 rounded-xl bg-background dark:bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 shrink-0 overflow-hidden">
                     {editingClient.logo_path && imgSrc(editingClient.logo_path) ? (
                       <img
                         src={imgSrc(editingClient.logo_path)}

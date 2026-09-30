@@ -1,4 +1,5 @@
 import { verifyToken } from '../utils/jwt.js'
+import { isTokenBlacklisted } from '../utils/tokenBlacklist.js'
 
 export const authenticate = (req, res, next) => {
   try {
@@ -11,8 +12,17 @@ export const authenticate = (req, res, next) => {
       })
     }
 
+    // Check if token has been blacklisted (e.g. after logout)
+    if (isTokenBlacklisted(token)) {
+      return res.status(401).json({
+        success: false,
+        message: 'Session has been invalidated. Please log in again.'
+      })
+    }
+
     const decoded = verifyToken(token)
     req.user = decoded
+    req.token = token // store for use in logout
     next()
   } catch (error) {
     res.status(401).json({ 

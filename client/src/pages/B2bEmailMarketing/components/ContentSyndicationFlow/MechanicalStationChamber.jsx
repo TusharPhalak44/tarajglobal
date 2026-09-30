@@ -48,7 +48,7 @@ export default function MechanicalStationChamber({ stepIndex, isEngineRunning })
       {/* Top Station Machinery Header */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-border/60 relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/40 flex items-center justify-center text-primary font-mono text-base font-bold shadow-inner">
+          <div className="w-10 h-10 rounded-xl bg-primary/35 dark:bg-primary/15 border border-primary/40 flex items-center justify-center text-primary font-mono text-base font-bold shadow-inner">
             M-{String(stepIndex + 1).padStart(2, '0')}
           </div>
           <div>
@@ -128,7 +128,7 @@ function renderStationMechanism(idx, isEngineRunning) {
                 <span className="text-primary font-bold">VALVE OPEN</span>
               </div>
               <motion.div
-                className="w-full h-8 rounded bg-primary/20 border border-primary/50 flex items-center justify-center text-xs font-mono font-bold text-primary"
+                className="w-full h-8 rounded bg-primary/40 dark:bg-primary/20 border border-primary/50 flex items-center justify-center text-xs font-mono font-bold text-primary"
                 animate={{ scale: isEngineRunning ? [1, 1.05, 1] : 1 }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
@@ -148,7 +148,7 @@ function renderStationMechanism(idx, isEngineRunning) {
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
               Target account lists (TAL) and executive buying criteria are loaded into the feeder chamber. Dedicated outbound secondary domains are spun up with automated SPF, DKIM, and DMARC triple-handshakes.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/30 dark:bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
               ✓ 14-Day Automated Warmup Protocol Armed
             </div>
           </div>
@@ -162,7 +162,7 @@ function renderStationMechanism(idx, isEngineRunning) {
             {/* Hydraulic Printing Roller Graphic */}
             <div className="relative w-40 h-32 flex flex-col items-center justify-center">
               <motion.div
-                className="w-32 h-6 rounded-full bg-gradient-to-r from-border via-primary to-border border border-primary/60 shadow-md mb-2 flex items-center justify-center text-[9px] font-mono font-bold text-white"
+                className="w-32 h-6 rounded-full bg-gradient-to-r from-border via-primary to-border border border-primary/60 shadow-md mb-2 flex items-center justify-center text-[9px] font-mono font-bold text-text-primary dark:text-white"
                 animate={{ rotate: isEngineRunning ? [0, 360] : 0 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
               >
@@ -179,7 +179,7 @@ function renderStationMechanism(idx, isEngineRunning) {
                 </div>
                 <div className="space-y-1">
                   <div className="h-1 bg-primary/40 rounded w-full" />
-                  <div className="h-1 bg-primary/20 rounded w-4/5" />
+                  <div className="h-1 bg-primary/40 dark:bg-primary/20 rounded w-4/5" />
                 </div>
                 <span className="text-[8px] font-mono text-text-muted">Formatted Gated Asset</span>
               </motion.div>
@@ -254,7 +254,7 @@ function renderStationMechanism(idx, isEngineRunning) {
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
               Target decision-makers are filtered across 8 strict criteria chips. Every record undergoes live SMTP ping verification and phone validation to eliminate bounce risk (&lt; 1% bounce guarantee).
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/30 dark:bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
               ✓ Direct-Dial & Corporate Email Enriched
             </div>
           </div>
@@ -283,7 +283,7 @@ function renderStationMechanism(idx, isEngineRunning) {
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
               Outbound message waves are timed precisely to local morning working hours across global regions. Volume pacing guarantees 99.2% primary inbox landing and zero spam triggers.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cta/10 border border-cta/30 text-xs font-mono text-cta font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cta/30 dark:bg-cta/10 border border-cta/30 text-xs font-mono text-cta font-bold">
               ✓ 99.2% Primary Inbox Placement
             </div>
           </div>
@@ -296,11 +296,11 @@ function renderStationMechanism(idx, isEngineRunning) {
           <div className="md:col-span-5 flex flex-col items-center justify-center p-4 rounded-xl bg-background/80 border border-border">
             {/* Optical Telemetry Sensor */}
             <div className="w-full space-y-1 font-mono text-[9px]">
-              <div className="p-1.5 rounded bg-primary/10 border border-primary/40 text-primary flex justify-between">
+              <div className="p-1.5 rounded bg-primary/30 dark:bg-primary/10 border border-primary/40 text-primary flex justify-between">
                 <span>1. Email Opened</span>
                 <span>10:24 AM ✓</span>
               </div>
-              <div className="p-1.5 rounded bg-cta/10 border border-cta/40 text-cta flex justify-between">
+              <div className="p-1.5 rounded bg-cta/30 dark:bg-cta/10 border border-cta/40 text-cta flex justify-between">
                 <span>2. CTA Clicked</span>
                 <span>10:27 AM ✓</span>
               </div>
@@ -345,7 +345,7 @@ function renderStationMechanism(idx, isEngineRunning) {
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
               The engaged prospect is encapsulated into a structured Lead Dossier with timestamps, corporate footprint, direct-dial contacts, and asset engagement context.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/30 dark:bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
               ✓ Structured B2B Profile Formed
             </div>
           </div>
@@ -442,7 +442,7 @@ function renderStationMechanism(idx, isEngineRunning) {
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
               Certified lead dossiers are pushed via automated webhook straight into your CRM or partner portal, ready for immediate SDR outreach while the prospect's interest is at peak.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/30 dark:bg-primary/10 border border-primary/30 text-xs font-mono text-primary font-bold">
               ✓ Live Pipeline Active
             </div>
           </div>

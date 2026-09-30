@@ -109,7 +109,7 @@ export const FloatingSignals = () => {
               opacity: { duration: 0.6, delay: sig.delay },
               scale: { duration: 0.6, delay: sig.delay },
             }}
-            className="absolute flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#0E121E]/80 border border-white/10 shadow-lg backdrop-blur-md opacity-80"
+            className="absolute flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-surface dark:bg-[#0E121E]/80 border border-border dark:border-white/10 shadow-lg backdrop-blur-md opacity-80"
             style={{
               top: sig.top,
               left: sig.left,
@@ -118,7 +118,7 @@ export const FloatingSignals = () => {
           >
             {/* Pulsing Dot / Icon */}
             <div 
-              className="w-4 h-4 rounded flex items-center justify-center text-white"
+              className="w-4 h-4 rounded flex items-center justify-center text-text-primary dark:text-white"
               style={{
                 backgroundColor: `${sig.color}25`,
                 color: sig.color,
@@ -133,7 +133,7 @@ export const FloatingSignals = () => {
               <span className="text-sm font-mono font-bold tracking-wider text-slate-200 block">
                 {sig.label}
               </span>
-              <span className="text-[7.5px] font-mono text-slate-400 block" style={{ color: sig.color }}>
+              <span className="text-[7.5px] font-mono text-text-secondary dark:text-slate-400 block" style={{ color: sig.color }}>
                 {sig.sub}
               </span>
             </div>

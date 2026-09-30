@@ -14,7 +14,7 @@ const FinalCTA = () => {
   return (
     <section
       id="cta"
-      className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-slate-950 text-white"
+      className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-background dark:bg-slate-950 text-text-primary dark:text-white"
       aria-label="Ready to Explore DemandFlow Bridge"
     >
       {/* Background Animated Connection Grid & Nebula */}
@@ -43,7 +43,7 @@ const FinalCTA = () => {
           whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md text-slate-300 text-xs font-mono font-bold uppercase mb-6"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border dark:border-white/15 bg-surface/80 dark:bg-white/5 backdrop-blur-md text-text-secondary dark:text-slate-300 text-xs font-mono font-bold uppercase mb-6"
         >
           <Cpu className="w-3.5 h-3.5 text-primary animate-pulse" />
           <span>Unified Operations Ecosystem</span>
@@ -69,7 +69,7 @@ const FinalCTA = () => {
           whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal mb-8"
+          className="text-base sm:text-lg text-text-secondary dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal mb-8"
         >
           Discover how one integrated platform can connect your business operations.
         </motion.p>
@@ -84,7 +84,7 @@ const FinalCTA = () => {
         >
           <button
             onClick={scrollToTop}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-white hover: shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-text-primary dark:text-white hover: shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
           >
             <span>Explore DemandFlow Bridge</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -92,7 +92,7 @@ const FinalCTA = () => {
 
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 border border-white/15 text-white transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/15 text-text-primary dark:text-white transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
           >
             <MessageSquare className="w-4 h-4 text-primary" />
             <span>Talk to Taraj Global</span>
@@ -100,7 +100,7 @@ const FinalCTA = () => {
         </motion.div>
 
         {/* Trust Badges Footer */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-400">
+        <div className="mt-12 pt-8 border-t border-border dark:border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-text-secondary dark:text-slate-400">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
             <span>Proprietary Internal Architecture</span>

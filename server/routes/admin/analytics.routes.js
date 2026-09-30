@@ -184,7 +184,7 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
     })
   } catch (error) {
     console.error('Dashboard error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -207,7 +207,7 @@ router.get('/blog-trends', checkPermission('analytics.view'), async (req, res) =
     
     res.json({ success: true, data: trends })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -230,7 +230,7 @@ router.get('/application-trends', checkPermission('analytics.view'), async (req,
     
     res.json({ success: true, data: trends })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -288,6 +288,7 @@ router.get('/traffic', checkPermission('analytics.view'), async (req, res) => {
         pv.ip_address,
         pv.session_id,
         pv.page_url,
+        pv.user_agent,
         pv.created_at,
         (SELECT COUNT(*) FROM page_views WHERE session_id = pv.session_id) as total_visits
       FROM page_views pv
@@ -296,17 +297,40 @@ router.get('/traffic', checkPermission('analytics.view'), async (req, res) => {
       LIMIT 10
     `, [parseInt(days)])
 
+    // Calculate source percentages
+    const totalSourceViews = sourcesResult.reduce((acc, curr) => acc + Number(curr.views), 0);
+    const formattedSources = sourcesResult.map(src => ({
+      source: src.source,
+      count: src.views,
+      percentage: totalSourceViews > 0 ? Math.round((Number(src.views) / totalSourceViews) * 100) : 0
+    }));
+
+    // Format top pages
+    const formattedTopPages = topPagesResult.map(page => ({
+      url: page.page_url,
+      views: page.views
+    }));
+
+    // Format recent traffic
+    const formattedRecentTraffic = recentVisitors.map(session => ({
+      url: session.page_url,
+      user_agent: session.user_agent,
+      created_at: session.created_at,
+      ip_address: session.ip_address
+    }));
+
     res.json({
       success: true,
       data: {
-        overview: overviewResult[0] || { total_views: 0, unique_visitors: 0 },
-        top_pages: topPagesResult,
-        traffic_sources: sourcesResult,
-        recent_visitors: recentVisitors
+        totalPageViews: overviewResult[0]?.total_views || 0,
+        uniqueVisitors: overviewResult[0]?.unique_visitors || 0,
+        topPages: formattedTopPages,
+        sources: formattedSources,
+        recentTraffic: formattedRecentTraffic
       }
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

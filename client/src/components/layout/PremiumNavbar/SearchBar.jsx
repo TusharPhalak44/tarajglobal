@@ -36,12 +36,12 @@ const SearchBar = ({ isOpen, onClose }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search..."
-              className="w-full pl-9 pr-8 py-2 bg-white/5 border border-white/10 rounded-full text-white placeholder-text-secondary text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full pl-9 pr-8 py-2 bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 rounded-full text-text-primary dark:text-white placeholder-text-secondary text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
             />
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 text-text-secondary hover:text-white transition-colors"
+              className="absolute right-3 text-text-secondary hover:text-text-primary dark:text-white transition-colors"
             >
               <X className="w-4 h-4" />
             </button>

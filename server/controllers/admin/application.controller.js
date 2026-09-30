@@ -51,7 +51,7 @@ const applicationController = {
       })
     } catch (error) {
       console.error('Get applications error:', error)
-      res.status(500).json({ success: false, message: error.message })
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   },
 
@@ -71,7 +71,7 @@ const applicationController = {
       res.json({ success: true, data: applications[0] })
     } catch (error) {
       console.error('Get application by ID error:', error)
-      res.status(500).json({ success: false, message: error.message })
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   },
 
@@ -92,7 +92,7 @@ const applicationController = {
       res.json({ success: true, message: 'Application deleted successfully' })
     } catch (error) {
       console.error('Delete application error:', error)
-      res.status(500).json({ success: false, message: error.message })
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   },
 
@@ -110,7 +110,7 @@ const applicationController = {
       res.json({ success: true, message: 'Application status updated successfully' })
     } catch (error) {
       console.error('Update application status error:', error)
-      res.status(500).json({ success: false, message: error.message })
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   },
 
@@ -129,11 +129,7 @@ const applicationController = {
       // Add notes column if it doesn't exist
       if (columns.length === 0) {
         try {
-          await db.execute(`ALTER TABLE job_applications ADD COLUMN notes TEXT`)
-          console.log('Added notes column to job_applications table')
-        } catch (alterError) {
-          console.log('Could not add notes column:', alterError.message)
-        }
+          await db.execute(`ALTER TABLE job_applications ADD COLUMN notes TEXT`)        } catch (alterError) {        }
       }
 
       // Update the notes field (append new note)
@@ -158,7 +154,7 @@ const applicationController = {
       res.json({ success: true, message: 'Note added successfully' })
     } catch (error) {
       console.error('Add application note error:', error)
-      res.status(500).json({ success: false, message: error.message })
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   },
 
@@ -183,7 +179,7 @@ const applicationController = {
       res.json({ success: true, message: 'Bulk action completed' })
     } catch (error) {
       console.error('Bulk application action error:', error)
-      res.status(500).json({ success: false, message: error.message })
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   }
 }

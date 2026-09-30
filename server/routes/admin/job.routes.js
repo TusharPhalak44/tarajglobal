@@ -52,7 +52,7 @@ router.get('/', checkPermission('job.create'), async (req, res) => {
       }
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -75,7 +75,7 @@ router.get('/:id', checkPermission('job.create'), async (req, res) => {
     
     res.json({ success: true, data: jobs[0] })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -145,7 +145,7 @@ router.post('/', [
     
     res.status(201).json({ success: true, data: { id: result.insertId, slug } })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -198,7 +198,7 @@ router.put('/:id', [
     
     res.json({ success: true, message: 'Job updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -210,7 +210,7 @@ router.delete('/:id', checkPermission('job.delete'), async (req, res) => {
     await db.execute('DELETE FROM careers WHERE id = ?', [req.params.id])
     res.json({ success: true, message: 'Job deleted successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -231,7 +231,7 @@ router.patch('/:id/status', [
     
     res.json({ success: true, message: 'Job status updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

@@ -17,7 +17,7 @@ export default function PipelineHeader({
     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">
       <div className="max-w-3xl">
         {/* Eyebrow badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-md mb-4 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 backdrop-blur-md mb-4 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
           <span className="text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-primary">
             CONTENT SYNDICATION • EMAIL MARKETING • LEAD GENERATION

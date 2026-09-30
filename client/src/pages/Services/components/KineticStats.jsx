@@ -128,7 +128,7 @@ export default function KineticStats() {
                     <span className="font-mono text-xs text-text-muted uppercase">
                       BENCHMARK 0{idx + 1}
                     </span>
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                    <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                       <Icon className="w-4 h-4" />
                     </div>
                   </div>

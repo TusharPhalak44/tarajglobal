@@ -62,7 +62,7 @@ const Stage01Visualization = ({ isHovered }) => {
   const prefersReducedMotion = useReducedMotion()
 
   return (
-    <div className="relative w-full h-24 rounded-xl bg-slate-950/80 border border-slate-800/90 p-2 overflow-hidden flex items-center justify-between">
+    <div className="relative w-full h-24 rounded-xl bg-background dark:bg-slate-950/80 border border-border dark:border-slate-800/90 p-2 overflow-hidden flex items-center justify-between">
       {/* Blueprint Grid Lines */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#00A6FF12_1px,transparent_1px),linear-gradient(to_bottom,#00A6FF12_1px,transparent_1px)] bg-[size:12px_12px] opacity-40" />
 
@@ -107,19 +107,19 @@ const Stage01Visualization = ({ isHovered }) => {
 
       {/* Telemetry Target Info */}
       <div className="flex-1 pl-3 space-y-1 text-sm font-mono">
-        <div className="flex items-center justify-between px-2 py-1 rounded bg-slate-900/90 border border-primary/20 text-slate-300">
+        <div className="flex items-center justify-between px-2 py-1 rounded bg-surface dark:bg-slate-900/90 border border-primary/20 text-text-secondary dark:text-slate-300">
           <span className="flex items-center gap-1 text-[#00E5FF]">
             <Target size={10} />
             <span>TAM Convergence</span>
           </span>
           <span className="text-emerald-400 font-bold">LOCKED</span>
         </div>
-        <div className="flex items-center justify-between px-2 py-1 rounded bg-slate-900/90 border border-primary/20 text-slate-300">
+        <div className="flex items-center justify-between px-2 py-1 rounded bg-surface dark:bg-slate-900/90 border border-primary/20 text-text-secondary dark:text-slate-300">
           <span className="flex items-center gap-1 text-primary">
             <Users size={10} />
             <span>Buying Committee</span>
           </span>
-          <span className="text-white font-bold">C-Suite / VP</span>
+          <span className="text-text-primary dark:text-white font-bold">C-Suite / VP</span>
         </div>
       </div>
     </div>
@@ -132,7 +132,7 @@ const Stage01Visualization = ({ isHovered }) => {
  */
 const Stage02Visualization = ({ isHovered }) => {
   return (
-    <div className="relative w-full h-24 rounded-xl bg-slate-950/80 border border-slate-800/90 p-2 overflow-hidden flex items-center justify-between">
+    <div className="relative w-full h-24 rounded-xl bg-background dark:bg-slate-950/80 border border-border dark:border-slate-800/90 p-2 overflow-hidden flex items-center justify-between">
       {/* Blueprint Stream Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#10B98112_1px,transparent_1px),linear-gradient(to_bottom,#10B98112_1px,transparent_1px)] bg-[size:12px_12px] opacity-40" />
 
@@ -143,14 +143,14 @@ const Stage02Visualization = ({ isHovered }) => {
           { step: '02', title: 'Multi-Pass', desc: 'Validation', ok: true },
           { step: '03', title: 'Validated', desc: '0% Re-Sync', ok: true },
         ].map((gate, i) => (
-          <div key={i} className="flex flex-col items-center justify-center p-1.5 rounded-lg bg-slate-900/95 border border-emerald-500/25 text-center">
+          <div key={i} className="flex flex-col items-center justify-center p-1.5 rounded-lg bg-surface dark:bg-slate-900/95 border border-emerald-500/25 text-center">
             <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/60 flex items-center justify-center mb-1 text-emerald-400 shadow-[0_0_6px_#10B981]">
               <Check size={9} strokeWidth={3} />
             </div>
             <span className="text-sm font-mono font-bold text-slate-200">
               {gate.title}
             </span>
-            <span className="text-sm font-mono text-slate-400 truncate w-full">
+            <span className="text-sm font-mono text-text-secondary dark:text-slate-400 truncate w-full">
               {gate.desc}
             </span>
           </div>
@@ -166,34 +166,34 @@ const Stage02Visualization = ({ isHovered }) => {
  */
 const Stage03Visualization = ({ isHovered }) => {
   return (
-    <div className="relative w-full h-24 rounded-xl bg-slate-950/80 border border-slate-800/90 p-2 overflow-hidden flex items-center justify-between">
+    <div className="relative w-full h-24 rounded-xl bg-background dark:bg-slate-950/80 border border-border dark:border-slate-800/90 p-2 overflow-hidden flex items-center justify-between">
       {/* Stream Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#FF6D0012_1px,transparent_1px),linear-gradient(to_bottom,#FF6D0012_1px,transparent_1px)] bg-[size:12px_12px] opacity-40" />
 
       {/* Conversion Funnel Progress Velocity */}
       <div className="w-full flex items-center justify-between gap-2 px-1 relative z-10 text-sm font-mono">
         <div className="flex-1 space-y-1">
-          <div className="flex items-center justify-between text-slate-300">
+          <div className="flex items-center justify-between text-text-secondary dark:text-slate-300">
             <span className="text-cta">Outreach Sprint</span>
-            <span className="text-white font-bold">Multi-Touch</span>
+            <span className="text-text-primary dark:text-white font-bold">Multi-Touch</span>
           </div>
-          <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-surface dark:bg-slate-800 rounded-full overflow-hidden">
             <motion.div 
               className="h-full bg-gradient-to-r from-[#FFA600] to-[#FF6D00] rounded-full"
               animate={{ width: isHovered ? '100%' : '88%' }}
               transition={{ duration: 0.5 }}
             />
           </div>
-          <div className="flex items-center justify-between text-slate-400 pt-0.5">
+          <div className="flex items-center justify-between text-text-secondary dark:text-slate-400 pt-0.5">
             <span>Executive SQLs</span>
             <span className="text-emerald-400 font-bold">Closed-Loop</span>
           </div>
         </div>
 
         {/* Growth Activation Emblem */}
-        <div className="w-12 h-14 rounded-lg bg-cta/15 border border-cta/40 flex flex-col items-center justify-center shrink-0 text-cta shadow-[0_0_14px_rgba(255,109,0,0.35)]">
+        <div className="w-12 h-14 rounded-lg bg-cta/35 dark:bg-cta/15 border border-cta/40 flex flex-col items-center justify-center shrink-0 text-cta shadow-[0_0_14px_rgba(255,109,0,0.35)]">
           <TrendingUp size={16} />
-          <span className="text-sm font-mono font-black mt-1 text-white">
+          <span className="text-sm font-mono font-black mt-1 text-text-primary dark:text-white">
             GROWTH
           </span>
         </div>
@@ -271,10 +271,10 @@ export const ArchitectureStageCard = ({
       }`}
     >
       {/* ── Technical Corner Bracket Accents ────────────────────────── */}
-      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/20 rounded-tl-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
-      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-white/20 rounded-tr-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
-      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-white/20 rounded-bl-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
-      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white/20 rounded-br-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
+      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-border dark:border-white/20 rounded-tl-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
+      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-border dark:border-white/20 rounded-tr-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-border dark:border-white/20 rounded-bl-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-border dark:border-white/20 rounded-br-sm pointer-events-none group-hover:border-primary/60 transition-colors" />
 
       {/* Top Accent Glowing Line */}
       <div 
@@ -290,7 +290,7 @@ export const ArchitectureStageCard = ({
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2.5">
-            <span className="text-sm font-mono font-extrabold px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">
+            <span className="text-sm font-mono font-extrabold px-2 py-0.5 rounded bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 text-text-secondary dark:text-slate-300">
               MODULE {stage.num}
             </span>
             <span className={`text-sm font-mono font-bold px-2 py-0.5 rounded border uppercase tracking-wider ${currentTheme.tagBg}`}>
@@ -308,12 +308,12 @@ export const ArchitectureStageCard = ({
         </div>
 
         {/* Stage Title */}
-        <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2 group-hover:text-primary transition-colors duration-200">
+        <h3 className="text-xl sm:text-2xl font-black text-text-primary dark:text-white tracking-tight mb-2 group-hover:text-primary transition-colors duration-200">
           {stage.title}
         </h3>
 
         {/* Stage Editorial Description */}
-        <p className="text-sm sm:text-sm text-slate-400 dark:text-slate-300 leading-relaxed min-h-[44px]">
+        <p className="text-sm sm:text-sm text-text-secondary dark:text-slate-400 dark:text-slate-300 leading-relaxed min-h-[44px]">
           {stage.subtitle}
         </p>
       </div>
@@ -326,9 +326,9 @@ export const ArchitectureStageCard = ({
       </div>
 
       {/* ── CARD FOOTER: DOMINANT METRIC & TELEMETRY STATUS ─────────── */}
-      <div className="pt-4 border-t border-slate-800/90 dark:border-white/10 flex items-end justify-between">
+      <div className="pt-4 border-t border-border dark:border-slate-800/90 dark:border-white/10 flex items-end justify-between">
         <div>
-          <div className="text-2xl sm:text-3xl lg:text-4xl font-mono font-black text-white tracking-tight block group-hover:scale-105 transition-transform origin-left">
+          <div className="text-2xl sm:text-3xl lg:text-4xl font-mono font-black text-text-primary dark:text-white tracking-tight block group-hover:scale-105 transition-transform origin-left">
             {stage.num === '01' && <AnimatedCounter targetValue={100} decimal={0} suffix="%" />}
             {stage.num === '02' && <AnimatedCounter targetValue={99.8} decimal={1} suffix="%" />}
             {stage.num === '03' && (
@@ -337,7 +337,7 @@ export const ArchitectureStageCard = ({
               </span>
             )}
           </div>
-          <span className="text-sm sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 block mt-0.5">
+          <span className="text-sm sm:text-sm font-mono font-bold uppercase tracking-wider text-text-secondary dark:text-slate-400 block mt-0.5">
             {stage.metricLabel}
           </span>
         </div>

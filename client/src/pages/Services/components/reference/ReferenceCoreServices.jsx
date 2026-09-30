@@ -146,7 +146,7 @@ export default function ReferenceCoreServices() {
   return (
     <section
       id="core-services-section"
-      className="relative py-24 lg:py-32 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden select-none transition-colors duration-300"
+      className="relative py-24 lg:py-32 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden select-none transition-colors duration-300"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
@@ -159,7 +159,7 @@ export default function ReferenceCoreServices() {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-[1.15]">
               Solutions Built Around <br className="hidden sm:inline" />
               Your Growth Goals
             </h2>
@@ -221,7 +221,7 @@ export default function ReferenceCoreServices() {
                           {pillar.services.length} Specialized Services
                         </span>
                       </div>
-                      <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+                      <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-text-primary dark:text-white">
                         {pillar.heading}
                       </h3>
                     </div>
@@ -248,11 +248,11 @@ export default function ReferenceCoreServices() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: idx * 0.05 }}
                       onClick={() => navigate(card.route)}
-                      className="group relative rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0B0F17]/80 hover:bg-slate-50 dark:hover:bg-[#0E141F] hover:border-[#FF6D00] dark:hover:border-[#FF6D00] p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer hover:-translate-y-2 shadow-md shadow-slate-200/50 dark:shadow-xl overflow-hidden min-h-[320px]"
+                      className="group relative rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0B0F17]/80 hover:bg-slate-50 dark:hover:bg-surface dark:bg-[#0E141F] hover:border-[#FF6D00] dark:hover:border-[#FF6D00] p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer hover:-translate-y-2 shadow-md shadow-slate-200/50 dark:shadow-xl overflow-hidden min-h-[320px]"
                     >
                       {/* Top: Number & Tag */}
                       <div className="relative z-10 flex items-center justify-between gap-1">
-                        <span className="font-mono text-xs font-black text-slate-400 dark:text-white/40 group-hover:text-[#FF6D00] transition-colors">
+                        <span className="font-mono text-xs font-black text-text-secondary dark:text-slate-400 dark:text-white/40 group-hover:text-[#FF6D00] transition-colors">
                           {card.num}
                         </span>
                         <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-white/60 border border-slate-200/60 dark:border-white/5 truncate max-w-[120px]">
@@ -262,14 +262,14 @@ export default function ReferenceCoreServices() {
 
                       {/* Title (2 lines) */}
                       <div className="relative z-10 my-3">
-                        <h4 className="text-sm sm:text-base font-black uppercase text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-[#FF6D00] transition-colors">
+                        <h4 className="text-sm sm:text-base font-black uppercase text-slate-900 dark:text-text-primary dark:text-white tracking-tight leading-tight group-hover:text-[#FF6D00] transition-colors">
                           <div>{card.line1}</div>
                           <div>{card.line2}</div>
                         </h4>
                       </div>
 
                       {/* Lower Portion: Visual Artwork */}
-                      <div className="relative w-full h-32 rounded-xl overflow-hidden mt-auto border border-slate-200/80 dark:border-white/5 bg-slate-950">
+                      <div className="relative w-full h-32 rounded-xl overflow-hidden mt-auto border border-slate-200/80 dark:border-white/5 bg-background dark:bg-slate-950">
                         <div
                           className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
                           style={{ backgroundImage: `url(${card.image})` }}
@@ -277,8 +277,8 @@ export default function ReferenceCoreServices() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent dark:from-[#0B0F17] dark:via-[#0B0F17]/40 dark:to-transparent" />
 
                         {/* Bottom Circular Arrow Icon */}
-                        <div className="absolute bottom-2.5 left-2.5 w-7 h-7 rounded-full border border-white/30 bg-black/60 backdrop-blur-sm flex items-center justify-center group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00] transition-all">
-                          <ArrowRight className="w-3.5 h-3.5 text-white group-hover:text-black transition-colors" />
+                        <div className="absolute bottom-2.5 left-2.5 w-7 h-7 rounded-full border border-border dark:border-white/30 bg-background dark:bg-black/60 backdrop-blur-sm flex items-center justify-center group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00] transition-all">
+                          <ArrowRight className="w-3.5 h-3.5 text-text-primary dark:text-white group-hover:text-black transition-colors" />
                         </div>
                       </div>
                     </motion.div>

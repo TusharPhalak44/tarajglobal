@@ -58,7 +58,7 @@ const WebinarProcess = () => {
     <section
       id="webinar-process"
       ref={sectionRef}
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="How Our B2B Webinar Process Works"
     >
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -119,7 +119,7 @@ const WebinarProcess = () => {
             className="relative inline-block"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-              <span className="text-slate-900 dark:text-white">
+              <span className="text-slate-900 dark:text-text-primary dark:text-white">
                 B2B WEBINAR{' '}
               </span>
               <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">

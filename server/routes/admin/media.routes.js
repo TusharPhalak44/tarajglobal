@@ -17,8 +17,16 @@ const storage = multer.diskStorage({
     cb(null, uploadDir)
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, uniqueSuffix + path.extname(file.originalname))
+    // Use crypto + MIME type — never trust user-supplied originalname
+    const crypto = require('crypto')
+    const MIME_MAP = {
+      'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp',
+      'image/gif': 'gif', 'image/svg+xml': 'svg',
+      'video/mp4': 'mp4', 'video/webm': 'webm', 'video/quicktime': 'mov',
+      'application/pdf': 'pdf'
+    }
+    const ext = MIME_MAP[file.mimetype] || 'bin'
+    cb(null, `${Date.now()}-${crypto.randomBytes(8).toString('hex')}.${ext}`)
   }
 })
 
@@ -42,7 +50,7 @@ const upload = multer({
 // @route   GET /api/admin/media
 // @desc    Get all media
 // @access  Private
-router.get('/', async (req, res) => {
+router.get('/', checkPermission('media.upload'), async (req, res) => {
   try {
     const { type, search, page = 1, limit = 20 } = req.query
     const offset = (page - 1) * limit
@@ -87,7 +95,7 @@ router.get('/', async (req, res) => {
     })
   } catch (error) {
     console.error('Get media error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -130,7 +138,7 @@ router.post('/upload', checkPermission('media.upload'), upload.single('file'), a
       data: { id: result.insertId, url: fileUrl }
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -148,16 +156,15 @@ router.put('/:id', checkPermission('media.upload'), async (req, res) => {
     
     res.json({ success: true, message: 'Media updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
 // @route   DELETE /api/admin/media/:id
 // @desc    Delete media
 // @access  Private
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkPermission('media.upload'), async (req, res) => {
   try {
-    console.log('Delete request for media id:', req.params.id)
     const [media] = await db.execute('SELECT * FROM media WHERE id = ?', [req.params.id])
     
     if (media.length === 0) {
@@ -165,20 +172,17 @@ router.delete('/:id', async (req, res) => {
     }
     
     const file = media[0]
-    console.log('Media file path:', file.file_path)
     
     if (fs.existsSync(file.file_path)) {
       fs.unlinkSync(file.file_path)
-      console.log('File deleted from disk')
     }
     
     await db.execute('DELETE FROM media WHERE id = ?', [req.params.id])
-    console.log('Media deleted from database')
     
     res.json({ success: true, message: 'Media deleted successfully' })
   } catch (error) {
     console.error('Delete media error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

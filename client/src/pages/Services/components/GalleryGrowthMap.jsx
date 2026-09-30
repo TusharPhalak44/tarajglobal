@@ -70,7 +70,7 @@ export const GalleryGrowthMap = () => {
       className="relative py-24 md:py-32 px-6 md:px-14 lg:px-20 bg-background text-text-primary border-b border-border/40 overflow-hidden"
     >
       {/* Background radial accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary/25 dark:bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         {/* SECTION HEADER */}

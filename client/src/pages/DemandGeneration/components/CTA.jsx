@@ -147,7 +147,7 @@ const CTA = () => {
         <motion.div style={prefersReducedMotion ? {} : { y }}>
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-3.5 border border-primary/30 bg-primary/10 text-primary shadow-xs"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-3.5 border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary shadow-xs"
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -268,7 +268,7 @@ const CTA = () => {
           >
             <button
               onClick={handleStartConversation}
-              className="group inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-sm text-white transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-sm text-text-primary dark:text-white transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
               style={{
                 background: 'linear-gradient(90deg, #00A6FF 0%, #0080CC 100%)',
                 boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
@@ -281,7 +281,7 @@ const CTA = () => {
 
             <button
               onClick={handleExploreServices}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  border border-border  hover: transition-all duration-200 cursor-pointer shadow-xs"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  border border-border  hover: transition-all duration-200 cursor-pointer shadow-xs"
             >
               <span>Explore Our Services</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

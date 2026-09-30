@@ -531,12 +531,12 @@ const WhoIsItFor = () => {
                           </div>
 
                           {/* Bottom Caption Overlay */}
-                          <div className="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between text-white pointer-events-none">
+                          <div className="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between text-text-primary dark:text-white pointer-events-none">
                             <span className="text-[11px] font-mono font-bold text-white/95 drop-shadow-xs truncate">
                               {active.label}
                             </span>
                             <span
-                              className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-white shadow-xs shrink-0"
+                              className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-text-primary dark:text-white shadow-xs shrink-0"
                               style={{ backgroundColor: active.color }}
                             >
                               {active.num}
@@ -656,10 +656,10 @@ const WhoIsItFor = () => {
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
-              <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-white pointer-events-none">
+              <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-text-primary dark:text-white pointer-events-none">
                 <span className="text-[10px] font-mono font-bold truncate">{active.label}</span>
                 <span
-                  className="px-1 py-0.5 rounded text-[9px] font-mono font-bold text-white shrink-0"
+                  className="px-1 py-0.5 rounded text-[9px] font-mono font-bold text-text-primary dark:text-white shrink-0"
                   style={{ backgroundColor: active.color }}
                 >
                   {active.num}

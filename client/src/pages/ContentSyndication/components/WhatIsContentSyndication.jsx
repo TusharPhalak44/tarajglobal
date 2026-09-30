@@ -63,7 +63,7 @@ const WhatIsContentSyndication = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
-                    className="absolute top-1/2 left-1/2 w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                    className="absolute top-1/2 left-1/2 w-16 h-16 rounded-full bg-surface/90 dark:bg-white/10 backdrop-blur-sm border border-border dark:border-white/20 flex items-center justify-center"
                     style={{
                       transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
                     }}
@@ -114,7 +114,7 @@ const WhatIsContentSyndication = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-6">
               What is Content
               <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
                 {' '}Syndication?
@@ -137,10 +137,10 @@ const WhatIsContentSyndication = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-[#00A6FF]/50 transition-all cursor-pointer"
+                  className="p-6 rounded-2xl bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 backdrop-blur-sm hover:border-[#00A6FF]/50 transition-all cursor-pointer"
                 >
                   <div className="text-[#00A6FF] mb-3">{feature.icon}</div>
-                  <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
+                  <h3 className="text-text-primary dark:text-white font-semibold mb-2">{feature.title}</h3>
                   <p className="text-sm text-gray-400">{feature.description}</p>
                 </motion.div>
               ))}

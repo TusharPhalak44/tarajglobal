@@ -177,7 +177,7 @@ export default function MechanicalProcessEngine({
               }}
             >
               <div className="flex flex-col items-center">
-                <div className="px-2 py-0.5 rounded-full bg-gradient-to-r from-primary to-cta text-white font-mono text-[9px] font-black shadow-[0_0_15px_rgba(0,166,255,0.8)] border border-white/40 flex items-center gap-1 animate-pulse">
+                <div className="px-2 py-0.5 rounded-full bg-gradient-to-r from-primary to-cta text-white font-mono text-[9px] font-black shadow-[0_0_15px_rgba(0,166,255,0.8)] border border-border/80 dark:border-white/40 flex items-center gap-1 animate-pulse">
                   <Sparkles className="w-2.5 h-2.5" />
                   <span>PAYLOAD IN TRANSIT</span>
                 </div>

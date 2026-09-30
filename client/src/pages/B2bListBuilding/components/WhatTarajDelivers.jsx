@@ -194,7 +194,7 @@ const WhatTarajDelivers = () => {
   return (
     <section
       id="what-taraj-global-delivers"
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="What Does Taraj Global Deliver"
     >
       {/* ── Subtle Ambient Background Illumination ── */}
@@ -222,7 +222,7 @@ const WhatTarajDelivers = () => {
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span className="text-slate-900 dark:text-white">What Does Taraj Global </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
               Deliver?
             </span>
@@ -332,7 +332,7 @@ const WhatTarajDelivers = () => {
                   </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 dark:text-text-primary dark:text-white tracking-tight leading-tight">
                   {activeLayer.title}
                 </h3>
 
@@ -371,7 +371,7 @@ const WhatTarajDelivers = () => {
                   <div className="pt-2">
                     <Link
                       to="/demandflow-bridge"
-                      style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold  text-white hover:/90 shadow-md shadow-[#00A6FF]/20 hover:shadow-[#00A6FF]/35 transition-all duration-300 hover:-translate-y-0.5 group"
+                      style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold  text-text-primary dark:text-white hover:/90 shadow-md shadow-[#00A6FF]/20 hover:shadow-[#00A6FF]/35 transition-all duration-300 hover:-translate-y-0.5 group"
                     >
                       <span>Explore DemandFlow Bridge</span>
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -385,11 +385,11 @@ const WhatTarajDelivers = () => {
               <div className="lg:col-span-6">
                 <div 
                   onClick={() => setIsZoomed(true)}
-                  className="relative rounded-2xl overflow-hidden border border-slate-300/80 dark:border-[#00A6FF]/30 bg-[#060D19] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.15)] group cursor-pointer transition-all duration-300 hover:border-[#00A6FF] hover:shadow-[0_20px_50px_rgba(0,166,255,0.25)]"
+                  className="relative rounded-2xl overflow-hidden border border-slate-300/80 dark:border-[#00A6FF]/30 bg-background dark:bg-[#060D19] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.15)] group cursor-pointer transition-all duration-300 hover:border-[#00A6FF] hover:shadow-[0_20px_50px_rgba(0,166,255,0.25)]"
                 >
                   
                   {/* DEMANDFLOW Application Top Chrome Bar */}
-                  <div className="flex items-center justify-between px-3.5 py-2.5 bg-slate-900 border-b border-white/10 select-none">
+                  <div className="flex items-center justify-between px-3.5 py-2.5 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10 select-none">
                     {/* macOS Style Window Control Dots */}
                     <div className="flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
@@ -398,9 +398,9 @@ const WhatTarajDelivers = () => {
                     </div>
 
                     {/* URL / Path Pill */}
-                    <div className="hidden sm:flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-slate-950/80 border border-white/10 text-[11px] font-mono text-slate-400">
+                    <div className="hidden sm:flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-background dark:bg-slate-950/80 border border-border dark:border-white/10 text-[11px] font-mono text-text-secondary dark:text-slate-400">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-slate-300">demandflow.tarajglobal.com</span>
+                      <span className="text-text-secondary dark:text-slate-300">demandflow.tarajglobal.com</span>
                       <span className="text-slate-500">/bridge/live</span>
                     </div>
 
@@ -416,18 +416,18 @@ const WhatTarajDelivers = () => {
                           <ArrowRight className="w-3 h-3" />
                         </Link>
                       ) : (
-                        <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase hidden md:inline">
+                        <span className="text-[10px] font-mono font-bold tracking-wider text-text-secondary dark:text-slate-400 uppercase hidden md:inline">
                           Click to expand
                         </span>
                       )}
-                      <div className="w-6 h-6 rounded-md bg-white/5 flex items-center justify-center text-slate-400 group-hover:text-white group-hover:bg-[#00A6FF]/20 transition-colors">
+                      <div className="w-6 h-6 rounded-md bg-surface/80 dark:bg-white/5 flex items-center justify-center text-text-secondary dark:text-slate-400 group-hover:text-white group-hover:bg-[#00A6FF]/20 transition-colors">
                         <Maximize2 className="w-3.5 h-3.5" />
                       </div>
                     </div>
                   </div>
 
                   {/* Dashboard Image Viewport (16:9 Aspect Ratio) */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-background dark:bg-slate-950">
                     <img
                       src={activeLayer.image}
                       alt={`${activeLayer.title} - DemandFlow Bridge Platform Screen`}
@@ -439,21 +439,21 @@ const WhatTarajDelivers = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/30 pointer-events-none" />
 
                     {/* Top Floating Badge */}
-                    <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-slate-950/90 backdrop-blur-md border border-white/15 text-[10.5px] font-mono font-bold text-white shadow-md">
+                    <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-background dark:bg-slate-950/90 backdrop-blur-md border border-border dark:border-white/15 text-[10.5px] font-mono font-bold text-text-primary dark:text-white shadow-md">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span className="text-[#00A6FF]">{activeLayer.module}</span>
                       {activeLayer.subLabel && (
-                        <span className="text-slate-300 font-medium hidden sm:inline">• {activeLayer.subLabel}</span>
+                        <span className="text-text-secondary dark:text-slate-300 font-medium hidden sm:inline">• {activeLayer.subLabel}</span>
                       )}
                     </div>
 
                     {/* Bottom Status Overlay */}
                     <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
                       <div className="flex flex-col">
-                        <span className="text-[11px] font-mono font-semibold text-slate-400">
+                        <span className="text-[11px] font-mono font-semibold text-text-secondary dark:text-slate-400">
                           {activeLayer.screen}
                         </span>
-                        <span className="text-xs font-bold text-white drop-shadow">
+                        <span className="text-xs font-bold text-text-primary dark:text-white drop-shadow">
                           {activeLayer.metric}
                         </span>
                       </div>
@@ -479,7 +479,7 @@ const WhatTarajDelivers = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-background dark:bg-black/90 backdrop-blur-md"
             onClick={() => setIsZoomed(false)}
           >
             <motion.div
@@ -488,13 +488,13 @@ const WhatTarajDelivers = () => {
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-6xl w-full bg-[#070D18] border border-white/20 rounded-2xl overflow-hidden shadow-2xl"
+              className="relative max-w-6xl w-full bg-background dark:bg-[#070D18] border border-border dark:border-white/20 rounded-2xl overflow-hidden shadow-2xl"
             >
               {/* Modal Top Bar */}
-              <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-white/10">
+              <div className="flex items-center justify-between px-4 py-3 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10">
                 <div className="flex items-center gap-3">
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="font-mono text-sm font-bold text-white">
+                  <span className="font-mono text-sm font-bold text-text-primary dark:text-white">
                     DEMANDFLOW Bridge™ — {activeLayer.screen}
                   </span>
                   <span className="hidden sm:inline px-2 py-0.5 text-xs font-mono rounded bg-[#00A6FF]/20 text-[#00A6FF] border border-[#00A6FF]/30">
@@ -504,14 +504,14 @@ const WhatTarajDelivers = () => {
                 <button
                   type="button"
                   onClick={() => setIsZoomed(false)}
-                  className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors"
+                  className="p-1.5 rounded-lg bg-surface/90 dark:bg-white/10 hover:bg-white/20 text-text-secondary dark:text-slate-300 hover:text-text-primary dark:text-white transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
               {/* Modal Full-Width Image */}
-              <div className="relative max-h-[80vh] overflow-auto bg-black flex items-center justify-center">
+              <div className="relative max-h-[80vh] overflow-auto bg-background dark:bg-black flex items-center justify-center">
                 <img
                   src={activeLayer.image}
                   alt={`${activeLayer.title} Full View`}
@@ -520,7 +520,7 @@ const WhatTarajDelivers = () => {
               </div>
 
               {/* Modal Footer */}
-              <div className="flex flex-wrap items-center justify-between px-4 py-2.5 bg-slate-900 border-t border-white/10 text-xs font-mono text-slate-400">
+              <div className="flex flex-wrap items-center justify-between px-4 py-2.5 bg-surface dark:bg-slate-900 border-t border-border dark:border-white/10 text-xs font-mono text-text-secondary dark:text-slate-400">
                 <span>{activeLayer.desc}</span>
                 <span className="text-[#00A6FF] font-bold">{activeLayer.metric}</span>
               </div>

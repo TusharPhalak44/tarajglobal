@@ -26,7 +26,7 @@ export default function WorkflowCanvas({
         className="relative w-full aspect-[1400/520] min-h-[440px] lg:min-h-[480px] rounded-2xl p-3 overflow-visible bg-transparent"
       >
         {/* Ambient Subtle Pulsing Light Orbs */}
-        <div className="absolute top-1/4 left-1/3 w-64 h-64 rounded-full blur-[100px] bg-primary/10 dark:bg-[#0099ff]/15 pointer-events-none" />
+        <div className="absolute top-1/4 left-1/3 w-64 h-64 rounded-full blur-[100px] bg-primary/30 dark:bg-primary/10 dark:bg-[#0099ff]/15 pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full blur-[120px] bg-sky-400/10 dark:bg-[#00e5ff]/15 pointer-events-none" />
 
         {/* ── SVG Connector Lines & Animated Light Photons ── */}

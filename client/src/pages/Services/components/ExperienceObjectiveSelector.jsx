@@ -109,7 +109,7 @@ export default function ExperienceObjectiveSelector() {
   return (
     <section
       id="growth-objective-selector"
-      className="relative py-20 lg:py-28 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-20 lg:py-28 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-[#FF6D00]/5 rounded-full blur-[160px] pointer-events-none -z-10" />
@@ -124,20 +124,20 @@ export default function ExperienceObjectiveSelector() {
                 STRATEGY ALIGNMENT
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               What Are You Trying <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 To Achieve?
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Select your primary business objective to reveal tailored B2B service blueprints engineered for high conversion.
           </p>
         </div>
 
         {/* Horizontal Editorial Tab Bar */}
-        <div className="relative border-b border-white/10 mb-10 overflow-x-auto no-scrollbar scroll-smooth">
+        <div className="relative border-b border-border dark:border-white/10 mb-10 overflow-x-auto no-scrollbar scroll-smooth">
           <div className="flex items-center gap-2 sm:gap-4 min-w-max pb-3">
             {OBJECTIVES.map((obj) => {
               const isActive = activeTab === obj.id
@@ -184,7 +184,7 @@ export default function ExperienceObjectiveSelector() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden"
+            className="rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden"
           >
             {/* Top Accent Gradient Border Light */}
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FF6D00]/40 to-transparent" />
@@ -193,39 +193,39 @@ export default function ExperienceObjectiveSelector() {
               {/* Left Column: Objective Narrative & Metrics (~5 cols) */}
               <div className="lg:col-span-5 flex flex-col justify-between h-full">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[11px] font-mono text-[#FF6D00] uppercase tracking-wider mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-[11px] font-mono text-[#FF6D00] uppercase tracking-wider mb-4">
                     <IconComponent className="w-3.5 h-3.5" />
                     <span>OBJECTIVE BLUEPRINT</span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight leading-snug">
+                  <h3 className="text-2xl sm:text-3xl font-black uppercase text-text-primary dark:text-white tracking-tight leading-snug">
                     {currentObjective.tagline}
                   </h3>
 
-                  <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed font-normal">
+                  <p className="mt-4 text-sm sm:text-base text-text-secondary dark:text-white/70 leading-relaxed font-normal">
                     {currentObjective.summary}
                   </p>
                 </div>
 
                 {/* Highlight box and metric */}
-                <div className="mt-8 pt-6 border-t border-white/10 space-y-4">
-                  <div className="flex items-start gap-3 text-xs sm:text-sm text-white/80">
+                <div className="mt-8 pt-6 border-t border-border dark:border-white/10 space-y-4">
+                  <div className="flex items-start gap-3 text-xs sm:text-sm text-text-secondary dark:text-white/80">
                     <CheckCircle2 className="w-4 h-4 text-[#FF6D00] shrink-0 mt-0.5" />
                     <span>{currentObjective.highlight}</span>
                   </div>
 
-                  <div className="p-4 rounded-xl border border-white/5 bg-white/[0.03] flex items-baseline justify-between">
+                  <div className="p-4 rounded-xl border border-border dark:border-white/5 bg-white/[0.03] flex items-baseline justify-between">
                     <div>
                       <div className="text-3xl sm:text-4xl font-black font-mono text-[#FF6D00]">
                         {currentObjective.metric}
                       </div>
-                      <div className="text-[11px] font-mono text-white/50 uppercase tracking-wider mt-0.5">
+                      <div className="text-[11px] font-mono text-text-secondary dark:text-white/50 uppercase tracking-wider mt-0.5">
                         {currentObjective.metricLabel}
                       </div>
                     </div>
                     <button
                       onClick={() => navigate('/contact')}
-                      className="text-xs font-mono font-bold uppercase tracking-wider text-white hover:text-[#FF6D00] inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                      className="text-xs font-mono font-bold uppercase tracking-wider text-text-primary dark:text-white hover:text-[#FF6D00] inline-flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <span>Inquire</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -236,7 +236,7 @@ export default function ExperienceObjectiveSelector() {
 
               {/* Right Column: Recommended Specific Services (~7 cols) */}
               <div className="lg:col-span-7 flex flex-col gap-4">
-                <div className="text-xs font-mono uppercase tracking-widest text-white/40 pb-2 border-b border-white/5">
+                <div className="text-xs font-mono uppercase tracking-widest text-text-secondary dark:text-white/40 pb-2 border-b border-border dark:border-white/5">
                   RECOMMENDED EXECUTION MODULES ({currentObjective.services.length})
                 </div>
 
@@ -245,24 +245,24 @@ export default function ExperienceObjectiveSelector() {
                     <div
                       key={srv.route}
                       onClick={() => navigate(srv.route)}
-                      className="group p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-[#FF6D00]/50 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                      className="group p-5 rounded-2xl border border-border dark:border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-[#FF6D00]/50 transition-all duration-300 cursor-pointer flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="text-[10px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/5 text-white/60 group-hover:bg-[#FF6D00]/20 group-hover:text-[#FF6D00] transition-colors">
+                          <span className="text-[10px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-surface/80 dark:bg-white/5 text-text-secondary dark:text-white/60 group-hover:bg-[#FF6D00]/20 group-hover:text-[#FF6D00] transition-colors">
                             {srv.badge}
                           </span>
-                          <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-[#FF6D00] group-hover:translate-x-1 transition-all" />
+                          <ArrowRight className="w-4 h-4 text-text-secondary dark:text-white/40 group-hover:text-[#FF6D00] group-hover:translate-x-1 transition-all" />
                         </div>
-                        <h4 className="text-base sm:text-lg font-bold uppercase text-white tracking-tight group-hover:text-white transition-colors">
+                        <h4 className="text-base sm:text-lg font-bold uppercase text-text-primary dark:text-white tracking-tight group-hover:text-text-primary dark:text-white transition-colors">
                           {srv.name}
                         </h4>
-                        <p className="mt-2 text-xs sm:text-sm text-white/60 leading-relaxed">
+                        <p className="mt-2 text-xs sm:text-sm text-text-secondary dark:text-white/60 leading-relaxed">
                           {srv.desc}
                         </p>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-[#FF6D00] group-hover:underline">
+                      <div className="mt-4 pt-3 border-t border-border dark:border-white/5 flex items-center justify-between text-[11px] font-mono text-[#FF6D00] group-hover:underline">
                         <span>EXPLORE SERVICE</span>
                         <span>&rarr;</span>
                       </div>

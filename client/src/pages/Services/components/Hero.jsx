@@ -166,7 +166,7 @@ function CommandCenter({ prefersReducedMotion }) {
               >
                 <div className="flex items-center justify-between mb-2">
                   <div
-                    className="w-7 h-7 rounded-lg flex items-center justify-center text-white"
+                    className="w-7 h-7 rounded-lg flex items-center justify-center text-text-primary dark:text-white"
                     style={{ backgroundColor: stage.color }}
                   >
                     <StageIcon type={stage.icon} color="#ffffff" />
@@ -200,7 +200,7 @@ function CommandCenter({ prefersReducedMotion }) {
         </div>
 
         {/* Live Active Insight Bar */}
-        <div className="mt-6 p-3 sm:p-4 rounded-xl border border-primary/20 bg-primary/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="mt-6 p-3 sm:p-4 rounded-xl border border-primary/20 bg-primary/25 dark:bg-primary/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span
               className="w-2.5 h-2.5 rounded-full animate-ping shrink-0"
@@ -252,7 +252,7 @@ const Hero = () => {
 
       <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Category Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary dark:text-[#00d2ff] mb-4 sm:mb-6 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] mb-4 sm:mb-6 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           <span className="text-[11.5px] font-mono font-bold tracking-[0.14em] uppercase">
             Full-Funnel B2B Demand & Lead Generation
@@ -284,7 +284,7 @@ const Hero = () => {
 
           <button
             onClick={scrollToServices}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-bold hover:border-primary/40 active:scale-98 transition-all cursor-pointer shadow-xs"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-bold hover:border-primary/40 active:scale-98 transition-all cursor-pointer shadow-xs"
           >
             <span>Explore 12 Core Services</span>
             <ChevronDown className="w-4 h-4 " />

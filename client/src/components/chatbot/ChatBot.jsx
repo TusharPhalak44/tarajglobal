@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import DOMPurify from 'dompurify'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Send, Bot, User, Minimize2, Maximize2, RotateCcw, ChevronDown } from 'lucide-react'
 
@@ -110,10 +111,10 @@ function formatMessage(text) {
 function TypingIndicator() {
   return (
     <div className="flex items-center gap-2 px-4 py-3">
-      <div className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/20 flex-shrink-0">
+      <div className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/40 dark:bg-primary/20 flex-shrink-0">
         <Bot className="w-4 h-4 text-primary" />
       </div>
-      <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-2xl rounded-tl-sm px-4 py-3">
+      <div className="flex items-center gap-1 bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 rounded-2xl rounded-tl-sm px-4 py-3">
         {[0, 1, 2].map((i) => (
           <motion.span
             key={i}
@@ -137,7 +138,7 @@ function Message({ msg }) {
       className={`flex items-end gap-2 px-4 py-1 ${isBot ? 'justify-start' : 'justify-end'}`}
     >
       {isBot && (
-        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/20 flex-shrink-0 mb-0.5">
+        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/40 dark:bg-primary/20 flex-shrink-0 mb-0.5">
           <Bot className="w-4 h-4 text-primary" />
         </div>
       )}
@@ -147,11 +148,11 @@ function Message({ msg }) {
             ? 'bg-white/5 border border-white/10 rounded-tl-sm text-white'
             : 'bg-primary text-white rounded-br-sm'
         }`}
-        dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formatMessage(msg.text)) }}
       />
       {!isBot && (
-        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white/10 flex-shrink-0 mb-0.5">
-          <User className="w-4 h-4 text-white/70" />
+        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-surface/90 dark:bg-white/10 flex-shrink-0 mb-0.5">
+          <User className="w-4 h-4 text-text-secondary dark:text-white/70" />
         </div>
       )}
     </motion.div>
@@ -288,14 +289,14 @@ export default function ChatBot() {
                   className="w-9 h-9 rounded-full flex items-center justify-center"
                   style={{ background: 'linear-gradient(135deg, #00A6FF, #FF6D00)' }}
                 >
-                  <Bot className="w-5 h-5 text-white" />
+                  <Bot className="w-5 h-5 text-text-primary dark:text-white" />
                 </div>
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-[#0a0a12]" />
               </div>
 
               {/* Title */}
               <div className="flex-1 min-w-0">
-                <p className="text-white font-semibold text-sm leading-tight">Taraj Assistant</p>
+                <p className="text-text-primary dark:text-white font-semibold text-sm leading-tight">Taraj Assistant</p>
                 <p className="text-green-400 text-[11px] leading-tight">Online · Typically replies instantly</p>
               </div>
 
@@ -304,21 +305,21 @@ export default function ChatBot() {
                 <button
                   onClick={resetChat}
                   title="Reset chat"
-                  className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-1.5 rounded-lg text-text-secondary dark:text-text-primary dark:text-white/50 hover:text-text-primary dark:text-white hover:bg-surface/90 dark:bg-white/10 transition-colors"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={() => setMinimised((v) => !v)}
                   title={minimised ? 'Expand' : 'Minimise'}
-                  className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-1.5 rounded-lg text-text-secondary dark:text-text-primary dark:text-white/50 hover:text-text-primary dark:text-white hover:bg-surface/90 dark:bg-white/10 transition-colors"
                 >
                   {minimised ? <Maximize2 className="w-3.5 h-3.5" /> : <Minimize2 className="w-3.5 h-3.5" />}
                 </button>
                 <button
                   onClick={() => setOpen(false)}
                   title="Close"
-                  className="p-1.5 rounded-lg text-white/50 hover:text-red-400 hover:bg-red-400/10 transition-colors"
+                  className="p-1.5 rounded-lg text-text-secondary dark:text-white/50 hover:text-red-400 hover:bg-red-400/10 transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -365,7 +366,7 @@ export default function ChatBot() {
                         onClick={() => scrollToBottom()}
                         className="absolute bottom-20 right-4 w-7 h-7 rounded-full bg-primary flex items-center justify-center shadow-lg"
                       >
-                        <ChevronDown className="w-4 h-4 text-white" />
+                        <ChevronDown className="w-4 h-4 text-text-primary dark:text-white" />
                       </motion.button>
                     )}
                   </AnimatePresence>
@@ -400,7 +401,7 @@ export default function ChatBot() {
                       onKeyDown={handleKeyDown}
                       placeholder="Ask me anything…"
                       maxLength={300}
-                      className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-primary/50 focus:bg-white/8 transition-all duration-200"
+                      className="flex-1 bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 rounded-xl px-3 py-2 text-sm text-text-primary dark:text-white placeholder-white/30 outline-none focus:border-primary/50 focus:bg-white/8 transition-all duration-200"
                     />
                     <motion.button
                       whileTap={{ scale: 0.9 }}
@@ -413,7 +414,7 @@ export default function ChatBot() {
                           : 'rgba(255,255,255,0.08)',
                       }}
                     >
-                      <Send className="w-4 h-4 text-white" />
+                      <Send className="w-4 h-4 text-text-primary dark:text-white" />
                     </motion.button>
                   </div>
                 </motion.div>
@@ -448,7 +449,7 @@ export default function ChatBot() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.18 }}
             >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-6 h-6 text-text-primary dark:text-white" />
             </motion.span>
           ) : (
             <motion.span
@@ -458,7 +459,7 @@ export default function ChatBot() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.18 }}
             >
-              <Bot className="w-6 h-6 text-white" />
+              <Bot className="w-6 h-6 text-text-primary dark:text-white" />
             </motion.span>
           )}
         </AnimatePresence>
@@ -471,7 +472,7 @@ export default function ChatBot() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
-              className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-accent text-white text-[10px] font-bold flex items-center justify-center"
+              className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-accent text-text-primary dark:text-white text-[10px] font-bold flex items-center justify-center"
             >
               {unread}
             </motion.span>

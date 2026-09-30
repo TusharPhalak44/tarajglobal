@@ -60,7 +60,7 @@ export const TrustIndicator = () => {
         </div>
       </div>
 
-      <span className="hidden sm:inline-block text-slate-300 dark:text-slate-700">|</span>
+      <span className="hidden sm:inline-block text-text-secondary dark:text-slate-300 dark:text-slate-700">|</span>
 
       {/* ── Indicator 02: Growth Signal Index (with animated micro-sparkline) ── */}
       <div className="flex items-center gap-2.5">

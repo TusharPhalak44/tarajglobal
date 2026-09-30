@@ -39,7 +39,7 @@ export default function ExperienceWhyTaraj() {
   return (
     <section
       id="why-taraj-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Header */}
@@ -51,20 +51,20 @@ export default function ExperienceWhyTaraj() {
                 OPERATIONAL ADVANTAGE
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Why Global Enterprise Teams <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Choose TaRaj Global
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Four foundational operating principles that separate our demand engine from conventional lead brokers.
           </p>
         </div>
 
         {/* ══════════ 4 HORIZONTAL EXPANDING STATEMENTS ══════════ */}
-        <div className="border-t border-white/10 divide-y divide-white/10">
+        <div className="border-t border-border dark:border-white/10 divide-y divide-white/10">
           {PILLARS.map((pillar, idx) => {
             const isHovered = hoveredIdx === idx
 

@@ -73,7 +73,7 @@ export default function ExperienceVerticalBlinds() {
   return (
     <section
       id="vertical-blinds-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
@@ -85,20 +85,20 @@ export default function ExperienceVerticalBlinds() {
                 CORE ARCHITECTURE
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Solutions Built Around <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Your Growth Goals
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Hover over each vertical solution panel to explore core mechanisms, execution KPIs, and direct integration paths.
           </p>
         </div>
 
         {/* ════════════ DESKTOP: FULL-HEIGHT VERTICAL BLINDS ════════════ */}
-        <div className="hidden lg:flex h-[620px] w-full rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] shadow-2xl">
+        <div className="hidden lg:flex h-[620px] w-full rounded-3xl overflow-hidden border border-border dark:border-white/10 bg-white/[0.02] shadow-2xl">
           {BLIND_SERVICES.map((srv, idx) => {
             const isActive = activeIndex === idx
 
@@ -111,7 +111,7 @@ export default function ExperienceVerticalBlinds() {
                   flex: isActive ? '3.8' : '1',
                   transition: 'flex 0.65s cubic-bezier(0.25, 1, 0.5, 1)',
                 }}
-                className={`relative h-full overflow-hidden border-r border-white/10 last:border-r-0 cursor-pointer group select-none`}
+                className={`relative h-full overflow-hidden border-r border-border dark:border-white/10 last:border-r-0 cursor-pointer group select-none`}
               >
                 {/* Background Image Layer */}
                 <div
@@ -137,10 +137,10 @@ export default function ExperienceVerticalBlinds() {
                 {/* COLLAPSED STATE CONTENT (Rotated Vertical Label) */}
                 {!isActive && (
                   <div className="absolute inset-0 flex flex-col justify-between items-center py-10 px-2 z-10">
-                    <span className="font-mono text-xs font-black text-white/40 group-hover:text-[#FF6D00] transition-colors">
+                    <span className="font-mono text-xs font-black text-text-secondary dark:text-white/40 group-hover:text-[#FF6D00] transition-colors">
                       {srv.num}
                     </span>
-                    <div className="rotate-[-90deg] whitespace-nowrap text-xs font-mono font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
+                    <div className="rotate-[-90deg] whitespace-nowrap text-xs font-mono font-bold uppercase tracking-widest text-text-secondary dark:text-text-primary dark:text-white/70 group-hover:text-text-primary dark:text-white transition-colors">
                       {srv.name}
                     </div>
                     <span className="font-mono text-[9px] text-white/30 tracking-widest">
@@ -163,12 +163,12 @@ export default function ExperienceVerticalBlinds() {
                         <span className="font-mono text-2xl font-black text-[#FF6D00]">
                           {srv.num}
                         </span>
-                        <span className="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 font-mono text-[10px] uppercase tracking-widest text-white/70">
+                        <span className="px-2.5 py-1 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 font-mono text-[10px] uppercase tracking-widest text-text-secondary dark:text-white/70">
                           {srv.tag}
                         </span>
                       </div>
-                      <div className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center group-hover:bg-[#FF6D00] group-hover:border-[#FF6D00] transition-all">
-                        <ArrowUpRight className="w-5 h-5 text-white" />
+                      <div className="w-10 h-10 rounded-full border border-border dark:border-white/20 bg-surface/80 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#FF6D00] group-hover:border-[#FF6D00] transition-all">
+                        <ArrowUpRight className="w-5 h-5 text-text-primary dark:text-white" />
                       </div>
                     </div>
 
@@ -178,7 +178,7 @@ export default function ExperienceVerticalBlinds() {
                         <span className="text-xs font-mono uppercase text-[#FF6D00] tracking-wider font-semibold block mb-1">
                           {srv.subtitle}
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                        <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary dark:text-white">
                           {srv.name}
                         </h3>
                       </div>
@@ -187,9 +187,9 @@ export default function ExperienceVerticalBlinds() {
                         {srv.desc}
                       </p>
 
-                      <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                        <div className="font-mono text-xs text-white/50">
-                          METRIC SLA: <span className="text-white font-bold">{srv.kpi}</span>
+                      <div className="pt-3 border-t border-border dark:border-white/10 flex items-center justify-between">
+                        <div className="font-mono text-xs text-text-secondary dark:text-white/50">
+                          METRIC SLA: <span className="text-text-primary dark:text-white font-bold">{srv.kpi}</span>
                         </div>
                         <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] group-hover:translate-x-1 transition-transform">
                           <span>Explore Solution</span>
@@ -212,7 +212,7 @@ export default function ExperienceVerticalBlinds() {
             return (
               <div
                 key={srv.num}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden transition-colors"
+                className="rounded-2xl border border-border dark:border-white/10 bg-white/[0.02] overflow-hidden transition-colors"
               >
                 {/* Accordion Trigger Header */}
                 <button
@@ -225,10 +225,10 @@ export default function ExperienceVerticalBlinds() {
                       {srv.num}
                     </span>
                     <div>
-                      <h4 className="text-base font-bold uppercase text-white tracking-wide">
+                      <h4 className="text-base font-bold uppercase text-text-primary dark:text-white tracking-wide">
                         {srv.name}
                       </h4>
-                      <span className="text-[10px] font-mono text-white/40 uppercase">
+                      <span className="text-[10px] font-mono text-text-secondary dark:text-white/40 uppercase">
                         [{srv.tag}]
                       </span>
                     </div>
@@ -248,14 +248,14 @@ export default function ExperienceVerticalBlinds() {
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden px-5 pb-5 pt-2 border-t border-white/5"
+                      className="overflow-hidden px-5 pb-5 pt-2 border-t border-border dark:border-white/5"
                     >
-                      <p className="text-xs sm:text-sm text-white/70 leading-relaxed mb-4">
+                      <p className="text-xs sm:text-sm text-text-secondary dark:text-white/70 leading-relaxed mb-4">
                         {srv.desc}
                       </p>
-                      <div className="flex items-center justify-between pt-3 border-t border-white/5">
-                        <span className="text-[11px] font-mono text-white/50">
-                          METRIC: <strong className="text-white">{srv.kpi}</strong>
+                      <div className="flex items-center justify-between pt-3 border-t border-border dark:border-white/5">
+                        <span className="text-[11px] font-mono text-text-secondary dark:text-white/50">
+                          METRIC: <strong className="text-text-primary dark:text-white">{srv.kpi}</strong>
                         </span>
                         <button
                           onClick={() => navigate(srv.route)}

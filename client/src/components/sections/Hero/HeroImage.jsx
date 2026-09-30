@@ -13,7 +13,7 @@ const HeroImage = () => {
         <div className="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 lg:p-12 shadow-2xl">
           <div className="bg-white rounded-xl p-6 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-primary/30 dark:bg-primary/10 rounded-lg flex items-center justify-center">
                 <div className="w-6 h-6 bg-primary rounded-full" />
               </div>
               <div>
@@ -27,9 +27,9 @@ const HeroImage = () => {
               <div className="h-3 bg-gray-100 rounded w-4/6" />
             </div>
             <div className="grid grid-cols-3 gap-3 pt-4">
-              <div className="h-20 bg-primary/10 rounded-lg" />
-              <div className="h-20 bg-primary/5 rounded-lg" />
-              <div className="h-20 bg-primary/10 rounded-lg" />
+              <div className="h-20 bg-primary/30 dark:bg-primary/10 rounded-lg" />
+              <div className="h-20 bg-primary/25 dark:bg-primary/5 rounded-lg" />
+              <div className="h-20 bg-primary/30 dark:bg-primary/10 rounded-lg" />
             </div>
           </div>
         </div>

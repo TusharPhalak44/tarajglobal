@@ -166,7 +166,7 @@ const FAQ = () => {
   return (
     <section
       id="faq"
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="Frequently Asked Questions about B2B Demand Generation"
     >
       {/* ── Ambient Background Lighting ── */}
@@ -206,7 +206,7 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-white">Frequently Asked </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               Questions
             </span>

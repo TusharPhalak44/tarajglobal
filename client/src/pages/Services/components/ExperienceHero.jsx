@@ -87,7 +87,7 @@ export default function ExperienceHero() {
   return (
     <section
       id="experience-hero"
-      className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-14 lg:pt-32 lg:pb-16 bg-[#05070B] text-white overflow-hidden border-b border-white/10 select-none"
+      className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-14 lg:pt-32 lg:pb-16 bg-background dark:bg-[#05070B] text-text-primary dark:text-white overflow-hidden border-b border-border dark:border-white/10 select-none"
     >
       {/* ══════════ FULL DYNAMIC BACKGROUND ANIMATIONS ══════════ */}
       {/* Continuous floating glow orb 1 */}
@@ -117,7 +117,7 @@ export default function ExperienceHero() {
               }
         }
         transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute bottom-1/4 right-1/4 w-[550px] h-[380px] bg-primary/14 rounded-full blur-[170px] pointer-events-none -z-10"
+        className="absolute bottom-1/4 right-1/4 w-[550px] h-[380px] bg-primary/34 dark:bg-primary/14 rounded-full blur-[170px] pointer-events-none -z-10"
       />
 
       {/* Animated subtle grid texture */}
@@ -148,7 +148,7 @@ export default function ExperienceHero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-5 shadow-sm hover:border-[#FF6D00]/40 transition-colors"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border dark:border-white/10 bg-white/[0.04] backdrop-blur-md mb-5 shadow-sm hover:border-[#FF6D00]/40 transition-colors"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6D00] opacity-75" />
@@ -168,7 +168,7 @@ export default function ExperienceHero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.08] text-white max-w-4xl"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.08] text-text-primary dark:text-white max-w-4xl"
         >
           Build a Stronger <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/95 to-[#FF6D00]">
@@ -200,10 +200,10 @@ export default function ExperienceHero() {
           <button
             type="button"
             onClick={scrollToServices}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20  hover: text-white text-xs sm:text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border dark:border-white/20  hover: text-text-primary dark:text-white text-xs sm:text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
           >
             <span>Explore 12 Solutions</span>
-            <ChevronDown className="w-4 h-4 text-white/60 group-hover:translate-y-0.5 transition-transform" />
+            <ChevronDown className="w-4 h-4 text-text-secondary dark:text-white/60 group-hover:translate-y-0.5 transition-transform" />
           </button>
         </motion.div>
 
@@ -212,7 +212,7 @@ export default function ExperienceHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 w-full overflow-hidden border-y border-white/10 bg-white/[0.02] backdrop-blur-md py-3 relative"
+          className="mt-10 w-full overflow-hidden border-y border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-md py-3 relative"
         >
           {/* Gradient edge fades for seamless marquee */}
           <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#05070B] to-transparent z-10 pointer-events-none" />
@@ -237,8 +237,8 @@ export default function ExperienceHero() {
             {[...TELEMETRY_STREAM, ...TELEMETRY_STREAM].map((item, idx) => (
               <div key={idx} className="flex items-center gap-3 text-xs font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#FF6D00] animate-pulse" />
-                <span className="text-white/80">{item.text}</span>
-                <span className={`px-2 py-0.5 rounded-md border border-white/10 bg-white/5 text-[9px] font-bold uppercase tracking-wider ${item.color}`}>
+                <span className="text-text-secondary dark:text-white/80">{item.text}</span>
+                <span className={`px-2 py-0.5 rounded-md border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-[9px] font-bold uppercase tracking-wider ${item.color}`}>
                   {item.badge}
                 </span>
               </div>
@@ -303,22 +303,22 @@ export default function ExperienceHero() {
                     </div>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-white group-hover:text-white transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-text-primary dark:text-white group-hover:text-text-primary dark:text-white transition-colors">
                     {mod.name}
                   </h3>
 
-                  <p className="mt-2 text-xs text-white/60 leading-relaxed line-clamp-2">
+                  <p className="mt-2 text-xs text-text-secondary dark:text-white/60 leading-relaxed line-clamp-2">
                     {mod.desc}
                   </p>
                 </div>
 
                 {/* Card Bottom: Telemetry Metric & Explore Action */}
-                <div className="mt-5 pt-3 border-t border-white/10 flex items-baseline justify-between">
+                <div className="mt-5 pt-3 border-t border-border dark:border-white/10 flex items-baseline justify-between">
                   <div>
-                    <div className="text-xl sm:text-2xl font-black font-mono text-white group-hover:text-[#FF6D00] transition-colors">
+                    <div className="text-xl sm:text-2xl font-black font-mono text-text-primary dark:text-white group-hover:text-[#FF6D00] transition-colors">
                       {mod.metric}
                     </div>
-                    <div className="text-[9px] font-mono text-white/40 uppercase tracking-wider mt-0.5">
+                    <div className="text-[9px] font-mono text-text-secondary dark:text-white/40 uppercase tracking-wider mt-0.5">
                       {mod.metricLabel}
                     </div>
                   </div>

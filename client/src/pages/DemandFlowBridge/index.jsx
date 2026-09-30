@@ -48,7 +48,7 @@ const DemandFlowBridge = () => {
   }
 
   return (
-    <div className="relative w-full bg-background min-h-screen selection:bg-primary/20 selection:text-primary">
+    <div className="relative w-full bg-background min-h-screen selection:bg-primary/40 dark:bg-primary/20 selection:text-primary">
       <Helmet>
         {/* Basic SEO */}
         <title>DemandFlow Bridge | Unified Business Operations Platform | Taraj Global</title>

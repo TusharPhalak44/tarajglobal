@@ -149,7 +149,7 @@ export const GalleryServicePanels = () => {
       className="relative py-24 md:py-32 px-4 sm:px-6 md:px-12 lg:px-16 bg-background text-text-primary border-b border-border/40 overflow-hidden"
     >
       {/* Background ambient light */}
-      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-primary/25 dark:bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         {/* SECTION HEADER */}
@@ -325,7 +325,7 @@ export const GalleryServicePanels = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent via-background/40 to-background" />
-                <div className="absolute top-6 left-6 font-mono text-xs tracking-widest text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                <div className="absolute top-6 left-6 font-mono text-xs tracking-widest text-white/90 bg-background dark:bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-border dark:border-white/20">
                   EXHIBIT // {activeModalService.num}
                 </div>
               </div>

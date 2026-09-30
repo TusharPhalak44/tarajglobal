@@ -21,7 +21,7 @@ export const GrowthSignalIndex = () => {
   ]
 
   return (
-    <div className="relative w-full rounded-2xl bg-[#090D17]/90 border border-slate-800/90 shadow-2xl backdrop-blur-xl p-5 sm:p-6 overflow-hidden select-none">
+    <div className="relative w-full rounded-2xl bg-surface dark:bg-[#090D17]/90 border border-border dark:border-slate-800/90 shadow-2xl backdrop-blur-xl p-5 sm:p-6 overflow-hidden select-none">
       
       {/* Subtle Coordinate Grid in panel */}
       <div 
@@ -33,15 +33,15 @@ export const GrowthSignalIndex = () => {
       />
 
       {/* ── Header ───────────────────────────────────────────────────── */}
-      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-slate-800">
+      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-border dark:border-slate-800">
         <div>
           <div className="flex items-center gap-2">
             <Activity size={13} className="text-[#00E5FF]" />
-            <h4 className="text-sm font-mono font-bold tracking-widest text-white uppercase">
+            <h4 className="text-sm font-mono font-bold tracking-widest text-text-primary dark:text-white uppercase">
               GROWTH SIGNAL INDEX
             </h4>
           </div>
-          <span className="text-sm font-mono text-slate-400 mt-0.5 block">
+          <span className="text-sm font-mono text-text-secondary dark:text-slate-400 mt-0.5 block">
             Predictable Telemetry // Live Stream
           </span>
         </div>
@@ -54,7 +54,7 @@ export const GrowthSignalIndex = () => {
 
       {/* ── Animated Horizontal Signal Graph ─────────────────────────── */}
       <div className="relative z-10 my-5">
-        <div className="relative w-full h-28 rounded-xl bg-slate-950/80 border border-slate-800/80 p-3 overflow-hidden flex flex-col justify-between">
+        <div className="relative w-full h-28 rounded-xl bg-background dark:bg-slate-950/80 border border-border dark:border-slate-800/80 p-3 overflow-hidden flex flex-col justify-between">
           
           {/* Subtle Grid Lines */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px]" />
@@ -90,10 +90,10 @@ export const GrowthSignalIndex = () => {
           </svg>
 
           {/* Telemetry Data Markers along the bottom */}
-          <div className="grid grid-cols-4 gap-1 text-[8.5px] font-mono relative z-10 pt-1 border-t border-slate-800/80">
+          <div className="grid grid-cols-4 gap-1 text-[8.5px] font-mono relative z-10 pt-1 border-t border-border dark:border-slate-800/80">
             {telemetrySignals.map((item, idx) => (
               <div key={idx} className="text-center">
-                <span className="text-slate-400 block truncate">{item.label}</span>
+                <span className="text-text-secondary dark:text-slate-400 block truncate">{item.label}</span>
                 <span className="font-bold block" style={{ color: item.color }}>{item.val}</span>
               </div>
             ))}
@@ -102,8 +102,8 @@ export const GrowthSignalIndex = () => {
       </div>
 
       {/* ── Bottom SLA Guaranteed Enterprise Indicator ───────────────── */}
-      <div className="relative z-10 pt-4 border-t border-slate-800/80">
-        <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+      <div className="relative z-10 pt-4 border-t border-border dark:border-slate-800/80">
+        <div className="flex items-center justify-between p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-slate-800">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
               <ShieldCheck size={16} />
@@ -117,13 +117,13 @@ export const GrowthSignalIndex = () => {
               </span>
             </div>
           </div>
-          <div className="text-right text-sm font-mono text-slate-400 hidden sm:block">
+          <div className="text-right text-sm font-mono text-text-secondary dark:text-slate-400 hidden sm:block">
             <span>ZERO RE-SYNC</span>
           </div>
         </div>
 
         {/* Technical Footer Metadata */}
-        <div className="mt-3 flex items-center justify-between text-sm font-mono text-slate-400 px-1">
+        <div className="mt-3 flex items-center justify-between text-sm font-mono text-text-secondary dark:text-slate-400 px-1">
           <span>ENCRYPTION: 256-BIT</span>
           <span>LATENCY: 8ms</span>
           <span>SLA: 0% BOUNCE</span>

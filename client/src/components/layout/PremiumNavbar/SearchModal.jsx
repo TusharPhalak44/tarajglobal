@@ -78,7 +78,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-md"
+            className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-md"
             aria-hidden="true"
           />
 
@@ -102,13 +102,13 @@ export const SearchModal = ({ isOpen, onClose }) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search solutions, services, or pages (e.g., ABM, SQL, About)..."
-                className="w-full bg-transparent text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none"
+                className="w-full bg-transparent text-sm sm:text-base text-slate-900 dark:text-text-primary dark:text-white placeholder:text-text-secondary dark:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none"
               />
               {query && (
                 <button
                   type="button"
                   onClick={() => setQuery('')}
-                  className="p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                  className="p-1 rounded-md text-text-secondary dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
                 >
                   <X size={14} />
                 </button>
@@ -124,12 +124,12 @@ export const SearchModal = ({ isOpen, onClose }) => {
 
             {/* Results Body */}
             <div className="max-h-[60vh] overflow-y-auto p-3 sm:p-4 space-y-1">
-              <div className="px-3 py-1.5 text-[11px] font-mono font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase">
+              <div className="px-3 py-1.5 text-[11px] font-mono font-bold tracking-wider text-text-secondary dark:text-slate-400 dark:text-slate-500 uppercase">
                 {query ? `Search Results (${filteredResults.length})` : 'Popular Destinations'}
               </div>
 
               {filteredResults.length === 0 ? (
-                <div className="py-12 text-center text-slate-400 dark:text-slate-500 text-sm">
+                <div className="py-12 text-center text-text-secondary dark:text-slate-400 dark:text-slate-500 text-sm">
                   No matching services or pages found for "<span className="text-slate-800 dark:text-slate-200 font-semibold">{query}</span>"
                 </div>
               ) : (
@@ -147,7 +147,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-[#00A6FF] transition-colors">
+                            <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-text-primary dark:text-white group-hover:text-[#00A6FF] transition-colors">
                               {item.title}
                             </span>
                             <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400">
@@ -159,7 +159,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                           </p>
                         </div>
                       </div>
-                      <ArrowRight size={14} className="text-slate-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00A6FF]" />
+                      <ArrowRight size={14} className="text-text-secondary dark:text-slate-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00A6FF]" />
                     </button>
                   )
                 })
@@ -167,7 +167,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Footer Tip */}
-            <div className="px-4 sm:px-6 py-2.5 border-t border-slate-200/80 dark:border-white/10 bg-slate-50 dark:bg-black/20 flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 font-mono">
+            <div className="px-4 sm:px-6 py-2.5 border-t border-slate-200/80 dark:border-white/10 bg-slate-50 dark:bg-black/20 flex items-center justify-between text-[11px] text-text-secondary dark:text-slate-400 dark:text-slate-500 font-mono">
               <span>Quick Navigation</span>
               <span>Taraj Global Growth Network</span>
             </div>

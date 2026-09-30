@@ -51,7 +51,7 @@ export default function FeaturedStages() {
       <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Section Heading */}
         <div className="max-w-3xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
             <span>FULL-FUNNEL ARCHITECTURE</span>
           </div>
 

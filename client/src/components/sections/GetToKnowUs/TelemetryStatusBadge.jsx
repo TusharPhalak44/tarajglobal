@@ -19,7 +19,7 @@ export const TelemetryStatusBadge = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
         whileHover={{ scale: 1.02, y: -2 }}
-        className="group relative flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-[#090D17]/90 border border-slate-700/60 dark:border-white/10 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-emerald-500/60 hover:shadow-[0_4px_20px_rgba(16,185,129,0.15)] cursor-default"
+        className="group relative flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-surface dark:bg-[#090D17]/90 border border-border dark:border-slate-700/60 dark:border-white/10 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-emerald-500/60 hover:shadow-[0_4px_20px_rgba(16,185,129,0.15)] cursor-default"
       >
         {/* Pulsing Live Green LED */}
         <div className="relative flex items-center justify-center">
@@ -28,7 +28,7 @@ export const TelemetryStatusBadge = () => {
         </div>
 
         {/* Micro Category Tag */}
-        <div className="flex items-center gap-1.5 pl-0.5 border-r border-slate-700/60 dark:border-white/10 pr-2.5">
+        <div className="flex items-center gap-1.5 pl-0.5 border-r border-border dark:border-slate-700/60 dark:border-white/10 pr-2.5">
           <ShieldCheck size={12} className="text-emerald-400" />
           <span className="text-sm font-mono font-bold tracking-widest text-emerald-400 uppercase">
             SLA GUARANTEED
@@ -56,7 +56,7 @@ export const TelemetryStatusBadge = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.3 }}
         whileHover={{ scale: 1.02, y: -2 }}
-        className="group relative flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-[#090D17]/90 border border-slate-700/60 dark:border-white/10 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-primary/60 hover:shadow-[0_4px_20px_rgba(0,166,255,0.15)] cursor-default"
+        className="group relative flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-surface dark:bg-[#090D17]/90 border border-border dark:border-slate-700/60 dark:border-white/10 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-primary/60 hover:shadow-[0_4px_20px_rgba(0,166,255,0.15)] cursor-default"
       >
         {/* Pulsing Electric Blue LED */}
         <div className="relative flex items-center justify-center">
@@ -65,7 +65,7 @@ export const TelemetryStatusBadge = () => {
         </div>
 
         {/* Micro Category Tag */}
-        <div className="flex items-center gap-1.5 pl-0.5 border-r border-slate-700/60 dark:border-white/10 pr-2.5">
+        <div className="flex items-center gap-1.5 pl-0.5 border-r border-border dark:border-slate-700/60 dark:border-white/10 pr-2.5">
           <Activity size={12} className="text-[#00A6FF]" />
           <span className="text-sm font-mono font-bold tracking-widest text-[#00A6FF] uppercase">
             GROWTH SIGNAL INDEX
@@ -77,7 +77,7 @@ export const TelemetryStatusBadge = () => {
           <span className="text-sm font-semibold text-slate-100 whitespace-nowrap">
             Predictable Telemetry
           </span>
-          <span className="text-sm font-mono font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20 hidden sm:inline-block">
+          <span className="text-sm font-mono font-bold px-1.5 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20 hidden sm:inline-block">
             ACTIVE PIPELINE
           </span>
         </div>

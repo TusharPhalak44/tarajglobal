@@ -514,12 +514,12 @@ const WhoIsItFor = () => {
                             <span className="text-text-primary uppercase tracking-wider">PREVIEW</span>
                           </div>
 
-                          <div className="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between text-white pointer-events-none">
+                          <div className="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between text-text-primary dark:text-white pointer-events-none">
                             <span className="text-[11px] font-mono font-bold text-white/95 drop-shadow-xs truncate">
                               {active.label}
                             </span>
                             <span
-                              className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-white shadow-xs shrink-0"
+                              className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-text-primary dark:text-white shadow-xs shrink-0"
                               style={{ backgroundColor: active.color }}
                             >
                               {active.num}

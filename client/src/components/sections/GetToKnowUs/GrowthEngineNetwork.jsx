@@ -184,14 +184,14 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[460px] rounded-full bg-radial from-primary/18 via-[#FF6D00]/6 to-transparent blur-[130px] pointer-events-none -z-10" />
 
       {/* ── Top Telemetry HUD Status Bar ────────────────────────────── */}
-      <div className="flex items-center justify-between px-3 sm:px-6 py-2 mb-2.5 rounded-xl bg-[#090D17]/90 border border-slate-800 dark:border-white/10 backdrop-blur-md text-sm font-mono text-slate-400">
+      <div className="flex items-center justify-between px-3 sm:px-6 py-2 mb-2.5 rounded-xl bg-surface dark:bg-[#090D17]/90 border border-border dark:border-slate-800 dark:border-white/10 backdrop-blur-md text-sm font-mono text-text-secondary dark:text-slate-400">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-slate-200 font-bold uppercase tracking-wider">
             B2B GROWTH ENGINE // ACTIVE TOPOLOGY
           </span>
         </div>
-        <div className="hidden sm:flex items-center gap-5 text-slate-400">
+        <div className="hidden sm:flex items-center gap-5 text-text-secondary dark:text-slate-400">
           <span>LATENCY: <strong className="text-emerald-400">8ms</strong></span>
           <span>SLA ACCURACY: <strong className="text-primary">99.8%</strong></span>
           <span>PIPELINE: <strong className="text-cta">PREDICTABLE</strong></span>
@@ -199,7 +199,7 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
       </div>
 
       {/* ── Network Canvas Container ─────────────────────────────────── */}
-      <div className="relative w-full aspect-[2/1] min-h-[360px] sm:min-h-[440px] md:min-h-[480px] rounded-2xl bg-[#080B14]/95 border border-slate-800/90 dark:border-white/10 shadow-2xl backdrop-blur-2xl overflow-hidden p-2 sm:p-4">
+      <div className="relative w-full aspect-[2/1] min-h-[360px] sm:min-h-[440px] md:min-h-[480px] rounded-2xl bg-surface dark:bg-[#080B14]/95 border border-border dark:border-slate-800/90 dark:border-white/10 shadow-2xl backdrop-blur-2xl overflow-hidden p-2 sm:p-4">
         
         {/* Subtle Coordinate Blueprint Grid */}
         <div 
@@ -213,7 +213,7 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
         {/* Outer Circular Coordinate Horizon */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-25">
           <div className="w-[560px] h-[330px] rounded-[100%] border border-dashed border-primary/40" />
-          <div className="absolute w-[780px] h-[430px] rounded-[100%] border border-slate-700/30" />
+          <div className="absolute w-[780px] h-[430px] rounded-[100%] border border-border dark:border-slate-700/30" />
         </div>
 
         {/* ── SVG Connections Layer ─────────────────────────────────── */}
@@ -295,14 +295,14 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
             />
 
             {/* Glowing Core Emblem Disk */}
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#090D17] border-2 border-primary/90 shadow-[0_0_28px_rgba(0,166,255,0.7)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-surface dark:bg-[#090D17] border-2 border-primary/90 shadow-[0_0_28px_rgba(0,166,255,0.7)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <Sparkles size={20} className="text-[#00E5FF] animate-pulse" />
             </div>
           </div>
 
           {/* Core Label Badge */}
-          <div className="mt-1 px-3 py-1 rounded-full bg-[#0a0f1d]/90 border border-slate-700 dark:border-white/15 shadow-xl backdrop-blur-md inline-block">
-            <span className="text-sm sm:text-sm font-mono font-black tracking-widest text-white uppercase block">
+          <div className="mt-1 px-3 py-1 rounded-full bg-surface dark:bg-[#0a0f1d]/90 border border-border dark:border-slate-700 dark:border-white/15 shadow-xl backdrop-blur-md inline-block">
+            <span className="text-sm sm:text-sm font-mono font-black tracking-widest text-text-primary dark:text-white uppercase block">
               TARAJ GLOBAL
             </span>
             <span className="text-sm sm:text-sm font-mono font-bold text-[#00E5FF] uppercase block tracking-wider">
@@ -367,11 +367,11 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
                 {/* Node Text & Data */}
                 <div className="min-w-0 pr-1 text-left">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-sm sm:text-sm font-mono font-bold tracking-tight text-white block truncate group-hover:text-primary transition-colors">
+                    <span className="text-sm sm:text-sm font-mono font-bold tracking-tight text-text-primary dark:text-white block truncate group-hover:text-primary transition-colors">
                       {node.title}
                     </span>
                   </div>
-                  <span className="text-sm font-mono text-slate-400 block leading-tight truncate">
+                  <span className="text-sm font-mono text-text-secondary dark:text-slate-400 block leading-tight truncate">
                     {node.sub}
                   </span>
                 </div>
@@ -394,18 +394,18 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 4, scale: 0.95 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 p-2.5 rounded-xl bg-[#090D17] border border-white/20 shadow-2xl z-50 pointer-events-none text-left"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 p-2.5 rounded-xl bg-surface dark:bg-[#090D17] border border-border dark:border-white/20 shadow-2xl z-50 pointer-events-none text-left"
                   >
-                    <div className="flex items-center justify-between pb-1 border-b border-white/10 text-sm font-mono font-bold">
+                    <div className="flex items-center justify-between pb-1 border-b border-border dark:border-white/10 text-sm font-mono font-bold">
                       <span style={{ color: node.color }}>STAGE {node.stage}</span>
                       <span className="text-emerald-400">TELEMETRY OK</span>
                     </div>
-                    <p className="text-sm text-slate-300 mt-1 font-sans">
+                    <p className="text-sm text-text-secondary dark:text-slate-300 mt-1 font-sans">
                       {node.desc}
                     </p>
-                    <div className="mt-1.5 flex items-center justify-between text-sm font-mono text-slate-400">
+                    <div className="mt-1.5 flex items-center justify-between text-sm font-mono text-text-secondary dark:text-slate-400">
                       <span>VERIFICATION:</span>
-                      <span className="text-white font-bold">{node.metric}</span>
+                      <span className="text-text-primary dark:text-white font-bold">{node.metric}</span>
                     </div>
                   </motion.div>
                 )}
@@ -415,7 +415,7 @@ export const GrowthEngineNetwork = ({ activeStage, onHoverStage }) => {
         })}
 
         {/* ── Bottom Step Flow Indicator ────────────────────────────── */}
-        <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-sm font-mono text-slate-400 pointer-events-none">
+        <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-sm font-mono text-text-secondary dark:text-slate-400 pointer-events-none">
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             <span>01 AUDIENCE INTEL</span>

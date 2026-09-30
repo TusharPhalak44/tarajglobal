@@ -91,7 +91,7 @@ export const AdminCommandPalette = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-background dark:bg-black/70 backdrop-blur-md animate-fade-in">
       <div className="fixed inset-0" onClick={onClose} />
 
       <div className="relative w-full max-w-xl bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl overflow-hidden z-10 animate-slide-down">
@@ -148,7 +148,7 @@ export const AdminCommandPalette = ({ isOpen, onClose }) => {
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${isSelected ? 'bg-[var(--admin-primary)] text-white' : 'bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)]'}`}>
+                    <div className={`p-2 rounded-lg ${isSelected ? 'bg-[var(--admin-primary)] text-text-primary dark:text-white' : 'bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)]'}`}>
                       <Icon className="w-4 h-4" />
                     </div>
                     <span className="text-sm font-medium">{item.label}</span>

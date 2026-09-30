@@ -99,7 +99,7 @@ const ProductShowcase = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary mb-3.5 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-3.5 backdrop-blur-md"
           >
             <Layers className="w-3.5 h-3.5 text-primary" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
@@ -164,17 +164,17 @@ const ProductShowcase = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.3 }}
-              className="rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-[#0B1424] shadow-2xl group transition-all duration-300 hover:border-primary/50"
+              className="rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-surface dark:bg-[#0B1424] shadow-2xl group transition-all duration-300 hover:border-primary/50"
             >
               {/* Chrome Top Bar */}
-              <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-white/10 select-none">
+              <div className="flex items-center justify-between px-4 py-3 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10 select-none">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
                 </div>
 
-                <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-md bg-slate-950/80 border border-white/10 text-xs font-mono text-slate-300">
+                <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-md bg-background dark:bg-slate-950/80 border border-border dark:border-white/10 text-xs font-mono text-text-secondary dark:text-slate-300">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span>demandflow.tarajglobal.com</span>
                   <span className="text-slate-500">/{currentTab.id}</span>
@@ -183,7 +183,7 @@ const ProductShowcase = () => {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors text-xs font-mono cursor-pointer"
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface/80 dark:bg-white/5 hover:bg-white/15 text-text-secondary dark:text-slate-300 hover:text-text-primary dark:text-white transition-colors text-xs font-mono cursor-pointer"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Inspect Fullscreen</span>
@@ -193,7 +193,7 @@ const ProductShowcase = () => {
               {/* Viewport with Click to Zoom */}
               <div
                 onClick={() => setIsModalOpen(true)}
-                className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-slate-950 cursor-pointer"
+                className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-background dark:bg-slate-950 cursor-pointer"
               >
                 <img
                   src={currentTab.image}
@@ -204,14 +204,14 @@ const ProductShowcase = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none" />
 
                 {/* Floating Top Label */}
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-950/90 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-white shadow-md">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-background dark:bg-slate-950/90 backdrop-blur-md border border-border dark:border-white/15 text-xs font-mono font-bold text-text-primary dark:text-white shadow-md">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-primary">{currentTab.module}</span>
                 </div>
 
                 {/* Floating Bottom Status Strip */}
-                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex flex-wrap items-center justify-between gap-2 p-3 rounded-xl bg-slate-900/80 backdrop-blur-md border border-white/10 text-xs font-mono">
-                  <span className="text-slate-300">{currentTab.desc}</span>
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex flex-wrap items-center justify-between gap-2 p-3 rounded-xl bg-surface dark:bg-slate-900/80 backdrop-blur-md border border-border dark:border-white/10 text-xs font-mono">
+                  <span className="text-text-secondary dark:text-slate-300">{currentTab.desc}</span>
                   <span className="text-primary font-bold">{currentTab.metric}</span>
                 </div>
               </div>
@@ -226,7 +226,7 @@ const ProductShowcase = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md"
+              className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-background dark:bg-black/90 backdrop-blur-md"
               onClick={() => setIsModalOpen(false)}
             >
               <motion.div
@@ -234,22 +234,22 @@ const ProductShowcase = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative max-w-6xl w-full bg-[#070D18] border border-white/20 rounded-2xl overflow-hidden shadow-2xl"
+                className="relative max-w-6xl w-full bg-background dark:bg-[#070D18] border border-border dark:border-white/20 rounded-2xl overflow-hidden shadow-2xl"
               >
-                <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-white/10">
-                  <div className="flex items-center gap-2 font-mono text-sm font-bold text-white">
+                <div className="flex items-center justify-between px-4 py-3 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10">
+                  <div className="flex items-center gap-2 font-mono text-sm font-bold text-text-primary dark:text-white">
                     <span className="w-2 h-2 rounded-full bg-emerald-400" />
                     <span>DemandFlow Bridge™ — {currentTab.label}</span>
                   </div>
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white"
+                    className="p-1.5 rounded-lg bg-surface/90 dark:bg-white/10 hover:bg-white/20 text-text-secondary dark:text-slate-300 hover:text-text-primary dark:text-white"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
 
-                <div className="relative max-h-[75vh] overflow-auto bg-black flex items-center justify-center p-2">
+                <div className="relative max-h-[75vh] overflow-auto bg-background dark:bg-black flex items-center justify-center p-2">
                   <img
                     src={currentTab.image}
                     alt={currentTab.label}
@@ -257,7 +257,7 @@ const ProductShowcase = () => {
                   />
                 </div>
 
-                <div className="px-4 py-2.5 bg-slate-900 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+                <div className="px-4 py-2.5 bg-surface dark:bg-slate-900 border-t border-border dark:border-white/10 flex items-center justify-between text-xs font-mono text-text-secondary dark:text-slate-400">
                   <span>{currentTab.desc}</span>
                   <span className="text-primary font-bold">{currentTab.metric}</span>
                 </div>

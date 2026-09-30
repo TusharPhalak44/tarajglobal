@@ -151,9 +151,9 @@ function CommandCenter({ prefersReducedMotion }) {
       {/* Top bar */}
       <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.06]">
         <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
         </div>
         <span className="ml-2 text-[10px] font-mono font-bold tracking-[0.2em] text-[#00A6FF]/80 uppercase">
           MQL Campaign Command Center
@@ -173,7 +173,7 @@ function CommandCenter({ prefersReducedMotion }) {
             style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
           >
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: pill.dot }} />
-            <span className="text-[9px] font-mono text-white/50 uppercase tracking-wider">{pill.label}</span>
+            <span className="text-[9px] font-mono text-text-secondary dark:text-white/50 uppercase tracking-wider">{pill.label}</span>
           </div>
         ))}
       </div>
@@ -247,7 +247,7 @@ function CommandCenter({ prefersReducedMotion }) {
                 >
                   {stage.label}
                 </div>
-                <div className="text-[10px] font-mono text-white/40 truncate">{stage.sub}</div>
+                <div className="text-[10px] font-mono text-text-secondary dark:text-white/40 truncate">{stage.sub}</div>
               </div>
 
               {/* Stage indicator */}
@@ -405,7 +405,7 @@ const Hero = () => {
               <button
                 onClick={handleStartCampaign}
                 id="hero-cta-primary"
-                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
+                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-text-primary dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
                 style={{
                   background: 'linear-gradient(90deg, #00A6FF 0%, #0080CC 100%)',
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
@@ -418,7 +418,7 @@ const Hero = () => {
               <button
                 onClick={handleSeeHowItWorks}
                 id="hero-cta-secondary"
-                className="text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer hover:"
+                className="text-text-primary dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer hover:"
                 style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }}
               >
                 Explore Our Services

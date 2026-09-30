@@ -449,8 +449,8 @@ export const AboutCompany = () => {
       {/* ── HIGH-TECH AMBIENT NEURAL LIGHTING ──────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         {/* Soft Radial Gradient Blobs */}
-        <div className="absolute -top-40 left-1/4 w-[750px] h-[600px] rounded-full bg-primary/15 dark:bg-[#00A6FF]/12 blur-[160px] animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute top-1/3 -right-20 w-[650px] h-[550px] rounded-full bg-cta/15 dark:bg-[#FF6D00]/12 blur-[160px] animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute -top-40 left-1/4 w-[750px] h-[600px] rounded-full bg-primary/35 dark:bg-primary/15 dark:bg-[#00A6FF]/12 blur-[160px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute top-1/3 -right-20 w-[650px] h-[550px] rounded-full bg-cta/35 dark:bg-cta/15 dark:bg-[#FF6D00]/12 blur-[160px] animate-pulse" style={{ animationDuration: '10s' }} />
         <div className="absolute top-2/3 -left-20 w-[650px] h-[550px] rounded-full bg-purple-500/10 dark:bg-purple-600/10 blur-[170px]" />
 
         {/* Subtle Cybernetic Grid Pattern */}
@@ -557,7 +557,7 @@ export const AboutCompany = () => {
               )}
 
               {/* Button Glass Inner Body */}
-              <span className="relative inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/95 dark:bg-[#0E0E0E]/95 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 text-sm sm:text-sm font-semibold text-slate-800 dark:text-white transition-colors duration-200">
+              <span className="relative inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/95 dark:bg-[#0E0E0E]/95 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 text-sm sm:text-sm font-semibold text-slate-800 dark:text-text-primary dark:text-white transition-colors duration-200">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
@@ -733,7 +733,7 @@ export const AboutCompany = () => {
 
                             {/* 3D Gyro Ring Z (Diagonal Angle Ring) */}
                             <div
-                              className="absolute inset-1 rounded-full border border-white/90 shadow-[0_0_14px_#FFFFFF] animate-spin"
+                              className="absolute inset-1 rounded-full border border-border/80 dark:border-white/90 shadow-[0_0_14px_#FFFFFF] animate-spin"
                               style={{
                                 transform: 'rotateZ(45deg) rotateX(45deg)',
                                 animationDuration: '4s',
@@ -2007,7 +2007,7 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               animate={isCapabilitiesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-mono font-bold tracking-wider uppercase mb-3 shadow-xs"
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-sm font-mono font-bold tracking-wider uppercase mb-3 shadow-xs"
             >
               <Zap size={12} className="text-[#00A6FF] animate-pulse" />
               <span>Full-Funnel Capabilities</span>
@@ -2417,7 +2417,7 @@ export const AboutCompany = () => {
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
 
                     {/* Central Status Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/20">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/20">
                       <span className="relative flex h-1.5 w-1.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
                         <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00A6FF]" />
@@ -2438,7 +2438,7 @@ export const AboutCompany = () => {
                     {/* Step 08: Center Minimal CTA: Explore All Services with Hover Shift */}
                     <Link
                       to="/services"
-                      className="group inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-sm font-mono font-bold text-primary dark:text-[#00E5FF] transition-all duration-200 shadow-xs hover:-translate-y-[2px]"
+                      className="group inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 dark:bg-white/5 dark:hover:bg-surface/90 dark:bg-white/10 border border-slate-200 dark:border-white/10 text-sm font-mono font-bold text-primary dark:text-[#00E5FF] transition-all duration-200 shadow-xs hover:-translate-y-[2px]"
                     >
                       <span>Explore All Services</span>
                       <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1.5 text-primary dark:text-[#00E5FF]" />
@@ -2647,7 +2647,7 @@ export const AboutCompany = () => {
               transition={{ duration: 0.5 }}
               className="p-6 rounded-3xl text-center bg-white dark:bg-[#141414] border border-primary/30 dark:border-white/10 shadow-[0_8px_25px_rgba(0,0,0,0.16)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45)] relative overflow-hidden mb-6"
             >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase mb-3 border border-primary/20">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase mb-3 border border-primary/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-ping" />
                 <span>Strategic Growth Engine</span>
               </div>
@@ -2662,7 +2662,7 @@ export const AboutCompany = () => {
 
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-primary/10 dark:bg-white/5 hover:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/30 dark:border-white/10 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-white/5 hover:bg-primary/40 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/30 dark:border-white/10 transition-colors"
               >
                 <span>Explore All Services</span>
                 <ArrowRight size={14} />
@@ -2699,7 +2699,7 @@ export const AboutCompany = () => {
 
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2.5">
-                        <span className="font-mono text-sm font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">
+                        <span className="font-mono text-sm font-bold px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary">
                           {cap.number}
                         </span>
                         <h4 className="font-bold text-sm sm:text-[15px] text-text-primary">
@@ -2708,7 +2708,7 @@ export const AboutCompany = () => {
                       </div>
 
                       {cap.metric && (
-                        <span className="text-sm font-mono font-bold text-primary dark:text-[#00E5FF] px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
+                        <span className="text-sm font-mono font-bold text-primary dark:text-[#00E5FF] px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 border border-primary/20">
                           {cap.metric}
                         </span>
                       )}

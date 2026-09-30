@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import Container from '@components/layout/Container'
+import FlowButton from '@components/ui/FlowButton'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -65,7 +66,7 @@ const Contact = () => {
 
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-primary/30 dark:bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Mail className="text-primary" size={24} />
                 </div>
                 <div>
@@ -76,7 +77,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-primary/30 dark:bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Phone className="text-primary" size={24} />
                 </div>
                 <div>
@@ -87,7 +88,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-primary/30 dark:bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                   <MapPin className="text-primary" size={24} />
                 </div>
                 <div>
@@ -104,7 +105,7 @@ const Contact = () => {
               <h4 className="text-xl font-semibold mb-4">
                 Need Immediate Assistance?
               </h4>
-              <p className="text-white/80 mb-6">
+              <p className="text-text-secondary dark:text-white/80 mb-6">
                 Our support team is available 24/7 to help you with any urgent matters.
               </p>
               <button className="w-full py-3 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors">
@@ -195,15 +196,12 @@ const Contact = () => {
                 />
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <FlowButton
                 type="submit"
-                className="w-full py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center space-x-2"
-              >
-                <span>Send Message</span>
-                <Send size={20} />
-              </motion.button>
+                text="Send Message"
+                variant="primary"
+                className="w-full justify-center py-4"
+              />
             </form>
           </motion.div>
         </div>

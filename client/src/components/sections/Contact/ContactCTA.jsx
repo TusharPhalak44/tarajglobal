@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, MessageSquare } from 'lucide-react'
+import FlowButton from '../../ui/FlowButton'
 import './Contact.css'
 
 const ContactCTA = ({ onBookMeeting }) => {
@@ -68,17 +68,12 @@ const ContactCTA = ({ onBookMeeting }) => {
           <p className="cta-subtitle">
             Let's transform your ideas into reality. Our team is ready to help you achieve your goals.
           </p>
-          <div className="cta-buttons">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleBookMeeting}
-              className="cta-btn-primary"
-            >
-              <MessageSquare size={20} />
-              Book a Meeting
-              <ArrowRight size={20} />
-            </motion.button>
+            <FlowButton 
+              onClick={handleBookMeeting} 
+              text="Book a Meeting" 
+              variant="primary" 
+              className="mx-auto"
+            />
           </div>
         </motion.div>
       </div>

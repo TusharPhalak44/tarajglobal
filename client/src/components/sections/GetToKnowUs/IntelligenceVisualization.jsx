@@ -58,8 +58,8 @@ const Stage01Display = () => {
       </div>
 
       {/* ── Top Console HUD Header ───────────────────────────────────── */}
-      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-slate-800">
-        <div className="flex items-center gap-2 text-sm font-mono font-bold text-white">
+      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-border dark:border-slate-800">
+        <div className="flex items-center gap-2 text-sm font-mono font-bold text-text-primary dark:text-white">
           <Target size={14} className="text-[#00E5FF]" />
           <span>TAM AUDIENCE MESH // ICP CALIBRATION</span>
         </div>
@@ -108,9 +108,9 @@ const Stage01Display = () => {
 
             {/* Tooltip on ICP nodes */}
             {acc.isICP && (
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block z-30 pointer-events-none whitespace-nowrap px-2 py-1 rounded bg-slate-900 border border-primary/50 text-sm font-mono text-white shadow-xl">
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block z-30 pointer-events-none whitespace-nowrap px-2 py-1 rounded bg-surface dark:bg-slate-900 border border-primary/50 text-sm font-mono text-white shadow-xl">
                 <span className="text-[#00E5FF] font-bold block">{acc.name}</span>
-                <span className="text-slate-400 block">{acc.tag}</span>
+                <span className="text-text-secondary dark:text-slate-400 block">{acc.tag}</span>
               </div>
             )}
           </motion.div>
@@ -118,8 +118,8 @@ const Stage01Display = () => {
 
         {/* Central Core Bullseye Readout */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-          <div className="px-3 py-1 rounded-full bg-slate-900/90 border border-primary/60 shadow-xl backdrop-blur-md inline-block">
-            <span className="text-sm font-mono font-black tracking-widest text-white uppercase block">
+          <div className="px-3 py-1 rounded-full bg-surface dark:bg-slate-900/90 border border-primary/60 shadow-xl backdrop-blur-md inline-block">
+            <span className="text-sm font-mono font-black tracking-widest text-text-primary dark:text-white uppercase block">
               TARGET AUDIENCE
             </span>
             <span className="text-[8.5px] font-mono font-bold text-[#00E5FF] uppercase block">
@@ -131,8 +131,8 @@ const Stage01Display = () => {
       </div>
 
       {/* ── Bottom Telemetry Footer ──────────────────────────────────── */}
-      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
-        <div className="text-slate-400">
+      <div className="relative z-10 pt-3 border-t border-border dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
+        <div className="text-text-secondary dark:text-slate-400">
           TRANSFORMATION: <strong className="text-slate-200">BROAD MARKET (TAM) → IDENTIFIED ICP ACCOUNTS</strong>
         </div>
         <div className="text-[#00E5FF] font-bold">
@@ -176,8 +176,8 @@ const Stage02Display = () => {
       )}
 
       {/* ── Top Console HUD Header ───────────────────────────────────── */}
-      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-slate-800">
-        <div className="flex items-center gap-2 text-sm font-mono font-bold text-white">
+      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-border dark:border-slate-800">
+        <div className="flex items-center gap-2 text-sm font-mono font-bold text-text-primary dark:text-white">
           <Database size={14} className="text-emerald-400" />
           <span>MULTI-PASS DIRECT-DIAL VERIFICATION</span>
         </div>
@@ -192,7 +192,7 @@ const Stage02Display = () => {
         
         {/* Verification Pipeline Step Tracker */}
         <div className="grid grid-cols-3 gap-2 text-center text-sm font-mono pb-1">
-          <div className="px-2 py-1 rounded bg-slate-900 border border-slate-800 text-slate-400">
+          <div className="px-2 py-1 rounded bg-surface dark:bg-slate-900 border border-border dark:border-slate-800 text-text-secondary dark:text-slate-400">
             01 RAW RECORD INFLOW
           </div>
           <div className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-bold">
@@ -210,21 +210,21 @@ const Stage02Display = () => {
             initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="flex items-center justify-between p-3 rounded-xl bg-slate-900/90 border border-emerald-500/30 shadow-md backdrop-blur-md"
+            className="flex items-center justify-between p-3 rounded-xl bg-surface dark:bg-slate-900/90 border border-emerald-500/30 shadow-md backdrop-blur-md"
           >
             <div className="flex items-center gap-3">
               <div className="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
                 <Check size={14} strokeWidth={3} />
               </div>
               <div>
-                <h5 className="text-sm font-bold text-white font-sans">{rec.title}</h5>
-                <span className="text-sm text-slate-400 font-mono block">{rec.company}</span>
+                <h5 className="text-sm font-bold text-text-primary dark:text-white font-sans">{rec.title}</h5>
+                <span className="text-sm text-text-secondary dark:text-slate-400 font-mono block">{rec.company}</span>
               </div>
             </div>
 
             <div className="text-right">
               <span className="text-sm font-mono font-bold text-emerald-400 block">{rec.status}</span>
-              <span className="text-sm font-mono text-slate-400 block">{rec.pass}</span>
+              <span className="text-sm font-mono text-text-secondary dark:text-slate-400 block">{rec.pass}</span>
             </div>
           </motion.div>
         ))}
@@ -232,8 +232,8 @@ const Stage02Display = () => {
       </div>
 
       {/* ── Bottom Telemetry Footer ──────────────────────────────────── */}
-      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
-        <div className="text-slate-400">
+      <div className="relative z-10 pt-3 border-t border-border dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
+        <div className="text-text-secondary dark:text-slate-400">
           DELIVERABILITY METRIC: <strong className="text-emerald-400">99.8% VERIFIED DIRECT DIALS</strong>
         </div>
         <div className="text-emerald-400 font-bold">
@@ -259,8 +259,8 @@ const Stage03Display = () => {
       </div>
 
       {/* ── Top Console HUD Header ───────────────────────────────────── */}
-      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-slate-800">
-        <div className="flex items-center gap-2 text-sm font-mono font-bold text-white">
+      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-border dark:border-slate-800">
+        <div className="flex items-center gap-2 text-sm font-mono font-bold text-text-primary dark:text-white">
           <TrendingUp size={14} className="text-cta" />
           <span>FULL FUNNEL PIPELINE VELOCITY</span>
         </div>
@@ -297,8 +297,8 @@ const Stage03Display = () => {
                   {funnel.step}
                 </span>
                 <div>
-                  <h6 className="text-sm font-bold text-white leading-none">{funnel.title}</h6>
-                  <span className="text-[9.5px] text-slate-400 font-mono mt-0.5 block">{funnel.desc}</span>
+                  <h6 className="text-sm font-bold text-text-primary dark:text-white leading-none">{funnel.title}</h6>
+                  <span className="text-[9.5px] text-text-secondary dark:text-slate-400 font-mono mt-0.5 block">{funnel.desc}</span>
                 </div>
               </div>
 
@@ -314,8 +314,8 @@ const Stage03Display = () => {
       </div>
 
       {/* ── Bottom Telemetry Footer ──────────────────────────────────── */}
-      <div className="relative z-10 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
-        <div className="text-slate-400">
+      <div className="relative z-10 pt-3 border-t border-border dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm font-mono">
+        <div className="text-text-secondary dark:text-slate-400">
           REVENUE OUTCOME: <strong className="text-amber-400">PREDICTABLE PIPELINE SCALE</strong>
         </div>
         <div className="text-cta font-bold">
@@ -334,7 +334,7 @@ const Stage03Display = () => {
  */
 export const IntelligenceVisualization = ({ activeStage }) => {
   return (
-    <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-2xl bg-[#070A12]/95 border border-slate-800/90 shadow-2xl overflow-hidden backdrop-blur-xl">
+    <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-2xl bg-background dark:bg-[#070A12]/95 border border-border dark:border-slate-800/90 shadow-2xl overflow-hidden backdrop-blur-xl">
       <AnimatePresence mode="wait">
         {activeStage === '01' && (
           <motion.div

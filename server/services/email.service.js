@@ -3,12 +3,12 @@ import nodemailer from 'nodemailer'
 // Create transporter
 const createTransporter = () => {
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: process.env.SMTP_PORT || 587,
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+    port: process.env.EMAIL_PORT || 587,
     secure: false,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD
     }
   })
 }
@@ -17,9 +17,9 @@ const createTransporter = () => {
 export const sendEmail = async (options) => {
   try {
     const transporter = createTransporter()
-    
+
     const mailOptions = {
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
       to: options.to,
       subject: options.subject,
       html: options.html,
@@ -62,7 +62,7 @@ export const sendWelcomeEmail = async (user) => {
 // Send password reset email
 export const sendPasswordResetEmail = async (user, resetToken) => {
   const resetUrl = `${process.env.CLIENT_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}`
-  
+
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #00A6FF;">Password Reset Request</h2>
@@ -136,10 +136,38 @@ export const sendLeadNotification = async (lead, recipients) => {
   })
 }
 
+// Send lead confirmation to user
+export const sendLeadConfirmation = async (lead) => {
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background: linear-gradient(135deg, #00A6FF, #FF6D00); padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
+        <h2 style="color: white; margin: 0;">Thank You for Contacting Us</h2>
+      </div>
+      <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px;">
+        <p>Hi ${lead.name},</p>
+        <p>Thank you for reaching out to TaRaj Global. We have received your message and our team will get back to you shortly.</p>
+        <p><strong>Your Message Details:</strong></p>
+        <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #00A6FF;">
+          <p><strong>Subject:</strong> ${lead.subject || 'Contact Form Submission'}</p>
+          <p><strong>Message:</strong><br/> ${lead.message}</p>
+        </div>
+        <p>Best regards,<br>The TaRaj Global Team</p>
+      </div>
+    </div>
+  `
+
+  return sendEmail({
+    to: lead.email,
+    subject: 'We received your message - TaRaj Global',
+    html,
+    text: `Hi ${lead.name}, Thank you for reaching out to TaRaj Global. We have received your message and will get back to you shortly.`
+  })
+}
+
 // Send blog published notification
 export const sendBlogPublishedNotification = async (blog, recipients) => {
   const blogUrl = `${process.env.CLIENT_URL || 'http://localhost:3000'}/blog/${blog.slug}`
-  
+
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #00A6FF;">Blog Post Published</h2>
@@ -164,5 +192,6 @@ export default {
   sendPasswordResetEmail,
   sendNewApplicationNotification,
   sendLeadNotification,
+  sendLeadConfirmation,
   sendBlogPublishedNotification
 }

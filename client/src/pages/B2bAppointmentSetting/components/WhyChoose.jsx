@@ -134,7 +134,7 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         <div>
           {/* Top Bar: Number Tag & Icon */}
           <div className="flex items-center justify-between gap-1.5 mb-2">
-            <span className="font-mono text-[10.5px] sm:text-[11px] font-black text-primary dark:text-[#00A6FF] bg-primary/10 dark:bg-[#00A6FF]/15 px-2 py-0.5 rounded-md border border-primary/25 dark:border-[#00A6FF]/30">
+            <span className="font-mono text-[10.5px] sm:text-[11px] font-black text-primary dark:text-[#00A6FF] bg-primary/30 dark:bg-primary/10 dark:bg-[#00A6FF]/15 px-2 py-0.5 rounded-md border border-primary/25 dark:border-[#00A6FF]/30">
               {item.num}
             </span>
             <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-[#060D19] border border-slate-200/80 dark:border-white/10 flex items-center justify-center text-primary dark:text-[#00A6FF] group-hover:scale-110 group-hover:bg-primary group-hover:text-white dark:group-hover:bg-[#00A6FF] dark:group-hover:text-black transition-all duration-300 shadow-xs">
@@ -143,7 +143,7 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
           </div>
 
           {/* Main Title */}
-          <h3 className="text-[13.5px] sm:text-[14px] font-black text-slate-900 dark:text-white tracking-tight leading-snug mb-1.5 group-hover:text-primary dark:group-hover:text-[#00A6FF] transition-colors duration-200">
+          <h3 className="text-[13.5px] sm:text-[14px] font-black text-slate-900 dark:text-text-primary dark:text-white tracking-tight leading-snug mb-1.5 group-hover:text-primary dark:group-hover:text-[#00A6FF] transition-colors duration-200">
             {item.title}
           </h3>
 
@@ -166,7 +166,7 @@ const WhyChoose = () => {
   return (
     <section
       id="why-choose-taraj-global-appointment"
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="Why Choose Taraj Global for B2B Appointment Setting"
     >
       {/* ── Ambient Background Lighting ── */}
@@ -205,7 +205,7 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-white">Why Choose </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               Taraj Global?
             </span>

@@ -46,7 +46,7 @@ const OurProcess = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-4">
             Our
             <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
               {' '}Process
@@ -70,7 +70,7 @@ const OurProcess = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#FF6D00] flex items-center justify-center text-white font-bold text-xl shadow-lg"
+                  className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#FF6D00] flex items-center justify-center text-text-primary dark:text-white font-bold text-xl shadow-lg"
                 >
                   {index + 1}
                 </motion.div>
@@ -83,10 +83,10 @@ const OurProcess = () => {
                   transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
                   className="flex-1 max-w-md"
                 >
-                  <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-[#00A6FF]/50 transition-all">
+                  <div className="p-6 rounded-2xl bg-surface/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-white/10 hover:border-[#00A6FF]/50 transition-all">
                     <div className="flex items-center gap-4 mb-4">
                       <div className="text-[#00A6FF]">{step.icon}</div>
-                      <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                      <h3 className="text-xl font-bold text-text-primary dark:text-white">{step.title}</h3>
                     </div>
                     <p className="text-gray-400">{step.description}</p>
                   </div>

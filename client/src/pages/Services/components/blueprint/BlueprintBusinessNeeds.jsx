@@ -55,7 +55,7 @@ export default function BlueprintBusinessNeeds() {
   return (
     <section
       id="business-needs-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Header */}
@@ -67,14 +67,14 @@ export default function BlueprintBusinessNeeds() {
                 FIND YOUR SOLUTION
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Choose What Your <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Business Needs Next.
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Tell us what you're looking for, and we'll help you find the right service.
           </p>
         </div>
@@ -144,12 +144,12 @@ export default function BlueprintBusinessNeeds() {
                     <span className="font-mono text-xs text-[#FF6D00] uppercase tracking-widest font-bold">
                       {current.question}
                     </span>
-                    <span className="text-[11px] font-mono text-white/40 uppercase">
+                    <span className="text-[11px] font-mono text-text-secondary dark:text-white/40 uppercase">
                       MATCHED BLUEPRINT
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-4xl font-black uppercase text-white tracking-tight leading-snug">
+                  <h3 className="text-2xl sm:text-4xl font-black uppercase text-text-primary dark:text-white tracking-tight leading-snug">
                     {current.service}
                   </h3>
 
@@ -158,8 +158,8 @@ export default function BlueprintBusinessNeeds() {
                   </p>
 
                   {/* Key Deliverables list */}
-                  <div className="mt-8 pt-6 border-t border-white/10">
-                    <span className="text-xs font-mono uppercase tracking-widest text-white/40 block mb-3">
+                  <div className="mt-8 pt-6 border-t border-border dark:border-white/10">
+                    <span className="text-xs font-mono uppercase tracking-widest text-text-secondary dark:text-white/40 block mb-3">
                       KEY DELIVERABLES:
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -174,7 +174,7 @@ export default function BlueprintBusinessNeeds() {
                 </div>
 
                 {/* Bottom CTA */}
-                <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-between">
+                <div className="mt-10 pt-6 border-t border-border dark:border-white/10 flex items-center justify-between">
                   <button
                     onClick={() => navigate(current.route)}
                     className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#FF6D00] hover:bg-[#FF8A00] text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-[#FF6D00]/30 cursor-pointer group"
@@ -183,7 +183,7 @@ export default function BlueprintBusinessNeeds() {
                     <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
                   </button>
 
-                  <span className="text-xs font-mono text-white/40">
+                  <span className="text-xs font-mono text-text-secondary dark:text-white/40">
                     DIRECT ENGAGEMENT
                   </span>
                 </div>

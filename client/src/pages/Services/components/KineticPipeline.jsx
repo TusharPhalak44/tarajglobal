@@ -91,7 +91,7 @@ export default function KineticPipeline() {
                 <div>
                   {/* Step Top Bar */}
                   <div className="flex items-center justify-between gap-3 mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
                       <Icon className="w-5 h-5" />
                     </div>
                     <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary">

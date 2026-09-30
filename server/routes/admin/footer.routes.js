@@ -136,7 +136,7 @@ router.post('/offices', [
   body('postal_code').optional().trim(),
   body('map_url').optional().trim(),
   body('phone').optional().trim(),
-  body('email').optional().trim().isEmail(),
+  body('email').optional({ checkFalsy: true }).trim().isEmail(),
   body('icon').optional().trim(),
   body('is_visible').optional().isBoolean(),
   body('sort_order').optional().isInt()
@@ -155,7 +155,7 @@ router.put('/offices/:id', [
   body('postal_code').optional().trim(),
   body('map_url').optional().trim(),
   body('phone').optional().trim(),
-  body('email').optional().trim().isEmail(),
+  body('email').optional({ checkFalsy: true }).trim().isEmail(),
   body('icon').optional().trim(),
   body('is_visible').optional().isBoolean(),
   body('sort_order').optional().isInt()

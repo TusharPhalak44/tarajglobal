@@ -75,7 +75,7 @@ const BlogListings = () => {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-[52px] xl:text-[58px] font-black tracking-tight leading-[1.08] text-text-primary dark:text-white mb-4 sm:mb-5"
+              className="text-4xl sm:text-5xl lg:text-[52px] xl:text-[58px] font-black tracking-tight leading-[1.08] text-text-primary dark:text-text-primary dark:text-white mb-4 sm:mb-5"
             >
               B2B Demand Generation &{' '}
               <span className="bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#38BDF8] bg-clip-text text-transparent">
@@ -105,7 +105,7 @@ const BlogListings = () => {
                   <BookOpen size={18} />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-text-primary dark:text-white">Strategy Playbooks</div>
+                  <div className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white">Strategy Playbooks</div>
                   <div className="text-xs text-text-tertiary">Verified B2B methodologies</div>
                 </div>
               </div>
@@ -115,7 +115,7 @@ const BlogListings = () => {
                   <TrendingUp size={18} />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-text-primary dark:text-white">Enterprise RevOps</div>
+                  <div className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white">Enterprise RevOps</div>
                   <div className="text-xs text-text-tertiary">Pipeline & conversion data</div>
                 </div>
               </div>
@@ -125,7 +125,7 @@ const BlogListings = () => {
                   <Clock size={18} />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-text-primary dark:text-white">Regular Updates</div>
+                  <div className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white">Regular Updates</div>
                   <div className="text-xs text-text-tertiary">Fresh field intelligence</div>
                 </div>
               </div>
@@ -145,13 +145,13 @@ const BlogListings = () => {
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#00A6FF]">
                 ALL ARTICLES & PLAYBOOKS
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-text-primary dark:text-white tracking-tight mt-1">
+              <h2 className="text-2xl sm:text-3xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight mt-1">
                 Explore Our Knowledge Hub
               </h2>
             </div>
             {!loading && !error && blogs.length > 0 && (
               <div className="font-mono text-xs text-text-tertiary">
-                Showing <span className="text-text-primary dark:text-white font-semibold">{blogs.length}</span> {blogs.length === 1 ? 'Article' : 'Articles'}
+                Showing <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold">{blogs.length}</span> {blogs.length === 1 ? 'Article' : 'Articles'}
               </div>
             )}
           </div>
@@ -195,7 +195,7 @@ const BlogListings = () => {
           {/* Empty State */}
           {!loading && !error && blogs.length === 0 && (
             <div className="p-16 text-center rounded-3xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 max-w-xl mx-auto my-10">
-              <h3 className="text-lg font-bold text-text-primary dark:text-white mb-2">
+              <h3 className="text-lg font-bold text-text-primary dark:text-text-primary dark:text-white mb-2">
                 No articles published yet
               </h3>
               <p className="text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] mb-6 leading-relaxed">

@@ -95,13 +95,7 @@ export const createNavbarItem = async (req, res) => {
       parent_id: parent_id ? parseInt(parent_id) : null,
       display_order: display_order !== undefined && display_order !== null ? parseInt(display_order) : 0,
       is_active: is_active === false || is_active === 0 || is_active === '0' ? false : true
-    }
-
-    console.log('Creating navbar item:', itemData)
-    const id = await NavbarItem.create(itemData)
-    console.log('Navbar item created with ID:', id)
-    
-    res.status(201).json({
+    }    const id = await NavbarItem.create(itemData)    res.status(201).json({
       success: true,
       message: 'Navbar item created successfully',
       data: { id, ...itemData }
@@ -403,11 +397,7 @@ export const updateLogo = async (req, res) => {
 // @desc    Get all footer links
 // @route   GET /api/admin/cms/footer-links
 export const getAllFooterLinks = async (req, res) => {
-  try {
-    console.log('Fetching all footer links...')
-    const links = await FooterLink.getAll()
-    console.log('Footer links fetched:', links)
-    res.json({
+  try {    const links = await FooterLink.getAll()    res.json({
       success: true,
       data: links
     })
@@ -476,13 +466,7 @@ export const createFooterLink = async (req, res) => {
       url: url || null,
       display_order: display_order || 0,
       is_active: is_active !== false
-    }
-
-    console.log('Creating footer link:', linkData)
-    const id = await FooterLink.create(linkData)
-    console.log('Footer link created with ID:', id)
-    
-    res.status(201).json({
+    }    const id = await FooterLink.create(linkData)    res.status(201).json({
       success: true,
       message: 'Footer link created successfully',
       data: { id, ...linkData }
@@ -611,11 +595,7 @@ export const reorderFooterLinks = async (req, res) => {
 // @desc    Get all footer social links
 // @route   GET /api/admin/cms/footer-social-links
 export const getAllFooterSocialLinks = async (req, res) => {
-  try {
-    console.log('Fetching all footer social links...')
-    const links = await FooterSocialLink.getAll()
-    console.log('Footer social links fetched:', links)
-    res.json({
+  try {    const links = await FooterSocialLink.getAll()    res.json({
       success: true,
       data: links
     })
@@ -665,13 +645,7 @@ export const createFooterSocialLink = async (req, res) => {
       url,
       display_order: display_order || 0,
       is_active: is_active !== false
-    }
-
-    console.log('Creating footer social link:', linkData)
-    const id = await FooterSocialLink.create(linkData)
-    console.log('Footer social link created with ID:', id)
-    
-    res.status(201).json({
+    }    const id = await FooterSocialLink.create(linkData)    res.status(201).json({
       success: true,
       message: 'Footer social link created successfully',
       data: { id, ...linkData }
@@ -852,13 +826,7 @@ export const createClient = async (req, res) => {
       website_url: website_url || null,
       display_order: display_order || 0,
       is_active: is_active !== false
-    }
-
-    console.log('Creating client:', clientData)
-    const id = await Client.create(clientData)
-    console.log('Client created with ID:', id)
-    
-    res.status(201).json({
+    }    const id = await Client.create(clientData)    res.status(201).json({
       success: true,
       message: 'Client created successfully',
       data: { id, ...clientData }

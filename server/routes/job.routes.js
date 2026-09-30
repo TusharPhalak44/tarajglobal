@@ -3,6 +3,8 @@ import db from '../config/db.js'
 import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
+import emailService from '../services/email.service.js'
+import notificationHelper from '../helpers/notificationHelper.js'
 
 const router = express.Router()
 
@@ -67,7 +69,7 @@ router.get('/', async (req, res) => {
     res.json({ success: true, data: jobs })
   } catch (error) {
     console.error('Get jobs error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -91,7 +93,7 @@ router.get('/:id', async (req, res) => {
     res.json({ success: true, data: jobs[0] })
   } catch (error) {
     console.error('Get job by ID error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -117,6 +119,20 @@ router.post('/job-application', upload.single('resume'), async (req, res) => {
       [first_name, last_name, email, phone, job_title, resume_path]
     )
 
+    // Notify admins about new application
+    const application = { first_name, last_name, email, phone }
+    const job = { title: job_title }
+    const adminEmail = process.env.ADMIN_EMAIL || 'info@tarajglobal.com'
+    
+    try {
+      await notificationHelper.notifyAdmins(
+        notificationHelper.notifications.newApplication(first_name + ' ' + last_name, job_title, result.insertId)
+      )
+      await emailService.sendNewApplicationNotification(application, job, adminEmail)
+    } catch (notifyError) {
+      console.error('Failed to send application notification:', notifyError)
+    }
+
     res.status(201).json({
       success: true,
       message: 'Application submitted successfully',
@@ -124,7 +140,7 @@ router.post('/job-application', upload.single('resume'), async (req, res) => {
     })
   } catch (error) {
     console.error('Job application error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

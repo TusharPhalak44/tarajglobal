@@ -35,7 +35,7 @@ const Sidebar = () => {
       initial={{ width: isCollapsed ? 80 : 280 }}
       animate={{ width: isCollapsed ? 80 : 280 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="bg-gray-900 text-white min-h-screen flex flex-col border-r border-gray-800"
+      className="bg-gray-900 text-text-primary dark:text-white min-h-screen flex flex-col border-r border-gray-800"
     >
       {/* Logo */}
       <div className="p-6 flex items-center justify-between border-b border-gray-800">
@@ -96,7 +96,7 @@ const Sidebar = () => {
       {/* Logout */}
       <div className="p-4 border-t border-gray-800">
         <button
-          className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 text-gray-400 hover:bg-gray-800 hover:text-white`}
+          className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 text-gray-400 hover:bg-gray-800 hover:text-text-primary dark:text-white`}
         >
           <LogOut size={20} className="flex-shrink-0" />
           <AnimatePresence>

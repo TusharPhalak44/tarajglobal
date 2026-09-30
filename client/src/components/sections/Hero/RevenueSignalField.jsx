@@ -165,7 +165,7 @@ export const RevenueSignalField = ({ mousePos = { x: 0, y: 0 } }) => {
 
           {/* Telemetry metadata */}
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-sm font-mono font-semibold px-2 py-0.5 rounded-full bg-cta/10 text-cta border border-cta/20">
+            <span className="text-sm font-mono font-semibold px-2 py-0.5 rounded-full bg-cta/30 dark:bg-cta/10 text-cta border border-cta/20">
               100% ICP MATCH
             </span>
             <span className="text-sm font-mono text-text-muted">

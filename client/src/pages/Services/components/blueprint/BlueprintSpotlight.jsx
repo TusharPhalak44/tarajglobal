@@ -101,7 +101,7 @@ export default function BlueprintSpotlight() {
   return (
     <section
       id="spotlight-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Title */}
@@ -113,14 +113,14 @@ export default function BlueprintSpotlight() {
                 SERVICE SPOTLIGHT
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               One Targeted Need. <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 One Focused Solution.
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Click through our 12 specialized capabilities below to preview tailored B2B blueprints.
           </p>
         </div>
@@ -128,7 +128,7 @@ export default function BlueprintSpotlight() {
         {/* 3-COLUMN SPOTLIGHT ARCHITECTURE */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* ══════════ LEFT: Active Service Spotlight Info (4 cols) ══════════ */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full p-6 sm:p-8 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-xl min-h-[420px]">
+          <div className="lg:col-span-4 flex flex-col justify-between h-full p-6 sm:p-8 rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-xl min-h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.num}
@@ -139,11 +139,11 @@ export default function BlueprintSpotlight() {
                 className="flex flex-col justify-between h-full"
               >
                 <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                  <div className="flex items-center justify-between pb-4 border-b border-border dark:border-white/10">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#FF6D00] font-bold">
                       MODULE {current.num} / 12
                     </span>
-                    <span className="text-xs font-mono text-white/40">SLA GUARANTEED</span>
+                    <span className="text-xs font-mono text-text-secondary dark:text-white/40">SLA GUARANTEED</span>
                   </div>
 
                   {/* Large Number */}
@@ -152,18 +152,18 @@ export default function BlueprintSpotlight() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mt-2 leading-tight">
+                  <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary dark:text-white mt-2 leading-tight">
                     {current.name}
                   </h3>
 
                   {/* Short SEO Description */}
-                  <p className="mt-4 text-xs sm:text-sm text-white/70 leading-relaxed font-normal">
+                  <p className="mt-4 text-xs sm:text-sm text-text-secondary dark:text-white/70 leading-relaxed font-normal">
                     {current.desc}
                   </p>
                 </div>
 
                 {/* Primary CTA */}
-                <div className="mt-8 pt-6 border-t border-white/10">
+                <div className="mt-8 pt-6 border-t border-border dark:border-white/10">
                   <button
                     onClick={() => navigate(current.route)}
                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#FF6D00] hover:bg-[#FF8A00] text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-[#FF6D00]/30 cursor-pointer group"
@@ -177,8 +177,8 @@ export default function BlueprintSpotlight() {
           </div>
 
           {/* ══════════ CENTER: Vertical 12-Service Navigation (4 cols) ══════════ */}
-          <div className="lg:col-span-4 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-4 sm:p-5 shadow-xl max-h-[480px] overflow-y-auto no-scrollbar space-y-1">
-            <div className="text-[10px] font-mono uppercase tracking-widest text-white/40 px-3 py-2 border-b border-white/10 mb-2 flex items-center justify-between">
+          <div className="lg:col-span-4 rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-xl p-4 sm:p-5 shadow-xl max-h-[480px] overflow-y-auto no-scrollbar space-y-1">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-text-secondary dark:text-white/40 px-3 py-2 border-b border-border dark:border-white/10 mb-2 flex items-center justify-between">
               <span>SELECT SERVICE</span>
               <span className="text-[#FF6D00]">12 AVAILABLE</span>
             </div>
@@ -221,7 +221,7 @@ export default function BlueprintSpotlight() {
 
           {/* ══════════ RIGHT: Service Visual with 4-Step Process Overlay (4 cols) ══════════ */}
           <div className="lg:col-span-4">
-            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border border-border dark:border-white/10 shadow-2xl">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={current.image}
@@ -238,11 +238,11 @@ export default function BlueprintSpotlight() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent" />
 
               {/* Overlaid Process Badges */}
-              <div className="absolute top-5 left-5 right-5 flex items-center justify-between gap-1 p-2 rounded-2xl bg-[#05070B]/70 backdrop-blur-md border border-white/10">
+              <div className="absolute top-5 left-5 right-5 flex items-center justify-between gap-1 p-2 rounded-2xl bg-background dark:bg-[#05070B]/70 backdrop-blur-md border border-border dark:border-white/10">
                 {PROCESS_STEPS.map((step, i) => (
                   <div
                     key={step}
-                    className="flex-1 text-center py-1.5 rounded-lg bg-white/5 text-[9px] font-mono uppercase tracking-wider text-white/80 font-bold border border-white/5"
+                    className="flex-1 text-center py-1.5 rounded-lg bg-surface/80 dark:bg-white/5 text-[9px] font-mono uppercase tracking-wider text-text-secondary dark:text-white/80 font-bold border border-border dark:border-white/5"
                   >
                     {step}
                   </div>
@@ -250,11 +250,11 @@ export default function BlueprintSpotlight() {
               </div>
 
               {/* Bottom Caption */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#05070B]/85 backdrop-blur-md border border-white/10">
+              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-background dark:bg-[#05070B]/85 backdrop-blur-md border border-border dark:border-white/10">
                 <div className="text-[10px] font-mono text-[#FF6D00] uppercase font-bold tracking-wider">
                   ACTIVE PREVIEW
                 </div>
-                <div className="text-sm font-bold uppercase text-white mt-0.5">
+                <div className="text-sm font-bold uppercase text-text-primary dark:text-white mt-0.5">
                   {current.name}
                 </div>
               </div>

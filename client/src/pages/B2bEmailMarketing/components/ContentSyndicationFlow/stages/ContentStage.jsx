@@ -121,11 +121,11 @@ export default function ContentStage({ isActive, isCompleted, onSelect }) {
                 <FileText className="w-3 h-3" />
                 Whitepaper POC
               </span>
-              <span className="text-[8px] px-1 py-0.2 rounded bg-primary/10 text-primary">PDF</span>
+              <span className="text-[8px] px-1 py-0.2 rounded bg-primary/30 dark:bg-primary/10 text-primary">PDF</span>
             </div>
             <div className="space-y-1">
               <div className="h-1 w-full bg-primary/30 rounded" />
-              <div className="h-1 w-4/5 bg-primary/20 rounded" />
+              <div className="h-1 w-4/5 bg-primary/40 dark:bg-primary/20 rounded" />
             </div>
             <div className="flex justify-between items-center text-[7.5px] text-text-muted">
               <span>Cloud Enterprise</span>

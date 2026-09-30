@@ -1,4 +1,5 @@
 import { StarButton } from '@components/ui/StarButton'
+import FlowButton from '@components/ui/FlowButton'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -6,9 +7,12 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 import Container from '../Container'
 import ThemeToggle from '../PremiumNavbar/ThemeToggle'
 import { cmsAPI } from '@api/cms.api'
+import { useTheme } from '@context/ThemeContext'
 
 // Text scramble animation hook
 const useTextScramble = (text, isScrambling, duration = 1000, delay = 0) => {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const [scrambledText, setScrambledText] = useState(text)
   const intervalRef = useRef(null)
   const timeoutRef = useRef(null)
@@ -75,6 +79,8 @@ const ScrambleText = ({ text, isScrambling, duration = 1000, delay = 0, classNam
 }
 
 const Navbar = () => {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const [navLinks, setNavLinks] = useState([])
   const [loadingNav, setLoadingNav] = useState(true)
   const [logoUrl, setLogoUrl] = useState('')
@@ -124,8 +130,8 @@ const Navbar = () => {
     const fetchNavbarItems = async () => {
       try {
         const response = await cmsAPI.getNavbarItems()
-        const items = response.data || []
-        
+        const items = Array.isArray(response.data?.data) ? response.data.data : (Array.isArray(response.data) ? response.data : [])
+
         // Convert API data to navLinks format
         const convertedLinks = items
           .filter(item => item.is_active && !item.parent_id && item.section === 'navbar')
@@ -144,7 +150,7 @@ const Navbar = () => {
             const bIndex = items.find(i => i.label === b.name)?.display_order || 0
             return aIndex - bIndex
           })
-        
+
         setNavLinks(convertedLinks)
       } catch (error) {
         console.error('Failed to fetch navbar items:', error)
@@ -165,7 +171,7 @@ const Navbar = () => {
     const fetchLogo = async () => {
       try {
         const response = await cmsAPI.getLogo()
-        setLogoUrl(response.data?.logo_url || '')
+        setLogoUrl(response.data?.data?.logo_url || response.data?.logo_url || '')
       } catch (error) {
         console.error('Failed to fetch logo:', error)
       }
@@ -228,20 +234,19 @@ const Navbar = () => {
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
-          className={`transition-all duration-300 ${
-            isScrolled
-              ? 'bg-hero/95 backdrop-blur-xl border-b border-border/30'
-              : 'bg-transparent'
-          }`}
+          className={`transition-all duration-300 ${isScrolled
+            ? 'bg-hero/95 backdrop-blur-xl border-b border-border/30'
+            : 'bg-transparent'
+            }`}
           role="navigation"
           aria-label="Main navigation"
         >
           <Container>
             <div className="flex items-center justify-between h-20">
               {/* Logo */}
-              <NavLink 
-                to="/" 
-                className="bg-[#1E3A8A] text-white flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+              <NavLink
+                to="/"
+                className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
                 aria-label="Taraj Global Home"
               >
                 {logoUrl ? (
@@ -262,8 +267,8 @@ const Navbar = () => {
               </NavLink>
 
               {/* Desktop Navigation */}
-              <nav 
-                className="hidden lg:flex items-center space-x-8" 
+              <nav
+                className="hidden lg:flex items-center space-x-8"
                 aria-label="Desktop navigation"
                 onMouseEnter={() => setIsNavHovered(true)}
                 onMouseLeave={() => {
@@ -277,50 +282,44 @@ const Navbar = () => {
                       <button
                         onClick={() => handleDropdownToggle(index)}
                         onMouseEnter={() => setHoveredItem(link.name)}
-                        className={`text-sm font-medium transition-all duration-300 relative py-2 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg ${
-                          isNavHovered && hoveredItem !== link.name
-                            ? 'opacity-30 blur-[3px] scale-95'
-                            : 'opacity-100 blur-0 scale-100'
-                        }`}
+                        className={`text-sm font-medium transition-all duration-300 relative py-2 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg ${isNavHovered && hoveredItem !== link.name
+                          ? 'opacity-30 blur-[3px] scale-95'
+                          : 'opacity-100 blur-0 scale-100'
+                          }`}
                         aria-expanded={activeDropdown === index}
                         aria-haspopup="true"
                       >
                         {link.name}
-                        <ChevronDown 
-                          size={16} 
-                          className={`ml-1 transition-transform duration-200 ${
-                            activeDropdown === index ? 'rotate-180' : ''
-                          }`}
+                        <ChevronDown
+                          size={16}
+                          className={`ml-1 transition-transform duration-200 ${activeDropdown === index ? 'rotate-180' : ''
+                            }`}
                         />
                         <motion.span
-                          className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                            activeDropdown === index ? 'w-full' : 'w-0 group-hover:w-full'
-                          }`}
+                          className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${activeDropdown === index ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`}
                         />
                       </button>
                     ) : (
                       <NavLink
                         to={link.path}
                         onMouseEnter={() => setHoveredItem(link.name)}
-                        className={({ isActive }) => `text-sm font-medium transition-all duration-300 relative py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg ${
-                          isActive
-                            ? 'text-primary'
-                            : ' hover:text-accent'
-                        } ${
-                          isNavHovered && hoveredItem !== link.name
+                        className={({ isActive }) => `text-sm font-medium transition-all duration-300 relative py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg ${isActive
+                          ? 'text-primary'
+                          : ' hover:text-accent'
+                          } ${isNavHovered && hoveredItem !== link.name
                             ? 'opacity-30 blur-[3px] scale-95'
                             : 'opacity-100 blur-0 scale-100'
-                        }`}
+                          }`}
                       >
                         {link.name}
                         <motion.span
-                          className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                            location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'
-                          }`}
+                          className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`}
                         />
                       </NavLink>
                     )}
-                    
+
                     {/* Dropdown Menu */}
                     {link.hasDropdown && activeDropdown === index && (
                       <motion.div
@@ -336,7 +335,7 @@ const Navbar = () => {
                               <div className="relative">
                                 <button
                                   onClick={() => setActiveSubDropdown(activeSubDropdown === itemIndex ? null : itemIndex)}
-                                  className="w-full text-left px-4 py-2 text-sm  hover:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/10 flex items-center justify-between"
+                                  className="w-full text-left px-4 py-2 text-sm  hover:bg-primary/30 dark:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/30 dark:bg-primary/10 flex items-center justify-between"
                                   role="menuitem"
                                 >
                                   {item.name}
@@ -353,7 +352,7 @@ const Navbar = () => {
                                       <NavLink
                                         key={subItem.name}
                                         to={subItem.path}
-                                        className="block px-4 py-2 text-sm  hover:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/10"
+                                        className="block px-4 py-2 text-sm  hover:bg-primary/30 dark:bg-primary/10 hover:text-accent focus:outline-none focus:bg-primary/30 dark:bg-primary/10"
                                         role="menuitem"
                                       >
                                         {subItem.name}
@@ -365,7 +364,7 @@ const Navbar = () => {
                             ) : (
                               <NavLink
                                 to={item.path}
-                                className="block px-4 py-2 text-sm  hover:bg-primary/10 hover:text-primary focus:outline-none focus:bg-primary/10"
+                                className="block px-4 py-2 text-sm  hover:bg-primary/30 dark:bg-primary/10 hover:text-primary focus:outline-none focus:bg-primary/30 dark:bg-primary/10"
                                 role="menuitem"
                               >
                                 {item.name}
@@ -390,13 +389,10 @@ const Navbar = () => {
                   to="/contact"
                   className="inline-block"
                 >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300     hover: hover: focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20"
-                  >
-                    Get Started
-                  </motion.button>
+                  <FlowButton
+                    text="Contact Us"
+                    variant="primary"
+                  />
                 </NavLink>
               </div>
 
@@ -424,7 +420,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMobileMenu}
-              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              className="fixed inset-0 bg-background dark:bg-black/50 z-40 lg:hidden"
               aria-hidden="true"
             />
 
@@ -451,8 +447,8 @@ const Navbar = () => {
 
                 {/* Mobile Logo */}
                 <div className="mb-8 pt-4">
-                  <NavLink 
-                    to="/" 
+                  <NavLink
+                    to="/"
                     className="text-2xl font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
                     onClick={closeMobileMenu}
                   >
@@ -474,25 +470,24 @@ const Navbar = () => {
                         <div>
                           <button
                             onClick={() => handleDropdownToggle(link.name)}
-                            className="w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors text-text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                            className="w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors text-text-primary hover:bg-primary/30 dark:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                             aria-expanded={activeDropdown === link.name}
                             onMouseEnter={() => setHoveredItem(link.name)}
                             onMouseLeave={() => setHoveredItem(null)}
                           >
                             <span className="font-medium">
-                              <ScrambleText 
-                                text={link.name} 
-                                isScrambling={isMobileMenuOpen} 
+                              <ScrambleText
+                                text={link.name}
+                                isScrambling={isMobileMenuOpen}
                                 duration={800}
                                 delay={index * 100}
                                 isHovered={hoveredItem === link.name}
                               />
                             </span>
-                            <ChevronDown 
-                              size={16} 
-                              className={`transition-transform duration-200 ${
-                                activeDropdown === link.name ? 'rotate-180' : ''
-                              }`}
+                            <ChevronDown
+                              size={16}
+                              className={`transition-transform duration-200 ${activeDropdown === link.name ? 'rotate-180' : ''
+                                }`}
                             />
                           </button>
                           {activeDropdown === link.name && (
@@ -508,13 +503,13 @@ const Navbar = () => {
                                     <div>
                                       <button
                                         onClick={() => setActiveSubDropdown(activeSubDropdown === itemIndex ? null : itemIndex)}
-                                        className="w-full flex items-center justify-between py-2 px-4 text-sm text-text-secondary hover:bg-primary/10 hover:text-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                                        className="w-full flex items-center justify-between py-2 px-4 text-sm text-text-secondary hover:bg-primary/30 dark:bg-primary/10 hover:text-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                                         onMouseEnter={() => setHoveredItem(item.name)}
                                         onMouseLeave={() => setHoveredItem(null)}
                                       >
-                                        <ScrambleText 
-                                          text={item.name} 
-                                          isScrambling={activeDropdown === link.name} 
+                                        <ScrambleText
+                                          text={item.name}
+                                          isScrambling={activeDropdown === link.name}
                                           duration={600}
                                           delay={itemIndex * 50}
                                           isHovered={hoveredItem === item.name}
@@ -532,14 +527,14 @@ const Navbar = () => {
                                             <NavLink
                                               key={subItem.name}
                                               to={subItem.path}
-                                              className="block py-2 px-4 text-sm text-text-secondary hover:bg-primary/10 hover:text-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                                              className="block py-2 px-4 text-sm text-text-secondary hover:bg-primary/30 dark:bg-primary/10 hover:text-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                                               onClick={closeMobileMenu}
                                               onMouseEnter={() => setHoveredItem(subItem.name)}
                                               onMouseLeave={() => setHoveredItem(null)}
                                             >
-                                              <ScrambleText 
-                                                text={subItem.name} 
-                                                isScrambling={activeSubDropdown === itemIndex} 
+                                              <ScrambleText
+                                                text={subItem.name}
+                                                isScrambling={activeSubDropdown === itemIndex}
                                                 duration={500}
                                                 delay={subIndex * 30}
                                                 isHovered={hoveredItem === subItem.name}
@@ -552,14 +547,14 @@ const Navbar = () => {
                                   ) : (
                                     <NavLink
                                       to={item.path}
-                                      className="block py-2 px-4 text-sm text-text-secondary hover:bg-primary/10 hover:text-highlight rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                                      className="block py-2 px-4 text-sm text-text-secondary hover:bg-primary/30 dark:bg-primary/10 hover:text-highlight rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                                       onClick={closeMobileMenu}
                                       onMouseEnter={() => setHoveredItem(item.name)}
                                       onMouseLeave={() => setHoveredItem(null)}
                                     >
-                                      <ScrambleText 
-                                        text={item.name} 
-                                        isScrambling={activeDropdown === link.name} 
+                                      <ScrambleText
+                                        text={item.name}
+                                        isScrambling={activeDropdown === link.name}
                                         duration={600}
                                         delay={itemIndex * 50}
                                         isHovered={hoveredItem === item.name}
@@ -575,17 +570,16 @@ const Navbar = () => {
                         <NavLink
                           to={link.path}
                           onClick={closeMobileMenu}
-                          className={({ isActive }) => `block py-3 px-4 rounded-lg transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                            isActive
-                              ? 'bg-primary text-text-primary'
-                              : 'text-text-primary hover:bg-primary/10'
-                          }`}
+                          className={({ isActive }) => `block py-3 px-4 rounded-lg transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${isActive
+                            ? 'bg-primary text-text-primary'
+                            : 'text-text-primary hover:bg-primary/10'
+                            }`}
                           onMouseEnter={() => setHoveredItem(link.name)}
                           onMouseLeave={() => setHoveredItem(null)}
                         >
-                          <ScrambleText 
-                            text={link.name} 
-                            isScrambling={isMobileMenuOpen} 
+                          <ScrambleText
+                            text={link.name}
+                            isScrambling={isMobileMenuOpen}
                             duration={800}
                             delay={index * 100}
                             isHovered={hoveredItem === link.name}
@@ -600,16 +594,15 @@ const Navbar = () => {
                 <div className="mt-8">
                   <NavLink to="/contact" onClick={closeMobileMenu}>
                     <StarButton
-              
-              lightColor="#00A6FF"
-              backgroundColor="rgba(0,166,255,0.15)"
-              className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
-            >
-              <span className="flex items-center justify-center gap-2 min-h-[44px] px-8">
-                <span>Get Started</span>
-                <ArrowRight size={15} />
-              </span>
-            </StarButton>
+                      lightColor="#0044ffff"
+                      backgroundColor="rgba(0,166,255,0.15)"
+                      className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
+                    >
+                      <span className="flex items-center justify-center gap-2 min-h-[44px] px-8">
+                        <span>Get Started</span>
+                        <ArrowRight size={15} />
+                      </span>
+                    </StarButton>
                   </NavLink>
                 </div>
               </div>

@@ -179,7 +179,7 @@ export default function WorkflowCard({
           )}
         </span>
 
-        <span className="text-[8px] text-slate-400 dark:text-slate-500 font-mono tracking-wider">
+        <span className="text-[8px] text-text-secondary dark:text-slate-400 dark:text-slate-500 font-mono tracking-wider">
           PHASE {step.stepNumber}
         </span>
       </div>

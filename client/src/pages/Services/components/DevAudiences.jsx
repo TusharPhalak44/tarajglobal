@@ -119,7 +119,7 @@ export default function DevAudiences() {
                 </h3>
               </div>
 
-              <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:items-end">
+              <div className="p-3 rounded-xl bg-primary/30 dark:bg-primary/10 border border-primary/20 flex flex-col sm:items-end">
                 <span className="font-mono text-[10px] text-text-muted uppercase">VERIFIED BENCHMARK</span>
                 <span className="font-mono text-base font-bold text-primary">{current.benchmark}</span>
               </div>

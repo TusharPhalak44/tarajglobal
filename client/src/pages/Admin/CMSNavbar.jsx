@@ -31,8 +31,11 @@ import {
 } from 'lucide-react'
 import { adminAPI } from '@api'
 import TGAnimatedLogo from '@components/layout/PremiumNavbar/TGAnimatedLogo'
+import { useTheme } from '@context/ThemeContext'
 
 const CMSNavbar = () => {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const [loading, setLoading] = useState(true)
   const [navbarItems, setNavbarItems] = useState([])
   const [editingItem, setEditingItem] = useState(null)
@@ -413,7 +416,7 @@ const CMSNavbar = () => {
         <div className="space-y-1">
           <div className="flex items-center gap-2.5">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">Header & Navbar Management</h1>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
               Live CMS
             </span>
           </div>
@@ -472,7 +475,7 @@ const CMSNavbar = () => {
               {logoText || 'Taraj Global'}
             </div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+          <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
             <ImageIcon className="w-5 h-5" />
           </div>
         </div>
@@ -484,7 +487,7 @@ const CMSNavbar = () => {
               {headerVisible ? (
                 <span className="text-emerald-400">Enabled</span>
               ) : (
-                <span className="text-slate-400">Disabled</span>
+                <span className="text-text-secondary dark:text-slate-400">Disabled</span>
               )}
             </div>
           </div>
@@ -529,7 +532,7 @@ const CMSNavbar = () => {
         <div className="bg-surface rounded-2xl border border-border overflow-hidden shadow-sm">
           <div className="p-6 border-b border-border bg-gradient-to-r from-surface to-background flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-primary/35 dark:bg-primary/15 text-primary flex items-center justify-center">
                 <ImageIcon className="w-5 h-5" />
               </div>
               <div>
@@ -544,7 +547,7 @@ const CMSNavbar = () => {
               <button
                 type="button"
                 onClick={handleUseAnimatedLogo}
-                className="flex items-center gap-1.5 text-xs text-primary bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-lg border border-primary/30 transition-all cursor-pointer font-semibold shadow-xs"
+                className="flex items-center gap-1.5 text-xs text-primary bg-primary/30 dark:bg-primary/10 hover:bg-primary/40 dark:bg-primary/20 px-3 py-1.5 rounded-lg border border-primary/30 transition-all cursor-pointer font-semibold shadow-xs"
                 title="Switch to the high-performance animated SVG emblem"
               >
                 <Sparkles className="w-3.5 h-3.5 text-primary" />
@@ -568,7 +571,7 @@ const CMSNavbar = () => {
                   Current Logo Preview
                 </span>
 
-                <div className="w-full h-32 rounded-xl bg-slate-900/40 border border-border/80 flex items-center justify-center p-4 relative overflow-hidden group">
+                <div className="w-full h-32 rounded-xl bg-surface dark:bg-slate-900/40 border border-border/80 flex items-center justify-center p-4 relative overflow-hidden group">
                   {logoPreview ? (
                     <TGAnimatedLogo logoUrl={logoPreview} alt={logoAlt || 'Preview'} />
                   ) : (
@@ -767,7 +770,7 @@ const CMSNavbar = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-lg font-bold text-text-primary">Top Header Navigation & Announcement Items</h2>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20">
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
                   {headerItems.length} {headerItems.length === 1 ? 'item' : 'items'}
                 </span>
               </div>
@@ -836,7 +839,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'up', 'header')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Up"
                           >
                             <ArrowUp className="w-3.5 h-3.5" />
@@ -844,7 +847,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'down', 'header')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Down"
                           >
                             <ArrowDown className="w-3.5 h-3.5" />
@@ -852,7 +855,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleEditItem(item)}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Edit Header Item"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -896,7 +899,7 @@ const CMSNavbar = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-lg font-bold text-text-primary">Main Navbar Menu Items</h2>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20">
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
                   {navItems.length} {navItems.length === 1 ? 'item' : 'items'}
                 </span>
               </div>
@@ -970,7 +973,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'up', 'navbar')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Up"
                           >
                             <ArrowUp className="w-3.5 h-3.5" />
@@ -978,7 +981,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'down', 'navbar')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Down"
                           >
                             <ArrowDown className="w-3.5 h-3.5" />
@@ -986,7 +989,7 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleEditItem(item)}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Edit Navbar Item"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -1097,7 +1100,7 @@ const CMSNavbar = () => {
           </div>
 
           {/* Preview Viewport Frame */}
-          <div className="bg-[#030712] p-4 sm:p-8 rounded-2xl border border-white/10 overflow-hidden shadow-2xl relative">
+          <div className="bg-[#030712] p-4 sm:p-8 rounded-2xl border border-border dark:border-white/10 overflow-hidden shadow-2xl relative">
             {/* Ambient Backlight Glows */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
               <div className="absolute top-0 left-1/4 w-80 h-32 bg-[#00A6FF]/10 rounded-full blur-3xl" />
@@ -1115,19 +1118,19 @@ const CMSNavbar = () => {
             >
               {/* Simulated Device Frame Header if tablet/mobile */}
               {previewDevice !== 'desktop' && (
-                <div className="bg-slate-900 border border-white/10 rounded-t-2xl py-2 px-4 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <div className="bg-surface dark:bg-slate-900 border border-border dark:border-white/10 rounded-t-2xl py-2 px-4 flex items-center justify-between text-[11px] text-text-secondary dark:text-slate-400 font-mono">
                   <span>{previewDevice === 'tablet' ? 'iPad Pro (768px)' : 'iPhone 15 (380px)'}</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 </div>
               )}
 
-              <div className="rounded-2xl border border-white/15 overflow-hidden shadow-2xl bg-[#070B14]">
+              <div className="rounded-2xl border border-border dark:border-white/15 overflow-hidden shadow-2xl bg-background dark:bg-[#070B14]">
                 {/* ── Simulated Top Announcement Header ───────────────────────── */}
                 {headerVisible && headerItems.length > 0 && (
-                  <div className="bg-[#050811] text-slate-300 border-b border-white/10 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2">
+                  <div className="bg-background dark:bg-[#050811] text-text-secondary dark:text-slate-300 border-b border-border dark:border-white/10 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-3 font-medium">
                       {headerItems.filter(h => h.is_active && (h.url?.startsWith('tel:') || h.url?.startsWith('mailto:'))).map(h => (
-                        <span key={h.id} className="inline-flex items-center gap-1.5 text-[11px] text-slate-300">
+                        <span key={h.id} className="inline-flex items-center gap-1.5 text-[11px] text-text-secondary dark:text-slate-300">
                           {h.url?.startsWith('tel:') ? <Phone size={11} className="text-[#00A6FF]" /> : <Mail size={11} className="text-[#00A6FF]" />}
                           {h.label}
                         </span>
@@ -1146,7 +1149,7 @@ const CMSNavbar = () => {
                 )}
 
                 {/* ── Simulated Main Navbar Bar ──────────────────────────────── */}
-                <div className="h-[76px] px-4 sm:px-6 bg-[#070B14]/90 backdrop-blur-xl border-b border-white/10 flex items-center justify-between gap-3 relative">
+                <div className="h-[76px] px-4 sm:px-6 bg-background dark:bg-[#070B14]/90 backdrop-blur-xl border-b border-border dark:border-white/10 flex items-center justify-between gap-3 relative">
                   {/* Left: Brand Logo / Header Image */}
                   <div className="flex items-center gap-3">
                     <TGAnimatedLogo
@@ -1155,7 +1158,7 @@ const CMSNavbar = () => {
                     />
 
                     {showLogoText && logoText && (
-                      <span className="inline-block font-extrabold text-sm sm:text-base tracking-tight text-white font-display">
+                      <span className="inline-block font-extrabold text-sm sm:text-base tracking-tight text-text-primary dark:text-white font-display">
                         {logoText}
                       </span>
                     )}
@@ -1184,28 +1187,28 @@ const CMSNavbar = () => {
                               {isServices && (
                                 <ChevronDown
                                   size={12}
-                                  className={`transition-transform duration-200 ${previewServicesOpen ? 'rotate-180 text-[#00A6FF]' : 'text-slate-400'}`}
+                                  className={`transition-transform duration-200 ${previewServicesOpen ? 'rotate-180 text-[#00A6FF]' : 'text-text-secondary dark:text-slate-400'}`}
                                 />
                               )}
                             </button>
 
                             {/* Simulated Services Mega Dropdown */}
                             {isServices && previewServicesOpen && (
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-[#0a0f1d] border border-white/15 rounded-2xl p-4 shadow-2xl space-y-2 z-50 animate-in fade-in slide-in-from-top-2">
-                                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#00A6FF] border-b border-white/10 pb-1.5">
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-surface dark:bg-[#0a0f1d] border border-border dark:border-white/15 rounded-2xl p-4 shadow-2xl space-y-2 z-50 animate-in fade-in slide-in-from-top-2">
+                                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#00A6FF] border-b border-border dark:border-white/10 pb-1.5">
                                   Our Core Capabilities
                                 </div>
-                                <div className="space-y-1 text-xs text-slate-300">
-                                  <div className="p-1.5 rounded-lg hover:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                <div className="space-y-1 text-xs text-text-secondary dark:text-slate-300">
+                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • B2B Demand Generation
                                   </div>
-                                  <div className="p-1.5 rounded-lg hover:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • MQL & HQL Marketing
                                   </div>
-                                  <div className="p-1.5 rounded-lg hover:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • Account-Based Marketing (ABM)
                                   </div>
-                                  <div className="p-1.5 rounded-lg hover:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • Appointment Setting
                                   </div>
                                 </div>
@@ -1220,7 +1223,7 @@ const CMSNavbar = () => {
                     <button
                       type="button"
                       onClick={() => setPreviewMobileMenuOpen(!previewMobileMenuOpen)}
-                      className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all cursor-pointer"
+                      className="p-2 rounded-xl bg-surface/90 dark:bg-white/10 text-text-primary dark:text-white hover:bg-white/20 transition-all cursor-pointer"
                     >
                       {previewMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
                     </button>
@@ -1244,13 +1247,13 @@ const CMSNavbar = () => {
 
                 {/* Mobile Drawer Simulation (when opened on mobile) */}
                 {previewDevice === 'mobile' && previewMobileMenuOpen && (
-                  <div className="bg-[#0a0f1d] border-b border-white/10 p-5 space-y-3 animate-in fade-in">
+                  <div className="bg-surface dark:bg-[#0a0f1d] border-b border-border dark:border-white/10 p-5 space-y-3 animate-in fade-in">
                     <div className="text-[11px] font-mono uppercase text-slate-500">Navigation Menu</div>
                     <div className="space-y-1">
                       {navItems.filter(i => i.is_active).map(item => (
                         <div
                           key={item.id}
-                          className="px-3 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors"
+                          className="px-3 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors"
                         >
                           {item.label}
                         </div>
@@ -1265,10 +1268,10 @@ const CMSNavbar = () => {
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20">
                       <Sparkles size={12} /> Real-Time Preview Simulation
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-text-primary dark:text-white tracking-tight">
                       Full-Funnel Enterprise B2B Pipeline Growth
                     </h3>
-                    <p className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+                    <p className="text-xs text-text-secondary dark:text-slate-400 max-w-md mx-auto leading-relaxed">
                       This simulated hero section demonstrates how your navigation header floats gracefully over dynamic page content.
                     </p>
                   </div>
@@ -1281,7 +1284,7 @@ const CMSNavbar = () => {
 
       {/* ── MODAL: ADD / EDIT ITEM (HEADER OR NAVBAR) ──────────────────── */}
       {showItemModal && editingItem && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+        <div className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
           <div className="bg-surface rounded-2xl border border-border w-full max-w-lg shadow-2xl overflow-hidden">
             <div className="p-6 border-b border-border flex items-center justify-between bg-gradient-to-r from-surface to-background">
               <div>

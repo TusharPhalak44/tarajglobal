@@ -178,7 +178,7 @@ export default function ServicesCatalog() {
   return (
     <section
       id="services-catalog-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
@@ -190,20 +190,20 @@ export default function ServicesCatalog() {
                 CORE CAPABILITIES DIRECTORY
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Twelve Specialized Services. <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 One Unified Growth Engine.
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Click any service card to view complete execution specifications, delivery timelines, and transparent SLA guarantees.
           </p>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-10 border-b border-white/10">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-10 border-b border-border dark:border-white/10">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCat === cat.id
             return (
@@ -234,20 +234,20 @@ export default function ServicesCatalog() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35, delay: idx * 0.04 }}
                 onClick={() => navigate(service.route)}
-                className="group rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-[#FF6D00]/60 p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer relative overflow-hidden shadow-xl"
+                className="group rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-[#FF6D00]/60 p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer relative overflow-hidden shadow-xl"
               >
                 {/* Top of Card */}
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/5 text-white/70 group-hover:bg-[#FF6D00]/15 group-hover:text-[#FF6D00] transition-colors border border-white/5">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface/80 dark:bg-white/5 text-text-secondary dark:text-white/70 group-hover:bg-[#FF6D00]/15 group-hover:text-[#FF6D00] transition-colors border border-border dark:border-white/5">
                       {service.tag}
                     </span>
-                    <div className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center group-hover:bg-[#FF6D00] group-hover:border-[#FF6D00] transition-all">
-                      <ArrowUpRight className="w-4 h-4 text-white group-hover:text-black transition-colors" />
+                    <div className="w-8 h-8 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#FF6D00] group-hover:border-[#FF6D00] transition-all">
+                      <ArrowUpRight className="w-4 h-4 text-text-primary dark:text-white group-hover:text-black transition-colors" />
                     </div>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-black uppercase text-white tracking-tight group-hover:text-white transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-black uppercase text-text-primary dark:text-white tracking-tight group-hover:text-text-primary dark:text-white transition-colors">
                     {service.name}
                   </h3>
 
@@ -258,7 +258,7 @@ export default function ServicesCatalog() {
                   {/* Micro-Features Bullets */}
                   <div className="mt-5 space-y-1.5">
                     {service.kpis.map((kpi, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs font-mono text-white/60">
+                      <div key={i} className="flex items-center gap-2 text-xs font-mono text-text-secondary dark:text-white/60">
                         <CheckCircle className="w-3.5 h-3.5 text-[#FF6D00] shrink-0" />
                         <span>{kpi}</span>
                       </div>
@@ -267,8 +267,8 @@ export default function ServicesCatalog() {
                 </div>
 
                 {/* Bottom of Card: SLA + Direct Action Link */}
-                <div className="mt-6 pt-5 border-t border-white/10 flex flex-col gap-2">
-                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-white/50 truncate">
+                <div className="mt-6 pt-5 border-t border-border dark:border-white/10 flex flex-col gap-2">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-text-secondary dark:text-white/50 truncate">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#FF6D00] shrink-0" />
                     <span className="truncate">{service.sla}</span>
                   </div>

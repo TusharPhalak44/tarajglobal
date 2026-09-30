@@ -57,7 +57,7 @@ export const GalleryCursor = () => {
 
       {/* Expanded pill with text when active */}
       {isActive && (
-        <div className="px-3 py-1 rounded-full bg-primary text-black font-bold text-[10px] tracking-widest uppercase shadow-xl scale-100 transition-all duration-200 backdrop-blur-md flex items-center justify-center border border-white/20">
+        <div className="px-3 py-1 rounded-full bg-primary text-black font-bold text-[10px] tracking-widest uppercase shadow-xl scale-100 transition-all duration-200 backdrop-blur-md flex items-center justify-center border border-border dark:border-white/20">
           {label}
         </div>
       )}

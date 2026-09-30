@@ -41,7 +41,7 @@ export const GalleryFeaturedStories = () => {
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-            <div className="absolute top-6 left-6 font-mono text-xs tracking-widest uppercase bg-black/70 text-white px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+            <div className="absolute top-6 left-6 font-mono text-xs tracking-widest uppercase bg-background dark:bg-black/70 text-white px-3 py-1 rounded-full border border-border dark:border-white/20 backdrop-blur-md">
               CASE EXHIBIT // 01
             </div>
             <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono text-white/90">
@@ -125,7 +125,7 @@ export const GalleryFeaturedStories = () => {
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-            <div className="absolute top-6 left-6 font-mono text-xs tracking-widest uppercase bg-black/70 text-white px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+            <div className="absolute top-6 left-6 font-mono text-xs tracking-widest uppercase bg-background dark:bg-black/70 text-white px-3 py-1 rounded-full border border-border dark:border-white/20 backdrop-blur-md">
               CASE EXHIBIT // 02
             </div>
             <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono text-white/90">
@@ -147,7 +147,7 @@ export const GalleryFeaturedStories = () => {
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-            <div className="absolute top-6 left-6 font-mono text-xs tracking-widest uppercase bg-black/70 text-white px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+            <div className="absolute top-6 left-6 font-mono text-xs tracking-widest uppercase bg-background dark:bg-black/70 text-white px-3 py-1 rounded-full border border-border dark:border-white/20 backdrop-blur-md">
               CASE EXHIBIT // 03
             </div>
             <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono text-white/90">

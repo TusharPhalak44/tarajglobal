@@ -99,7 +99,7 @@ export default function DevHero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary mb-5 shadow-xs"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-5 shadow-xs"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em]">
@@ -144,7 +144,7 @@ export default function DevHero() {
             <button
               type="button"
               onClick={scrollToCatalog}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer"
             >
               <span>Explore 12 Capabilities</span>
               <ChevronRight className="w-4 h-4 " />
@@ -244,7 +244,7 @@ export default function DevHero() {
             </div>
 
             {/* Metric Stamp */}
-            <div className="p-4 rounded-xl border border-primary/25 bg-primary/5 flex flex-col items-start md:items-end shrink-0 w-full md:w-auto">
+            <div className="p-4 rounded-xl border border-primary/25 bg-primary/25 dark:bg-primary/5 flex flex-col items-start md:items-end shrink-0 w-full md:w-auto">
               <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest block mb-0.5">
                 VERIFIED SLA DELIVERABLE
               </span>

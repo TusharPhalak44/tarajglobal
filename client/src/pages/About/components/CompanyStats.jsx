@@ -82,7 +82,7 @@ const CompanyStats = () => {
     <section ref={ref} className="relative py-20 lg:py-32 overflow-hidden bg-background">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/25 dark:bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
@@ -104,7 +104,7 @@ const CompanyStats = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-6"
+            className="inline-block px-4 py-2 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-6"
           >
             OUR IMPACT
           </motion.span>
@@ -196,7 +196,7 @@ const CompanyStats = () => {
                   transition-all duration-500
                 `}>
                   {/* Inner glow effect */}
-                  <div className="absolute inset-0 bg-white/10 rounded-full blur-2xl" />
+                  <div className="absolute inset-0 bg-surface/90 dark:bg-white/10 rounded-full blur-2xl" />
                   
                   {/* Number */}
                   <motion.div
@@ -208,7 +208,7 @@ const CompanyStats = () => {
                       type: 'spring',
                       stiffness: 200 
                     }}
-                    className="relative z-10 text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4"
+                    className="relative z-10 text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary dark:text-white mb-4"
                   >
                     {stat.value}
                     <span className="text-3xl md:text-4xl">{stat.suffix}</span>

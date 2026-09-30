@@ -23,7 +23,7 @@ export default function ExperienceFinalCTA() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-28 lg:py-36 bg-[#05070B] text-white overflow-hidden"
+      className="relative py-28 lg:py-36 bg-background dark:bg-[#05070B] text-text-primary dark:text-white overflow-hidden"
     >
       {/* Subtle top ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#FF6D00]/8 rounded-full blur-[140px] pointer-events-none -z-10" />
@@ -32,7 +32,7 @@ export default function ExperienceFinalCTA() {
         <div
           ref={boundingRef}
           onMouseMove={handleMouseMove}
-          className="relative rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-2xl p-8 sm:p-14 lg:p-20 overflow-hidden shadow-2xl text-center group"
+          className="relative rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-2xl p-8 sm:p-14 lg:p-20 overflow-hidden shadow-2xl text-center group"
         >
           {/* Dynamic cursor reactive background highlight */}
           <motion.div
@@ -41,7 +41,7 @@ export default function ExperienceFinalCTA() {
           />
 
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono font-bold uppercase tracking-widest text-[#FF6D00] mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-xs font-mono font-bold uppercase tracking-widest text-[#FF6D00] mb-8">
             <Sparkles className="w-3.5 h-3.5" />
             <span>ACCELERATE YOUR PIPELINE</span>
           </div>
@@ -55,7 +55,7 @@ export default function ExperienceFinalCTA() {
           </h2>
 
           {/* Supporting Copy */}
-          <p className="mt-6 text-base sm:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 text-base sm:text-lg text-text-secondary dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
             Whether you need to scale lead volume, penetrate enterprise accounts, or fill sales calendars, TaRaj Global delivers qualified, contract-backed outcomes.
           </p>
 
@@ -67,15 +67,15 @@ export default function ExperienceFinalCTA() {
 
             <button
               onClick={() => navigate('/case-studies')}
-              className="px-7 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white text-sm font-semibold transition-all hover:border-[#FF6D00]/60 cursor-pointer inline-flex items-center gap-2 group"
+              className="px-7 py-3.5 rounded-xl border border-border dark:border-white/20 bg-surface/80 dark:bg-white/5 hover:bg-surface/90 dark:bg-white/10 text-text-primary dark:text-white text-sm font-semibold transition-all hover:border-[#FF6D00]/60 cursor-pointer inline-flex items-center gap-2 group"
             >
               <span>View Case Studies</span>
-              <ArrowRight className="w-4 h-4 text-white/60 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-text-secondary dark:text-white/60 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
           {/* Trust Guarantees */}
-          <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs font-mono text-white/50">
+          <div className="mt-12 pt-8 border-t border-border dark:border-white/10 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs font-mono text-text-secondary dark:text-white/50">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#FF6D00]" />
               <span>100% REPLACEMENT SLA</span>

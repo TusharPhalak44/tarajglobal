@@ -90,7 +90,7 @@ const CookieModal = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-sm z-50"
             onClick={closePreferences}
             aria-hidden="true"
           />
@@ -108,18 +108,18 @@ const CookieModal = () => {
           >
             <div
               ref={modalRef}
-              className="bg-[#121212]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
+              className="bg-surface dark:bg-[#121212]/95 backdrop-blur-xl border border-border dark:border-white/10 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-white/10">
-                <h2 id="cookie-modal-title" className="text-lg font-semibold text-white">
+              <div className="flex items-center justify-between p-4 border-b border-border dark:border-white/10">
+                <h2 id="cookie-modal-title" className="text-lg font-semibold text-text-primary dark:text-white">
                   Cookie Preferences
                 </h2>
                 <motion.button
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={closePreferences}
-                  className="p-2 rounded-full text-text-secondary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                  className="p-2 rounded-full text-text-secondary hover:text-text-primary dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                   aria-label="Close"
                 >
                   <X size={24} />
@@ -131,13 +131,13 @@ const CookieModal = () => {
                 {cookieCategories.map((category) => (
                   <div
                     key={category.key}
-                    className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+                    className="flex items-start gap-3 p-3 rounded-xl bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 hover:border-border dark:border-white/20 transition-all"
                   >
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-sm font-semibold text-white">{category.title}</h3>
+                        <h3 className="text-sm font-semibold text-text-primary dark:text-white">{category.title}</h3>
                         {category.required && (
-                          <span className="px-2 py-0.5 text-[10px] font-medium bg-primary/20 text-primary rounded-full">
+                          <span className="px-2 py-0.5 text-[10px] font-medium bg-primary/40 dark:bg-primary/20 text-primary rounded-full">
                             Always Active
                           </span>
                         )}
@@ -157,7 +157,7 @@ const CookieModal = () => {
               </div>
 
               {/* Footer */}
-              <div className="flex flex-col sm:flex-row gap-2 p-4 border-t border-white/10 bg-white/5">
+              <div className="flex flex-col sm:flex-row gap-2 p-4 border-t border-border dark:border-white/10 bg-surface/80 dark:bg-white/5">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -171,7 +171,7 @@ const CookieModal = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleAcceptAll}
-                  className="flex-1 px-6 py-3 bg-white/10 border border-white/20 text-white rounded-lg font-semibold hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
+                  className="flex-1 px-6 py-3 bg-surface/90 dark:bg-white/10 border border-border dark:border-white/20 text-text-primary dark:text-white rounded-lg font-semibold hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
                 >
                   Accept All
                 </motion.button>
@@ -180,7 +180,7 @@ const CookieModal = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={closePreferences}
-                  className="flex-1 px-6 py-3 bg-transparent border border-white/20 text-text-secondary rounded-lg font-semibold hover:bg-white/10 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
+                  className="flex-1 px-6 py-3 bg-transparent border border-border dark:border-white/20 text-text-secondary rounded-lg font-semibold hover:bg-surface/90 dark:bg-white/10 hover:text-text-primary dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
                 >
                   Cancel
                 </motion.button>

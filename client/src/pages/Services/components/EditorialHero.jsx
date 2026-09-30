@@ -77,7 +77,7 @@ export default function EditorialHero() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-md mb-5 sm:mb-6 self-start"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 backdrop-blur-md mb-5 sm:mb-6 self-start"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
               <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.24em] text-primary">
@@ -129,7 +129,7 @@ export default function EditorialHero() {
               >
                 <StarButton
                   as="div"
-                  className="h-12 px-7 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
+                  className="h-12 px-7 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-text-primary dark:text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
                   lightColor="#00A6FF"
                   backgroundColor="rgba(0,166,255,0.15)"
                 >

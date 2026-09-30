@@ -279,7 +279,7 @@ function renderChamberVisual(stage, isActive, isCompleted) {
             <span>Destination:</span>
             <span className="text-primary font-semibold">Client CRM Webhook</span>
           </div>
-          <div className="py-1 px-1.5 rounded-md bg-primary/10 border border-primary/30 text-primary font-bold text-center text-[9px]">
+          <div className="py-1 px-1.5 rounded-md bg-primary/30 dark:bg-primary/10 border border-primary/30 text-primary font-bold text-center text-[9px]">
             Ready for Outreach
           </div>
           <div className="text-emerald-400 font-bold text-center text-[8.5px]">

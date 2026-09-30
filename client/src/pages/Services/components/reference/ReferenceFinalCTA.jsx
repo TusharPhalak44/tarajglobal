@@ -19,7 +19,7 @@ export default function ReferenceFinalCTA() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-28 lg:py-36 bg-slate-100 dark:bg-[#05070B] text-slate-900 dark:text-white overflow-hidden select-none transition-colors duration-300 border-t border-slate-200 dark:border-white/10"
+      className="relative py-28 lg:py-36 bg-slate-100 dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white overflow-hidden select-none transition-colors duration-300 border-t border-slate-200 dark:border-white/10"
     >
       {/* Background Team Photo - clearly darker and richer in light theme */}
       <div
@@ -28,7 +28,7 @@ export default function ReferenceFinalCTA() {
       />
 
       {/* Subtle dark tint in light theme to ensure the image appears darker */}
-      <div className="absolute inset-0 bg-slate-950/20 dark:bg-transparent pointer-events-none transition-colors duration-300" />
+      <div className="absolute inset-0 bg-background dark:bg-slate-950/20 dark:bg-transparent pointer-events-none transition-colors duration-300" />
 
       {/* Horizontal Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-slate-100/85 via-slate-100/65 to-slate-100/35 dark:from-[#05070B] dark:via-[#05070B]/85 dark:to-[#05070B]/70 transition-colors duration-300" />
@@ -47,7 +47,7 @@ export default function ReferenceFinalCTA() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-950 dark:text-white">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-950 dark:text-text-primary dark:text-white">
               Ready to Build Your <br />
               Next Growth Engine?
             </h2>
@@ -79,7 +79,7 @@ export default function ReferenceFinalCTA() {
               <div className="absolute -inset-2.5 rounded-full border border-[#FF6D00]/30 border-dashed animate-[spin_20s_linear_infinite]" />
 
               <div className="flex flex-col items-center text-center">
-                <div className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                <div className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-text-primary dark:text-white">
                   Your Growth
                 </div>
                 <div className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00]">

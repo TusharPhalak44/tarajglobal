@@ -21,7 +21,7 @@ export const GetToKnowUs = () => {
   return (
     <section
       id="enterprise-architecture"
-      className="relative py-14 sm:py-16 lg:py-20 overflow-hidden bg-[#FAFAFA] dark:bg-[#0E0E0E] text-slate-900 dark:text-white transition-colors duration-300 select-none"
+      className="relative py-14 sm:py-16 lg:py-20 overflow-hidden bg-[#FAFAFA] dark:bg-[#0E0E0E] text-slate-900 dark:text-text-primary dark:text-white transition-colors duration-300 select-none"
       aria-label="Enterprise Growth Architecture — Dynamic B2B Growth Flow"
     >
       {/* ── Background: Subtle Moving Architectural Grid & Radial Glow ─── */}
@@ -44,7 +44,7 @@ export const GetToKnowUs = () => {
         />
  
         {/* Very Subtle Radial Ambient Light */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full blur-[140px] bg-primary/5 dark:bg-primary/8 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full blur-[140px] bg-primary/25 dark:bg-primary/5 dark:bg-primary/8 pointer-events-none" />
       </div>
  
       <div className="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col justify-between">
@@ -72,7 +72,7 @@ export const GetToKnowUs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight mb-3 text-slate-900 dark:text-white transition-colors duration-300"
+            className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight mb-3 text-slate-900 dark:text-text-primary dark:text-white transition-colors duration-300"
           >
             POWERING SMARTER{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#00A6FF] to-[#00E5FF]">

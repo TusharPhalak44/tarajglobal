@@ -119,7 +119,7 @@ function Privacy() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-wider uppercase mb-4"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-wider uppercase mb-4"
             >
               <Shield className="w-3.5 h-3.5 text-primary" />
               <span>Enterprise Data Governance</span>
@@ -183,7 +183,7 @@ function Privacy() {
               </nav>
 
               <div className="mt-6 pt-4 border-t border-border/80">
-                <div className="p-3 rounded-xl bg-primary/5 border border-primary/15 text-xs text-text-secondary">
+                <div className="p-3 rounded-xl bg-primary/25 dark:bg-primary/5 border border-primary/15 text-xs text-text-secondary">
                   <div className="font-semibold text-text-primary mb-1 flex items-center gap-1.5">
                     <Lock className="w-3.5 h-3.5 text-primary" />
                     <span>Data Protection Officer</span>

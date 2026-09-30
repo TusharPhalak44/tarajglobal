@@ -54,7 +54,7 @@ const CoreValues = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-4">
             Our
             <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
               {' '}Core Values
@@ -74,7 +74,7 @@ const CoreValues = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden"
+              className="group relative p-8 rounded-3xl bg-surface/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-white/10 overflow-hidden"
             >
               {/* Floating background shapes */}
               <motion.div
@@ -94,7 +94,7 @@ const CoreValues = () => {
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00A6FF]/20 to-[#FF6D00]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <div className="text-[#00A6FF]">{value.icon}</div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{value.title}</h3>
+                <h3 className="text-xl font-bold text-text-primary dark:text-white mb-3">{value.title}</h3>
                 <p className="text-gray-400 leading-relaxed">{value.description}</p>
               </div>
 

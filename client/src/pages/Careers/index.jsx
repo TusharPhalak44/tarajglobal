@@ -276,7 +276,7 @@ const EditorialGalleryItem = ({
       whileHover={prefersReducedMotion ? {} : { y: -8, scale: 1.015 }}
       transition={{ duration: 0.65, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       style={style}
-      className={`group relative overflow-hidden rounded-2xl cursor-pointer bg-slate-900 border border-black/10 dark:border-white/10 shadow-sm transition-all duration-500 hover:border-[#00A6FF]/60 hover:shadow-[0_20px_50px_-12px_rgba(0,166,255,0.35)] select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] ${className}`}
+      className={`group relative overflow-hidden rounded-2xl cursor-pointer bg-surface dark:bg-slate-900 border border-black/10 dark:border-white/10 shadow-sm transition-all duration-500 hover:border-[#00A6FF]/60 hover:shadow-[0_20px_50px_-12px_rgba(0,166,255,0.35)] select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] ${className}`}
       role="button"
       tabIndex={0}
       aria-label={`Open ${photo?.title || 'Culture'} album (${photo?.photoCount || 25} photos)`}
@@ -347,11 +347,11 @@ const EditorialGalleryItem = ({
 
         {/* Album Photo Count Pill & Expand Icon */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 group-hover:border-[#00A6FF]/50 text-white text-[10px] sm:text-[11px] font-mono font-semibold shadow-md transition-colors duration-300">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-background dark:bg-black/60 backdrop-blur-md border border-border dark:border-white/20 group-hover:border-[#00A6FF]/50 text-white text-[10px] sm:text-[11px] font-mono font-semibold shadow-md transition-colors duration-300">
             <Images size={11} className="text-[#00A6FF] transition-transform duration-300 group-hover:scale-110" />
             <span>{photo.photoCount || photo.photos?.length || 25} Photos</span>
           </div>
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/80 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45 shadow-lg">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-background dark:bg-black/40 backdrop-blur-md border border-border dark:border-white/20 text-text-secondary dark:text-white/80 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45 shadow-lg">
             <Maximize2 size={12} />
           </div>
         </div>
@@ -1330,7 +1330,7 @@ function Careers() {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/20 text-[#1A1A2E] dark:text-white font-mono text-[11px] sm:text-xs tracking-[0.16em] uppercase mb-6 sm:mb-8 transition-colors duration-300 shadow-2xs"
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-background dark:bg-black/[0.04] dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/20 text-[#1A1A2E] dark:text-white font-mono text-[11px] sm:text-xs tracking-[0.16em] uppercase mb-6 sm:mb-8 transition-colors duration-300 shadow-2xs"
             >
               <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" style={{ animationDuration: '2.5s' }} />
@@ -1338,11 +1338,11 @@ function Careers() {
               </span>
               <span className="text-[#4A5568] dark:text-white/80 font-medium">CAREERS AT TARAJ GLOBAL</span>
               <span className="text-[#718096] dark:text-white/40">&bull;</span>
-              <span className="text-[#1A1A2E] dark:text-white font-bold">WE ARE HIRING IN PUNE</span>
+              <span className="text-[#1A1A2E] dark:text-text-primary dark:text-white font-bold">WE ARE HIRING IN PUNE</span>
             </motion.div>
 
             {/* Huge Bold Heading (Matching "THE FUTURE IS BRIGHT" in reference image) */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[52px] xl:text-[58px] font-black tracking-tight leading-[1.08] text-[#1A1A2E] dark:text-white select-none text-left mb-6 sm:mb-7 max-w-3xl transition-colors duration-300">
+            <h1 className="text-4xl sm:text-5xl lg:text-[52px] xl:text-[58px] font-black tracking-tight leading-[1.08] text-[#1A1A2E] dark:text-text-primary dark:text-white select-none text-left mb-6 sm:mb-7 max-w-3xl transition-colors duration-300">
               <div className="overflow-hidden">
                 <motion.div
                   initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
@@ -1352,7 +1352,7 @@ function Careers() {
                     delay: prefersReducedMotion ? 0 : 0.35,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="block text-[#1A1A2E] dark:text-white"
+                  className="block text-[#1A1A2E] dark:text-text-primary dark:text-white"
                 >
                   BUILD THE FUTURE
                 </motion.div>
@@ -1366,7 +1366,7 @@ function Careers() {
                     delay: prefersReducedMotion ? 0 : 0.48,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="block text-[#1A1A2E] dark:text-white"
+                  className="block text-[#1A1A2E] dark:text-text-primary dark:text-white"
                 >
                   OF B2B REVENUE
                 </motion.div>
@@ -1738,7 +1738,7 @@ function Careers() {
 
           {/* ── DESKTOP CUSTOM CURSOR FOLLOWER BADGE ── */}
           <motion.div
-            className="hidden lg:flex fixed pointer-events-none z-50 items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/90 text-white text-[10px] font-mono font-bold tracking-wider uppercase border border-white/20 shadow-2xl backdrop-blur-md"
+            className="hidden lg:flex fixed pointer-events-none z-50 items-center gap-1.5 px-3 py-1.5 rounded-full bg-background dark:bg-slate-950/90 text-text-primary dark:text-white text-[10px] font-mono font-bold tracking-wider uppercase border border-border dark:border-white/20 shadow-2xl backdrop-blur-md"
             style={{
               x: cursorXSpring,
               y: cursorYSpring,
@@ -1919,7 +1919,7 @@ function Careers() {
                   <span className="font-mono text-xs font-bold tracking-wider uppercase text-[#00A6FF]">
                     FREQUENTLY ASKED QUESTIONS
                   </span>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary dark:text-white tracking-tight">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight">
                     Got Questions About Joining Taraj Global?
                   </h2>
                   <p className="text-sm text-text-secondary dark:text-[#A7ADB7] leading-relaxed max-w-xl">
@@ -1978,7 +1978,7 @@ function Careers() {
 
                   {/* Heading & Subtitle */}
                   <div className="relative z-10 mb-6">
-                    <h3 className="text-xl sm:text-2xl font-bold text-text-primary dark:text-white tracking-tight leading-snug mb-2">
+                    <h3 className="text-xl sm:text-2xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight leading-snug mb-2">
                       Ready to Connect Directly?
                     </h3>
                     <p className="text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] leading-relaxed">
@@ -2003,7 +2003,7 @@ function Careers() {
                             <span className="block font-mono text-[10px] uppercase tracking-wider text-text-tertiary font-bold">
                               EMAIL
                             </span>
-                            <span className="text-sm font-bold text-text-primary dark:text-white group-hover:text-[#00A6FF] transition-colors truncate block">
+                            <span className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white group-hover:text-[#00A6FF] transition-colors truncate block">
                               hr@tarajglobal.com
                             </span>
                           </div>
@@ -2042,14 +2042,14 @@ function Careers() {
                       className="group flex items-center justify-between p-3.5 rounded-2xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 hover:border-[#FF6D00]/60 dark:hover:border-[#FF6D00]/60 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00]"
                     >
                       <div className="flex items-center gap-3.5 min-w-0">
-                        <div className="w-10 h-10 rounded-xl bg-[#FF6D00]/10 text-[#FF6D00] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#FF6D00] group-hover:text-white transition-all duration-200 shadow-xs">
+                        <div className="w-10 h-10 rounded-xl bg-[#FF6D00]/10 text-[#FF6D00] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#FF6D00] group-hover:text-text-primary dark:text-white transition-all duration-200 shadow-xs">
                           <Phone size={18} />
                         </div>
                         <div className="min-w-0">
                           <span className="block font-mono text-[10px] uppercase tracking-wider text-text-tertiary font-bold">
                             PHONE
                           </span>
-                          <span className="text-sm font-bold text-text-primary dark:text-white group-hover:text-[#FF6D00] transition-colors">
+                          <span className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white group-hover:text-[#FF6D00] transition-colors">
                             +91 96655-99442
                           </span>
                         </div>
@@ -2092,7 +2092,7 @@ function Careers() {
                       whileHover={{ translateY: -2 }}
                       whileTap={{ translateY: 0 }}
                       onClick={() => openModal('General Application')}
-                      className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#00A6FF] via-[#0090EE] to-[#007AC0] hover:from-[#009AFE] hover:to-[#006EBA] text-white text-sm font-bold shadow-lg shadow-[#00A6FF]/25 flex items-center justify-center gap-2 group cursor-pointer transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF]"
+                      className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#00A6FF] via-[#0090EE] to-[#007AC0] hover:from-[#009AFE] hover:to-[#006EBA] text-text-primary dark:text-white text-sm font-bold shadow-lg shadow-[#00A6FF]/25 flex items-center justify-center gap-2 group cursor-pointer transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF]"
                     >
                       <span>Contact Recruiting Team</span>
                       <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform duration-200" />
@@ -2114,7 +2114,7 @@ function Careers() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
+              className="fixed inset-0 bg-background dark:bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
               onClick={closeModal}
             >
               <motion.div
@@ -2128,7 +2128,7 @@ function Careers() {
                 {/* Close Button */}
                 <button
                   onClick={closeModal}
-                  className="absolute top-5 right-5 p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+                  className="absolute top-5 right-5 p-2 rounded-full hover:bg-background dark:bg-black/5 dark:hover:bg-surface/90 dark:bg-white/10 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -2280,7 +2280,7 @@ function Careers() {
                     <button
                       type="submit"
                       disabled={isSubmitting || !selectedFile || !formData.firstName || !formData.lastName || !formData.email}
-                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#00A6FF] to-[#0080FF] text-white font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[#00A6FF]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 mt-2"
+                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#00A6FF] to-[#0080FF] text-text-primary dark:text-white font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[#00A6FF]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 mt-2"
                     >
                       {isSubmitting ? (
                         <>

@@ -33,7 +33,7 @@ export default function ServicesGuarantees() {
   return (
     <section
       id="services-guarantees-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Header */}
@@ -45,14 +45,14 @@ export default function ServicesGuarantees() {
                 TRUST & ASSURANCE
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Enterprise Performance <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Backed By Clear SLAs
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             We operate on accountability. Every engagement is bound by measurable delivery criteria to safeguard your acquisition budget.
           </p>
         </div>
@@ -69,19 +69,19 @@ export default function ServicesGuarantees() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-[#FF6D00]/50 p-7 flex flex-col justify-between transition-all duration-300 shadow-xl"
+                className="group rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-[#FF6D00]/50 p-7 flex flex-col justify-between transition-all duration-300 shadow-xl"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
                     <div className="w-12 h-12 rounded-2xl bg-[#FF6D00]/10 border border-[#FF6D00]/30 flex items-center justify-center">
                       <Icon className="w-6 h-6 text-[#FF6D00]" />
                     </div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-md bg-white/5 text-white/60">
+                    <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-md bg-surface/80 dark:bg-white/5 text-text-secondary dark:text-white/60">
                       {item.tag}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold uppercase text-white tracking-tight mb-3">
+                  <h3 className="text-xl font-bold uppercase text-text-primary dark:text-white tracking-tight mb-3">
                     {item.title}
                   </h3>
 
@@ -90,7 +90,7 @@ export default function ServicesGuarantees() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-emerald-400">
+                <div className="mt-6 pt-4 border-t border-border dark:border-white/5 flex items-center gap-2 text-xs font-mono text-emerald-400">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>CONTRACTUALLY SECURED</span>
                 </div>

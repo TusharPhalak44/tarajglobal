@@ -70,7 +70,7 @@ export default function KineticServicesHero({ onSelectCategory }) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary mb-6 shadow-sm backdrop-blur-md"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-6 shadow-sm backdrop-blur-md"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -140,7 +140,7 @@ export default function KineticServicesHero({ onSelectCategory }) {
           <button
             type="button"
             onClick={() => scrollToCatalog('all')}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer group"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer group"
           >
             <span>Explore All 12 Services</span>
             <ChevronDown className="w-4 h-4  group-hover:translate-y-0.5 transition-transform" />

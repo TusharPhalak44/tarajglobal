@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     res.json({ success: true, data: authors })
   } catch (error) {
     console.error('Get authors error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -45,7 +45,7 @@ router.get('/:slug', async (req, res) => {
     res.json({ success: true, data: authors[0] })
   } catch (error) {
     console.error('Get author by slug error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

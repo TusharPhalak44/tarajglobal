@@ -69,7 +69,7 @@ export default function ExperienceBusinessNeed() {
   return (
     <section
       id="business-need-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
@@ -81,14 +81,14 @@ export default function ExperienceBusinessNeed() {
                 PAIN-POINT MAPPING
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Services Matched To <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Your Immediate Need
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-white/60 max-w-md">
+          <p className="text-sm sm:text-base text-text-secondary dark:text-white/60 max-w-md">
             Click any pain point below to instantly preview the exact service framework designed to resolve it.
           </p>
         </div>
@@ -148,7 +148,7 @@ export default function ExperienceBusinessNeed() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35 }}
-                className="h-full rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden shadow-2xl"
+                className="h-full rounded-3xl border border-border dark:border-white/10 bg-white/[0.02] backdrop-blur-xl p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden shadow-2xl"
               >
                 {/* Subtle radial glow */}
                 <div className="absolute top-0 right-0 w-72 h-72 bg-[#FF6D00]/10 rounded-full blur-3xl pointer-events-none" />
@@ -158,12 +158,12 @@ export default function ExperienceBusinessNeed() {
                     <span className="font-mono text-xs text-[#FF6D00] uppercase tracking-widest font-bold">
                       {current.tag}
                     </span>
-                    <span className="text-[11px] font-mono text-white/40 uppercase">
+                    <span className="text-[11px] font-mono text-text-secondary dark:text-white/40 uppercase">
                       MATCHED BLUEPRINT
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight leading-snug">
+                  <h3 className="text-2xl sm:text-3xl font-black uppercase text-text-primary dark:text-white tracking-tight leading-snug">
                     {current.service}
                   </h3>
 
@@ -172,8 +172,8 @@ export default function ExperienceBusinessNeed() {
                   </p>
 
                   {/* Core Deliverables list */}
-                  <div className="mt-8 pt-6 border-t border-white/10">
-                    <span className="text-xs font-mono uppercase tracking-widest text-white/40 block mb-3">
+                  <div className="mt-8 pt-6 border-t border-border dark:border-white/10">
+                    <span className="text-xs font-mono uppercase tracking-widest text-text-secondary dark:text-white/40 block mb-3">
                       KEY DELIVERABLES:
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -188,7 +188,7 @@ export default function ExperienceBusinessNeed() {
                 </div>
 
                 {/* Bottom CTA bar */}
-                <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-between">
+                <div className="mt-10 pt-6 border-t border-border dark:border-white/10 flex items-center justify-between">
                   <button
                     onClick={() => navigate(current.route)}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-white/90 text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-white/20 cursor-pointer group"
@@ -197,7 +197,7 @@ export default function ExperienceBusinessNeed() {
                     <ArrowUpRight className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
 
-                  <span className="text-xs font-mono text-white/40">
+                  <span className="text-xs font-mono text-text-secondary dark:text-white/40">
                     DIRECT ENGAGEMENT
                   </span>
                 </div>

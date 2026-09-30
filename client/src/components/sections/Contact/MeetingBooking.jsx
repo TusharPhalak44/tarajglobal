@@ -178,7 +178,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2.5 sm:p-4">
+    <div className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2.5 sm:p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -268,7 +268,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                 
                 <div className="bg-surface border border-border rounded-xl p-5 mb-6">
                   <div className="flex items-center justify-center mb-3">
-                    <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center border-2 border-primary">
+                    <div className="w-14 h-14 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center border-2 border-primary">
                       <span className="text-xl font-bold text-primary">
                         {bookingData.date?.getDate()}
                       </span>

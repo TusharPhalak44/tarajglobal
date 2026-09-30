@@ -45,7 +45,7 @@ const Testimonials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-4">
             Client
             <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
               {' '}Testimonials
@@ -65,7 +65,7 @@ const Testimonials = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.15, duration: 0.5 }}
               whileHover={{ y: -10 }}
-              className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-[#00A6FF]/50 transition-all"
+              className="group relative p-8 rounded-3xl bg-surface/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-white/10 hover:border-[#00A6FF]/50 transition-all"
             >
               {/* Quote icon */}
               <motion.div
@@ -92,7 +92,7 @@ const Testimonials = () => {
                   {testimonial.image}
                 </div>
                 <div>
-                  <div className="text-white font-semibold">{testimonial.name}</div>
+                  <div className="text-text-primary dark:text-white font-semibold">{testimonial.name}</div>
                   <div className="text-[#00A6FF] text-sm">{testimonial.position}</div>
                 </div>
               </div>

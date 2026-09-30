@@ -25,7 +25,7 @@ export default function EditorialCTA() {
       <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         <div className="max-w-3xl">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-5">
             <span>GET STARTED</span>
           </div>
 
@@ -47,7 +47,7 @@ export default function EditorialCTA() {
             <Link to="/contact">
               <StarButton
                 as="div"
-                className="h-12 px-8 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
+                className="h-12 px-8 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-text-primary dark:text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
                 lightColor="#00A6FF"
                 backgroundColor="rgba(0,166,255,0.15)"
               >
@@ -59,7 +59,7 @@ export default function EditorialCTA() {
             <button
               type="button"
               onClick={handleScrollToTop}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider  border border-border/80 hover:border-primary/60 hover: transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider  border border-border/80 hover:border-primary/60 hover: transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer"
             >
               <span>Explore Services</span>
             </button>

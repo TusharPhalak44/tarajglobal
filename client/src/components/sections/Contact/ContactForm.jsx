@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { contactAPI } from '@api/contact.api'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import FlowButton from '../../ui/FlowButton'
 import './Contact.css'
 
 const SERVICE_TAGS = [
@@ -235,7 +236,7 @@ const ContactForm = () => {
             <div className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 shadow-lg shadow-emerald-500/20">
               <CheckCircle size={36} />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-text-primary dark:text-white mb-2">
               Message Transmitted!
             </h3>
             <p className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
@@ -281,7 +282,7 @@ const ContactForm = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="absolute top-20 right-20 w-96 h-96 bg-cta/10 rounded-full blur-3xl pointer-events-none"
+        className="absolute top-20 right-20 w-96 h-96 bg-cta/30 dark:bg-cta/10 rounded-full blur-3xl pointer-events-none"
       />
       
       <motion.div
@@ -309,7 +310,7 @@ const ContactForm = () => {
           className="text-center max-w-3xl mx-auto mb-4 sm:mb-5"
         >
           <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.16] uppercase !mb-4">
-            <span className="text-slate-900 dark:text-white">Send Us a </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">Send Us a </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">Message</span>
           </h2>
           <p className="section-subtitle text-sm sm:text-sm md:text-base text-slate-600 dark:text-slate-400 !mb-0 font-normal">
@@ -361,19 +362,19 @@ const ContactForm = () => {
               
               <div>
                 {/* Live Status Pill */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/25 dark:border-[#00A6FF]/30 bg-primary/10 dark:bg-[#00A6FF]/10 text-primary dark:text-[#00d2ff] mb-2.5 shadow-xs">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/25 dark:border-[#00A6FF]/30 bg-primary/30 dark:bg-primary/10 dark:bg-[#00A6FF]/10 text-primary dark:text-[#00d2ff] mb-2.5 shadow-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00d2ff] animate-ping" />
                   <span className="text-sm font-mono font-bold tracking-[0.18em] uppercase">
                     Direct Inquiry
                   </span>
-                  <span className="text-slate-300 dark:text-white/20">|</span>
+                  <span className="text-text-secondary dark:text-slate-300 dark:text-white/20">|</span>
                   <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
                     &lt; 2h Response
                   </span>
                 </div>
 
                 {/* Left Panel Heading */}
-                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight leading-snug text-slate-900 dark:text-white">
+                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight leading-snug text-slate-900 dark:text-text-primary dark:text-white">
                   <span>Accelerate Your </span>
                   <span className="bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00] bg-clip-text text-transparent">
                     Pipeline
@@ -430,7 +431,7 @@ const ContactForm = () => {
                           <Icon size={15} />
                         </div>
                         <div>
-                          <div className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
+                          <div className="text-sm font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight">
                             {metric.title}
                           </div>
                           <div className="text-sm text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
@@ -477,7 +478,7 @@ const ContactForm = () => {
                       )}
                     </div>
                     <div className="relative group">
-                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary dark:text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
                         <User className="w-4 h-4" />
                       </div>
                       <input
@@ -508,7 +509,7 @@ const ContactForm = () => {
                       )}
                     </div>
                     <div className="relative group">
-                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary dark:text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
                         <User className="w-4 h-4" />
                       </div>
                       <input
@@ -542,7 +543,7 @@ const ContactForm = () => {
                       )}
                     </div>
                     <div className="relative group">
-                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary dark:text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
                         <Mail className="w-4 h-4" />
                       </div>
                       <input
@@ -573,7 +574,7 @@ const ContactForm = () => {
                       )}
                     </div>
                     <div className="relative group">
-                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary dark:text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
                         <Phone className="w-4 h-4" />
                       </div>
                       <input
@@ -607,7 +608,7 @@ const ContactForm = () => {
                       )}
                     </div>
                     <div className="relative group">
-                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary dark:text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
                         <Globe className="w-4 h-4" />
                       </div>
                       <select
@@ -623,7 +624,7 @@ const ContactForm = () => {
                       >
                         <option value="">Select Country</option>
                         {COUNTRIES.map((c) => (
-                          <option key={c.code} value={c.code} className="dark:bg-[#0C1526] text-slate-900 dark:text-white">
+                          <option key={c.code} value={c.code} className="dark:bg-[#0C1526] text-slate-900 dark:text-text-primary dark:text-white">
                             {c.name}
                           </option>
                         ))}
@@ -636,11 +637,11 @@ const ContactForm = () => {
                     <div className="flex items-center justify-between text-sm sm:text-sm font-bold text-slate-800 dark:text-slate-100">
                       <label htmlFor="form-subject" className="flex items-center gap-1 cursor-pointer">
                         <span>Subject / Need</span>
-                        <span className="text-slate-400 text-sm font-normal">(Optional)</span>
+                        <span className="text-text-secondary dark:text-slate-400 text-sm font-normal">(Optional)</span>
                       </label>
                     </div>
                     <div className="relative group">
-                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary dark:text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
                         <Briefcase className="w-4 h-4" />
                       </div>
                       <input
@@ -650,7 +651,7 @@ const ContactForm = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         placeholder="e.g. Pipeline Growth"
-                        className="w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 transition-all duration-200 outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-xs"
+                        className="w-full pl-10 pr-3.5 py-2.5 sm:py-2.5 text-sm sm:text-sm font-medium rounded-xl bg-slate-50 dark:bg-[#070D18]/90 border border-slate-300 dark:border-white/15 hover:border-slate-400 dark:hover:border-border dark:border-white/30 focus:border-[#00A6FF] focus:ring-2 focus:ring-[#00A6FF]/25 transition-all duration-200 outline-none text-slate-900 dark:text-text-primary dark:text-white placeholder:text-text-secondary dark:text-slate-400 dark:placeholder:text-slate-500 shadow-xs"
                       />
                     </div>
                   </div>
@@ -673,7 +674,7 @@ const ContactForm = () => {
                     </div>
                   </div>
                   <div className="relative group">
-                    <div className="absolute left-3.5 top-3 pointer-events-none text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
+                    <div className="absolute left-3.5 top-3 pointer-events-none text-text-secondary dark:text-slate-400 group-focus-within:text-[#00A6FF] transition-colors">
                       <MessageSquare className="w-4 h-4" />
                     </div>
                     <textarea
@@ -733,29 +734,14 @@ const ContactForm = () => {
 
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2.5 w-full sm:w-auto">
-                    <motion.button
+                    <FlowButton
                       type="submit"
                       disabled={isSubmitting}
-                      whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 min-h-[44px] rounded-xl font-bold text-sm sm:text-sm text-white transition-all duration-300 cursor-pointer disabled:opacity-60 shadow-md hover:shadow-xl group"
-                      style={{
-                        background: 'linear-gradient(90deg, #FF6D00 0%, #FF8C00 50%, #00A6FF 100%)',
-                        boxShadow: '0 4px 18px rgba(255, 109, 0, 0.35)',
-                      }}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Sending...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Send Message</span>
-                          <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </>
-                      )}
-                    </motion.button>
+                      isLoading={isSubmitting}
+                      text={isSubmitting ? "Sending..." : "Send Message"}
+                      variant="primary"
+                      className="flex-1 sm:flex-initial"
+                    />
 
                     <motion.button
                       type="button"

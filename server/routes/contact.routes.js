@@ -7,6 +7,7 @@ import Meeting from '../models/Meeting.js'
 import nodemailer from 'nodemailer'
 import db from '../config/db.js'
 import notificationHelper from '../helpers/notificationHelper.js'
+import emailService from '../services/email.service.js'
 
 const router = express.Router()
 
@@ -187,6 +188,45 @@ router.post('/meeting', [
       `
     }
     
+    // Generate iCal event content
+    const [hours, minutes] = time.split(':');
+    const startHour = parseInt(hours, 10);
+    const startMin = parseInt(minutes, 10);
+    let endMin = startMin + 30;
+    let endHour = startHour;
+    if (endMin >= 60) {
+      endMin -= 60;
+      endHour += 1;
+    }
+    
+    const dtStart = `${formattedDate.replace(/-/g, '')}T${startHour.toString().padStart(2, '0')}${startMin.toString().padStart(2, '0')}00`;
+    const dtEnd = `${formattedDate.replace(/-/g, '')}T${endHour.toString().padStart(2, '0')}${endMin.toString().padStart(2, '0')}00`;
+    const dtStamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    
+    const icalContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Taraj Global//EN
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+UID:${Date.now()}@tarajglobal.com
+DTSTAMP:${dtStamp}
+DTSTART;TZID=${finalTimeZone}:${dtStart}
+DTEND;TZID=${finalTimeZone}:${dtEnd}
+SUMMARY:Strategy Call with Taraj Global
+DESCRIPTION:Strategy Call booking for ${fullName} (${email}).
+ORGANIZER;CN=Taraj Global:mailto:${FROM_EMAIL}
+ATTENDEE;RSVP=TRUE:mailto:${email}
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+    userMailOptions.icalEvent = {
+      filename: 'meeting-invitation.ics',
+      method: 'request',
+      content: icalContent
+    };
+    
     // Admin notification email
     const adminMailOptions = {
       from: FROM_EMAIL,
@@ -298,6 +338,12 @@ router.post('/meeting', [
       `
     }
     
+    adminMailOptions.icalEvent = {
+      filename: 'meeting-invitation.ics',
+      method: 'request',
+      content: icalContent
+    };
+    
     // Send user confirmation email
     let userEmailSent = false
     try {
@@ -378,11 +424,20 @@ router.post('/', [
       req.headers.referer || req.headers.origin || '/'
     ])
     
-    // Notify admins about new lead
+    // Notify admins about new lead and send email
     try {
       await notificationHelper.notifyAdmins(notificationHelper.notifications.newLead(name, result.insertId))
+      
+      // Also send email notification to admin
+      await emailService.sendLeadNotification(
+        { name, email, company, phone, message },
+        ADMIN_EMAIL
+      )
+      
+      // Send confirmation email to the user
+      await emailService.sendLeadConfirmation({ name, email, subject, message })
     } catch (notificationError) {
-      console.error('Failed to create notification:', notificationError)
+      console.error('Failed to create notification or send email:', notificationError)
     }
     
     res.status(201).json({ 
@@ -393,7 +448,7 @@ router.post('/', [
     })
   } catch (error) {
     console.error('Contact submission error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -405,7 +460,7 @@ router.get('/', authenticate, authorize('admin'), async (req, res) => {
     const contacts = await Contact.getAll()
     res.json({ success: true, data: contacts })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -418,7 +473,7 @@ router.get('/:id', authenticate, authorize('admin'), async (req, res) => {
     if (!contact) return res.status(404).json({ success: false, message: 'Contact submission not found' })
     res.json({ success: true, data: contact })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -431,7 +486,7 @@ router.patch('/:id/status', authenticate, authorize('admin'), async (req, res) =
     if (!updated) return res.status(404).json({ success: false, message: 'Contact not found' })
     res.json({ success: true, message: 'Status updated' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -444,7 +499,7 @@ router.delete('/:id', authenticate, authorize('admin'), async (req, res) => {
     if (!deleted) return res.status(404).json({ success: false, message: 'Contact not found' })
     res.json({ success: true, message: 'Deleted successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

@@ -251,7 +251,7 @@ export const GalleryPinnedProcess = () => {
 
                         {/* 05 OPPORTUNITY: One large node becomes highlighted */}
                         {step.visualType === 'opportunity' && (
-                          <div className="h-32 rounded-xl bg-primary/10 border border-primary/40 p-4 flex items-center justify-between relative overflow-hidden">
+                          <div className="h-32 rounded-xl bg-primary/30 dark:bg-primary/10 border border-primary/40 p-4 flex items-center justify-between relative overflow-hidden">
                             <div className="space-y-1">
                               <span className="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">
                                 CALENDAR EVENT CONFIRMED

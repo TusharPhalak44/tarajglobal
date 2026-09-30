@@ -20,7 +20,7 @@ router.get('/', checkPermission('blog.create'), async (req, res) => {
     res.json({ success: true, data: authors })
   } catch (error) {
     console.error('Get authors error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -38,12 +38,22 @@ router.post('/', [
     
     const [result] = await db.execute(
       'INSERT INTO authors (name, slug, profile_photo, designation, bio, linkedin_url, email, twitter_url, github_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [name, slug, profile_photo, designation, bio, linkedin_url, email, twitter_url, github_url]
+      [
+        name, 
+        slug, 
+        profile_photo ?? null, 
+        designation ?? null, 
+        bio ?? null, 
+        linkedin_url ?? null, 
+        email ?? null, 
+        twitter_url ?? null, 
+        github_url ?? null
+      ]
     )
     
     res.status(201).json({ success: true, data: { id: result.insertId, slug } })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -60,12 +70,23 @@ router.put('/:id', [
     
     await db.execute(
       'UPDATE authors SET name = COALESCE(?, name), profile_photo = COALESCE(?, profile_photo), designation = COALESCE(?, designation), bio = COALESCE(?, bio), linkedin_url = COALESCE(?, linkedin_url), email = COALESCE(?, email), twitter_url = COALESCE(?, twitter_url), github_url = COALESCE(?, github_url), status = COALESCE(?, status) WHERE id = ?',
-      [name, profile_photo, designation, bio, linkedin_url, email, twitter_url, github_url, status, id]
+      [
+        name ?? null, 
+        profile_photo ?? null, 
+        designation ?? null, 
+        bio ?? null, 
+        linkedin_url ?? null, 
+        email ?? null, 
+        twitter_url ?? null, 
+        github_url ?? null, 
+        status ?? null, 
+        id
+      ]
     )
     
     res.json({ success: true, message: 'Author updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -77,7 +98,7 @@ router.delete('/:id', checkPermission('blog.delete'), async (req, res) => {
     await db.execute('DELETE FROM authors WHERE id = ?', [req.params.id])
     res.json({ success: true, message: 'Author deleted successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

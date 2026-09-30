@@ -54,7 +54,7 @@ const Platforms = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-4">
             Platforms We
             <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
               {' '}Distribute To
@@ -74,18 +74,18 @@ const Platforms = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden"
+              className="group relative p-8 rounded-3xl bg-surface/80 dark:bg-white/5 backdrop-blur-xl border border-border dark:border-white/10 overflow-hidden"
             >
               {/* Gradient border effect */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ padding: '2px' }}>
-                <div className="w-full h-full rounded-3xl bg-[#050505]" />
+                <div className="w-full h-full rounded-3xl bg-background dark:bg-[#050505]" />
               </div>
               
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00A6FF]/20 to-[#FF6D00]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <div className="text-[#00A6FF]">{platform.icon}</div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{platform.title}</h3>
+                <h3 className="text-xl font-bold text-text-primary dark:text-white mb-3">{platform.title}</h3>
                 <p className="text-gray-400 leading-relaxed">{platform.description}</p>
               </div>
             </motion.div>

@@ -16,7 +16,7 @@ export default function BlueprintFinalCTA() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-28 lg:py-36 bg-[#05070B] text-white overflow-hidden"
+      className="relative py-28 lg:py-36 bg-background dark:bg-[#05070B] text-text-primary dark:text-white overflow-hidden"
     >
       {/* Cinematic Background Artwork with dark overlay */}
       <div
@@ -30,12 +30,12 @@ export default function BlueprintFinalCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* ══════════ LEFT: Headline & CTA (7 cols) ══════════ */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 text-[11px] font-mono font-bold uppercase tracking-widest text-[#FF6D00] w-fit mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-[11px] font-mono font-bold uppercase tracking-widest text-[#FF6D00] w-fit mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               <span>LET'S GROW TOGETHER</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.08] text-white">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.08] text-text-primary dark:text-white">
               Ready to Build Your <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Next Growth Engine?

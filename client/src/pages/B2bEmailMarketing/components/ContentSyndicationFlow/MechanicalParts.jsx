@@ -100,8 +100,8 @@ export function ConveyorTrack({ isActive = true, length = '100%', className = ''
   return (
     <div className={`relative h-5 w-full bg-surface-elevated rounded-md border border-border/80 overflow-hidden flex items-center ${className}`}>
       {/* Conveyor Rail Shadow */}
-      <div className="absolute inset-x-0 top-0 h-[2px] bg-black/40 z-10" />
-      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-black/40 z-10" />
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-background dark:bg-black/40 z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-background dark:bg-black/40 z-10" />
 
       {/* Animated Roller Treads */}
       <motion.div

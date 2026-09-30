@@ -54,7 +54,7 @@ export default function BlueprintCoreServices() {
   return (
     <section
       id="core-services-section"
-      className="relative py-24 lg:py-32 bg-[#05070B] text-white border-b border-white/10 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-background dark:bg-[#05070B] text-text-primary dark:text-white border-b border-border dark:border-white/10 overflow-hidden"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
@@ -66,7 +66,7 @@ export default function BlueprintCoreServices() {
                 OUR CORE SERVICES
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight">
               Solutions Built Around <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#FF6D00]">
                 Your Growth Goals
@@ -74,7 +74,7 @@ export default function BlueprintCoreServices() {
             </h2>
           </div>
           <div className="flex flex-col items-start md:items-end gap-4 max-w-md">
-            <p className="text-sm sm:text-base text-white/60">
+            <p className="text-sm sm:text-base text-text-secondary dark:text-white/60">
               From lead generation to data solutions, our services work together to move your pipeline forward.
             </p>
             <button
@@ -82,7 +82,7 @@ export default function BlueprintCoreServices() {
                 const el = document.getElementById('spotlight-section')
                 if (el) el.scrollIntoView({ behavior: 'smooth' })
               }}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#FF8A00] transition-colors cursor-pointer group"
+              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#FF8A00] transition-colors cursor-pointer group"
             >
               <span>View All Services</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -100,24 +100,24 @@ export default function BlueprintCoreServices() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
               onClick={() => navigate(card.route)}
-              className="group relative rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-[#FF6D00] p-6 flex flex-col justify-between transition-all duration-400 ease-out cursor-pointer hover:-translate-y-2.5 shadow-xl overflow-hidden min-h-[380px]"
+              className="group relative rounded-2xl border border-border dark:border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-[#FF6D00] p-6 flex flex-col justify-between transition-all duration-400 ease-out cursor-pointer hover:-translate-y-2.5 shadow-xl overflow-hidden min-h-[380px]"
             >
               {/* Top Row: Number & Circular Arrow Button */}
               <div className="relative z-10 flex items-center justify-between mb-4">
-                <span className="font-mono text-xl sm:text-2xl font-black text-white/40 group-hover:text-[#FF6D00] transition-colors duration-300">
+                <span className="font-mono text-xl sm:text-2xl font-black text-text-secondary dark:text-white/40 group-hover:text-[#FF6D00] transition-colors duration-300">
                   {card.num}
                 </span>
-                <div className="w-10 h-10 rounded-full border border-white/15 bg-white/5 flex items-center justify-center group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00] group-hover:text-black transition-all duration-300">
-                  <ArrowUpRight className="w-4 h-4 text-white group-hover:text-black group-hover:rotate-45 transition-transform duration-300" />
+                <div className="w-10 h-10 rounded-full border border-border dark:border-white/15 bg-surface/80 dark:bg-white/5 flex items-center justify-center group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00] group-hover:text-black transition-all duration-300">
+                  <ArrowUpRight className="w-4 h-4 text-text-primary dark:text-white group-hover:text-black group-hover:rotate-45 transition-transform duration-300" />
                 </div>
               </div>
 
               {/* Title & Description */}
               <div className="relative z-10 transition-transform duration-300 group-hover:-translate-y-1">
-                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white group-hover:text-white transition-colors">
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-text-primary dark:text-white group-hover:text-text-primary dark:text-white transition-colors">
                   {card.title}
                 </h3>
-                <p className="mt-2 text-xs sm:text-sm text-white/60 leading-relaxed font-normal">
+                <p className="mt-2 text-xs sm:text-sm text-text-secondary dark:text-white/60 leading-relaxed font-normal">
                   {card.desc}
                 </p>
                 {/* Subtle orange accent line on hover */}
@@ -125,16 +125,16 @@ export default function BlueprintCoreServices() {
               </div>
 
               {/* Lower Portion: B2B Visual with dark overlay */}
-              <div className="relative w-full h-44 rounded-xl overflow-hidden mt-6 border border-white/5">
+              <div className="relative w-full h-44 rounded-xl overflow-hidden mt-6 border border-border dark:border-white/5">
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url(${card.image})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/50 to-transparent group-hover:via-[#05070B]/30 transition-colors" />
 
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-white/70">
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-text-secondary dark:text-white/70">
                   <span className="uppercase tracking-widest text-[#FF6D00] font-bold">EXPLORE BLUEPRINT</span>
-                  <span className="text-white group-hover:translate-x-1 transition-transform">&rarr;</span>
+                  <span className="text-text-primary dark:text-white group-hover:translate-x-1 transition-transform">&rarr;</span>
                 </div>
               </div>
             </motion.div>

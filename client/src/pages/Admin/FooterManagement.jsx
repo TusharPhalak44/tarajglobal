@@ -204,8 +204,8 @@ const FooterManagement = () => {
       setSavingSettings(true)
       await adminAPI.updateFooterSettings({
         ...settings,
-        is_logo_visible: settings.is_logo_visible ? 1 : 0,
-        is_description_visible: settings.is_description_visible ? 1 : 0
+        is_logo_visible: Boolean(settings.is_logo_visible),
+        is_description_visible: Boolean(settings.is_description_visible)
       })
       notifyFooterUpdated()
       showMessage('success', 'Footer settings saved! Public website footer updated successfully.')
@@ -247,7 +247,7 @@ const FooterManagement = () => {
       const payload = {
         title: editingSection.title.trim(),
         section_type: editingSection.section_type || 'links',
-        is_visible: editingSection.is_visible ? 1 : 0,
+        is_visible: Boolean(editingSection.is_visible),
         sort_order: Number(editingSection.sort_order) || 0
       }
 
@@ -370,7 +370,7 @@ const FooterManagement = () => {
         link_type: editingLink.link_type || 'internal',
         target: editingLink.target || '_self',
         custom_action: editingLink.custom_action || null,
-        is_visible: editingLink.is_visible ? 1 : 0,
+        is_visible: Boolean(editingLink.is_visible),
         sort_order: Number(editingLink.sort_order) || 0
       }
 
@@ -484,7 +484,7 @@ const FooterManagement = () => {
       setSavingOffice(true)
       const payload = {
         ...editingOffice,
-        is_visible: editingOffice.is_visible ? 1 : 0,
+        is_visible: Boolean(editingOffice.is_visible),
         sort_order: Number(editingOffice.sort_order) || 0
       }
 
@@ -570,7 +570,7 @@ const FooterManagement = () => {
         platform: editingSocial.platform.trim(),
         icon: editingSocial.icon || 'bi-globe',
         url: editingSocial.url.trim(),
-        is_visible: editingSocial.is_visible ? 1 : 0,
+        is_visible: Boolean(editingSocial.is_visible),
         sort_order: Number(editingSocial.sort_order) || 0
       }
 
@@ -659,7 +659,7 @@ const FooterManagement = () => {
         <div className="space-y-1">
           <div className="flex items-center gap-2.5">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">Footer Management</h1>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
               Live CMS
             </span>
           </div>
@@ -696,7 +696,7 @@ const FooterManagement = () => {
             <div className="text-xs font-medium text-text-muted">Footer Sections</div>
             <div className="text-xl font-bold text-text-primary mt-1">{sections.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+          <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
             <Settings className="w-5 h-5" />
           </div>
         </div>
@@ -776,7 +776,7 @@ const FooterManagement = () => {
               </label>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 rounded-xl border border-border bg-background">
-                <div className="h-16 w-36 rounded-lg bg-slate-900 border border-border flex items-center justify-center p-2 overflow-hidden flex-shrink-0">
+                <div className="h-16 w-36 rounded-lg bg-surface dark:bg-slate-900 border border-border flex items-center justify-center p-2 overflow-hidden flex-shrink-0">
                   {settings.logo_url ? (
                     <img
                       src={settings.logo_url}
@@ -866,7 +866,7 @@ const FooterManagement = () => {
                 placeholder="Copyright © {year} Taraj Global Solutions Private Limited. All rights reserved."
               />
               <p className="text-[11px] text-text-muted mt-1">
-                Tip: <code className="font-mono text-primary bg-primary/10 px-1 py-0.5 rounded">{'{year}'}</code> automatically renders as {new Date().getFullYear()}.
+                Tip: <code className="font-mono text-primary bg-primary/30 dark:bg-primary/10 px-1 py-0.5 rounded">{'{year}'}</code> automatically renders as {new Date().getFullYear()}.
               </p>
             </div>
 
@@ -929,7 +929,7 @@ const FooterManagement = () => {
                 <span>Column 1 Live Preview</span>
               </h3>
 
-              <div className="p-4 rounded-xl bg-[#070B14] border border-white/10 text-white space-y-4">
+              <div className="p-4 rounded-xl bg-background dark:bg-[#070B14] border border-border dark:border-white/10 text-text-primary dark:text-white space-y-4">
                 {settings.is_logo_visible && (
                   <img
                     src={settings.logo_url || '/OnlyTG- 3.png'}
@@ -938,11 +938,11 @@ const FooterManagement = () => {
                   />
                 )}
                 {settings.is_description_visible && (
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-text-secondary dark:text-slate-300 leading-relaxed">
                     {settings.company_description || 'No description entered.'}
                   </p>
                 )}
-                <div className="text-[11px] text-slate-500 pt-2 border-t border-white/10">
+                <div className="text-[11px] text-slate-500 pt-2 border-t border-border dark:border-white/10">
                   {settings.copyright_text?.replace('{year}', new Date().getFullYear())}
                 </div>
               </div>
@@ -1122,7 +1122,7 @@ const FooterManagement = () => {
                   <div className="p-3.5 bg-background border-b border-border flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-sm text-text-primary">{sec.title}</span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/10 text-primary">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary">
                         {secLinks.length} items
                       </span>
                     </div>
@@ -1431,7 +1431,7 @@ const FooterManagement = () => {
             </a>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[#070B14] p-8 text-white space-y-8 shadow-2xl">
+          <div className="rounded-2xl border border-border dark:border-white/10 bg-background dark:bg-[#070B14] p-8 text-text-primary dark:text-white space-y-8 shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
               {/* Column 1 */}
               <div className="md:col-span-3 space-y-4">
@@ -1443,7 +1443,7 @@ const FooterManagement = () => {
                   />
                 )}
                 {settings.is_description_visible && (
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-text-secondary dark:text-slate-300 leading-relaxed">
                     {settings.company_description}
                   </p>
                 )}
@@ -1454,7 +1454,7 @@ const FooterManagement = () => {
                       href={s.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-all text-xs"
+                      className="w-8 h-8 rounded-lg bg-surface/90 dark:bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-all text-xs"
                     >
                       <Share2 className="w-3.5 h-3.5" />
                     </a>
@@ -1472,9 +1472,9 @@ const FooterManagement = () => {
                     <h4 className={`text-xs font-mono font-bold uppercase tracking-wider ${isAmber ? 'text-[#FF6D00]' : 'text-[#00A6FF]'}`}>
                       {sec.title}
                     </h4>
-                    <ul className="space-y-1.5 text-xs text-slate-400">
+                    <ul className="space-y-1.5 text-xs text-text-secondary dark:text-slate-400">
                       {secLinks.map((l) => (
-                        <li key={l.id} className="hover:text-white transition-colors cursor-pointer">
+                        <li key={l.id} className="hover:text-text-primary dark:text-white transition-colors cursor-pointer">
                           {l.label}
                         </li>
                       ))}
@@ -1490,12 +1490,12 @@ const FooterManagement = () => {
                 </h4>
                 <div className="space-y-2">
                   {offices.filter((o) => o.is_visible).map((o) => (
-                    <div key={o.id} className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs space-y-1">
+                    <div key={o.id} className="p-2.5 rounded-xl bg-white/[0.04] border border-border dark:border-white/10 text-xs space-y-1">
                       <div className="font-bold flex items-center justify-between">
                         <span>{o.name}</span>
                         <span className="text-[10px] font-mono text-cyan-400">{o.city}</span>
                       </div>
-                      <p className="text-[11px] text-slate-400">{o.address_line_1}</p>
+                      <p className="text-[11px] text-text-secondary dark:text-slate-400">{o.address_line_1}</p>
                       {o.phone && <p className="text-[11px] font-mono text-primary">{o.phone}</p>}
                     </div>
                   ))}
@@ -1504,7 +1504,7 @@ const FooterManagement = () => {
             </div>
 
             {/* Bottom Copyright */}
-            <div className="border-t border-white/10 pt-4 text-xs text-slate-500 text-center flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div className="border-t border-border dark:border-white/10 pt-4 text-xs text-slate-500 text-center flex flex-col sm:flex-row items-center justify-between gap-2">
               <span>{settings.copyright_text?.replace('{year}', new Date().getFullYear())}</span>
               <span>Taraj Global CMS Engine</span>
             </div>
@@ -1514,7 +1514,7 @@ const FooterManagement = () => {
 
       {/* ==================== MODAL: SECTION ==================== */}
       {showSectionModal && editingSection && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
+        <div className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
           <div className="bg-surface rounded-2xl border border-border w-full max-w-md shadow-2xl overflow-hidden">
             <div className="p-5 border-b border-border flex items-center justify-between">
               <h3 className="font-bold text-base text-text-primary">
@@ -1608,7 +1608,7 @@ const FooterManagement = () => {
 
       {/* ==================== MODAL: LINK ==================== */}
       {showLinkModal && editingLink && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
+        <div className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
           <div className="bg-surface rounded-2xl border border-border w-full max-w-md shadow-2xl overflow-hidden">
             <div className="p-5 border-b border-border flex items-center justify-between">
               <h3 className="font-bold text-base text-text-primary">
@@ -1749,7 +1749,7 @@ const FooterManagement = () => {
 
       {/* ==================== MODAL: OFFICE ==================== */}
       {showOfficeModal && editingOffice && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
+        <div className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
           <div className="bg-surface rounded-2xl border border-border w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="p-5 border-b border-border flex items-center justify-between">
               <h3 className="font-bold text-base text-text-primary">
@@ -1934,7 +1934,7 @@ const FooterManagement = () => {
 
       {/* ==================== MODAL: SOCIAL ==================== */}
       {showSocialModal && editingSocial && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
+        <div className="fixed inset-0 bg-background dark:bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
           <div className="bg-surface rounded-2xl border border-border w-full max-w-md shadow-2xl overflow-hidden">
             <div className="p-5 border-b border-border flex items-center justify-between">
               <h3 className="font-bold text-base text-text-primary">

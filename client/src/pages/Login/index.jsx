@@ -58,11 +58,11 @@ function Login() {
     <>
       <SEO title="Admin Login | Taraj Global" noIndex={true} />
       
-      <div className="min-h-screen bg-[#0E0E0E] text-[#EDEDED] flex items-center justify-center p-4 sm:p-6">
+      <div className="min-h-screen bg-surface dark:bg-[#0E0E0E] text-[#EDEDED] flex items-center justify-center p-4 sm:p-6">
         <div className="w-full max-w-sm space-y-6">
           {/* Brand Header */}
           <div className="space-y-1.5 text-center">
-            <div className="inline-flex w-10 h-10 rounded bg-[#1A1A1A] border border-[#262626] items-center justify-center font-bold text-base text-white mb-2">
+            <div className="inline-flex w-10 h-10 rounded bg-surface dark:bg-[#1A1A1A] border border-[#262626] items-center justify-center font-bold text-base text-text-primary dark:text-white mb-2">
               T
             </div>
             <h1 className="text-xl font-bold tracking-tight text-[#EDEDED]">
@@ -74,9 +74,9 @@ function Login() {
           </div>
 
           {/* Form Surface */}
-          <div className="p-6 rounded-md bg-[#141414] border border-[#262626] space-y-4">
+          <div className="p-6 rounded-md bg-surface dark:bg-[#141414] border border-[#262626] space-y-4">
             {apiError && (
-              <div className="p-3 rounded bg-[#1F1414] border border-[#EF4444]/30 text-[#EF4444] text-xs flex items-center gap-2">
+              <div className="p-3 rounded bg-surface dark:bg-[#1F1414] border border-[#EF4444]/30 text-[#EF4444] text-xs flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{apiError}</span>
               </div>

@@ -68,6 +68,7 @@ export function StarButton({
       ref={pathRef}
       className={cn(
         "relative z-[3] overflow-hidden px-6 py-2.5 min-h-[42px] inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[100px] text-[13px] sm:text-sm font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 group/star-button",
+        "dark:bg-transparent bg-white/40 shadow-sm dark:shadow-none",
         className,
       )}
       {...props}
@@ -79,17 +80,18 @@ export function StarButton({
             offsetPath: "var(--path)",
             offsetDistance: "0%",
             width: "var(--light-width)",
+
           }
         }
       />
       <div
-        className="absolute inset-0 dark:border-white/15 border-black/10 z-[4] overflow-hidden rounded-[inherit] dark:text-black text-white"
+        className="absolute inset-0 dark:border-white/15 border-black/10 z-[4] overflow-hidden rounded-[inherit] dark:text-black text-text-primary dark:text-white"
         style={{ borderWidth: "var(--border-width)" }}
         aria-hidden="true"
       >
         <StarBackground color={backgroundColor} />
       </div>
-      <span className="z-10 relative inline-block text-[#00A6FF]">
+      <span className="z-10 relative inline-block font-semibold dark:text-[#00A6FF] text-[#0052A3]">
         {children}
       </span>
     </button>

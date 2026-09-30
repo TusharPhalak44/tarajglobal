@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     res.json({ success: true, data: categories })
   } catch (error) {
     console.error('Get categories error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
@@ -46,7 +46,7 @@ router.get('/:slug', async (req, res) => {
     res.json({ success: true, data: categories[0] })
   } catch (error) {
     console.error('Get category by slug error:', error)
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 

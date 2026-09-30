@@ -404,7 +404,7 @@ const Profile = () => {
                 )}
 
                 {/* Hover Camera Overlay */}
-                <div className="absolute inset-0 bg-black/75 rounded-[14px] opacity-0 group-hover/avatar:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[10px] font-bold gap-1">
+                <div className="absolute inset-0 bg-background dark:bg-black/75 rounded-[14px] opacity-0 group-hover/avatar:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[10px] font-bold gap-1">
                   {avatarUploading ? (
                     <RefreshCw className="w-5 h-5 animate-spin text-[#00A6FF]" />
                   ) : (
@@ -991,7 +991,7 @@ const Profile = () => {
 
       {/* Add New Admin Modal */}
       {showAddUserModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-xs animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowAddUserModal(false)} />
           <div className="relative max-w-md w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--admin-border-subtle)]">

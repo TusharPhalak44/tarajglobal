@@ -60,7 +60,7 @@ const DemandProcess = () => {
     <section
       id="demand-process"
       ref={sectionRef}
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="Our Proven B2B Demand Generation Implementation Process"
     >
       {/* ── Ambient Background Lighting (Light & Dark) ── */}
@@ -125,7 +125,7 @@ const DemandProcess = () => {
             className="relative w-full max-w-5xl mx-auto"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-              <span className="block text-slate-900 dark:text-white whitespace-normal sm:whitespace-nowrap">
+              <span className="block text-slate-900 dark:text-text-primary dark:text-white whitespace-normal sm:whitespace-nowrap">
                 OUR PROVEN B2B DEMAND GENERATION
               </span>
               <span className="block text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)] whitespace-normal sm:whitespace-nowrap">

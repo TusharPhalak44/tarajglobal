@@ -26,7 +26,7 @@ export default function ServicesCTA() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[160px] bg-primary/7 dark:bg-primary/10 pointer-events-none -z-10" />
 
       <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-md mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 backdrop-blur-md mb-6">
           <Sparkles className="w-3.5 h-3.5 text-primary" />
           <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.24em] text-primary">
             ACCELERATE YOUR REVENUE
@@ -49,7 +49,7 @@ export default function ServicesCTA() {
           <Link to="/contact">
             <StarButton
               as="div"
-              className="h-12 px-8 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
+              className="h-12 px-8 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-text-primary dark:text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
               lightColor="#00A6FF"
               backgroundColor="rgba(0,166,255,0.15)"
             >
@@ -61,7 +61,7 @@ export default function ServicesCTA() {
           <button
             type="button"
             onClick={handleScrollToTop}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-white h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider  border border-border/80 hover:border-primary/60 hover: transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer"
+            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider  border border-border/80 hover:border-primary/60 hover: transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer"
           >
             <span>Explore Solutions</span>
           </button>

@@ -43,7 +43,7 @@ const Benefits = () => {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#FF6D00] flex items-center justify-center"
               >
-                <CheckCircle className="w-16 h-16 text-white" />
+                <CheckCircle className="w-16 h-16 text-text-primary dark:text-white" />
               </motion.div>
 
               {/* Orbiting elements */}
@@ -57,7 +57,7 @@ const Benefits = () => {
                     key={i}
                     animate={{ rotate: 360 }}
                     transition={{ duration: 15 + i * 2, repeat: Infinity, ease: 'linear' }}
-                    className="absolute top-1/2 left-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                    className="absolute top-1/2 left-1/2 w-12 h-12 rounded-full bg-surface/90 dark:bg-white/10 backdrop-blur-sm border border-border dark:border-white/20 flex items-center justify-center"
                     style={{
                       transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
                     }}
@@ -76,7 +76,7 @@ const Benefits = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-white mb-6">
               Benefits of Content
               <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
                 {' '}Syndication
@@ -95,12 +95,12 @@ const Benefits = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#00A6FF]/50 transition-all cursor-pointer"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 hover:border-[#00A6FF]/50 transition-all cursor-pointer"
                 >
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#FF6D00] flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-5 h-5 text-white" />
+                    <CheckCircle className="w-5 h-5 text-text-primary dark:text-white" />
                   </div>
-                  <span className="text-white font-medium">{benefit}</span>
+                  <span className="text-text-primary dark:text-white font-medium">{benefit}</span>
                 </motion.div>
               ))}
             </div>
