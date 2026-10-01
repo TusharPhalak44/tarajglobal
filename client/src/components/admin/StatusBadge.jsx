@@ -48,7 +48,7 @@ export const StatusBadge = ({ status, customLabel, size = 'sm', showDot = true }
   const labelText = customLabel || current.label
 
   return (
-    <span className={`admin-badge ${current.className} ${size === 'xs' ? 'text-[11px] py-0.5 px-2' : size === 'lg' ? 'text-sm py-1 px-3.5' : ''}`}>
+    <span className={`admin-badge ${current.className} ${size === 'xs' ? 'text-[13px] py-0.5 px-2' : size === 'lg' ? 'text-base py-1 px-3.5' : ''}`}>
       {showDot && (
         <span className={`w-1.5 h-1.5 rounded-full ${current.dotColor} shrink-0`} />
       )}

@@ -156,7 +156,7 @@ const SEO = () => {
       />
 
       {saveSuccess && (
-        <div className="p-4 rounded-xl bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669] text-xs font-semibold flex items-center gap-2 animate-slide-down">
+        <div className="p-4 rounded-xl bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669] text-sm font-semibold flex items-center gap-2 animate-slide-down">
           <CheckCircle2 className="w-4 h-4" />
           <span>SEO Metadata successfully saved and published!</span>
         </div>
@@ -166,52 +166,52 @@ const SEO = () => {
         {/* Left Column: Content Selector */}
         <div className="lg:col-span-4 space-y-4">
           <div className="admin-card p-5 space-y-4">
-            <h3 className="text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider flex items-center gap-2">
+            <h3 className="text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider flex items-center gap-2">
               <Search className="w-4 h-4 text-[var(--admin-primary)]" />
               <span>Target Content</span>
             </h3>
 
             {/* Content Type Selector */}
-            <div className="grid grid-cols-3 gap-1.5 p-1 bg-[var(--admin-bg-elevated)] rounded-xl border border-[var(--admin-border-subtle)]">
+            <div className="grid grid-cols-3 gap-2 p-1 bg-[var(--admin-bg-elevated)] rounded-xl border border-[var(--admin-border-subtle)]">
               <button
                 onClick={() => { setSelectedType('page'); setSelectedId('home'); }}
-                className={`py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
+                className={`py-1.5 text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 ${
                   selectedType === 'page' ? 'bg-[var(--admin-primary)] text-white' : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
                 }`}
               >
-                <LayoutPanelLeft className="w-3.5 h-3.5" />
+                <LayoutPanelLeft className="w-4 h-4" />
                 <span>Pages</span>
               </button>
               <button
                 onClick={() => { setSelectedType('blog'); setSelectedId(blogs[0]?.id || ''); }}
-                className={`py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
+                className={`py-1.5 text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 ${
                   selectedType === 'blog' ? 'bg-[var(--admin-primary)] text-white' : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
                 }`}
               >
-                <FileText className="w-3.5 h-3.5" />
+                <FileText className="w-4 h-4" />
                 <span>Blogs</span>
               </button>
               <button
                 onClick={() => { setSelectedType('job'); setSelectedId(''); }}
-                className={`py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
+                className={`py-1.5 text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 ${
                   selectedType === 'job' ? 'bg-[var(--admin-primary)] text-white' : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
                 }`}
               >
-                <Briefcase className="w-3.5 h-3.5" />
+                <Briefcase className="w-4 h-4" />
                 <span>Jobs</span>
               </button>
             </div>
 
             {/* Target Select Dropdown */}
             <div>
-              <label className="block text-xs font-bold text-[var(--admin-text-muted)] uppercase tracking-wider mb-1.5">
+              <label className="block text-sm font-bold text-[var(--admin-text-muted)] uppercase tracking-wider mb-1.5">
                 Select Route / Item
               </label>
               {selectedType === 'page' && (
                 <select
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="admin-select text-xs font-medium"
+                  className="admin-select text-sm font-medium"
                 >
                   {STATIC_PAGES.map((p) => (
                     <option key={p.id} value={p.id}>{p.title} (/{p.id === 'home' ? '' : p.id})</option>
@@ -223,7 +223,7 @@ const SEO = () => {
                 <select
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="admin-select text-xs font-medium"
+                  className="admin-select text-sm font-medium"
                 >
                   <option value="">Select a blog post...</option>
                   {blogs.map((b) => (
@@ -238,7 +238,7 @@ const SEO = () => {
                   placeholder="Enter Job ID..."
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="admin-input text-xs"
+                  className="admin-input text-sm"
                 />
               )}
             </div>
@@ -246,23 +246,23 @@ const SEO = () => {
 
           {/* Live Search Engine Preview Snippet */}
           <div className="admin-card p-5 space-y-3">
-            <h4 className="text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider flex items-center gap-1.5">
-              <Eye className="w-4 h-4 text-[#72D669]" />
+            <h4 className="text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider flex items-center gap-2">
+              <Eye className="w-5 h-5 text-[#72D669]" />
               <span>Google SERP Preview</span>
             </h4>
 
             <div className="p-4 rounded-xl bg-white dark:bg-[#0d121f] border border-slate-200 dark:border-white/10 space-y-1 text-left">
-              <div className="flex items-center gap-1.5 text-[11px] text-[#202124] dark:text-[#bdc1c6] truncate">
+              <div className="flex items-center gap-2 text-[13px] text-[#202124] dark:text-[#bdc1c6] truncate">
                 <span className="font-medium">tarajglobal.com</span>
-                <span className="text-[10px]">›</span>
+                <span className="text-[12px]">›</span>
                 <span className="text-slate-500 dark:text-slate-400 font-mono">
                   {selectedType === 'page' ? (selectedId === 'home' ? '' : selectedId) : selectedType}
                 </span>
               </div>
-              <h5 className="text-sm font-semibold text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer leading-tight truncate">
+              <h5 className="text-base font-semibold text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer leading-tight truncate">
                 {currentTitle} | Taraj Global Solutions
               </h5>
-              <p className="text-xs text-[#4d5156] dark:text-[#bdc1c6] line-clamp-2 leading-relaxed">
+              <p className="text-sm text-[#4d5156] dark:text-[#bdc1c6] line-clamp-2 leading-relaxed">
                 {currentDesc}
               </p>
             </div>
@@ -276,7 +276,7 @@ const SEO = () => {
             <div className="flex items-center border-b border-[var(--admin-border-subtle)] bg-[var(--admin-bg-elevated)] px-4">
               <button
                 onClick={() => setActiveTab('basic')}
-                className={`py-3.5 px-4 text-xs font-bold border-b-2 transition-colors flex items-center gap-2 ${
+                className={`py-3.5 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 ${
                   activeTab === 'basic'
                     ? 'border-[#00A6FF] text-[#00A6FF]'
                     : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
@@ -288,7 +288,7 @@ const SEO = () => {
 
               <button
                 onClick={() => setActiveTab('og')}
-                className={`py-3.5 px-4 text-xs font-bold border-b-2 transition-colors flex items-center gap-2 ${
+                className={`py-3.5 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 ${
                   activeTab === 'og'
                     ? 'border-[#00A6FF] text-[#00A6FF]'
                     : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
@@ -300,7 +300,7 @@ const SEO = () => {
 
               <button
                 onClick={() => setActiveTab('twitter')}
-                className={`py-3.5 px-4 text-xs font-bold border-b-2 transition-colors flex items-center gap-2 ${
+                className={`py-3.5 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 ${
                   activeTab === 'twitter'
                     ? 'border-[#00A6FF] text-[#00A6FF]'
                     : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
@@ -316,10 +316,10 @@ const SEO = () => {
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
+                      <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
                         Meta Title Tag
                       </label>
-                      <span className={`text-[11px] font-mono ${
+                      <span className={`text-[13px] font-mono ${
                         (seoData?.meta_title?.length || 0) > 60 ? 'text-[#FFA600]' : 'text-[var(--admin-text-muted)]'
                       }`}>
                         {seoData?.meta_title?.length || 0}/60 chars
@@ -336,10 +336,10 @@ const SEO = () => {
 
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
+                      <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
                         Meta Description Tag
                       </label>
-                      <span className={`text-[11px] font-mono ${
+                      <span className={`text-[13px] font-mono ${
                         (seoData?.meta_description?.length || 0) > 160 ? 'text-[#FFA600]' : 'text-[var(--admin-text-muted)]'
                       }`}>
                         {seoData?.meta_description?.length || 0}/160 chars
@@ -350,13 +350,13 @@ const SEO = () => {
                       onChange={(e) => handleChange('meta_description', e.target.value)}
                       rows={3}
                       placeholder="e.g., Accelerate qualified revenue pipeline with high-conversion MQL, SQL, and ABM campaign syndication from Taraj Global Solutions."
-                      className="admin-input resize-none text-xs leading-relaxed"
+                      className="admin-input resize-none text-sm leading-relaxed"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                         Target Keywords
                       </label>
                       <input
@@ -364,12 +364,12 @@ const SEO = () => {
                         value={seoData?.keywords || ''}
                         onChange={(e) => handleChange('keywords', e.target.value)}
                         placeholder="b2b lead gen, abm, demand generation"
-                        className="admin-input text-xs"
+                        className="admin-input text-sm"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                         Canonical URL
                       </label>
                       <input
@@ -377,7 +377,7 @@ const SEO = () => {
                         value={seoData?.canonical_url || ''}
                         onChange={(e) => handleChange('canonical_url', e.target.value)}
                         placeholder="https://tarajglobal.com/..."
-                        className="admin-input text-xs font-mono"
+                        className="admin-input text-sm font-mono"
                       />
                     </div>
                   </div>
@@ -387,7 +387,7 @@ const SEO = () => {
               {activeTab === 'og' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                       OpenGraph Title (og:title)
                     </label>
                     <input
@@ -400,7 +400,7 @@ const SEO = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                       OpenGraph Description (og:description)
                     </label>
                     <textarea
@@ -408,12 +408,12 @@ const SEO = () => {
                       onChange={(e) => handleChange('og_description', e.target.value)}
                       rows={3}
                       placeholder="Social share summary description..."
-                      className="admin-input resize-none text-xs"
+                      className="admin-input resize-none text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                       OpenGraph Banner Image URL (og:image)
                     </label>
                     <input
@@ -421,7 +421,7 @@ const SEO = () => {
                       value={seoData?.og_image || ''}
                       onChange={(e) => handleChange('og_image', e.target.value)}
                       placeholder="https://tarajglobal.com/assets/og-image.jpg"
-                      className="admin-input text-xs font-mono"
+                      className="admin-input text-sm font-mono"
                     />
                   </div>
                 </div>
@@ -430,7 +430,7 @@ const SEO = () => {
               {activeTab === 'twitter' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                       Twitter Card Title
                     </label>
                     <input
@@ -443,7 +443,7 @@ const SEO = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                       Twitter Card Description
                     </label>
                     <textarea
@@ -451,12 +451,12 @@ const SEO = () => {
                       onChange={(e) => handleChange('twitter_description', e.target.value)}
                       rows={3}
                       placeholder="Twitter card summary..."
-                      className="admin-input resize-none text-xs"
+                      className="admin-input resize-none text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                       Twitter Card Image URL
                     </label>
                     <input
@@ -464,7 +464,7 @@ const SEO = () => {
                       value={seoData?.twitter_image || ''}
                       onChange={(e) => handleChange('twitter_image', e.target.value)}
                       placeholder="https://..."
-                      className="admin-input text-xs font-mono"
+                      className="admin-input text-sm font-mono"
                     />
                   </div>
                 </div>

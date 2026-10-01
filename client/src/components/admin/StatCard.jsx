@@ -58,7 +58,7 @@ export const StatCard = ({
 
       <div className="flex items-start justify-between gap-4 mb-4">
         <div>
-          <span className="text-xs font-semibold text-[var(--admin-text-muted)] tracking-wider uppercase">
+          <span className="text-sm font-semibold text-[var(--admin-text-muted)] tracking-wider uppercase">
             {label}
           </span>
           <div className="text-2xl lg:text-3xl font-bold tracking-tight text-[var(--admin-text-primary)] mt-1">
@@ -73,15 +73,15 @@ export const StatCard = ({
         )}
       </div>
 
-      <div className="flex items-center justify-between text-xs pt-1 border-t border-[var(--admin-border-subtle)]">
+      <div className="flex items-center justify-between text-sm pt-1 border-t border-[var(--admin-border-subtle)]">
         {change !== undefined && change !== null ? (
-          <div className="flex items-center gap-1.5 font-medium">
+          <div className="flex items-center gap-2 font-medium">
             <span className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded ${
               isPositive ? 'text-[#72D669] bg-[#72D669]/10' :
               isNegative ? 'text-[#F43F5E] bg-[#F43F5E]/10' :
               'text-[var(--admin-text-muted)] bg-slate-500/10'
             }`}>
-              {isPositive ? <TrendingUp className="w-3.5 h-3.5" /> : isNegative ? <TrendingDown className="w-3.5 h-3.5" /> : <Minus className="w-3.5 h-3.5" />}
+              {isPositive ? <TrendingUp className="w-4 h-4" /> : isNegative ? <TrendingDown className="w-4 h-4" /> : <Minus className="w-4 h-4" />}
               {isPositive ? '+' : ''}{change}%
             </span>
             <span className="text-[var(--admin-text-muted)]">{changeLabel}</span>

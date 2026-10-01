@@ -75,7 +75,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
         </button>
 
         <div className="flex items-center gap-2">
-          <span className="text-sm sm:text-base font-bold text-[var(--admin-text-primary)] tracking-tight truncate">
+          <span className="text-base sm:text-base font-bold text-[var(--admin-text-primary)] tracking-tight truncate">
             {getPageTitle()}
           </span>
         </div>
@@ -85,13 +85,13 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
       <div className="flex-1 max-w-sm mx-2 sm:mx-6">
         <button
           onClick={onOpenCommandPalette}
-          className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] text-xs text-[var(--admin-text-muted)] hover:border-[var(--admin-border-hover)] hover:text-[var(--admin-text-primary)] hover:shadow-sm transition-all"
+          className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] text-sm text-[var(--admin-text-muted)] hover:border-[var(--admin-border-hover)] hover:text-[var(--admin-text-primary)] hover:shadow-sm transition-all"
         >
           <div className="flex items-center gap-2.5 truncate">
-            <Search className="w-3.5 h-3.5 text-[var(--admin-text-muted)] shrink-0" />
+            <Search className="w-4 h-4 text-[var(--admin-text-muted)] shrink-0" />
             <span className="truncate">Search commands, pages, content...</span>
           </div>
-          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-md text-[var(--admin-text-muted)] shadow-xs">
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[12px] font-mono bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-md text-[var(--admin-text-muted)] shadow-xs">
             ⌘K
           </kbd>
         </button>
@@ -104,11 +104,11 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
           href="/"
           target="_blank"
           rel="noreferrer"
-          className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] border border-transparent hover:border-[var(--admin-border-base)] transition-all"
+          className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] border border-transparent hover:border-[var(--admin-border-base)] transition-all"
           title="Open live website in new tab"
         >
           <span>Live Site</span>
-          <ExternalLink className="w-3.5 h-3.5 text-[var(--admin-text-muted)]" />
+          <ExternalLink className="w-4 h-4 text-[var(--admin-text-muted)]" />
         </a>
 
         {/* Theme Switcher */}
@@ -129,7 +129,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
         <div className="relative" ref={profileRef}>
           <button
             onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-            className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-[var(--admin-bg-elevated)] border border-transparent hover:border-[var(--admin-border-base)] transition-all"
+            className="flex items-center gap-2 p-2 rounded-xl hover:bg-[var(--admin-bg-elevated)] border border-transparent hover:border-[var(--admin-border-base)] transition-all"
             aria-label="User menu"
           >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#00A6FF] to-[#0066CC] p-[1px] shadow-sm overflow-hidden">
@@ -140,7 +140,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
                   className="w-full h-full object-cover rounded-[7px]"
                 />
               ) : (
-                <div className="w-full h-full rounded-[7px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-xs text-[var(--admin-primary)]">
+                <div className="w-full h-full rounded-[7px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-sm text-[var(--admin-primary)]">
                   {user?.name ? user.name.charAt(0).toUpperCase() : 'A'}
                 </div>
               )}
@@ -148,17 +148,17 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
           </button>
 
           {profileDropdownOpen && (
-            <div className="absolute right-0 top-full mt-2 w-60 bg-[var(--admin-bg-card)] border border-[var(--admin-border-base)] rounded-xl shadow-xl p-2 z-50 animate-fade-in text-xs admin-card-hover">
+            <div className="absolute right-0 top-full mt-2 w-60 bg-[var(--admin-bg-card)] border border-[var(--admin-border-base)] rounded-xl shadow-xl p-2 z-50 animate-fade-in text-sm admin-card-hover">
               <Link
                 to="/admin/profile"
                 onClick={() => setProfileDropdownOpen(false)}
                 className="block p-2.5 rounded-lg hover:bg-[var(--admin-bg-elevated)] transition-colors mb-1.5"
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <Shield className="w-3.5 h-3.5 text-[var(--admin-primary)]" />
+                  <Shield className="w-4 h-4 text-[var(--admin-primary)]" />
                   <span className="font-bold text-[var(--admin-text-primary)] truncate">{user?.name || 'Administrator'}</span>
                 </div>
-                <p className="text-[11px] text-[var(--admin-text-muted)] truncate">{user?.email || 'admin@tarajglobal.com'}</p>
+                <p className="text-[13px] text-[var(--admin-text-muted)] truncate">{user?.email || 'admin@tarajglobal.com'}</p>
               </Link>
 
               <div className="border-t border-[var(--admin-border-subtle)] pt-1.5 space-y-1">

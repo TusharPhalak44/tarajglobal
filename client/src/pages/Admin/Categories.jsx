@@ -174,7 +174,7 @@ const Categories = () => {
       />
 
       {message.text && (
-        <div className={`p-4 rounded-xl text-xs font-semibold flex items-center justify-between animate-slide-down ${
+        <div className={`p-4 rounded-xl text-sm font-semibold flex items-center justify-between animate-slide-down ${
           message.type === 'success' 
             ? 'bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669]' 
             : 'bg-[var(--admin-danger-soft)] border border-[#F43F5E]/30 text-[#F43F5E]'
@@ -198,7 +198,7 @@ const Categories = () => {
             placeholder="Search categories..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="admin-input pl-10 pr-9 text-xs"
+            className="admin-input pl-10 pr-9 text-sm"
           />
           {searchQuery && (
             <button
@@ -210,7 +210,7 @@ const Categories = () => {
           )}
         </div>
 
-        <span className="text-xs font-semibold text-[var(--admin-text-muted)]">
+        <span className="text-sm font-semibold text-[var(--admin-text-muted)]">
           {filteredCategories.length} categories
         </span>
       </div>
@@ -246,18 +246,18 @@ const Categories = () => {
                   <tr key={category.id} className="group">
                     <td>
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-[var(--admin-primary-soft)] border border-[#00A6FF]/20 flex items-center justify-center text-[var(--admin-primary)] font-bold text-xs shrink-0">
+                        <div className="w-9 h-9 rounded-lg bg-[var(--admin-primary-soft)] border border-[#00A6FF]/20 flex items-center justify-center text-[var(--admin-primary)] font-bold text-sm shrink-0">
                           <Hash className="w-4 h-4" />
                         </div>
-                        <span className="font-bold text-xs sm:text-sm text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors">
+                        <span className="font-bold text-sm sm:text-base text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors">
                           {category.name}
                         </span>
                       </div>
                     </td>
-                    <td className="text-xs font-mono text-[var(--admin-text-muted)]">
+                    <td className="text-sm font-mono text-[var(--admin-text-muted)]">
                       {category.slug}
                     </td>
-                    <td className="text-xs text-[var(--admin-text-secondary)] max-w-xs truncate">
+                    <td className="text-sm text-[var(--admin-text-secondary)] max-w-xs truncate">
                       {category.description || 'No description'}
                     </td>
                     <td>
@@ -271,9 +271,9 @@ const Categories = () => {
                             e.stopPropagation()
                             setActiveMenu(activeMenu === category.id ? null : category.id)
                           }}
-                          className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
+                          className="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
                         >
-                          <MoreVertical className="w-4 h-4" />
+                          <MoreVertical className="w-5 h-5" />
                         </button>
 
                         {activeMenu === category.id && (
@@ -283,13 +283,13 @@ const Categories = () => {
                               index >= Math.max(1, filteredCategories.length - 2) && filteredCategories.length > 2
                                 ? 'bottom-full mb-2'
                                 : 'top-full mt-2'
-                            } w-40 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down`}>
+                            } w-40 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down flex flex-col`}>
                               <div className="py-1">
                                 <button
                                   onClick={() => handleEditClick(category)}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
                                 >
-                                  <Edit className="w-3.5 h-3.5 text-[#FF6D00]" />
+                                  <Edit className="w-5 h-5 text-[#FF6D00]" />
                                   <span>Edit</span>
                                 </button>
                               </div>
@@ -299,9 +299,9 @@ const Categories = () => {
                                     setDeleteConfirm(category)
                                     setActiveMenu(null)
                                   }}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
                                 >
-                                  <Trash2 className="w-3.5 h-3.5" />
+                                  <Trash2 className="w-5 h-5" />
                                   <span>Delete</span>
                                 </button>
                               </div>
@@ -331,14 +331,14 @@ const Categories = () => {
             </div>
 
             {error && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
                 {error}
               </div>
             )}
 
             <form onSubmit={handleCreateCategory} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Category Name *
                 </label>
                 <input
@@ -352,7 +352,7 @@ const Categories = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   URL Slug
                 </label>
                 <input
@@ -360,12 +360,12 @@ const Categories = () => {
                   value={createForm.slug}
                   onChange={(e) => setCreateForm({ ...createForm, slug: e.target.value })}
                   placeholder="e.g., demand-generation"
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Description
                 </label>
                 <textarea
@@ -373,7 +373,7 @@ const Categories = () => {
                   onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
                   rows={3}
                   placeholder="Brief description of this content category..."
-                  className="admin-input resize-none text-xs"
+                  className="admin-input resize-none text-sm"
                 />
               </div>
 
@@ -403,14 +403,14 @@ const Categories = () => {
             </div>
 
             {error && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
                 {error}
               </div>
             )}
 
             <form onSubmit={handleUpdateCategory} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Category Name *
                 </label>
                 <input
@@ -423,37 +423,37 @@ const Categories = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   URL Slug
                 </label>
                 <input
                   type="text"
                   value={editForm.slug}
                   onChange={(e) => setEditForm({ ...editForm, slug: e.target.value })}
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Description
                 </label>
                 <textarea
                   value={editForm.description}
                   onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
                   rows={3}
-                  className="admin-input resize-none text-xs"
+                  className="admin-input resize-none text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Status
                 </label>
                 <select
                   value={editForm.status}
                   onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
-                  className="admin-select text-xs"
+                  className="admin-select text-sm"
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>

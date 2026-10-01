@@ -633,7 +633,7 @@ const FooterManagement = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] gap-3 text-text-muted">
         <RefreshCw className="w-8 h-8 animate-spin text-primary" />
-        <span className="text-sm font-medium">Loading Footer CMS configurations...</span>
+        <span className="text-base font-medium">Loading Footer CMS configurations...</span>
       </div>
     )
   }
@@ -650,7 +650,7 @@ const FooterManagement = () => {
           }`}
         >
           {message.type === 'success' ? <CheckCircle className="w-5 h-5 flex-shrink-0" /> : <AlertCircle className="w-5 h-5 flex-shrink-0" />}
-          <span className="text-sm font-medium">{message.text}</span>
+          <span className="text-base font-medium">{message.text}</span>
         </div>
       )}
 
@@ -659,11 +659,11 @@ const FooterManagement = () => {
         <div className="space-y-1">
           <div className="flex items-center gap-2.5">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">Footer Management</h1>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-sm font-semibold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
               Live CMS
             </span>
           </div>
-          <p className="text-sm text-text-secondary">
+          <p className="text-base text-text-secondary">
             Manage your public website footer's branding, columns, navigation links, offices, and copyright text in real-time.
           </p>
         </div>
@@ -671,20 +671,20 @@ const FooterManagement = () => {
         <div className="flex items-center gap-2.5">
           <button
             onClick={fetchAllData}
-            className="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-primary transition-all"
+            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-primary transition-all"
             title="Reload from database"
           >
-            <RefreshCw className="w-3.5 h-3.5" />
+            <RefreshCw className="w-4 h-4" />
             <span>Reload</span>
           </button>
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark transition-all shadow-md shadow-primary/20"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark transition-all shadow-md shadow-primary/20"
           >
             <span>Live Website</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
       </div>
@@ -693,44 +693,44 @@ const FooterManagement = () => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Footer Sections</div>
+            <div className="text-sm font-medium text-text-muted">Footer Sections</div>
             <div className="text-xl font-bold text-text-primary mt-1">{sections.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
+          <div className="w-5 h-5 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
             <Settings className="w-5 h-5" />
           </div>
         </div>
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Total Links</div>
+            <div className="text-sm font-medium text-text-muted">Total Links</div>
             <div className="text-xl font-bold text-text-primary mt-1">{links.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-500">
+          <div className="w-5 h-5 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-500">
             <LinkIcon className="w-5 h-5" />
           </div>
         </div>
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Global Hubs</div>
+            <div className="text-sm font-medium text-text-muted">Global Hubs</div>
             <div className="text-xl font-bold text-text-primary mt-1">{offices.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
+          <div className="w-5 h-5 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
             <MapPin className="w-5 h-5" />
           </div>
         </div>
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Social Profiles</div>
+            <div className="text-sm font-medium text-text-muted">Social Profiles</div>
             <div className="text-xl font-bold text-text-primary mt-1">{socialLinks.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500">
+          <div className="w-5 h-5 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500">
             <Share2 className="w-5 h-5" />
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-border overflow-x-auto pb-0.5">
+      <div className="flex gap-2 border-b border-border overflow-visible pb-0.5">
         {[
           { id: 'settings', label: 'Company & Branding', icon: Building2 },
           { id: 'sections', label: 'Footer Sections', icon: Settings },
@@ -745,7 +745,7 @@ const FooterManagement = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all whitespace-nowrap ${
                 isActive
                   ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
                   : 'border-transparent text-text-secondary hover:text-text-primary hover:border-border'
@@ -764,14 +764,14 @@ const FooterManagement = () => {
           <div className="lg:col-span-2 bg-surface rounded-2xl border border-border p-6 space-y-6">
             <div className="border-b border-border pb-4">
               <h2 className="text-lg font-bold text-text-primary">Footer Branding & Information</h2>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Set your footer logo, company bio, and copyright information.
               </p>
             </div>
 
             {/* Logo Manager */}
             <div className="space-y-3">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted">
+              <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted">
                 Footer Logo Image
               </label>
 
@@ -784,7 +784,7 @@ const FooterManagement = () => {
                       className="h-12 w-auto max-w-full object-contain"
                     />
                   ) : (
-                    <span className="text-xs text-slate-500">No logo</span>
+                    <span className="text-sm text-slate-500">No logo</span>
                   )}
                 </div>
 
@@ -800,17 +800,17 @@ const FooterManagement = () => {
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-all shadow-sm"
+                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-all shadow-sm"
                     >
-                      <Upload className="w-3.5 h-3.5" />
+                      <Upload className="w-4 h-4" />
                       <span>Upload Image</span>
                     </button>
                     <button
                       type="button"
                       onClick={handleResetDefaultLogo}
-                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface border border-border text-text-secondary text-xs font-semibold hover:text-text-primary hover:bg-border/20 transition-all"
+                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface border border-border text-text-secondary text-sm font-semibold hover:text-text-primary hover:bg-border/20 transition-all"
                     >
-                      <RefreshCw className="w-3.5 h-3.5" />
+                      <RefreshCw className="w-4 h-4" />
                       <span>Reset to Default</span>
                     </button>
                   </div>
@@ -819,7 +819,7 @@ const FooterManagement = () => {
                     value={settings.logo_url || ''}
                     onChange={(e) => setSettings({ ...settings, logo_url: e.target.value })}
                     placeholder="Or enter image URL: /OnlyTG- 3.png"
-                    className="w-full px-3 py-1.5 text-xs bg-surface border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary font-mono"
+                    className="w-full px-3 py-1.5 text-sm bg-surface border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary font-mono"
                   />
                 </div>
               </div>
@@ -827,45 +827,45 @@ const FooterManagement = () => {
 
             {/* Company Name */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+              <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                 Company Name
               </label>
               <input
                 type="text"
                 value={settings.company_name || ''}
                 onChange={(e) => setSettings({ ...settings, company_name: e.target.value })}
-                className="w-full px-4 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                className="w-full px-4 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 placeholder="TaRaj Global"
               />
             </div>
 
             {/* Company Description */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+              <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                 Company Description (Full Bio)
               </label>
               <textarea
                 value={settings.company_description || ''}
                 onChange={(e) => setSettings({ ...settings, company_description: e.target.value })}
                 rows={3}
-                className="w-full px-4 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary leading-relaxed"
+                className="w-full px-4 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary leading-relaxed"
                 placeholder="Enterprise demand generation partner description..."
               />
             </div>
 
             {/* Copyright Text */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+              <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                 Copyright Text
               </label>
               <input
                 type="text"
                 value={settings.copyright_text || ''}
                 onChange={(e) => setSettings({ ...settings, copyright_text: e.target.value })}
-                className="w-full px-4 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                className="w-full px-4 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 placeholder="Copyright © {year} Taraj Global Solutions Private Limited. All rights reserved."
               />
-              <p className="text-[11px] text-text-muted mt-1">
+              <p className="text-[13px] text-text-muted mt-1">
                 Tip: <code className="font-mono text-primary bg-primary/30 dark:bg-primary/10 px-1 py-0.5 rounded">{'{year}'}</code> automatically renders as {new Date().getFullYear()}.
               </p>
             </div>
@@ -880,8 +880,8 @@ const FooterManagement = () => {
                   className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer"
                 />
                 <div>
-                  <span className="text-xs font-semibold text-text-primary block">Display Logo in Footer</span>
-                  <span className="text-[11px] text-text-muted">Turn on to show brand logo on public footer</span>
+                  <span className="text-sm font-semibold text-text-primary block">Display Logo in Footer</span>
+                  <span className="text-[13px] text-text-muted">Turn on to show brand logo on public footer</span>
                 </div>
               </label>
 
@@ -893,8 +893,8 @@ const FooterManagement = () => {
                   className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer"
                 />
                 <div>
-                  <span className="text-xs font-semibold text-text-primary block">Display Description</span>
-                  <span className="text-[11px] text-text-muted">Turn on to show company bio in Column 1</span>
+                  <span className="text-sm font-semibold text-text-primary block">Display Description</span>
+                  <span className="text-[13px] text-text-muted">Turn on to show company bio in Column 1</span>
                 </div>
               </label>
             </div>
@@ -904,7 +904,7 @@ const FooterManagement = () => {
               <button
                 onClick={handleSaveSettings}
                 disabled={savingSettings}
-                className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 disabled:opacity-50"
+                className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl text-base font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 disabled:opacity-50"
               >
                 {savingSettings ? (
                   <>
@@ -924,7 +924,7 @@ const FooterManagement = () => {
           {/* Right Column: Mini Preview Card */}
           <div className="space-y-4">
             <div className="bg-surface rounded-2xl border border-border p-5 space-y-4">
-              <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
+              <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-primary" />
                 <span>Column 1 Live Preview</span>
               </h3>
@@ -938,11 +938,11 @@ const FooterManagement = () => {
                   />
                 )}
                 {settings.is_description_visible && (
-                  <p className="text-xs text-text-secondary dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-text-secondary dark:text-slate-300 leading-relaxed">
                     {settings.company_description || 'No description entered.'}
                   </p>
                 )}
-                <div className="text-[11px] text-slate-500 pt-2 border-t border-border dark:border-white/10">
+                <div className="text-[13px] text-slate-500 pt-2 border-t border-border dark:border-white/10">
                   {settings.copyright_text?.replace('{year}', new Date().getFullYear())}
                 </div>
               </div>
@@ -957,13 +957,13 @@ const FooterManagement = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
             <div>
               <h2 className="text-lg font-bold text-text-primary">Footer Navigation Sections</h2>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Manage the column categories in your website footer (e.g., Lead Gen, Demand & ABM, Company, Legal).
               </p>
             </div>
             <button
               onClick={handleAddSection}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-xs font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Section</span>
@@ -990,7 +990,7 @@ const FooterManagement = () => {
                         className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface disabled:opacity-20"
                         title="Move Up"
                       >
-                        <ChevronUp className="w-3.5 h-3.5" />
+                        <ChevronUp className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleMoveSection(idx, 'down')}
@@ -998,21 +998,21 @@ const FooterManagement = () => {
                         className="p-1 rounded text-text-muted hover:text-text-primary hover:bg-surface disabled:opacity-20"
                         title="Move Down"
                       >
-                        <ChevronDown className="w-3.5 h-3.5" />
+                        <ChevronDown className="w-4 h-4" />
                       </button>
                     </div>
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-text-primary text-sm">{section.title}</span>
-                        <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-border/40 text-text-muted">
+                        <span className="font-semibold text-text-primary text-base">{section.title}</span>
+                        <span className="text-[12px] uppercase font-mono px-2 py-0.5 rounded-full bg-border/40 text-text-muted">
                           {section.section_type || 'links'}
                         </span>
-                        <span className="text-xs text-text-muted font-mono">
+                        <span className="text-sm text-text-muted font-mono">
                           ({sectionLinks.length} {sectionLinks.length === 1 ? 'link' : 'links'})
                         </span>
                       </div>
-                      <p className="text-xs text-text-muted mt-0.5">
+                      <p className="text-sm text-text-muted mt-0.5">
                         Column position: #{idx + 1} • Sort Order: {section.sort_order}
                       </p>
                     </div>
@@ -1028,7 +1028,7 @@ const FooterManagement = () => {
                       }`}
                       title={isVisible ? 'Click to hide section' : 'Click to show section'}
                     >
-                      {isVisible ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                      {isVisible ? <Eye className="w-5 h-5" /> : <EyeOff className="w-4 h-4" />}
                     </button>
 
                     <button
@@ -1044,7 +1044,7 @@ const FooterManagement = () => {
                       className="p-2 rounded-lg border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 transition-all"
                       title="Delete Section"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -1054,7 +1054,7 @@ const FooterManagement = () => {
             {sections.length === 0 && (
               <div className="text-center py-12 text-text-muted border border-dashed border-border rounded-xl">
                 <Settings className="w-8 h-8 mx-auto mb-2 opacity-40" />
-                <p className="text-sm font-medium">No sections found. Add one above to get started.</p>
+                <p className="text-base font-medium">No sections found. Add one above to get started.</p>
               </div>
             )}
           </div>
@@ -1067,7 +1067,7 @@ const FooterManagement = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
             <div>
               <h2 className="text-lg font-bold text-text-primary">Footer Navigation Links</h2>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Add, edit, reorder, or toggle links under each section of your footer.
               </p>
             </div>
@@ -1075,7 +1075,7 @@ const FooterManagement = () => {
             <button
               onClick={() => handleAddLink(selectedSectionFilter !== 'all' ? selectedSectionFilter : null)}
               disabled={sections.length === 0}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-xs font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 disabled:opacity-50 self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 disabled:opacity-50 self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Link</span>
@@ -1086,7 +1086,7 @@ const FooterManagement = () => {
           <div className="flex flex-wrap gap-2 pt-1">
             <button
               onClick={() => setSelectedSectionFilter('all')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                 selectedSectionFilter === 'all'
                   ? 'bg-primary text-white shadow-sm'
                   : 'bg-background border border-border text-text-secondary hover:text-text-primary'
@@ -1100,7 +1100,7 @@ const FooterManagement = () => {
                 <button
                   key={sec.id}
                   onClick={() => setSelectedSectionFilter(sec.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                     String(selectedSectionFilter) === String(sec.id)
                       ? 'bg-primary text-white shadow-sm'
                       : 'bg-background border border-border text-text-secondary hover:text-text-primary'
@@ -1121,14 +1121,14 @@ const FooterManagement = () => {
                 <div key={sec.id} className="rounded-xl border border-border bg-background/50 overflow-hidden">
                   <div className="p-3.5 bg-background border-b border-border flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-sm text-text-primary">{sec.title}</span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary">
+                      <span className="font-bold text-base text-text-primary">{sec.title}</span>
+                      <span className="text-[12px] font-mono px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary">
                         {secLinks.length} items
                       </span>
                     </div>
                     <button
                       onClick={() => handleAddLink(sec.id)}
-                      className="text-xs text-primary hover:underline flex items-center gap-1 font-medium"
+                      className="text-sm text-primary hover:underline flex items-center gap-1 font-medium"
                     >
                       <Plus className="w-3 h-3" />
                       Add to {sec.title}
@@ -1168,17 +1168,17 @@ const FooterManagement = () => {
 
                             <div>
                               <div className="flex items-center gap-2">
-                                <span className="font-semibold text-sm text-text-primary">{link.label}</span>
-                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface border border-border text-text-muted">
+                                <span className="font-semibold text-base text-text-primary">{link.label}</span>
+                                <span className="text-[12px] font-mono px-1.5 py-0.5 rounded bg-surface border border-border text-text-muted">
                                   {link.link_type}
                                 </span>
                                 {link.target === '_blank' && (
-                                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface border border-border text-cyan-400">
+                                  <span className="text-[12px] font-mono px-1.5 py-0.5 rounded bg-surface border border-border text-cyan-400">
                                     new tab
                                   </span>
                                 )}
                               </div>
-                              <p className="text-xs text-text-muted font-mono mt-0.5">
+                              <p className="text-sm text-text-muted font-mono mt-0.5">
                                 {link.url || (link.link_type === 'custom_action' ? `Action: ${link.custom_action}` : '-')}
                               </p>
                             </div>
@@ -1187,30 +1187,30 @@ const FooterManagement = () => {
                           <div className="flex items-center gap-2 self-end sm:self-auto">
                             <button
                               onClick={() => handleToggleLinkVisibility(link)}
-                              className={`p-1.5 rounded-lg border transition-all ${
+                              className={`p-2 rounded-lg border transition-all ${
                                 isVisible
                                   ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20'
                                   : 'border-border text-text-muted bg-surface hover:text-text-primary'
                               }`}
                               title={isVisible ? 'Hide Link' : 'Show Link'}
                             >
-                              {isVisible ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                              {isVisible ? <Eye className="w-5 h-5" /> : <EyeOff className="w-4 h-4" />}
                             </button>
 
                             <button
                               onClick={() => handleEditLink(link)}
-                              className="p-1.5 rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
+                              className="p-2 rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
                               title="Edit Link"
                             >
-                              <Edit2 className="w-3.5 h-3.5" />
+                              <Edit2 className="w-4 h-4" />
                             </button>
 
                             <button
                               onClick={() => handleDeleteLink(link.id, link.label)}
-                              className="p-1.5 rounded-lg border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 transition-all"
+                              className="p-2 rounded-lg border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 transition-all"
                               title="Delete Link"
                             >
-                              <Trash2 className="w-3.5 h-3.5" />
+                              <Trash2 className="w-5 h-5" />
                             </button>
                           </div>
                         </div>
@@ -1218,7 +1218,7 @@ const FooterManagement = () => {
                     })}
 
                     {secLinks.length === 0 && (
-                      <div className="p-6 text-center text-xs text-text-muted">
+                      <div className="p-6 text-center text-sm text-text-muted">
                         No links in this section yet. Click "Add to {sec.title}" above.
                       </div>
                     )}
@@ -1236,13 +1236,13 @@ const FooterManagement = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
             <div>
               <h2 className="text-lg font-bold text-text-primary">Office Locations & Hubs</h2>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Displayed under "Global Hubs" in Column 5 of the website footer, featuring live timezone clocks.
               </p>
             </div>
             <button
               onClick={handleAddOffice}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-xs font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Office</span>
@@ -1268,12 +1268,12 @@ const FooterManagement = () => {
                         {office.icon === 'Building2' ? <Building2 className="w-4 h-4" /> : <MapPin className="w-4 h-4" />}
                       </div>
                       <div>
-                        <h3 className="font-bold text-sm text-text-primary">{office.name}</h3>
-                        <p className="text-xs text-text-muted">{office.city}, {office.country}</p>
+                        <h3 className="font-bold text-base text-text-primary">{office.name}</h3>
+                        <p className="text-sm text-text-muted">{office.city}, {office.country}</p>
                       </div>
                     </div>
 
-                    <span className={`text-[11px] font-mono font-bold flex items-center gap-1 px-2 py-0.5 rounded-md ${
+                    <span className={`text-[13px] font-mono font-bold flex items-center gap-1 px-2 py-0.5 rounded-md ${
                       isPST ? 'text-amber-400 bg-amber-500/10' : 'text-cyan-400 bg-cyan-500/10'
                     }`}>
                       <Clock className="w-3 h-3" />
@@ -1281,20 +1281,20 @@ const FooterManagement = () => {
                     </span>
                   </div>
 
-                  <div className="text-xs text-text-secondary leading-relaxed bg-surface/60 p-3 rounded-xl border border-border/40">
+                  <div className="text-sm text-text-secondary leading-relaxed bg-surface/60 p-3 rounded-xl border border-border/40">
                     <p>{office.address_line_1}</p>
                     {office.address_line_2 && <p>{office.address_line_2}</p>}
                     <p>{[office.city, office.state, office.postal_code].filter(Boolean).join(', ')}</p>
                   </div>
 
-                  <div className="flex flex-col gap-1 text-xs font-mono">
+                  <div className="flex flex-col gap-1 text-sm font-mono">
                     {office.phone && (
-                      <span className="text-primary flex items-center gap-1.5">
+                      <span className="text-primary flex items-center gap-2">
                         <Phone className="w-3 h-3" /> {office.phone}
                       </span>
                     )}
                     {office.email && (
-                      <span className="text-text-muted flex items-center gap-1.5">
+                      <span className="text-text-muted flex items-center gap-2">
                         <Mail className="w-3 h-3" /> {office.email}
                       </span>
                     )}
@@ -1303,28 +1303,28 @@ const FooterManagement = () => {
                   <div className="flex items-center justify-end gap-2 pt-2 border-t border-border/40">
                     <button
                       onClick={() => handleToggleOfficeVisibility(office)}
-                      className={`p-1.5 rounded-lg border transition-all ${
+                      className={`p-2 rounded-lg border transition-all ${
                         isVisible
                           ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10'
                           : 'border-border text-text-muted bg-surface'
                       }`}
                       title={isVisible ? 'Hide Office' : 'Show Office'}
                     >
-                      {isVisible ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                      {isVisible ? <Eye className="w-5 h-5" /> : <EyeOff className="w-4 h-4" />}
                     </button>
                     <button
                       onClick={() => handleEditOffice(office)}
-                      className="p-1.5 rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface"
+                      className="p-2 rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface"
                       title="Edit Office"
                     >
-                      <Edit2 className="w-3.5 h-3.5" />
+                      <Edit2 className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleDeleteOffice(office.id, office.name)}
-                      className="p-1.5 rounded-lg border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20"
+                      className="p-2 rounded-lg border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20"
                       title="Delete Office"
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -1340,13 +1340,13 @@ const FooterManagement = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
             <div>
               <h2 className="text-lg font-bold text-text-primary">Social Media Profiles</h2>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Displayed in Column 1 under the company bio in the website footer.
               </p>
             </div>
             <button
               onClick={handleAddSocial}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-xs font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add Social Profile</span>
@@ -1365,40 +1365,40 @@ const FooterManagement = () => {
                   }`}
                 >
                   <div className="flex items-center gap-3 overflow-hidden">
-                    <div className="w-10 h-10 rounded-xl bg-surface border border-border flex items-center justify-center text-primary flex-shrink-0">
+                    <div className="w-5 h-5 rounded-xl bg-surface border border-border flex items-center justify-center text-primary flex-shrink-0">
                       <Share2 className="w-5 h-5" />
                     </div>
                     <div className="overflow-hidden">
-                      <h4 className="font-semibold text-sm text-text-primary">{social.platform}</h4>
-                      <p className="text-xs text-text-muted truncate">{social.url}</p>
+                      <h4 className="font-semibold text-base text-text-primary">{social.platform}</h4>
+                      <p className="text-sm text-text-muted truncate">{social.url}</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1.5 flex-shrink-0">
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     <button
                       onClick={() => handleToggleSocialVisibility(social)}
-                      className={`p-1.5 rounded-lg border transition-all ${
+                      className={`p-2 rounded-lg border transition-all ${
                         isVisible
                           ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10'
                           : 'border-border text-text-muted bg-surface'
                       }`}
                       title={isVisible ? 'Hide' : 'Show'}
                     >
-                      {isVisible ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                      {isVisible ? <Eye className="w-5 h-5" /> : <EyeOff className="w-4 h-4" />}
                     </button>
                     <button
                       onClick={() => handleEditSocial(social)}
-                      className="p-1.5 rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface"
+                      className="p-2 rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface"
                       title="Edit"
                     >
-                      <Edit2 className="w-3.5 h-3.5" />
+                      <Edit2 className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleDeleteSocial(social.id, social.platform)}
-                      className="p-1.5 rounded-lg border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20"
+                      className="p-2 rounded-lg border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500/20"
                       title="Delete"
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -1417,7 +1417,7 @@ const FooterManagement = () => {
                 <Sparkles className="w-5 h-5 text-primary" />
                 <span>Website Footer Interactive Preview</span>
               </h2>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Simulated appearance of how your footer looks to visitors on the live site.
               </p>
             </div>
@@ -1425,9 +1425,9 @@ const FooterManagement = () => {
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+              className="flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
-              Open Full Website <ExternalLink className="w-3.5 h-3.5" />
+              Open Full Website <ExternalLink className="w-4 h-4" />
             </a>
           </div>
 
@@ -1443,7 +1443,7 @@ const FooterManagement = () => {
                   />
                 )}
                 {settings.is_description_visible && (
-                  <p className="text-xs text-text-secondary dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-text-secondary dark:text-slate-300 leading-relaxed">
                     {settings.company_description}
                   </p>
                 )}
@@ -1454,9 +1454,9 @@ const FooterManagement = () => {
                       href={s.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-8 h-8 rounded-lg bg-surface/90 dark:bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-all text-xs"
+                      className="w-8 h-8 rounded-lg bg-surface/90 dark:bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-all text-sm"
                     >
-                      <Share2 className="w-3.5 h-3.5" />
+                      <Share2 className="w-4 h-4" />
                     </a>
                   ))}
                 </div>
@@ -1469,10 +1469,10 @@ const FooterManagement = () => {
 
                 return (
                   <div key={sec.id} className="md:col-span-2 space-y-3">
-                    <h4 className={`text-xs font-mono font-bold uppercase tracking-wider ${isAmber ? 'text-[#FF6D00]' : 'text-[#00A6FF]'}`}>
+                    <h4 className={`text-sm font-mono font-bold uppercase tracking-wider ${isAmber ? 'text-[#FF6D00]' : 'text-[#00A6FF]'}`}>
                       {sec.title}
                     </h4>
-                    <ul className="space-y-1.5 text-xs text-text-secondary dark:text-slate-400">
+                    <ul className="space-y-1.5 text-sm text-text-secondary dark:text-slate-400">
                       {secLinks.map((l) => (
                         <li key={l.id} className="hover:text-text-primary dark:text-white transition-colors cursor-pointer">
                           {l.label}
@@ -1485,18 +1485,18 @@ const FooterManagement = () => {
 
               {/* Hubs Column */}
               <div className="md:col-span-3 space-y-3">
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-200">
+                <h4 className="text-sm font-mono font-bold uppercase tracking-wider text-slate-200">
                   Global Hubs
                 </h4>
                 <div className="space-y-2">
                   {offices.filter((o) => o.is_visible).map((o) => (
-                    <div key={o.id} className="p-2.5 rounded-xl bg-white/[0.04] border border-border dark:border-white/10 text-xs space-y-1">
+                    <div key={o.id} className="p-2.5 rounded-xl bg-white/[0.04] border border-border dark:border-white/10 text-sm space-y-1">
                       <div className="font-bold flex items-center justify-between">
                         <span>{o.name}</span>
-                        <span className="text-[10px] font-mono text-cyan-400">{o.city}</span>
+                        <span className="text-[12px] font-mono text-cyan-400">{o.city}</span>
                       </div>
-                      <p className="text-[11px] text-text-secondary dark:text-slate-400">{o.address_line_1}</p>
-                      {o.phone && <p className="text-[11px] font-mono text-primary">{o.phone}</p>}
+                      <p className="text-[13px] text-text-secondary dark:text-slate-400">{o.address_line_1}</p>
+                      {o.phone && <p className="text-[13px] font-mono text-primary">{o.phone}</p>}
                     </div>
                   ))}
                 </div>
@@ -1504,7 +1504,7 @@ const FooterManagement = () => {
             </div>
 
             {/* Bottom Copyright */}
-            <div className="border-t border-border dark:border-white/10 pt-4 text-xs text-slate-500 text-center flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div className="border-t border-border dark:border-white/10 pt-4 text-sm text-slate-500 text-center flex flex-col sm:flex-row items-center justify-between gap-2">
               <span>{settings.copyright_text?.replace('{year}', new Date().getFullYear())}</span>
               <span>Taraj Global CMS Engine</span>
             </div>
@@ -1530,7 +1530,7 @@ const FooterManagement = () => {
 
             <div className="p-5 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Section Title *
                 </label>
                 <input
@@ -1538,18 +1538,18 @@ const FooterManagement = () => {
                   value={editingSection.title || ''}
                   onChange={(e) => setEditingSection({ ...editingSection, title: e.target.value })}
                   placeholder="e.g., Lead Gen, Solutions, Resources"
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Section Type
                 </label>
                 <select
                   value={editingSection.section_type || 'links'}
                   onChange={(e) => setEditingSection({ ...editingSection, section_type: e.target.value })}
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 >
                   <option value="links">Links Column</option>
                   <option value="contact">Contact Information</option>
@@ -1560,14 +1560,14 @@ const FooterManagement = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Sort Order
                   </label>
                   <input
                     type="number"
                     value={editingSection.sort_order ?? 0}
                     onChange={(e) => setEditingSection({ ...editingSection, sort_order: parseInt(e.target.value) || 0 })}
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   />
                 </div>
 
@@ -1579,7 +1579,7 @@ const FooterManagement = () => {
                       onChange={(e) => setEditingSection({ ...editingSection, is_visible: e.target.checked })}
                       className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer"
                     />
-                    <span className="text-xs font-medium text-text-primary">Visible on Footer</span>
+                    <span className="text-sm font-medium text-text-primary">Visible on Footer</span>
                   </label>
                 </div>
               </div>
@@ -1588,7 +1588,7 @@ const FooterManagement = () => {
                 <button
                   type="button"
                   onClick={() => { setShowSectionModal(false); setEditingSection(null) }}
-                  className="px-4 py-2 text-xs font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
+                  className="px-4 py-2 text-sm font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
                 >
                   Cancel
                 </button>
@@ -1596,7 +1596,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveSection}
                   disabled={savingSection}
-                  className="px-5 py-2 text-xs font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
                 >
                   {savingSection ? 'Saving...' : 'Save Section'}
                 </button>
@@ -1624,13 +1624,13 @@ const FooterManagement = () => {
 
             <div className="p-5 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Belongs to Section *
                 </label>
                 <select
                   value={editingLink.section_id || ''}
                   onChange={(e) => setEditingLink({ ...editingLink, section_id: Number(e.target.value) })}
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 >
                   {sections.map((sec) => (
                     <option key={sec.id} value={sec.id}>
@@ -1641,7 +1641,7 @@ const FooterManagement = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Link Label *
                 </label>
                 <input
@@ -1649,12 +1649,12 @@ const FooterManagement = () => {
                   value={editingLink.label || ''}
                   onChange={(e) => setEditingLink({ ...editingLink, label: e.target.value })}
                   placeholder="e.g., MQL Services, About Us"
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   URL or Route *
                 </label>
                 <input
@@ -1662,19 +1662,19 @@ const FooterManagement = () => {
                   value={editingLink.url || ''}
                   onChange={(e) => setEditingLink({ ...editingLink, url: e.target.value })}
                   placeholder="/mql-services or https://..."
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary font-mono"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary font-mono"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Link Type
                   </label>
                   <select
                     value={editingLink.link_type || 'internal'}
                     onChange={(e) => setEditingLink({ ...editingLink, link_type: e.target.value })}
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   >
                     <option value="internal">Internal Route</option>
                     <option value="external">External Link</option>
@@ -1683,13 +1683,13 @@ const FooterManagement = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Target
                   </label>
                   <select
                     value={editingLink.target || '_self'}
                     onChange={(e) => setEditingLink({ ...editingLink, target: e.target.value })}
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   >
                     <option value="_self">Same Tab (_self)</option>
                     <option value="_blank">New Tab (_blank)</option>
@@ -1699,7 +1699,7 @@ const FooterManagement = () => {
 
               {editingLink.link_type === 'custom_action' && (
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Custom Action Identifier
                   </label>
                   <input
@@ -1707,7 +1707,7 @@ const FooterManagement = () => {
                     value={editingLink.custom_action || ''}
                     onChange={(e) => setEditingLink({ ...editingLink, custom_action: e.target.value })}
                     placeholder="openCookiePreferences"
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary font-mono"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary font-mono"
                   />
                 </div>
               )}
@@ -1720,7 +1720,7 @@ const FooterManagement = () => {
                   onChange={(e) => setEditingLink({ ...editingLink, is_visible: e.target.checked })}
                   className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer"
                 />
-                <label htmlFor="link_is_vis" className="text-xs font-medium text-text-primary cursor-pointer">
+                <label htmlFor="link_is_vis" className="text-sm font-medium text-text-primary cursor-pointer">
                   Visible on Footer
                 </label>
               </div>
@@ -1729,7 +1729,7 @@ const FooterManagement = () => {
                 <button
                   type="button"
                   onClick={() => { setShowLinkModal(false); setEditingLink(null) }}
-                  className="px-4 py-2 text-xs font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
+                  className="px-4 py-2 text-sm font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
                 >
                   Cancel
                 </button>
@@ -1737,7 +1737,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveLink}
                   disabled={savingLink}
-                  className="px-5 py-2 text-xs font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
                 >
                   {savingLink ? 'Saving...' : 'Save Link'}
                 </button>
@@ -1765,7 +1765,7 @@ const FooterManagement = () => {
 
             <div className="p-5 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Office Name *
                 </label>
                 <input
@@ -1773,12 +1773,12 @@ const FooterManagement = () => {
                   value={editingOffice.name || ''}
                   onChange={(e) => setEditingOffice({ ...editingOffice, name: e.target.value })}
                   placeholder="e.g., India Office, USA Office"
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Address Line 1
                 </label>
                 <input
@@ -1786,12 +1786,12 @@ const FooterManagement = () => {
                   value={editingOffice.address_line_1 || ''}
                   onChange={(e) => setEditingOffice({ ...editingOffice, address_line_1: e.target.value })}
                   placeholder="Building / Complex / Street"
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Address Line 2
                 </label>
                 <input
@@ -1799,13 +1799,13 @@ const FooterManagement = () => {
                   value={editingOffice.address_line_2 || ''}
                   onChange={(e) => setEditingOffice({ ...editingOffice, address_line_2: e.target.value })}
                   placeholder="Suite, unit, floor"
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     City
                   </label>
                   <input
@@ -1813,11 +1813,11 @@ const FooterManagement = () => {
                     value={editingOffice.city || ''}
                     onChange={(e) => setEditingOffice({ ...editingOffice, city: e.target.value })}
                     placeholder="Pune, San Francisco"
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Country
                   </label>
                   <input
@@ -1825,14 +1825,14 @@ const FooterManagement = () => {
                     value={editingOffice.country || ''}
                     onChange={(e) => setEditingOffice({ ...editingOffice, country: e.target.value })}
                     placeholder="India, USA"
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     State / Region
                   </label>
                   <input
@@ -1840,11 +1840,11 @@ const FooterManagement = () => {
                     value={editingOffice.state || ''}
                     onChange={(e) => setEditingOffice({ ...editingOffice, state: e.target.value })}
                     placeholder="Maharashtra, California"
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Postal Code
                   </label>
                   <input
@@ -1852,14 +1852,14 @@ const FooterManagement = () => {
                     value={editingOffice.postal_code || ''}
                     onChange={(e) => setEditingOffice({ ...editingOffice, postal_code: e.target.value })}
                     placeholder="411014, 94115"
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Phone Number
                   </label>
                   <input
@@ -1867,11 +1867,11 @@ const FooterManagement = () => {
                     value={editingOffice.phone || ''}
                     onChange={(e) => setEditingOffice({ ...editingOffice, phone: e.target.value })}
                     placeholder="+91 96655-99442"
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Email
                   </label>
                   <input
@@ -1879,13 +1879,13 @@ const FooterManagement = () => {
                     value={editingOffice.email || ''}
                     onChange={(e) => setEditingOffice({ ...editingOffice, email: e.target.value })}
                     placeholder="info@tarajglobal.com"
-                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Google Maps URL
                 </label>
                 <input
@@ -1893,7 +1893,7 @@ const FooterManagement = () => {
                   value={editingOffice.map_url || ''}
                   onChange={(e) => setEditingOffice({ ...editingOffice, map_url: e.target.value })}
                   placeholder="https://maps.google.com/..."
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary font-mono text-xs"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary font-mono text-sm"
                 />
               </div>
 
@@ -1905,7 +1905,7 @@ const FooterManagement = () => {
                   onChange={(e) => setEditingOffice({ ...editingOffice, is_visible: e.target.checked })}
                   className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer"
                 />
-                <label htmlFor="office_vis_check" className="text-xs font-medium text-text-primary cursor-pointer">
+                <label htmlFor="office_vis_check" className="text-sm font-medium text-text-primary cursor-pointer">
                   Visible under Global Hubs
                 </label>
               </div>
@@ -1914,7 +1914,7 @@ const FooterManagement = () => {
                 <button
                   type="button"
                   onClick={() => { setShowOfficeModal(false); setEditingOffice(null) }}
-                  className="px-4 py-2 text-xs font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
+                  className="px-4 py-2 text-sm font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
                 >
                   Cancel
                 </button>
@@ -1922,7 +1922,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveOffice}
                   disabled={savingOffice}
-                  className="px-5 py-2 text-xs font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
                 >
                   {savingOffice ? 'Saving...' : 'Save Office'}
                 </button>
@@ -1950,7 +1950,7 @@ const FooterManagement = () => {
 
             <div className="p-5 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Platform Name *
                 </label>
                 <input
@@ -1958,12 +1958,12 @@ const FooterManagement = () => {
                   value={editingSocial.platform || ''}
                   onChange={(e) => setEditingSocial({ ...editingSocial, platform: e.target.value })}
                   placeholder="LinkedIn, Twitter, YouTube, Instagram"
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Profile URL *
                 </label>
                 <input
@@ -1971,7 +1971,7 @@ const FooterManagement = () => {
                   value={editingSocial.url || ''}
                   onChange={(e) => setEditingSocial({ ...editingSocial, url: e.target.value })}
                   placeholder="https://www.linkedin.com/company/..."
-                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary font-mono text-xs"
+                  className="w-full px-3.5 py-2 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary font-mono text-sm"
                 />
               </div>
 
@@ -1983,7 +1983,7 @@ const FooterManagement = () => {
                   onChange={(e) => setEditingSocial({ ...editingSocial, is_visible: e.target.checked })}
                   className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer"
                 />
-                <label htmlFor="social_vis_check" className="text-xs font-medium text-text-primary cursor-pointer">
+                <label htmlFor="social_vis_check" className="text-sm font-medium text-text-primary cursor-pointer">
                   Visible on Footer
                 </label>
               </div>
@@ -1992,7 +1992,7 @@ const FooterManagement = () => {
                 <button
                   type="button"
                   onClick={() => { setShowSocialModal(false); setEditingSocial(null) }}
-                  className="px-4 py-2 text-xs font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
+                  className="px-4 py-2 text-sm font-semibold rounded-xl border border-border text-text-secondary hover:bg-surface"
                 >
                   Cancel
                 </button>
@@ -2000,7 +2000,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveSocial}
                   disabled={savingSocial}
-                  className="px-5 py-2 text-xs font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
                 >
                   {savingSocial ? 'Saving...' : 'Save Profile'}
                 </button>

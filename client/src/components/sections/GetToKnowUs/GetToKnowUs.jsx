@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import { GrowthConnector } from './GrowthConnector'
 import { TrustIndicator } from './TrustIndicator'
 import { useReducedMotion } from '@hooks/useReducedMotion'
- 
+
 import { SectionLaserDivider } from '@components/animations'
- 
+
 /**
  * Enterprise Growth Architecture Section (GetToKnowUs)
  * “DYNAMIC B2B GROWTH FLOW”
@@ -17,7 +17,7 @@ import { SectionLaserDivider } from '@components/animations'
  */
 export const GetToKnowUs = () => {
   const prefersReducedMotion = useReducedMotion()
- 
+
   return (
     <section
       id="enterprise-architecture"
@@ -42,16 +42,16 @@ export const GetToKnowUs = () => {
             backgroundSize: '40px 40px',
           }}
         />
- 
+
         {/* Very Subtle Radial Ambient Light */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full blur-[140px] bg-primary/25 dark:bg-primary/5 dark:bg-primary/8 pointer-events-none" />
       </div>
- 
+
       <div className="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col justify-between">
-       
+
         {/* ── 1. Compact Centered Top Introduction ───────────────────── */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-         
+
           {/* Small Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -65,46 +65,46 @@ export const GetToKnowUs = () => {
               ENTERPRISE GROWTH ARCHITECTURE
             </span>
           </motion.div>
- 
+
           {/* Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight mb-3 text-slate-900 dark:text-text-primary dark:text-white transition-colors duration-300"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-3 text-slate-900 dark:text-text-primary dark:text-white transition-colors duration-300"
           >
             POWERING SMARTER{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#00A6FF] to-[#00E5FF]">
               B2B GROWTH
             </span>
           </motion.h2>
- 
+
           {/* Centered Description */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-xl mx-auto transition-colors duration-300"
+            className="text-base sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto transition-colors duration-300"
           >
             Taraj Global is a B2B demand generation and technology marketing partner helping organizations connect with the right companies, decision-makers, and buying audiences. We combine audience intelligence, verified B2B data, targeted outreach, and full-funnel marketing strategies to create qualified opportunities and support sustainable pipeline growth.
           </motion.p>
- 
+
         </div>
- 
+
         {/* ── 2. Main Visual: Dynamic B2B Growth Flow (Three Connected Stages) ── */}
         <GrowthConnector />
- 
+
         {/* ── 3. Compact Bottom Trust Indicators ───────────────────────── */}
         <TrustIndicator />
- 
+
       </div>
- 
+
       {/* ── Bottom Laser Divider ────────────────────────────────────────── */}
       <SectionLaserDivider variant="amber" position="bottom" />
     </section>
   )
 }
- 
+
 export default GetToKnowUs

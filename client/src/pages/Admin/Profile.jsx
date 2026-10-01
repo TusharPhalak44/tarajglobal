@@ -331,7 +331,7 @@ const Profile = () => {
         title="Admin Profile & Security"
         subtitle="Manage personal operator credentials, rotate security keys, and customize profile picture."
         badge={
-          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/20">
+          <span className="px-2.5 py-0.5 rounded-full text-sm font-bold uppercase tracking-wider bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/20">
             {user?.role || 'Admin'}
           </span>
         }
@@ -352,7 +352,7 @@ const Profile = () => {
       {/* Toast Alert Message */}
       {message.text && (
         <div
-          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all shadow-sm ${message.type === 'success'
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-base font-medium transition-all shadow-sm ${message.type === 'success'
               ? 'bg-[var(--admin-bg-surface)] border-[var(--admin-success)] text-[var(--admin-success)]'
               : 'bg-[var(--admin-bg-surface)] border-[var(--admin-danger)] text-[var(--admin-danger)]'
             }`}
@@ -404,7 +404,7 @@ const Profile = () => {
                 )}
 
                 {/* Hover Camera Overlay */}
-                <div className="absolute inset-0 bg-background dark:bg-black/75 rounded-[14px] opacity-0 group-hover/avatar:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[10px] font-bold gap-1">
+                <div className="absolute inset-0 bg-background dark:bg-black/75 rounded-[14px] opacity-0 group-hover/avatar:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[12px] font-bold gap-1">
                   {avatarUploading ? (
                     <RefreshCw className="w-5 h-5 animate-spin text-[#00A6FF]" />
                   ) : (
@@ -432,12 +432,12 @@ const Profile = () => {
                 </h2>
                 <StatusBadge status={user?.role || 'admin'} size="md" />
               </div>
-              <p className="text-xs text-[var(--admin-text-muted)] font-mono flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[var(--admin-primary)]" />
+              <p className="text-sm text-[var(--admin-text-muted)] font-mono flex items-center gap-2">
+                <Mail className="w-4 h-4 text-[var(--admin-primary)]" />
                 <span>{user?.email || 'admin@tarajglobal.com'}</span>
               </p>
-              <p className="text-xs text-[var(--admin-text-secondary)] flex items-center gap-2">
-                <Building className="w-3.5 h-3.5 text-[var(--admin-text-muted)]" />
+              <p className="text-sm text-[var(--admin-text-secondary)] flex items-center gap-2">
+                <Building className="w-4 h-4 text-[var(--admin-text-muted)]" />
                 <span>Taraj Global Solutions Command Center</span>
               </p>
             </div>
@@ -447,9 +447,9 @@ const Profile = () => {
             <button
               onClick={() => fileInputRef.current?.click()}
               disabled={avatarUploading}
-              className="admin-btn admin-btn-secondary text-xs flex items-center gap-2"
+              className="admin-btn admin-btn-secondary text-sm flex items-center gap-2"
             >
-              <Camera className="w-3.5 h-3.5 text-[var(--admin-primary)]" />
+              <Camera className="w-4 h-4 text-[var(--admin-primary)]" />
               {avatarUploading ? 'Uploading...' : avatarUrl ? 'Change Photo' : 'Upload Photo'}
             </button>
             <button
@@ -457,24 +457,24 @@ const Profile = () => {
                 setActiveTab('edit')
                 setEditing(true)
               }}
-              className="admin-btn admin-btn-secondary text-xs flex items-center gap-2"
+              className="admin-btn admin-btn-secondary text-sm flex items-center gap-2"
             >
-              <Edit3 className="w-3.5 h-3.5" />
+              <Edit3 className="w-4 h-4" />
               Edit Profile
             </button>
             <button
               onClick={() => setActiveTab('password')}
-              className="admin-btn admin-btn-secondary text-xs flex items-center gap-2"
+              className="admin-btn admin-btn-secondary text-sm flex items-center gap-2"
             >
-              <Key className="w-3.5 h-3.5 text-[#FF6D00]" />
+              <Key className="w-5 h-5 text-[#FF6D00]" />
               Change Password
             </button>
             {isAdminOrSuper && (
               <button
                 onClick={() => setShowAddUserModal(true)}
-                className="admin-btn admin-btn-primary text-xs flex items-center gap-2 shadow-md"
+                className="admin-btn admin-btn-primary text-sm flex items-center gap-2 shadow-md"
               >
-                <UserPlus className="w-3.5 h-3.5" />
+                <UserPlus className="w-4 h-4" />
                 Add Admin
               </button>
             )}
@@ -483,7 +483,7 @@ const Profile = () => {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex gap-2 border-b border-[var(--admin-border-base)] overflow-x-auto pb-0.5">
+      <div className="flex gap-2 border-b border-[var(--admin-border-base)] overflow-visible pb-0.5">
         {[
           { id: 'overview', label: 'Operator Overview', icon: User },
           { id: 'edit', label: 'Edit Profile & Avatar', icon: Edit3 },
@@ -497,7 +497,7 @@ const Profile = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${isActive
+              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all whitespace-nowrap ${isActive
                   ? 'border-[var(--admin-primary)] text-[var(--admin-primary)] bg-[var(--admin-primary-soft)] rounded-t-lg font-bold'
                   : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:border-[var(--admin-border-base)]'
                 }`}
@@ -517,57 +517,57 @@ const Profile = () => {
             <div className="flex items-center justify-between pb-4 border-b border-[var(--admin-border-subtle)]">
               <div>
                 <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Profile Information</h3>
-                <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">Verified credentials for this administrative console</p>
+                <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">Verified credentials for this administrative console</p>
               </div>
               <button
                 onClick={() => {
                   setActiveTab('edit')
                   setEditing(true)
                 }}
-                className="text-xs font-semibold text-[var(--admin-primary)] hover:underline flex items-center gap-1"
+                className="text-sm font-semibold text-[var(--admin-primary)] hover:underline flex items-center gap-1"
               >
-                <Edit3 className="w-3.5 h-3.5" />
+                <Edit3 className="w-4 h-4" />
                 Modify Details
               </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">Full Legal Name</p>
-                <p className="text-sm font-bold text-[var(--admin-text-primary)]">{user?.name || 'Administrator'}</p>
+                <p className="text-sm font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">Full Legal Name</p>
+                <p className="text-base font-bold text-[var(--admin-text-primary)]">{user?.name || 'Administrator'}</p>
               </div>
 
               <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">Email Endpoint</p>
-                <p className="text-sm font-bold font-mono text-[var(--admin-text-primary)]">{user?.email || 'admin@tarajglobal.com'}</p>
+                <p className="text-sm font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">Email Endpoint</p>
+                <p className="text-base font-bold font-mono text-[var(--admin-text-primary)]">{user?.email || 'admin@tarajglobal.com'}</p>
               </div>
 
               <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">Privilege Role</p>
+                <p className="text-sm font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">Privilege Role</p>
                 <div className="mt-1">
                   <StatusBadge status={user?.role || 'admin'} size="sm" />
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)]">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">System Node ID</p>
-                <p className="text-sm font-mono font-bold text-[var(--admin-primary)]">NODE-{user?.id || '01'}</p>
+                <p className="text-sm font-semibold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">System Node ID</p>
+                <p className="text-base font-mono font-bold text-[var(--admin-primary)]">NODE-{user?.id || '01'}</p>
               </div>
             </div>
 
             <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[var(--admin-primary-soft)] flex items-center justify-center text-[var(--admin-primary)]">
+                <div className="w-5 h-5 rounded-xl bg-[var(--admin-primary-soft)] flex items-center justify-center text-[var(--admin-primary)]">
                   <Key className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[var(--admin-text-primary)]">Password Protection</h4>
-                  <p className="text-xs text-[var(--admin-text-muted)]">Secured with bcrypt 12-round salted hash</p>
+                  <h4 className="text-base font-bold text-[var(--admin-text-primary)]">Password Protection</h4>
+                  <p className="text-sm text-[var(--admin-text-muted)]">Secured with bcrypt 12-round salted hash</p>
                 </div>
               </div>
               <button
                 onClick={() => setActiveTab('password')}
-                className="admin-btn admin-btn-secondary text-xs flex items-center gap-1.5"
+                className="admin-btn admin-btn-secondary text-sm flex items-center gap-2"
               >
                 Change Password
               </button>
@@ -577,12 +577,12 @@ const Profile = () => {
           {/* Quick Metrics & Actions */}
           <div className="lg:col-span-4 space-y-6">
             <div className="admin-card p-6 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
                 <Activity className="w-4 h-4 text-emerald-400" />
                 Access Telemetry
               </h3>
 
-              <div className="space-y-3 text-xs">
+              <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center py-2 border-b border-[var(--admin-border-subtle)]">
                   <span className="text-[var(--admin-text-muted)]">Authentication Method</span>
                   <span className="font-mono font-semibold text-[var(--admin-text-primary)]">JWT (Bearer)</span>
@@ -604,16 +604,16 @@ const Profile = () => {
 
             {isAdminOrSuper && (
               <div className="admin-card p-6 space-y-3">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
                   <UserPlus className="w-4 h-4 text-[#FF6D00]" />
                   Quick Administration
                 </h3>
-                <p className="text-xs text-[var(--admin-text-secondary)] leading-relaxed">
+                <p className="text-sm text-[var(--admin-text-secondary)] leading-relaxed">
                   As an authorized administrator, you can grant team operators access to CMS, Leads CRM, or Recruitment pipelines.
                 </p>
                 <button
                   onClick={() => setShowAddUserModal(true)}
-                  className="admin-btn admin-btn-primary w-full text-xs flex items-center justify-center gap-2 mt-2"
+                  className="admin-btn admin-btn-primary w-full text-sm flex items-center justify-center gap-2 mt-2"
                 >
                   <UserPlus className="w-4 h-4" />
                   Register New Administrator
@@ -630,7 +630,7 @@ const Profile = () => {
           <div className="lg:col-span-8 admin-card p-6 space-y-6">
             <div className="pb-4 border-b border-[var(--admin-border-subtle)]">
               <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Edit Profile & Profile Picture</h3>
-              <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">Upload your custom avatar and update personal operator details</p>
+              <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">Upload your custom avatar and update personal operator details</p>
             </div>
 
             {/* Profile Avatar Card inside Edit Tab */}
@@ -650,16 +650,16 @@ const Profile = () => {
               </div>
 
               <div className="space-y-1.5 flex-1 text-center sm:text-left">
-                <h4 className="text-sm font-bold text-[var(--admin-text-primary)]">Profile Photo</h4>
-                <p className="text-xs text-[var(--admin-text-muted)]">Upload a high-resolution PNG, JPG, or WebP avatar image (max 5MB).</p>
+                <h4 className="text-base font-bold text-[var(--admin-text-primary)]">Profile Photo</h4>
+                <p className="text-sm text-[var(--admin-text-muted)]">Upload a high-resolution PNG, JPG, or WebP avatar image (max 5MB).</p>
                 <div className="flex items-center gap-2 pt-1 justify-center sm:justify-start flex-wrap">
                   <button
                     type="button"
                     onClick={() => tabFileInputRef.current?.click()}
                     disabled={avatarUploading}
-                    className="admin-btn admin-btn-primary h-8 px-3 text-xs flex items-center gap-1.5"
+                    className="admin-btn admin-btn-primary h-8 px-3 text-sm flex items-center gap-2"
                   >
-                    <Upload className="w-3.5 h-3.5" />
+                    <Upload className="w-4 h-4" />
                     <span>{avatarUploading ? 'Uploading...' : 'Choose Image'}</span>
                   </button>
 
@@ -668,9 +668,9 @@ const Profile = () => {
                       type="button"
                       onClick={handleRemoveAvatar}
                       disabled={avatarUploading}
-                      className="admin-btn admin-btn-secondary text-[var(--admin-danger)] h-8 px-3 text-xs flex items-center gap-1.5 hover:bg-[var(--admin-danger-soft)]"
+                      className="admin-btn admin-btn-secondary text-[var(--admin-danger)] h-8 px-3 text-sm flex items-center gap-2 hover:bg-[var(--admin-danger-soft)]"
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-5 h-5" />
                       <span>Remove</span>
                     </button>
                   )}
@@ -680,7 +680,7 @@ const Profile = () => {
 
             <form onSubmit={handleSaveProfile} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
                   Full Name *
                 </label>
                 <div className="relative">
@@ -698,7 +698,7 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
                   Email Address *
                 </label>
                 <div className="relative">
@@ -707,7 +707,7 @@ const Profile = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="admin-input pl-10 font-mono text-xs w-full"
+                    className="admin-input pl-10 font-mono text-sm w-full"
                     placeholder="admin@tarajglobal.com"
                     required
                     disabled={saving}
@@ -716,7 +716,7 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
                   Assigned Authority Role
                 </label>
                 <div className="relative">
@@ -724,11 +724,11 @@ const Profile = () => {
                   <input
                     type="text"
                     value={user?.role || 'Admin'}
-                    className="admin-input pl-10 capitalize opacity-60 cursor-not-allowed font-mono text-xs w-full"
+                    className="admin-input pl-10 capitalize opacity-60 cursor-not-allowed font-mono text-sm w-full"
                     disabled
                   />
                 </div>
-                <p className="text-[11px] text-[var(--admin-text-muted)] mt-1">Role assignments can only be modified through the RBAC Team registry.</p>
+                <p className="text-[13px] text-[var(--admin-text-muted)] mt-1">Role assignments can only be modified through the RBAC Team registry.</p>
               </div>
 
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
@@ -768,11 +768,11 @@ const Profile = () => {
           </div>
 
           <div className="lg:col-span-4 admin-card p-6 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[var(--admin-primary)]" />
               Security Information
             </h4>
-            <p className="text-xs text-[var(--admin-text-secondary)] leading-relaxed">
+            <p className="text-sm text-[var(--admin-text-secondary)] leading-relaxed">
               Updating your email address changes where system notifications and security recovery links are dispatched. Ensure your email is accessible and secure.
             </p>
           </div>
@@ -785,12 +785,12 @@ const Profile = () => {
           <div className="lg:col-span-8 admin-card p-6 space-y-6">
             <div className="pb-4 border-b border-[var(--admin-border-subtle)]">
               <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Rotate Access Password</h3>
-              <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">Maintain high security hygiene by periodically updating your operator password</p>
+              <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">Maintain high security hygiene by periodically updating your operator password</p>
             </div>
 
             <form onSubmit={handleChangePassword} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
                   Current Password *
                 </label>
                 <div className="relative">
@@ -809,17 +809,17 @@ const Profile = () => {
                     onClick={() => setShowCurrentPass(!showCurrentPass)}
                     className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
                   >
-                    {showCurrentPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showCurrentPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
                   New Password *
                 </label>
                 <div className="relative">
-                  <Key className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)]" />
+                  <Key className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)]" />
                   <input
                     type={showNewPass ? 'text' : 'password'}
                     value={passData.newPassword}
@@ -834,17 +834,17 @@ const Profile = () => {
                     onClick={() => setShowNewPass(!showNewPass)}
                     className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
                   >
-                    {showNewPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showNewPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
                   Confirm New Password *
                 </label>
                 <div className="relative">
-                  <Key className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)]" />
+                  <Key className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)]" />
                   <input
                     type={showNewPass ? 'text' : 'password'}
                     value={passData.confirmPassword}
@@ -877,7 +877,7 @@ const Profile = () => {
                     </>
                   ) : (
                     <>
-                      <Key className="w-4 h-4" /> Update Password
+                      <Key className="w-5 h-5" /> Update Password
                     </>
                   )}
                 </button>
@@ -886,11 +886,11 @@ const Profile = () => {
           </div>
 
           <div className="lg:col-span-4 admin-card p-6 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] flex items-center gap-2">
               <Lock className="w-4 h-4 text-[#FF6D00]" />
               Password Security Policy
             </h4>
-            <ul className="text-xs text-[var(--admin-text-secondary)] space-y-2 list-disc pl-4">
+            <ul className="text-sm text-[var(--admin-text-secondary)] space-y-2 list-disc pl-4">
               <li>Minimum length of 6 alphanumeric characters</li>
               <li>Include uppercase, numbers, or symbols for maximum security</li>
               <li>Never share or write down administrator access keys</li>
@@ -906,11 +906,11 @@ const Profile = () => {
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
               <div>
                 <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Authorized Team Operators</h3>
-                <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">Active operators authorized to administer Taraj Global Solutions platforms</p>
+                <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">Active operators authorized to administer Taraj Global Solutions platforms</p>
               </div>
               <button
                 onClick={() => setShowAddUserModal(true)}
-                className="admin-btn admin-btn-primary text-xs flex items-center gap-2 shadow-md"
+                className="admin-btn admin-btn-primary text-sm flex items-center gap-2 shadow-md"
               >
                 <UserPlus className="w-4 h-4" />
                 Add New Administrator
@@ -924,7 +924,7 @@ const Profile = () => {
                 return (
                   <div key={u.id} className="py-3.5 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="w-9 h-9 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] flex items-center justify-center font-bold text-xs text-[var(--admin-primary)] shrink-0 overflow-hidden">
+                      <div className="w-9 h-9 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] flex items-center justify-center font-bold text-sm text-[var(--admin-primary)] shrink-0 overflow-hidden">
                         {uAvatar ? (
                           <img src={uAvatar} alt={u.name} className="w-full h-full object-cover" />
                         ) : (
@@ -933,14 +933,14 @@ const Profile = () => {
                       </div>
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <p className="text-xs font-bold text-[var(--admin-text-primary)] truncate">{u.name}</p>
+                          <p className="text-sm font-bold text-[var(--admin-text-primary)] truncate">{u.name}</p>
                           {isCurrent && (
-                            <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-[var(--admin-primary-soft)] text-[var(--admin-primary)]">
+                            <span className="text-[12px] font-bold px-1.5 py-0.2 rounded bg-[var(--admin-primary-soft)] text-[var(--admin-primary)]">
                               You
                             </span>
                           )}
                         </div>
-                        <p className="text-[11px] text-[var(--admin-text-muted)] truncate">{u.email}</p>
+                        <p className="text-[13px] text-[var(--admin-text-muted)] truncate">{u.email}</p>
                       </div>
                     </div>
 
@@ -949,10 +949,10 @@ const Profile = () => {
                       {!isCurrent && (
                         <button
                           onClick={() => setDeleteModal({ open: true, user: u })}
-                          className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] transition-colors"
+                          className="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] transition-colors"
                           title="Revoke Administrator"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-5 h-5" />
                         </button>
                       )}
                     </div>
@@ -969,21 +969,21 @@ const Profile = () => {
         <div className="admin-card p-6 space-y-6">
           <div className="pb-4 border-b border-[var(--admin-border-subtle)]">
             <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Security Protocols & Permissions Matrix</h3>
-            <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">Authorization privileges assigned to your current operator tier</p>
+            <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">Authorization privileges assigned to your current operator tier</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] space-y-2">
-              <span className="text-xs font-bold text-[var(--admin-primary)] uppercase tracking-wider block">CMS & Content</span>
-              <p className="text-xs text-[var(--admin-text-secondary)]">Create, publish, edit, and delete blogs, drafts, categories, and media vault assets.</p>
+              <span className="text-sm font-bold text-[var(--admin-primary)] uppercase tracking-wider block">CMS & Content</span>
+              <p className="text-sm text-[var(--admin-text-secondary)]">Create, publish, edit, and delete blogs, drafts, categories, and media vault assets.</p>
             </div>
             <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] space-y-2">
-              <span className="text-xs font-bold text-[#FF6D00] uppercase tracking-wider block">Revenue & CRM</span>
-              <p className="text-xs text-[var(--admin-text-secondary)]">Inspect inbound enterprise client leads, assign specialists, and advance sales pipeline stages.</p>
+              <span className="text-sm font-bold text-[#FF6D00] uppercase tracking-wider block">Revenue & CRM</span>
+              <p className="text-sm text-[var(--admin-text-secondary)]">Inspect inbound enterprise client leads, assign specialists, and advance sales pipeline stages.</p>
             </div>
             <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] space-y-2">
-              <span className="text-xs font-bold text-[#10B981] uppercase tracking-wider block">Talent Matrix</span>
-              <p className="text-xs text-[var(--admin-text-secondary)]">Manage career requisitions, review candidate resumes, and log interviewer feedback.</p>
+              <span className="text-sm font-bold text-[#10B981] uppercase tracking-wider block">Talent Matrix</span>
+              <p className="text-sm text-[var(--admin-text-secondary)]">Manage career requisitions, review candidate resumes, and log interviewer feedback.</p>
             </div>
           </div>
         </div>
@@ -1003,7 +1003,7 @@ const Profile = () => {
 
             <form onSubmit={handleCreateUser} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Full Name *</label>
+                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Full Name *</label>
                 <input
                   type="text"
                   value={newUserData.name}
@@ -1015,7 +1015,7 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Email Address *</label>
+                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Email Address *</label>
                 <input
                   type="email"
                   value={newUserData.email}
@@ -1027,7 +1027,7 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Initial Password *</label>
+                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Initial Password *</label>
                 <input
                   type="password"
                   value={newUserData.password}
@@ -1039,7 +1039,7 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Privilege Tier</label>
+                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Privilege Tier</label>
                 <select
                   value={newUserData.role}
                   onChange={(e) => setNewUserData({ ...newUserData, role: e.target.value })}
@@ -1053,10 +1053,10 @@ const Profile = () => {
               </div>
 
               <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-[var(--admin-border-subtle)]">
-                <button type="button" onClick={() => setShowAddUserModal(false)} className="admin-btn admin-btn-secondary h-9 px-4 text-xs">
+                <button type="button" onClick={() => setShowAddUserModal(false)} className="admin-btn admin-btn-secondary h-9 px-4 text-sm">
                   Cancel
                 </button>
-                <button type="submit" disabled={addingUser} className="admin-btn admin-btn-primary h-9 px-4 text-xs shadow-md">
+                <button type="submit" disabled={addingUser} className="admin-btn admin-btn-primary h-9 px-4 text-sm shadow-md">
                   {addingUser ? 'Registering...' : 'Register Administrator'}
                 </button>
               </div>

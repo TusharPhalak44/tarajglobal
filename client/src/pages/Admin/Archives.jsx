@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
+import ActionDropdown from '../../components/admin/ActionDropdown'
 import { 
   Search, 
   MoreVertical, 
@@ -160,28 +161,28 @@ const Archives = () => {
       {/* Tabs & Search */}
       <div className="admin-card p-4 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Tab switcher */}
-        <div className="flex items-center gap-1.5 p-1 bg-[var(--admin-bg-elevated)] rounded-xl border border-[var(--admin-border-subtle)] w-full md:w-auto">
+        <div className="flex items-center gap-2 p-1 bg-[var(--admin-bg-elevated)] rounded-xl border border-[var(--admin-border-subtle)] w-full md:w-auto">
           <button
             onClick={() => setActiveTab('blogs')}
-            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
               activeTab === 'blogs'
                 ? 'bg-[var(--admin-primary)] text-white shadow-sm'
                 : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
             }`}
           >
-            <FileText className="w-3.5 h-3.5" />
+            <FileText className="w-4 h-4" />
             <span>Archived Blogs ({blogs.length})</span>
           </button>
 
           <button
             onClick={() => setActiveTab('jobs')}
-            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
               activeTab === 'jobs'
                 ? 'bg-[var(--admin-primary)] text-white shadow-sm'
                 : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
             }`}
           >
-            <Briefcase className="w-3.5 h-3.5" />
+            <Briefcase className="w-4 h-4" />
             <span>Archived Careers ({jobs.length})</span>
           </button>
         </div>
@@ -194,7 +195,7 @@ const Archives = () => {
             placeholder={`Search archived ${activeTab}...`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="admin-input pl-10 pr-9 text-xs"
+            className="admin-input pl-10 pr-9 text-sm"
           />
           {searchTerm && (
             <button
@@ -220,7 +221,7 @@ const Archives = () => {
         </div>
       ) : (
         <div className="admin-card overflow-hidden">
-          <div className="admin-table-wrapper admin-scrollbar">
+          <div className="admin-table-wrapper admin-scrollbar" style={{ paddingBottom: activeDropdown ? '160px' : '0', transition: 'padding 0.2s' }}>
             <table className="admin-table">
               <thead>
                 <tr>
@@ -239,84 +240,59 @@ const Archives = () => {
                     <tr key={item.id} className="group">
                       <td>
                         <div className="flex items-center gap-3 min-w-[240px] max-w-md">
-                          <div className="w-10 h-10 rounded-lg bg-[var(--admin-warning-soft)] border border-[#FFA600]/20 flex items-center justify-center shrink-0 text-[#FFA600]">
+                          <div className="w-5 h-5 rounded-lg bg-[var(--admin-warning-soft)] border border-[#FFA600]/20 flex items-center justify-center shrink-0 text-[#FFA600]">
                             <Icon className="w-5 h-5" />
                           </div>
                           <div className="min-w-0">
-                            <p className="font-bold text-xs sm:text-sm text-[var(--admin-text-primary)] truncate group-hover:text-[var(--admin-primary)] transition-colors">
+                            <p className="font-bold text-sm sm:text-base text-[var(--admin-text-primary)] truncate group-hover:text-[var(--admin-primary)] transition-colors">
                               {item.title}
                             </p>
-                            <p className="text-[11px] text-[var(--admin-text-muted)] truncate mt-0.5">
+                            <p className="text-[13px] text-[var(--admin-text-muted)] truncate mt-0.5">
                               {item.excerpt || item.description || 'Archived historical entry'}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="text-xs text-[var(--admin-text-secondary)] font-medium">
+                      <td className="text-sm text-[var(--admin-text-secondary)] font-medium">
                         {item.category_name || item.department || '-'}
                       </td>
                       <td>
                         <StatusBadge status="archived" />
                       </td>
-                      <td className="text-xs text-[var(--admin-text-muted)]">
+                      <td className="text-sm text-[var(--admin-text-muted)]">
                         <div className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5" />
+                          <Calendar className="w-4 h-4" />
                           <span>{new Date(item.updated_at || item.created_at || Date.now()).toLocaleDateString()}</span>
                         </div>
                       </td>
                       <td className="text-right">
-                        <div className="relative inline-block text-left">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              setActiveDropdown(activeDropdown === item.id ? null : item.id)
-                            }}
-                            className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
-                          >
-                            <MoreVertical className="w-4 h-4" />
-                          </button>
-
-                          {activeDropdown === item.id && (
-                            <>
-                              <div
-                                className="fixed inset-0 z-40"
-                                onClick={() => setActiveDropdown(null)}
-                              />
-                              <div className={`absolute right-0 ${
-                                index >= Math.max(1, filteredItems.length - 2) && filteredItems.length > 2
-                                  ? 'bottom-full mb-2' 
-                                  : 'top-full mt-2'
-                              } w-48 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down`}>
+                        <ActionDropdown buttonClassName="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors" dropdownClassName="p-1 min-w-[12rem]">
                                 <div className="py-1">
                                   <button
                                     onClick={() => handleRestoreToDraft(item)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#FFA600] hover:bg-[#FFA600]/10 rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#FFA600] hover:bg-[#FFA600]/10 rounded-lg transition-colors"
                                   >
-                                    <RotateCcw className="w-3.5 h-3.5 text-[#FFA600]" />
+                                    <RotateCcw className="w-4 h-4 text-[#FFA600]" />
                                     <span>Restore to Draft</span>
                                   </button>
                                   <button
                                     onClick={() => handleRestoreToLive(item)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#72D669] hover:bg-[#72D669]/10 rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#72D669] hover:bg-[#72D669]/10 rounded-lg transition-colors"
                                   >
-                                    <CheckCircle className="w-3.5 h-3.5 text-[#72D669]" />
+                                    <CheckCircle className="w-4 h-4 text-[#72D669]" />
                                     <span>Restore to Live</span>
                                   </button>
                                 </div>
                                 <div className="pt-1">
                                   <button
                                     onClick={() => handleDelete(item)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
                                   >
-                                    <Trash2 className="w-3.5 h-3.5" />
+                                    <Trash2 className="w-5 h-5" />
                                     <span>Delete Permanently</span>
                                   </button>
                                 </div>
-                              </div>
-                            </>
-                          )}
-                        </div>
+                        </ActionDropdown>
                       </td>
                     </tr>
                   )

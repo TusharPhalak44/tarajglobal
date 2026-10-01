@@ -191,7 +191,7 @@ const Authors = () => {
             placeholder="Search authors by name, email, or role..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="admin-input pl-10 pr-9 text-xs"
+            className="admin-input pl-10 pr-9 text-sm"
           />
           {searchQuery && (
             <button
@@ -203,7 +203,7 @@ const Authors = () => {
           )}
         </div>
 
-        <span className="text-xs font-semibold text-[var(--admin-text-muted)]">
+        <span className="text-sm font-semibold text-[var(--admin-text-muted)]">
           {filteredAuthors.length} authors
         </span>
       </div>
@@ -243,27 +243,27 @@ const Authors = () => {
                           <img
                             src={author.profile_photo}
                             alt=""
-                            className="w-10 h-10 rounded-xl object-cover bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] shrink-0"
+                            className="w-5 h-5 rounded-xl object-cover bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] shrink-0"
                           />
                         ) : (
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-sm text-[#00A6FF] shrink-0">
+                          <div className="w-5 h-5 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-base text-[#00A6FF] shrink-0">
                             {author.name.charAt(0)}
                           </div>
                         )}
                         <div>
-                          <p className="font-bold text-xs sm:text-sm text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors">
+                          <p className="font-bold text-sm sm:text-base text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors">
                             {author.name}
                           </p>
-                          <p className="text-[11px] text-[var(--admin-text-muted)] font-mono">
+                          <p className="text-[13px] text-[var(--admin-text-muted)] font-mono">
                             /author/{author.slug || author.id}
                           </p>
                         </div>
                       </div>
                     </td>
-                    <td className="text-xs text-[var(--admin-text-secondary)] font-medium">
+                    <td className="text-sm text-[var(--admin-text-secondary)] font-medium">
                       {author.designation || 'Contributing Author'}
                     </td>
-                    <td className="text-xs text-[var(--admin-text-muted)]">
+                    <td className="text-sm text-[var(--admin-text-muted)]">
                       {author.email || '-'}
                     </td>
                     <td>
@@ -277,9 +277,9 @@ const Authors = () => {
                             e.stopPropagation()
                             setActiveMenu(activeMenu === author.id ? null : author.id)
                           }}
-                          className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
+                          className="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
                         >
-                          <MoreVertical className="w-4 h-4" />
+                          <MoreVertical className="w-5 h-5" />
                         </button>
 
                         {activeMenu === author.id && (
@@ -289,13 +289,13 @@ const Authors = () => {
                               index >= Math.max(1, filteredAuthors.length - 2) && filteredAuthors.length > 2
                                 ? 'bottom-full mb-2'
                                 : 'top-full mt-2'
-                            } w-40 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down`}>
+                            } w-40 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down flex flex-col`}>
                               <div className="py-1">
                                 <button
                                   onClick={() => handleEditClick(author)}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
                                 >
-                                  <Edit className="w-3.5 h-3.5 text-[#FF6D00]" />
+                                  <Edit className="w-5 h-5 text-[#FF6D00]" />
                                   <span>Edit</span>
                                 </button>
                               </div>
@@ -305,9 +305,9 @@ const Authors = () => {
                                     setDeleteConfirm(author)
                                     setActiveMenu(null)
                                   }}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
                                 >
-                                  <Trash2 className="w-3.5 h-3.5" />
+                                  <Trash2 className="w-5 h-5" />
                                   <span>Delete</span>
                                 </button>
                               </div>
@@ -337,7 +337,7 @@ const Authors = () => {
             </div>
 
             {error && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
                 {error}
               </div>
             )}
@@ -345,7 +345,7 @@ const Authors = () => {
             <form onSubmit={handleCreateAuthor} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     Author Name *
                   </label>
                   <input
@@ -359,7 +359,7 @@ const Authors = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     Designation / Title
                   </label>
                   <input
@@ -373,7 +373,7 @@ const Authors = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Email Address
                 </label>
                 <input
@@ -386,7 +386,7 @@ const Authors = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Profile Photo URL
                 </label>
                 <input
@@ -394,12 +394,12 @@ const Authors = () => {
                   value={createForm.profile_photo}
                   onChange={(e) => setCreateForm({ ...createForm, profile_photo: e.target.value })}
                   placeholder="https://..."
-                  className="admin-input text-xs font-mono"
+                  className="admin-input text-sm font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Short Bio
                 </label>
                 <textarea
@@ -407,7 +407,7 @@ const Authors = () => {
                   onChange={(e) => setCreateForm({ ...createForm, bio: e.target.value })}
                   rows={3}
                   placeholder="Brief author biography..."
-                  className="admin-input resize-none text-xs"
+                  className="admin-input resize-none text-sm"
                 />
               </div>
 
@@ -437,7 +437,7 @@ const Authors = () => {
             </div>
 
             {error && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
                 {error}
               </div>
             )}
@@ -445,7 +445,7 @@ const Authors = () => {
             <form onSubmit={handleUpdateAuthor} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     Author Name *
                   </label>
                   <input
@@ -458,7 +458,7 @@ const Authors = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     Designation
                   </label>
                   <input
@@ -471,7 +471,7 @@ const Authors = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Email Address
                 </label>
                 <input
@@ -483,37 +483,37 @@ const Authors = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Profile Photo URL
                 </label>
                 <input
                   type="url"
                   value={editForm.profile_photo}
                   onChange={(e) => setEditForm({ ...editForm, profile_photo: e.target.value })}
-                  className="admin-input text-xs font-mono"
+                  className="admin-input text-sm font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Short Bio
                 </label>
                 <textarea
                   value={editForm.bio}
                   onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
                   rows={3}
-                  className="admin-input resize-none text-xs"
+                  className="admin-input resize-none text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Status
                 </label>
                 <select
                   value={editForm.status}
                   onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
-                  className="admin-select text-xs"
+                  className="admin-select text-sm"
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>

@@ -4,6 +4,7 @@ import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
 import db from '../../config/db.js'
+import crypto from 'crypto'
 
 const router = express.Router()
 
@@ -18,7 +19,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     // Use crypto + MIME type — never trust user-supplied originalname
-    const crypto = require('crypto')
+    // Use crypto + MIME type — never trust user-supplied originalname
     const MIME_MAP = {
       'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp',
       'image/gif': 'gif', 'image/svg+xml': 'svg',

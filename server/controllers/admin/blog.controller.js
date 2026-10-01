@@ -187,16 +187,12 @@ export const getBlogById = async (req, res) => {
         a.name as author_name,
         a.profile_photo as author_photo,
         a.designation as author_designation,
-        a.bio as author_bio,
-        GROUP_CONCAT(t.name) as tags,
-        GROUP_CONCAT(t.id) as tag_ids
+        a.bio as author_bio
       FROM blogs b
       LEFT JOIN categories c ON b.category_id = c.id
       LEFT JOIN authors a ON b.author_id = a.id
-      LEFT JOIN blog_tags bt ON b.id = bt.blog_id
-      LEFT JOIN tags t ON bt.tag_id = t.id
+      
       WHERE b.id = ?
-      GROUP BY b.id
     `, [id])
 
     if (blogs.length === 0) {
@@ -206,10 +202,10 @@ export const getBlogById = async (req, res) => {
       })
     }
 
-    const blog = blogs[0]
+    const blog = blogs[0];
     blog.featured_image = blog.featured_image || blog.image
     blog.image = blog.image || blog.featured_image
-    blog.tags = blog.tags ? blog.tags.split(',') : []
+    try { blog.tags = blog.tags ? (typeof blog.tags === 'string' ? JSON.parse(blog.tags) : blog.tags) : [] } catch(e) { blog.tags = [] }
     blog.tag_ids = blog.tag_ids ? blog.tag_ids.split(',').map(Number) : []
 
     res.json({
@@ -218,6 +214,9 @@ export const getBlogById = async (req, res) => {
     })
   } catch (error) {
     console.error('Get blog error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -227,6 +226,7 @@ export const getBlogById = async (req, res) => {
 export const createBlog = async (req, res) => {
   try {    const {
       title,
+      slug: customSlug,
       content,
       excerpt,
       category_id,
@@ -254,7 +254,8 @@ export const createBlog = async (req, res) => {
     if (columnNames.includes('slug')) {
       const [existingBlogs] = await db.execute('SELECT slug FROM blogs WHERE slug IS NOT NULL')
       const existingSlugs = existingBlogs.map(b => b.slug)
-      slug = generateSlug(title, existingSlugs)    }
+      slug = customSlug ? generateSlug(customSlug, existingSlugs) : generateSlug(title, existingSlugs)
+    }
 
     // Calculate reading time if column exists
     let reading_time = null
@@ -390,6 +391,12 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('?')
     }
 
+    if (columnNames.includes('scheduled_at') && scheduled_at) {
+      insertColumns.push('scheduled_at')
+      insertValues.push(scheduled_at)
+      valuePlaceholders.push('?')
+    }
+
     if (columnNames.includes('tags') && tags) {
       insertColumns.push('tags')
       insertValues.push(JSON.stringify(tags))
@@ -425,6 +432,9 @@ export const createBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Create blog error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -473,7 +483,7 @@ export const updateBlog = async (req, res) => {
     } else if (title && title !== currentBlog.title && !customSlug) {
       const [existingBlogs] = await db.execute('SELECT slug FROM blogs WHERE id != ?', [id])
       const existingSlugs = existingBlogs.map(b => b.slug)
-      slug = generateSlug(title, existingSlugs)
+      slug = customSlug ? generateSlug(customSlug, existingSlugs) : generateSlug(title, existingSlugs)
     }
 
     // Build update query dynamically
@@ -520,6 +530,11 @@ export const updateBlog = async (req, res) => {
     if (seo_keywords !== undefined) {
       updates.push('seo_keywords = ?')
       values.push(seo_keywords || null)
+    }
+
+    if (tags !== undefined) {
+      updates.push('tags = ?')
+      values.push(JSON.stringify(tags))
     }
 
     if (canonical_url !== undefined) {
@@ -611,6 +626,9 @@ export const updateBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Update blog error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -665,6 +683,9 @@ export const deleteBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Delete blog error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -706,6 +727,9 @@ export const updateBlogStatus = async (req, res) => {
     })
   } catch (error) {
     console.error('Update blog status error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -774,6 +798,9 @@ export const duplicateBlog = async (req, res) => {
     })
   } catch (error) {
     console.error('Duplicate blog error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -800,6 +827,9 @@ export const getBlogRevisions = async (req, res) => {
     })
   } catch (error) {
     console.error('Get blog revisions error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -861,6 +891,9 @@ export const restoreBlogRevision = async (req, res) => {
     })
   } catch (error) {
     console.error('Restore blog revision error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }
@@ -928,6 +961,9 @@ export const bulkBlogAction = async (req, res) => {
     })
   } catch (error) {
     console.error('Bulk blog action error:', error)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ success: false, message: 'Duplicate entry detected (likely slug).' })
+    }
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 }

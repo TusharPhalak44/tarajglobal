@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Linkedin, Mail } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
@@ -48,119 +48,21 @@ const LEADERSHIP_MEMBERS = [
    each line progressively upon scroll entrance.
 ───────────────────────────────────────────────────────────────────────────── */
 const LineByLineBio = ({ text, className, isProfileInView }) => {
-  const containerRef = useRef(null)
-  const [lines, setLines] = useState([])
   const prefersReducedMotion = useReducedMotion()
-
-  const calculateLines = () => {
-    if (!containerRef.current) return
-    const wordElements = containerRef.current.querySelectorAll('.measure-word')
-    if (!wordElements || wordElements.length === 0) return
-
-    const groupedLines = []
-    let currentLineY = null
-    let currentLineWords = []
-
-    wordElements.forEach((el) => {
-      const top = el.offsetTop
-      if (currentLineY === null) {
-        currentLineY = top
-        currentLineWords.push(el.textContent.trim())
-      } else if (Math.abs(top - currentLineY) <= 8) {
-        currentLineWords.push(el.textContent.trim())
-      } else {
-        if (currentLineWords.length > 0) {
-          groupedLines.push(currentLineWords.join(' '))
-        }
-        currentLineY = top
-        currentLineWords = [el.textContent.trim()]
-      }
-    })
-
-    if (currentLineWords.length > 0) {
-      groupedLines.push(currentLineWords.join(' '))
-    }
-
-    if (groupedLines.length > 0) {
-      setLines(groupedLines)
-    }
-  }
-
-  useEffect(() => {
-    // Initial calculation
-    calculateLines()
-
-    // Recalculate once web fonts have loaded
-    if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(calculateLines)
-    }
-
-    // Observe container resize for true responsive line wrapping across devices
-    let resizeObserver
-    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
-      resizeObserver = new ResizeObserver(() => {
-        calculateLines()
-      })
-      resizeObserver.observe(containerRef.current)
-    }
-
-    const handleResize = () => calculateLines()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      if (resizeObserver) resizeObserver.disconnect()
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [text])
 
   if (prefersReducedMotion) {
     return <p className={className}>{text}</p>
   }
 
   return (
-    <div ref={containerRef} className={`relative ${className || ''}`}>
-      {/* Invisible measurement layer to compute actual word line-breaks across breakpoints */}
-      <p
-        className="invisible absolute top-0 left-0 right-0 pointer-events-none select-none"
-        aria-hidden="true"
-      >
-        {text.split(' ').map((word, i) => (
-          <span key={i} className="measure-word inline">
-            {word}{' '}
-          </span>
-        ))}
-      </p>
-
-      {/* Rendered Line-by-Line Staggered Scroll Animation */}
-      {lines.length > 0 ? (
-        <div className="space-y-1">
-          {lines.map((line, idx) => (
-            <motion.div
-              key={`${idx}-${line.slice(0, 10)}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={isProfileInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{
-                duration: 0.42,
-                delay: 0.18 + idx * 0.09,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="block leading-relaxed"
-            >
-              {line}
-            </motion.div>
-          ))}
-        </div>
-      ) : (
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={isProfileInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.45, delay: 0.18 }}
-          className="leading-relaxed"
-        >
-          {text}
-        </motion.p>
-      )}
-    </div>
+    <motion.p
+      initial={{ opacity: 0, y: 10 }}
+      animate={isProfileInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+      transition={{ duration: 0.45, delay: 0.18 }}
+      className={`leading-relaxed ${className || ''}`}
+    >
+      {text}
+    </motion.p>
   )
 }
 
@@ -205,7 +107,7 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
       variants={prefersReducedMotion ? {} : profileVariants}
       initial={prefersReducedMotion ? {} : 'hidden'}
       animate={isRowInView ? 'visible' : 'hidden'}
-      className="flex flex-col items-center"
+      className="relative flex flex-col items-center"
     >
       <motion.div
         whileHover={prefersReducedMotion ? {} : { y: -3 }}
@@ -214,9 +116,8 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
       >
         {/* ── PORTRAIT COLUMN (Ordered 2 on Desktop for Row 2) ──────────────── */}
         <div
-          className={`relative flex-shrink-0 flex flex-col items-center ${
-            isSecondRow ? 'order-1 lg:order-2' : ''
-          }`}
+          className={`relative flex-shrink-0 flex flex-col items-center ${isSecondRow ? 'order-1 lg:order-2' : ''
+            }`}
         >
           {/* Ambient Glow */}
           <div
@@ -303,9 +204,8 @@ const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
 
         {/* ── CONTENT COLUMN ──────────────────────────────────────────────── */}
         <div
-          className={`flex-1 text-center lg:text-left ${
-            isSecondRow ? 'order-2 lg:order-1' : ''
-          }`}
+          className={`flex-1 text-left ${isSecondRow ? 'order-2 lg:order-1' : ''
+            }`}
         >
           {/* Name */}
           <motion.h3
@@ -427,7 +327,7 @@ export const OurTeam = () => {
           initial={prefersReducedMotion ? {} : 'hidden'}
           whileInView={prefersReducedMotion ? {} : 'visible'}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-center mb-10 sm:mb-12 lg:mb-14"
+          className="relative text-center mb-10 sm:mb-12 lg:mb-14"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-3 tracking-tight">
             MEET OUR{' '}

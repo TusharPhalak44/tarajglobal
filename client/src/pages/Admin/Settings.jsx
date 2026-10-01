@@ -102,7 +102,7 @@ const Settings = () => {
 
       {message.text && (
         <div
-          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-base font-medium transition-all ${
             message.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
               : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
@@ -114,7 +114,7 @@ const Settings = () => {
       )}
 
       {/* Tabs navigation */}
-      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-x-auto pb-0.5">
+      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-visible pb-0.5">
         {[
           { id: 'general', label: 'General & Site Identity', icon: Globe },
           { id: 'contact', label: 'Communications & Direct Lines', icon: Mail },
@@ -126,7 +126,7 @@ const Settings = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all whitespace-nowrap ${
                 isActive
                   ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
                   : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
@@ -149,12 +149,12 @@ const Settings = () => {
                   <Globe className="w-5 h-5 text-primary" />
                   Site Identity & Global Meta
                 </h3>
-                <p className="text-xs text-text-muted mt-0.5">Defines the default application identity rendered in search engines and open graph cards</p>
+                <p className="text-sm text-text-muted mt-0.5">Defines the default application identity rendered in search engines and open graph cards</p>
               </div>
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Platform / Brand Title
                   </label>
                   <input
@@ -164,11 +164,11 @@ const Settings = () => {
                     placeholder="Taraj Global Solutions"
                     className="admin-input"
                   />
-                  <p className="text-[11px] text-text-muted mt-1">Appended to default browser tabs and SERP snippets</p>
+                  <p className="text-[13px] text-text-muted mt-1">Appended to default browser tabs and SERP snippets</p>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Global Site Tagline / Description
                   </label>
                   <textarea
@@ -178,25 +178,25 @@ const Settings = () => {
                     placeholder="B2B Growth & Lead Generation Agency powered by revenue intelligence."
                     className="admin-textarea"
                   />
-                  <p className="text-[11px] text-text-muted mt-1">Default meta description used when specific page overrides are absent</p>
+                  <p className="text-[13px] text-text-muted mt-1">Default meta description used when specific page overrides are absent</p>
                 </div>
               </div>
             </div>
 
             {/* Quick Info Sidecard */}
             <div className="admin-card p-6 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-text-muted flex items-center gap-2">
+              <span className="text-sm font-bold uppercase tracking-wider text-text-muted flex items-center gap-2">
                 <Server className="w-4 h-4 text-primary" /> Architecture
               </span>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <p className="text-sm text-text-secondary leading-relaxed">
                 Settings stored in this node cascade into both SSR/Client page templates and automated notifications across all microservices.
               </p>
               <div className="p-3.5 rounded-xl bg-[var(--admin-bg)] border border-[var(--admin-border)] space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-sm">
                   <span className="text-text-muted">Environment</span>
                   <span className="font-mono text-emerald-400 font-bold">PRODUCTION</span>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-sm">
                   <span className="text-text-muted">Cache Strategy</span>
                   <span className="font-mono text-primary">Live Edge Sync</span>
                 </div>
@@ -214,12 +214,12 @@ const Settings = () => {
                   <Mail className="w-5 h-5 text-[#FF6D00]" />
                   Corporate Communications Channels
                 </h3>
-                <p className="text-xs text-text-muted mt-0.5">Direct contact inboxes and telephone routing channels</p>
+                <p className="text-sm text-text-muted mt-0.5">Direct contact inboxes and telephone routing channels</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Official Contact Email
                   </label>
                   <div className="relative">
@@ -235,7 +235,7 @@ const Settings = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Corporate Phone Line
                   </label>
                   <div className="relative">
@@ -253,8 +253,8 @@ const Settings = () => {
             </div>
 
             <div className="admin-card p-6 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-text-muted">Lead Forwarding</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-text-muted">Lead Forwarding</h4>
+              <p className="text-sm text-text-secondary leading-relaxed">
                 Contact submissions received through website forms will utilize these default contact credentials for acknowledgment receipts and automated confirmation threads.
               </p>
             </div>
@@ -269,12 +269,12 @@ const Settings = () => {
                 <Share2 className="w-5 h-5 text-primary" />
                 Enterprise Social Network Endpoints
               </h3>
-              <p className="text-xs text-text-muted mt-0.5">Corporate profiles linked across headers, footers, and syndicated articles</p>
+              <p className="text-sm text-text-muted mt-0.5">Corporate profiles linked across headers, footers, and syndicated articles</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5 flex items-center gap-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5 flex items-center gap-2">
                   <Linkedin className="w-4 h-4 text-[#00A6FF]" /> LinkedIn Organization
                 </label>
                 <input
@@ -282,12 +282,12 @@ const Settings = () => {
                   value={settings.cms_social_linkedin || ''}
                   onChange={(e) => handleChange('cms_social_linkedin', e.target.value)}
                   placeholder="https://linkedin.com/company/taraj-global"
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5 flex items-center gap-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5 flex items-center gap-2">
                   <Twitter className="w-4 h-4 text-cyan-400" /> Twitter / X Handle
                 </label>
                 <input
@@ -295,12 +295,12 @@ const Settings = () => {
                   value={settings.cms_social_twitter || ''}
                   onChange={(e) => handleChange('cms_social_twitter', e.target.value)}
                   placeholder="https://twitter.com/tarajglobal"
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5 flex items-center gap-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5 flex items-center gap-2">
                   <Facebook className="w-4 h-4 text-blue-500" /> Facebook Page
                 </label>
                 <input
@@ -308,7 +308,7 @@ const Settings = () => {
                   value={settings.cms_social_facebook || ''}
                   onChange={(e) => handleChange('cms_social_facebook', e.target.value)}
                   placeholder="https://facebook.com/tarajglobal"
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
             </div>

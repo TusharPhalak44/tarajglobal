@@ -15,7 +15,7 @@ export const PageHeader = ({
     if (!badge) return null
     if (typeof badge === 'string') {
       return (
-        <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/20 shrink-0">
+        <span className="px-2.5 py-0.5 rounded-full text-sm font-semibold bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/20 shrink-0">
           {badge}
         </span>
       )
@@ -49,7 +49,7 @@ export const PageHeader = ({
 
             if (act.to) {
               return (
-                <Link key={idx} to={act.to} className={`${btnClass} text-xs flex items-center gap-2`}>
+                <Link key={idx} to={act.to} className={`${btnClass} text-sm flex items-center gap-2`}>
                   {content}
                 </Link>
               )
@@ -62,7 +62,7 @@ export const PageHeader = ({
                   href={act.href}
                   target={act.target || '_blank'}
                   rel="noopener noreferrer"
-                  className={`${btnClass} text-xs flex items-center gap-2`}
+                  className={`${btnClass} text-sm flex items-center gap-2`}
                 >
                   {content}
                 </a>
@@ -75,7 +75,7 @@ export const PageHeader = ({
                 type="button"
                 onClick={act.onClick}
                 disabled={act.disabled}
-                className={`${btnClass} text-xs flex items-center gap-2`}
+                className={`${btnClass} text-sm flex items-center gap-2`}
               >
                 {content}
               </button>
@@ -98,13 +98,13 @@ export const PageHeader = ({
       <div>
         {/* Breadcrumb path */}
         {breadcrumbs.length > 0 && (
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--admin-text-muted)] mb-2">
+          <nav className="flex items-center gap-2 text-sm text-[var(--admin-text-muted)] mb-2">
             <Link to="/admin/dashboard" className="hover:text-[var(--admin-primary)] transition-colors">
               Command Center
             </Link>
             {breadcrumbs.map((crumb, idx) => (
               <React.Fragment key={idx}>
-                <ChevronRight className="w-3.5 h-3.5 text-[var(--admin-text-dim)] shrink-0" />
+                <ChevronRight className="w-4 h-4 text-[var(--admin-text-dim)] shrink-0" />
                 {crumb.path ? (
                   <Link to={crumb.path} className="hover:text-[var(--admin-primary)] transition-colors">
                     {crumb.label}
@@ -136,7 +136,7 @@ export const PageHeader = ({
         </div>
 
         {subtitle && (
-          <p className="text-sm text-[var(--admin-text-secondary)] mt-1 max-w-2xl">
+          <p className="text-base text-[var(--admin-text-secondary)] mt-1 max-w-2xl">
             {subtitle}
           </p>
         )}

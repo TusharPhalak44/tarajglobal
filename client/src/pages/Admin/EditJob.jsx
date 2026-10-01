@@ -123,7 +123,7 @@ const EditJob = () => {
       />
 
       {error && (
-        <div className="p-4 rounded-xl bg-[var(--admin-danger-soft)] border border-[#F43F5E]/30 text-[#F43F5E] text-xs font-semibold flex items-center justify-between animate-slide-down">
+        <div className="p-4 rounded-xl bg-[var(--admin-danger-soft)] border border-[#F43F5E]/30 text-[#F43F5E] text-sm font-semibold flex items-center justify-between animate-slide-down">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{error}</span>
@@ -144,13 +144,13 @@ const EditJob = () => {
               <h3 className="text-base font-bold text-[var(--admin-text-primary)]">
                 Position Details & Logistics
               </h3>
-              <p className="text-xs text-[var(--admin-text-muted)]">Title, location parameters, and remuneration.</p>
+              <p className="text-sm text-[var(--admin-text-muted)]">Title, location parameters, and remuneration.</p>
             </div>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                 Position Title <span className="text-[#F43F5E]">*</span>
               </label>
               <input
@@ -165,7 +165,7 @@ const EditJob = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Location
                 </label>
                 <input
@@ -178,14 +178,14 @@ const EditJob = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Employment Type
                 </label>
                 <select
                   name="type"
                   value={editForm.type}
                   onChange={handleInputChange}
-                  className="admin-select text-xs"
+                  className="admin-select text-sm"
                 >
                   <option value="full-time">Full-Time</option>
                   <option value="part-time">Part-Time</option>
@@ -195,7 +195,7 @@ const EditJob = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Salary / Compensation
                 </label>
                 <input
@@ -209,7 +209,7 @@ const EditJob = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                 Job Description <span className="text-[#F43F5E]">*</span>
               </label>
               <textarea
@@ -217,13 +217,13 @@ const EditJob = () => {
                 value={editForm.description}
                 onChange={handleInputChange}
                 rows={6}
-                className="admin-input resize-y text-xs leading-relaxed"
+                className="admin-input resize-y text-sm leading-relaxed"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                 Requirements & Qualifications
               </label>
               <textarea
@@ -231,19 +231,19 @@ const EditJob = () => {
                 value={editForm.requirements}
                 onChange={handleInputChange}
                 rows={5}
-                className="admin-input resize-y text-xs leading-relaxed"
+                className="admin-input resize-y text-sm leading-relaxed"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                 Publication Status
               </label>
               <select
                 name="status"
                 value={editForm.status}
                 onChange={handleInputChange}
-                className="admin-select text-xs font-semibold"
+                className="admin-select text-sm font-semibold"
               >
                 <option value="draft">Draft</option>
                 <option value="active">Active (Open to Public)</option>

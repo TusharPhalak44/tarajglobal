@@ -154,12 +154,12 @@ const Applications = () => {
 
       {/* Position Filter Banner */}
       {filters.job_id && (
-        <div className="admin-card p-3 flex items-center justify-between gap-3 text-xs">
+        <div className="admin-card p-3 flex items-center justify-between gap-3 text-sm">
           <div className="flex items-center gap-2 text-[var(--admin-text-secondary)]">
             <span>Filtered by Position:</span>
             <strong className="text-[var(--admin-text-primary)]">{initialJobTitle || `#${filters.job_id}`}</strong>
           </div>
-          <button onClick={clearJobFilter} className="text-xs text-[var(--admin-primary)] font-bold hover:underline">
+          <button onClick={clearJobFilter} className="text-sm text-[var(--admin-primary)] font-bold hover:underline">
             Clear filter
           </button>
         </div>
@@ -181,7 +181,7 @@ const Applications = () => {
               onClick={() => setFilters({ ...filters, search: '' })}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           )}
         </div>
@@ -230,17 +230,17 @@ const Applications = () => {
                   >
                     <div className="min-w-0 space-y-1">
                       <div className="flex items-center gap-2.5">
-                        <p className="text-sm font-bold text-[var(--admin-text-primary)] truncate">
+                        <p className="text-base font-bold text-[var(--admin-text-primary)] truncate">
                           {app.first_name} {app.last_name}
                         </p>
                         <StatusBadge status={app.status || 'applied'} />
                       </div>
-                      <p className="text-xs text-[var(--admin-text-secondary)] truncate">
+                      <p className="text-sm text-[var(--admin-text-secondary)] truncate">
                         {app.job_title || 'General Position'} • <span className="text-[var(--admin-text-muted)]">{app.email}</span>
                       </p>
                     </div>
 
-                    <span className="text-xs font-medium text-[var(--admin-text-dim)] shrink-0">
+                    <span className="text-sm font-medium text-[var(--admin-text-dim)] shrink-0">
                       {new Date(app.applied_at || app.created_at || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                     </span>
                   </div>
@@ -250,20 +250,20 @@ const Applications = () => {
 
             {/* Pagination */}
             {pagination.totalPages > 1 && (
-              <div className="pt-4 flex items-center justify-between text-xs text-[var(--admin-text-muted)]">
+              <div className="pt-4 flex items-center justify-between text-sm text-[var(--admin-text-muted)]">
                 <span>Page {pagination.page} of {pagination.totalPages}</span>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setPagination({ ...pagination, page: pagination.page - 1 })}
                     disabled={pagination.page === 1}
-                    className="admin-btn admin-btn-secondary h-8 px-3 text-xs disabled:opacity-40"
+                    className="admin-btn admin-btn-secondary h-8 px-3 text-sm disabled:opacity-40"
                   >
                     Prev
                   </button>
                   <button
                     onClick={() => setPagination({ ...pagination, page: pagination.page + 1 })}
                     disabled={pagination.page === pagination.totalPages}
-                    className="admin-btn admin-btn-secondary h-8 px-3 text-xs disabled:opacity-40"
+                    className="admin-btn admin-btn-secondary h-8 px-3 text-sm disabled:opacity-40"
                   >
                     Next
                   </button>
@@ -281,7 +281,7 @@ const Applications = () => {
                     <h3 className="text-lg font-bold text-[var(--admin-text-primary)]">
                       {selectedApplication.first_name} {selectedApplication.last_name}
                     </h3>
-                    <p className="text-xs text-[var(--admin-text-secondary)] mt-0.5">
+                    <p className="text-sm text-[var(--admin-text-secondary)] mt-0.5">
                       {selectedApplication.job_title || 'General Position'}
                     </p>
                   </div>
@@ -290,10 +290,10 @@ const Applications = () => {
 
                 {/* Stage Progression Buttons */}
                 <div className="space-y-2">
-                  <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                  <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                     Recruitment Funnel Stage
                   </span>
-                  <div className="grid grid-cols-3 gap-2 text-xs">
+                  <div className="grid grid-cols-3 gap-2 text-sm">
                     {['applied', 'screening', 'shortlisted', 'interview', 'selected', 'rejected'].map((stage) => (
                       <button
                         key={stage}
@@ -313,7 +313,7 @@ const Applications = () => {
 
                 {/* Resume Download Action */}
                 {selectedApplication.resume_url && (
-                  <div className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] flex items-center justify-between text-xs">
+                  <div className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] flex items-center justify-between text-sm">
                     <span className="text-[var(--admin-text-primary)] flex items-center gap-2 font-semibold">
                       <FileCheck className="w-4 h-4 text-[#10B981]" /> Resume Attached
                     </span>
@@ -321,17 +321,17 @@ const Applications = () => {
                       href={selectedApplication.resume_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="admin-btn admin-btn-secondary h-8 px-3 text-xs"
+                      className="admin-btn admin-btn-secondary h-8 px-3 text-sm"
                     >
-                      <Download className="w-3.5 h-3.5" />
+                      <Download className="w-4 h-4" />
                       <span>Download</span>
                     </a>
                   </div>
                 )}
 
                 {/* Contact Channels */}
-                <div className="space-y-2.5 pt-4 border-t border-[var(--admin-border-subtle)] text-xs">
-                  <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                <div className="space-y-2.5 pt-4 border-t border-[var(--admin-border-subtle)] text-sm">
+                  <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                     Candidate Channels
                   </span>
                   <div className="flex justify-between p-2 rounded-lg bg-[var(--admin-bg-elevated)]">
@@ -353,10 +353,10 @@ const Applications = () => {
                 {/* Cover Letter */}
                 {selectedApplication.cover_letter && (
                   <div className="space-y-2 pt-4 border-t border-[var(--admin-border-subtle)]">
-                    <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                    <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                       Cover Letter / Statement
                     </span>
-                    <p className="text-xs text-[var(--admin-text-secondary)] leading-relaxed whitespace-pre-wrap bg-[var(--admin-bg-elevated)] p-3.5 rounded-xl border border-[var(--admin-border-base)] shadow-xs">
+                    <p className="text-sm text-[var(--admin-text-secondary)] leading-relaxed whitespace-pre-wrap bg-[var(--admin-bg-elevated)] p-3.5 rounded-xl border border-[var(--admin-border-base)] shadow-xs">
                       {selectedApplication.cover_letter}
                     </p>
                   </div>
@@ -364,14 +364,14 @@ const Applications = () => {
 
                 {/* Recruiter Evaluation Notes */}
                 <div className="space-y-3 pt-4 border-t border-[var(--admin-border-subtle)]">
-                  <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                  <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                     Interviewer Notes & Logs
                   </span>
 
                   {selectedApplication.notes && selectedApplication.notes.length > 0 && (
                     <div className="space-y-2">
                       {selectedApplication.notes.map((n, i) => (
-                        <div key={i} className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] text-xs text-[var(--admin-text-primary)] border border-[var(--admin-border-subtle)]">
+                        <div key={i} className="p-3 rounded-xl bg-[var(--admin-bg-elevated)] text-sm text-[var(--admin-text-primary)] border border-[var(--admin-border-subtle)]">
                           {typeof n === 'string' ? n : n.note}
                         </div>
                       ))}
@@ -384,14 +384,14 @@ const Applications = () => {
                       onChange={(e) => setNewNote(e.target.value)}
                       placeholder="Add evaluation note or interview feedback..."
                       rows={3}
-                      className="admin-textarea w-full text-xs"
+                      className="admin-textarea w-full text-sm"
                       disabled={saving}
                     />
                     <div className="flex justify-between items-center pt-1">
                       <button
                         type="button"
                         onClick={() => handleDelete(selectedApplication)}
-                        className="text-xs font-semibold text-[var(--admin-danger)] hover:underline"
+                        className="text-sm font-semibold text-[var(--admin-danger)] hover:underline"
                       >
                         Delete Record
                       </button>
@@ -399,7 +399,7 @@ const Applications = () => {
                       <button
                         type="submit"
                         disabled={saving || !newNote.trim()}
-                        className="admin-btn admin-btn-primary h-8 px-4 text-xs disabled:opacity-40"
+                        className="admin-btn admin-btn-primary h-8 px-4 text-sm disabled:opacity-40"
                       >
                         Save Note
                       </button>
@@ -408,7 +408,7 @@ const Applications = () => {
                 </div>
               </>
             ) : (
-              <p className="text-xs text-[var(--admin-text-muted)] py-12 text-center">
+              <p className="text-sm text-[var(--admin-text-muted)] py-12 text-center">
                 Select a candidate from the list to view profile details.
               </p>
             )}

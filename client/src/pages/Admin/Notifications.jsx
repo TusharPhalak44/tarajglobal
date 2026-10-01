@@ -96,7 +96,7 @@ const Notifications = () => {
           unreadCount > 0 ? (
             <button
               onClick={handleMarkAllAsRead}
-              className="admin-btn admin-btn-primary text-xs shadow-md shadow-[#00A6FF]/20"
+              className="admin-btn admin-btn-primary text-sm shadow-md shadow-[#00A6FF]/20"
             >
               <CheckCheck className="w-4 h-4" />
               <span>Mark All Read</span>
@@ -110,7 +110,7 @@ const Notifications = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-sm font-bold transition-colors ${
               filter === 'all'
                 ? 'bg-[var(--admin-primary)] text-white'
                 : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
@@ -120,7 +120,7 @@ const Notifications = () => {
           </button>
           <button
             onClick={() => setFilter('unread')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-sm font-bold transition-colors flex items-center gap-2 ${
               filter === 'unread'
                 ? 'bg-[var(--admin-primary)] text-white'
                 : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
@@ -133,7 +133,7 @@ const Notifications = () => {
           </button>
         </div>
 
-        <span className="text-xs text-[var(--admin-text-muted)]">
+        <span className="text-sm text-[var(--admin-text-muted)]">
           {unreadCount > 0 ? `${unreadCount} unread` : 'All read'}
         </span>
       </div>
@@ -164,23 +164,23 @@ const Notifications = () => {
                 }`}
               >
                 <div className="flex items-start gap-3.5 min-w-0">
-                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${colorClass}`}>
+                  <div className={`w-5 h-5 rounded-xl border flex items-center justify-center shrink-0 ${colorClass}`}>
                     <Icon className="w-5 h-5" />
                   </div>
 
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <h4 className="text-xs sm:text-sm font-bold text-[var(--admin-text-primary)] truncate">
+                      <h4 className="text-sm sm:text-base font-bold text-[var(--admin-text-primary)] truncate">
                         {n.title || n.action || 'System Notification'}
                       </h4>
                       {!n.is_read && (
                         <span className="w-2 h-2 rounded-full bg-[#00A6FF] shrink-0" />
                       )}
                     </div>
-                    <p className="text-xs text-[var(--admin-text-secondary)] mt-1 leading-relaxed">
+                    <p className="text-sm text-[var(--admin-text-secondary)] mt-1 leading-relaxed">
                       {n.message || n.details}
                     </p>
-                    <span className="text-[10px] text-[var(--admin-text-dim)] mt-2 flex items-center gap-1">
+                    <span className="text-[12px] text-[var(--admin-text-dim)] mt-2 flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       <span>{new Date(n.created_at || Date.now()).toLocaleString()}</span>
                     </span>
@@ -191,7 +191,7 @@ const Notifications = () => {
                   {!n.is_read && (
                     <button
                       onClick={() => handleMarkAsRead(n.id)}
-                      className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[#72D669] hover:bg-[#72D669]/10 transition-colors"
+                      className="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[#72D669] hover:bg-[#72D669]/10 transition-colors"
                       title="Mark as read"
                     >
                       <Check className="w-4 h-4" />
@@ -199,10 +199,10 @@ const Notifications = () => {
                   )}
                   <button
                     onClick={() => handleDelete(n.id)}
-                    className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[#F43F5E] hover:bg-[#F43F5E]/10 transition-colors"
+                    className="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[#F43F5E] hover:bg-[#F43F5E]/10 transition-colors"
                     title="Dismiss"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-5 h-5" />
                   </button>
                 </div>
               </div>

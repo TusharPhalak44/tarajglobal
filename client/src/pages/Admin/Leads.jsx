@@ -143,7 +143,7 @@ const Leads = () => {
               onClick={() => setFilters({ ...filters, search: '' })}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           )}
         </div>
@@ -204,18 +204,18 @@ const Leads = () => {
                   >
                     <div className="min-w-0 space-y-1">
                       <div className="flex items-center gap-2.5">
-                        <p className="text-sm font-bold text-[var(--admin-text-primary)] truncate">
+                        <p className="text-base font-bold text-[var(--admin-text-primary)] truncate">
                           {lead.name}
                         </p>
                         <StatusBadge status={lead.status || 'new'} />
                       </div>
-                      <p className="text-xs text-[var(--admin-text-secondary)] truncate">
+                      <p className="text-sm text-[var(--admin-text-secondary)] truncate">
                         {lead.company || 'Private Entity'} • <span className="text-[var(--admin-text-muted)]">{lead.email}</span>
                       </p>
                     </div>
 
                     <div className="text-right shrink-0">
-                      <span className="text-xs font-medium text-[var(--admin-text-dim)] block">
+                      <span className="text-sm font-medium text-[var(--admin-text-dim)] block">
                         {new Date(lead.created_at || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                       </span>
                     </div>
@@ -226,20 +226,20 @@ const Leads = () => {
 
             {/* Pagination */}
             {pagination.totalPages > 1 && (
-              <div className="pt-4 flex items-center justify-between text-xs text-[var(--admin-text-muted)]">
+              <div className="pt-4 flex items-center justify-between text-sm text-[var(--admin-text-muted)]">
                 <span>Page {pagination.page} of {pagination.totalPages}</span>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setPagination({ ...pagination, page: pagination.page - 1 })}
                     disabled={pagination.page === 1}
-                    className="admin-btn admin-btn-secondary h-8 px-3 text-xs disabled:opacity-40"
+                    className="admin-btn admin-btn-secondary h-8 px-3 text-sm disabled:opacity-40"
                   >
                     Prev
                   </button>
                   <button
                     onClick={() => setPagination({ ...pagination, page: pagination.page + 1 })}
                     disabled={pagination.page === pagination.totalPages}
-                    className="admin-btn admin-btn-secondary h-8 px-3 text-xs disabled:opacity-40"
+                    className="admin-btn admin-btn-secondary h-8 px-3 text-sm disabled:opacity-40"
                   >
                     Next
                   </button>
@@ -257,7 +257,7 @@ const Leads = () => {
                     <h3 className="text-lg font-bold text-[var(--admin-text-primary)]">
                       {selectedLead.name}
                     </h3>
-                    <p className="text-xs text-[var(--admin-text-secondary)] mt-0.5">
+                    <p className="text-sm text-[var(--admin-text-secondary)] mt-0.5">
                       {selectedLead.company || 'Private Organization'}
                     </p>
                   </div>
@@ -266,10 +266,10 @@ const Leads = () => {
 
                 {/* Stage Progression Selector */}
                 <div className="space-y-2">
-                  <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                  <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                     Pipeline Stage
                   </span>
-                  <div className="grid grid-cols-3 gap-2 text-xs">
+                  <div className="grid grid-cols-3 gap-2 text-sm">
                     {['new', 'contacted', 'qualified', 'converted', 'closed'].map((stage) => (
                       <button
                         key={stage}
@@ -289,7 +289,7 @@ const Leads = () => {
 
                 {/* Account Owner */}
                 <div className="space-y-2">
-                  <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                  <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                     Assigned Specialist
                   </span>
                   <select
@@ -307,12 +307,12 @@ const Leads = () => {
 
                 {/* Contact Channels */}
                 <div className="space-y-3 pt-4 border-t border-[var(--admin-border-subtle)]">
-                  <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                  <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                     Contact Channels
                   </span>
                   
                   {selectedLead.email && (
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] text-xs">
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] text-sm">
                       <span className="text-[var(--admin-text-primary)] font-medium truncate mr-2">{selectedLead.email}</span>
                       <a href={`mailto:${selectedLead.email}`} className="text-[var(--admin-primary)] hover:underline font-bold shrink-0">
                         Send Mail →
@@ -321,7 +321,7 @@ const Leads = () => {
                   )}
 
                   {selectedLead.phone && (
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] text-xs">
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] text-sm">
                       <span className="text-[var(--admin-text-primary)] font-medium">{selectedLead.phone}</span>
                       <a href={`tel:${selectedLead.phone}`} className="text-[var(--admin-success)] hover:underline font-bold shrink-0">
                         Call →
@@ -333,17 +333,17 @@ const Leads = () => {
                 {/* Inbound Message */}
                 {selectedLead.message && (
                   <div className="space-y-2 pt-4 border-t border-[var(--admin-border-subtle)]">
-                    <span className="text-[11px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
+                    <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider block">
                       Inbound Inquiry Details
                     </span>
-                    <p className="text-xs text-[var(--admin-text-secondary)] leading-relaxed whitespace-pre-wrap bg-[var(--admin-bg-elevated)] p-3.5 rounded-xl border border-[var(--admin-border-base)] shadow-xs">
+                    <p className="text-sm text-[var(--admin-text-secondary)] leading-relaxed whitespace-pre-wrap bg-[var(--admin-bg-elevated)] p-3.5 rounded-xl border border-[var(--admin-border-base)] shadow-xs">
                       {selectedLead.message}
                     </p>
                   </div>
                 )}
               </>
             ) : (
-              <p className="text-xs text-[var(--admin-text-muted)] py-12 text-center">
+              <p className="text-sm text-[var(--admin-text-muted)] py-12 text-center">
                 Select a lead from the list to view profile dossier.
               </p>
             )}

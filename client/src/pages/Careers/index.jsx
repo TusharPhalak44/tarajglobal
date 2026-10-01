@@ -1201,8 +1201,12 @@ function Careers() {
   const handleFileSelect = (e) => {
     const file = e.target.files[0]
     if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        alert('File size exceeds 5MB limit. Please upload a smaller file.')
+      if (file.type !== 'application/pdf') {
+        alert('Only PDF documents are allowed. Please upload a valid PDF file.')
+        return
+      }
+      if (file.size > 8 * 1024 * 1024) {
+        alert('File size exceeds 8MB limit. Please upload a smaller file.')
         return
       }
       setSelectedFile(file)
@@ -2237,14 +2241,14 @@ function Careers() {
                     {/* Resume Upload Drag & Drop Area */}
                     <div>
                       <label className="block text-[11px] font-mono text-text-secondary mb-1.5">
-                        Attach Resume (PDF, DOC, DOCX &bull; Max 5MB) <span className="text-[#FF6D00]">*</span>
+                        Attach Resume (PDF Only &bull; Max 8MB) <span className="text-[#FF6D00]">*</span>
                       </label>
                       <div className="border-2 border-dashed border-border/90 dark:border-white/15 rounded-2xl p-5 text-center hover:border-[#00A6FF]/60 transition-colors cursor-pointer bg-background/50">
                         <input
                           type="file"
                           id="resume-drop"
                           className="hidden"
-                          accept=".pdf,.doc,.docx"
+                          accept=".pdf"
                           onChange={handleFileSelect}
                         />
                         <label htmlFor="resume-drop" className="cursor-pointer block">

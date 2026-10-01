@@ -216,7 +216,7 @@ const CMSOurClients = () => {
       {/* Alert Notification */}
       {message.text && (
         <div
-          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-base font-medium transition-all ${
             message.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
               : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
@@ -231,28 +231,28 @@ const CMSOurClients = () => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="admin-card p-4 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Total Brands</div>
+            <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Total Brands</div>
             <div className="text-2xl font-black text-text-primary mt-1">{clients.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
+          <div className="w-5 h-5 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
             <Building2 className="w-5 h-5" />
           </div>
         </div>
 
         <div className="admin-card p-4 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Active in Marquee</div>
+            <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Active in Marquee</div>
             <div className="text-2xl font-black text-emerald-400 mt-1">{activeClients.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+          <div className="w-5 h-5 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
             <CheckCircle className="w-5 h-5" />
           </div>
         </div>
 
         <div className="admin-card p-4 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Section State</div>
-            <div className="text-sm font-bold mt-1.5">
+            <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Section State</div>
+            <div className="text-base font-bold mt-1.5">
               {sectionSettings.is_visible ? (
                 <span className="text-emerald-400">Live on Site</span>
               ) : (
@@ -260,17 +260,17 @@ const CMSOurClients = () => {
               )}
             </div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
+          <div className="w-5 h-5 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
             <Eye className="w-5 h-5" />
           </div>
         </div>
 
         <div className="admin-card p-4 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">Reel Speed</div>
-            <div className="text-xs font-mono font-bold text-text-primary mt-1.5">Continuous 20s</div>
+            <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Reel Speed</div>
+            <div className="text-sm font-mono font-bold text-text-primary mt-1.5">Continuous 20s</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
+          <div className="w-5 h-5 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
             <Sparkles className="w-5 h-5" />
           </div>
         </div>
@@ -284,10 +284,10 @@ const CMSOurClients = () => {
               <Settings className="w-4 h-4 text-primary" />
               Homepage Clients Section Parameters
             </h2>
-            <p className="text-xs text-text-muted mt-0.5">Customize the heading, gradient accents, and subtext displayed above the marquee</p>
+            <p className="text-sm text-text-muted mt-0.5">Customize the heading, gradient accents, and subtext displayed above the marquee</p>
           </div>
           <div className="flex items-center gap-3">
-            <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+            <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-text-secondary select-none">
               <input
                 type="checkbox"
                 checked={sectionSettings.is_visible}
@@ -299,9 +299,9 @@ const CMSOurClients = () => {
             <button
               onClick={handleSaveSettings}
               disabled={savingSettings}
-              className="admin-btn-primary text-xs flex items-center gap-2"
+              className="admin-btn-primary text-sm flex items-center gap-2"
             >
-              <Save className="w-3.5 h-3.5" />
+              <Save className="w-4 h-4" />
               {savingSettings ? 'Deploying...' : 'Save Parameters'}
             </button>
           </div>
@@ -309,7 +309,7 @@ const CMSOurClients = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+            <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
               Eyebrow Badge Text
             </label>
             <input
@@ -317,12 +317,12 @@ const CMSOurClients = () => {
               value={sectionSettings.eyebrow || ''}
               onChange={(e) => setSettings(s => ({ ...s, eyebrow: e.target.value }))}
               placeholder="GLOBAL PARTNERSHIPS"
-              className="admin-input font-mono text-xs"
+              className="admin-input font-mono text-sm"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+            <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
               Title (White Part)
             </label>
             <input
@@ -335,7 +335,7 @@ const CMSOurClients = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+            <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
               Title (Gradient Highlight)
             </label>
             <input
@@ -348,14 +348,14 @@ const CMSOurClients = () => {
           </div>
 
           <div className="md:col-span-3">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+            <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
               Supporting Subtitle Text
             </label>
             <textarea
               value={sectionSettings.subtitle || ''}
               onChange={(e) => setSettings(s => ({ ...s, subtitle: e.target.value }))}
               rows={2}
-              className="admin-textarea text-xs"
+              className="admin-textarea text-sm"
               placeholder="Building demand with the technology ecosystem trusted by modern enterprises."
             />
           </div>
@@ -369,8 +369,8 @@ const CMSOurClients = () => {
             <Building2 className="w-4 h-4 text-primary" />
             Client Brand Roster ({clients.length})
           </h3>
-          <button onClick={openAdd} className="admin-btn-primary text-xs flex items-center gap-2">
-            <Plus className="w-3.5 h-3.5" />
+          <button onClick={openAdd} className="admin-btn-primary text-sm flex items-center gap-2">
+            <Plus className="w-4 h-4" />
             Add Partner Logo
           </button>
         </div>
@@ -383,7 +383,7 @@ const CMSOurClients = () => {
             onAction={openAdd}
           />
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-visible">
             <table className="admin-table">
               <thead>
                 <tr>
@@ -399,7 +399,7 @@ const CMSOurClients = () => {
                 {clients.map((client) => (
                   <tr key={client.id}>
                     <td>
-                      <div className="w-20 h-10 rounded-lg bg-background dark:bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 overflow-hidden">
+                      <div className="w-20 h-10 rounded-lg bg-background dark:bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-2 overflow-hidden">
                         {imgSrc(client.logo_path) ? (
                           <img
                             src={imgSrc(client.logo_path)}
@@ -412,7 +412,7 @@ const CMSOurClients = () => {
                         )}
                       </div>
                     </td>
-                    <td className="font-semibold text-text-primary text-sm">
+                    <td className="font-semibold text-text-primary text-base">
                       {client.client_name}
                     </td>
                     <td>
@@ -421,16 +421,16 @@ const CMSOurClients = () => {
                           href={client.website_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs font-mono text-primary hover:underline inline-flex items-center gap-1"
+                          className="text-sm font-mono text-primary hover:underline inline-flex items-center gap-1"
                         >
                           <span>{client.website_url.replace(/^https?:\/\//, '')}</span>
                           <ArrowUpRight className="w-3 h-3" />
                         </a>
                       ) : (
-                        <span className="text-text-muted text-xs">—</span>
+                        <span className="text-text-muted text-sm">—</span>
                       )}
                     </td>
-                    <td className="font-mono text-xs text-text-secondary">
+                    <td className="font-mono text-sm text-text-secondary">
                       #{client.display_order}
                     </td>
                     <td>
@@ -443,7 +443,7 @@ const CMSOurClients = () => {
                       </button>
                     </td>
                     <td className="text-right">
-                      <div className="flex items-center justify-end gap-1.5">
+                      <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEdit(client)}
                           className="admin-btn-icon"
@@ -456,7 +456,7 @@ const CMSOurClients = () => {
                           className="admin-btn-icon hover:text-rose-400"
                           title="Delete Client"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-5 h-5" />
                         </button>
                       </div>
                     </td>
@@ -472,16 +472,16 @@ const CMSOurClients = () => {
       {activeClients.length > 0 && (
         <div className="admin-card p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-text-muted flex items-center gap-2">
+            <span className="text-sm font-bold uppercase tracking-wider text-text-muted flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-primary" /> Live Client Strip Preview
             </span>
-            <span className="text-xs text-text-muted font-mono">{activeClients.length} logos in active stream</span>
+            <span className="text-sm text-text-muted font-mono">{activeClients.length} logos in active stream</span>
           </div>
 
           <div className="p-6 rounded-2xl bg-background dark:bg-[#07090E] border border-[var(--admin-border)] overflow-hidden">
             <div className="text-center mb-6">
               {sectionSettings.eyebrow && (
-                <div className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase mb-1">
+                <div className="text-[12px] font-mono font-bold tracking-widest text-primary uppercase mb-1">
                   {sectionSettings.eyebrow}
                 </div>
               )}
@@ -507,7 +507,7 @@ const CMSOurClients = () => {
                       className="max-h-full max-w-full object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
                     />
                   ) : (
-                    <span className="text-xs text-text-muted font-semibold">{c.client_name}</span>
+                    <span className="text-sm text-text-muted font-semibold">{c.client_name}</span>
                   )}
                 </div>
               ))}
@@ -525,7 +525,7 @@ const CMSOurClients = () => {
                 <h3 className="text-lg font-bold text-text-primary">
                   {editingClient.id ? 'Edit Client Record' : 'Register New Partner'}
                 </h3>
-                <p className="text-xs text-text-muted mt-0.5">Configure client brand identity and external URL</p>
+                <p className="text-sm text-text-muted mt-0.5">Configure client brand identity and external URL</p>
               </div>
               <button onClick={closeModal} className="admin-btn-icon">
                 <X className="w-5 h-5" />
@@ -535,11 +535,11 @@ const CMSOurClients = () => {
             <form onSubmit={handleSaveClient} className="p-6 space-y-4">
               {/* Logo file upload / path */}
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Client Logo Asset *
                 </label>
                 <div className="flex gap-3 items-center">
-                  <div className="w-20 h-14 rounded-xl bg-background dark:bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-1.5 shrink-0 overflow-hidden">
+                  <div className="w-20 h-14 rounded-xl bg-background dark:bg-[#07090E] border border-[var(--admin-border)] flex items-center justify-center p-2 shrink-0 overflow-hidden">
                     {editingClient.logo_path && imgSrc(editingClient.logo_path) ? (
                       <img
                         src={imgSrc(editingClient.logo_path)}
@@ -557,9 +557,9 @@ const CMSOurClients = () => {
                       type="button"
                       onClick={() => fileRef.current?.click()}
                       disabled={uploadingLogo}
-                      className="admin-btn-secondary w-full text-xs flex items-center justify-center gap-2"
+                      className="admin-btn-secondary w-full text-sm flex items-center justify-center gap-2"
                     >
-                      <Upload className="w-3.5 h-3.5 text-primary" />
+                      <Upload className="w-4 h-4 text-primary" />
                       {uploadingLogo ? 'Uploading Asset...' : 'Upload Image File'}
                     </button>
                     <input
@@ -578,14 +578,14 @@ const CMSOurClients = () => {
                     value={editingClient.logo_path || ''}
                     onChange={(e) => setEditing(prev => ({ ...prev, logo_path: e.target.value }))}
                     placeholder="/mitel.png or https://example.com/logo.svg"
-                    className="admin-input text-xs font-mono"
+                    className="admin-input text-sm font-mono"
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Client / Enterprise Name *
                 </label>
                 <input
@@ -599,7 +599,7 @@ const CMSOurClients = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Official Website URL (Optional)
                 </label>
                 <input
@@ -607,13 +607,13 @@ const CMSOurClients = () => {
                   value={editingClient.website_url || ''}
                   onChange={(e) => setEditing(p => ({ ...p, website_url: e.target.value }))}
                   placeholder="https://mitel.com"
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Sort Order
                   </label>
                   <input
@@ -625,7 +625,7 @@ const CMSOurClients = () => {
                   />
                 </div>
                 <div className="flex items-center pt-6">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+                  <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-text-secondary select-none">
                     <input
                       type="checkbox"
                       checked={editingClient.is_active}

@@ -253,7 +253,7 @@ export default function CareerGalleryAdmin() {
       {/* Toast Notification */}
       {toastMessage.text && (
         <div
-          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-base font-medium transition-all ${
             toastMessage.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
               : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
@@ -290,7 +290,7 @@ export default function CareerGalleryAdmin() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#07090E] via-transparent to-transparent opacity-80" />
                 
                 {/* Floating Quick Actions */}
-                <div className="absolute top-3 right-3 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                   <button 
                     onClick={() => setViewingPhotosEvent(event)}
                     className="p-2 rounded-lg bg-background dark:bg-black/60 backdrop-blur text-white hover:bg-primary transition-colors"
@@ -310,17 +310,17 @@ export default function CareerGalleryAdmin() {
                     className="p-2 rounded-lg bg-background dark:bg-black/60 backdrop-blur text-white hover:bg-rose-500 transition-colors"
                     title="Delete Event"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-5 h-5" />
                   </button>
                 </div>
 
                 <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-md bg-background dark:bg-black/70 backdrop-blur text-white text-xs font-mono font-bold flex items-center gap-1.5">
+                  <span className="px-2.5 py-1 rounded-md bg-background dark:bg-black/70 backdrop-blur text-white text-sm font-mono font-bold flex items-center gap-2">
                     <ImageIcon className="w-3 h-3 text-primary" />
                     <span>{event.photoCount || event.photos?.length || 0} Assets</span>
                   </span>
                   {event.quarter && (
-                    <span className="px-2 py-0.5 rounded-md bg-surface/90 dark:bg-white/10 backdrop-blur text-text-secondary text-[11px] font-mono">
+                    <span className="px-2 py-0.5 rounded-md bg-surface/90 dark:bg-white/10 backdrop-blur text-text-secondary text-[13px] font-mono">
                       {event.quarter}
                     </span>
                   )}
@@ -331,12 +331,12 @@ export default function CareerGalleryAdmin() {
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
                     {event.category && (
-                      <span className="text-[10px] font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
+                      <span className="text-[12px] font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
                         {event.category}
                       </span>
                     )}
                     {event.tag && (
-                      <span className="text-[10px] font-mono text-text-muted">
+                      <span className="text-[12px] font-mono text-text-muted">
                         #{event.tag}
                       </span>
                     )}
@@ -344,7 +344,7 @@ export default function CareerGalleryAdmin() {
                   <h3 className="font-bold text-text-primary text-base truncate" title={event.title}>
                     {event.title}
                   </h3>
-                  <p className="text-xs text-text-secondary line-clamp-2 mt-1 leading-relaxed">
+                  <p className="text-sm text-text-secondary line-clamp-2 mt-1 leading-relaxed">
                     {event.desc || event.description || 'No description provided.'}
                   </p>
                 </div>
@@ -352,14 +352,14 @@ export default function CareerGalleryAdmin() {
                 <div className="pt-3 border-t border-[var(--admin-border)] flex items-center justify-between">
                   <button
                     onClick={() => setViewingPhotosEvent(event)}
-                    className="text-xs font-semibold text-primary hover:underline flex items-center gap-1"
+                    className="text-sm font-semibold text-primary hover:underline flex items-center gap-1"
                   >
                     <span>Inspect Photo Album</span>
-                    <Images className="w-3.5 h-3.5" />
+                    <Images className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => openModal(event)}
-                    className="text-xs text-text-muted hover:text-text-primary"
+                    className="text-sm text-text-muted hover:text-text-primary"
                   >
                     Edit Info
                   </button>
@@ -379,7 +379,7 @@ export default function CareerGalleryAdmin() {
                 <h2 className="text-lg font-bold text-text-primary">
                   {selectedEvent ? 'Edit Gallery Event' : 'Create Gallery Event'}
                 </h2>
-                <p className="text-xs text-text-muted mt-0.5">Configure event title, category, theme, and photo reel</p>
+                <p className="text-sm text-text-muted mt-0.5">Configure event title, category, theme, and photo reel</p>
               </div>
               <button onClick={closeModal} className="admin-btn-icon">
                 <X className="w-5 h-5" />
@@ -389,7 +389,7 @@ export default function CareerGalleryAdmin() {
             <form id="event-form" onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Event Title *
                   </label>
                   <input
@@ -404,7 +404,7 @@ export default function CareerGalleryAdmin() {
                 </div>
                 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Category Taxonomy
                   </label>
                   <input
@@ -418,7 +418,7 @@ export default function CareerGalleryAdmin() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Theme Accent Color
                   </label>
                   <div className="flex gap-2">
@@ -433,13 +433,13 @@ export default function CareerGalleryAdmin() {
                       type="text"
                       value={formData.color}
                       readOnly
-                      className="admin-input font-mono text-xs flex-1"
+                      className="admin-input font-mono text-sm flex-1"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Search Tag
                   </label>
                   <input
@@ -453,7 +453,7 @@ export default function CareerGalleryAdmin() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Quarter / Milestone Date
                   </label>
                   <input
@@ -462,12 +462,12 @@ export default function CareerGalleryAdmin() {
                     value={formData.quarter}
                     onChange={handleInputChange}
                     placeholder="e.g. Q1 2026"
-                    className="admin-input font-mono text-xs"
+                    className="admin-input font-mono text-sm"
                   />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Event Narrative / Description
                   </label>
                   <textarea
@@ -475,7 +475,7 @@ export default function CareerGalleryAdmin() {
                     value={formData.description}
                     onChange={handleInputChange}
                     rows={3}
-                    className="admin-textarea text-xs"
+                    className="admin-textarea text-sm"
                     placeholder="Highlight the accomplishments, activities, and team members involved in this event..."
                   />
                 </div>
@@ -484,10 +484,10 @@ export default function CareerGalleryAdmin() {
               {/* Photo Upload Section */}
               <div className="space-y-3 pt-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                  <label className="text-sm font-semibold uppercase tracking-wider text-text-muted">
                     Upload Photos to Event Album
                   </label>
-                  <span className="text-xs font-mono text-primary font-bold">{selectedFiles.length} files selected</span>
+                  <span className="text-sm font-mono text-primary font-bold">{selectedFiles.length} files selected</span>
                 </div>
                 
                 <div className="relative border-2 border-dashed border-[var(--admin-border)] hover:border-primary/50 rounded-2xl p-6 transition-colors bg-[var(--admin-bg)] text-center cursor-pointer">
@@ -499,8 +499,8 @@ export default function CareerGalleryAdmin() {
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
                   <UploadCloud className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <p className="text-text-primary text-sm font-semibold">Click or drop high-res event photos here</p>
-                  <p className="text-xs text-text-muted mt-1 font-mono">PNG, JPG, WEBP (Max 5MB each)</p>
+                  <p className="text-text-primary text-base font-semibold">Click or drop high-res event photos here</p>
+                  <p className="text-sm text-text-muted mt-1 font-mono">PNG, JPG, WEBP (Max 5MB each)</p>
                 </div>
 
                 {previewUrls.length > 0 && (
@@ -513,7 +513,7 @@ export default function CareerGalleryAdmin() {
                           onClick={() => removeFile(index)}
                           className="absolute top-1 right-1 p-1 bg-background dark:bg-black/70 rounded-md text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-rose-500"
                         >
-                          <X className="w-3.5 h-3.5" />
+                          <X className="w-4 h-4" />
                         </button>
                       </div>
                     ))}
@@ -560,10 +560,10 @@ export default function CareerGalleryAdmin() {
                   {viewingPhotosEvent.title}
                 </h2>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="px-2 py-0.5 rounded-full bg-primary/30 dark:bg-primary/10 text-primary font-mono font-bold text-xs">
+                  <span className="px-2 py-0.5 rounded-full bg-primary/30 dark:bg-primary/10 text-primary font-mono font-bold text-sm">
                     {viewingPhotosEvent.category || 'General'}
                   </span>
-                  <span className="text-xs text-text-muted">
+                  <span className="text-sm text-text-muted">
                     {viewingPhotosEvent.photos?.length || 0} Photos in Album
                   </span>
                 </div>
@@ -592,29 +592,29 @@ export default function CareerGalleryAdmin() {
                       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                         <button 
                           onClick={(e) => { e.stopPropagation(); setEditingPhoto(photo) }}
-                          className="p-1.5 bg-background dark:bg-black/60 backdrop-blur rounded-md text-white hover:bg-primary transition-colors"
+                          className="p-2 bg-background dark:bg-black/60 backdrop-blur rounded-md text-white hover:bg-primary transition-colors"
                           title="Edit Photo Details"
                         >
-                          <Edit2 className="w-3.5 h-3.5" />
+                          <Edit2 className="w-4 h-4" />
                         </button>
                         <button 
                           onClick={(e) => {
                             e.stopPropagation()
                             setDeleteConfirm({ open: true, type: 'photo', id: photo.id, title: photo.title || `Photo #${index + 1}` })
                           }}
-                          className="p-1.5 bg-background dark:bg-black/60 backdrop-blur rounded-md text-white hover:bg-rose-500 transition-colors"
+                          className="p-2 bg-background dark:bg-black/60 backdrop-blur rounded-md text-white hover:bg-rose-500 transition-colors"
                           title="Delete Photo"
                         >
-                          <Trash2 className="w-3.5 h-3.5" />
+                          <Trash2 className="w-5 h-5" />
                         </button>
                       </div>
 
                       <div className="absolute bottom-0 left-0 right-0 p-2.5 opacity-0 group-hover:opacity-100 transition-opacity">
                         {photo.title && (
-                          <h4 className="text-text-primary dark:text-white text-xs font-bold line-clamp-1">{photo.title}</h4>
+                          <h4 className="text-text-primary dark:text-white text-sm font-bold line-clamp-1">{photo.title}</h4>
                         )}
                         {photo.caption && (
-                          <p className="text-text-secondary dark:text-white/70 text-[10px] line-clamp-1">{photo.caption}</p>
+                          <p className="text-text-secondary dark:text-white/70 text-[12px] line-clamp-1">{photo.caption}</p>
                         )}
                       </div>
                     </div>
@@ -655,7 +655,7 @@ export default function CareerGalleryAdmin() {
               
               <form id="photo-form" onSubmit={handleUpdatePhoto} className="space-y-3">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1">
                     Photo Title
                   </label>
                   <input
@@ -663,12 +663,12 @@ export default function CareerGalleryAdmin() {
                     value={editingPhoto.title || ''}
                     onChange={(e) => setEditingPhoto({...editingPhoto, title: e.target.value})}
                     placeholder="e.g. Leadership Keynote"
-                    className="admin-input text-xs"
+                    className="admin-input text-sm"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1">
                     Caption
                   </label>
                   <textarea
@@ -676,12 +676,12 @@ export default function CareerGalleryAdmin() {
                     onChange={(e) => setEditingPhoto({...editingPhoto, caption: e.target.value})}
                     rows={2}
                     placeholder="Brief description of the moment..."
-                    className="admin-textarea text-xs"
+                    className="admin-textarea text-sm"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1">
                     Tag
                   </label>
                   <input
@@ -689,7 +689,7 @@ export default function CareerGalleryAdmin() {
                     value={editingPhoto.tag || ''}
                     onChange={(e) => setEditingPhoto({...editingPhoto, tag: e.target.value})}
                     placeholder="e.g. Keynote, Awards"
-                    className="admin-input text-xs"
+                    className="admin-input text-sm"
                   />
                 </div>
 
@@ -706,7 +706,7 @@ export default function CareerGalleryAdmin() {
                     disabled={isSubmitting}
                     className="admin-btn-primary flex items-center gap-2"
                   >
-                    {isSubmitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
+                    {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
                     Save Photo
                   </button>
                 </div>

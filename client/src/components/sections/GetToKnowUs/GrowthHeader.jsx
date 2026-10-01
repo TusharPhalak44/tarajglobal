@@ -59,7 +59,7 @@ export const GrowthHeader = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-sm sm:text-base text-text-secondary dark:text-slate-300 font-normal leading-relaxed max-w-[560px]"
+          className="text-base sm:text-base lg:text-lg text-text-secondary dark:text-slate-300 font-normal leading-relaxed max-w-[640px]"
         >
           Taraj Global is a B2B demand generation and technology marketing partner helping organizations connect with the right companies, decision-makers, and buying audiences. We combine audience intelligence, verified B2B data, targeted outreach, and full-funnel marketing strategies to create qualified opportunities and support sustainable pipeline growth.
         </motion.p>

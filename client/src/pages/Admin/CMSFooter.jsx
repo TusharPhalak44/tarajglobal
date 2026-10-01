@@ -204,7 +204,7 @@ const CMSFooter = () => {
 
       {message.text && (
         <div
-          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-base font-medium transition-all ${
             message.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
               : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
@@ -216,10 +216,10 @@ const CMSFooter = () => {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-x-auto pb-0.5">
+      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-visible pb-0.5">
         <button
           onClick={() => setActiveTab('links')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all ${
             activeTab === 'links'
               ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
               : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
@@ -230,7 +230,7 @@ const CMSFooter = () => {
         </button>
         <button
           onClick={() => setActiveTab('social')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all ${
             activeTab === 'social'
               ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
               : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
@@ -249,8 +249,8 @@ const CMSFooter = () => {
               <Layers className="w-4 h-4 text-primary" />
               Directory Navigation Links ({footerLinks.length})
             </h3>
-            <button onClick={handleAddLink} className="admin-btn-primary text-xs flex items-center gap-2">
-              <Plus className="w-3.5 h-3.5" />
+            <button onClick={handleAddLink} className="admin-btn-primary text-sm flex items-center gap-2">
+              <Plus className="w-4 h-4" />
               Add Link
             </button>
           </div>
@@ -263,7 +263,7 @@ const CMSFooter = () => {
               onAction={handleAddLink}
             />
           ) : (
-            <div className="overflow-x-auto">
+            <div className="overflow-visible">
               <table className="admin-table">
                 <thead>
                   <tr>
@@ -278,23 +278,23 @@ const CMSFooter = () => {
                 <tbody>
                   {footerLinks.map((item) => (
                     <tr key={item.id}>
-                      <td className="font-mono text-xs text-primary font-semibold">
+                      <td className="font-mono text-sm text-primary font-semibold">
                         {item.section}
                       </td>
-                      <td className="font-semibold text-text-primary text-sm">
+                      <td className="font-semibold text-text-primary text-base">
                         {item.title}
                       </td>
-                      <td className="text-xs font-mono text-text-secondary">
+                      <td className="text-sm font-mono text-text-secondary">
                         {item.url}
                       </td>
-                      <td className="font-mono text-xs text-text-muted">
+                      <td className="font-mono text-sm text-text-muted">
                         #{item.display_order}
                       </td>
                       <td>
                         <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
                       </td>
                       <td className="text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                        <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEditLink(item)}
                             className="admin-btn-icon"
@@ -307,7 +307,7 @@ const CMSFooter = () => {
                             className="admin-btn-icon hover:text-rose-400"
                             title="Delete Link"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -328,8 +328,8 @@ const CMSFooter = () => {
               <Share2 className="w-4 h-4 text-primary" />
               Social Media Endpoints ({footerSocialLinks.length})
             </h3>
-            <button onClick={handleAddSocial} className="admin-btn-primary text-xs flex items-center gap-2">
-              <Plus className="w-3.5 h-3.5" />
+            <button onClick={handleAddSocial} className="admin-btn-primary text-sm flex items-center gap-2">
+              <Plus className="w-4 h-4" />
               Add Social Profile
             </button>
           </div>
@@ -342,7 +342,7 @@ const CMSFooter = () => {
               onAction={handleAddSocial}
             />
           ) : (
-            <div className="overflow-x-auto">
+            <div className="overflow-visible">
               <table className="admin-table">
                 <thead>
                   <tr>
@@ -357,26 +357,26 @@ const CMSFooter = () => {
                 <tbody>
                   {footerSocialLinks.map((item) => (
                     <tr key={item.id}>
-                      <td className="font-semibold text-text-primary text-sm">
+                      <td className="font-semibold text-text-primary text-base">
                         {item.platform}
                       </td>
-                      <td className="font-mono text-xs text-text-muted">
+                      <td className="font-mono text-sm text-text-muted">
                         {item.icon}
                       </td>
-                      <td className="text-xs font-mono text-primary">
+                      <td className="text-sm font-mono text-primary">
                         <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
                           <span>{item.url}</span>
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       </td>
-                      <td className="font-mono text-xs text-text-muted">
+                      <td className="font-mono text-sm text-text-muted">
                         #{item.display_order}
                       </td>
                       <td>
                         <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
                       </td>
                       <td className="text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                        <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEditSocial(item)}
                             className="admin-btn-icon"
@@ -389,7 +389,7 @@ const CMSFooter = () => {
                             className="admin-btn-icon hover:text-rose-400"
                             title="Delete Profile"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -411,7 +411,7 @@ const CMSFooter = () => {
                 <h3 className="text-lg font-bold text-text-primary">
                   {editingLink.id ? 'Edit Directory Link' : 'Add Directory Link'}
                 </h3>
-                <p className="text-xs text-text-muted mt-0.5">Specify column assignment and URL route</p>
+                <p className="text-sm text-text-muted mt-0.5">Specify column assignment and URL route</p>
               </div>
               <button onClick={() => { setShowLinkModal(false); setEditingLink(null); }} className="admin-btn-icon">
                 <X className="w-5 h-5" />
@@ -420,7 +420,7 @@ const CMSFooter = () => {
 
             <form onSubmit={handleSaveLink} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Column Section
                 </label>
                 <select
@@ -437,7 +437,7 @@ const CMSFooter = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Link Title *
                 </label>
                 <input
@@ -451,7 +451,7 @@ const CMSFooter = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Target URL *
                 </label>
                 <input
@@ -459,14 +459,14 @@ const CMSFooter = () => {
                   value={editingLink.url}
                   onChange={(e) => setEditingLink({ ...editingLink, url: e.target.value })}
                   placeholder="/mql-services or https://..."
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                   required
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Order Index
                   </label>
                   <input
@@ -477,7 +477,7 @@ const CMSFooter = () => {
                   />
                 </div>
                 <div className="flex items-center pt-6">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+                  <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-text-secondary select-none">
                     <input
                       type="checkbox"
                       checked={editingLink.is_active}
@@ -521,7 +521,7 @@ const CMSFooter = () => {
                 <h3 className="text-lg font-bold text-text-primary">
                   {editingSocial.id ? 'Edit Social Handle' : 'Add Social Channel'}
                 </h3>
-                <p className="text-xs text-text-muted mt-0.5">Configure platform name and link</p>
+                <p className="text-sm text-text-muted mt-0.5">Configure platform name and link</p>
               </div>
               <button onClick={() => { setShowSocialModal(false); setEditingSocial(null); }} className="admin-btn-icon">
                 <X className="w-5 h-5" />
@@ -530,7 +530,7 @@ const CMSFooter = () => {
 
             <form onSubmit={handleSaveSocial} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Platform Name *
                 </label>
                 <input
@@ -544,7 +544,7 @@ const CMSFooter = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Icon Identifier
                 </label>
                 <input
@@ -552,12 +552,12 @@ const CMSFooter = () => {
                   value={editingSocial.icon}
                   onChange={(e) => setEditingSocial({ ...editingSocial, icon: e.target.value })}
                   placeholder="e.g. bi-linkedin"
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                   Profile URL *
                 </label>
                 <input
@@ -565,14 +565,14 @@ const CMSFooter = () => {
                   value={editingSocial.url}
                   onChange={(e) => setEditingSocial({ ...editingSocial, url: e.target.value })}
                   placeholder="https://linkedin.com/company/..."
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                   required
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">
                     Order Index
                   </label>
                   <input
@@ -583,7 +583,7 @@ const CMSFooter = () => {
                   />
                 </div>
                 <div className="flex items-center pt-6">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-text-secondary select-none">
+                  <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-text-secondary select-none">
                     <input
                       type="checkbox"
                       checked={editingSocial.is_active}

@@ -103,7 +103,7 @@ const PaymentGateways = () => {
       />
 
       {savedMessage && (
-        <div className="p-4 rounded-xl bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669] text-xs font-semibold flex items-center gap-2 animate-slide-down">
+        <div className="p-4 rounded-xl bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669] text-sm font-semibold flex items-center gap-2 animate-slide-down">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{savedMessage}</span>
         </div>
@@ -112,22 +112,22 @@ const PaymentGateways = () => {
       {/* Security notice banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="admin-card p-4 flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] flex items-center justify-center shrink-0">
+          <div className="w-5 h-5 rounded-xl bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] flex items-center justify-center shrink-0">
             <Shield className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-[var(--admin-text-primary)]">PCI-DSS Compliant Encryption</h4>
-            <p className="text-[11px] text-[var(--admin-text-muted)] mt-0.5">Sensitive keys are stored in encrypted vaults and never transmitted in plaintext.</p>
+            <h4 className="text-sm font-bold text-[var(--admin-text-primary)]">PCI-DSS Compliant Encryption</h4>
+            <p className="text-[13px] text-[var(--admin-text-muted)] mt-0.5">Sensitive keys are stored in encrypted vaults and never transmitted in plaintext.</p>
           </div>
         </div>
 
         <div className="admin-card p-4 flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-[var(--admin-accent-soft)] text-[var(--admin-accent)] flex items-center justify-center shrink-0">
+          <div className="w-5 h-5 rounded-xl bg-[var(--admin-accent-soft)] text-[var(--admin-accent)] flex items-center justify-center shrink-0">
             <Zap className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-[var(--admin-text-primary)]">Zero Downtime Fallback</h4>
-            <p className="text-[11px] text-[var(--admin-text-muted)] mt-0.5">Switching primary providers takes effect instantly across all client invoices.</p>
+            <h4 className="text-sm font-bold text-[var(--admin-text-primary)]">Zero Downtime Fallback</h4>
+            <p className="text-[13px] text-[var(--admin-text-muted)] mt-0.5">Switching primary providers takes effect instantly across all client invoices.</p>
           </div>
         </div>
       </div>
@@ -146,26 +146,26 @@ const PaymentGateways = () => {
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[var(--admin-border-subtle)]">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center text-[var(--admin-primary)]">
+                  <div className="w-5 h-5 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center text-[var(--admin-primary)]">
                     <CreditCard className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2.5">
-                      <h3 className="text-sm font-bold text-[var(--admin-text-primary)]">{gw.name}</h3>
+                      <h3 className="text-base font-bold text-[var(--admin-text-primary)]">{gw.name}</h3>
                       {isActive && (
-                        <span className="admin-badge admin-badge-success text-[10px]">
+                        <span className="admin-badge admin-badge-success text-[12px]">
                           Primary Live Gateway
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">{gw.description}</p>
+                    <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">{gw.description}</p>
                   </div>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => setActiveGateway(gw.id)}
-                  className={`admin-btn text-xs py-1.5 px-3.5 shrink-0 ${
+                  className={`admin-btn text-sm py-1.5 px-3.5 shrink-0 ${
                     isActive 
                       ? 'bg-[var(--admin-success-soft)] text-[#72D669] border border-[#72D669]/30' 
                       : 'admin-btn-secondary'
@@ -183,7 +183,7 @@ const PaymentGateways = () => {
 
                   return (
                     <div key={field.name} className="space-y-1.5">
-                      <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider">
+                      <label className="block text-sm font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider">
                         {field.label}
                       </label>
                       <div className="relative">
@@ -192,14 +192,14 @@ const PaymentGateways = () => {
                           value={keys[gw.id]?.[field.name] || ''}
                           onChange={(e) => handleKeyChange(gw.id, field.name, e.target.value)}
                           placeholder={field.placeholder}
-                          className="admin-input font-mono text-xs pr-10"
+                          className="admin-input font-mono text-sm pr-10"
                         />
                         <button
                           type="button"
                           onClick={() => toggleShowKey(fieldKey)}
                           className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
                         >
-                          {isVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                          {isVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-5 h-5" />}
                         </button>
                       </div>
                     </div>

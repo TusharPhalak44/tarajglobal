@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
+import ActionDropdown from '../../components/admin/ActionDropdown'
 import { useNavigate } from 'react-router-dom'
 import { 
   Search, 
@@ -303,7 +304,7 @@ const Drafts = () => {
             placeholder="Search drafts by title, department, or keyword..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="admin-input pl-10 pr-9 text-xs"
+            className="admin-input pl-10 pr-9 text-sm"
           />
           {searchQuery && (
             <button 
@@ -319,7 +320,7 @@ const Drafts = () => {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="admin-select text-xs min-w-[140px]"
+            className="admin-select text-sm min-w-[140px]"
           >
             <option value="">All Content Types</option>
             <option value="blog">Blog Articles</option>
@@ -333,19 +334,19 @@ const Drafts = () => {
         <div className="p-4 rounded-xl bg-[var(--admin-primary-soft)] border border-[var(--admin-border-active)] flex items-center justify-between gap-4 animate-slide-down flex-wrap">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#00A6FF] animate-ping" />
-            <span className="text-xs font-bold text-[var(--admin-text-primary)]">
+            <span className="text-sm font-bold text-[var(--admin-text-primary)]">
               {selectedDrafts.length} draft(s) selected
             </span>
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
-            <button onClick={handleBulkPublish} className="admin-btn admin-btn-primary text-xs py-1.5 px-3">
+            <button onClick={handleBulkPublish} className="admin-btn admin-btn-primary text-sm py-1.5 px-3">
               Publish Live
             </button>
-            <button onClick={handleBulkArchive} className="admin-btn admin-btn-secondary text-xs py-1.5 px-3">
+            <button onClick={handleBulkArchive} className="admin-btn admin-btn-secondary text-sm py-1.5 px-3">
               Archive
             </button>
-            <button onClick={handleBulkDelete} className="admin-btn admin-btn-danger text-xs py-1.5 px-3">
+            <button onClick={handleBulkDelete} className="admin-btn admin-btn-danger text-sm py-1.5 px-3">
               Delete
             </button>
           </div>
@@ -366,8 +367,8 @@ const Drafts = () => {
           />
         </div>
       ) : (
-        <div className="admin-card overflow-visible">
-          <div className="admin-table-wrapper admin-scrollbar !overflow-visible">
+        <div className="admin-card overflow-hidden">
+          <div className="admin-table-wrapper admin-scrollbar">
             <table className="admin-table">
               <thead>
                 <tr>
@@ -402,23 +403,23 @@ const Drafts = () => {
                       </td>
                       <td>
                         <div className="flex items-center gap-3 min-w-[240px] max-w-sm">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border border-[var(--admin-border-subtle)] ${
+                          <div className={`w-5 h-5 rounded-lg flex items-center justify-center shrink-0 border border-[var(--admin-border-subtle)] ${
                             draft.type === 'job' ? 'bg-purple-500/10 text-purple-400' : 'bg-[#00A6FF]/10 text-[#00A6FF]'
                           }`}>
                             <Icon className="w-5 h-5" />
                           </div>
                           <div className="min-w-0">
-                            <p className="font-bold text-xs sm:text-sm text-[var(--admin-text-primary)] truncate group-hover:text-[var(--admin-primary)] transition-colors">
+                            <p className="font-bold text-sm sm:text-base text-[var(--admin-text-primary)] truncate group-hover:text-[var(--admin-primary)] transition-colors">
                               {draft.title}
                             </p>
-                            <p className="text-[11px] text-[var(--admin-text-muted)] truncate mt-0.5">
+                            <p className="text-[13px] text-[var(--admin-text-muted)] truncate mt-0.5">
                               {draft.excerpt || draft.description || 'Draft work in progress'}
                             </p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider ${
+                        <span className={`px-2.5 py-0.5 rounded-full text-[13px] font-bold uppercase tracking-wider ${
                           draft.type === 'job' 
                             ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' 
                             : 'bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20'
@@ -426,82 +427,57 @@ const Drafts = () => {
                           {draft.type === 'job' ? 'Career Opening' : 'Article'}
                         </span>
                       </td>
-                      <td className="text-xs text-[var(--admin-text-secondary)] font-medium">
+                      <td className="text-sm text-[var(--admin-text-secondary)] font-medium">
                         {draft.category_name || draft.department || '-'}
                       </td>
-                      <td className="text-xs text-[var(--admin-text-muted)]">
+                      <td className="text-sm text-[var(--admin-text-muted)]">
                         <div className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5" />
+                          <Calendar className="w-4 h-4" />
                           <span>{new Date(draft.updated_at || draft.created_at || Date.now()).toLocaleDateString()}</span>
                         </div>
                       </td>
                       <td className="text-right">
-                        <div className="relative inline-block text-left">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              setActiveDropdown(activeDropdown === draft.id ? null : draft.id)
-                            }}
-                            className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
-                          >
-                            <MoreVertical className="w-4 h-4" />
-                          </button>
-
-                          {activeDropdown === draft.id && (
-                            <>
-                              <div
-                                className="fixed inset-0 z-40"
-                                onClick={() => setActiveDropdown(null)}
-                              />
-                              <div className={`absolute right-0 ${
-                                index >= Math.max(1, paginatedDrafts.length - 2) && paginatedDrafts.length > 2
-                                  ? 'bottom-full mb-2' 
-                                  : 'top-full mt-2'
-                              } w-48 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down`}>
+                        <ActionDropdown buttonClassName="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors" dropdownClassName="p-1">
                                 <div className="py-1">
                                   <button
                                     onClick={() => handlePreview(draft)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#00A6FF] hover:bg-[var(--admin-primary-soft)] rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#00A6FF] hover:bg-[var(--admin-primary-soft)] rounded-lg transition-colors"
                                   >
-                                    <Eye className="w-3.5 h-3.5 text-[#00A6FF]" />
+                                    <Eye className="w-5 h-5 text-[#00A6FF]" />
                                     <span>Preview Draft</span>
                                   </button>
                                   <button
                                     onClick={() => handleEdit(draft)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#FF6D00] hover:bg-[#FF6D00]/10 rounded-lg transition-colors"
                                   >
-                                    <Edit className="w-3.5 h-3.5 text-[#FF6D00]" />
+                                    <Edit className="w-5 h-5 text-[#FF6D00]" />
                                     <span>Edit</span>
                                   </button>
                                   <button
                                     onClick={() => handlePublish(draft)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#72D669] hover:bg-[#72D669]/10 rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#72D669] hover:bg-[#72D669]/10 rounded-lg transition-colors"
                                   >
-                                    <CheckCircle className="w-3.5 h-3.5 text-[#72D669]" />
+                                    <CheckCircle className="w-4 h-4 text-[#72D669]" />
                                     <span>Publish Live</span>
                                   </button>
                                   <button
                                     onClick={() => handleArchive(draft)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-purple-400 hover:bg-purple-500/10 rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-purple-400 hover:bg-purple-500/10 rounded-lg transition-colors"
                                   >
-                                    <Archive className="w-3.5 h-3.5 text-purple-400" />
+                                    <Archive className="w-4 h-4 text-purple-400" />
                                     <span>Archive</span>
                                   </button>
                                 </div>
                                 <div className="pt-1">
                                   <button
                                     onClick={() => handleDelete(draft)}
-                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
+                                    className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
                                   >
-                                    <Trash2 className="w-3.5 h-3.5" />
+                                    <Trash2 className="w-5 h-5" />
                                     <span>Delete</span>
                                   </button>
                                 </div>
-                              </div>
-                            </>
-                          )}
-                        </div>
+                        </ActionDropdown>
                       </td>
                     </tr>
                   )
@@ -512,7 +488,7 @@ const Drafts = () => {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="p-4 border-t border-[var(--admin-border-subtle)] flex items-center justify-between gap-4 flex-wrap text-xs text-[var(--admin-text-muted)]">
+            <div className="p-4 border-t border-[var(--admin-border-subtle)] flex items-center justify-between gap-4 flex-wrap text-sm text-[var(--admin-text-muted)]">
               <span>
                 Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, filteredDrafts.length)} of {filteredDrafts.length} drafts
               </span>
@@ -521,7 +497,7 @@ const Drafts = () => {
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
+                  className="admin-btn admin-btn-secondary text-sm py-1.5 px-3 disabled:opacity-40"
                 >
                   Previous
                 </button>
@@ -531,7 +507,7 @@ const Drafts = () => {
                 <button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
+                  className="admin-btn admin-btn-secondary text-sm py-1.5 px-3 disabled:opacity-40"
                 >
                   Next
                 </button>

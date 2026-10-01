@@ -1,69 +1,79 @@
+import React, { Suspense, lazy } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import MainLayout from '@layouts/MainLayout'
 import AdminLayout from '@layouts/AdminLayout'
 import AuthLayout from '@layouts/AuthLayout'
 import AdminRoute from '@routes/AdminRoute'
 
-// Pages
-import Home from '@pages/Home'
-import About from '@pages/About'
-import Services from '@pages/Services'
-import ServiceDetails from '@pages/ServiceDetails'
-import Blog from '@pages/Blog'
-import BlogDetails from '@pages/BlogDetails'
-import Careers from '@pages/Careers'
-import Contact from '@pages/Contact'
-import ContentSyndication from '@pages/ContentSyndication'
-import BantLeadGeneration from '@pages/BantLeadGeneration'
-import MqlServices from '@pages/MqlServices'
-import HqlServices from '@pages/HqlServices'
-import SqlServices from '@pages/SqlServices'
-import B2bAppointmentSetting from '@pages/B2bAppointmentSetting'
-import B2bEmailMarketing from '@pages/B2bEmailMarketing'
-import DemandFlowBridge from '@pages/DemandFlowBridge'
-import Abm from '@pages/Abm'
-import WebinarServices from '@pages/WebinarServices'
-import LeadNurturing from '@pages/LeadNurturing'
-import DemandGeneration from '@pages/DemandGeneration'
-import B2bListBuilding from '@pages/B2bListBuilding'
-import DatabaseCleansing from '@pages/DatabaseCleansing'
-import Privacy from '@pages/Privacy'
-import Terms from '@pages/Terms'
-import CookiePolicy from '@components/cookies/CookiePolicyPage'
-import Login from '@pages/Login'
-import NotFound from '@pages/NotFound'
+// Pages - Lazy Loaded for performance
+const Home = lazy(() => import('@pages/Home'))
+const About = lazy(() => import('@pages/About'))
+const Services = lazy(() => import('@pages/Services'))
+const ServiceDetails = lazy(() => import('@pages/ServiceDetails'))
+const Blog = lazy(() => import('@pages/Blog'))
+const BlogDetails = lazy(() => import('@pages/BlogDetails'))
+const Careers = lazy(() => import('@pages/Careers'))
+const Contact = lazy(() => import('@pages/Contact'))
+const ContentSyndication = lazy(() => import('@pages/ContentSyndication'))
+const BantLeadGeneration = lazy(() => import('@pages/BantLeadGeneration'))
+const MqlServices = lazy(() => import('@pages/MqlServices'))
+const HqlServices = lazy(() => import('@pages/HqlServices'))
+const SqlServices = lazy(() => import('@pages/SqlServices'))
+const B2bAppointmentSetting = lazy(() => import('@pages/B2bAppointmentSetting'))
+const B2bEmailMarketing = lazy(() => import('@pages/B2bEmailMarketing'))
+const DemandFlowBridge = lazy(() => import('@pages/DemandFlowBridge'))
+const Abm = lazy(() => import('@pages/Abm'))
+const WebinarServices = lazy(() => import('@pages/WebinarServices'))
+const LeadNurturing = lazy(() => import('@pages/LeadNurturing'))
+const DemandGeneration = lazy(() => import('@pages/DemandGeneration'))
+const B2bListBuilding = lazy(() => import('@pages/B2bListBuilding'))
+const DatabaseCleansing = lazy(() => import('@pages/DatabaseCleansing'))
+const Privacy = lazy(() => import('@pages/Privacy'))
+const Terms = lazy(() => import('@pages/Terms'))
+const CookiePolicy = lazy(() => import('@components/cookies/CookiePolicyPage'))
+const Login = lazy(() => import('@pages/Login'))
+const NotFound = lazy(() => import('@pages/NotFound'))
 
-// Admin Pages
-import Dashboard from '@pages/Admin/Dashboard'
-import Blogs from '@pages/Admin/Blogs'
-import CreateBlog from '@pages/Admin/CreateBlog'
-import EditBlog from '@pages/Admin/EditBlog'
-import Archives from '@pages/Admin/Archives'
-import Drafts from '@pages/Admin/Drafts'
-import Jobs from '@pages/Admin/Jobs'
-import EditJob from '@pages/Admin/EditJob'
-import Applications from '@pages/Admin/Applications'
-import Media from '@pages/Admin/Media'
-import Categories from '@pages/Admin/Categories'
-import Authors from '@pages/Admin/Authors'
-import Users from '@pages/Admin/Users'
-import Profile from '@pages/Admin/Profile'
-import Settings from '@pages/Admin/Settings'
-import SEO from '@pages/Admin/SEO'
-import SEOAnalytics from '@pages/Admin/SEOAnalytics'
-import Leads from '@pages/Admin/Leads'
-import AuditLogs from '@pages/Admin/AuditLogs'
-import Notifications from '@pages/Admin/Notifications'
-import CMSNavbar from '@pages/Admin/CMSNavbar'
-import CMSFooter from '@pages/Admin/CMSFooter'
-import CMSOurClients from '@pages/Admin/CMSOurClients'
-import FooterManagement from '@pages/Admin/FooterManagement'
-import CareerGallery from '@pages/Admin/CareerGallery/index.jsx'
-import PaymentGateways from '@pages/Admin/PaymentGateways'
+// Admin Pages - Lazy Loaded
+const Dashboard = lazy(() => import('@pages/Admin/Dashboard'))
+const Blogs = lazy(() => import('@pages/Admin/Blogs'))
+const CreateBlog = lazy(() => import('@pages/Admin/CreateBlog'))
+const EditBlog = lazy(() => import('@pages/Admin/EditBlog'))
+const Archives = lazy(() => import('@pages/Admin/Archives'))
+const Drafts = lazy(() => import('@pages/Admin/Drafts'))
+const Jobs = lazy(() => import('@pages/Admin/Jobs'))
+const EditJob = lazy(() => import('@pages/Admin/EditJob'))
+const Applications = lazy(() => import('@pages/Admin/Applications'))
+const Media = lazy(() => import('@pages/Admin/Media'))
+const Categories = lazy(() => import('@pages/Admin/Categories'))
+const Authors = lazy(() => import('@pages/Admin/Authors'))
+const Users = lazy(() => import('@pages/Admin/Users'))
+const Profile = lazy(() => import('@pages/Admin/Profile'))
+const Settings = lazy(() => import('@pages/Admin/Settings'))
+const SEO = lazy(() => import('@pages/Admin/SEO'))
+const SEOAnalytics = lazy(() => import('@pages/Admin/SEOAnalytics'))
+const Leads = lazy(() => import('@pages/Admin/Leads'))
+const AuditLogs = lazy(() => import('@pages/Admin/AuditLogs'))
+const Notifications = lazy(() => import('@pages/Admin/Notifications'))
+const CMSNavbar = lazy(() => import('@pages/Admin/CMSNavbar'))
+const CMSFooter = lazy(() => import('@pages/Admin/CMSFooter'))
+const CMSOurClients = lazy(() => import('@pages/Admin/CMSOurClients'))
+const FooterManagement = lazy(() => import('@pages/Admin/FooterManagement'))
+const CareerGallery = lazy(() => import('@pages/Admin/CareerGallery/index.jsx'))
+const PaymentGateways = lazy(() => import('@pages/Admin/PaymentGateways'))
+
+// Loading Fallback Component
+const PageLoader = () => (
+  <div className="w-full h-screen flex flex-col items-center justify-center bg-background">
+    <div className="w-12 h-12 border-4 border-border border-t-[#00A6FF] rounded-full animate-spin mb-4"></div>
+    <div className="text-text-secondary text-sm font-medium animate-pulse tracking-widest">LOADING...</div>
+  </div>
+)
 
 function AppRoutes() {
   return (
-    <Routes>
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
       {/* Public Routes */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
@@ -142,6 +152,7 @@ function AppRoutes() {
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </Suspense>
   )
 }
 

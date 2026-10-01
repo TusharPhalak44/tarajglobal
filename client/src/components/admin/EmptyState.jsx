@@ -19,7 +19,7 @@ export const EmptyState = ({
         {title}
       </h3>
       
-      <p className="text-sm text-[var(--admin-text-muted)] max-w-md mb-6 leading-relaxed">
+      <p className="text-base text-[var(--admin-text-muted)] max-w-md mb-6 leading-relaxed">
         {description}
       </p>
 

@@ -118,12 +118,12 @@ export const AdminSidebar = ({
 
             {(!isCollapsed || isOpen) && (
               <div className="flex flex-col min-w-0">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-sm font-black tracking-tight text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors truncate">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-black tracking-tight text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors truncate">
                     TARAj GLOBAL
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[9.5px] font-bold text-[var(--admin-text-muted)] tracking-wider uppercase">
+                <div className="flex items-center gap-2 text-[9.5px] font-bold text-[var(--admin-text-muted)] tracking-wider uppercase">
                   <span className="text-[var(--admin-primary)]">TGS</span>
                   <span className="text-[var(--admin-text-dim)]">•</span>
                   <span>COMMAND CENTER</span>
@@ -134,7 +134,7 @@ export const AdminSidebar = ({
 
           <button
             onClick={onClose}
-            className="lg:hidden p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)]"
+            className="lg:hidden p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)]"
             aria-label="Close"
           >
             <X className="w-4 h-4" />
@@ -145,7 +145,7 @@ export const AdminSidebar = ({
             className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] transition-colors ml-1"
             title={isCollapsed ? 'Expand Navigation' : 'Collapse Navigation'}
           >
-            {isCollapsed ? <ChevronRight className="w-3.5 h-3.5" /> : <ChevronLeft className="w-3.5 h-3.5" />}
+            {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           </button>
         </div>
 
@@ -157,7 +157,7 @@ export const AdminSidebar = ({
           {navSections.map((section, sIdx) => (
             <div key={sIdx} className="space-y-1">
               {(!isCollapsed || isOpen) ? (
-                <div className="px-3 py-1 text-[10px] font-bold tracking-wider text-[var(--admin-text-muted)] uppercase">
+                <div className="px-3 py-1 text-[12px] font-bold tracking-wider text-[var(--admin-text-muted)] uppercase">
                   {section.group}
                 </div>
               ) : (
@@ -175,7 +175,7 @@ export const AdminSidebar = ({
                     to={item.path}
                     onClick={onClose}
                     title={isCollapsed && !isOpen ? item.label : undefined}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-150 ${
+                    className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-150 ${
                       isActive
                         ? 'bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] font-bold shadow-xs'
                         : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)]'
@@ -216,16 +216,16 @@ export const AdminSidebar = ({
                       className="w-full h-full object-cover rounded-[7px]"
                     />
                   ) : (
-                    <div className="w-full h-full rounded-[7px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-xs text-[#00A6FF]">
+                    <div className="w-full h-full rounded-[7px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-sm text-[#00A6FF]">
                       {user?.name ? user.name.charAt(0).toUpperCase() : 'A'}
                     </div>
                   )}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs font-bold text-[var(--admin-text-primary)] truncate">
+                  <p className="text-sm font-bold text-[var(--admin-text-primary)] truncate">
                     {user?.name || 'Administrator'}
                   </p>
-                  <p className="text-[10px] text-[var(--admin-text-muted)] truncate capitalize">
+                  <p className="text-[12px] text-[var(--admin-text-muted)] truncate capitalize">
                     {user?.role?.replace('_', ' ') || 'Super Admin'}
                   </p>
                 </div>
@@ -233,7 +233,7 @@ export const AdminSidebar = ({
 
               <button
                 onClick={handleLogout}
-                className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[#EF4444] hover:bg-[#EF4444]/10 transition-colors shrink-0"
+                className="p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[#EF4444] hover:bg-[#EF4444]/10 transition-colors shrink-0"
                 title="Sign out session"
               >
                 <LogOut className="w-4 h-4" />
@@ -253,7 +253,7 @@ export const AdminSidebar = ({
                     className="w-full h-full object-cover rounded-[9px]"
                   />
                 ) : (
-                  <div className="w-full h-full rounded-[9px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-xs text-[#00A6FF]">
+                  <div className="w-full h-full rounded-[9px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-sm text-[#00A6FF]">
                     {user?.name ? user.name.charAt(0).toUpperCase() : 'A'}
                   </div>
                 )}

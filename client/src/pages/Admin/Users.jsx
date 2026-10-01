@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
+import ActionDropdown from '../../components/admin/ActionDropdown'
 import { 
   Plus, 
   Search, 
@@ -253,7 +254,7 @@ const Users = () => {
       />
 
       {toastMessage.text && (
-        <div className={`p-4 rounded-xl text-xs font-semibold flex items-center justify-between animate-slide-down ${
+        <div className={`p-4 rounded-xl text-sm font-semibold flex items-center justify-between animate-slide-down ${
           toastMessage.type === 'success' 
             ? 'bg-[var(--admin-success-soft)] border border-[#72D669]/30 text-[#72D669]' 
             : 'bg-[var(--admin-danger-soft)] border border-[#F43F5E]/30 text-[#F43F5E]'
@@ -277,7 +278,7 @@ const Users = () => {
             placeholder="Search users by name, email, or role..."
             value={filters.search}
             onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-            className="admin-input pl-10 pr-9 text-xs"
+            className="admin-input pl-10 pr-9 text-sm"
           />
           {filters.search && (
             <button
@@ -293,7 +294,7 @@ const Users = () => {
           <select
             value={filters.role}
             onChange={(e) => setFilters({ ...filters, role: e.target.value })}
-            className="admin-select text-xs min-w-[140px]"
+            className="admin-select text-sm min-w-[140px]"
           >
             <option value="">All Roles</option>
             <option value="super_admin">Super Admin</option>
@@ -307,7 +308,7 @@ const Users = () => {
           <select
             value={filters.status}
             onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-            className="admin-select text-xs min-w-[130px]"
+            className="admin-select text-sm min-w-[130px]"
           >
             <option value="">All Statuses</option>
             <option value="active">Active</option>
@@ -331,7 +332,7 @@ const Users = () => {
         </div>
       ) : (
         <div className="admin-card overflow-hidden">
-          <div className="admin-table-wrapper admin-scrollbar">
+          <div className="admin-table-wrapper admin-scrollbar" style={{ paddingBottom: activeDropdown ? '160px' : '0', transition: 'padding 0.2s' }}>
             <table className="admin-table">
               <thead>
                 <tr>
@@ -347,14 +348,14 @@ const Users = () => {
                   <tr key={u.id} className="group">
                     <td>
                       <div className="flex items-center gap-3 min-w-[200px]">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-xs text-[#00A6FF] shrink-0">
+                        <div className="w-5 h-5 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-sm text-[#00A6FF] shrink-0">
                           {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
                         </div>
                         <div className="min-w-0">
-                          <p className="font-bold text-xs sm:text-sm text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors truncate">
+                          <p className="font-bold text-sm sm:text-base text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors truncate">
                             {u.name}
                           </p>
-                          <p className="text-[11px] text-[var(--admin-text-muted)] flex items-center gap-1 mt-0.5 truncate">
+                          <p className="text-[13px] text-[var(--admin-text-muted)] flex items-center gap-1 mt-0.5 truncate">
                             <Mail className="w-3 h-3 shrink-0" />
                             <span>{u.email}</span>
                           </p>
@@ -367,43 +368,24 @@ const Users = () => {
                     <td>
                       <StatusBadge status={u.status || 'active'} />
                     </td>
-                    <td className="text-xs text-[var(--admin-text-muted)]">
+                    <td className="text-sm text-[var(--admin-text-muted)]">
                       {new Date(u.created_at || Date.now()).toLocaleDateString()}
                     </td>
                     <td className="text-right">
-                      <div className="relative inline-block text-left">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setActiveDropdown(activeDropdown === u.id ? null : u.id)
-                          }}
-                          className="p-1.5 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors"
-                        >
-                          <MoreVertical className="w-4 h-4" />
-                        </button>
-
-                        {activeDropdown === u.id && (
-                          <>
-                            <div className="fixed inset-0 z-40" onClick={() => setActiveDropdown(null)} />
-                            <div className={`absolute right-0 ${
-                              index >= Math.max(1, users.length - 2) && users.length > 2
-                                ? 'bottom-full mb-2'
-                                : 'top-full mt-2'
-                            } w-44 bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-xl shadow-2xl z-50 p-1 divide-y divide-[var(--admin-border-subtle)] animate-slide-down`}>
+                      <ActionDropdown buttonClassName="shrink-0 p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors" dropdownClassName="p-1 min-w-[12rem]">
                               <div className="py-1">
                                 <button
                                   onClick={() => handleEditClick(u)}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#00A6FF] hover:bg-[var(--admin-primary-soft)] rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#00A6FF] hover:bg-[var(--admin-primary-soft)] rounded-lg transition-colors"
                                 >
-                                  <Edit className="w-3.5 h-3.5 text-[#00A6FF]" />
+                                  <Edit className="w-5 h-5 text-[#00A6FF]" />
                                   <span>Edit User</span>
                                 </button>
                                 <button
                                   onClick={() => handleResetPasswordClick(u)}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#FFA600] hover:bg-[#FFA600]/10 rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#FFA600] hover:bg-[#FFA600]/10 rounded-lg transition-colors"
                                 >
-                                  <Key className="w-3.5 h-3.5 text-[#FFA600]" />
+                                  <Key className="w-5 h-5 text-[#FFA600]" />
                                   <span>Reset Password</span>
                                 </button>
                               </div>
@@ -411,9 +393,9 @@ const Users = () => {
                               <div className="py-1">
                                 <button
                                   onClick={() => handleToggleStatus(u)}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[var(--admin-text-secondary)] hover:text-[#72D669] hover:bg-[#72D669]/10 rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[var(--admin-text-secondary)] hover:text-[#72D669] hover:bg-[#72D669]/10 rounded-lg transition-colors"
                                 >
-                                  <Power className="w-3.5 h-3.5" />
+                                  <Power className="w-5 h-5" />
                                   <span>{u.status === 'active' ? 'Deactivate' : 'Activate'}</span>
                                 </button>
                               </div>
@@ -424,16 +406,13 @@ const Users = () => {
                                     setDeleteConfirm(u)
                                     setActiveDropdown(null)
                                   }}
-                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
+                                  className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-[#F43F5E] hover:bg-[#F43F5E]/10 rounded-lg transition-colors"
                                 >
-                                  <Trash2 className="w-3.5 h-3.5" />
+                                  <Trash2 className="w-5 h-5" />
                                   <span>Delete User</span>
                                 </button>
                               </div>
-                            </div>
-                          </>
-                        )}
-                      </div>
+                                                          </ActionDropdown>
                     </td>
                   </tr>
                 ))}
@@ -442,7 +421,7 @@ const Users = () => {
           </div>
 
           {pagination.totalPages > 1 && (
-            <div className="p-4 border-t border-[var(--admin-border-subtle)] flex items-center justify-between gap-4 flex-wrap text-xs text-[var(--admin-text-muted)]">
+            <div className="p-4 border-t border-[var(--admin-border-subtle)] flex items-center justify-between gap-4 flex-wrap text-sm text-[var(--admin-text-muted)]">
               <span>
                 Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} accounts
               </span>
@@ -451,7 +430,7 @@ const Users = () => {
                 <button
                   onClick={() => setPagination({ ...pagination, page: pagination.page - 1 })}
                   disabled={pagination.page === 1}
-                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
+                  className="admin-btn admin-btn-secondary text-sm py-1.5 px-3 disabled:opacity-40"
                 >
                   Previous
                 </button>
@@ -461,7 +440,7 @@ const Users = () => {
                 <button
                   onClick={() => setPagination({ ...pagination, page: pagination.page + 1 })}
                   disabled={pagination.page === pagination.totalPages}
-                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
+                  className="admin-btn admin-btn-secondary text-sm py-1.5 px-3 disabled:opacity-40"
                 >
                   Next
                 </button>
@@ -484,14 +463,14 @@ const Users = () => {
             </div>
 
             {modalError && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
                 {modalError}
               </div>
             )}
 
             <form onSubmit={handleCreateUser} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Full Name *
                 </label>
                 <input
@@ -505,7 +484,7 @@ const Users = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Email Address *
                 </label>
                 <input
@@ -519,7 +498,7 @@ const Users = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Password *
                 </label>
                 <div className="relative">
@@ -536,20 +515,20 @@ const Users = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     RBAC Role
                   </label>
                   <select
                     value={createForm.role}
                     onChange={(e) => setCreateForm({ ...createForm, role: e.target.value })}
-                    className="admin-select text-xs font-semibold"
+                    className="admin-select text-sm font-semibold"
                   >
                     <option value="super_admin">Super Admin</option>
                     <option value="admin">Admin</option>
@@ -561,13 +540,13 @@ const Users = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     Status
                   </label>
                   <select
                     value={createForm.status}
                     onChange={(e) => setCreateForm({ ...createForm, status: e.target.value })}
-                    className="admin-select text-xs font-semibold"
+                    className="admin-select text-sm font-semibold"
                   >
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
@@ -601,14 +580,14 @@ const Users = () => {
             </div>
 
             {modalError && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
                 {modalError}
               </div>
             )}
 
             <form onSubmit={handleUpdateUser} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Full Name *
                 </label>
                 <input
@@ -621,7 +600,7 @@ const Users = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Email Address *
                 </label>
                 <input
@@ -635,13 +614,13 @@ const Users = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     Role Privilege
                   </label>
                   <select
                     value={editForm.role}
                     onChange={(e) => setEditForm({ ...editForm, role: e.target.value })}
-                    className="admin-select text-xs font-semibold"
+                    className="admin-select text-sm font-semibold"
                   >
                     <option value="super_admin">Super Admin</option>
                     <option value="admin">Admin</option>
@@ -653,13 +632,13 @@ const Users = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                     Account Status
                   </label>
                   <select
                     value={editForm.status}
                     onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
-                    className="admin-select text-xs font-semibold"
+                    className="admin-select text-sm font-semibold"
                   >
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
@@ -693,18 +672,18 @@ const Users = () => {
             </div>
 
             {modalError && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-xs font-semibold">
+              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
                 {modalError}
               </div>
             )}
 
             <form onSubmit={handleResetPassword} className="space-y-4">
-              <p className="text-xs text-[var(--admin-text-secondary)]">
+              <p className="text-sm text-[var(--admin-text-secondary)]">
                 Setting new authentication credentials for <strong className="text-[var(--admin-text-primary)]">{resettingUser.name}</strong> ({resettingUser.email})
               </p>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   New Password *
                 </label>
                 <div className="relative">
@@ -721,13 +700,13 @@ const Users = () => {
                     onClick={() => setShowNewPassword(!showNewPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
                   >
-                    {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Confirm Password *
                 </label>
                 <input

@@ -163,8 +163,8 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
         <div className="w-full h-48 flex items-center justify-center rounded-lg bg-background border border-border">
           <div className="text-center">
             <File className="w-12 h-12 text-text-muted mx-auto mb-2" />
-            <p className="text-sm text-text-secondary">PDF Document</p>
-            <a href={previewUrl} target="_blank" rel="noopener noreferrer" className="text-primary text-sm hover:underline">
+            <p className="text-base text-text-secondary">PDF Document</p>
+            <a href={previewUrl} target="_blank" rel="noopener noreferrer" className="text-primary text-base hover:underline">
               Open PDF
             </a>
           </div>
@@ -177,16 +177,14 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
 
   return (
     <div className="space-y-4">
-      <label className="block text-sm font-medium text-text-secondary mb-2">Featured Media</label>
-      
       {/* Media Type Selector */}
-      <div className="flex items-center gap-3 mb-4">
-        <label className="text-sm text-text-secondary">Media Type:</label>
-        <div className="relative">
+      <div className="flex items-center gap-3 mb-4 w-full">
+        <label className="text-sm font-bold text-[var(--admin-text-primary)] whitespace-nowrap">Media Type:</label>
+        <div className="relative flex-1">
           <select
             value={mediaType}
             onChange={(e) => handleMediaTypeChange(e.target.value)}
-            className="appearance-none bg-background border border-border rounded-lg px-4 py-2 pr-10 text-text-primary focus:outline-none focus:border-primary cursor-pointer"
+            className="appearance-none w-full bg-background border border-border rounded-lg px-4 py-2 pr-10 text-sm text-text-primary focus:outline-none focus:border-primary cursor-pointer"
             disabled={disabled || uploading}
           >
             <option value="image">Image</option>
@@ -198,32 +196,30 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-4">
+      <div className="grid grid-cols-2 gap-2 mb-4 w-full">
         <button
           type="button"
           onClick={() => setActiveTab('upload')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-            activeTab === 'upload'
-              ? 'bg-primary text-white'
-              : 'bg-surface border border-border text-text-primary hover:bg-surface/80'
-          }`}
+          className={`flex justify-center items-center gap-2 px-2 py-2.5 text-sm sm:text-base rounded-lg transition-colors ${activeTab === 'upload'
+            ? 'bg-primary text-white shadow-sm'
+            : 'bg-surface border border-border text-text-primary hover:bg-surface/80 hover:border-primary/50'
+            }`}
           disabled={disabled}
         >
-          <Upload className="w-4 h-4" />
-          Upload from Device
+          <Upload className="w-4 h-4 shrink-0" />
+          <span className="whitespace-nowrap">Upload</span>
         </button>
         <button
           type="button"
           onClick={() => setActiveTab('url')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-            activeTab === 'url'
-              ? 'bg-primary text-white'
-              : 'bg-surface border border-border text-text-primary hover:bg-surface/80'
-          }`}
+          className={`flex justify-center items-center gap-2 px-2 py-2.5 text-sm sm:text-base rounded-lg transition-colors ${activeTab === 'url'
+            ? 'bg-primary text-white shadow-sm'
+            : 'bg-surface border border-border text-text-primary hover:bg-surface/80 hover:border-primary/50'
+            }`}
           disabled={disabled}
         >
-          <Link className="w-4 h-4" />
-          Use URL
+          <Link className="w-4 h-4 shrink-0" />
+          <span className="whitespace-nowrap">URL</span>
         </button>
       </div>
 
@@ -233,9 +229,8 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
           {!previewUrl ? (
             <div
               onClick={() => !disabled && fileInputRef.current?.click()}
-              className={`border-2 border-dashed border-border rounded-lg p-8 text-center cursor-pointer transition-colors ${
-                disabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary'
-              }`}
+              className={`border-2 border-dashed border-border rounded-lg p-8 text-center cursor-pointer transition-colors ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary'
+                }`}
             >
               <input
                 ref={fileInputRef}
@@ -249,10 +244,10 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
               <p className="text-text-primary font-medium mb-2">
                 Upload {mediaType === 'image' ? 'Image' : mediaType === 'video' ? 'Video' : 'PDF'}
               </p>
-              <p className="text-text-secondary text-sm mb-4">
+              <p className="text-text-secondary text-base mb-4">
                 Drag & Drop or Browse
               </p>
-              <p className="text-text-muted text-xs">
+              <p className="text-text-muted text-sm">
                 {mediaType === 'image' ? 'JPG, PNG, WEBP, GIF, SVG' : mediaType === 'video' ? 'MP4, WEBM, MOV' : 'PDF'} (Max 50MB)
               </p>
             </div>
@@ -261,8 +256,8 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
               {renderPreview()}
               <div className="flex items-center justify-between p-3 bg-surface rounded-lg border border-border">
                 <div>
-                  <p className="text-sm font-medium text-text-primary">{fileName || 'Uploaded file'}</p>
-                  {fileSize && <p className="text-xs text-text-muted">{fileSize}</p>}
+                  <p className="text-base font-medium text-text-primary">{fileName || 'Uploaded file'}</p>
+                  {fileSize && <p className="text-sm text-text-muted">{fileSize}</p>}
                 </div>
                 <button
                   type="button"
@@ -278,7 +273,7 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
 
           {uploading && (
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center justify-between text-base">
                 <span className="text-text-secondary">Uploading...</span>
                 <span className="text-text-primary">{uploadProgress}%</span>
               </div>

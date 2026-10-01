@@ -272,7 +272,7 @@ const CMS = () => {
 
       {message.text && (
         <div
-          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-sm font-medium transition-all ${
+          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border text-base font-medium transition-all ${
             message.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
               : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
@@ -284,10 +284,10 @@ const CMS = () => {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-x-auto pb-0.5">
+      <div className="flex gap-2 border-b border-[var(--admin-border)] overflow-visible pb-0.5">
         <button
           onClick={() => setActiveTab('navbar')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all whitespace-nowrap ${
             activeTab === 'navbar'
               ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
               : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
@@ -298,7 +298,7 @@ const CMS = () => {
         </button>
         <button
           onClick={() => setActiveTab('footer')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all whitespace-nowrap ${
             activeTab === 'footer'
               ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
               : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
@@ -309,7 +309,7 @@ const CMS = () => {
         </button>
         <button
           onClick={() => setActiveTab('clients')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all whitespace-nowrap ${
             activeTab === 'clients'
               ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
               : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[var(--admin-border)]'
@@ -328,8 +328,8 @@ const CMS = () => {
               <Link2 className="w-4 h-4 text-primary" />
               Main Navigation Links ({navbarItems.length})
             </h3>
-            <button onClick={handleAddNavbar} className="admin-btn-primary text-xs flex items-center gap-2">
-              <Plus className="w-3.5 h-3.5" />
+            <button onClick={handleAddNavbar} className="admin-btn-primary text-sm flex items-center gap-2">
+              <Plus className="w-4 h-4" />
               Add Menu Item
             </button>
           </div>
@@ -342,7 +342,7 @@ const CMS = () => {
               onAction={handleAddNavbar}
             />
           ) : (
-            <div className="overflow-x-auto">
+            <div className="overflow-visible">
               <table className="admin-table">
                 <thead>
                   <tr>
@@ -356,20 +356,20 @@ const CMS = () => {
                 <tbody>
                   {navbarItems.map((item) => (
                     <tr key={item.id}>
-                      <td className="font-semibold text-text-primary text-sm">
+                      <td className="font-semibold text-text-primary text-base">
                         {item.label}
                       </td>
-                      <td className="font-mono text-xs text-text-secondary">
+                      <td className="font-mono text-sm text-text-secondary">
                         {item.url}
                       </td>
-                      <td className="font-mono text-xs text-text-muted">
+                      <td className="font-mono text-sm text-text-muted">
                         #{item.display_order}
                       </td>
                       <td>
                         <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
                       </td>
                       <td className="text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                        <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEditNavbar(item)}
                             className="admin-btn-icon"
@@ -382,7 +382,7 @@ const CMS = () => {
                             className="admin-btn-icon hover:text-rose-400"
                             title="Delete Menu Item"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -404,8 +404,8 @@ const CMS = () => {
                 <Layers className="w-4 h-4 text-primary" />
                 Footer Column Links ({footerLinks.length})
               </h3>
-              <button onClick={handleAddFooterLink} className="admin-btn-primary text-xs flex items-center gap-2">
-                <Plus className="w-3.5 h-3.5" />
+              <button onClick={handleAddFooterLink} className="admin-btn-primary text-sm flex items-center gap-2">
+                <Plus className="w-4 h-4" />
                 Add Link
               </button>
             </div>
@@ -418,7 +418,7 @@ const CMS = () => {
                 onAction={handleAddFooterLink}
               />
             ) : (
-              <div className="overflow-x-auto">
+              <div className="overflow-visible">
                 <table className="admin-table">
                   <thead>
                     <tr>
@@ -433,15 +433,15 @@ const CMS = () => {
                   <tbody>
                     {footerLinks.map((item) => (
                       <tr key={item.id}>
-                        <td className="font-mono text-xs text-primary font-semibold">{item.section}</td>
-                        <td className="font-semibold text-text-primary text-sm">{item.title}</td>
-                        <td className="font-mono text-xs text-text-secondary">{item.url || '-'}</td>
-                        <td className="font-mono text-xs text-text-muted">#{item.display_order}</td>
+                        <td className="font-mono text-sm text-primary font-semibold">{item.section}</td>
+                        <td className="font-semibold text-text-primary text-base">{item.title}</td>
+                        <td className="font-mono text-sm text-text-secondary">{item.url || '-'}</td>
+                        <td className="font-mono text-sm text-text-muted">#{item.display_order}</td>
                         <td>
                           <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
                         </td>
                         <td className="text-right">
-                          <div className="flex items-center justify-end gap-1.5">
+                          <div className="flex items-center justify-end gap-2">
                             <button
                               onClick={() => handleEditFooterLink(item)}
                               className="admin-btn-icon"
@@ -454,7 +454,7 @@ const CMS = () => {
                               className="admin-btn-icon hover:text-rose-400"
                               title="Delete Link"
                             >
-                              <Trash2 className="w-4 h-4" />
+                              <Trash2 className="w-5 h-5" />
                             </button>
                           </div>
                         </td>
@@ -473,8 +473,8 @@ const CMS = () => {
                 <Share2 className="w-4 h-4 text-primary" />
                 Social Media Links ({footerSocialLinks.length})
               </h3>
-              <button onClick={handleAddSocialLink} className="admin-btn-primary text-xs flex items-center gap-2">
-                <Plus className="w-3.5 h-3.5" />
+              <button onClick={handleAddSocialLink} className="admin-btn-primary text-sm flex items-center gap-2">
+                <Plus className="w-4 h-4" />
                 Add Social Channel
               </button>
             </div>
@@ -487,7 +487,7 @@ const CMS = () => {
                 onAction={handleAddSocialLink}
               />
             ) : (
-              <div className="overflow-x-auto">
+              <div className="overflow-visible">
                 <table className="admin-table">
                   <thead>
                     <tr>
@@ -502,20 +502,20 @@ const CMS = () => {
                   <tbody>
                     {footerSocialLinks.map((item) => (
                       <tr key={item.id}>
-                        <td className="font-semibold text-text-primary text-sm">{item.platform}</td>
-                        <td className="font-mono text-xs text-text-muted">{item.icon}</td>
-                        <td className="font-mono text-xs text-primary">
+                        <td className="font-semibold text-text-primary text-base">{item.platform}</td>
+                        <td className="font-mono text-sm text-text-muted">{item.icon}</td>
+                        <td className="font-mono text-sm text-primary">
                           <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
                             <span>{item.url}</span>
                             <ExternalLink className="w-3 h-3" />
                           </a>
                         </td>
-                        <td className="font-mono text-xs text-text-muted">#{item.display_order}</td>
+                        <td className="font-mono text-sm text-text-muted">#{item.display_order}</td>
                         <td>
                           <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
                         </td>
                         <td className="text-right">
-                          <div className="flex items-center justify-end gap-1.5">
+                          <div className="flex items-center justify-end gap-2">
                             <button
                               onClick={() => handleEditSocialLink(item)}
                               className="admin-btn-icon"
@@ -528,7 +528,7 @@ const CMS = () => {
                               className="admin-btn-icon hover:text-rose-400"
                               title="Delete Social Profile"
                             >
-                              <Trash2 className="w-4 h-4" />
+                              <Trash2 className="w-5 h-5" />
                             </button>
                           </div>
                         </td>
@@ -550,8 +550,8 @@ const CMS = () => {
               <Building2 className="w-4 h-4 text-primary" />
               Client Brand Showcase ({clients.length})
             </h3>
-            <button onClick={handleAddClient} className="admin-btn-primary text-xs flex items-center gap-2">
-              <Plus className="w-3.5 h-3.5" />
+            <button onClick={handleAddClient} className="admin-btn-primary text-sm flex items-center gap-2">
+              <Plus className="w-4 h-4" />
               Add Client
             </button>
           </div>
@@ -564,7 +564,7 @@ const CMS = () => {
               onAction={handleAddClient}
             />
           ) : (
-            <div className="overflow-x-auto">
+            <div className="overflow-visible">
               <table className="admin-table">
                 <thead>
                   <tr>
@@ -584,12 +584,12 @@ const CMS = () => {
                           {item.logo_path ? (
                             <img src={item.logo_path} alt={item.client_name} className="max-h-full max-w-full object-contain" />
                           ) : (
-                            <ImageIcon className="w-3.5 h-3.5 text-text-muted opacity-40" />
+                            <ImageIcon className="w-4 h-4 text-text-muted opacity-40" />
                           )}
                         </div>
                       </td>
-                      <td className="font-semibold text-text-primary text-sm">{item.client_name}</td>
-                      <td className="font-mono text-xs text-primary">
+                      <td className="font-semibold text-text-primary text-base">{item.client_name}</td>
+                      <td className="font-mono text-sm text-primary">
                         {item.website_url ? (
                           <a href={item.website_url} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
                             <span>{item.website_url.replace(/^https?:\/\//, '')}</span>
@@ -597,12 +597,12 @@ const CMS = () => {
                           </a>
                         ) : '-'}
                       </td>
-                      <td className="font-mono text-xs text-text-muted">#{item.display_order}</td>
+                      <td className="font-mono text-sm text-text-muted">#{item.display_order}</td>
                       <td>
                         <StatusBadge status={item.is_active ? 'active' : 'inactive'} />
                       </td>
                       <td className="text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                        <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEditClient(item)}
                             className="admin-btn-icon"
@@ -615,7 +615,7 @@ const CMS = () => {
                             className="admin-btn-icon hover:text-rose-400"
                             title="Delete Client"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -642,7 +642,7 @@ const CMS = () => {
             </div>
             <form onSubmit={handleSaveNavbar} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Label</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Label</label>
                 <input
                   type="text"
                   value={editingNavbar.label}
@@ -652,17 +652,17 @@ const CMS = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
                 <input
                   type="text"
                   value={editingNavbar.url}
                   onChange={(e) => setEditingNavbar({ ...editingNavbar, url: e.target.value })}
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                   required
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingNavbar.display_order}
@@ -678,7 +678,7 @@ const CMS = () => {
                   onChange={(e) => setEditingNavbar({ ...editingNavbar, is_active: e.target.checked })}
                   className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="navbar-active" className="text-xs font-semibold text-text-secondary">Active in Header</label>
+                <label htmlFor="navbar-active" className="text-sm font-semibold text-text-secondary">Active in Header</label>
               </div>
               <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button
@@ -714,7 +714,7 @@ const CMS = () => {
             </div>
             <form onSubmit={handleSaveFooterLink} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Section</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Section</label>
                 <select
                   value={editingFooterLink.section}
                   onChange={(e) => setEditingFooterLink({ ...editingFooterLink, section: e.target.value })}
@@ -728,7 +728,7 @@ const CMS = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Title</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Title</label>
                 <input
                   type="text"
                   value={editingFooterLink.title}
@@ -738,17 +738,17 @@ const CMS = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
                 <input
                   type="text"
                   value={editingFooterLink.url}
                   onChange={(e) => setEditingFooterLink({ ...editingFooterLink, url: e.target.value })}
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                   required
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingFooterLink.display_order}
@@ -764,7 +764,7 @@ const CMS = () => {
                   onChange={(e) => setEditingFooterLink({ ...editingFooterLink, is_active: e.target.checked })}
                   className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="footerlink-active" className="text-xs font-semibold text-text-secondary">Active</label>
+                <label htmlFor="footerlink-active" className="text-sm font-semibold text-text-secondary">Active</label>
               </div>
               <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button
@@ -800,7 +800,7 @@ const CMS = () => {
             </div>
             <form onSubmit={handleSaveSocialLink} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Platform</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Platform</label>
                 <input
                   type="text"
                   value={editingSocialLink.platform}
@@ -811,28 +811,28 @@ const CMS = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Icon Class</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Icon Class</label>
                 <input
                   type="text"
                   value={editingSocialLink.icon}
                   onChange={(e) => setEditingSocialLink({ ...editingSocialLink, icon: e.target.value })}
                   placeholder="bi-linkedin"
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">URL</label>
                 <input
                   type="text"
                   value={editingSocialLink.url}
                   onChange={(e) => setEditingSocialLink({ ...editingSocialLink, url: e.target.value })}
                   placeholder="https://..."
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                   required
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingSocialLink.display_order}
@@ -848,7 +848,7 @@ const CMS = () => {
                   onChange={(e) => setEditingSocialLink({ ...editingSocialLink, is_active: e.target.checked })}
                   className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="sociallink-active" className="text-xs font-semibold text-text-secondary">Active</label>
+                <label htmlFor="sociallink-active" className="text-sm font-semibold text-text-secondary">Active</label>
               </div>
               <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button
@@ -884,7 +884,7 @@ const CMS = () => {
             </div>
             <form onSubmit={handleSaveClient} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Client Name *</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Client Name *</label>
                 <input
                   type="text"
                   value={editingClient.client_name}
@@ -895,28 +895,28 @@ const CMS = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Logo Path / URL *</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Logo Path / URL *</label>
                 <input
                   type="text"
                   value={editingClient.logo_path}
                   onChange={(e) => setEditingClient({ ...editingClient, logo_path: e.target.value })}
                   placeholder="/mitel.png or https://..."
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                   required
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Website URL</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Website URL</label>
                 <input
                   type="text"
                   value={editingClient.website_url || ''}
                   onChange={(e) => setEditingClient({ ...editingClient, website_url: e.target.value })}
                   placeholder="https://..."
-                  className="admin-input font-mono text-xs"
+                  className="admin-input font-mono text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5">Display Order</label>
                 <input
                   type="number"
                   value={editingClient.display_order}
@@ -932,7 +932,7 @@ const CMS = () => {
                   onChange={(e) => setEditingClient({ ...editingClient, is_active: e.target.checked })}
                   className="w-4 h-4 rounded text-primary"
                 />
-                <label htmlFor="client-active" className="text-xs font-semibold text-text-secondary">Active</label>
+                <label htmlFor="client-active" className="text-sm font-semibold text-text-secondary">Active</label>
               </div>
               <div className="flex gap-2 pt-4 border-t border-[var(--admin-border)]">
                 <button

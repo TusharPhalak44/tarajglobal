@@ -153,7 +153,7 @@ const Media = () => {
       />
 
       {message.text && (
-        <div className={`p-3.5 rounded-xl text-xs flex items-center justify-between shadow-sm ${
+        <div className={`p-3.5 rounded-xl text-sm flex items-center justify-between shadow-sm ${
           message.type === 'success' 
             ? 'bg-[var(--admin-bg-surface)] text-[var(--admin-success)] border border-[var(--admin-success)]' 
             : 'bg-[var(--admin-bg-surface)] text-[var(--admin-danger)] border border-[var(--admin-danger)]'
@@ -163,7 +163,7 @@ const Media = () => {
             <span>{message.text}</span>
           </div>
           <button onClick={() => setMessage({ type: '', text: '' })}>
-            <X className="w-3.5 h-3.5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
       )}
@@ -184,7 +184,7 @@ const Media = () => {
               onClick={() => setFilters({ ...filters, search: '' })}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           )}
         </div>
@@ -204,7 +204,7 @@ const Media = () => {
           <div className="flex items-center p-1 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)]">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-1.5 rounded-lg transition-colors ${
+              className={`p-2 rounded-lg transition-colors ${
                 viewMode === 'grid' ? 'bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] font-bold' : 'text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]'
               }`}
               title="Grid view"
@@ -213,7 +213,7 @@ const Media = () => {
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`p-1.5 rounded-lg transition-colors ${
+              className={`p-2 rounded-lg transition-colors ${
                 viewMode === 'list' ? 'bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] font-bold' : 'text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]'
               }`}
               title="List view"
@@ -248,8 +248,8 @@ const Media = () => {
                 <div className="aspect-square bg-[var(--admin-bg-elevated)] relative overflow-hidden flex items-center justify-center">
                   {isVideo ? (
                     <div className="flex flex-col items-center justify-center text-[var(--admin-text-muted)]">
-                      <FileVideo className="w-10 h-10 mb-1 text-[var(--admin-primary)]" />
-                      <span className="text-[10px] font-bold">Video</span>
+                      <FileVideo className="w-5 h-5 mb-1 text-[var(--admin-primary)]" />
+                      <span className="text-[12px] font-bold">Video</span>
                     </div>
                   ) : item.file_url ? (
                     <img
@@ -258,7 +258,7 @@ const Media = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
                         e.target.style.display = 'none'
-                        e.target.parentElement.innerHTML = '<div class="p-3 text-center text-xs text-[var(--admin-text-muted)]">Preview</div>'
+                        e.target.parentElement.innerHTML = '<div class="p-3 text-center text-sm text-[var(--admin-text-muted)]">Preview</div>'
                       }}
                     />
                   ) : (
@@ -285,16 +285,16 @@ const Media = () => {
                       className="p-2 rounded-lg bg-[var(--admin-bg-surface)] text-[var(--admin-danger)] hover:bg-[var(--admin-danger)] hover:text-text-primary dark:text-white shadow-md transition-colors"
                       title="Delete"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
 
-                <div className="p-3 bg-[var(--admin-bg-surface)] border-t border-[var(--admin-border-subtle)] flex items-center justify-between text-xs">
+                <div className="p-3 bg-[var(--admin-bg-surface)] border-t border-[var(--admin-border-subtle)] flex items-center justify-between text-sm">
                   <p className="font-bold text-[var(--admin-text-primary)] truncate" title={item.original_name}>
                     {item.original_name || `Asset #${item.id}`}
                   </p>
-                  <span className="text-[11px] font-medium text-[var(--admin-text-muted)] shrink-0">
+                  <span className="text-[13px] font-medium text-[var(--admin-text-muted)] shrink-0">
                     {item.file_size ? `${Math.round(item.file_size / 1024)}KB` : ''}
                   </span>
                 </div>
@@ -317,14 +317,14 @@ const Media = () => {
                   <img
                     src={fullUrl}
                     alt=""
-                    className="w-10 h-10 rounded-lg object-cover bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] shrink-0"
+                    className="w-5 h-5 rounded-lg object-cover bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] shrink-0"
                     onError={(e) => { e.target.style.display = 'none' }}
                   />
                   <div className="min-w-0 space-y-0.5">
-                    <p className="text-xs font-bold text-[var(--admin-text-primary)] truncate">
+                    <p className="text-sm font-bold text-[var(--admin-text-primary)] truncate">
                       {item.original_name || `Asset #${item.id}`}
                     </p>
-                    <p className="text-[11px] text-[var(--admin-text-muted)] truncate">
+                    <p className="text-[13px] text-[var(--admin-text-muted)] truncate">
                       {item.file_type || 'image'} • {item.file_size ? `${Math.round(item.file_size / 1024)} KB` : '-'}
                     </p>
                   </div>
@@ -350,7 +350,7 @@ const Media = () => {
                     className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-danger)] transition-colors"
                     title="Delete"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-5 h-5" />
                   </button>
                 </div>
               </div>
@@ -365,7 +365,7 @@ const Media = () => {
           <div className="fixed inset-0" onClick={() => setPreviewItem(null)} />
           <div className="relative max-w-2xl w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
-              <p className="text-sm font-bold text-[var(--admin-text-primary)] truncate">
+              <p className="text-base font-bold text-[var(--admin-text-primary)] truncate">
                 {previewItem.original_name}
               </p>
               <button onClick={() => setPreviewItem(null)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
@@ -381,19 +381,19 @@ const Media = () => {
               />
             </div>
 
-            <div className="flex items-center justify-between pt-3 border-t border-[var(--admin-border-subtle)] text-xs">
+            <div className="flex items-center justify-between pt-3 border-t border-[var(--admin-border-subtle)] text-sm">
               <button
                 onClick={() => handleCopyLink(previewItem)}
-                className="admin-btn admin-btn-secondary h-8 px-3 text-xs"
+                className="admin-btn admin-btn-secondary h-8 px-3 text-sm"
               >
-                <Copy className="w-3.5 h-3.5" />
+                <Copy className="w-4 h-4" />
                 <span>Copy URL</span>
               </button>
               <button
                 onClick={() => handleDownload(previewItem)}
-                className="admin-btn admin-btn-primary h-8 px-3 text-xs shadow-sm"
+                className="admin-btn admin-btn-primary h-8 px-3 text-sm shadow-sm"
               >
-                <Download className="w-3.5 h-3.5" />
+                <Download className="w-4 h-4" />
                 <span>Download</span>
               </button>
             </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ActionDropdown from '../../components/admin/ActionDropdown'
 import { useNavigate, Link } from 'react-router-dom'
 import { 
   Plus, 
@@ -175,7 +176,7 @@ const Jobs = () => {
       />
 
       {toastMessage && (
-        <div className="p-3.5 rounded-xl bg-[var(--admin-bg-surface)] border border-[var(--admin-success)] text-[var(--admin-success)] text-xs flex items-center gap-2 shadow-sm">
+        <div className="p-3.5 rounded-xl bg-[var(--admin-bg-surface)] border border-[var(--admin-success)] text-[var(--admin-success)] text-sm flex items-center gap-2 shadow-sm">
           <CheckCircle2 className="w-4 h-4" />
           <span>{toastMessage}</span>
         </div>
@@ -197,7 +198,7 @@ const Jobs = () => {
               onClick={() => setFilters({ ...filters, search: '' })}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           )}
         </div>
@@ -236,16 +237,16 @@ const Jobs = () => {
                 <div className="flex items-center gap-3">
                   <h3 
                     onClick={() => setViewJob(job)}
-                    className="text-sm sm:text-base font-bold text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors cursor-pointer truncate"
+                    className="text-base sm:text-base font-bold text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors cursor-pointer truncate"
                   >
                     {job.title}
                   </h3>
                   <StatusBadge status={job.status || 'draft'} />
                 </div>
 
-                <div className="flex items-center gap-3 text-xs text-[var(--admin-text-muted)] flex-wrap">
-                  <span className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[var(--admin-primary)]" />
+                <div className="flex items-center gap-3 text-sm text-[var(--admin-text-muted)] flex-wrap">
+                  <span className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-[var(--admin-primary)]" />
                     <span className="text-[var(--admin-text-secondary)]">{job.location || 'Remote'}</span>
                   </span>
                   <span>•</span>
@@ -268,7 +269,7 @@ const Jobs = () => {
                   className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors"
                   title="View Position"
                 >
-                  <Eye className="w-4 h-4" />
+                  <Eye className="w-5 h-5" />
                 </button>
 
                 <button
@@ -276,24 +277,10 @@ const Jobs = () => {
                   className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors"
                   title="Edit Position"
                 >
-                  <Edit className="w-4 h-4" />
+                  <Edit className="w-5 h-5" />
                 </button>
 
-                <div className="relative">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setActiveDropdown(activeDropdown === job.id ? null : job.id)
-                    }}
-                    className="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors"
-                  >
-                    <MoreVertical className="w-4 h-4" />
-                  </button>
-
-                  {activeDropdown === job.id && (
-                    <>
-                      <div className="fixed inset-0 z-40" onClick={() => setActiveDropdown(null)} />
-                      <div className="absolute right-0 top-full mt-1.5 w-40 bg-[var(--admin-bg-card)] border border-[var(--admin-border-base)] rounded-xl shadow-xl p-1.5 z-50 text-xs admin-card-hover">
+                <ActionDropdown buttonClassName="p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] transition-colors" dropdownClassName="p-2 min-w-[10rem]">
                         {job.status !== 'active' ? (
                           <button
                             onClick={() => handleStatusChange(job, 'active')}
@@ -324,10 +311,7 @@ const Jobs = () => {
                         >
                           Delete
                         </button>
-                      </div>
-                    </>
-                  )}
-                </div>
+                                            </ActionDropdown>
               </div>
             </div>
           ))}
@@ -342,14 +326,14 @@ const Jobs = () => {
             <div className="flex items-start justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
               <div>
                 <h3 className="text-base font-bold text-[var(--admin-text-primary)]">{viewJob.title}</h3>
-                <p className="text-xs text-[var(--admin-text-secondary)] mt-0.5">{viewJob.location || 'Remote'} • {viewJob.type || 'Full-time'}</p>
+                <p className="text-sm text-[var(--admin-text-secondary)] mt-0.5">{viewJob.location || 'Remote'} • {viewJob.type || 'Full-time'}</p>
               </div>
               <button onClick={() => setViewJob(null)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="space-y-3 text-xs text-[var(--admin-text-secondary)]">
+            <div className="space-y-3 text-sm text-[var(--admin-text-secondary)]">
               <div>
                 <span className="font-bold uppercase tracking-wider text-[var(--admin-text-muted)] block mb-1">Description</span>
                 <p className="leading-relaxed whitespace-pre-wrap bg-[var(--admin-bg-elevated)] p-3.5 rounded-xl border border-[var(--admin-border-base)]">{viewJob.description}</p>
@@ -364,7 +348,7 @@ const Jobs = () => {
             </div>
 
             <div className="flex items-center justify-end gap-2 pt-3 border-t border-[var(--admin-border-subtle)]">
-              <Link to={`/admin/jobs/edit/${viewJob.id}`} className="admin-btn admin-btn-primary h-9 px-4 text-xs">
+              <Link to={`/admin/jobs/edit/${viewJob.id}`} className="admin-btn admin-btn-primary h-9 px-4 text-sm">
                 Edit Position
               </Link>
             </div>
@@ -385,14 +369,14 @@ const Jobs = () => {
             </div>
 
             {error && (
-              <div className="p-3 rounded-xl bg-[var(--admin-danger-soft)] border border-[var(--admin-danger)]/30 text-[var(--admin-danger)] text-xs font-semibold">
+              <div className="p-3 rounded-xl bg-[var(--admin-danger-soft)] border border-[var(--admin-danger)]/30 text-[var(--admin-danger)] text-sm font-semibold">
                 {error}
               </div>
             )}
 
             <form onSubmit={handleCreateJob} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Position Title *</label>
+                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Position Title *</label>
                 <input
                   type="text"
                   value={createForm.title}
@@ -405,7 +389,7 @@ const Jobs = () => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Location</label>
+                  <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Location</label>
                   <input
                     type="text"
                     value={createForm.location}
@@ -415,7 +399,7 @@ const Jobs = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Employment Type</label>
+                  <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Employment Type</label>
                   <select
                     value={createForm.type}
                     onChange={(e) => setCreateForm({ ...createForm, type: e.target.value })}
@@ -429,7 +413,7 @@ const Jobs = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[var(--admin-text-secondary)] mb-1.5">Description *</label>
+                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Description *</label>
                 <textarea
                   value={createForm.description}
                   onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
@@ -441,10 +425,10 @@ const Jobs = () => {
               </div>
 
               <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-[var(--admin-border-subtle)]">
-                <button type="button" onClick={() => setShowCreateModal(false)} className="admin-btn admin-btn-secondary h-9 px-4 text-xs">
+                <button type="button" onClick={() => setShowCreateModal(false)} className="admin-btn admin-btn-secondary h-9 px-4 text-sm">
                   Cancel
                 </button>
-                <button type="submit" disabled={saving} className="admin-btn admin-btn-primary h-9 px-4 text-xs shadow-md">
+                <button type="submit" disabled={saving} className="admin-btn admin-btn-primary h-9 px-4 text-sm shadow-md">
                   {saving ? 'Posting...' : 'Post Position'}
                 </button>
               </div>

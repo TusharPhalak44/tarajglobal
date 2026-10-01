@@ -87,7 +87,7 @@ const AuditLogs = () => {
           <select
             value={filters.action}
             onChange={(e) => setFilters({ ...filters, action: e.target.value })}
-            className="admin-select text-xs min-w-[140px]"
+            className="admin-select text-sm min-w-[140px]"
           >
             <option value="">All Action Types</option>
             <option value="create">Created</option>
@@ -100,7 +100,7 @@ const AuditLogs = () => {
           <select
             value={filters.module}
             onChange={(e) => setFilters({ ...filters, module: e.target.value })}
-            className="admin-select text-xs min-w-[140px]"
+            className="admin-select text-sm min-w-[140px]"
           >
             <option value="">All Modules</option>
             <option value="blog">Blogs & Content</option>
@@ -111,7 +111,7 @@ const AuditLogs = () => {
           </select>
         </div>
 
-        <span className="text-xs font-semibold text-[var(--admin-text-muted)]">
+        <span className="text-sm font-semibold text-[var(--admin-text-muted)]">
           Showing {logs.length} audit entries
         </span>
       </div>
@@ -149,33 +149,33 @@ const AuditLogs = () => {
                       <td>
                         <div className="flex items-center gap-2.5">
                           {getActionBadge(log.action)}
-                          <span className="text-xs font-bold text-[var(--admin-text-primary)] truncate max-w-xs">
+                          <span className="text-sm font-bold text-[var(--admin-text-primary)] truncate max-w-xs">
                             {log.action_description || log.details || log.action}
                           </span>
                         </div>
                       </td>
                       <td>
-                        <div className="flex items-center gap-1.5 text-xs text-[var(--admin-text-secondary)] font-medium">
-                          <ModuleIcon className="w-3.5 h-3.5 text-[var(--admin-primary)] shrink-0" />
+                        <div className="flex items-center gap-2 text-sm text-[var(--admin-text-secondary)] font-medium">
+                          <ModuleIcon className="w-4 h-4 text-[var(--admin-primary)] shrink-0" />
                           <span className="capitalize">{log.module || log.entity_type || 'System'}</span>
                         </div>
                       </td>
                       <td>
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center text-xs font-bold text-[var(--admin-primary)] shrink-0">
+                          <div className="w-7 h-7 rounded-lg bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center text-sm font-bold text-[var(--admin-primary)] shrink-0">
                             {log.user_name ? log.user_name.charAt(0) : 'A'}
                           </div>
-                          <span className="text-xs font-bold text-[var(--admin-text-primary)]">
+                          <span className="text-sm font-bold text-[var(--admin-text-primary)]">
                             {log.user_name || 'System Operator'}
                           </span>
                         </div>
                       </td>
-                      <td className="text-xs font-mono text-[var(--admin-text-muted)] truncate max-w-xs">
+                      <td className="text-sm font-mono text-[var(--admin-text-muted)] truncate max-w-xs">
                         {log.ip_address || log.ip || '127.0.0.1'}
                       </td>
-                      <td className="text-xs text-[var(--admin-text-muted)]">
+                      <td className="text-sm text-[var(--admin-text-muted)]">
                         <div className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5" />
+                          <Clock className="w-4 h-4" />
                           <span>{new Date(log.created_at || Date.now()).toLocaleString()}</span>
                         </div>
                       </td>
@@ -187,7 +187,7 @@ const AuditLogs = () => {
           </div>
 
           {pagination.totalPages > 1 && (
-            <div className="p-4 border-t border-[var(--admin-border-subtle)] flex items-center justify-between gap-4 flex-wrap text-xs text-[var(--admin-text-muted)]">
+            <div className="p-4 border-t border-[var(--admin-border-subtle)] flex items-center justify-between gap-4 flex-wrap text-sm text-[var(--admin-text-muted)]">
               <span>
                 Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} audit logs
               </span>
@@ -196,7 +196,7 @@ const AuditLogs = () => {
                 <button
                   onClick={() => setPagination({ ...pagination, page: pagination.page - 1 })}
                   disabled={pagination.page === 1}
-                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
+                  className="admin-btn admin-btn-secondary text-sm py-1.5 px-3 disabled:opacity-40"
                 >
                   Previous
                 </button>
@@ -206,7 +206,7 @@ const AuditLogs = () => {
                 <button
                   onClick={() => setPagination({ ...pagination, page: pagination.page + 1 })}
                   disabled={pagination.page === pagination.totalPages}
-                  className="admin-btn admin-btn-secondary text-xs py-1.5 px-3 disabled:opacity-40"
+                  className="admin-btn admin-btn-secondary text-sm py-1.5 px-3 disabled:opacity-40"
                 >
                   Next
                 </button>

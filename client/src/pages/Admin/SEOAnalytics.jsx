@@ -66,10 +66,10 @@ const SEOAnalytics = () => {
     return (
       <div className="p-6 rounded-2xl bg-[var(--admin-danger-soft)] border border-[#F43F5E]/30 flex items-center justify-between gap-4">
         <div>
-          <h3 className="text-sm font-bold text-[#F43F5E] mb-1">Analytics Telemetry Error</h3>
-          <p className="text-xs text-[#F43F5E]/80">{error}</p>
+          <h3 className="text-base font-bold text-[#F43F5E] mb-1">Analytics Telemetry Error</h3>
+          <p className="text-sm text-[#F43F5E]/80">{error}</p>
         </div>
-        <button onClick={() => window.location.reload()} className="admin-btn admin-btn-danger text-xs">
+        <button onClick={() => window.location.reload()} className="admin-btn admin-btn-danger text-sm">
           Retry Stream
         </button>
       </div>
@@ -96,7 +96,7 @@ const SEOAnalytics = () => {
             <select
               value={days}
               onChange={(e) => setDays(Number(e.target.value))}
-              className="bg-transparent text-xs font-bold text-[var(--admin-text-primary)] outline-none cursor-pointer"
+              className="bg-transparent text-sm font-bold text-[var(--admin-text-primary)] outline-none cursor-pointer"
             >
               <option value={7}>Last 7 Days</option>
               <option value={30}>Last 30 Days</option>
@@ -140,7 +140,7 @@ const SEOAnalytics = () => {
 
       {/* Tab Navigation */}
       <div className="admin-card overflow-hidden">
-        <div className="flex items-center border-b border-[var(--admin-border-subtle)] bg-[var(--admin-bg-elevated)] px-4 overflow-x-auto admin-scrollbar">
+        <div className="flex items-center border-b border-[var(--admin-border-subtle)] bg-[var(--admin-bg-elevated)] px-4 overflow-visible admin-scrollbar">
           {tabs.map((tab) => {
             const Icon = tab.icon
             const isActive = activeTab === tab.id
@@ -149,7 +149,7 @@ const SEOAnalytics = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-3.5 px-4 text-xs font-bold border-b-2 transition-colors flex items-center gap-2 whitespace-nowrap ${
+                className={`py-3.5 px-4 text-sm font-bold border-b-2 transition-colors flex items-center gap-2 whitespace-nowrap ${
                   isActive
                     ? 'border-[#00A6FF] text-[#00A6FF]'
                     : 'border-transparent text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)]'
@@ -193,17 +193,17 @@ const SEOAnalytics = () => {
                             <td>
                               <div className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-[#72D669] shrink-0 animate-ping" />
-                                <span className="font-mono text-xs font-bold text-[var(--admin-text-primary)] truncate max-w-md">
+                                <span className="font-mono text-sm font-bold text-[var(--admin-text-primary)] truncate max-w-md">
                                   {session.path || session.url || '/'}
                                 </span>
                               </div>
                             </td>
-                            <td className="text-xs text-[var(--admin-text-muted)] truncate max-w-sm">
+                            <td className="text-sm text-[var(--admin-text-muted)] truncate max-w-sm">
                               {session.user_agent || 'Standard Desktop Browser'}
                             </td>
-                            <td className="text-xs text-[var(--admin-text-secondary)]">
-                              <div className="flex items-center gap-1.5">
-                                <Clock className="w-3.5 h-3.5 text-[var(--admin-text-dim)]" />
+                            <td className="text-sm text-[var(--admin-text-secondary)]">
+                              <div className="flex items-center gap-2">
+                                <Clock className="w-4 h-4 text-[var(--admin-text-dim)]" />
                                 <span>{date} {time}</span>
                               </div>
                             </td>
@@ -242,11 +242,11 @@ const SEOAnalytics = () => {
                         return (
                           <tr key={idx} className="group">
                             <td>
-                              <span className="font-mono text-xs font-bold text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors">
+                              <span className="font-mono text-sm font-bold text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors">
                                 {page.path || page.url}
                               </span>
                             </td>
-                            <td className="text-xs font-bold text-[var(--admin-text-primary)]">
+                            <td className="text-sm font-bold text-[var(--admin-text-primary)]">
                               {count} views
                             </td>
                             <td>
@@ -257,7 +257,7 @@ const SEOAnalytics = () => {
                                     style={{ width: `${Math.min(100, Math.max(5, percentage))}%` }}
                                   />
                                 </div>
-                                <span className="text-xs font-mono text-[var(--admin-text-muted)] shrink-0">
+                                <span className="text-sm font-mono text-[var(--admin-text-muted)] shrink-0">
                                   {percentage}%
                                 </span>
                               </div>
@@ -287,11 +287,11 @@ const SEOAnalytics = () => {
                           <Compass className="w-4 h-4" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-[var(--admin-text-primary)]">{src.source || 'Direct Search'}</p>
-                          <p className="text-[11px] text-[var(--admin-text-muted)]">{src.count || 0} visits</p>
+                          <p className="text-sm font-bold text-[var(--admin-text-primary)]">{src.source || 'Direct Search'}</p>
+                          <p className="text-[13px] text-[var(--admin-text-muted)]">{src.count || 0} visits</p>
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-[var(--admin-primary)]">{src.percentage || ''}%</span>
+                      <span className="text-sm font-bold text-[var(--admin-primary)]">{src.percentage || ''}%</span>
                     </div>
                   ))}
                 </div>

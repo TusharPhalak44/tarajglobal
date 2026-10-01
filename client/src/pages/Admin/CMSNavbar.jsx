@@ -386,7 +386,7 @@ const CMSNavbar = () => {
     return (
       <div className="flex flex-col items-center justify-center h-80 text-text-muted gap-3">
         <RefreshCw className="w-8 h-8 animate-spin text-primary" />
-        <p className="font-medium text-sm">Loading Header & Navbar CMS configuration...</p>
+        <p className="font-medium text-base">Loading Header & Navbar CMS configuration...</p>
       </div>
     )
   }
@@ -407,7 +407,7 @@ const CMSNavbar = () => {
           ) : (
             <AlertCircle className="w-5 h-5 shrink-0 text-rose-400" />
           )}
-          <span className="text-sm font-medium">{message.text}</span>
+          <span className="text-base font-medium">{message.text}</span>
         </div>
       )}
 
@@ -416,11 +416,11 @@ const CMSNavbar = () => {
         <div className="space-y-1">
           <div className="flex items-center gap-2.5">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">Header & Navbar Management</h1>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-sm font-semibold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
               Live CMS
             </span>
           </div>
-          <p className="text-sm text-text-secondary">
+          <p className="text-base text-text-secondary">
             Dynamically customize company logo, top announcement bar, and primary navigation menus.
           </p>
         </div>
@@ -428,20 +428,20 @@ const CMSNavbar = () => {
         <div className="flex items-center gap-2.5">
           <button
             onClick={fetchData}
-            className="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-primary transition-all"
+            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-primary transition-all"
             title="Reload from database"
           >
-            <RefreshCw className="w-3.5 h-3.5" />
+            <RefreshCw className="w-4 h-4" />
             <span>Reload</span>
           </button>
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark transition-all shadow-md shadow-primary/20"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark transition-all shadow-md shadow-primary/20"
           >
             <span>Live Website</span>
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="w-4 h-4" />
           </a>
         </div>
       </div>
@@ -450,40 +450,40 @@ const CMSNavbar = () => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Main Nav Items</div>
+            <div className="text-sm font-medium text-text-muted">Main Nav Items</div>
             <div className="text-xl font-bold text-text-primary mt-1">{navItems.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-500">
+          <div className="w-5 h-5 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-500">
             <Link2 className="w-5 h-5" />
           </div>
         </div>
 
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Header Bar Items</div>
+            <div className="text-sm font-medium text-text-muted">Header Bar Items</div>
             <div className="text-xl font-bold text-text-primary mt-1">{headerItems.length}</div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
+          <div className="w-5 h-5 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
             <Sliders className="w-5 h-5" />
           </div>
         </div>
 
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Logo Branding</div>
-            <div className="text-sm font-bold text-text-primary mt-1.5 truncate max-w-[120px]">
+            <div className="text-sm font-medium text-text-muted">Logo Branding</div>
+            <div className="text-base font-bold text-text-primary mt-1.5 truncate max-w-[120px]">
               {logoText || 'Taraj Global'}
             </div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
+          <div className="w-5 h-5 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
             <ImageIcon className="w-5 h-5" />
           </div>
         </div>
 
         <div className="bg-surface border border-border p-4 rounded-xl flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium text-text-muted">Announcement Bar</div>
-            <div className="text-sm font-bold text-text-primary mt-1.5">
+            <div className="text-sm font-medium text-text-muted">Announcement Bar</div>
+            <div className="text-base font-bold text-text-primary mt-1.5">
               {headerVisible ? (
                 <span className="text-emerald-400">Enabled</span>
               ) : (
@@ -491,14 +491,14 @@ const CMSNavbar = () => {
               )}
             </div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+          <div className="w-5 h-5 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
             <Globe className="w-5 h-5" />
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-border overflow-x-auto pb-0.5">
+      <div className="flex gap-2 border-b border-border overflow-visible pb-0.5">
         {[
           { id: 'settings', label: 'Logo & Branding', icon: ImageIcon },
           { id: 'header', label: 'Top Header Bar', icon: Sliders },
@@ -511,7 +511,7 @@ const CMSNavbar = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-base transition-all whitespace-nowrap ${
                 isActive
                   ? 'border-primary text-primary bg-primary/5 rounded-t-lg'
                   : 'border-transparent text-text-secondary hover:text-text-primary hover:border-border'
@@ -532,12 +532,12 @@ const CMSNavbar = () => {
         <div className="bg-surface rounded-2xl border border-border overflow-hidden shadow-sm">
           <div className="p-6 border-b border-border bg-gradient-to-r from-surface to-background flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/35 dark:bg-primary/15 text-primary flex items-center justify-center">
+              <div className="w-5 h-5 rounded-xl bg-primary/35 dark:bg-primary/15 text-primary flex items-center justify-center">
                 <ImageIcon className="w-5 h-5" />
               </div>
               <div>
                 <h2 className="text-lg font-bold text-text-primary">Company Logo & Branding</h2>
-                <p className="text-xs text-text-secondary">
+                <p className="text-sm text-text-secondary">
                   Upload image file or set URL for website logo, brand title, and header display options.
                 </p>
               </div>
@@ -547,16 +547,16 @@ const CMSNavbar = () => {
               <button
                 type="button"
                 onClick={handleUseAnimatedLogo}
-                className="flex items-center gap-1.5 text-xs text-primary bg-primary/30 dark:bg-primary/10 hover:bg-primary/40 dark:bg-primary/20 px-3 py-1.5 rounded-lg border border-primary/30 transition-all cursor-pointer font-semibold shadow-xs"
+                className="flex items-center gap-2 text-sm text-primary bg-primary/30 dark:bg-primary/10 hover:bg-primary/40 dark:bg-primary/20 px-3 py-1.5 rounded-lg border border-primary/30 transition-all cursor-pointer font-semibold shadow-xs"
                 title="Switch to the high-performance animated SVG emblem"
               >
-                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <Sparkles className="w-4 h-4 text-primary" />
                 <span>Use Animated SVG Logo</span>
               </button>
               <button
                 type="button"
                 onClick={handleResetDefaultLogo}
-                className="text-xs text-text-muted hover:text-text-primary px-3 py-1.5 rounded-lg border border-border hover:bg-background transition-colors cursor-pointer"
+                className="text-sm text-text-muted hover:text-text-primary px-3 py-1.5 rounded-lg border border-border hover:bg-background transition-colors cursor-pointer"
               >
                 Reset to Default Logo
               </button>
@@ -567,7 +567,7 @@ const CMSNavbar = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               {/* Live Logo Preview Box */}
               <div className="lg:col-span-4 flex flex-col items-center justify-center p-6 bg-background rounded-xl border border-border text-center space-y-4">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-muted">
+                <span className="text-sm font-mono font-semibold uppercase tracking-wider text-text-muted">
                   Current Logo Preview
                 </span>
 
@@ -575,14 +575,14 @@ const CMSNavbar = () => {
                   {logoPreview ? (
                     <TGAnimatedLogo logoUrl={logoPreview} alt={logoAlt || 'Preview'} />
                   ) : (
-                    <span className="text-xs text-text-muted font-mono">No logo specified</span>
+                    <span className="text-sm text-text-muted font-mono">No logo specified</span>
                   )}
                 </div>
 
                 <div className="text-center">
-                  <p className="text-sm font-semibold text-text-primary">{logoText || 'Taraj Global'}</p>
-                  <p className="text-xs text-text-muted truncate max-w-xs mt-0.5">{logoUrl || '/middle.png'}</p>
-                  <p className="text-[11px] text-[#00A6FF] font-medium mt-1">
+                  <p className="text-base font-semibold text-text-primary">{logoText || 'Taraj Global'}</p>
+                  <p className="text-sm text-text-muted truncate max-w-xs mt-0.5">{logoUrl || '/middle.png'}</p>
+                  <p className="text-[13px] text-[#00A6FF] font-medium mt-1">
                     {logoUrl && logoUrl !== '/circle.png' ? '✓ Replaces circle emblem in header' : '✓ Using signature animated emblem'}
                   </p>
                 </div>
@@ -598,7 +598,7 @@ const CMSNavbar = () => {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-surface hover:bg-surface/80 border border-border rounded-xl text-sm font-medium text-text-primary transition-all shadow-xs hover:border-primary/50"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-surface hover:bg-surface/80 border border-border rounded-xl text-base font-medium text-text-primary transition-all shadow-xs hover:border-primary/50"
                 >
                   <Upload className="w-4 h-4 text-primary" />
                   Upload New Image from Device
@@ -608,7 +608,7 @@ const CMSNavbar = () => {
               {/* Inputs */}
               <div className="lg:col-span-8 space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
                     Logo URL / Path
                   </label>
                   <div className="relative">
@@ -620,17 +620,17 @@ const CMSNavbar = () => {
                         setLogoPreview(e.target.value)
                       }}
                       placeholder="/middle.png or https://example.com/logo.png"
-                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary transition-colors font-mono"
+                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary transition-colors font-mono"
                     />
                   </div>
-                  <p className="text-xs text-text-muted mt-1">
+                  <p className="text-sm text-text-muted mt-1">
                     You can type an image path (e.g. <code className="text-primary">/middle.png</code>, <code className="text-primary">/OnlyTG- 3.png</code>), a CDN URL, or use the upload button on the left.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+                    <label className="block text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
                       Brand Name / Logo Text
                     </label>
                     <input
@@ -638,12 +638,12 @@ const CMSNavbar = () => {
                       value={logoText}
                       onChange={(e) => setLogoText(e.target.value)}
                       placeholder="Taraj Global"
-                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary transition-colors"
+                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+                    <label className="block text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
                       Logo Alt Text (SEO)
                     </label>
                     <input
@@ -651,7 +651,7 @@ const CMSNavbar = () => {
                       value={logoAlt}
                       onChange={(e) => setLogoAlt(e.target.value)}
                       placeholder="Taraj Global - B2B Growth Agency"
-                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary transition-colors"
+                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary transition-colors"
                     />
                   </div>
                 </div>
@@ -660,8 +660,8 @@ const CMSNavbar = () => {
                 <div className="p-4 sm:p-5 rounded-2xl bg-background border border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:border-primary/40 shadow-xs">
                   <div className="space-y-1 max-w-xl">
                     <div className="flex items-center gap-2.5">
-                      <span className="text-sm font-bold text-text-primary">Top Announcement & Header Bar</span>
-                      <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-wider transition-colors ${
+                      <span className="text-base font-bold text-text-primary">Top Announcement & Header Bar</span>
+                      <span className={`text-[12px] px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-wider transition-colors ${
                         headerVisible 
                           ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' 
                           : 'bg-slate-500/20 text-slate-400 border border-slate-500/30'
@@ -669,7 +669,7 @@ const CMSNavbar = () => {
                         {headerVisible ? 'ON • Enabled' : 'OFF • Disabled'}
                       </span>
                     </div>
-                    <p className="text-xs text-text-secondary leading-relaxed">
+                    <p className="text-sm text-text-secondary leading-relaxed">
                       Show top announcement / contact bar above the navbar when active header items exist.
                     </p>
                   </div>
@@ -679,7 +679,7 @@ const CMSNavbar = () => {
                     <button
                       type="button"
                       onClick={handleToggleHeaderVisible}
-                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-xl text-xs font-black transition-all duration-200 cursor-pointer select-none shadow-sm ${
+                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-black transition-all duration-200 cursor-pointer select-none shadow-sm ${
                         headerVisible
                           ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/25 shadow-emerald-500/10'
                           : 'bg-slate-800/80 text-slate-300 border border-slate-700 hover:bg-slate-700/80'
@@ -701,8 +701,8 @@ const CMSNavbar = () => {
                 <div className="p-4 sm:p-5 rounded-2xl bg-background border border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:border-primary/40 shadow-xs">
                   <div className="space-y-1 max-w-xl">
                     <div className="flex items-center gap-2.5">
-                      <span className="text-sm font-bold text-text-primary">Display Brand Name Text Beside Image</span>
-                      <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-wider transition-colors ${
+                      <span className="text-base font-bold text-text-primary">Display Brand Name Text Beside Image</span>
+                      <span className={`text-[12px] px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-wider transition-colors ${
                         showLogoText 
                           ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' 
                           : 'bg-slate-500/20 text-slate-400 border border-slate-500/30'
@@ -710,7 +710,7 @@ const CMSNavbar = () => {
                         {showLogoText ? 'ON • Visible' : 'OFF • Hidden'}
                       </span>
                     </div>
-                    <p className="text-xs text-text-secondary leading-relaxed">
+                    <p className="text-sm text-text-secondary leading-relaxed">
                       Show &ldquo;<span className="text-primary font-bold">{logoText || 'Taraj Global'}</span>&rdquo; text next to the header image. Keep disabled if your uploaded logo image already includes the name.
                     </p>
                   </div>
@@ -720,7 +720,7 @@ const CMSNavbar = () => {
                     <button
                       type="button"
                       onClick={handleToggleShowLogoText}
-                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-xl text-xs font-black transition-all duration-200 cursor-pointer select-none shadow-sm ${
+                      className={`group relative inline-flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-black transition-all duration-200 cursor-pointer select-none shadow-sm ${
                         showLogoText
                           ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/25 shadow-emerald-500/10'
                           : 'bg-slate-800/80 text-slate-300 border border-slate-700 hover:bg-slate-700/80'
@@ -742,7 +742,7 @@ const CMSNavbar = () => {
                   <button
                     type="submit"
                     disabled={logoSaving}
-                    className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-all disabled:opacity-50 shadow-md hover:shadow-primary/25 cursor-pointer text-sm"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-all disabled:opacity-50 shadow-md hover:shadow-primary/25 cursor-pointer text-base"
                   >
                     {logoSaving ? (
                       <>
@@ -770,11 +770,11 @@ const CMSNavbar = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-lg font-bold text-text-primary">Top Header Navigation & Announcement Items</h2>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
+                <span className="px-2 py-0.5 rounded-full text-sm font-bold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
                   {headerItems.length} {headerItems.length === 1 ? 'item' : 'items'}
                 </span>
               </div>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Contact info, announcements, phone numbers, or quick links displayed in the top header bar.
               </p>
             </div>
@@ -782,17 +782,17 @@ const CMSNavbar = () => {
             <button
               type="button"
               onClick={() => handleAddItem('header')}
-              className="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:bg-primary-dark transition-all shadow-sm shrink-0 cursor-pointer self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-base font-semibold rounded-xl hover:bg-primary-dark transition-all shadow-sm shrink-0 cursor-pointer self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add Header Item</span>
             </button>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-visible">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-border bg-background/50 text-xs font-semibold uppercase tracking-wider text-text-muted">
+                <tr className="border-b border-border bg-background/50 text-sm font-semibold uppercase tracking-wider text-text-muted">
                   <th className="px-6 py-3.5">Content / Label</th>
                   <th className="px-6 py-3.5">Target Link / URL</th>
                   <th className="px-6 py-3.5">Order</th>
@@ -806,24 +806,24 @@ const CMSNavbar = () => {
                   return (
                     <tr key={item.id} className="hover:bg-background/40 transition-colors">
                       <td className="px-6 py-4">
-                        <div className="font-semibold text-text-primary text-sm flex items-center gap-2">
+                        <div className="font-semibold text-text-primary text-base flex items-center gap-2">
                           {item.label}
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-1.5 text-xs text-text-secondary font-mono">
-                          <Link2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <div className="flex items-center gap-2 text-sm text-text-secondary font-mono">
+                          <Link2 className="w-4 h-4 text-primary shrink-0" />
                           <span className="truncate max-w-xs">{item.url}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-xs font-mono text-text-muted">
+                      <td className="px-6 py-4 text-sm font-mono text-text-muted">
                         #{item.display_order}
                       </td>
                       <td className="px-6 py-4">
                         <button
                           type="button"
                           onClick={() => handleToggleItemActive(item)}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+                          className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
                             isActive
                               ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25'
                               : 'bg-slate-500/15 text-slate-400 border border-slate-500/30 hover:bg-slate-500/25'
@@ -835,27 +835,27 @@ const CMSNavbar = () => {
                         </button>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-1">
+                        <div className="flex items-center justify-end gap-1.5 min-w-max">
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'up', 'header')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Up"
                           >
-                            <ArrowUp className="w-3.5 h-3.5" />
+                            <ArrowUp className="w-4 h-4" />
                           </button>
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'down', 'header')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Down"
                           >
-                            <ArrowDown className="w-3.5 h-3.5" />
+                            <ArrowDown className="w-4 h-4" />
                           </button>
                           <button
                             type="button"
                             onClick={() => handleEditItem(item)}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Edit Header Item"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -863,10 +863,10 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleDeleteItem(item)}
-                            className="p-1.5 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
                             title="Delete Header Item"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -878,13 +878,13 @@ const CMSNavbar = () => {
 
             {headerItems.length === 0 && (
               <div className="py-12 px-4 text-center">
-                <p className="text-sm text-text-muted">No top header items configured yet.</p>
+                <p className="text-base text-text-muted">No top header items configured yet.</p>
                 <button
                   type="button"
                   onClick={() => handleAddItem('header')}
-                  className="mt-3 text-xs text-primary font-semibold hover:underline inline-flex items-center gap-1"
+                  className="mt-3 text-sm text-primary font-semibold hover:underline inline-flex items-center gap-1"
                 >
-                  <Plus className="w-3.5 h-3.5" /> Add your first header item (e.g. Email, Phone, Announcement)
+                  <Plus className="w-4 h-4" /> Add your first header item (e.g. Email, Phone, Announcement)
                 </button>
               </div>
             )}
@@ -899,11 +899,11 @@ const CMSNavbar = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-lg font-bold text-text-primary">Main Navbar Menu Items</h2>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
+                <span className="px-2 py-0.5 rounded-full text-sm font-bold bg-primary/30 dark:bg-primary/10 text-primary border border-primary/20">
                   {navItems.length} {navItems.length === 1 ? 'item' : 'items'}
                 </span>
               </div>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Primary navigation menu links displayed in the center of the desktop and mobile navigation bar.
               </p>
             </div>
@@ -911,17 +911,17 @@ const CMSNavbar = () => {
             <button
               type="button"
               onClick={() => handleAddItem('navbar')}
-              className="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:bg-primary-dark transition-all shadow-sm shrink-0 cursor-pointer self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-base font-semibold rounded-xl hover:bg-primary-dark transition-all shadow-sm shrink-0 cursor-pointer self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add Navbar Item</span>
             </button>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-visible">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-border bg-background/50 text-xs font-semibold uppercase tracking-wider text-text-muted">
+                <tr className="border-b border-border bg-background/50 text-sm font-semibold uppercase tracking-wider text-text-muted">
                   <th className="px-6 py-3.5">Menu Label</th>
                   <th className="px-6 py-3.5">Route / Link URL</th>
                   <th className="px-6 py-3.5">Display Order</th>
@@ -935,29 +935,29 @@ const CMSNavbar = () => {
                   return (
                     <tr key={item.id} className="hover:bg-background/40 transition-colors">
                       <td className="px-6 py-4">
-                        <div className="font-semibold text-text-primary text-sm flex items-center gap-2">
+                        <div className="font-semibold text-text-primary text-base flex items-center gap-2">
                           {item.label}
                           {item.url === '/services' && (
-                            <span className="text-[10px] px-1.5 py-0.5 bg-sky-500/10 text-[#00A6FF] rounded border border-sky-500/20 font-mono">
+                            <span className="text-[12px] px-1.5 py-0.5 bg-sky-500/10 text-[#00A6FF] rounded border border-sky-500/20 font-mono">
                               MegaMenu
                             </span>
                           )}
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-1.5 text-xs text-text-secondary font-mono">
-                          <Link2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <div className="flex items-center gap-2 text-sm text-text-secondary font-mono">
+                          <Link2 className="w-4 h-4 text-primary shrink-0" />
                           <span>{item.url}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-xs font-mono text-text-muted">
+                      <td className="px-6 py-4 text-sm font-mono text-text-muted">
                         #{item.display_order}
                       </td>
                       <td className="px-6 py-4">
                         <button
                           type="button"
                           onClick={() => handleToggleItemActive(item)}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+                          className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
                             isActive
                               ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25'
                               : 'bg-slate-500/15 text-slate-400 border border-slate-500/30 hover:bg-slate-500/25'
@@ -969,27 +969,27 @@ const CMSNavbar = () => {
                         </button>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-1">
+                        <div className="flex items-center justify-end gap-1.5 min-w-max">
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'up', 'navbar')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Up"
                           >
-                            <ArrowUp className="w-3.5 h-3.5" />
+                            <ArrowUp className="w-4 h-4" />
                           </button>
                           <button
                             type="button"
                             onClick={() => handleMoveItem(item, 'down', 'navbar')}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Move Down"
                           >
-                            <ArrowDown className="w-3.5 h-3.5" />
+                            <ArrowDown className="w-4 h-4" />
                           </button>
                           <button
                             type="button"
                             onClick={() => handleEditItem(item)}
-                            className="p-1.5 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-primary hover:bg-primary/30 dark:bg-primary/10 rounded-lg transition-colors cursor-pointer"
                             title="Edit Navbar Item"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -997,10 +997,10 @@ const CMSNavbar = () => {
                           <button
                             type="button"
                             onClick={() => handleDeleteItem(item)}
-                            className="p-1.5 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
+                            className="p-2 text-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer"
                             title="Delete Navbar Item"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </td>
@@ -1012,13 +1012,13 @@ const CMSNavbar = () => {
 
             {navItems.length === 0 && (
               <div className="py-12 px-4 text-center">
-                <p className="text-sm text-text-muted">No navbar items found.</p>
+                <p className="text-base text-text-muted">No navbar items found.</p>
                 <button
                   type="button"
                   onClick={() => handleAddItem('navbar')}
-                  className="mt-3 text-xs text-primary font-semibold hover:underline inline-flex items-center gap-1"
+                  className="mt-3 text-sm text-primary font-semibold hover:underline inline-flex items-center gap-1"
                 >
-                  <Plus className="w-3.5 h-3.5" /> Add a navbar item
+                  <Plus className="w-4 h-4" /> Add a navbar item
                 </button>
               </div>
             )}
@@ -1036,7 +1036,7 @@ const CMSNavbar = () => {
                 <Sparkles className="w-5 h-5 text-primary" />
                 <span>Website Header & Navbar Interactive Preview</span>
               </h2>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-sm text-text-secondary mt-0.5">
                 Simulates exactly how your brand logo, announcement bar, and navigation menus look on the live site.
               </p>
             </div>
@@ -1047,42 +1047,42 @@ const CMSNavbar = () => {
                 <button
                   type="button"
                   onClick={() => setPreviewDevice('desktop')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
                     previewDevice === 'desktop'
                       ? 'bg-primary text-white shadow-sm'
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                   title="Desktop View"
                 >
-                  <Laptop className="w-3.5 h-3.5" />
+                  <Laptop className="w-4 h-4" />
                   <span className="hidden sm:inline">Desktop</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setPreviewDevice('tablet')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
                     previewDevice === 'tablet'
                       ? 'bg-primary text-white shadow-sm'
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                   title="Tablet View"
                 >
-                  <Tablet className="w-3.5 h-3.5" />
+                  <Tablet className="w-4 h-4" />
                   <span className="hidden sm:inline">Tablet</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setPreviewDevice('mobile')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
                     previewDevice === 'mobile'
                       ? 'bg-primary text-white shadow-sm'
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                   title="Mobile View"
                 >
-                  <Smartphone className="w-3.5 h-3.5" />
+                  <Smartphone className="w-4 h-4" />
                   <span className="hidden sm:inline">Mobile</span>
                 </button>
               </div>
@@ -1091,10 +1091,10 @@ const CMSNavbar = () => {
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline px-2 py-1"
+                className="flex items-center gap-2 text-sm font-semibold text-primary hover:underline px-2 py-1"
               >
                 <span>Live Site</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -1118,7 +1118,7 @@ const CMSNavbar = () => {
             >
               {/* Simulated Device Frame Header if tablet/mobile */}
               {previewDevice !== 'desktop' && (
-                <div className="bg-surface dark:bg-slate-900 border border-border dark:border-white/10 rounded-t-2xl py-2 px-4 flex items-center justify-between text-[11px] text-text-secondary dark:text-slate-400 font-mono">
+                <div className="bg-surface dark:bg-slate-900 border border-border dark:border-white/10 rounded-t-2xl py-2 px-4 flex items-center justify-between text-[13px] text-text-secondary dark:text-slate-400 font-mono">
                   <span>{previewDevice === 'tablet' ? 'iPad Pro (768px)' : 'iPhone 15 (380px)'}</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 </div>
@@ -1127,17 +1127,17 @@ const CMSNavbar = () => {
               <div className="rounded-2xl border border-border dark:border-white/15 overflow-hidden shadow-2xl bg-background dark:bg-[#070B14]">
                 {/* ── Simulated Top Announcement Header ───────────────────────── */}
                 {headerVisible && headerItems.length > 0 && (
-                  <div className="bg-background dark:bg-[#050811] text-text-secondary dark:text-slate-300 border-b border-border dark:border-white/10 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2">
+                  <div className="bg-background dark:bg-[#050811] text-text-secondary dark:text-slate-300 border-b border-border dark:border-white/10 px-4 py-2 text-sm flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-3 font-medium">
                       {headerItems.filter(h => h.is_active && (h.url?.startsWith('tel:') || h.url?.startsWith('mailto:'))).map(h => (
-                        <span key={h.id} className="inline-flex items-center gap-1.5 text-[11px] text-text-secondary dark:text-slate-300">
+                        <span key={h.id} className="inline-flex items-center gap-2 text-[13px] text-text-secondary dark:text-slate-300">
                           {h.url?.startsWith('tel:') ? <Phone size={11} className="text-[#00A6FF]" /> : <Mail size={11} className="text-[#00A6FF]" />}
                           {h.label}
                         </span>
                       ))}
                     </div>
 
-                    <div className="flex items-center gap-3 text-[11px]">
+                    <div className="flex items-center gap-3 text-[13px]">
                       {headerItems.filter(h => h.is_active && !h.url?.startsWith('tel:') && !h.url?.startsWith('mailto:')).map(h => (
                         <span key={h.id} className="inline-flex items-center gap-1 hover:text-[#00A6FF] transition-colors cursor-pointer text-slate-200">
                           {h.label}
@@ -1158,7 +1158,7 @@ const CMSNavbar = () => {
                     />
 
                     {showLogoText && logoText && (
-                      <span className="inline-block font-extrabold text-sm sm:text-base tracking-tight text-text-primary dark:text-white font-display">
+                      <span className="inline-block font-extrabold text-base sm:text-base tracking-tight text-text-primary dark:text-white font-display">
                         {logoText}
                       </span>
                     )}
@@ -1166,7 +1166,7 @@ const CMSNavbar = () => {
 
                   {/* Center: Desktop Navigation Items */}
                   {previewDevice !== 'mobile' ? (
-                    <nav className="flex items-center gap-1 bg-white/[0.04] p-1.5 rounded-2xl border border-white/[0.08] backdrop-blur-md">
+                    <nav className="flex items-center gap-1 bg-white/[0.04] p-2 rounded-2xl border border-white/[0.08] backdrop-blur-md">
                       {navItems.filter(item => item.is_active).map((item) => {
                         const isServices = item.url === '/services' || item.label?.toLowerCase().includes('service')
 
@@ -1177,7 +1177,7 @@ const CMSNavbar = () => {
                               onClick={() => {
                                 if (isServices) setPreviewServicesOpen(!previewServicesOpen)
                               }}
-                              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
                                 isServices && previewServicesOpen
                                   ? 'text-[#00A6FF] bg-white/10'
                                   : 'text-slate-200 hover:text-[#00A6FF] hover:bg-white/5'
@@ -1195,20 +1195,20 @@ const CMSNavbar = () => {
                             {/* Simulated Services Mega Dropdown */}
                             {isServices && previewServicesOpen && (
                               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-surface dark:bg-[#0a0f1d] border border-border dark:border-white/15 rounded-2xl p-4 shadow-2xl space-y-2 z-50 animate-in fade-in slide-in-from-top-2">
-                                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#00A6FF] border-b border-border dark:border-white/10 pb-1.5">
+                                <div className="text-[12px] font-mono font-bold uppercase tracking-wider text-[#00A6FF] border-b border-border dark:border-white/10 pb-1.5">
                                   Our Core Capabilities
                                 </div>
-                                <div className="space-y-1 text-xs text-text-secondary dark:text-slate-300">
-                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                <div className="space-y-1 text-sm text-text-secondary dark:text-slate-300">
+                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • B2B Demand Generation
                                   </div>
-                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • MQL & HQL Marketing
                                   </div>
-                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • Account-Based Marketing (ABM)
                                   </div>
-                                  <div className="p-1.5 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
+                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
                                     • Appointment Setting
                                   </div>
                                 </div>
@@ -1248,12 +1248,12 @@ const CMSNavbar = () => {
                 {/* Mobile Drawer Simulation (when opened on mobile) */}
                 {previewDevice === 'mobile' && previewMobileMenuOpen && (
                   <div className="bg-surface dark:bg-[#0a0f1d] border-b border-border dark:border-white/10 p-5 space-y-3 animate-in fade-in">
-                    <div className="text-[11px] font-mono uppercase text-slate-500">Navigation Menu</div>
+                    <div className="text-[13px] font-mono uppercase text-slate-500">Navigation Menu</div>
                     <div className="space-y-1">
                       {navItems.filter(i => i.is_active).map(item => (
                         <div
                           key={item.id}
-                          className="px-3 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors"
+                          className="px-3 py-2 rounded-xl text-base font-semibold text-slate-200 hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors"
                         >
                           {item.label}
                         </div>
@@ -1265,13 +1265,13 @@ const CMSNavbar = () => {
                 {/* ── Simulated Hero Backdrop Below Navbar ───────────────────── */}
                 <div className="p-8 sm:p-12 text-center relative overflow-hidden bg-radial from-slate-900 via-[#070B14] to-[#030712]">
                   <div className="max-w-xl mx-auto space-y-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20">
                       <Sparkles size={12} /> Real-Time Preview Simulation
                     </span>
                     <h3 className="text-xl sm:text-2xl font-extrabold text-text-primary dark:text-white tracking-tight">
                       Full-Funnel Enterprise B2B Pipeline Growth
                     </h3>
-                    <p className="text-xs text-text-secondary dark:text-slate-400 max-w-md mx-auto leading-relaxed">
+                    <p className="text-sm text-text-secondary dark:text-slate-400 max-w-md mx-auto leading-relaxed">
                       This simulated hero section demonstrates how your navigation header floats gracefully over dynamic page content.
                     </p>
                   </div>
@@ -1293,7 +1293,7 @@ const CMSNavbar = () => {
                     ? `Edit ${editingItem.section === 'header' ? 'Header' : 'Navbar'} Item`
                     : `Add New ${editingItem.section === 'header' ? 'Header' : 'Navbar'} Item`}
                 </h3>
-                <p className="text-xs text-text-secondary">
+                <p className="text-sm text-text-secondary">
                   Configure the label, link target, and ordering for this item.
                 </p>
               </div>
@@ -1303,7 +1303,7 @@ const CMSNavbar = () => {
                   setShowItemModal(false)
                   setEditingItem(null)
                 }}
-                className="p-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-background transition-colors"
+                className="p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-background transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1311,13 +1311,13 @@ const CMSNavbar = () => {
 
             <form onSubmit={handleSaveItem} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
                   Section *
                 </label>
                 <select
                   value={editingItem.section || 'navbar'}
                   onChange={(e) => setEditingItem({ ...editingItem, section: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary transition-colors cursor-pointer"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary transition-colors cursor-pointer"
                   disabled={savingItem}
                 >
                   <option value="navbar">Navbar (Main Navigation Menu)</option>
@@ -1326,7 +1326,7 @@ const CMSNavbar = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
                   Label / Display Text *
                 </label>
                 <input
@@ -1335,13 +1335,13 @@ const CMSNavbar = () => {
                   onChange={(e) => setEditingItem({ ...editingItem, label: e.target.value })}
                   placeholder={editingItem.section === 'header' ? 'e.g. info@tarajglobal.com or 🚀 Now Hiring' : 'e.g. Case Studies'}
                   required
-                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary transition-colors"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary transition-colors"
                   disabled={savingItem}
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+                <label className="block text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
                   URL / Target Link *
                 </label>
                 <input
@@ -1350,17 +1350,17 @@ const CMSNavbar = () => {
                   onChange={(e) => setEditingItem({ ...editingItem, url: e.target.value })}
                   placeholder={editingItem.section === 'header' ? 'mailto:info@tarajglobal.com or /contact' : '/case-studies'}
                   required
-                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary transition-colors font-mono"
+                  className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary transition-colors font-mono"
                   disabled={savingItem}
                 />
-                <p className="text-[11px] text-text-muted mt-1">
+                <p className="text-[13px] text-text-muted mt-1">
                   Use relative paths (e.g. <code className="text-primary">/about</code>), mailto/tel (e.g. <code className="text-primary">mailto:info@tarajglobal.com</code>, <code className="text-primary">tel:+1234567890</code>), or full URLs.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+                  <label className="block text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
                     Display Order
                   </label>
                   <input
@@ -1368,7 +1368,7 @@ const CMSNavbar = () => {
                     min="0"
                     value={editingItem.display_order ?? 0}
                     onChange={(e) => setEditingItem({ ...editingItem, display_order: parseInt(e.target.value) || 0 })}
-                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-primary transition-colors font-mono"
+                    className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-text-primary text-base focus:outline-none focus:border-primary transition-colors font-mono"
                     disabled={savingItem}
                   />
                 </div>
@@ -1382,7 +1382,7 @@ const CMSNavbar = () => {
                       className="w-4 h-4 rounded text-primary focus:ring-primary/20 accent-primary"
                       disabled={savingItem}
                     />
-                    <span className="text-sm font-medium text-text-primary">Active Status</span>
+                    <span className="text-base font-medium text-text-primary">Active Status</span>
                   </label>
                 </div>
               </div>
@@ -1394,7 +1394,7 @@ const CMSNavbar = () => {
                     setShowItemModal(false)
                     setEditingItem(null)
                   }}
-                  className="px-4 py-2.5 rounded-xl border border-border text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-background transition-colors cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl border border-border text-base font-medium text-text-secondary hover:text-text-primary hover:bg-background transition-colors cursor-pointer"
                   disabled={savingItem}
                 >
                   Cancel
@@ -1402,7 +1402,7 @@ const CMSNavbar = () => {
                 <button
                   type="submit"
                   disabled={savingItem}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all disabled:opacity-50 shadow-md cursor-pointer"
+                  className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl text-base font-semibold hover:bg-primary-dark transition-all disabled:opacity-50 shadow-md cursor-pointer"
                 >
                   {savingItem ? (
                     <>

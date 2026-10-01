@@ -107,7 +107,7 @@ export const AdminCommandPalette = ({ isOpen, onClose }) => {
               setSelectedIndex(0)
             }}
             placeholder="Search commands, pages, content, settings... (ESC to exit)"
-            className="flex-1 bg-transparent text-sm text-[var(--admin-text-primary)] placeholder:text-[var(--admin-text-muted)] outline-none"
+            className="flex-1 bg-transparent text-base text-[var(--admin-text-primary)] placeholder:text-[var(--admin-text-muted)] outline-none"
           />
           {query && (
             <button 
@@ -117,7 +117,7 @@ export const AdminCommandPalette = ({ isOpen, onClose }) => {
               <X className="w-4 h-4" />
             </button>
           )}
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-[var(--admin-text-dim)] px-2 py-0.5 rounded border border-[var(--admin-border-subtle)]">
+          <span className="text-[12px] uppercase tracking-wider font-semibold text-[var(--admin-text-dim)] px-2 py-0.5 rounded border border-[var(--admin-border-subtle)]">
             ESC
           </span>
         </div>
@@ -125,7 +125,7 @@ export const AdminCommandPalette = ({ isOpen, onClose }) => {
         {/* Command list */}
         <div className="max-h-[380px] overflow-y-auto p-2 admin-scrollbar">
           {filteredCommands.length === 0 ? (
-            <div className="py-12 text-center text-sm text-[var(--admin-text-muted)]">
+            <div className="py-12 text-center text-base text-[var(--admin-text-muted)]">
               No matching commands or pages found for "{query}"
             </div>
           ) : (
@@ -151,14 +151,14 @@ export const AdminCommandPalette = ({ isOpen, onClose }) => {
                     <div className={`p-2 rounded-lg ${isSelected ? 'bg-[var(--admin-primary)] text-text-primary dark:text-white' : 'bg-[var(--admin-bg-elevated)] text-[var(--admin-text-muted)]'}`}>
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-sm font-medium">{item.label}</span>
+                    <span className="text-base font-medium">{item.label}</span>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-medium text-[var(--admin-text-dim)] uppercase tracking-wider">
+                    <span className="text-[13px] font-medium text-[var(--admin-text-dim)] uppercase tracking-wider">
                       {item.category}
                     </span>
-                    {isSelected && <ArrowRight className="w-3.5 h-3.5 text-[var(--admin-primary)]" />}
+                    {isSelected && <ArrowRight className="w-4 h-4 text-[var(--admin-primary)]" />}
                   </div>
                 </div>
               )
@@ -167,10 +167,10 @@ export const AdminCommandPalette = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer shortcuts */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-t border-[var(--admin-border-subtle)] bg-[var(--admin-bg-base)] text-[11px] text-[var(--admin-text-dim)]">
+        <div className="flex items-center justify-between px-4 py-2.5 border-t border-[var(--admin-border-subtle)] bg-[var(--admin-bg-base)] text-[13px] text-[var(--admin-text-dim)]">
           <div className="flex items-center gap-3">
-            <span>Navigate <kbd className="px-1.5 py-0.5 rounded bg-[var(--admin-bg-card)] border border-[var(--admin-border-subtle)] text-[10px]">↑</kbd> <kbd className="px-1.5 py-0.5 rounded bg-[var(--admin-bg-card)] border border-[var(--admin-border-subtle)] text-[10px]">↓</kbd></span>
-            <span>Select <kbd className="px-1.5 py-0.5 rounded bg-[var(--admin-bg-card)] border border-[var(--admin-border-subtle)] text-[10px]">↵</kbd></span>
+            <span>Navigate <kbd className="px-1.5 py-0.5 rounded bg-[var(--admin-bg-card)] border border-[var(--admin-border-subtle)] text-[12px]">↑</kbd> <kbd className="px-1.5 py-0.5 rounded bg-[var(--admin-bg-card)] border border-[var(--admin-border-subtle)] text-[12px]">↓</kbd></span>
+            <span>Select <kbd className="px-1.5 py-0.5 rounded bg-[var(--admin-bg-card)] border border-[var(--admin-border-subtle)] text-[12px]">↵</kbd></span>
           </div>
           <span>TGS Operations Engine</span>
         </div>
