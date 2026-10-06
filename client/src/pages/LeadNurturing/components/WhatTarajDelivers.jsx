@@ -219,7 +219,7 @@ const WhatTarajDelivers = () => {
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* SECTION HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-slate-200 dark:border-[#00A6FF]/30 bg-white/90 dark:bg-[#0A1426]/90 backdrop-blur-md mb-2.5 shadow-sm">
+          <div className="inline-flex items-center gap-2   mb-2.5">
             <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
               Powered by DemandFlow Bridge
@@ -303,7 +303,7 @@ const WhatTarajDelivers = () => {
             {/* Left Column: Layer Overview, Description & Key Capabilities (5 cols) */}
             <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[10.5px] font-mono font-bold text-[#00A6FF] mb-2">
+                <div className="inline-flex items-center gap-2   text-[10.5px] font-mono font-bold text-[#00A6FF] mb-2">
                   <Activity className="w-3 h-3 text-[#00A6FF] animate-pulse" />
                   <span>{activeLayer.layer}</span>
                 </div>
@@ -335,7 +335,7 @@ const WhatTarajDelivers = () => {
               <div className="pt-2">
                 <Link
                   to="/demandflow-bridge"
-                  style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white group inline-flex items-center gap-2 text-xs font-bold text-[#00A6FF] hover:text-sky-400 transition-colors"
+                  style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="text-text-accent dark:text-white group inline-flex items-center gap-2 text-xs font-bold text-[#FF6D00] hover:text-accent transition-colors"
                 >
                   <span>Explore DemandFlow Bridge Platform</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -416,7 +416,7 @@ const WhatTarajDelivers = () => {
 
             <Link
               to="/demandflow-bridge"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-primary hover:bg-sky-600 transition-colors shadow-sm shrink-0"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-accent hover:bg-accent transition-colors shadow-sm shrink-0"
             >
               <span>Explore Platform</span>
               <ExternalLink className="w-3.5 h-3.5" />

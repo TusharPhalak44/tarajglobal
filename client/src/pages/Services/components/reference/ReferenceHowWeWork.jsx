@@ -69,7 +69,7 @@ export default function ReferenceHowWeWork() {
               <button
                 type="button"
                 onClick={() => navigate('/about')}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-surface/90 dark:bg-white/10 text-slate-900 dark:text-text-primary dark:text-white text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer group hover:border-[#FF6D00]"
+                className="inline-flex items-center gap-2 border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-surface/90 dark:bg-white/10 text-slate-900 dark:text-text-primary dark:text-white text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer group hover:border-[#FF6D00]"
               >
                 <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 text-slate-600 dark:text-white/70 group-hover:text-[#FF6D00] group-hover:translate-x-1 transition-all" />

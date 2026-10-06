@@ -71,7 +71,7 @@ export default function DevStrategyDiagnostic() {
       <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5">
+          <div className="inline-flex items-center gap-2 text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>INTERACTIVE STRATEGY DIAGNOSTIC</span>
           </div>
@@ -157,7 +157,7 @@ export default function DevStrategyDiagnostic() {
                       <Link
                         key={srv.name}
                         to={srv.path}
-                        className="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-xl bg-background/80 hover:bg-background border border-border/60 hover:border-primary/50 transition-all"
+                        className="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-xl bg-background/80 hover:bg-background border border-border/60 hover:border-accent transition-all"
                       >
                         <div>
                           <div className="text-xs sm:text-sm font-bold uppercase tracking-wide text-text-primary group-hover:text-primary transition-colors">

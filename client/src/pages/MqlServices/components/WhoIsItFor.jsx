@@ -293,7 +293,7 @@ const WhoIsItFor = () => {
         <div className="max-w-4xl mx-auto text-center mb-3.5 lg:mb-4">
           <motion.div
             {...fadeUp(0)}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-border bg-surface mb-2 shadow-xs"
+            className="inline-flex items-center gap-2 mb-2"
           >
             <span className="w-2 h-2 rounded-full bg-primary" />
             <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-primary uppercase">
@@ -469,7 +469,7 @@ const WhoIsItFor = () => {
                       {/* Left side: Content (compact & clean) */}
                       <div className="lg:col-span-7 flex flex-col">
                         {/* Header badge */}
-                        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-background border border-border text-[11px] font-mono font-semibold mb-2.5 w-fit">
+                        <div className="inline-flex items-center gap-2 text-[11px] font-mono font-semibold mb-2.5 w-fit">
                           <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: active.color }} />
                           <span className="text-text-secondary">{active.num}</span>
                           <span className="text-text-primary">{active.tagline}</span>
@@ -617,7 +617,7 @@ const WhoIsItFor = () => {
             className="p-5 rounded-2xl bg-surface shadow-lg relative overflow-hidden transition-all duration-300"
             style={{ border: `2px solid ${active.color}`, boxShadow: `0 8px 24px -8px ${active.color}25` }}
           >
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-background border border-border text-[10px] font-mono font-semibold mb-2.5">
+            <div className="inline-flex items-center gap-2 text-[10px] font-mono font-semibold mb-2.5">
               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: active.color }} />
               <span className="text-text-secondary">{active.num}</span>
               <span className="text-text-primary">{active.tagline}</span>

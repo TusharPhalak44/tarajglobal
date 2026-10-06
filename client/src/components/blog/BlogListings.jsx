@@ -62,7 +62,7 @@ const BlogListings = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/25 shadow-xs"
+              className="inline-flex items-center gap-2"
             >
               <Sparkles size={13} className="text-[#00A6FF]" />
               <span className="font-mono text-xs font-bold text-[#00A6FF] tracking-wider uppercase">
@@ -185,7 +185,7 @@ const BlogListings = () => {
               <button
                 type="button"
                 onClick={fetchBlogs}
-                className="px-5 py-2 rounded-xl bg-[#00A6FF] text-white text-xs font-bold hover:bg-[#0088D6] transition-colors cursor-pointer"
+                className="px-5 py-2 rounded-xl bg-[#FF6D00] text-white text-xs font-bold hover:bg-[#0088D6] transition-colors cursor-pointer"
               >
                 Try Refreshing
               </button>

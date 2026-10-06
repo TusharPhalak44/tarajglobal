@@ -16,7 +16,6 @@ export default function WhyTarajMatrix() {
       className="relative py-32 lg:py-48 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Why TaRaj Global — Core Philosophy & Architecture"
     >
@@ -71,7 +70,6 @@ export default function WhyTarajMatrix() {
               className="px-6 py-2.5 rounded-full border text-xs sm:text-sm font-mono font-bold tracking-widest backdrop-blur-md"
               style={{
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(0, 102, 204, 0.25)',
                 color: isDark ? '#38BDF8' : '#0066CC',
               }}
             >
@@ -94,7 +92,6 @@ export default function WhyTarajMatrix() {
                 className="px-6 py-3 rounded-2xl border backdrop-blur-md max-w-xs text-center md:text-right"
                 style={{
                   backgroundColor: isDark ? 'rgba(12, 16, 26, 0.6)' : 'rgba(255, 255, 255, 0.8)',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                 }}
               >
                 <span className="font-mono text-[10px] font-bold tracking-widest uppercase block mb-1 text-emerald-400">
@@ -117,7 +114,6 @@ export default function WhyTarajMatrix() {
               className="md:w-1/3 flex flex-col items-center justify-center p-8 sm:p-10 rounded-3xl border backdrop-blur-2xl relative shadow-2xl"
               style={{
                 backgroundColor: isDark ? 'rgba(12, 16, 26, 0.95)' : 'rgba(255, 255, 255, 0.98)',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.35)' : 'rgba(0, 102, 204, 0.25)',
                 boxShadow: isDark ? '0 0 50px rgba(0, 166, 255, 0.15)' : '0 10px 40px rgba(0, 102, 204, 0.08)',
               }}
             >
@@ -153,7 +149,6 @@ export default function WhyTarajMatrix() {
                 className="px-6 py-3 rounded-2xl border backdrop-blur-md max-w-xs text-center md:text-left"
                 style={{
                   backgroundColor: isDark ? 'rgba(12, 16, 26, 0.6)' : 'rgba(255, 255, 255, 0.8)',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                 }}
               >
                 <span className="font-mono text-[10px] font-bold tracking-widest uppercase block mb-1 text-orange-400">
@@ -182,7 +177,6 @@ export default function WhyTarajMatrix() {
               className="px-6 py-2.5 rounded-full border text-xs sm:text-sm font-mono font-bold tracking-widest backdrop-blur-md"
               style={{
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                borderColor: isDark ? 'rgba(255, 109, 0, 0.3)' : 'rgba(255, 107, 0, 0.25)',
                 color: isDark ? '#FFA600' : '#EA580C',
               }}
             >

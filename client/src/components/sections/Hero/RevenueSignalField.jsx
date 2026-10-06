@@ -149,7 +149,7 @@ export const RevenueSignalField = ({ mousePos = { x: 0, y: 0 } }) => {
         >
           {/* Target Reticle Radar Beacon */}
           <div className="relative flex items-center justify-center mb-2">
-            <span className="animate-ping absolute inline-flex h-9 w-9 rounded-full bg-cta opacity-40" />
+            <span className="animate-ping absolute inline-flex h-9 w-9 opacity-40" />
             <div className="w-5 h-5 rounded-full bg-cta flex items-center justify-center text-white shadow-[0_0_24px_rgba(255,109,0,0.9)] ring-4 ring-cta/25">
               <div className="w-1.5 h-1.5 rounded-full bg-white" />
             </div>

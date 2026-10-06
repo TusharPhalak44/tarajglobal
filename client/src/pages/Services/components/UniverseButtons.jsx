@@ -83,7 +83,6 @@ export function ArrowRevealButton({
       className={`group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-md font-mono text-xs font-bold uppercase tracking-wider cursor-pointer select-none transition-all duration-300 border overflow-hidden backdrop-blur-md ${className}`}
       style={{
         backgroundColor: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(9, 13, 21, 0.03)',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.12)',
         color: isDark ? '#FFFFFF' : '#090D15',
       }}
     >

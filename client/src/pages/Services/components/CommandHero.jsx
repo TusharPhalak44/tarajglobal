@@ -40,7 +40,6 @@ export default function CommandHero() {
       className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 lg:pb-32 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       {/* Subtle Background Architectural Grid */}
@@ -61,7 +60,6 @@ export default function CommandHero() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border mb-6"
               style={{
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)',
-                borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
               }}
             >
               <Activity className="w-3.5 h-3.5 animate-pulse" style={{ color: isDark ? '#38BDF8' : '#0284C7' }} />
@@ -108,7 +106,6 @@ export default function CommandHero() {
             {/* Telemetry Bar */}
             <div
               className="pt-6 border-t flex flex-wrap items-center gap-6 sm:gap-10 text-xs font-mono"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
             >
               <div>
                 <span style={{ color: isDark ? '#64748B' : '#94A3B8' }}>ACCURACY SLA: </span>
@@ -134,13 +131,11 @@ export default function CommandHero() {
               <div
                 className="absolute inset-0 rounded-full border border-dashed pointer-events-none transition-colors duration-300"
                 style={{
-                  borderColor: isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)',
                 }}
               />
               <div
                 className="absolute w-[210px] h-[210px] sm:w-[250px] sm:h-[250px] rounded-full border pointer-events-none"
                 style={{
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                 }}
               />
 
@@ -195,7 +190,6 @@ export default function CommandHero() {
                   className="mt-1 text-[9px] font-mono font-medium px-1.5 py-0.5 rounded border"
                   style={{
                     backgroundColor: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(2, 132, 199, 0.08)',
-                    borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(2, 132, 199, 0.2)',
                     color: isDark ? '#38BDF8' : '#0284C7',
                   }}
                 >

@@ -148,7 +148,7 @@ const SEO = () => {
           <button
             onClick={handleSave}
             disabled={saving || !selectedId}
-            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#FF6D00]/25"
           >
             {saving ? <><Loader2 className="w-4 h-4 animate-spin" /> Saving Tags...</> : <><Save className="w-4 h-4" /> Save Metadata</>}
           </button>
@@ -211,7 +211,7 @@ const SEO = () => {
                 <select
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="admin-select text-sm font-medium"
+                  className="admin-select w-full text-sm font-medium"
                 >
                   {STATIC_PAGES.map((p) => (
                     <option key={p.id} value={p.id}>{p.title} (/{p.id === 'home' ? '' : p.id})</option>
@@ -223,7 +223,7 @@ const SEO = () => {
                 <select
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="admin-select text-sm font-medium"
+                  className="admin-select w-full text-sm font-medium"
                 >
                   <option value="">Select a blog post...</option>
                   {blogs.map((b) => (
@@ -238,7 +238,7 @@ const SEO = () => {
                   placeholder="Enter Job ID..."
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="admin-input text-sm"
+                  className="admin-input w-full text-sm"
                 />
               )}
             </div>
@@ -317,7 +317,7 @@ const SEO = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
                       <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
-                        Meta Title Tag
+                        SEO Title / Meta Title
                       </label>
                       <span className={`text-[13px] font-mono ${
                         (seoData?.meta_title?.length || 0) > 60 ? 'text-[#FFA600]' : 'text-[var(--admin-text-muted)]'
@@ -330,7 +330,7 @@ const SEO = () => {
                       value={seoData?.meta_title || ''}
                       onChange={(e) => handleChange('meta_title', e.target.value)}
                       placeholder="e.g., Enterprise B2B Lead Generation & ABM Pipeline Services"
-                      className="admin-input"
+                      className="admin-input w-full"
                     />
                   </div>
 
@@ -350,7 +350,7 @@ const SEO = () => {
                       onChange={(e) => handleChange('meta_description', e.target.value)}
                       rows={3}
                       placeholder="e.g., Accelerate qualified revenue pipeline with high-conversion MQL, SQL, and ABM campaign syndication from Taraj Global Solutions."
-                      className="admin-input resize-none text-sm leading-relaxed"
+                      className="admin-textarea w-full resize-none text-sm leading-relaxed"
                     />
                   </div>
 
@@ -364,7 +364,7 @@ const SEO = () => {
                         value={seoData?.keywords || ''}
                         onChange={(e) => handleChange('keywords', e.target.value)}
                         placeholder="b2b lead gen, abm, demand generation"
-                        className="admin-input text-sm"
+                        className="admin-input w-full text-sm"
                       />
                     </div>
 
@@ -377,7 +377,7 @@ const SEO = () => {
                         value={seoData?.canonical_url || ''}
                         onChange={(e) => handleChange('canonical_url', e.target.value)}
                         placeholder="https://tarajglobal.com/..."
-                        className="admin-input text-sm font-mono"
+                        className="admin-input w-full text-sm font-mono"
                       />
                     </div>
                   </div>
@@ -395,7 +395,7 @@ const SEO = () => {
                       value={seoData?.og_title || ''}
                       onChange={(e) => handleChange('og_title', e.target.value)}
                       placeholder="Title for social media embeds"
-                      className="admin-input"
+                      className="admin-input w-full"
                     />
                   </div>
 
@@ -408,7 +408,7 @@ const SEO = () => {
                       onChange={(e) => handleChange('og_description', e.target.value)}
                       rows={3}
                       placeholder="Social share summary description..."
-                      className="admin-input resize-none text-sm"
+                      className="admin-textarea w-full resize-none text-sm"
                     />
                   </div>
 
@@ -421,7 +421,7 @@ const SEO = () => {
                       value={seoData?.og_image || ''}
                       onChange={(e) => handleChange('og_image', e.target.value)}
                       placeholder="https://tarajglobal.com/assets/og-image.jpg"
-                      className="admin-input text-sm font-mono"
+                      className="admin-input w-full text-sm font-mono"
                     />
                   </div>
                 </div>
@@ -438,7 +438,7 @@ const SEO = () => {
                       value={seoData?.twitter_title || ''}
                       onChange={(e) => handleChange('twitter_title', e.target.value)}
                       placeholder="Twitter card headline"
-                      className="admin-input"
+                      className="admin-input w-full"
                     />
                   </div>
 
@@ -451,7 +451,7 @@ const SEO = () => {
                       onChange={(e) => handleChange('twitter_description', e.target.value)}
                       rows={3}
                       placeholder="Twitter card summary..."
-                      className="admin-input resize-none text-sm"
+                      className="admin-textarea w-full resize-none text-sm"
                     />
                   </div>
 
@@ -464,7 +464,7 @@ const SEO = () => {
                       value={seoData?.twitter_image || ''}
                       onChange={(e) => handleChange('twitter_image', e.target.value)}
                       placeholder="https://..."
-                      className="admin-input text-sm font-mono"
+                      className="admin-input w-full text-sm font-mono"
                     />
                   </div>
                 </div>
@@ -476,7 +476,7 @@ const SEO = () => {
               <button
                 onClick={handleSave}
                 disabled={saving || !selectedId}
-                className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+                className="admin-btn admin-btn-primary shadow-lg shadow-[#FF6D00]/25"
               >
                 {saving ? <><Loader2 className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save SEO Configuration</>}
               </button>

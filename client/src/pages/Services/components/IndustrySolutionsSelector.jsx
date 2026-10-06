@@ -85,7 +85,6 @@ export default function IndustrySolutionsSelector() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Industries We Accelerate — Interactive Solution Selector"
     >
@@ -193,7 +192,6 @@ export default function IndustrySolutionsSelector() {
                 className="rounded-3xl p-8 sm:p-12 border backdrop-blur-xl relative overflow-hidden"
                 style={{
                   backgroundColor: isDark ? 'rgba(12, 16, 26, 0.75)' : 'rgba(250, 251, 253, 0.95)',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                   boxShadow: isDark
                     ? `0 30px 60px -20px rgba(0, 0, 0, 0.8)`
                     : `0 30px 60px -20px rgba(0, 0, 0, 0.06)`,
@@ -230,7 +228,6 @@ export default function IndustrySolutionsSelector() {
                   </p>
 
                   {/* Benchmark Stat */}
-                  <div className="mb-8 p-5 rounded-2xl border" style={{ backgroundColor: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)', borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}>
                     <span className="text-xs font-mono font-bold uppercase tracking-wider block mb-1" style={{ color: isDark ? '#A1A1AA' : '#6B7280' }}>
                       PROVEN SECTOR BENCHMARK
                     </span>
@@ -248,7 +245,6 @@ export default function IndustrySolutionsSelector() {
                         style={{
                           backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
                           color: isDark ? '#D4D4D8' : '#374151',
-                          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                         }}
                       >
                         {tag}

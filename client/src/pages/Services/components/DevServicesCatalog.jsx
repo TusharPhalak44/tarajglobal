@@ -183,7 +183,7 @@ export default function DevServicesCatalog() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-border/70 pb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
+            <div className="inline-flex items-center gap-2 text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
               <Layers className="w-3.5 h-3.5" />
               <span>CORE CAPABILITIES CATALOG</span>
             </div>
@@ -297,7 +297,7 @@ export default function DevServicesCatalog() {
                 <div className="mt-6 pt-4 border-t border-border/60 flex items-center justify-between">
                   <Link
                     to={service.route}
-                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-text-primary group-hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-text-accent group-hover:text-accent transition-colors"
                   >
                     <span>EXPLORE CAPABILITY</span>
                     <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

@@ -90,7 +90,6 @@ export default function CleanResultsStats() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#080A0E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -131,7 +130,6 @@ export default function CleanResultsStats() {
         <div
           className="grid grid-cols-1 md:grid-cols-2 rounded-2xl border overflow-hidden"
           style={{
-            borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
             backgroundColor: isDark ? '#0D1117' : '#FFFFFF',
           }}
         >
@@ -146,7 +144,6 @@ export default function CleanResultsStats() {
                   isTopRow ? 'border-b md:border-b' : ''
                 } ${isLeftCol ? 'md:border-r' : ''}`}
                 style={{
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)',
                 }}
               >
                 <div>

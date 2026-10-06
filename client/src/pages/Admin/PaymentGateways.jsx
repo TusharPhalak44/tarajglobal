@@ -94,7 +94,7 @@ const PaymentGateways = () => {
         actions={
           <button 
             onClick={handleSave}
-            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#FF6D00]/25"
           >
             <Save className="w-4 h-4" />
             <span>Save Configuration</span>

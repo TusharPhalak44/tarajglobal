@@ -182,7 +182,7 @@ export default function ExperienceGrowthJourney() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left narrative */}
               <div className="lg:col-span-6 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 font-mono text-[11px] text-[#FF6D00] uppercase">
+                <div className="inline-flex items-center gap-2   font-mono text-[11px] text-[#FF6D00] uppercase">
                   <span>STAGE {current.step} OF 06</span>
                   <span>//</span>
                   <span>{current.subtitle}</span>

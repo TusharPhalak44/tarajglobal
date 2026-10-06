@@ -60,7 +60,6 @@ export default function GrowthFunnelVisual() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#04060A' : '#F5F7FB',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-5xl mx-auto">
@@ -69,7 +68,6 @@ export default function GrowthFunnelVisual() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border mb-4"
             style={{
               backgroundColor: isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.08)',
-              borderColor: isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)',
             }}
           >
             <Filter className="w-3.5 h-3.5 text-sky-400" />

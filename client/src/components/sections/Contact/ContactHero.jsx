@@ -137,7 +137,7 @@ export default function ContactHero({ onBookMeeting }) {
             opacity: { delay: 0.5, duration: 0.5 },
             y: { repeat: Infinity, duration: 2, ease: 'easeInOut' },
           }}
-          className="mt-6 inline-flex items-center gap-1.5 text-sm text-text-secondary dark:text-text-primary dark:text-white/60 hover:text-text-primary dark:text-white transition-colors cursor-pointer"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm text-text-secondary dark:text-text-accent dark:text-white/60 hover:text-text-accent dark:text-white transition-colors cursor-pointer"
         >
           <span>Or send us a message below</span>
           <ArrowDown className="w-3.5 h-3.5" />

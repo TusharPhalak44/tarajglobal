@@ -208,7 +208,7 @@ export default function WhatTarajDelivers() {
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-slate-200 dark:border-[#00A6FF]/30 bg-white/90 dark:bg-[#0A1426]/90 backdrop-blur-md mb-2.5 shadow-sm">
+          <div className="inline-flex items-center gap-2   mb-2.5">
             <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
               Proprietary HQL Delivery Engine

@@ -154,7 +154,6 @@ export default function JourneyServiceDiscovery() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-b"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="How We Help You Grow — Interactive Service Discovery"
     >
@@ -203,11 +202,9 @@ export default function JourneyServiceDiscovery() {
                 className="hidden lg:block rounded-3xl p-6 border backdrop-blur-xl relative overflow-hidden shadow-2xl"
                 style={{
                   backgroundColor: isDark ? 'rgba(12, 16, 26, 0.85)' : 'rgba(255, 255, 255, 0.95)',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                 }}
               >
                 {/* Visual Image Preview */}
-                <div className="relative w-full h-44 rounded-2xl overflow-hidden mb-5 border" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
                   <img
                     src={current.previewImage}
                     alt={current.name}
@@ -239,7 +236,6 @@ export default function JourneyServiceDiscovery() {
           </div>
 
           {/* ══ RIGHT: Large Horizontal Interactive Service Rows ══ */}
-          <div className="lg:col-span-7 divide-y" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
             {SERVICES.map((srv, idx) => {
               const isActive = activeIdx === idx
 

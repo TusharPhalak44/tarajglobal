@@ -63,7 +63,6 @@ export default function JourneyFeaturedServices() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-b"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Featured Growth Pillars — Asymmetric Service Experiences"
     >
@@ -123,7 +122,6 @@ export default function JourneyFeaturedServices() {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="group relative rounded-3xl overflow-hidden border backdrop-blur-xl shadow-2xl"
                     style={{
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                     }}
                   >
                     {/* Big Editorial Image with Slow Zoom on Hover */}

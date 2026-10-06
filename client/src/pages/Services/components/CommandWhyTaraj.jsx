@@ -59,7 +59,6 @@ export default function CommandWhyTaraj() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">

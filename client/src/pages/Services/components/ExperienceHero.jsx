@@ -148,11 +148,11 @@ export default function ExperienceHero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border dark:border-white/10 bg-white/[0.04] backdrop-blur-md mb-5 shadow-sm hover:border-[#FF6D00]/40 transition-colors"
+          className="inline-flex items-center gap-2.5  mb-5 hover: transition-colors"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6D00] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF6D00]" />
+            <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
+            <span className="relative inline-flex h-2 w-2" />
           </span>
           <span className="text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-white/90">
             NEXT-GEN REVENUE ARCHITECTURE
@@ -200,7 +200,7 @@ export default function ExperienceHero() {
           <button
             type="button"
             onClick={scrollToServices}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border dark:border-white/20  hover: text-text-primary dark:text-white text-xs sm:text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
+            style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border dark:border-white/20  hover: text-text-accent dark:text-white text-xs sm:text-sm font-semibold transition-all hover:border-[#FF6D00]/60 shadow-xs cursor-pointer group"
           >
             <span>Explore 12 Solutions</span>
             <ChevronDown className="w-4 h-4 text-text-secondary dark:text-white/60 group-hover:translate-y-0.5 transition-transform" />

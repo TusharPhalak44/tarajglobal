@@ -91,7 +91,6 @@ export default function EditorialHeroV2() {
               className="font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full backdrop-blur-md"
               style={{
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)',
-                border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                 color: isDark ? '#94A3B8' : '#64748B',
               }}
             >
@@ -125,7 +124,6 @@ export default function EditorialHeroV2() {
               className="font-mono text-[11px] font-bold tracking-[0.25em] uppercase px-3 py-1 rounded-full"
               style={{
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)',
-                border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)',
                 color: isDark ? '#A1A1AA' : '#52525B',
               }}
             >
@@ -196,7 +194,6 @@ export default function EditorialHeroV2() {
 
       {/* Editorial Bottom Meta Ticker */}
       <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-14 pt-12 border-t mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono"
-        style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)', color: isDark ? '#64748B' : '#9CA3AF' }}
       >
         <div className="flex items-center gap-6 uppercase tracking-wider">
           <span>01 / DATA</span>

@@ -27,7 +27,7 @@ export default function ServicesFinalCTA() {
           <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-[#FF6D00]/60 to-transparent" />
 
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-xs font-mono font-bold uppercase tracking-widest text-[#FF6D00] mb-6">
+          <div className="inline-flex items-center gap-2 border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-xs font-mono font-bold uppercase tracking-widest text-[#FF6D00] mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             <span>ACCELERATE YOUR REVENUE ENGINE</span>
           </div>

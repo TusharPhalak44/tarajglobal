@@ -67,7 +67,6 @@ export default function AsymmetricServiceShowcase() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Flagship B2B Capabilities — Asymmetric Showcase"
     >
@@ -132,7 +131,6 @@ export default function AsymmetricServiceShowcase() {
                     className="relative rounded-3xl p-8 sm:p-12 overflow-hidden border backdrop-blur-xl"
                     style={{
                       backgroundColor: isDark ? 'rgba(12, 16, 26, 0.7)' : 'rgba(255, 255, 255, 0.9)',
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                       boxShadow: isDark
                         ? `0 30px 60px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1)`
                         : `0 30px 60px -20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1)`,
@@ -177,7 +175,6 @@ export default function AsymmetricServiceShowcase() {
                     </div>
 
                     {/* Deliverable Checkmarks */}
-                    <div className="space-y-3 relative z-10 pt-6 border-t" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
                       {srv.deliverables.map((d, i) => (
                         <div key={i} className="flex items-center gap-3 text-xs sm:text-sm font-medium" style={{ color: isDark ? '#D4D4D8' : '#374151' }}>
                           <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: srv.accentColor }} />

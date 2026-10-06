@@ -99,7 +99,6 @@ export default function JourneyIndustryRadar() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-b"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Industries We Accelerate — Industry Radar"
     >
@@ -149,7 +148,6 @@ export default function JourneyIndustryRadar() {
               className="w-28 h-28 rounded-full border flex flex-col items-center justify-center text-center p-2 z-20 shadow-2xl relative"
               style={{
                 backgroundColor: isDark ? '#080A0F' : '#FFFFFF',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.4)' : 'rgba(0, 102, 204, 0.3)',
                 boxShadow: isDark ? '0 0 35px rgba(0, 166, 255, 0.25)' : '0 0 35px rgba(0, 102, 204, 0.15)',
               }}
             >
@@ -196,14 +194,13 @@ export default function JourneyIndustryRadar() {
                     type="button"
                     onClick={() => setActiveIdx(i)}
                     onMouseEnter={() => setActiveIdx(i)}
-                    className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase border transition-all duration-300 cursor-pointer backdrop-blur-md shadow-lg"
+                    className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 text-xs font-mono font-bold tracking-wider uppercase border transition-all duration-300 cursor-pointer backdrop-blur-md shadow-lg"
                     style={{
                       left: leftPct,
                       top: topPct,
                       backgroundColor: isSelected
                         ? n.color
                         : isDark ? 'rgba(12, 16, 26, 0.9)' : 'rgba(255, 255, 255, 0.9)',
-                      borderColor: isSelected ? n.color : isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.12)',
                       color: isSelected ? '#FFFFFF' : isDark ? '#D4D4D8' : '#374151',
                       transform: isSelected ? 'translate(-50%, -50%) scale(1.15)' : 'translate(-50%, -50%) scale(1)',
                       boxShadow: isSelected ? `0 0 25px ${n.color}70` : 'none',
@@ -228,7 +225,6 @@ export default function JourneyIndustryRadar() {
                 className="rounded-3xl p-8 sm:p-10 border backdrop-blur-xl relative overflow-hidden shadow-2xl"
                 style={{
                   backgroundColor: isDark ? 'rgba(12, 16, 26, 0.85)' : 'rgba(250, 251, 253, 0.95)',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                 }}
               >
                 <div
@@ -248,7 +244,6 @@ export default function JourneyIndustryRadar() {
                   {active.desc}
                 </p>
 
-                <div className="p-4 rounded-2xl mb-8 border" style={{ backgroundColor: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)', borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}>
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider block mb-1" style={{ color: isDark ? '#A1A1AA' : '#6B7280' }}>
                     BENCHMARK KPI IMPACT
                   </span>

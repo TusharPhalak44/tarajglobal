@@ -25,7 +25,6 @@ export default function CommandFinalCTA() {
       className="relative py-28 sm:py-36 lg:py-44 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -33,7 +32,6 @@ export default function CommandFinalCTA() {
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border mb-8"
           style={{
             backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)',
-            borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
@@ -94,7 +92,6 @@ export default function CommandFinalCTA() {
         <div
           className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t max-w-3xl mx-auto text-xs font-mono"
           style={{
-            borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
             color: isDark ? '#94A3B8' : '#64748B',
           }}
         >

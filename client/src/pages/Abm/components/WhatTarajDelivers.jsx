@@ -263,7 +263,7 @@ const WhatTarajDelivers = () => {
         
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-slate-200 dark:border-[#00A6FF]/30 bg-white/90 dark:bg-[#0A1426]/90 backdrop-blur-md mb-2.5 shadow-sm">
+          <div className="inline-flex items-center gap-2   mb-2.5">
             <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
               Proprietary Campaign Engine
@@ -415,7 +415,7 @@ const WhatTarajDelivers = () => {
                 <div className="pt-2">
                   <Link
                     to="/demandflow-bridge"
-                    style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold  text-text-primary dark:text-white hover:/90 shadow-md shadow-[#00A6FF]/20 hover:shadow-[#00A6FF]/35 transition-all duration-300 hover:-translate-y-0.5 group"
+                    style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold  text-text-accent dark:text-white hover:/90 shadow-md shadow-[#FF6D00]/20 hover:shadow-[#FF6D00]/35 transition-all duration-300 hover:-translate-y-0.5 group"
                   >
                     <span>Explore DemandFlow Bridge</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -523,7 +523,7 @@ const WhatTarajDelivers = () => {
                   <span className="font-mono text-sm font-bold text-text-primary dark:text-white">
                     DemandFlow Bridge™ — {activeLayer.screen}
                   </span>
-                  <span className="hidden sm:inline px-2 py-0.5 text-xs font-mono rounded bg-[#00A6FF]/20 text-[#00A6FF] border border-[#00A6FF]/30">
+                  <span className="hidden sm:inline px-2 py-0.5 text-xs font-mono rounded text-[#00A6FF] border border-[#00A6FF]/30">
                     {activeLayer.layer}
                   </span>
                 </div>

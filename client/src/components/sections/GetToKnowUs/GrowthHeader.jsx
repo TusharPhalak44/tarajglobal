@@ -17,26 +17,6 @@ export const GrowthHeader = () => {
       {/* ── Left Column: Eyebrow + Dominant 3-Line Headline + Description ── */}
       <div className="max-w-2xl">
        
-        {/* Technical Eyebrow with Pulsing Live Status Dot */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-surface dark:bg-slate-900/90 border border-border dark:border-slate-700/80 dark:border-white/10 mb-5 shadow-inner"
-        >
-          <div className="relative flex items-center justify-center">
-            <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-          </div>
-          <span className="text-sm font-mono font-bold tracking-[0.2em] text-[#00E5FF] uppercase">
-            ENTERPRISE GROWTH ARCHITECTURE
-          </span>
-          <span className="text-slate-600 font-mono text-sm">|</span>
-          <span className="text-sm font-mono font-bold text-emerald-400 tracking-wider">
-            SYSTEM ACTIVE
-          </span>
-        </motion.div>
  
         {/* Large Editorial Headline */}
         <motion.h2

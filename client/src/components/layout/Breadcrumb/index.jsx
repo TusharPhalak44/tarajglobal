@@ -48,7 +48,7 @@ const Breadcrumb = () => {
           <li>
             <Link
               to="/"
-              className="text-text-secondary hover:text-primary transition-colors flex items-center"
+              className="text-text-secondary hover:text-accent transition-colors flex items-center"
             >
               <Home size={16} />
             </Link>
@@ -67,7 +67,7 @@ const Breadcrumb = () => {
                 ) : (
                   <Link
                     to={routeTo}
-                    className="text-text-secondary hover:text-primary transition-colors"
+                    className="text-text-secondary hover:text-accent transition-colors"
                   >
                     {getBreadcrumbName(name)}
                   </Link>

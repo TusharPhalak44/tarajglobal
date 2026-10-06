@@ -61,7 +61,6 @@ export default function DecisionDiagnosticTool() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#05070B' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -164,10 +163,10 @@ export default function DecisionDiagnosticTool() {
                       className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider shrink-0 px-4 py-2.5 rounded-md border transition-all"
                       style={{
                         backgroundColor: isHovered
-                          ? isDark ? '#38BDF8' : '#0284C7'
+                          ? isDark ? '#FF6D00' : '#0284C7'
                           : isDark ? '#111622' : '#F8FAFC',
                         borderColor: isHovered
-                          ? isDark ? '#38BDF8' : '#0284C7'
+                          ? isDark ? '#FF6D00' : '#0284C7'
                           : isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.12)',
                         color: isHovered
                           ? isDark ? '#090D15' : '#FFFFFF'

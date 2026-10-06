@@ -59,7 +59,7 @@ export default function DevGrowthStages() {
       <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5">
+          <div className="inline-flex items-center gap-2 text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5">
             <span>FULL-FUNNEL REVENUE ARCHITECTURE</span>
           </div>
 
@@ -118,7 +118,7 @@ export default function DevGrowthStages() {
                       <Link
                         key={srv.name}
                         to={srv.path}
-                        className="flex items-center justify-between p-2.5 rounded-lg bg-background/60 hover:bg-background border border-border/50 hover:border-primary/40 text-xs font-semibold text-text-primary group-hover:text-text-primary transition-all"
+                        className="flex items-center justify-between p-2.5 rounded-lg bg-background/60 hover:bg-background border border-border/50 hover:border-accent text-xs font-semibold text-text-accent group-hover:text-text-accent transition-all"
                       >
                         <span>{srv.name}</span>
                         <ChevronRight className="w-3.5 h-3.5 text-text-muted hover:text-primary transition-colors" />

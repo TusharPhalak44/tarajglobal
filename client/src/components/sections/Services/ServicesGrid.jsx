@@ -17,7 +17,6 @@ const services = [
   {
     id: 'email-marketing',
     eyebrow: '01 - Email Campaigns',
-    label: 'B2B Email Marketing',
     title: 'B2B Email Marketing',
     desc: 'Reach the right B2B audience with relevant messaging.',
     icon: Mail,
@@ -31,7 +30,6 @@ const services = [
   {
     id: 'abm-marketing',
     eyebrow: '02 - Account-Based Marketing',
-    label: 'Account-Based Marketing (ABM)',
     title: 'Account-Based Marketing (ABM)',
     desc: 'Focus your growth strategy on high-value B2B accounts.',
     icon: Building2,
@@ -45,7 +43,6 @@ const services = [
   {
     id: 'mql-services',
     eyebrow: '03 - MQL Verification',
-    label: 'MQL Services',
     title: 'MQL Services',
     desc: 'Turn engaged audiences into marketing-qualified opportunities.',
     icon: CheckCircle,
@@ -59,7 +56,6 @@ const services = [
   {
     id: 'hql-services',
     eyebrow: '04 - Lead Qualification',
-    label: 'HQL Services',
     title: 'HQL Services',
     desc: 'Deliver high-quality leads with verified intent and interest.',
     icon: Sparkles,
@@ -73,7 +69,6 @@ const services = [
   {
     id: 'bant-lead-gen',
     eyebrow: '05 - Lead Qualification',
-    label: 'BANT Lead Generation',
     title: 'BANT Lead Generation',
     desc: 'Prioritize prospects with genuine buying potential.',
     icon: Filter,
@@ -87,7 +82,6 @@ const services = [
   {
     id: 'appointment-setting',
     eyebrow: '06 - Appointment Setting',
-    label: 'B2B Appointment Setting',
     title: 'B2B Appointment Setting',
     desc: 'Turn qualified prospects into meaningful sales conversations.',
     icon: Calendar,
@@ -329,7 +323,7 @@ const ServicesGrid = () => {
                     className="group relative transition-all duration-300 w-full text-left cursor-pointer"
                   >
                     <motion.div
-                      className={`relative px-4 sm:px-5 py-3.5 text-center rounded-2xl overflow-hidden border transition-all duration-300 ${isActive
+                      className={`relative px-4 sm:px-5 py-3.5 text-left rounded-2xl overflow-hidden border transition-all duration-300 ${isActive
                         ? 'bg-surface border-primary/70 shadow-[0_12px_32px_rgba(0,166,255,0.22)] dark:shadow-[0_0_30px_-5px_rgba(0,166,255,0.75),0_0_12px_rgba(0,229,255,0.4)] dark:bg-gray-800 dark:border-primary z-30 ring-1 ring-primary/40'
                         : 'bg-surface/85 dark:bg-gray-800/60 border-border/80 dark:border-gray-600 shadow-xs hover:border-primary/40 dark:hover:shadow-[0_0_22px_-3px_rgba(0,166,255,0.6)] dark:hover:border-primary/70 z-20'
                         }`}
@@ -349,67 +343,52 @@ const ServicesGrid = () => {
                         />
                       )}
 
-                      {/* Step Number Badge */}
-                      <motion.div
-                        className="absolute top-2.5 left-3.5"
-                        animate={{
-                          scale: isActive ? [1, 1.2, 1] : 1,
-                          opacity: isActive ? 1 : 0.7
-                        }}
-                        transition={{
-                          duration: 0.5,
-                          repeat: isActive ? Infinity : 0,
-                          repeatDelay: 1
-                        }}
-                      >
-                        <span className="text-sm font-mono font-extrabold text-primary">
-                          0{index + 1}
-                        </span>
-                      </motion.div>
+                      <div className="relative z-10 flex flex-col gap-2">
+                        {/* Header Row: Number + Title */}
+                        <div className="flex items-start gap-3 text-left">
+                          <motion.div
+                            animate={{
+                              scale: isActive ? [1, 1.1, 1] : 1,
+                              opacity: isActive ? 1 : 0.6
+                            }}
+                            transition={{
+                              duration: 0.5,
+                              repeat: isActive ? Infinity : 0,
+                              repeatDelay: 1.5
+                            }}
+                            className="mt-0.5"
+                          >
+                            <span className="text-sm font-mono font-extrabold text-primary">
+                              0{index + 1}
+                            </span>
+                          </motion.div>
 
-                      {/* Eyebrow / Category Label */}
-                      <motion.p
-                        className={`text-sm uppercase tracking-[0.22em] font-extrabold mb-0.5 transition-colors ${isActive
-                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent'
-                          : 'text-text-muted dark:text-gray-400'
-                          }`}
-                        animate={{
-                          y: isActive ? [0, -2, 0] : 0
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: isActive ? Infinity : 0,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        {service.label}
-                      </motion.p>
+                          <motion.h4
+                            className={`text-sm sm:text-base font-bold tracking-tight leading-snug transition-colors ${isActive ? 'text-text-primary dark:text-white' : 'text-text-secondary group-hover:text-text-primary dark:text-gray-300 dark:group-hover:text-white'
+                              }`}
+                            animate={{
+                              x: isActive ? 2 : 0
+                            }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            {service.title}
+                          </motion.h4>
+                        </div>
 
-                      {/* Card Title */}
-                      <motion.h4
-                        className={`text-sm sm:text-sm font-extrabold tracking-tight leading-tight transition-colors ${isActive ? 'text-text-primary dark:text-white' : 'text-text-secondary group-hover:text-text-primary dark:text-gray-300 dark:group-hover:text-white'
-                          }`}
-                        animate={{
-                          scale: isActive ? 1.05 : 1
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {service.title}
-                      </motion.h4>
-
-                      {/* Short Description */}
-                      <motion.p
-                        className={`text-sm mt-0.5 leading-normal font-medium transition-colors hidden sm:block ${isActive ? 'text-text-secondary dark:text-gray-300' : 'text-text-muted dark:text-gray-400'
-                          }`}
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{
-                          opacity: isActive ? 1 : 0.6,
-                          y: isActive ? 0 : 5
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {service.desc}
-                      </motion.p>
+                        {/* Short Description */}
+                        <motion.p
+                          className={`text-[13px] sm:text-sm leading-relaxed transition-colors hidden sm:block text-left pl-7 ${isActive ? 'text-text-secondary dark:text-gray-300' : 'text-text-muted dark:text-gray-400'
+                            }`}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{
+                            opacity: isActive ? 1 : 0.6,
+                            y: isActive ? 0 : 5
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {service.desc}
+                        </motion.p>
+                      </div>
 
                       {/* Live Auto-Advancing Progress Bar */}
                       {isActive && !isPaused && (
@@ -489,4 +468,3 @@ const ServicesGrid = () => {
 }
 
 export default ServicesGrid
-

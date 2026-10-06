@@ -108,7 +108,7 @@ const Contact = () => {
               <p className="text-text-secondary dark:text-white/80 mb-6">
                 Our support team is available 24/7 to help you with any urgent matters.
               </p>
-              <button className="w-full py-3 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              <button className="w-full py-3 bg-white text-accent rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Call Now
               </button>
             </div>

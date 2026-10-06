@@ -305,7 +305,7 @@ export default function ChatBot() {
                 <button
                   onClick={resetChat}
                   title="Reset chat"
-                  className="p-1.5 rounded-lg text-text-secondary dark:text-text-primary dark:text-white/50 hover:text-text-primary dark:text-white hover:bg-surface/90 dark:bg-white/10 transition-colors"
+                  className="p-1.5 rounded-lg text-text-secondary dark:text-text-accent dark:text-white/50 hover:text-text-accent dark:text-white hover:bg-surface/90 dark:bg-white/10 transition-colors"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                 </button>
@@ -434,7 +434,7 @@ export default function ChatBot() {
         style={{
           background: open
             ? 'linear-gradient(135deg, #EF4444, #DC2626)'
-            : 'linear-gradient(135deg, #00A6FF, #FF6D00)',
+            : 'linear-gradient(135deg, #FF6D00, #FF6D00)',
           boxShadow: open
             ? '0 0 30px rgba(239,68,68,0.4), 0 8px 32px rgba(0,0,0,0.5)'
             : '0 0 30px rgba(0,166,255,0.45), 0 8px 32px rgba(0,0,0,0.5)',

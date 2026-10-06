@@ -63,10 +63,8 @@ export default function ModernFAQ() {
           {/* LEFT: Section Headline & Support Card */}
           <div className="lg:col-span-5 lg:sticky top-28">
             <div
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-5"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-5"
               style={{
-                background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
                 color: isDark ? '#38BDF8' : '#0066CC',
               }}
             >
@@ -104,14 +102,12 @@ export default function ModernFAQ() {
                 background: isDark
                   ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(8, 12, 24, 0.95) 100%)'
                   : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 246, 255, 0.9) 100%)',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(0, 102, 204, 0.2)',
               }}
             >
               <div className="flex items-center gap-3 mb-3">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center"
                   style={{
-                    background: isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(0, 102, 204, 0.1)',
                     color: isDark ? '#38BDF8' : '#0066CC',
                   }}
                 >
@@ -206,7 +202,6 @@ export default function ModernFAQ() {
                         <div
                           className="px-6 pb-6 pt-2 text-sm sm:text-base leading-relaxed border-t ml-2"
                           style={{
-                            borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)',
                             color: isDark ? '#CBD5E1' : '#475569',
                           }}
                         >

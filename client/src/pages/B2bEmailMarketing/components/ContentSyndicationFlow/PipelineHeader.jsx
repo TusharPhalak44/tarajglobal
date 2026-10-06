@@ -17,7 +17,7 @@ export default function PipelineHeader({
     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">
       <div className="max-w-3xl">
         {/* Eyebrow badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 backdrop-blur-md mb-4 shadow-sm">
+        <div className="inline-flex items-center gap-2  mb-4">
           <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
           <span className="text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-primary">
             CONTENT SYNDICATION • EMAIL MARKETING • LEAD GENERATION
@@ -47,7 +47,7 @@ export default function PipelineHeader({
           className={`inline-flex items-center justify-center gap-2.5 px-5 py-2.5 rounded-xl font-mono text-xs font-bold tracking-wider transition-all duration-300 cursor-pointer shadow-md ${
             isPlaying
               ? 'bg-cta text-white ring-2 ring-cta/40 shadow-cta/30 scale-[1.02]'
-              : 'bg-primary text-white hover:opacity-90 active:scale-95 shadow-primary/30'
+              : 'bg-accent text-white hover:opacity-90 active:scale-95 shadow-accent'
           }`}
           aria-label={isPlaying ? 'Pause Workflow Animation' : 'Play Workflow Animation'}
         >
@@ -68,7 +68,7 @@ export default function PipelineHeader({
         <button
           type="button"
           onClick={onReplay}
-          className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-background border border-border/80 text-text-secondary hover:text-primary hover:border-primary/50 text-xs font-mono font-semibold transition-all cursor-pointer shadow-sm"
+          className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-background border border-border/80 text-text-secondary hover:text-accent hover:border-accent text-xs font-mono font-semibold transition-all cursor-pointer shadow-sm"
           title="Replay Process from Stage 01"
           aria-label="Replay Process"
         >
@@ -80,7 +80,7 @@ export default function PipelineHeader({
         <button
           type="button"
           onClick={onToggleSpeed}
-          className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-background border border-border/80 text-text-muted hover:text-text-primary text-xs font-mono font-medium transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-background border border-border/80 text-text-muted hover:text-text-accent text-xs font-mono font-medium transition-colors cursor-pointer"
           title="Toggle Simulation Speed"
         >
           <Gauge className="w-3.5 h-3.5 text-primary" />

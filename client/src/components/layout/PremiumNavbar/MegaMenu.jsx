@@ -189,7 +189,7 @@ export const MegaMenu = ({ onClose }) => {
         <Link
           to="/services"
           onClick={onClose}
-          className="inline-flex items-center gap-1.5 font-bold text-[#00A6FF] hover:underline"
+          className="inline-flex items-center gap-1.5 font-bold text-[#FF6D00] hover:underline"
         >
           <span>Explore All Growth Solutions</span>
           <ArrowRight size={13} />

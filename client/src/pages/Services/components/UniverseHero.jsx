@@ -40,7 +40,6 @@ export default function UniverseHero() {
       className="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between pt-28 pb-12 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#05070B' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       {/* Background Architectural Grid & Subtle Noise */}
@@ -72,7 +71,6 @@ export default function UniverseHero() {
             animate={{ rotate: -360 }}
             transition={{ duration: 70, repeat: Infinity, ease: 'linear' }}
             className="absolute w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] rounded-full border border-dashed pointer-events-none"
-            style={{ borderColor: isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.25)' }}
           >
             {/* Travelling node on Ring 1 */}
             <div
@@ -85,7 +83,6 @@ export default function UniverseHero() {
             animate={{ rotate: 360 }}
             transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
             className="absolute w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] rounded-full border pointer-events-none"
-            style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)' }}
           >
             {/* Travelling node on Ring 2 */}
             <div
@@ -96,7 +93,6 @@ export default function UniverseHero() {
           {/* Ring 3 (Inner Ring) */}
           <div
             className="absolute w-[180px] h-[180px] sm:w-[210px] sm:h-[210px] rounded-full border pointer-events-none"
-            style={{ borderColor: isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(2, 132, 199, 0.15)' }}
           />
 
           {/* Center Engine Core: TARAJ GLOBAL */}
@@ -131,7 +127,6 @@ export default function UniverseHero() {
               className="mt-1.5 text-[8px] font-mono font-bold px-1.5 py-0.5 rounded border uppercase"
               style={{
                 backgroundColor: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(2, 132, 199, 0.08)',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(2, 132, 199, 0.2)',
                 color: isDark ? '#38BDF8' : '#0284C7',
               }}
             >
@@ -250,7 +245,6 @@ export default function UniverseHero() {
 
       {/* ══ BOTTOM: Scroll Indicator ══ */}
       <div className="max-w-7xl mx-auto w-full flex items-center justify-between pt-6 border-t z-10"
-        style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
       >
         <span
           className="font-mono text-xs uppercase tracking-widest font-bold"
@@ -263,7 +257,7 @@ export default function UniverseHero() {
           type="button"
           onClick={handleScrollDown}
           className="group flex items-center gap-2 cursor-pointer font-mono text-xs font-bold uppercase tracking-widest transition-colors"
-          style={{ color: '#1E3A8A' }}
+          style={{ color: '#FF6D00' }}
         >
           <span>SCROLL TO EXPLORE</span>
           <ArrowDown className="w-3.5 h-3.5 animate-bounce" />

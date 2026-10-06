@@ -5,34 +5,7 @@ import { Plus } from 'lucide-react'
 const WhyChooseUsHeader = () => {
   return (
     <div className="relative text-center max-w-4xl mx-auto mb-12">
-      {/* Studio Crosshairs & Eyebrow */}
-      <div className="flex items-center justify-center gap-2 mb-3.5">
-        <motion.div
-          initial={{ rotate: 0, scale: 0 }}
-          whileInView={{ rotate: 90, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-primary/70 dark:text-[#00E5FF]/70"
-        >
-          <Plus size={13} strokeWidth={3} />
-        </motion.div>
 
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 backdrop-blur-md shadow-xs">
-          <span className="text-sm sm:text-sm font-mono font-bold text-primary uppercase tracking-[0.2em]">
-            Strategic Advantage
-          </span>
-        </div>
-
-        <motion.div
-          initial={{ rotate: 0, scale: 0 }}
-          whileInView={{ rotate: -90, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-cta/70 dark:text-orange-400/70"
-        >
-          <Plus size={13} strokeWidth={3} />
-        </motion.div>
-      </div>
 
       {/* Masked Kinetic Title */}
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary mb-4 tracking-tight leading-[1.16] overflow-hidden py-1">

@@ -43,7 +43,7 @@ export const ConfirmModal = ({
         <button
           onClick={onClose}
           disabled={isLoading}
-          className="absolute top-4 right-4 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] transition-colors"
+          className="absolute top-4 right-4 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-accent)] p-2 rounded-lg hover:bg-[var(--admin-bg-elevated)] transition-colors"
         >
           <X className="w-5 h-5" />
         </button>

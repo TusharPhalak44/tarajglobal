@@ -42,6 +42,18 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/sitemap.xml': {
+        target: 'http://localhost:5000/api/seo/sitemap.xml',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/sitemap.xml$/, '')
+      },
+      '/robots.txt': {
+        target: 'http://localhost:5000/api/seo/robots.txt',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/robots.txt$/, '')
+      },
     },
   },
   build: {

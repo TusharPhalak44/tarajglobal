@@ -20,7 +20,6 @@ export default function EditorialCTADestination() {
       className="relative py-32 lg:py-48 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#04060A' : '#F4F6FB',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Ready to Build a Stronger Pipeline — Final CTA"
     >
@@ -99,7 +98,6 @@ export default function EditorialCTADestination() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
             className="pt-10 border-t grid grid-cols-2 md:grid-cols-4 gap-4"
-            style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
           >
             {ASSURANCES.map((item, idx) => {
               const Icon = item.icon

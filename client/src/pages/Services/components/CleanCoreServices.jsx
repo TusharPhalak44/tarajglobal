@@ -66,7 +66,6 @@ export default function CleanCoreServices() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#0A0C10' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -153,7 +152,6 @@ export default function CleanCoreServices() {
 
                   {/* Quick Stat Pill Highlights */}
                   <div className="grid grid-cols-2 gap-4 mb-8 pt-6 border-t"
-                    style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)' }}
                   >
                     {service.stats.map((stat, i) => (
                       <div key={i}>
@@ -177,7 +175,7 @@ export default function CleanCoreServices() {
                   <Link
                     to={service.link}
                     className="group inline-flex items-center gap-2 font-medium text-sm sm:text-base transition-colors"
-                    style={{ color: isDark ? '#38BDF8' : '#0284C7' }}
+                    style={{ color: isDark ? '#FF6D00' : '#0284C7' }}
                   >
                     <span className="relative">
                       Learn More
@@ -200,7 +198,6 @@ export default function CleanCoreServices() {
                     to={service.link}
                     className="group block relative rounded-2xl overflow-hidden border shadow-sm transition-all duration-300"
                     style={{
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                       backgroundColor: isDark ? '#11151F' : '#F1F5F9',
                     }}
                   >
@@ -229,7 +226,6 @@ export default function CleanCoreServices() {
                           className="px-2.5 py-1 rounded-md text-[11px] font-mono font-semibold tracking-wider uppercase border backdrop-blur-md"
                           style={{
                             backgroundColor: isDark ? 'rgba(10, 12, 16, 0.75)' : 'rgba(255, 255, 255, 0.85)',
-                            borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
                             color: isDark ? '#FFFFFF' : '#0B0F19',
                           }}
                         >

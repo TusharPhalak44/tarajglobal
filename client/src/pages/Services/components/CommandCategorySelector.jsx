@@ -132,7 +132,6 @@ export default function CommandCategorySelector() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -230,11 +229,9 @@ export default function CommandCategorySelector() {
             className="rounded-2xl border p-6 sm:p-10"
             style={{
               backgroundColor: isDark ? '#0D1117' : '#FAFBFD',
-              borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
             }}
           >
             <div className="mb-8 pb-6 border-b flex flex-wrap items-center justify-between gap-4"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
             >
               <div>
                 <h4
@@ -255,7 +252,6 @@ export default function CommandCategorySelector() {
                 className="px-3 py-1 rounded-md text-xs font-mono font-bold uppercase border"
                 style={{
                   backgroundColor: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(2, 132, 199, 0.08)',
-                  borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(2, 132, 199, 0.2)',
                   color: isDark ? '#38BDF8' : '#0284C7',
                 }}
               >
@@ -272,7 +268,6 @@ export default function CommandCategorySelector() {
                   className="p-5 rounded-xl border transition-all duration-200 group flex flex-col justify-between"
                   style={{
                     backgroundColor: isDark ? '#111622' : '#FFFFFF',
-                    borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
                   }}
                 >
                   <div>
@@ -287,7 +282,6 @@ export default function CommandCategorySelector() {
                         className="text-[10px] font-mono px-1.5 py-0.5 rounded shrink-0 border"
                         style={{
                           backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)',
-                          borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                           color: isDark ? '#94A3B8' : '#64748B',
                         }}
                       >

@@ -23,7 +23,6 @@ export default function JourneyFinalCTA() {
       className="relative py-28 sm:py-36 lg:py-44 px-4 sm:px-6 lg:px-12 border-b overflow-hidden flex flex-col justify-center min-h-[75vh]"
       style={{
         backgroundColor: isDark ? '#04060A' : '#F4F6FB',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       {/* Concentric Ambient Rings in Background */}
@@ -58,10 +57,9 @@ export default function JourneyFinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 backdrop-blur-md"
+          className="inline-flex items-center gap-2 mb-8"
           style={{
             backgroundColor: isDark ? 'rgba(0, 166, 255, 0.08)' : 'rgba(0, 102, 204, 0.08)',
-            borderColor: isDark ? 'rgba(0, 166, 255, 0.3)' : 'rgba(0, 102, 204, 0.3)',
           }}
         >
           <Sparkles
@@ -123,7 +121,6 @@ export default function JourneyFinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 border-t"
-          style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
         >
           {[
             { label: 'Guaranteed Show-Rates', icon: ShieldCheck },

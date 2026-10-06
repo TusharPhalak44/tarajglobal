@@ -71,7 +71,6 @@ export default function HorizontalServiceJourney() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-8 lg:px-14 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -110,7 +109,6 @@ export default function HorizontalServiceJourney() {
               className="w-12 h-12 rounded-md border flex items-center justify-center cursor-pointer transition-colors"
               style={{
                 backgroundColor: isDark ? '#111622' : '#FFFFFF',
-                borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.12)',
                 color: isDark ? '#FFFFFF' : '#090D15',
               }}
             >
@@ -121,8 +119,8 @@ export default function HorizontalServiceJourney() {
               onClick={handleNext}
               className="w-12 h-12 rounded-md border flex items-center justify-center cursor-pointer transition-colors"
               style={{
-                backgroundColor: isDark ? '#38BDF8' : '#0284C7',
-                borderColor: isDark ? '#38BDF8' : '#0284C7',
+                backgroundColor: isDark ? '#FF6D00' : '#0284C7',
+                borderColor: isDark ? '#FF6D00' : '#0284C7',
                 color: isDark ? '#090D15' : '#FFFFFF',
               }}
             >
@@ -243,7 +241,6 @@ export default function HorizontalServiceJourney() {
                 <div
                   className="pt-4 border-t text-[11px] font-mono leading-normal"
                   style={{
-                    borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)',
                     color: isDark ? '#64748B' : '#94A3B8',
                   }}
                 >

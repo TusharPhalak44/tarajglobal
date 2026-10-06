@@ -140,7 +140,6 @@ export default function CommandServiceOrbit() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -185,11 +184,9 @@ export default function CommandServiceOrbit() {
             {/* Concentric Guide Rings */}
             <div
               className="absolute w-[360px] h-[360px] rounded-full border border-dashed pointer-events-none"
-              style={{ borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.18)' }}
             />
             <div
               className="absolute w-[240px] h-[240px] rounded-full border pointer-events-none"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)' }}
             />
 
             {/* Central Node: B2B GROWTH */}
@@ -259,7 +256,6 @@ export default function CommandServiceOrbit() {
               className="p-8 rounded-2xl border transition-all duration-300 relative overflow-hidden"
               style={{
                 backgroundColor: isDark ? '#0D1117' : '#FFFFFF',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(2, 132, 199, 0.25)',
                 boxShadow: isDark
                   ? '0 10px 30px -5px rgba(0, 0, 0, 0.4)'
                   : '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
@@ -267,7 +263,6 @@ export default function CommandServiceOrbit() {
             >
               {/* Category Tag & Index */}
               <div className="flex items-center justify-between pb-4 mb-5 border-b"
-                style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
               >
                 <span
                   className="font-mono text-xs font-bold tracking-widest uppercase"
@@ -362,7 +357,6 @@ export default function CommandServiceOrbit() {
                   <span
                     className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded border"
                     style={{
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
                       color: isDark ? '#94A3B8' : '#64748B',
                     }}
                   >
@@ -375,7 +369,6 @@ export default function CommandServiceOrbit() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     className="pt-2 border-t mt-2"
-                    style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
                   >
                     <p
                       className="text-xs leading-relaxed mb-3"
@@ -386,7 +379,7 @@ export default function CommandServiceOrbit() {
                     <Link
                       to={service.path}
                       className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider"
-                      style={{ color: isDark ? '#38BDF8' : '#0284C7' }}
+                      style={{ color: isDark ? '#FF6D00' : '#0284C7' }}
                     >
                       <span>LEARN MORE</span>
                       <ArrowRight className="w-3.5 h-3.5" />

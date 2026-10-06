@@ -242,7 +242,7 @@ const ContactForm = () => {
             <p className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
               Thank you for reaching out. Our growth strategists have received your brief and will connect with you within 2 hours.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 text-sm font-mono">
+            <div className="inline-flex items-center gap-2  text-slate-500 dark:text-slate-400 text-sm font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Priority Ingestion Active
             </div>
@@ -362,7 +362,7 @@ const ContactForm = () => {
               
               <div>
                 {/* Live Status Pill */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/25 dark:border-[#00A6FF]/30 bg-primary/30 dark:bg-primary/10 dark:bg-[#00A6FF]/10 text-primary dark:text-[#00d2ff] mb-2.5 shadow-xs">
+                <div className="inline-flex items-center gap-2    text-primary dark:text-[#00d2ff] mb-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00d2ff] animate-ping" />
                   <span className="text-sm font-mono font-bold tracking-[0.18em] uppercase">
                     Direct Inquiry

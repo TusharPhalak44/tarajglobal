@@ -64,7 +64,6 @@ export default function CommandGrowthFunnel() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -177,7 +176,6 @@ export default function CommandGrowthFunnel() {
                   <div
                     className="mt-6 pt-3 border-t text-[11px] font-mono font-medium"
                     style={{
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)',
                       color: isActive ? (isDark ? '#38BDF8' : '#0284C7') : (isDark ? '#64748B' : '#94A3B8'),
                     }}
                   >

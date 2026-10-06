@@ -88,7 +88,6 @@ export default function CommandDecisionTool() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -196,14 +195,12 @@ export default function CommandDecisionTool() {
               className="p-8 sm:p-10 rounded-2xl border relative overflow-hidden"
               style={{
                 backgroundColor: isDark ? '#0D1117' : '#FFFFFF',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(2, 132, 199, 0.25)',
                 boxShadow: isDark
                   ? '0 15px 35px -5px rgba(0, 0, 0, 0.5)'
                   : '0 15px 35px -5px rgba(0, 0, 0, 0.05)',
               }}
             >
               <div className="pb-4 mb-6 border-b flex items-center justify-between"
-                style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
               >
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
@@ -254,7 +251,6 @@ export default function CommandDecisionTool() {
                   <div className="p-4 rounded-xl border mb-8 text-xs sm:text-sm space-y-2"
                     style={{
                       backgroundColor: isDark ? '#111622' : '#F8FAFC',
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
                     }}
                   >
                     <div className="flex items-start gap-2">
@@ -262,7 +258,6 @@ export default function CommandDecisionTool() {
                       <span style={{ color: isDark ? '#CBD5E1' : '#334155' }}>{current.bestFor}</span>
                     </div>
                     <div className="flex items-center gap-2 pt-2 border-t"
-                      style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)' }}
                     >
                       <CheckCircle2 className="w-4 h-4 text-sky-500 shrink-0" />
                       <span className="font-mono font-bold" style={{ color: isDark ? '#38BDF8' : '#0284C7' }}>

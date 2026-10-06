@@ -30,7 +30,7 @@ export default function BlueprintFinalCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* ══════════ LEFT: Headline & CTA (7 cols) ══════════ */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-[11px] font-mono font-bold uppercase tracking-widest text-[#FF6D00] w-fit mb-6">
+            <div className="inline-flex items-center gap-2   text-[11px] font-mono font-bold uppercase tracking-widest text-[#FF6D00] w-fit mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               <span>LET'S GROW TOGETHER</span>
             </div>

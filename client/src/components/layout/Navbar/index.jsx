@@ -439,7 +439,7 @@ const Navbar = () => {
                 {/* Close Button */}
                 <button
                   onClick={closeMobileMenu}
-                  className="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  className="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                   aria-label="Close menu"
                 >
                   <X size={24} />

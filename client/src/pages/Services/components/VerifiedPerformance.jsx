@@ -115,10 +115,8 @@ export default function VerifiedPerformance() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 12 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-4"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-4"
             style={{
-              background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-              border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
               color: isDark ? '#38BDF8' : '#0066CC',
             }}
           >
@@ -174,7 +172,6 @@ export default function VerifiedPerformance() {
                   background: isDark
                     ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(8, 12, 24, 0.95) 100%)'
                     : 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.92) 100%)',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                   boxShadow: isDark
                     ? '0 20px 45px -15px rgba(0, 0, 0, 0.7)'
                     : '0 20px 45px -15px rgba(0, 102, 204, 0.06)',
@@ -247,7 +244,6 @@ export default function VerifiedPerformance() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t flex items-center gap-2 text-xs font-mono font-bold" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)', color: m.color }}>
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>VERIFIED SLA CERTIFIED</span>
                 </div>
@@ -263,7 +259,6 @@ export default function VerifiedPerformance() {
             background: isDark
               ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(8, 12, 24, 0.85) 100%)'
               : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 246, 255, 0.9) 100%)',
-            borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(0, 102, 204, 0.25)',
           }}
         >
           <div className="flex items-center gap-4">

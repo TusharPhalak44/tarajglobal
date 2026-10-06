@@ -236,7 +236,7 @@ const WhatIsService = () => {
 
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-border bg-surface text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
             <Layers className="w-3.5 h-3.5" />
             <span>Complete B2B Capabilities</span>
           </div>
@@ -374,7 +374,7 @@ const WhatIsService = () => {
 
                         <Link
                           to={srv.path}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-primary bg-primary/30 dark:bg-primary/10 hover:bg-primary hover:text-white transition-all cursor-pointer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-accent bg-accent dark:bg-accent hover:bg-accent hover:text-white transition-all cursor-pointer"
                         >
                           <span>Explore</span>
                           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

@@ -39,7 +39,6 @@ export default function CleanIndustries() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#0A0C10' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)',
       }}
     >
       <div className="max-w-7xl mx-auto">

@@ -114,7 +114,7 @@ const EditJob = () => {
               type="button"
               onClick={handleUpdateJob}
               disabled={saving}
-              className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+              className="admin-btn admin-btn-primary shadow-lg shadow-[#FF6D00]/25"
             >
               {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save Position</>}
             </button>
@@ -264,7 +264,7 @@ const EditJob = () => {
           <button
             type="submit"
             disabled={saving}
-            className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/25"
+            className="admin-btn admin-btn-primary shadow-lg shadow-[#FF6D00]/25"
           >
             {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : <><Save className="w-4 h-4" /> Save Position</>}
           </button>

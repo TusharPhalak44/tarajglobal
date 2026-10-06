@@ -80,7 +80,7 @@ export default function MechanicalProcessEngine({
           <button
             type="button"
             onClick={handlePrev}
-            className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-background border border-border text-xs font-mono font-semibold text-text-secondary hover:text-primary hover:border-primary/50 transition-colors cursor-pointer shadow-sm"
+            className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-background border border-border text-xs font-mono font-semibold text-text-secondary hover:text-accent hover:border-accent transition-colors cursor-pointer shadow-sm"
             aria-label="Previous Mechanical Station"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -115,7 +115,7 @@ export default function MechanicalProcessEngine({
           <button
             type="button"
             onClick={handleNext}
-            className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-background border border-border text-xs font-mono font-semibold text-text-secondary hover:text-primary hover:border-primary/50 transition-colors cursor-pointer shadow-sm"
+            className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-background border border-border text-xs font-mono font-semibold text-text-secondary hover:text-accent hover:border-accent transition-colors cursor-pointer shadow-sm"
             aria-label="Next Mechanical Station"
           >
             <span className="hidden sm:inline">NEXT</span>
@@ -126,7 +126,7 @@ export default function MechanicalProcessEngine({
           <button
             type="button"
             onClick={onReplay}
-            className="p-2 rounded-xl bg-background border border-border text-text-muted hover:text-primary hover:border-primary/50 transition-colors cursor-pointer"
+            className="p-2 rounded-xl bg-background border border-border text-text-muted hover:text-accent hover:border-accent transition-colors cursor-pointer"
             title="Reset Engine to Station 01"
             aria-label="Reset Engine"
           >
@@ -137,7 +137,7 @@ export default function MechanicalProcessEngine({
           <button
             type="button"
             onClick={toggleSpeed}
-            className="inline-flex items-center gap-1 px-2.5 py-2 rounded-xl bg-background border border-border text-[11px] font-mono font-medium text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1 px-2.5 py-2 rounded-xl bg-background border border-border text-[11px] font-mono font-medium text-text-muted hover:text-text-accent transition-colors cursor-pointer"
             title="Toggle Conveyor Speed"
           >
             <Gauge className="w-3.5 h-3.5 text-primary" />

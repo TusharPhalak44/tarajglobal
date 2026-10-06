@@ -154,7 +154,6 @@ export default function ServiceDirectoryInteractive() {
       className="relative py-24 lg:py-36 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Built Around Your Growth Goals — Interactive Service Navigation"
     >
@@ -201,7 +200,6 @@ export default function ServiceDirectoryInteractive() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
           {/* LEFT: 13 Interactive Vertical Service Rows */}
-          <div className="lg:col-span-7 divide-y" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
             {DIRECTORY_SERVICES.map((srv, idx) => {
               const isActive = activeIndex === idx
 
@@ -303,7 +301,6 @@ export default function ServiceDirectoryInteractive() {
                 className="rounded-3xl p-8 sm:p-10 border backdrop-blur-2xl relative overflow-hidden"
                 style={{
                   backgroundColor: isDark ? 'rgba(12, 16, 26, 0.85)' : 'rgba(250, 251, 253, 0.95)',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                   boxShadow: isDark ? '0 25px 50px -12px rgba(0, 0, 0, 0.7)' : '0 20px 40px -12px rgba(0, 0, 0, 0.08)',
                 }}
               >
@@ -342,7 +339,6 @@ export default function ServiceDirectoryInteractive() {
                   className="p-4 rounded-2xl mb-8 flex items-center justify-between text-xs font-mono font-bold"
                   style={{
                     backgroundColor: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
-                    border: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
                   }}
                 >
                   <span style={{ color: isDark ? '#A1A1AA' : '#52525B' }}>KEY IMPACT</span>

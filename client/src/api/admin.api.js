@@ -89,6 +89,13 @@ export const adminAPI = {
   saveSEO: (entityType, entityId, data) => api.post(`/admin/seo/${entityType}/${entityId}`, data),
   deleteSEO: (entityType, entityId) => api.delete(`/admin/seo/${entityType}/${entityId}`),
 
+  getRedirects: () => api.get('/admin/seo/redirects/all'),
+  saveRedirect: (data) => api.post('/admin/seo/redirects/save', data),
+  deleteRedirect: (id) => api.delete(`/admin/seo/redirects/${id}`),
+  get404Logs: () => api.get('/admin/seo/logs/404'),
+  getGlobalSEOSettings: () => api.get('/admin/seo/settings/global'),
+  saveGlobalSEOSettings: (data) => api.post('/admin/seo/settings/global', data),
+
   // CMS - Navbar
   getNavbarItems: () => api.get('/admin/cms/navbar', { params: { _t: Date.now() } }),
   createNavbarItem: (data) => api.post('/admin/cms/navbar', data),

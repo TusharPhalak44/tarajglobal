@@ -165,7 +165,7 @@ export const AlbumModal = ({ album, onClose }) => {
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface/90 dark:bg-white/10 hover:bg-white/20 text-text-primary dark:text-white text-xs font-mono font-medium transition-all hover:scale-102 cursor-pointer border border-border dark:border-white/15 shrink-0 shadow-sm"
+              className="inline-flex items-center gap-2 bg-surface/90 dark:bg-white/10 hover:bg-white/20 text-text-accent dark:text-white text-xs font-mono font-medium transition-all hover:scale-102 cursor-pointer border border-border dark:border-white/15 shrink-0 shadow-sm"
             >
               <ArrowLeft size={14} />
               <span className="hidden sm:inline">Back to Careers</span>
@@ -175,7 +175,7 @@ export const AlbumModal = ({ album, onClose }) => {
 
             <div className="min-w-0 flex items-center gap-2.5">
               <span
-                className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider shrink-0"
+                className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider shrink-0"
                 style={{
                   backgroundColor: `${album.color || '#00A6FF'}20`,
                   color: album.color || '#00A6FF',
@@ -194,7 +194,7 @@ export const AlbumModal = ({ album, onClose }) => {
           {/* Right: Photo Counter & Close Button */}
           <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             {/* Photo Counter Pill */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 text-xs font-mono text-text-secondary dark:text-white/80">
+            <div className="flex items-center gap-1.5 bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10 text-xs font-mono text-text-secondary dark:text-white/80">
               <Camera size={13} style={{ color: album.color || '#00A6FF' }} />
               <span className="font-bold text-text-primary dark:text-white">{filteredPhotos.length}</span>
               <span className="text-text-secondary dark:text-white/60">Photos</span>
@@ -204,7 +204,7 @@ export const AlbumModal = ({ album, onClose }) => {
             <button
               type="button"
               onClick={onClose}
-              className="w-9 h-9 rounded-full bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/20 text-text-primary dark:text-white flex items-center justify-center transition-all hover:scale-105 cursor-pointer"
+              className="w-9 h-9 rounded-full bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/20 text-text-accent dark:text-white flex items-center justify-center transition-all hover:scale-105 cursor-pointer"
               aria-label="Close album"
             >
               <X size={18} />
@@ -312,7 +312,7 @@ export const AlbumModal = ({ album, onClose }) => {
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <span
-                    className="px-2.5 py-1 rounded-full text-xs font-mono font-bold uppercase shrink-0"
+                    className="text-xs font-mono font-bold uppercase shrink-0"
                     style={{
                       backgroundColor: `${album.color || '#00A6FF'}20`,
                       color: album.color || '#00A6FF',
@@ -331,7 +331,7 @@ export const AlbumModal = ({ album, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setSelectedPhotoIndex(null)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/20 text-text-primary dark:text-white text-xs font-mono transition-all hover:scale-102 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/20 text-text-primary dark:text-white text-xs font-mono transition-all hover:scale-102 cursor-pointer"
                   >
                     <Grid size={13} />
                     <span className="hidden sm:inline">Grid View</span>

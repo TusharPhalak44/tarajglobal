@@ -41,7 +41,7 @@ const SearchBar = ({ isOpen, onClose }) => {
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 text-text-secondary hover:text-text-primary dark:text-white transition-colors"
+              className="absolute right-3 text-text-secondary hover:text-text-accent dark:text-white transition-colors"
             >
               <X className="w-4 h-4" />
             </button>

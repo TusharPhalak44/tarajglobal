@@ -88,7 +88,6 @@ export default function CommandIndustryMatrix() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -129,7 +128,6 @@ export default function CommandIndustryMatrix() {
         <div
           className="rounded-2xl border divide-y overflow-hidden"
           style={{
-            borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
             backgroundColor: isDark ? '#0D1117' : '#FAFBFD',
           }}
         >
@@ -206,7 +204,6 @@ export default function CommandIndustryMatrix() {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.25 }}
                       className="pt-4 mt-4 border-t"
-                      style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)' }}
                     >
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                         <p
@@ -220,7 +217,6 @@ export default function CommandIndustryMatrix() {
                           className="md:col-span-5 p-4 rounded-xl border text-xs font-mono space-y-1.5"
                           style={{
                             backgroundColor: isDark ? 'rgba(56, 189, 248, 0.04)' : 'rgba(2, 132, 199, 0.03)',
-                            borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.15)',
                           }}
                         >
                           <div>

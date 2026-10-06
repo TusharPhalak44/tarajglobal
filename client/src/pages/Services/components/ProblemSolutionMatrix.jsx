@@ -81,10 +81,8 @@ export default function ProblemSolutionMatrix() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 14 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-5"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-5"
               style={{
-                background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
                 color: isDark ? '#38BDF8' : '#0066CC',
               }}
             >
@@ -137,7 +135,6 @@ export default function ProblemSolutionMatrix() {
                   background: isDark
                     ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%)'
                     : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 248, 255, 0.8) 100%)',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                 }}
               >
                 <div>
@@ -162,12 +159,10 @@ export default function ProblemSolutionMatrix() {
             background: isDark
               ? 'linear-gradient(135deg, rgba(13, 23, 42, 0.75) 0%, rgba(8, 12, 24, 0.9) 100%)'
               : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 249, 255, 0.9) 100%)',
-            borderColor: isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(0, 102, 204, 0.2)',
             boxShadow: isDark ? '0 25px 50px -12px rgba(0, 0, 0, 0.7)' : '0 25px 50px -12px rgba(0, 102, 204, 0.08)',
           }}
         >
           {/* Pillar Selector Buttons */}
-          <div className="flex flex-wrap items-center gap-2 mb-8 pb-6 border-b" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
             <span className="text-xs font-mono font-bold uppercase tracking-wider mr-2" style={{ color: isDark ? '#64748B' : '#94A3B8' }}>
               SELECT FOCUS:
             </span>
@@ -210,8 +205,6 @@ export default function ProblemSolutionMatrix() {
               <div
                 className="lg:col-span-6 rounded-2xl p-6 sm:p-8 flex flex-col justify-between"
                 style={{
-                  background: isDark ? 'rgba(239, 68, 68, 0.05)' : 'rgba(239, 68, 68, 0.03)',
-                  border: isDark ? '1px solid rgba(239, 68, 68, 0.25)' : '1px solid rgba(239, 68, 68, 0.2)',
                 }}
               >
                 <div>
@@ -247,8 +240,6 @@ export default function ProblemSolutionMatrix() {
               <div
                 className="lg:col-span-6 rounded-2xl p-6 sm:p-8 flex flex-col justify-between"
                 style={{
-                  background: isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(0, 102, 204, 0.05)',
-                  border: isDark ? '1px solid rgba(56, 189, 248, 0.35)' : '1px solid rgba(0, 102, 204, 0.25)',
                   boxShadow: isDark ? '0 10px 30px rgba(0, 166, 255, 0.1)' : 'none',
                 }}
               >

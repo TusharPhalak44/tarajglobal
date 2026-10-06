@@ -23,7 +23,6 @@ export default function FinalImmersiveCTA() {
       className="relative py-28 sm:py-36 lg:py-44 px-4 sm:px-8 lg:px-14 border-b overflow-hidden flex flex-col justify-center min-h-[75vh] select-none"
       style={{
         backgroundColor: isDark ? '#020306' : '#F0F3F8',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       {/* Background Subtle Radiant Rings */}
@@ -44,10 +43,9 @@ export default function FinalImmersiveCTA() {
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border mb-8 backdrop-blur-md"
+        <div className="inline-flex items-center gap-2 mb-8"
           style={{
             backgroundColor: isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.08)',
-            borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(2, 132, 199, 0.25)',
           }}
         >
           <Sparkles className="w-3.5 h-3.5 text-sky-400 animate-spin" style={{ animationDuration: '8s' }} />
@@ -92,7 +90,6 @@ export default function FinalImmersiveCTA() {
         <div
           className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t max-w-3xl mx-auto text-xs font-mono"
           style={{
-            borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
             color: isDark ? '#94A3B8' : '#64748B',
           }}
         >

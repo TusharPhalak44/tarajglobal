@@ -119,7 +119,7 @@ function Privacy() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-wider uppercase mb-4"
+              className="inline-flex items-center gap-2 bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-wider uppercase mb-4"
             >
               <Shield className="w-3.5 h-3.5 text-primary" />
               <span>Enterprise Data Governance</span>
@@ -398,7 +398,7 @@ function Privacy() {
                   Our website uses cookies, web beacons, and local storage to ensure smooth navigation, remember theme preferences (light/dark mode), and analyze aggregated website traffic.
                 </p>
                 <p className="mb-4">
-                  You can manage your cookie preferences at any time using our dedicated <Link to="/cookies" className="text-primary font-semibold hover:underline">Cookies Policy</Link> page or by adjusting your browser settings to reject non-essential cookies.
+                  You can manage your cookie preferences at any time using our dedicated <Link to="/cookies" className="text-accent font-semibold hover:underline">Cookies Policy</Link> page or by adjusting your browser settings to reject non-essential cookies.
                 </p>
               </section>
 
@@ -546,11 +546,11 @@ function Privacy() {
 
                 <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
                   <span className="text-xs text-text-secondary">
-                    Looking for our general service terms? Read our <Link to="/terms" className="text-primary font-semibold hover:underline">Terms of Service</Link>.
+                    Looking for our general service terms? Read our <Link to="/terms" className="text-accent font-semibold hover:underline">Terms of Service</Link>.
                   </span>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-black font-bold text-xs uppercase tracking-wider hover:bg-primary-light transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-black font-bold text-xs uppercase tracking-wider hover:bg-accent-light transition-colors shadow-sm"
                   >
                     <span>Book Strategy Call</span>
                     <ArrowRight className="w-3.5 h-3.5" />

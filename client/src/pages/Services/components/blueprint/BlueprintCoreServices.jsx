@@ -82,7 +82,7 @@ export default function BlueprintCoreServices() {
                 const el = document.getElementById('spotlight-section')
                 if (el) el.scrollIntoView({ behavior: 'smooth' })
               }}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#FF8A00] transition-colors cursor-pointer group"
+              style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FF6D00] hover:text-[#FF8A00] transition-colors cursor-pointer group"
             >
               <span>View All Services</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

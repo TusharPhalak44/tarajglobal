@@ -70,11 +70,11 @@ export default function KineticServicesHero({ onSelectCategory }) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-6 shadow-sm backdrop-blur-md"
+          className="inline-flex items-center gap-2.5  text-primary mb-6"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
+            <span className="relative inline-flex h-2 w-2" />
           </span>
           <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em]">
             B2B REVENUE ACCELERATION ENGINE · 12 SERVICES
@@ -119,7 +119,7 @@ export default function KineticServicesHero({ onSelectCategory }) {
               key={i}
               type="button"
               onClick={() => scrollToCatalog(filter.target)}
-              className="px-3.5 py-1.5 rounded-full border border-border/70 bg-surface/60 hover:bg-surface hover:border-primary/50 text-xs font-semibold text-text-secondary hover:text-text-primary transition-all cursor-pointer shadow-xs hover:scale-102"
+              className="px-3.5 py-1.5 rounded-full border border-border/70 bg-surface/60 hover:bg-surface hover:border-[#FF6D00]/50 text-xs font-semibold text-text-secondary hover:text-text-primary transition-all cursor-pointer shadow-xs hover:scale-102"
             >
               {filter.label}
             </button>
@@ -140,7 +140,7 @@ export default function KineticServicesHero({ onSelectCategory }) {
           <button
             type="button"
             onClick={() => scrollToCatalog('all')}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-primary/50 shadow-xs cursor-pointer group"
+            style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-semibold transition-all hover:border-accent shadow-xs cursor-pointer group"
           >
             <span>Explore All 12 Services</span>
             <ChevronDown className="w-4 h-4  group-hover:translate-y-0.5 transition-transform" />

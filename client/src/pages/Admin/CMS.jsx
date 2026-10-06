@@ -325,7 +325,7 @@ const CMS = () => {
         <div className="admin-card overflow-hidden">
           <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
             <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
-              <Link2 className="w-4 h-4 text-primary" />
+              <Link2 className="w-4 h-4 text-accent" />
               Main Navigation Links ({navbarItems.length})
             </h3>
             <button onClick={handleAddNavbar} className="admin-btn-primary text-sm flex items-center gap-2">

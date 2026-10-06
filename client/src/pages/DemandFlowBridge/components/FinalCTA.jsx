@@ -43,7 +43,7 @@ const FinalCTA = () => {
           whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border dark:border-white/15 bg-surface/80 dark:bg-white/5 backdrop-blur-md text-text-secondary dark:text-slate-300 text-xs font-mono font-bold uppercase mb-6"
+          className="inline-flex items-center gap-2 border border-border dark:border-white/15 bg-surface/80 dark:bg-white/5 backdrop-blur-md text-text-secondary dark:text-slate-300 text-xs font-mono font-bold uppercase mb-6"
         >
           <Cpu className="w-3.5 h-3.5 text-primary animate-pulse" />
           <span>Unified Operations Ecosystem</span>
@@ -84,7 +84,7 @@ const FinalCTA = () => {
         >
           <button
             onClick={scrollToTop}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-text-primary dark:text-white hover: shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
+            style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-text-accent dark:text-white hover: shadow-lg shadow-accent hover:shadow-accent transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
           >
             <span>Explore DemandFlow Bridge</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -92,7 +92,7 @@ const FinalCTA = () => {
 
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/15 text-text-primary dark:text-white transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/15 text-text-accent dark:text-white transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
           >
             <MessageSquare className="w-4 h-4 text-primary" />
             <span>Talk to Taraj Global</span>

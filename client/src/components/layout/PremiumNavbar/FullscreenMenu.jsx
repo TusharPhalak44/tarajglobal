@@ -231,7 +231,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                 onClick={onClose}
                 whileHover={{ scale: 1.15, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-text-primary dark:text-white hover:bg-slate-200 dark:hover:bg-surface/90 dark:bg-white/10 flex items-center justify-center transition-all cursor-pointer shadow-2xs focus:outline-none"
+                className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-text-accent dark:text-white hover:bg-slate-200 dark:hover:bg-surface/90 dark:bg-white/10 flex items-center justify-center transition-all cursor-pointer shadow-2xs focus:outline-none"
                 aria-label="Close menu"
               >
                 <X size={18} strokeWidth={2.2} />
@@ -330,7 +330,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                                       key={service.path}
                                       to={service.path}
                                       onClick={onClose}
-                                      className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 transition-colors min-h-[40px]"
+                                      className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-accent hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 transition-colors min-h-[40px]"
                                     >
                                       <span>{service.name}</span>
                                       <ArrowRight size={12} className="opacity-40" />
@@ -500,7 +500,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
               <Link
                 to="/contact"
                 onClick={onClose}
-                className="w-full py-2.5 px-4 rounded-xl bg-surface dark:bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all flex items-center justify-center gap-1.5 shadow-2xs"
+                className="w-full py-2.5 px-4 rounded-xl bg-surface dark:bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs hover:bg-accent dark:hover:bg-accent dark:hover:text-white transition-all flex items-center justify-center gap-1.5 shadow-2xs"
               >
                 <span>Book Strategy Consultation</span>
                 <ArrowUpRight size={13} strokeWidth={2.2} />

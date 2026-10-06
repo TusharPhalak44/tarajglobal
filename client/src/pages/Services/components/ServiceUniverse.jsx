@@ -141,7 +141,6 @@ export default function ServiceUniverse() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-8 lg:px-14 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#04060A' : '#F5F7FB',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       {/* Background Subtle Ambience */}
@@ -187,11 +186,9 @@ export default function ServiceUniverse() {
             {/* Outer Orbit Guides */}
             <div
               className="absolute w-[400px] h-[400px] rounded-full border border-dashed pointer-events-none"
-              style={{ borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.2)' }}
             />
             <div
               className="absolute w-[260px] h-[260px] rounded-full border pointer-events-none"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
             />
 
             {/* Connecting Lines SVG */}
@@ -291,7 +288,6 @@ export default function ServiceUniverse() {
               className="p-8 sm:p-10 rounded-2xl border relative overflow-hidden backdrop-blur-md"
               style={{
                 backgroundColor: isDark ? '#0D1117' : '#FFFFFF',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.35)' : 'rgba(2, 132, 199, 0.3)',
                 boxShadow: isDark
                   ? '0 20px 45px -10px rgba(0, 0, 0, 0.6)'
                   : '0 15px 35px -10px rgba(0, 0, 0, 0.08)',
@@ -299,7 +295,6 @@ export default function ServiceUniverse() {
             >
               {/* Header inside Panel */}
               <div className="flex items-center justify-between pb-4 mb-6 border-b"
-                style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
               >
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -352,7 +347,6 @@ export default function ServiceUniverse() {
                     className="p-4 rounded-xl border mb-8 text-xs font-mono space-y-1.5"
                     style={{
                       backgroundColor: isDark ? '#111622' : '#F8FAFC',
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                     }}
                   >
                     <div className="flex items-center justify-between">
@@ -360,7 +354,6 @@ export default function ServiceUniverse() {
                       <span className="font-bold" style={{ color: isDark ? '#FFFFFF' : '#090D15' }}>{active.deliverable}</span>
                     </div>
                     <div className="flex items-center justify-between pt-1 border-t"
-                      style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
                     >
                       <span style={{ color: isDark ? '#64748B' : '#94A3B8' }}>SLA BENCHMARK:</span>
                       <span className="font-bold text-sky-500">{active.sla}</span>
@@ -423,7 +416,6 @@ export default function ServiceUniverse() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     className="pt-2 border-t mt-2"
-                    style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
                   >
                     <p
                       className="text-xs leading-relaxed mb-3"
@@ -433,7 +425,7 @@ export default function ServiceUniverse() {
                     </p>
                     <Link
                       to={s.path}
-                      className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-sky-500"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-accent"
                     >
                       <span>EXPLORE SERVICE</span>
                       <ArrowRight className="w-3.5 h-3.5" />

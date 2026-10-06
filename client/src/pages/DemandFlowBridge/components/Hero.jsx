@@ -54,7 +54,7 @@ const Hero = () => {
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary mb-5 backdrop-blur-md shadow-xs"
+            className="inline-flex items-center gap-2  text-primary mb-5"
           >
             <Cpu className="w-3.5 h-3.5 animate-pulse text-primary" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
@@ -112,7 +112,7 @@ const Hero = () => {
 
             <button
               onClick={() => scrollToSection('ecosystem')}
-              style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
+              style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
             >
               <span>See How It Works</span>
             </button>

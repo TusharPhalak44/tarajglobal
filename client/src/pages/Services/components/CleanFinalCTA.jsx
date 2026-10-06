@@ -25,7 +25,6 @@ export default function CleanFinalCTA() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#06080C' : '#0B0F19',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.08)',
         color: '#FFFFFF',
       }}
     >

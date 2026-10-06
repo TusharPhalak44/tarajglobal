@@ -832,7 +832,7 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${faq.num}`}
-        className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] rounded-2xl select-none"
+        className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] rounded-2xl select-none"
       >
         <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
           <motion.span
@@ -1334,11 +1334,11 @@ function Careers() {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-background dark:bg-black/[0.04] dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/20 text-[#1A1A2E] dark:text-white font-mono text-[11px] sm:text-xs tracking-[0.16em] uppercase mb-6 sm:mb-8 transition-colors duration-300 shadow-2xs"
+              className="inline-flex items-center gap-2.5    text-[#1A1A2E] dark:text-white font-mono text-[11px] sm:text-xs tracking-[0.16em] uppercase mb-6 sm:mb-8 transition-colors duration-300"
             >
               <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" style={{ animationDuration: '2.5s' }} />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
+                <span className="animate-ping absolute inline-flex h-full w-full opacity-75" style={{ animationDuration: '2.5s' }} />
+                <span className="relative inline-flex h-2 w-2" />
               </span>
               <span className="text-[#4A5568] dark:text-white/80 font-medium">CAREERS AT TARAJ GLOBAL</span>
               <span className="text-[#718096] dark:text-white/40">&bull;</span>
@@ -1447,7 +1447,7 @@ function Careers() {
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
             <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/20 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2.5">
+              <div className="inline-flex items-center gap-2 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2.5">
                 <Briefcase size={12} />
                 <span>Open Positions</span>
               </div>
@@ -1616,7 +1616,7 @@ function Careers() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/25 text-[#00A6FF] text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase mb-4 shadow-xs backdrop-blur-md"
+                className="inline-flex items-center gap-2 bg-[#00A6FF]/10 border border-[#00A6FF]/25 text-[#00A6FF] text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase mb-4 backdrop-blur-md"
               >
                 <Sparkles size={13} className="text-[#00A6FF]" />
                 <span>Life at Taraj Global</span>
@@ -1774,7 +1774,7 @@ function Careers() {
 
             {/* Section Header */}
             <div className="max-w-3xl mb-4 xl:mb-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/20 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2">
+              <div className="inline-flex items-center gap-2 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2">
                 <Target size={12} />
                 <span>PILLARS OF GROWTH</span>
               </div>
@@ -1845,7 +1845,7 @@ function Careers() {
           {/* ── 2. MOBILE ADAPTED EDITORIAL LIST (SCREENS < 1024px) ── */}
           <div className="lg:hidden py-16 px-4 sm:px-6">
             <div className="max-w-3xl mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/20 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
+              <div className="inline-flex items-center gap-2 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
                 <Target size={12} />
                 <span>PILLARS OF GROWTH</span>
               </div>
@@ -1962,10 +1962,10 @@ function Careers() {
 
                   {/* Top Status Header */}
                   <div className="relative z-10 mb-5 flex items-center justify-between pb-4 border-b border-border/50 dark:border-white/10">
-                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25">
+                    <div className="inline-flex items-center gap-2">
                       <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                        <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
+                        <span className="relative inline-flex h-2 w-2" />
                       </span>
                       <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">
                         TALENT ACQUISITION POD
@@ -2132,7 +2132,7 @@ function Careers() {
                 {/* Close Button */}
                 <button
                   onClick={closeModal}
-                  className="absolute top-5 right-5 p-2 rounded-full hover:bg-background dark:bg-black/5 dark:hover:bg-surface/90 dark:bg-white/10 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+                  className="absolute top-5 right-5 p-2 rounded-full hover:bg-background dark:bg-black/5 dark:hover:bg-surface/90 dark:bg-white/10 text-text-muted hover:text-text-accent transition-colors cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -2284,7 +2284,7 @@ function Careers() {
                     <button
                       type="submit"
                       disabled={isSubmitting || !selectedFile || !formData.firstName || !formData.lastName || !formData.email}
-                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#00A6FF] to-[#0080FF] text-text-primary dark:text-white font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[#00A6FF]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 mt-2"
+                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#FF6D00] to-[#0080FF] text-text-accent dark:text-white font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[#FF6D00]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 mt-2"
                     >
                       {isSubmitting ? (
                         <>

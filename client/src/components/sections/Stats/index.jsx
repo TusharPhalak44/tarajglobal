@@ -340,7 +340,7 @@ export const Stats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-surface dark:bg-slate-900/[0.04] dark:bg-white/[0.04] border border-slate-900/10 dark:border-white/10 w-fit backdrop-blur-md shadow-xs ml-7"
+              className="inline-flex items-center gap-3    w-fit ml-7"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
               <span className="text-sm font-mono font-bold tracking-wider text-slate-700 dark:text-slate-300 uppercase">
@@ -366,7 +366,6 @@ export const Stats = () => {
                       className="p-3 sm:p-4 rounded-2xl border backdrop-blur-md flex flex-col justify-between transition-all"
                       style={{
                         backgroundColor: isDark ? 'rgba(7, 11, 20, 0.85)' : 'rgba(255, 255, 255, 0.95)',
-                        borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.08)',
                       }}
                     >
                       <div className="flex items-center justify-between mb-2">

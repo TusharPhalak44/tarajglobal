@@ -193,7 +193,7 @@ export default function ExperienceObjectiveSelector() {
               {/* Left Column: Objective Narrative & Metrics (~5 cols) */}
               <div className="lg:col-span-5 flex flex-col justify-between h-full">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border dark:border-white/10 bg-surface/80 dark:bg-white/5 text-[11px] font-mono text-[#FF6D00] uppercase tracking-wider mb-4">
+                  <div className="inline-flex items-center gap-2   text-[11px] font-mono text-[#FF6D00] uppercase tracking-wider mb-4">
                     <IconComponent className="w-3.5 h-3.5" />
                     <span>OBJECTIVE BLUEPRINT</span>
                   </div>

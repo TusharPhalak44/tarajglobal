@@ -91,7 +91,7 @@ export function StarButton({
       >
         <StarBackground color={backgroundColor} />
       </div>
-      <span className="z-10 relative inline-block font-semibold dark:text-[#00A6FF] text-[#0052A3]">
+      <span className="z-10 relative inline-block font-semibold text-[#FF6D00]">
         {children}
       </span>
     </button>

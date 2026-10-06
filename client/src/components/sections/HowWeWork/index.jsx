@@ -126,7 +126,7 @@ export const HowWeWork = () => {
        
         {/* ── 1. LEFT-ALIGNED EDITORIAL HEADER ───────────────────────── */}
         <div className="max-w-3xl mb-4 lg:mb-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 mb-2 shadow-xs">
+          <div className="inline-flex items-center gap-2  mb-2">
             <Sparkles size={12} className="text-primary animate-pulse" />
             <span className="text-sm font-mono font-bold tracking-[0.2em] text-primary uppercase">
               HOW WE WORK

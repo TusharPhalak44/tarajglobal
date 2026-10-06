@@ -65,7 +65,6 @@ export default function ProcessJourney() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Process — How We Work: The 5-Stage Journey"
     >
@@ -147,7 +146,6 @@ export default function ProcessJourney() {
                     className="absolute left-6 sm:left-1/2 -translate-x-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300 group-hover:scale-110"
                     style={{
                       backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-                      border: `2px solid ${isActive ? step.color : isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.2)'}`,
                       boxShadow: isActive ? `0 0 25px ${step.color}50` : 'none',
                     }}
                   >

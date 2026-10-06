@@ -186,7 +186,7 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 backdrop-blur-md mb-2 shadow-xs"
+            className="inline-flex items-center gap-2   mb-2"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-primary dark:text-[#00A6FF] uppercase">

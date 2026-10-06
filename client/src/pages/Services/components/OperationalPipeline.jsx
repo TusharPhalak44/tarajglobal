@@ -113,10 +113,8 @@ export default function OperationalPipeline() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 12 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-4"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-4"
             style={{
-              background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-              border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
               color: isDark ? '#38BDF8' : '#0066CC',
             }}
           >
@@ -269,13 +267,11 @@ export default function OperationalPipeline() {
                 </p>
 
                 {/* Stage Navigation Cyber Buttons */}
-                <div className="flex items-center gap-3 pt-4 border-t" style={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
                   <button
                     type="button"
                     onClick={handlePrev}
                     className="h-10 px-4 rounded-xl border flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                     style={{
-                      borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
                       color: isDark ? '#CBD5E1' : '#334155',
                     }}
                   >
@@ -306,8 +302,6 @@ export default function OperationalPipeline() {
                 <div
                   className="p-6 rounded-2xl"
                   style={{
-                    background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                    border: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
                   }}
                 >
                   <span className="text-xs font-mono font-bold uppercase tracking-wider block mb-4" style={{ color: stage.color }}>

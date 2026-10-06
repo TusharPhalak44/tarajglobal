@@ -124,7 +124,7 @@ export function CommandTextLink({
     <Link
       to={to}
       className={`group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${className}`}
-      style={{ color: isDark ? '#38BDF8' : '#0284C7' }}
+      style={{ color: isDark ? '#FF6D00' : '#0284C7' }}
     >
       <span className="relative">
         {children}

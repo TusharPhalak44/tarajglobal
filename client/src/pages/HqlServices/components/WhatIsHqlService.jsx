@@ -87,7 +87,7 @@ const WhatIsHqlService = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-surface mb-4"
+            className="inline-flex items-center gap-2.5 mb-4"
           >
             <motion.span
               className="w-2 h-2 rounded-full bg-primary"

@@ -96,7 +96,7 @@ const Notifications = () => {
           unreadCount > 0 ? (
             <button
               onClick={handleMarkAllAsRead}
-              className="admin-btn admin-btn-primary text-sm shadow-md shadow-[#00A6FF]/20"
+              className="admin-btn admin-btn-primary text-sm shadow-md shadow-[#FF6D00]/20"
             >
               <CheckCheck className="w-4 h-4" />
               <span>Mark All Read</span>

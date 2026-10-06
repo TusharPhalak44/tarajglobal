@@ -28,7 +28,6 @@ export default function CommandSpotlight() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -162,7 +161,6 @@ export default function CommandSpotlight() {
                     className="px-3 py-1.5 rounded-md text-xs font-mono font-bold tracking-wider uppercase border backdrop-blur-md"
                     style={{
                       backgroundColor: isDark ? 'rgba(8, 10, 15, 0.85)' : 'rgba(255, 255, 255, 0.9)',
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.12)',
                       color: isDark ? '#FFFFFF' : '#0B0F19',
                     }}
                   >
@@ -174,7 +172,6 @@ export default function CommandSpotlight() {
                 <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between px-4 py-2.5 rounded-md border backdrop-blur-md text-xs font-mono"
                   style={{
                     backgroundColor: isDark ? 'rgba(8, 10, 15, 0.8)' : 'rgba(255, 255, 255, 0.85)',
-                    borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
                     color: isDark ? '#FFFFFF' : '#0B0F19',
                   }}
                 >

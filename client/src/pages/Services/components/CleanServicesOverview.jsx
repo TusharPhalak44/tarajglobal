@@ -66,7 +66,6 @@ export default function CleanServicesOverview() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#080A0E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -114,7 +113,6 @@ export default function CleanServicesOverview() {
                 className="rounded-2xl border p-6 sm:p-8 flex flex-col h-full transition-all duration-300"
                 style={{
                   backgroundColor: isDark ? '#0D1117' : '#FFFFFF',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                   boxShadow: isDark
                     ? '0 4px 20px -2px rgba(0, 0, 0, 0.4)'
                     : '0 4px 20px -2px rgba(0, 0, 0, 0.03)',
@@ -122,7 +120,6 @@ export default function CleanServicesOverview() {
               >
                 {/* Category Header */}
                 <div className="pb-6 mb-6 border-b"
-                  style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span
@@ -135,7 +132,6 @@ export default function CleanServicesOverview() {
                       className="w-8 h-8 rounded-lg flex items-center justify-center border"
                       style={{
                         backgroundColor: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(2, 132, 199, 0.08)',
-                        borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.15)',
                         color: isDark ? '#38BDF8' : '#0284C7',
                       }}
                     >
@@ -218,7 +214,6 @@ export default function CleanServicesOverview() {
                 {/* Bottom subtle count */}
                 <div
                   className="pt-4 mt-4 border-t flex items-center justify-between text-xs"
-                  style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)' }}
                 >
                   <span style={{ color: isDark ? '#64748B' : '#94A3B8' }}>
                     Capabilities Included

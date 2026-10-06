@@ -45,17 +45,14 @@ export default function ModernServicesCTA() {
           animate={prefersReducedMotion ? {} : { scale: [1, 1.08, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full border"
-          style={{ borderColor: isDark ? 'rgba(0, 166, 255, 0.2)' : 'rgba(0, 102, 204, 0.15)' }}
         />
         <motion.div
           animate={prefersReducedMotion ? {} : { scale: [1, 1.14, 1], opacity: [0.2, 0.5, 0.2] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full border"
-          style={{ borderColor: isDark ? 'rgba(255, 109, 0, 0.2)' : 'rgba(255, 107, 0, 0.15)' }}
         />
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border"
-          style={{ borderColor: isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(0, 102, 204, 0.1)' }}
         />
 
         {/* Ambient Glowing Orbs */}
@@ -63,13 +60,11 @@ export default function ModernServicesCTA() {
           animate={prefersReducedMotion ? {} : { scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute top-1/4 left-1/3 w-[600px] h-[600px] rounded-full blur-[140px]"
-          style={{ background: isDark ? 'rgba(0, 166, 255, 0.2)' : 'rgba(0, 102, 204, 0.12)' }}
         />
         <motion.div
           animate={prefersReducedMotion ? {} : { scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
           className="absolute bottom-1/4 right-1/3 w-[600px] h-[600px] rounded-full blur-[140px]"
-          style={{ background: isDark ? 'rgba(255, 109, 0, 0.18)' : 'rgba(255, 107, 0, 0.12)' }}
         />
       </div>
 
@@ -82,10 +77,8 @@ export default function ModernServicesCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-6 backdrop-blur-xl"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-6 backdrop-blur-xl"
             style={{
-              background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-              border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
               color: isDark ? '#38BDF8' : '#0066CC',
             }}
           >
@@ -162,7 +155,6 @@ export default function ModernServicesCTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="pt-8 border-t grid grid-cols-2 md:grid-cols-4 gap-4"
-            style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
           >
             {ASSURANCES.map((item, idx) => {
               const Icon = item.icon
@@ -172,8 +164,6 @@ export default function ModernServicesCTA() {
                   className="flex items-center justify-center gap-2.5 text-xs font-semibold py-2.5 px-3.5 rounded-xl border backdrop-blur-md"
                   style={{
                     color: isDark ? '#E2E8F0' : '#1E293B',
-                    background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.7)',
-                    borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)',
                   }}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" style={{ color: item.color }} />

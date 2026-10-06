@@ -28,7 +28,7 @@ export default function WorkflowControls({
           <div className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white tracking-tight flex items-center gap-1.5">
             {currentStepData ? currentStepData.title : 'Qualified Webinar Pipeline'}
             {currentStepIndex >= 9 && (
-              <span className="inline-flex items-center px-1.5 py-0.2 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-[#00f0ff]/15 border border-primary/30 dark:border-[#00f0ff]/40 text-[8px] font-mono text-primary dark:text-[#00f0ff] animate-pulse">
+              <span className="inline-flex items-center    text-[8px] font-mono text-primary dark:text-[#00f0ff] animate-pulse">
                 Goal Hit
               </span>
             )}
@@ -64,7 +64,7 @@ export default function WorkflowControls({
           type="button"
           onClick={onPrev}
           disabled={currentStepIndex <= 0}
-          className="p-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-slate-600 dark:text-[#94a3b8] hover:text-primary dark:hover:text-text-primary dark:text-white disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+          className="p-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-slate-600 dark:text-[#94a3b8] hover:text-accent dark:hover:text-text-accent dark:text-white disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
           title="Previous Step"
           aria-label="Previous Step"
         >
@@ -76,7 +76,7 @@ export default function WorkflowControls({
           onClick={onTogglePlay}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-[11px] font-bold transition-all duration-300 cursor-pointer shadow-xs ${
             isPlaying
-              ? 'bg-primary dark:bg-gradient-to-r dark:from-[#00aaff] dark:to-[#0077ee] text-white shadow-primary/20 dark:shadow-[0_0_15px_rgba(0,166,255,0.4)]'
+              ? 'bg-accent dark:bg-gradient-to-r dark:from-[#00aaff] dark:to-[#0077ee] text-white shadow-accent dark:shadow-[0_0_15px_rgba(0,166,255,0.4)]'
               : 'bg-slate-900 text-white dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#0099ff] dark:text-slate-950 hover:opacity-90'
           }`}
           aria-label={isPlaying ? 'Pause Workflow Animation' : 'Play Workflow Animation'}
@@ -108,7 +108,7 @@ export default function WorkflowControls({
         <button
           type="button"
           onClick={onReplay}
-          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-[11px] font-mono font-medium text-slate-600 dark:text-[#94a3b8] hover:text-primary dark:hover:text-[#00f0ff] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-[#021430] border border-slate-200 dark:border-[#0077cc]/40 text-[11px] font-mono font-medium text-slate-600 dark:text-[#94a3b8] hover:text-accent dark:hover:text-[#00f0ff] transition-colors cursor-pointer"
           title="Replay Workflow"
           aria-label="Replay Workflow"
         >

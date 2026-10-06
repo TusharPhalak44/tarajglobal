@@ -6,7 +6,7 @@ const HamburgerButton = ({ isOpen, onClick }) => {
   return (
     <motion.button
       onClick={onClick}
-      className="relative p-3 rounded-full text-text-primary hover:text-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+      className="relative p-3 rounded-full text-text-accent hover:text-accent transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
       whileHover={{ scale: 1.1 }}

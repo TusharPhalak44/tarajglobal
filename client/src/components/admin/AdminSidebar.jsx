@@ -134,7 +134,7 @@ export const AdminSidebar = ({
 
           <button
             onClick={onClose}
-            className="lg:hidden p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)]"
+            className="lg:hidden p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-accent)] hover:bg-[var(--admin-bg-elevated)]"
             aria-label="Close"
           >
             <X className="w-4 h-4" />
@@ -142,7 +142,7 @@ export const AdminSidebar = ({
 
           <button
             onClick={onToggleCollapse}
-            className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] transition-colors ml-1"
+            className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-accent)] hover:bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] transition-colors ml-1"
             title={isCollapsed ? 'Expand Navigation' : 'Collapse Navigation'}
           >
             {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
@@ -178,7 +178,7 @@ export const AdminSidebar = ({
                     className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-150 ${
                       isActive
                         ? 'bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] font-bold shadow-xs'
-                        : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)]'
+                        : 'text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-accent)] hover:bg-[var(--admin-bg-elevated)]'
                     }`}
                   >
                     <Icon className={`w-4 h-4 shrink-0 transition-transform ${
@@ -243,7 +243,7 @@ export const AdminSidebar = ({
             <div className="flex flex-col items-center gap-2">
               <Link
                 to="/admin/profile"
-                className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#00A6FF] to-[#0077CC] p-[1px] flex items-center justify-center overflow-hidden"
+                className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FF6D00] to-[#0077CC] p-[1px] flex items-center justify-center overflow-hidden"
                 title="Admin Profile"
               >
                 {user?.avatar ? (

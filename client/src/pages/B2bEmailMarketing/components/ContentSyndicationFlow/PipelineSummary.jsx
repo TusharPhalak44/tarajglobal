@@ -13,7 +13,7 @@ export default function PipelineSummary() {
 
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-[10.5px] font-mono font-bold text-primary mb-3">
+          <div className="inline-flex items-center gap-2  text-[10.5px] font-mono font-bold text-primary mb-3">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span>OPERATIONAL ASSURANCE</span>
           </div>

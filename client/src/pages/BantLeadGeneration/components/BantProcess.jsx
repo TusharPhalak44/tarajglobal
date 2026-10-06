@@ -104,7 +104,7 @@ const BantProcess = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-[#00d2ff]/30 bg-white/80 dark:bg-[#031c3d]/60 backdrop-blur-md mb-3 shadow-xs dark:shadow-[0_0_12px_rgba(0,180,255,0.15)]"
+            className="inline-flex items-center gap-2   mb-3 "
           >
             <motion.span
               className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] shadow-xs"

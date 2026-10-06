@@ -207,7 +207,7 @@ const WhatTarajDelivers = () => {
         
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-slate-200 dark:border-[#00A6FF]/30 bg-white/90 dark:bg-[#0A1426]/90 backdrop-blur-md mb-2.5 shadow-sm">
+          <div className="inline-flex items-center gap-2   mb-2.5">
             <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
               Proprietary MQL Engine
@@ -448,7 +448,7 @@ const WhatTarajDelivers = () => {
                   <span className="font-mono text-sm font-bold text-text-primary dark:text-white">
                     DEMANDFLOW Bridge™ — {activeLayer.screen}
                   </span>
-                  <span className="hidden sm:inline px-2 py-0.5 text-xs font-mono rounded bg-[#00A6FF]/20 text-[#00A6FF] border border-[#00A6FF]/30">
+                  <span className="hidden sm:inline px-2 py-0.5 text-xs font-mono rounded text-[#00A6FF] border border-[#00A6FF]/30">
                     {activeLayer.layer}
                   </span>
                 </div>

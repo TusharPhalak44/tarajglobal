@@ -180,7 +180,7 @@ export default function InteractiveSelector() {
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="max-w-3xl mb-14 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
+          <div className="inline-flex items-center gap-2  text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
             <span>INTERACTIVE ARCHITECTURE</span>
           </div>
 
@@ -274,7 +274,7 @@ export default function InteractiveSelector() {
                     </h3>
                   </div>
 
-                  <div className="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-500 text-xs font-mono font-bold tracking-wider">
+                  <div className="bg-emerald-500/10 border border-emerald-500/25 text-emerald-500 text-xs font-mono font-bold tracking-wider">
                     {activeService.sla}
                   </div>
                 </div>
@@ -327,12 +327,12 @@ export default function InteractiveSelector() {
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border/50">
                   <Link
                     to={activeService.link}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-primary group"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-accent group"
                   >
                     <StarButton
                       as="div"
                       className="h-11 px-6 text-xs font-bold uppercase tracking-wider text-text-primary dark:text-white dark:text-neutral-900 flex items-center gap-2"
-                      lightColor="#00A6FF"
+                      lightColor="#FF6D00"
                       backgroundColor="rgba(0,166,255,0.15)"
                     >
                       <span>Explore Service</span>
@@ -342,7 +342,7 @@ export default function InteractiveSelector() {
 
                   <Link
                     to="/contact"
-                    className="text-xs font-mono text-text-muted hover:text-primary transition-colors"
+                    className="text-xs font-mono text-text-muted hover:text-accent transition-colors"
                   >
                     Need custom scoping? Consult with our pipeline architects →
                   </Link>

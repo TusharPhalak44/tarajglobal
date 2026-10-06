@@ -321,14 +321,16 @@ export const Footer = () => {
                 </Link>
               )}
 
-              <div className="pt-1 w-full flex justify-center">
-                <img
-                  src="/footerimage.png"
-                  alt="Taraj Global ISO 9001:2015 & ISO/IEC 27001:2022 Certified"
-                  className="w-full h-auto object-contain select-none max-w-[210px] sm:max-w-[230px]"
-                  loading="lazy"
-                />
-              </div>
+              {settings.is_cert_image_visible !== 0 && settings.is_cert_image_visible !== false && (
+                <div className="pt-1 w-full flex justify-center">
+                  <img
+                    src={settings.cert_image_url || "/footerimage.png"}
+                    alt="Taraj Global Certification"
+                    className="w-full h-auto object-contain select-none max-w-[210px] sm:max-w-[230px]"
+                    loading="lazy"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Description / Content (Clearly visible & high contrast) */}
@@ -398,12 +400,6 @@ export const Footer = () => {
 
             return (
               <div key={section.id} className="lg:col-span-2 space-y-4 pt-4 sm:pt-7 lg:pt-16">
-                <div className="flex items-center gap-1.5">
-                  <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} />
-                  <h4 className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider font-mono ${headingClass}`}>
-                    {section.title}
-                  </h4>
-                </div>
                 <ul className="space-y-2.5">
                   {section.links.map((link, lIdx) => {
                     const isCustomAction =
@@ -471,13 +467,6 @@ export const Footer = () => {
 
           {/* ── COLUMN 5 (SPAN 3): GLOBAL HUBS & CLOCKS ────────────── */}
           <div className="lg:col-span-3 space-y-4 pt-4 sm:pt-7 lg:pt-16">
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <h4 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider font-mono text-slate-800 dark:text-slate-200">
-                Global Hubs
-              </h4>
-            </div>
-
             <div className="space-y-3 text-xs">
               {activeOffices.map((office, oIdx) => {
                 const isPST = office.isPST
@@ -577,12 +566,12 @@ export const Footer = () => {
                         <button
                           onClick={openPreferences}
                           type="button"
-                          className="hover:text-[#00A6FF] transition-colors cursor-pointer focus:outline-none py-1"
+                          className="hover:text-[#FF6D00] transition-colors cursor-pointer focus:outline-none py-1"
                         >
                           {ll.label}
                         </button>
                       ) : (
-                        <Link to={ll.url || '/'} className="hover:text-[#00A6FF] transition-colors py-1">
+                        <Link to={ll.url || '/'} className="hover:text-[#FF6D00] transition-colors py-1">
                           {ll.label}
                         </Link>
                       )}
@@ -591,22 +580,22 @@ export const Footer = () => {
                 })
               ) : (
                 <>
-                  <Link to="/privacy" className="hover:text-[#00A6FF] transition-colors py-1">
+                  <Link to="/privacy" className="hover:text-[#FF6D00] transition-colors py-1">
                     Privacy Policy
                   </Link>
                   <span className="text-text-secondary dark:text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
-                  <Link to="/terms" className="hover:text-[#00A6FF] transition-colors py-1">
+                  <Link to="/terms" className="hover:text-[#FF6D00] transition-colors py-1">
                     Terms of Service
                   </Link>
                   <span className="text-text-secondary dark:text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
-                  <Link to="/cookies" className="hover:text-[#00A6FF] transition-colors py-1">
+                  <Link to="/cookies" className="hover:text-[#FF6D00] transition-colors py-1">
                     Cookie Policy
                   </Link>
                   <span className="text-text-secondary dark:text-slate-300 dark:text-white/20 hidden min-[360px]:inline">•</span>
                   <button
                     onClick={openPreferences}
                     type="button"
-                    className="hover:text-[#00A6FF] transition-colors cursor-pointer focus:outline-none py-1"
+                    className="hover:text-[#FF6D00] transition-colors cursor-pointer focus:outline-none py-1"
                   >
                     Cookie Settings
                   </button>
@@ -619,7 +608,7 @@ export const Footer = () => {
               onClick={scrollToTop}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-white/[0.05] text-slate-700 dark:text-slate-200 hover:text-[#00A6FF] hover:border-[#00A6FF] dark:hover:border-[#00A6FF] transition-all shadow-sm cursor-pointer text-xs font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-white/[0.05] text-slate-700 dark:text-slate-200 hover:text-[#FF6D00] hover:border-[#FF6D00] dark:hover:border-[#FF6D00] transition-all shadow-sm cursor-pointer text-xs font-semibold"
               aria-label="Scroll back to top"
             >
               <span>Back to top</span>

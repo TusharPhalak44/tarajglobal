@@ -92,9 +92,9 @@ export const LiveOutboundEngine = () => {
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               {!prefersReducedMotion && (
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
+                <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
               )}
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
+              <span className="relative inline-flex h-2 w-2" />
             </span>
             <span className="text-sm font-mono font-bold tracking-wider text-slate-900 dark:text-text-primary dark:text-white uppercase">
               LIVE ENGINE
@@ -103,7 +103,7 @@ export const LiveOutboundEngine = () => {
 
           <div className="flex items-center gap-2 text-sm font-mono">
             <span className="text-slate-500 dark:text-slate-400 hidden sm:inline">Live Outbound Activity</span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20 text-sm">
+            <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold text-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               Synchronized
             </span>

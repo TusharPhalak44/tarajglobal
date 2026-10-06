@@ -48,7 +48,7 @@ export default function DevServicesFAQ() {
           {/* Left Column: Heading + Consultation CTA */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5">
+              <div className="inline-flex items-center gap-2 text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5">
                 <HelpCircle className="w-3.5 h-3.5" />
                 <span>QUESTIONS & TECHNICAL ANSWERS</span>
               </div>
@@ -74,7 +74,7 @@ export default function DevServicesFAQ() {
               </p>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary hover:text-primary-hover transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent hover:text-accent-hover transition-colors"
               >
                 <span>Talk To An Architect</span>
                 <ArrowRight className="w-4 h-4" />

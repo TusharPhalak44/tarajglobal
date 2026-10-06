@@ -139,7 +139,7 @@ const CTA = () => {
         <motion.div style={prefersReducedMotion ? {} : { y }}>
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-3.5 border border-primary/30 dark:border-[#00A6FF]/25 bg-primary/30 dark:bg-primary/10 dark:bg-[#00A6FF]/10 text-primary dark:text-[#00A6FF] shadow-xs"
+            className="inline-flex items-center gap-2 mb-3.5    text-primary dark:text-[#00A6FF]"
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -196,10 +196,10 @@ const CTA = () => {
             <button
               id="cta-start-campaign"
               onClick={handleStartCampaign}
-              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-sm text-text-primary dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FF] focus-visible:ring-offset-2 w-full sm:w-auto justify-center cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
+              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-sm text-text-accent dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto justify-center cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
               style={{
-                backgroundColor: '#1E3A8A',
-                boxShadow: '0 4px 20px rgba(30,58,138,0.3)',
+                backgroundColor: '#FF6D00',
+                boxShadow: '0 4px 20px rgba(255,109,0,0.3)',
               }}
             >
               Start Your ABM Campaign
@@ -208,7 +208,7 @@ const CTA = () => {
 
             <StarButton
               onClick={handleTalkToTeam}
-              lightColor="#00A6FF"
+              lightColor="#FF6D00"
               backgroundColor="rgba(0,166,255,0.15)"
               className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
             >

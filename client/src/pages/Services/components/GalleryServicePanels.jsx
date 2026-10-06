@@ -370,7 +370,7 @@ export const GalleryServicePanels = () => {
                 <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
                   <Link
                     to={activeModalService.route}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-primary text-black font-bold text-xs uppercase tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-lg shadow-primary/20"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-accent text-black font-bold text-xs uppercase tracking-widest hover:bg-accent-hover transition-all duration-300 shadow-lg shadow-accent"
                   >
                     <span>VIEW SERVICE DETAILS</span>
                     <ArrowRight className="w-4 h-4" />

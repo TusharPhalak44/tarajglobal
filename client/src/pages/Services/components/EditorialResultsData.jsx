@@ -92,7 +92,6 @@ export default function EditorialResultsData() {
       className="relative py-28 lg:py-36 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Verified Performance Data & Statistics"
     >
@@ -131,7 +130,6 @@ export default function EditorialResultsData() {
 
         {/* ══ BOLD EDITORIAL HORIZONTAL CONNECTED GRID ══ */}
         <div className="border-t border-b divide-y lg:divide-y-0 lg:divide-x grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5"
-          style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)' }}
         >
           {STATS_DATA.map((stat, idx) => (
             <motion.div
@@ -140,7 +138,6 @@ export default function EditorialResultsData() {
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ duration: 0.6, delay: 0.1 + idx * 0.08, ease: [0.25, 1, 0.5, 1] }}
               className="py-10 lg:py-14 px-4 sm:px-6 lg:px-8 flex flex-col justify-between group transition-colors duration-300"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
             >
               <div>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-widest block mb-6" style={{ color: isDark ? '#52525B' : '#A1A1AA' }}>

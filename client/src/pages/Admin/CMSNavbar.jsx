@@ -428,7 +428,7 @@ const CMSNavbar = () => {
         <div className="flex items-center gap-2.5">
           <button
             onClick={fetchData}
-            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-primary transition-all"
+            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-accent transition-all"
             title="Reload from database"
           >
             <RefreshCw className="w-4 h-4" />
@@ -547,7 +547,7 @@ const CMSNavbar = () => {
               <button
                 type="button"
                 onClick={handleUseAnimatedLogo}
-                className="flex items-center gap-2 text-sm text-primary bg-primary/30 dark:bg-primary/10 hover:bg-primary/40 dark:bg-primary/20 px-3 py-1.5 rounded-lg border border-primary/30 transition-all cursor-pointer font-semibold shadow-xs"
+                className="flex items-center gap-2 text-sm text-accent bg-accent dark:bg-accent hover:bg-accent dark:bg-accent px-3 py-1.5 rounded-lg border border-accent transition-all cursor-pointer font-semibold shadow-xs"
                 title="Switch to the high-performance animated SVG emblem"
               >
                 <Sparkles className="w-4 h-4 text-primary" />
@@ -556,7 +556,7 @@ const CMSNavbar = () => {
               <button
                 type="button"
                 onClick={handleResetDefaultLogo}
-                className="text-sm text-text-muted hover:text-text-primary px-3 py-1.5 rounded-lg border border-border hover:bg-background transition-colors cursor-pointer"
+                className="text-sm text-text-muted hover:text-text-accent px-3 py-1.5 rounded-lg border border-border hover:bg-background transition-colors cursor-pointer"
               >
                 Reset to Default Logo
               </button>
@@ -742,7 +742,7 @@ const CMSNavbar = () => {
                   <button
                     type="submit"
                     disabled={logoSaving}
-                    className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-all disabled:opacity-50 shadow-md hover:shadow-primary/25 cursor-pointer text-base"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-xl font-semibold hover:bg-[#E85D00] transition-all disabled:opacity-50 shadow-md hover:shadow-accent cursor-pointer text-base"
                   >
                     {logoSaving ? (
                       <>
@@ -812,7 +812,7 @@ const CMSNavbar = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2 text-sm text-text-secondary font-mono">
-                          <Link2 className="w-4 h-4 text-primary shrink-0" />
+                          <Link2 className="w-4 h-4 text-accent shrink-0" />
                           <span className="truncate max-w-xs">{item.url}</span>
                         </div>
                       </td>
@@ -946,7 +946,7 @@ const CMSNavbar = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2 text-sm text-text-secondary font-mono">
-                          <Link2 className="w-4 h-4 text-primary shrink-0" />
+                          <Link2 className="w-4 h-4 text-accent shrink-0" />
                           <span>{item.url}</span>
                         </div>
                       </td>
@@ -1233,7 +1233,7 @@ const CMSNavbar = () => {
                   <div className="flex items-center gap-3">
                     <StarButton
               
-              lightColor="#00A6FF"
+              lightColor="#FF6D00"
               backgroundColor="rgba(0,166,255,0.15)"
               className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
             >
@@ -1265,7 +1265,7 @@ const CMSNavbar = () => {
                 {/* ── Simulated Hero Backdrop Below Navbar ───────────────────── */}
                 <div className="p-8 sm:p-12 text-center relative overflow-hidden bg-radial from-slate-900 via-[#070B14] to-[#030712]">
                   <div className="max-w-xl mx-auto space-y-4">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20">
+                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#00A6FF]">
                       <Sparkles size={12} /> Real-Time Preview Simulation
                     </span>
                     <h3 className="text-xl sm:text-2xl font-extrabold text-text-primary dark:text-white tracking-tight">
@@ -1402,7 +1402,7 @@ const CMSNavbar = () => {
                 <button
                   type="submit"
                   disabled={savingItem}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl text-base font-semibold hover:bg-primary-dark transition-all disabled:opacity-50 shadow-md cursor-pointer"
+                  className="flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-xl text-base font-semibold hover:bg-[#E85D00] transition-all disabled:opacity-50 shadow-md cursor-pointer"
                 >
                   {savingItem ? (
                     <>

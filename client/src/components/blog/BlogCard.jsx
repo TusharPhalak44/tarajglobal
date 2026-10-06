@@ -56,14 +56,14 @@ const BlogCard = ({ blog, index, onReadMore }) => {
 
         {/* Category Pill Tag */}
         <div className="absolute top-4 left-4 z-10">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase backdrop-blur-md bg-background dark:bg-black/50 text-[#00E5FF] border border-[#00E5FF]/30 shadow-xs">
+          <span className="inline-flex items-center text-[11px] font-mono font-bold tracking-wider uppercase  text-[#00E5FF]">
             {category}
           </span>
         </div>
 
         {/* Read Time Tag */}
         <div className="absolute bottom-3 right-4 z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium backdrop-blur-md bg-background dark:bg-black/60 text-white/90 border border-border dark:border-white/15">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-medium  text-white/90 ">
             <Clock size={11} className="text-[#00A6FF]" />
             {estimateReadTime(blog.content)}
           </span>

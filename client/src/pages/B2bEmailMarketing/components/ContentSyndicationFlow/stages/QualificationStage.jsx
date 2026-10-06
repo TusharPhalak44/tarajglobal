@@ -72,7 +72,7 @@ export default function QualificationStage({ isActive, isCompleted, onSelect }) 
       >
         {/* Glowing QUALIFIED LEAD Badge */}
         <div className="flex items-center justify-between pb-1.5 border-b border-border/50 text-[10px] font-mono">
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-bold">
+          <span className="inline-flex items-center gap-1 text-emerald-400 font-bold">
             <Star className="w-3 h-3 fill-current text-emerald-400" />
             QUALIFIED LEAD
           </span>

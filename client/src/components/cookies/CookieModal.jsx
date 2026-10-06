@@ -119,7 +119,7 @@ const CookieModal = () => {
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={closePreferences}
-                  className="p-2 rounded-full text-text-secondary hover:text-text-primary dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                  className="p-2 rounded-full text-text-secondary hover:text-text-accent dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                   aria-label="Close"
                 >
                   <X size={24} />
@@ -171,7 +171,7 @@ const CookieModal = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleAcceptAll}
-                  className="flex-1 px-6 py-3 bg-surface/90 dark:bg-white/10 border border-border dark:border-white/20 text-text-primary dark:text-white rounded-lg font-semibold hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
+                  className="flex-1 px-6 py-3 bg-surface/90 dark:bg-white/10 border border-border dark:border-white/20 text-text-accent dark:text-white rounded-lg font-semibold hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
                 >
                   Accept All
                 </motion.button>
@@ -180,7 +180,7 @@ const CookieModal = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={closePreferences}
-                  className="flex-1 px-6 py-3 bg-transparent border border-border dark:border-white/20 text-text-secondary rounded-lg font-semibold hover:bg-surface/90 dark:bg-white/10 hover:text-text-primary dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
+                  className="flex-1 px-6 py-3 bg-transparent border border-border dark:border-white/20 text-text-secondary rounded-lg font-semibold hover:bg-surface/90 dark:bg-white/10 hover:text-text-accent dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
                 >
                   Cancel
                 </motion.button>

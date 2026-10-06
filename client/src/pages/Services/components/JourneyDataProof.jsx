@@ -97,7 +97,6 @@ export default function JourneyDataProof() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-b"
       style={{
         backgroundColor: isDark ? '#080A0F' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Verified Commercial Data & Proof"
     >
@@ -133,7 +132,6 @@ export default function JourneyDataProof() {
         {/* ══ CONNECTED HAIRLINE GRID (NOT 4 EQUAL CARDS) ══ */}
         <div
           className="border-t border-b grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x"
-          style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)' }}
         >
           {STATS.map((stat, idx) => (
             <motion.div
@@ -142,7 +140,6 @@ export default function JourneyDataProof() {
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ duration: 0.6, delay: 0.1 + idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="py-12 px-6 lg:px-8 flex flex-col justify-between group transition-colors duration-300"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
             >
               <div>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-widest block mb-6 opacity-40">

@@ -83,7 +83,7 @@ const TestimonialsGrid = () => {
         {/* Left Navigation Arrow */}
         <button
           onClick={prevSlide}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-surface border border-border hover:border-primary/50 hover:bg-primary/30 dark:bg-primary/10 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg hover:shadow-primary/20"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-surface border border-border hover:border-accent hover:bg-accent dark:bg-accent transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg hover:shadow-accent"
           aria-label="Previous testimonials"
         >
           <ChevronLeft className="w-7 h-7 text-text-primary hover:text-primary transition-colors" />
@@ -121,7 +121,7 @@ const TestimonialsGrid = () => {
         {/* Right Navigation Arrow */}
         <button
           onClick={nextSlide}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-surface border border-border hover:border-primary/50 hover:bg-primary/30 dark:bg-primary/10 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg hover:shadow-primary/20"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-surface border border-border hover:border-accent hover:bg-accent dark:bg-accent transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg hover:shadow-accent"
           aria-label="Next testimonials"
         >
           <ChevronRight className="w-7 h-7 text-text-primary hover:text-primary transition-colors" />

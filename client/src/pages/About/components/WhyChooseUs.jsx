@@ -104,7 +104,7 @@ const WhyChooseUs = () => {
                 <p className="text-gray-400 mb-6 leading-relaxed">{reason.description}</p>
                 <Link
                   to="#"
-                  className="inline-flex items-center gap-2 text-[#00A6FF] font-semibold hover:gap-3 transition-all"
+                  className="inline-flex items-center gap-2 text-[#FF6D00] font-semibold hover:gap-3 transition-all"
                 >
                   {reason.cta}
                   <ArrowUpRight className="w-5 h-5" />

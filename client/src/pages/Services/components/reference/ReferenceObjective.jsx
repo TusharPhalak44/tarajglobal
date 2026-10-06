@@ -161,7 +161,7 @@ export default function ReferenceObjective() {
               <button
                 type="button"
                 onClick={scrollToCoreServices}
-                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border dark:border-slate-800 dark:border-white/30  dark:text-text-primary dark:text-white text-xs font-mono font-bold uppercase tracking-wider hover: hover:text-text-primary dark:text-white dark:hover: dark:hover:text-black transition-all cursor-pointer group"
+                style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2 border border-border dark:border-slate-800 dark:border-white/30  dark:text-text-accent dark:text-white text-xs font-mono font-bold uppercase tracking-wider hover: hover:text-text-accent dark:text-white dark:hover: dark:hover:text-black transition-all cursor-pointer group"
               >
                 <span>View All Services</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

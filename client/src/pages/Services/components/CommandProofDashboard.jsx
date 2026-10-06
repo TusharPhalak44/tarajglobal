@@ -69,7 +69,6 @@ export default function CommandProofDashboard() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -111,7 +110,6 @@ export default function CommandProofDashboard() {
           className="rounded-2xl border p-6 sm:p-10 relative overflow-hidden backdrop-blur-sm"
           style={{
             backgroundColor: isDark ? '#0D1117' : '#FFFFFF',
-            borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
             boxShadow: isDark
               ? '0 10px 40px -10px rgba(0, 0, 0, 0.5)'
               : '0 10px 40px -10px rgba(0, 0, 0, 0.04)',
@@ -120,7 +118,6 @@ export default function CommandProofDashboard() {
           {/* Top Dashboard Header Bar */}
           <div
             className="flex flex-wrap items-center justify-between pb-6 mb-8 border-b text-xs font-mono"
-            style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
           >
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -196,7 +193,6 @@ export default function CommandProofDashboard() {
                 className="p-4 rounded-xl border flex flex-col justify-between transition-colors"
                 style={{
                   backgroundColor: isDark ? '#111622' : '#F8FAFC',
-                  borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)',
                 }}
               >
                 <div>
@@ -225,7 +221,6 @@ export default function CommandProofDashboard() {
                 <div
                   className="mt-4 pt-3 border-t text-[10px] font-mono flex items-center justify-between"
                   style={{
-                    borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)',
                     color: isDark ? '#64748B' : '#94A3B8',
                   }}
                 >

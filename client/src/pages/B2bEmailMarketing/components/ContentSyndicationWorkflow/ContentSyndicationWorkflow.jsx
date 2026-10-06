@@ -125,7 +125,7 @@ export default function ContentSyndicationWorkflow() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-14">
           <div className="max-w-2xl">
             {/* Small Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-primary mb-3.5 shadow-xs">
+            <div className="inline-flex items-center gap-2  text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-primary mb-3.5">
               <Sparkles className="w-3 h-3 text-primary animate-pulse" />
               <span>CONTENT SYNDICATION • LEAD GENERATION</span>
             </div>
@@ -153,7 +153,7 @@ export default function ContentSyndicationWorkflow() {
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-xs font-bold transition-all duration-300 cursor-pointer shadow-sm ${
                 isPlaying
                   ? 'bg-cta text-white ring-2 ring-cta/30 shadow-cta/20'
-                  : 'bg-primary text-white hover:opacity-90 active:scale-95'
+                  : 'bg-accent text-white hover:opacity-90 active:scale-95'
               }`}
               aria-label={isPlaying ? 'Pause Workflow' : 'Play Workflow'}
             >
@@ -174,7 +174,7 @@ export default function ContentSyndicationWorkflow() {
             <button
               type="button"
               onClick={handleReplay}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-background border border-border/80 text-text-secondary hover:text-primary hover:border-primary/50 text-xs font-mono font-medium transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-background border border-border/80 text-text-secondary hover:text-accent hover:border-accent text-xs font-mono font-medium transition-colors cursor-pointer"
               title="Replay Process"
               aria-label="Replay Process"
             >
@@ -295,7 +295,7 @@ export default function ContentSyndicationWorkflow() {
           <button
             type="button"
             onClick={handleReplay}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-background border border-border/80 text-xs font-mono font-semibold text-text-secondary hover:text-primary hover:border-primary/50 transition-colors cursor-pointer shrink-0 shadow-xs"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-background border border-border/80 text-xs font-mono font-semibold text-text-secondary hover:text-accent hover:border-accent transition-colors cursor-pointer shrink-0 "
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Replay Process</span>

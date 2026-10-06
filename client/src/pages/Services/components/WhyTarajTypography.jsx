@@ -60,7 +60,6 @@ export default function WhyTarajTypography() {
       className="relative py-28 sm:py-36 lg:py-44 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#04060A' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">

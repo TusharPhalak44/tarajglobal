@@ -77,7 +77,6 @@ export default function IndustryConstellation() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#05070B' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -122,11 +121,9 @@ export default function IndustryConstellation() {
             {/* Concentric Guide Rings */}
             <div
               className="absolute w-[360px] h-[360px] rounded-full border border-dashed pointer-events-none"
-              style={{ borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.15)' }}
             />
             <div
               className="absolute w-[240px] h-[240px] rounded-full border pointer-events-none"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
             />
 
             {/* Connecting Lines SVG */}
@@ -214,14 +211,12 @@ export default function IndustryConstellation() {
               className="p-8 sm:p-10 rounded-2xl border relative overflow-hidden backdrop-blur-md"
               style={{
                 backgroundColor: isDark ? '#0D1117' : '#FFFFFF',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.35)' : 'rgba(2, 132, 199, 0.25)',
                 boxShadow: isDark
                   ? '0 20px 45px -10px rgba(0, 0, 0, 0.5)'
                   : '0 15px 35px -10px rgba(0, 0, 0, 0.05)',
               }}
             >
               <div className="flex items-center justify-between pb-3 mb-5 border-b"
-                style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
               >
                 <span
                   className="font-mono text-xs font-bold tracking-widest uppercase"
@@ -263,7 +258,6 @@ export default function IndustryConstellation() {
                     className="p-4 rounded-xl border text-xs font-mono space-y-2 mb-6"
                     style={{
                       backgroundColor: isDark ? '#111622' : '#F8FAFC',
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
                     }}
                   >
                     <div>
@@ -271,7 +265,6 @@ export default function IndustryConstellation() {
                       <span className="font-bold" style={{ color: isDark ? '#FFFFFF' : '#090D15' }}>{active.keyTitles}</span>
                     </div>
                     <div className="pt-2 border-t"
-                      style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)' }}
                     >
                       <span style={{ color: isDark ? '#64748B' : '#94A3B8' }}>AVG DEAL CYCLE: </span>
                       <span className="font-bold text-sky-500">{active.dealCycle}</span>
@@ -319,7 +312,6 @@ export default function IndustryConstellation() {
                   <p
                     className="text-xs leading-relaxed mt-2 pt-2 border-t"
                     style={{
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)',
                       color: isDark ? '#94A3B8' : '#475569',
                     }}
                   >

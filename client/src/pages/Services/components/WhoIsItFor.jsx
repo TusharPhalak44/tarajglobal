@@ -95,7 +95,7 @@ const WhoIsItFor = () => {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-border bg-surface text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 text-primary text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
             <Shield className="w-3.5 h-3.5" />
             <span>Target Market Specialization</span>
           </div>
@@ -161,7 +161,7 @@ const WhoIsItFor = () => {
 
               {/* Left Details (7 cols) */}
               <div className="lg:col-span-7">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold mb-4"
+                <div className="inline-flex items-center gap-2 text-xs font-mono font-bold mb-4"
                   style={{ backgroundColor: `${currentAudience.color}15`, color: currentAudience.color }}
                 >
                   <Icon className="w-3.5 h-3.5" />

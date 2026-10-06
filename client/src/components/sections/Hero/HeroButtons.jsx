@@ -13,7 +13,7 @@ const HeroButtons = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="bg-[#00A6FF] hover:bg-[#00A6FF]/90 text-white px-8 py-4     rounded-lg font-semibold transition-all flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20"
+        className="bg-[#FF6D00] hover:bg-[#FF6D00]/90 text-white px-8 py-4     rounded-lg font-semibold transition-all flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 shadow-lg shadow-cta/20"
       >
         <span>Get Started</span>
         <ArrowRight size={20} />
@@ -22,7 +22,7 @@ const HeroButtons = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="px-8 py-4 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary/30 dark:bg-primary/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className="px-8 py-4 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-[#FF6D00]/10 transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
       >
         Learn More
       </motion.button>

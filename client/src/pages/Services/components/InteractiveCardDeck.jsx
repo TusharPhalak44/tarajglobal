@@ -72,7 +72,6 @@ export default function InteractiveCardDeck() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#05070B' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -171,7 +170,6 @@ export default function InteractiveCardDeck() {
                   {/* Card Content Column */}
                   <div className="lg:col-span-6">
                     <div className="flex items-center justify-between pb-3 mb-4 border-b"
-                      style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)' }}
                     >
                       <span
                         className="font-mono text-xs font-bold uppercase tracking-widest"
@@ -208,7 +206,6 @@ export default function InteractiveCardDeck() {
                     <div className="p-3.5 rounded-xl border mb-8 text-xs font-mono"
                       style={{
                         backgroundColor: isDark ? '#111622' : '#F8FAFC',
-                        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
                       }}
                     >
                       <span style={{ color: isDark ? '#64748B' : '#94A3B8' }}>KEY OUTPUT: </span>
@@ -227,7 +224,6 @@ export default function InteractiveCardDeck() {
                   {/* Card Visual Column */}
                   <div className="lg:col-span-6">
                     <div className="relative aspect-[16/10] rounded-xl overflow-hidden border shadow-md"
-                      style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)' }}
                     >
                       <img
                         src={card.image}

@@ -57,7 +57,6 @@ export default function CleanHowWeWork() {
       className="relative py-24 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-12 border-b"
       style={{
         backgroundColor: isDark ? '#080A0E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -182,7 +181,6 @@ export default function CleanHowWeWork() {
                     <div
                       className="mt-4 pt-3 border-t text-[11px] font-mono"
                       style={{
-                        borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)',
                         color: isActive
                           ? isDark ? '#38BDF8' : '#0284C7'
                           : isDark ? '#64748B' : '#94A3B8',
@@ -199,7 +197,6 @@ export default function CleanHowWeWork() {
 
         {/* ══ MOBILE / TABLET: Clean Vertical Timeline ══ */}
         <div className="lg:hidden relative pl-6 border-l space-y-8"
-          style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)' }}
         >
           {STEPS.map((step, idx) => {
             const Icon = step.icon

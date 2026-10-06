@@ -309,7 +309,7 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
               <button
                 type="button"
                 onClick={handleRemove}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface/80 transition-colors"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-text-accent hover:bg-surface/80 transition-colors"
                 disabled={disabled}
               >
                 <X className="w-4 h-4" />

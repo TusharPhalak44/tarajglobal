@@ -236,7 +236,6 @@ export default function InteractiveServiceGrid() {
       ref={sectionRef}
       className="relative py-24 lg:py-32 overflow-hidden select-none"
       style={{
-        background: isDark ? '#020306' : '#f8fafd',
         borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
       }}
       aria-label="Explore Our 13 B2B Services"
@@ -250,10 +249,8 @@ export default function InteractiveServiceGrid() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 12 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-4"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-4"
               style={{
-                background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
                 color: isDark ? '#38BDF8' : '#0066CC',
               }}
             >
@@ -294,8 +291,6 @@ export default function InteractiveServiceGrid() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-11 pr-4 py-3 rounded-2xl text-sm transition-all duration-300 outline-none backdrop-blur-md"
               style={{
-                background: isDark ? 'rgba(15, 23, 42, 0.7)' : 'rgba(255, 255, 255, 0.95)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
                 color: isDark ? '#FFFFFF' : '#0F172A',
                 boxShadow: isDark ? '0 4px 20px rgba(0, 0, 0, 0.3)' : '0 4px 20px rgba(0, 102, 204, 0.05)',
               }}
@@ -305,7 +300,6 @@ export default function InteractiveServiceGrid() {
                 type="button"
                 onClick={() => setSearchQuery('')}
                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold px-2 py-1 rounded-md cursor-pointer"
-                style={{ background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)' }}
               >
                 CLEAR
               </button>
@@ -338,7 +332,6 @@ export default function InteractiveServiceGrid() {
                 <span
                   className="text-[10px] font-mono px-2 py-0.5 rounded-full"
                   style={{
-                    background: isActive ? 'rgba(0, 0, 0, 0.25)' : isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                   }}
                 >
                   {cat.count}
@@ -366,7 +359,6 @@ export default function InteractiveServiceGrid() {
                     background: isDark
                       ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(8, 12, 24, 0.92) 100%)'
                       : 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%)',
-                    border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                     boxShadow: isDark
                       ? '0 20px 45px -15px rgba(0, 0, 0, 0.7)'
                       : '0 20px 45px -15px rgba(0, 102, 204, 0.06)',
@@ -409,7 +401,6 @@ export default function InteractiveServiceGrid() {
                         <span
                           className="font-mono text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider"
                           style={{
-                            background: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)',
                             color: srv.color,
                             border: `1px solid ${srv.color}35`,
                           }}
@@ -442,9 +433,7 @@ export default function InteractiveServiceGrid() {
                           key={i}
                           className="text-[11px] font-medium px-2.5 py-1 rounded-lg"
                           style={{
-                            background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
                             color: isDark ? '#CBD5E1' : '#475569',
-                            border: isDark ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(0, 0, 0, 0.05)',
                           }}
                         >
                           {item}
@@ -458,7 +447,6 @@ export default function InteractiveServiceGrid() {
                     to={srv.link}
                     className="pt-4 border-t flex items-center justify-between text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300"
                     style={{
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)',
                       color: srv.color,
                     }}
                   >
@@ -481,7 +469,6 @@ export default function InteractiveServiceGrid() {
         </motion.div>
 
         {filteredServices.length === 0 && (
-          <div className="text-center py-16 rounded-3xl" style={{ background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)' }}>
             <p className="text-base font-medium mb-4" style={{ color: isDark ? '#94A3B8' : '#64748B' }}>
               No services found matching "{searchQuery}"
             </p>

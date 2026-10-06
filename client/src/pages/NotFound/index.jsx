@@ -53,7 +53,7 @@ function NotFound() {
             >
               <Link
                 to="/"
-                className="p-4 rounded-xl bg-surface border border-border hover:border-primary/50 transition-all duration-300 flex flex-col items-center gap-2 group"
+                className="p-4 rounded-xl bg-surface border border-border hover:border-accent transition-all duration-300 flex flex-col items-center gap-2 group"
               >
                 <Home className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
                 <span className="text-xs font-semibold text-text-primary">Home</span>
@@ -61,7 +61,7 @@ function NotFound() {
 
               <Link
                 to="/services"
-                className="p-4 rounded-xl bg-surface border border-border hover:border-primary/50 transition-all duration-300 flex flex-col items-center gap-2 group"
+                className="p-4 rounded-xl bg-surface border border-border hover:border-accent transition-all duration-300 flex flex-col items-center gap-2 group"
               >
                 <Briefcase className="w-6 h-6 text-cta group-hover:scale-110 transition-transform" />
                 <span className="text-xs font-semibold text-text-primary">Services</span>
@@ -69,7 +69,7 @@ function NotFound() {
 
               <Link
                 to="/blog"
-                className="p-4 rounded-xl bg-surface border border-border hover:border-primary/50 transition-all duration-300 flex flex-col items-center gap-2 group"
+                className="p-4 rounded-xl bg-surface border border-border hover:border-accent transition-all duration-300 flex flex-col items-center gap-2 group"
               >
                 <BookOpen className="w-6 h-6 text-[#00A6FF] group-hover:scale-110 transition-transform" />
                 <span className="text-xs font-semibold text-text-primary">Blog</span>
@@ -77,7 +77,7 @@ function NotFound() {
 
               <Link
                 to="/contact"
-                className="p-4 rounded-xl bg-surface border border-border hover:border-primary/50 transition-all duration-300 flex flex-col items-center gap-2 group"
+                className="p-4 rounded-xl bg-surface border border-border hover:border-accent transition-all duration-300 flex flex-col items-center gap-2 group"
               >
                 <Mail className="w-6 h-6 text-green-400 group-hover:scale-110 transition-transform" />
                 <span className="text-xs font-semibold text-text-primary">Contact</span>
@@ -93,7 +93,7 @@ function NotFound() {
             >
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-accent transition-all duration-300"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Return to Homepage

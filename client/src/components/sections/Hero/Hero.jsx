@@ -106,25 +106,6 @@ export const Hero = () => {
 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 my-auto">
 
-        {/* ── Top Eyebrow & Live Telemetry Badge ───────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex flex-wrap items-center gap-3 sm:gap-3 mb-0 sm:mb-1"
-        >
-          <div className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-            <span className="text-[15px] sm:text-sm font-mono font-bold uppercase tracking-[0.22em] text-primary">
-              TARAJ GLOBAL // REVENUE INTELLIGENCE
-            </span>
-          </div>
-
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-text-muted text-sm font-mono">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span>GLOBAL B2B ICP RADAR: ACTIVE</span>
-          </div>
-        </motion.div>
 
         {/* ── Asymmetric Editorial Grid: Typography & Revenue Signal Field */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-10 lg:gap-8 items-center">
@@ -192,19 +173,19 @@ export const Hero = () => {
               className="flex flex-wrap items-center gap-3 pt-2 border-t border-border/70 dark:border-white/10"
             >
               {/* Trust Badge 1 */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-sm font-semibold text-text-primary">
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-text-primary">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 <span>99.8% Data Accuracy SLA</span>
               </div>
 
               {/* Trust Badge 2 */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-sm font-semibold text-text-primary">
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-text-primary">
                 <Target size={13} className="text-primary" />
                 <span>100% ICP Calibration</span>
               </div>
 
               {/* Trust Badge 3 */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-sm font-semibold text-text-primary hidden sm:inline-flex">
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-text-primary hidden sm:inline-flex">
                 <Sparkles size={13} className="text-cta" />
                 <span>$18M+ Pipeline Generated</span>
               </div>

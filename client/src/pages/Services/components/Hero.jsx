@@ -138,7 +138,7 @@ function CommandCenter({ prefersReducedMotion }) {
             {STATUS_PILLS.map((pill) => (
               <span
                 key={pill.label}
-                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium border border-border bg-background/60"
+                className="inline-flex items-center gap-1.5 text-[11px] font-mono font-medium"
               >
                 <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: pill.dot }} />
                 {pill.label}
@@ -252,7 +252,7 @@ const Hero = () => {
 
       <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Category Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] mb-4 sm:mb-6 shadow-sm">
+        <div className="inline-flex items-center gap-2  text-primary dark:text-[#00d2ff] mb-4 sm:mb-6">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           <span className="text-[11.5px] font-mono font-bold tracking-[0.14em] uppercase">
             Full-Funnel B2B Demand & Lead Generation
@@ -284,7 +284,7 @@ const Hero = () => {
 
           <button
             onClick={scrollToServices}
-            style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-bold hover:border-primary/40 active:scale-98 transition-all cursor-pointer shadow-xs"
+            style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="text-text-accent dark:text-white inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border  hover:  text-sm font-bold hover:border-accent active:scale-98 transition-all cursor-pointer shadow-xs"
           >
             <span>Explore 12 Core Services</span>
             <ChevronDown className="w-4 h-4 " />

@@ -28,6 +28,7 @@ export const useSEOData = (entityType, entityId, defaultData = {}) => {
             ogDescription: fetched.og_description || defaultData.ogDescription,
             ogImage: fetched.og_image || defaultData.ogImage,
             twitterCard: defaultData.twitterCard, // Usually constant
+            robots: fetched.robots || defaultData.robots,
           })
         }
       } catch (error) {

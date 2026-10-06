@@ -58,7 +58,6 @@ export default function CleanHero() {
       className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 lg:pb-32 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#0A0C10' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)',
       }}
     >
       {/* Subtle Background Architectural Grid */}
@@ -83,7 +82,6 @@ export default function CleanHero() {
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border mb-6"
               style={{
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)',
-                borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
               }}
             >
               <span
@@ -147,7 +145,6 @@ export default function CleanHero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="pt-10 mt-10 border-t flex flex-wrap items-center gap-6 sm:gap-8"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
             >
               {[
                 'GDPR & CAN-SPAM Compliant',
@@ -180,13 +177,11 @@ export default function CleanHero() {
               className="w-full max-w-md p-6 sm:p-8 rounded-2xl border relative backdrop-blur-sm"
               style={{
                 backgroundColor: isDark ? 'rgba(17, 21, 28, 0.6)' : 'rgba(248, 250, 252, 0.85)',
-                borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                 boxShadow: isDark ? '0 20px 40px -15px rgba(0, 0, 0, 0.5)' : '0 15px 35px -15px rgba(0, 0, 0, 0.05)',
               }}
             >
               {/* Header inside visual card */}
               <div className="flex items-center justify-between pb-5 mb-5 border-b"
-                style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
               >
                 <div className="flex items-center gap-2">
                   <span
@@ -242,7 +237,6 @@ export default function CleanHero() {
                           className="w-10 h-10 rounded-lg flex items-center justify-center border shrink-0 transition-colors duration-300"
                           style={{
                             backgroundColor: isDark ? '#0F131A' : '#F1F5F9',
-                            borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                             color: isDark ? '#38BDF8' : '#0284C7',
                           }}
                         >
@@ -290,7 +284,6 @@ export default function CleanHero() {
               {/* Bottom Subtle Pipeline Outcome */}
               <div
                 className="mt-5 pt-4 border-t flex items-center justify-between text-xs"
-                style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
               >
                 <span style={{ color: isDark ? '#64748B' : '#94A3B8' }}>
                   Target Conversion Benchmark

@@ -66,7 +66,6 @@ export default function JourneyWhyTaraj() {
       className="relative py-28 sm:py-36 px-4 sm:px-6 lg:px-12 border-b overflow-hidden"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       {/* Background Subtle Ambience & Watermark */}
@@ -265,7 +264,6 @@ export default function JourneyWhyTaraj() {
                   </p>
 
                   <div className="flex items-center justify-between pt-3 border-t"
-                    style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
                   >
                     <span
                       className="font-mono text-xs uppercase tracking-wider"

@@ -321,11 +321,11 @@ function BlogDetails() {
 
               {/* Breadcrumbs */}
               <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-text-tertiary">
-                <Link to="/" className="hover:text-text-primary transition-colors">
+                <Link to="/" className="hover:text-text-accent transition-colors">
                   Home
                 </Link>
                 <ChevronRight size={12} />
-                <Link to="/blog" className="hover:text-text-primary transition-colors">
+                <Link to="/blog" className="hover:text-text-accent transition-colors">
                   Blog
                 </Link>
                 <ChevronRight size={12} />
@@ -345,7 +345,7 @@ function BlogDetails() {
 
               {/* Category Pill & Read Meta */}
               <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/25 shadow-xs">
+                <span className="inline-flex items-center text-xs font-mono font-bold uppercase tracking-wider text-[#00A6FF] ">
                   {blog.category_name || 'B2B Strategy'}
                 </span>
                 <span className="text-xs font-mono text-text-tertiary flex items-center gap-1.5">

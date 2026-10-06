@@ -17,13 +17,13 @@ body.dark,
   --admin-bg-card: #151D30;
   --admin-bg-elevated: #1B243B;
   --admin-bg-hover: #222D47;
-  --admin-bg-active: rgba(0, 166, 255, 0.14);
+  --admin-bg-active: rgba(255, 109, 0, 0.14);
 
   /* Borders & Outlines */
   --admin-border-subtle: rgba(255, 255, 255, 0.07);
   --admin-border-base: rgba(255, 255, 255, 0.12);
-  --admin-border-hover: rgba(0, 166, 255, 0.5);
-  --admin-border-active: #00A6FF;
+  --admin-border-hover: rgba(255, 109, 0, 0.5);
+  --admin-border-active: #FF6D00;
 
   /* Typography */
   --admin-text-primary: #F8FAFC;
@@ -32,10 +32,10 @@ body.dark,
   --admin-text-dim: #64748B;
 
   /* Brand Accents */
-  --admin-primary: #00A6FF;
-  --admin-primary-hover: #26B4FF;
-  --admin-primary-soft: rgba(0, 166, 255, 0.14);
-  --admin-primary-glow: rgba(0, 166, 255, 0.25);
+  --admin-primary: #FF6D00;
+  --admin-primary-hover: #FF8A00;
+  --admin-primary-soft: rgba(255, 109, 0, 0.14);
+  --admin-primary-glow: rgba(255, 109, 0, 0.25);
 
   --admin-accent: #FF6D00;
   --admin-accent-soft: rgba(255, 109, 0, 0.14);
@@ -55,12 +55,12 @@ body.dark,
   --admin-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
   --admin-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
   --admin-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.05);
-  --admin-shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.65), 0 0 18px -2px rgba(0, 166, 255, 0.28);
+  --admin-shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.65), 0 0 18px -2px rgba(255, 109, 0, 0.28);
   --admin-shadow-accent-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.65), 0 0 18px -2px rgba(255, 109, 0, 0.28);
 
   /* Scrollbars */
   --admin-scrollbar-thumb: rgba(255, 255, 255, 0.14);
-  --admin-scrollbar-hover: rgba(0, 166, 255, 0.5);
+  --admin-scrollbar-hover: rgba(255, 109, 0, 0.5);
 
   /* Radius */
   --admin-radius-sm: 8px;
@@ -82,13 +82,13 @@ body.light,
   --admin-bg-card: #FFFFFF;
   --admin-bg-elevated: #F8FAFC;
   --admin-bg-hover: #F1F5F9;
-  --admin-bg-active: rgba(0, 166, 255, 0.10);
+  --admin-bg-active: rgba(255, 109, 0, 0.10);
 
   /* Borders & Outlines */
   --admin-border-subtle: rgba(15, 23, 42, 0.06);
   --admin-border-base: rgba(15, 23, 42, 0.12);
-  --admin-border-hover: rgba(0, 166, 255, 0.6);
-  --admin-border-active: #00A6FF;
+  --admin-border-hover: rgba(255, 109, 0, 0.6);
+  --admin-border-active: #FF6D00;
 
   /* Typography */
   --admin-text-primary: #0F172A;
@@ -97,8 +97,8 @@ body.light,
   --admin-text-dim: #94A3B8;
 
   /* Brand Accents */
-  --admin-primary: #0088DB;
-  --admin-primary-hover: #0077CC;
+  --admin-primary: #E85D00;
+  --admin-primary-hover: #E85D00;
   --admin-primary-soft: rgba(0, 136, 219, 0.10);
   --admin-primary-glow: rgba(0, 136, 219, 0.20);
 
@@ -225,7 +225,7 @@ body.light,
 .admin-input:hover,
 .admin-select:hover {
   border-color: var(--admin-border-hover);
-  box-shadow: 0 2px 8px rgba(0, 166, 255, 0.12);
+  box-shadow: 0 2px 8px rgba(255, 109, 0, 0.12);
 }
 
 .admin-input:focus,
@@ -256,7 +256,7 @@ body.light,
 
 .admin-textarea:hover {
   border-color: var(--admin-border-hover);
-  box-shadow: 0 2px 8px rgba(0, 166, 255, 0.12);
+  box-shadow: 0 2px 8px rgba(255, 109, 0, 0.12);
 }
 
 .admin-textarea:focus {
@@ -284,15 +284,15 @@ body.light,
 }
 
 .admin-btn-primary {
-  background: linear-gradient(135deg, #00A6FF 0%, #0077CC 100%);
+  background: linear-gradient(135deg, #FF6D00 0%, #E85D00 100%);
   color: #FFFFFF;
-  border: 1px solid rgba(0, 166, 255, 0.5);
-  box-shadow: 0 2px 8px rgba(0, 166, 255, 0.28);
+  border: 1px solid rgba(255, 109, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(255, 109, 0, 0.28);
 }
 
 .admin-btn-primary:hover {
-  background: linear-gradient(135deg, #1AB0FF 0%, #0088DB 100%);
-  box-shadow: 0 6px 18px rgba(0, 166, 255, 0.45);
+  background: linear-gradient(135deg, #FF9D4A 0%, #E85D00 100%);
+  box-shadow: 0 6px 18px rgba(255, 109, 0, 0.45);
   transform: translateY(-1.5px);
 }
 
@@ -359,7 +359,7 @@ body.light,
 .admin-badge-blue {
   background: var(--admin-primary-soft);
   color: var(--admin-primary);
-  border-color: rgba(0, 166, 255, 0.3);
+  border-color: rgba(255, 109, 0, 0.3);
 }
 
 .admin-badge-green {

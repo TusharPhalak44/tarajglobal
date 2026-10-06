@@ -64,14 +64,14 @@ function ServiceDetails() {
           <div className="max-w-4xl mx-auto space-y-8">
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors text-sm"
+              className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors text-sm"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to All Services
             </Link>
 
             <div className="bg-surface rounded-3xl border border-border p-8 md:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 text-primary text-xs font-semibold">
+              <div className="inline-flex items-center gap-2  text-primary text-xs font-semibold">
                 <span>Enterprise Service</span>
               </div>
 
@@ -106,14 +106,14 @@ function ServiceDetails() {
               <div className="pt-6 flex flex-wrap gap-4">
                 <Link
                   to="/contact"
-                  className="px-8 py-3.5 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center gap-2"
+                  className="px-8 py-3.5 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-accent transition-all duration-300 flex items-center gap-2"
                 >
                   Schedule a Consultation
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/services"
-                  className="px-8 py-3.5 bg-background border border-border text-text-primary hover:border-primary/50 rounded-xl font-semibold transition-all duration-300"
+                  className="px-8 py-3.5 bg-background border border-border text-text-accent hover:border-accent rounded-xl font-semibold transition-all duration-300"
                 >
                   View All 12 Services
                 </Link>

@@ -466,11 +466,11 @@ export const AboutCompany = () => {
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface/90 dark:bg-white/[0.04] border border-primary/25 dark:border-[#00A6FF]/30 backdrop-blur-md mb-4 sm:mb-6 shadow-xs"
+            className="inline-flex items-center gap-2.5   mb-4 sm:mb-6"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
+              <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
+              <span className="relative inline-flex h-2 w-2" />
             </span>
             <span className="text-sm sm:text-sm font-mono font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-text-secondary via-text-primary to-text-secondary dark:from-slate-300 dark:via-white dark:to-slate-300 bg-clip-text text-transparent">
               ABOUT TARAJ GLOBAL &bull; GLOBAL B2B DEMAND GENERATION
@@ -549,7 +549,7 @@ export const AboutCompany = () => {
               onClick={scrollToStory}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="relative group p-[1.5px] rounded-full overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_28px_rgba(0,166,255,0.45)] cursor-pointer shadow-md shadow-primary/5"
+              className="relative group p-[1.5px] rounded-full overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_28px_rgba(0,166,255,0.45)] cursor-pointer shadow-md shadow-accent"
             >
               {/* Rotating Continuous Border Glow Beam */}
               {!prefersReducedMotion && (
@@ -557,10 +557,10 @@ export const AboutCompany = () => {
               )}
 
               {/* Button Glass Inner Body */}
-              <span className="relative inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/95 dark:bg-[#0E0E0E]/95 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 text-sm sm:text-sm font-semibold text-slate-800 dark:text-text-primary dark:text-white transition-colors duration-200">
+              <span className="relative inline-flex items-center gap-2.5   text-sm sm:text-sm font-semibold text-slate-800 dark:text-text-primary dark:text-white transition-colors duration-200">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
+                  <span className="relative inline-flex h-2 w-2" />
                 </span>
                 <span>Discover Our Story</span>
                 <ArrowRight
@@ -1322,13 +1322,13 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               animate={isIntelligenceInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 mb-2.5 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/20 relative overflow-hidden"
+              className="inline-flex items-center gap-2 mb-2.5 relative overflow-hidden"
             >
               <span className="relative flex h-2 w-2">
                 {!prefersReducedMotion && (
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
+                  <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
                 )}
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF]" />
+                <span className="relative inline-flex h-2 w-2" />
               </span>
               <span className="text-sm sm:text-sm font-mono font-bold tracking-[0.2em] uppercase text-[#00A6FF]">
                 FOUNDATIONAL VALUES
@@ -2007,7 +2007,7 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               animate={isCapabilitiesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-sm font-mono font-bold tracking-wider uppercase mb-3 shadow-xs"
+              className="inline-flex items-center gap-2  text-primary text-sm font-mono font-bold tracking-wider uppercase mb-3"
             >
               <Zap size={12} className="text-[#00A6FF] animate-pulse" />
               <span>Full-Funnel Capabilities</span>
@@ -2230,7 +2230,7 @@ export const AboutCompany = () => {
                       </div>
 
                       {/* Verified Metric Badge with Micro Animation */}
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border border-[#00A6FF]/25 text-sm font-mono font-bold text-[#00A6FF] shadow-xs">
+                      <div className="inline-flex items-center gap-1.5  text-sm font-mono font-bold text-[#00A6FF]">
                         <Check size={11} className={isActive ? 'scale-125 transition-transform text-[#00A6FF]' : 'text-slate-400 dark:text-white/40'} />
                         <span>{cap.metric}</span>
                       </div>
@@ -2417,10 +2417,10 @@ export const AboutCompany = () => {
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
 
                     {/* Central Status Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/20">
+                    <div className="inline-flex items-center gap-1.5   text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase">
                       <span className="relative flex h-1.5 w-1.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A6FF] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00A6FF]" />
+                        <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
+                        <span className="relative inline-flex h-1.5 w-1.5" />
                       </span>
                       <span>Strategic Growth Engine</span>
                     </div>
@@ -2438,7 +2438,7 @@ export const AboutCompany = () => {
                     {/* Step 08: Center Minimal CTA: Explore All Services with Hover Shift */}
                     <Link
                       to="/services"
-                      className="group inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 dark:bg-white/5 dark:hover:bg-surface/90 dark:bg-white/10 border border-slate-200 dark:border-white/10 text-sm font-mono font-bold text-primary dark:text-[#00E5FF] transition-all duration-200 shadow-xs hover:-translate-y-[2px]"
+                      className="group inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/80 dark:bg-white/5 dark:hover:bg-surface/90 dark:bg-white/10 border border-slate-200 dark:border-white/10 text-sm font-mono font-bold text-accent dark:text-[#FF6D00] transition-all duration-200 shadow-xs hover:-translate-y-[2px]"
                     >
                       <span>Explore All Services</span>
                       <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1.5 text-primary dark:text-[#00E5FF]" />
@@ -2503,7 +2503,7 @@ export const AboutCompany = () => {
                           <Share2 size={17} className={`text-[#FF6D00] transition-all duration-350 ${isActive ? 'scale-110' : ''}`} />
                         </div>
 
-                        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FF6D00]/10 border border-[#FF6D00]/20 text-sm font-mono font-bold text-[#FF6D00] dark:text-[#FFA600]">
+                        <div className="inline-flex items-center gap-1 text-sm font-mono font-bold text-[#FF6D00] dark:text-[#FFA600]">
                           <Zap size={10} className={isActive ? 'animate-bounce' : ''} />
                           <span>{cap.metric}</span>
                         </div>
@@ -2647,7 +2647,7 @@ export const AboutCompany = () => {
               transition={{ duration: 0.5 }}
               className="p-6 rounded-3xl text-center bg-white dark:bg-[#141414] border border-primary/30 dark:border-white/10 shadow-[0_8px_25px_rgba(0,0,0,0.16)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45)] relative overflow-hidden mb-6"
             >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase mb-3 border border-primary/20">
+              <div className="inline-flex items-center gap-1.5   text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-ping" />
                 <span>Strategic Growth Engine</span>
               </div>
@@ -2662,7 +2662,7 @@ export const AboutCompany = () => {
 
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-primary/30 dark:bg-primary/10 dark:bg-white/5 hover:bg-primary/40 dark:bg-primary/20 text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase border border-primary/30 dark:border-white/10 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-accent dark:bg-accent dark:bg-white/5 hover:bg-accent dark:bg-accent text-accent dark:text-[#FF6D00] text-sm font-mono font-bold tracking-wider uppercase border border-accent dark:border-white/10 transition-colors"
               >
                 <span>Explore All Services</span>
                 <ArrowRight size={14} />

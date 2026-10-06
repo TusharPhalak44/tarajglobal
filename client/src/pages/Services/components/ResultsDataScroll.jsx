@@ -43,7 +43,6 @@ export default function ResultsDataScroll() {
       className="relative py-28 sm:py-36 lg:py-44 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#04060A' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       {/* Background Animated Moving Data Line */}
@@ -66,7 +65,6 @@ export default function ResultsDataScroll() {
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border mb-8"
           style={{
             backgroundColor: isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.08)',
-            borderColor: isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)',
           }}
         >
           <Activity className="w-3.5 h-3.5 text-sky-400" />
@@ -117,7 +115,6 @@ export default function ResultsDataScroll() {
 
         {/* Milestone Indicator Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-12 pt-8 border-t max-w-2xl mx-auto"
-          style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
         >
           {SCROLL_METRICS.map((m, idx) => {
             const isActive = activeIdx === idx

@@ -275,7 +275,7 @@ const Settings = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div>
                 <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted mb-1.5 flex items-center gap-2">
-                  <Linkedin className="w-4 h-4 text-[#00A6FF]" /> LinkedIn Organization
+                  <Linkedin className="w-4 h-4 text-[#FF6D00]" /> LinkedIn Organization
                 </label>
                 <input
                   type="url"

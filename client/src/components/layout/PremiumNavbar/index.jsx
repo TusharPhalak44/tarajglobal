@@ -498,7 +498,7 @@ export const PremiumNavbar = () => {
               onClick={toggleSearch}
               whileHover={{ scale: 1.08, rotate: 90 }}
               whileTap={{ scale: 0.92 }}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-white/[0.04] flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-[#00A6FF] hover:border-[#00A6FF]/50 transition-all cursor-pointer shadow-2xs"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-white/[0.04] flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-[#FF6D00] hover:border-[#FF6D00]/50 transition-all cursor-pointer shadow-2xs"
               aria-label="Search Services and Pages"
               title="Search"
             >
@@ -516,7 +516,7 @@ export const PremiumNavbar = () => {
             >
               <Link
                 to="/contact"
-                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00A6FF] hover:bg-[#00A6FF]/90 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-sky-500/25 transition-all overflow-hidden group cursor-pointer"
+                className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF6D00] hover:bg-[#FF6D00]/90 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-accent/25 transition-all overflow-hidden group cursor-pointer"
               >
                 {/* Ambient Shimmer Light Bar */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700     pointer-events-none" />

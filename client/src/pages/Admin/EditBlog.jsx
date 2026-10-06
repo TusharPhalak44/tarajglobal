@@ -476,7 +476,7 @@ const EditBlog = () => {
                 />
                 <div className="flex flex-wrap gap-2">
                   {editForm.tags?.map(tag => (
-                    <span key={tag} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-[var(--admin-bg-elevated)] text-[var(--admin-text-primary)] border border-[var(--admin-border-base)]">
+                    <span key={tag} className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--admin-text-primary)]">
                       {tag}
                       <button type="button" onClick={() => removeTag(tag)} className="hover:text-red-500"><X className="w-3 h-3" /></button>
                     </span>

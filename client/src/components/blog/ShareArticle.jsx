@@ -113,7 +113,7 @@ export default function ShareArticle({ title }) {
             className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer ${
               copied
                 ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-500'
-                : 'bg-slate-100 dark:bg-white/5 border-slate-200/80 dark:border-white/10 text-text-secondary hover:text-[#00A6FF] hover:border-[#00A6FF]/40 hover:bg-[#00A6FF]/10'
+                : 'bg-slate-100 dark:bg-white/5 border-slate-200/80 dark:border-white/10 text-text-secondary hover:text-[#FF6D00] hover:border-[#FF6D00]/40 hover:bg-[#FF6D00]/10'
             }`}
           >
             <AnimatePresence mode="wait">

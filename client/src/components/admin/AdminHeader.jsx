@@ -68,7 +68,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
       <div className="flex items-center gap-3 min-w-0">
         <button
           onClick={onToggleSidebar}
-          className="p-2 -ml-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] transition-colors lg:hidden"
+          className="p-2 -ml-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-accent)] hover:bg-[var(--admin-bg-elevated)] transition-colors lg:hidden"
           aria-label="Toggle Navigation"
         >
           <Menu className="w-5 h-5" />
@@ -85,7 +85,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
       <div className="flex-1 max-w-sm mx-2 sm:mx-6">
         <button
           onClick={onOpenCommandPalette}
-          className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] text-sm text-[var(--admin-text-muted)] hover:border-[var(--admin-border-hover)] hover:text-[var(--admin-text-primary)] hover:shadow-sm transition-all"
+          className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] text-sm text-[var(--admin-text-muted)] hover:border-[var(--admin-border-hover)] hover:text-[var(--admin-text-accent)] hover:shadow-sm transition-all"
         >
           <div className="flex items-center gap-2.5 truncate">
             <Search className="w-4 h-4 text-[var(--admin-text-muted)] shrink-0" />
@@ -114,7 +114,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
         {/* Theme Switcher */}
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] border border-transparent hover:border-[var(--admin-border-base)] transition-all"
+          className="p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-accent)] hover:bg-[var(--admin-bg-elevated)] border border-transparent hover:border-[var(--admin-border-base)] transition-all"
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           aria-label="Toggle Theme"
         >

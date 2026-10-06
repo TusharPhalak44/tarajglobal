@@ -190,7 +190,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
           <h2 className="text-xl sm:text-2xl font-bold text-text-primary">Schedule a Meeting</h2>
           <button
             onClick={handleClose}
-            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text-primary rounded-lg hover:bg-surface/80 transition-colors"
+            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text-accent rounded-lg hover:bg-surface/80 transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -288,7 +288,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                 <div className="flex items-center justify-center gap-4 mb-6">
                   <button
                     onClick={handleReset}
-                    className="text-sm text-text-secondary hover:text-primary transition-colors"
+                    className="text-sm text-text-secondary hover:text-accent transition-colors"
                   >
                     Need to change?
                   </button>
@@ -302,7 +302,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                 
                 <button
                   onClick={handleClose}
-                  className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-colors"
+                  className="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-[#E85D00] transition-colors"
                 >
                   Close
                 </button>
@@ -522,7 +522,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
             <button
               onClick={handleBack}
               disabled={currentStep === 1}
-              className="flex items-center gap-2 px-3 sm:px-4 py-2 min-h-[44px] text-text-secondary hover:text-text-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 min-h-[44px] text-text-secondary hover:text-text-accent disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back
@@ -534,7 +534,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
                   (currentStep === 1 && !bookingData.date) ||
                   (currentStep === 2 && !bookingData.time)
                 }
-                className="flex items-center gap-2 px-5 sm:px-6 py-2.5 min-h-[44px] bg-primary text-white rounded-lg font-medium hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-2 px-5 sm:px-6 py-2.5 min-h-[44px] bg-accent text-white rounded-lg font-medium hover:bg-[#E85D00] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Next
                 <ArrowRight className="w-4 h-4" />
@@ -543,7 +543,7 @@ const MeetingBooking = ({ isOpen, onClose }) => {
               <button
                 onClick={handleConfirm}
                 disabled={isSubmitting}
-                className="px-5 sm:px-6 py-2.5 min-h-[44px] bg-gradient-to-r from-primary to-cta text-white rounded-lg font-medium hover:shadow-lg hover:shadow-primary/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-5 sm:px-6 py-2.5 min-h-[44px] bg-gradient-to-r from-primary to-cta text-white rounded-lg font-medium hover:shadow-lg hover:shadow-accent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Confirming...' : 'Confirm Meeting'}
               </button>

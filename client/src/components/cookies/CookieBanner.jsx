@@ -31,7 +31,6 @@ const CookieBanner = () => {
           className="relative rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 select-none"
           style={{
             backgroundColor: isDark ? '#0C111C' : '#FFFFFF',
-            border: isDark ? '1px solid rgba(0, 166, 255, 0.28)' : '1px solid #E2E8F0',
             boxShadow: isDark
               ? '0 25px 60px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 166, 255, 0.16)'
               : '0 20px 45px -10px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.04)',
@@ -58,7 +57,6 @@ const CookieBanner = () => {
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-lg shrink-0 shadow-xs"
                   style={{
                     backgroundColor: isDark ? 'rgba(0, 166, 255, 0.12)' : 'rgba(0, 166, 255, 0.08)',
-                    border: isDark ? '1px solid rgba(0, 166, 255, 0.3)' : '1px solid rgba(0, 166, 255, 0.2)',
                   }}
                 >
                   🍪
@@ -92,7 +90,6 @@ const CookieBanner = () => {
                   backgroundColor: isHoveredClose
                     ? (isDark ? 'rgba(255, 255, 255, 0.12)' : '#E2E8F0')
                     : (isDark ? 'rgba(255, 255, 255, 0.05)' : '#F1F5F9'),
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #CBD5E1',
                   color: isHoveredClose
                     ? (isDark ? '#FFFFFF' : '#0F172A')
                     : (isDark ? '#94A3B8' : '#64748B'),
@@ -114,7 +111,7 @@ const CookieBanner = () => {
               <Link
                 to="/cookies"
                 className="font-semibold underline underline-offset-2 transition-colors"
-                style={{ color: '#00A6FF' }}
+                style={{ color: '#FF6D00' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#FF6D00')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = '#00A6FF')}
               >
@@ -124,7 +121,7 @@ const CookieBanner = () => {
               <Link
                 to="/cookies"
                 className="font-semibold underline underline-offset-2 transition-colors"
-                style={{ color: '#00A6FF' }}
+                style={{ color: '#FF6D00' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#FF6D00')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = '#00A6FF')}
               >

@@ -111,7 +111,7 @@ export const GalleryCategoryWall = () => {
                         <Link
                           key={srv.name}
                           to={srv.url}
-                          className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/70 bg-surface/50 hover:bg-surface hover:border-primary transition-all duration-300"
+                          className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/70 bg-surface/50 hover:bg-surface hover:border-accent transition-all duration-300"
                         >
                           <span className="text-xs md:text-sm font-semibold uppercase tracking-wide text-text-primary group-hover:text-primary transition-colors">
                             {srv.name}

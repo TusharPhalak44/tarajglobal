@@ -12,23 +12,21 @@ import PageTracker from './components/analytics/PageTracker'
 
 function App() {
   return (
-    <HelmetProvider>
-      <ThemeProvider>
-        <AuthProvider>
-          <CookieProvider>
-            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-              <ScrollToTop />
-              <PageTracker />
-              <SmoothScrollProvider>
-                <AppRoutes />
-                <CookieBanner />
-                <CookieModal />
-              </SmoothScrollProvider>
-            </BrowserRouter>
-          </CookieProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </HelmetProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <CookieProvider>
+          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <ScrollToTop />
+            <PageTracker />
+            <SmoothScrollProvider>
+              <AppRoutes />
+              <CookieBanner />
+              <CookieModal />
+            </SmoothScrollProvider>
+          </BrowserRouter>
+        </CookieProvider>
+      </AuthProvider>
+    </ThemeProvider>
   )
 }
 

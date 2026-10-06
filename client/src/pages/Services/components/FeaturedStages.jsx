@@ -51,7 +51,7 @@ export default function FeaturedStages() {
       <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Section Heading */}
         <div className="max-w-3xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
+          <div className="inline-flex items-center gap-2  text-primary text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] mb-4">
             <span>FULL-FUNNEL ARCHITECTURE</span>
           </div>
 
@@ -101,7 +101,7 @@ export default function FeaturedStages() {
                     <Link
                       key={srv.name}
                       to={srv.link}
-                      className="group/link inline-flex items-center justify-between text-sm sm:text-base font-semibold text-text-primary hover:text-primary transition-colors duration-200"
+                      className="group/link inline-flex items-center justify-between text-sm sm:text-base font-semibold text-text-accent hover:text-accent transition-colors duration-200"
                     >
                       <span>{srv.name}</span>
                       <ArrowRight className="w-4 h-4 text-text-muted group-hover/link:text-primary transition-transform duration-200 group-hover/link:translate-x-1" />

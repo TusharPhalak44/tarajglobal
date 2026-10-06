@@ -7,7 +7,7 @@ class FooterSettings {
   }
 
   static async update(settingsData) {
-    const { company_name, company_description, short_description, logo_url, is_logo_visible, is_description_visible, copyright_text } = settingsData
+    const { company_name, company_description, short_description, logo_url, is_logo_visible, is_description_visible, copyright_text, cert_image_url, is_cert_image_visible } = settingsData
     
     // Check if settings exist
     const [existing] = await db.execute('SELECT id FROM footer_settings LIMIT 1')
@@ -15,7 +15,7 @@ class FooterSettings {
     if (existing.length > 0) {
       // Update existing
       const [result] = await db.execute(
-        'UPDATE footer_settings SET company_name = ?, company_description = ?, short_description = ?, logo_url = ?, is_logo_visible = ?, is_description_visible = ?, copyright_text = ? WHERE id = ?',
+        'UPDATE footer_settings SET company_name = ?, company_description = ?, short_description = ?, logo_url = ?, is_logo_visible = ?, is_description_visible = ?, copyright_text = ?, cert_image_url = ?, is_cert_image_visible = ? WHERE id = ?',
         [
           company_name || 'TaRaj Global',
           company_description || null,
@@ -24,6 +24,8 @@ class FooterSettings {
           is_logo_visible == 0 || is_logo_visible === 'false' ? 0 : 1,
           is_description_visible == 0 || is_description_visible === 'false' ? 0 : 1,
           copyright_text || 'Copyright © {year} Taraj Global. All Rights Reserved.',
+          cert_image_url || null,
+          is_cert_image_visible == 0 || is_cert_image_visible === 'false' ? 0 : 1,
           existing[0].id
         ]
       )
@@ -31,7 +33,7 @@ class FooterSettings {
     } else {
       // Insert new
       const [result] = await db.execute(
-        'INSERT INTO footer_settings (company_name, company_description, short_description, logo_url, is_logo_visible, is_description_visible, copyright_text) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        'INSERT INTO footer_settings (company_name, company_description, short_description, logo_url, is_logo_visible, is_description_visible, copyright_text, cert_image_url, is_cert_image_visible) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [
           company_name || 'TaRaj Global',
           company_description || null,
@@ -39,7 +41,9 @@ class FooterSettings {
           logo_url || null,
           is_logo_visible == 0 || is_logo_visible === 'false' ? 0 : 1,
           is_description_visible == 0 || is_description_visible === 'false' ? 0 : 1,
-          copyright_text || 'Copyright © {year} Taraj Global. All Rights Reserved.'
+          copyright_text || 'Copyright © {year} Taraj Global. All Rights Reserved.',
+          cert_image_url || null,
+          is_cert_image_visible == 0 || is_cert_image_visible === 'false' ? 0 : 1
         ]
       )
       return result.insertId

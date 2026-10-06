@@ -16,7 +16,7 @@ export default function DevFinalCTA() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[150px] bg-primary/8 dark:bg-primary/12 pointer-events-none -z-10" />
 
       <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 backdrop-blur-md mb-6">
+        <div className="inline-flex items-center gap-2  mb-6">
           <Sparkles className="w-3.5 h-3.5 text-primary" />
           <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.24em] text-primary">
             ACCELERATE YOUR REVENUE

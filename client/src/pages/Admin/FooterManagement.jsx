@@ -58,11 +58,14 @@ const FooterManagement = () => {
     short_description: '',
     logo_url: '/OnlyTG- 3.png',
     is_logo_visible: true,
+    cert_image_url: '/footerimage.png',
+    is_cert_image_visible: true,
     is_description_visible: true,
     copyright_text: 'Copyright © {year} Taraj Global Solutions Private Limited. All rights reserved.'
   })
   const [savingSettings, setSavingSettings] = useState(false)
   const fileInputRef = useRef(null)
+  const certFileInputRef = useRef(null)
 
   // Sections
   const [sections, setSections] = useState([])
@@ -138,6 +141,8 @@ const FooterManagement = () => {
           short_description: s.short_description || '',
           logo_url: s.logo_url || '/OnlyTG- 3.png',
           is_logo_visible: s.is_logo_visible !== 0 && s.is_logo_visible !== false,
+          cert_image_url: s.cert_image_url || '/footerimage.png',
+          is_cert_image_visible: s.is_cert_image_visible !== 0 && s.is_cert_image_visible !== false,
           is_description_visible: s.is_description_visible !== 0 && s.is_description_visible !== false,
           copyright_text: s.copyright_text || 'Copyright © {year} Taraj Global Solutions Private Limited. All rights reserved.'
         })
@@ -193,9 +198,36 @@ const FooterManagement = () => {
     reader.readAsDataURL(file)
   }
 
+  const handleCertImageFileChange = (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    if (!file.type.startsWith('image/')) {
+      showMessage('error', 'Please select an image file (PNG, SVG, JPG, WEBP)')
+      return
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      showMessage('error', 'File size must be under 5MB')
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = () => {
+      setSettings((prev) => ({ ...prev, cert_image_url: reader.result }))
+      showMessage('success', 'Certification image loaded! Click "Save Footer Settings" to apply.')
+    }
+    reader.readAsDataURL(file)
+  }
+
   const handleResetDefaultLogo = () => {
     setSettings((prev) => ({ ...prev, logo_url: '/OnlyTG- 3.png' }))
     showMessage('success', 'Reset to default logo template. Click "Save Footer Settings" to apply.')
+  }
+
+  const handleResetDefaultCertImage = () => {
+    setSettings((prev) => ({ ...prev, cert_image_url: '/footerimage.png' }))
+    showMessage('success', 'Reset to default certification image. Click "Save Footer Settings" to apply.')
   }
 
   // ==================== SETTINGS HANDLERS ====================
@@ -205,6 +237,7 @@ const FooterManagement = () => {
       await adminAPI.updateFooterSettings({
         ...settings,
         is_logo_visible: Boolean(settings.is_logo_visible),
+        is_cert_image_visible: Boolean(settings.is_cert_image_visible),
         is_description_visible: Boolean(settings.is_description_visible)
       })
       notifyFooterUpdated()
@@ -671,7 +704,7 @@ const FooterManagement = () => {
         <div className="flex items-center gap-2.5">
           <button
             onClick={fetchAllData}
-            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-primary transition-all"
+            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-xl bg-surface border border-border hover:bg-border/30 text-text-accent transition-all"
             title="Reload from database"
           >
             <RefreshCw className="w-4 h-4" />
@@ -808,7 +841,7 @@ const FooterManagement = () => {
                     <button
                       type="button"
                       onClick={handleResetDefaultLogo}
-                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface border border-border text-text-secondary text-sm font-semibold hover:text-text-primary hover:bg-border/20 transition-all"
+                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface border border-border text-text-secondary text-sm font-semibold hover:text-text-accent hover:bg-border/20 transition-all"
                     >
                       <RefreshCw className="w-4 h-4" />
                       <span>Reset to Default</span>
@@ -822,6 +855,74 @@ const FooterManagement = () => {
                     className="w-full px-3 py-1.5 text-sm bg-surface border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary font-mono"
                   />
                 </div>
+              </div>
+            </div>
+
+            {/* Certification / ISO Image Manager */}
+            <div className="space-y-3 pt-2">
+              <label className="block text-sm font-semibold uppercase tracking-wider text-text-muted">
+                Footer Certification Image (ISO/Awards)
+              </label>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 rounded-xl border border-border bg-background">
+                <div className="h-16 w-36 rounded-lg bg-surface dark:bg-slate-900 border border-border flex items-center justify-center p-2 overflow-hidden flex-shrink-0">
+                  {settings.cert_image_url ? (
+                    <img
+                      src={settings.cert_image_url}
+                      alt="Footer Certification"
+                      className="h-12 w-auto max-w-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-sm text-slate-500">No image</span>
+                  )}
+                </div>
+
+                <div className="space-y-2 w-full">
+                  <div className="flex flex-wrap gap-2">
+                    <input
+                      type="file"
+                      ref={certFileInputRef}
+                      onChange={handleCertImageFileChange}
+                      accept="image/*"
+                      className="hidden"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => certFileInputRef.current?.click()}
+                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-all shadow-sm"
+                    >
+                      <Upload className="w-4 h-4" />
+                      <span>Upload Image</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleResetDefaultCertImage}
+                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface border border-border text-text-secondary text-sm font-semibold hover:text-text-accent hover:bg-border/20 transition-all"
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                      <span>Reset to Default</span>
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    value={settings.cert_image_url || ''}
+                    onChange={(e) => setSettings({ ...settings, cert_image_url: e.target.value })}
+                    placeholder="Or enter image URL: /footerimage.png"
+                    className="w-full px-3 py-1.5 text-sm bg-surface border border-border rounded-lg text-text-primary focus:outline-none focus:border-primary font-mono"
+                  />
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="is_cert_image_visible"
+                  checked={settings.is_cert_image_visible}
+                  onChange={(e) => setSettings({ ...settings, is_cert_image_visible: e.target.checked })}
+                  className="w-4 h-4 rounded border-border text-primary focus:ring-primary focus:ring-offset-background"
+                />
+                <label htmlFor="is_cert_image_visible" className="text-sm text-text-primary cursor-pointer select-none">
+                  Show Certification Image in Footer
+                </label>
               </div>
             </div>
 
@@ -904,7 +1005,7 @@ const FooterManagement = () => {
               <button
                 onClick={handleSaveSettings}
                 disabled={savingSettings}
-                className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl text-base font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 disabled:opacity-50"
+                className="flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-xl text-base font-semibold hover:bg-[#E85D00] transition-all shadow-md shadow-accent disabled:opacity-50"
               >
                 {savingSettings ? (
                   <>
@@ -963,7 +1064,7 @@ const FooterManagement = () => {
             </div>
             <button
               onClick={handleAddSection}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl text-sm font-semibold hover:bg-[#E85D00] transition-all shadow-md shadow-accent self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Section</span>
@@ -1242,7 +1343,7 @@ const FooterManagement = () => {
             </div>
             <button
               onClick={handleAddOffice}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl text-sm font-semibold hover:bg-[#E85D00] transition-all shadow-md shadow-accent self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Office</span>
@@ -1346,7 +1447,7 @@ const FooterManagement = () => {
             </div>
             <button
               onClick={handleAddSocial}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 self-start sm:self-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl text-sm font-semibold hover:bg-[#E85D00] transition-all shadow-md shadow-accent self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Add Social Profile</span>
@@ -1596,7 +1697,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveSection}
                   disabled={savingSection}
-                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-accent text-white hover:bg-[#E85D00] shadow-md shadow-accent disabled:opacity-50"
                 >
                   {savingSection ? 'Saving...' : 'Save Section'}
                 </button>
@@ -1737,7 +1838,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveLink}
                   disabled={savingLink}
-                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-accent text-white hover:bg-[#E85D00] shadow-md shadow-accent disabled:opacity-50"
                 >
                   {savingLink ? 'Saving...' : 'Save Link'}
                 </button>
@@ -1922,7 +2023,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveOffice}
                   disabled={savingOffice}
-                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-accent text-white hover:bg-[#E85D00] shadow-md shadow-accent disabled:opacity-50"
                 >
                   {savingOffice ? 'Saving...' : 'Save Office'}
                 </button>
@@ -2000,7 +2101,7 @@ const FooterManagement = () => {
                   type="button"
                   onClick={handleSaveSocial}
                   disabled={savingSocial}
-                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 disabled:opacity-50"
+                  className="px-5 py-2 text-sm font-semibold rounded-xl bg-accent text-white hover:bg-[#E85D00] shadow-md shadow-accent disabled:opacity-50"
                 >
                   {savingSocial ? 'Saving...' : 'Save Profile'}
                 </button>

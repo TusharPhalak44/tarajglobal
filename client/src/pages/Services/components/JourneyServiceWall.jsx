@@ -44,7 +44,6 @@ export default function JourneyServiceWall() {
       className="relative py-24 lg:py-32 overflow-hidden select-none border-b"
       style={{
         backgroundColor: isDark ? '#04060A' : '#F4F6FB',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="One Pipeline. Multiple Growth Channels. — Service Marquee Wall"
     >

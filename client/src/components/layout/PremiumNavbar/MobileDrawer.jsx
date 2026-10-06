@@ -144,7 +144,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                       <Link
                         to="/services"
                         onClick={onClose}
-                        className="flex items-center gap-1.5 p-2 rounded-lg text-xs font-bold text-[#00A6FF] bg-sky-500/5 hover:bg-sky-500/10"
+                        className="flex items-center gap-1.5 p-2 rounded-lg text-xs font-bold text-[#FF6D00] bg-accent hover:bg-accent"
                       >
                         <Sparkles size={13} />
                         <span>View All Solutions &amp; Frameworks →</span>
@@ -160,7 +160,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                               key={it.path}
                               to={it.path}
                               onClick={onClose}
-                              className="block py-1.5 px-3 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:text-[#00A6FF] hover:bg-slate-50 dark:hover:bg-white/[0.04]"
+                              className="block py-1.5 px-3 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:text-[#FF6D00] hover:bg-slate-50 dark:hover:bg-white/[0.04]"
                             >
                               {it.name}
                             </Link>
@@ -241,7 +241,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
               <Link
                 to="/contact"
                 onClick={onClose}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] text-text-primary dark:text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-sky-500/25 active:scale-98 transition-all"
+                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#FF6D00] to-[#FF6D00] text-text-accent dark:text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-accent/25 active:scale-98 transition-all"
               >
                 <span>Start a Conversation</span>
                 <ArrowRight size={15} />

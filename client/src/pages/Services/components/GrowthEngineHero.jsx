@@ -138,7 +138,7 @@ export default function GrowthEngineHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/25 backdrop-blur-md mb-5 self-start"
+              className="inline-flex items-center gap-2  mb-5 self-start"
             >
               <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
               <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.24em] text-primary">
@@ -185,12 +185,12 @@ export default function GrowthEngineHero() {
               <button
                 type="button"
                 onClick={handleScrollToSolutions}
-                style={{ backgroundColor: '#1E3A8A', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(30,58,138,0.3)', border: 'none' }} className="group cursor-pointer"
+                style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="group cursor-pointer"
               >
                 <StarButton
                   as="div"
                   className="h-12 px-7 text-[13px] font-bold tracking-wide uppercase shadow-lg shadow-primary/20 text-text-primary dark:text-white dark:text-neutral-900 flex items-center justify-center gap-2 transition-transform duration-300 active:scale-95"
-                  lightColor="#00A6FF"
+                  lightColor="#FF6D00"
                   backgroundColor="rgba(0,166,255,0.15)"
                 >
                   <span>Explore Solutions</span>
@@ -200,7 +200,7 @@ export default function GrowthEngineHero() {
 
               <Link
                 to="/contact"
-                className="h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider text-text-primary border border-border/80 hover:border-primary/60 hover:bg-surface/60 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm"
+                className="h-12 px-7 rounded-xl text-[13px] font-bold uppercase tracking-wider text-text-accent border border-border/80 hover:border-accent hover:bg-surface/60 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm"
               >
                 <span>Talk to Our Team</span>
               </Link>

@@ -68,7 +68,6 @@ export default function StrategicAdvantageGrid() {
       ref={sectionRef}
       className="relative py-24 lg:py-32 overflow-hidden select-none"
       style={{
-        background: isDark ? '#020307' : '#ffffff',
         borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
       }}
       aria-label="Why Taraj Global — Strategic Advantage"
@@ -82,10 +81,8 @@ export default function StrategicAdvantageGrid() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 12 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-4"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-4"
               style={{
-                background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
                 color: isDark ? '#38BDF8' : '#0066CC',
               }}
             >
@@ -138,7 +135,6 @@ export default function StrategicAdvantageGrid() {
                   background: isDark
                     ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(8, 12, 24, 0.88) 100%)'
                     : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%)',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                   boxShadow: isDark
                     ? '0 15px 35px -10px rgba(0, 0, 0, 0.6)'
                     : '0 15px 35px -10px rgba(0, 0, 0, 0.05)',
@@ -167,7 +163,6 @@ export default function StrategicAdvantageGrid() {
                       <span
                         className="font-mono text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"
                         style={{
-                          background: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)',
                           color: adv.color,
                           border: `1px solid ${adv.color}30`,
                         }}
@@ -191,7 +186,6 @@ export default function StrategicAdvantageGrid() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t flex items-center justify-between" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}>
                   <span className="text-[11px] font-mono font-bold uppercase tracking-wider" style={{ color: adv.color }}>
                     {adv.stat}
                   </span>
@@ -211,8 +205,6 @@ export default function StrategicAdvantageGrid() {
         <div
           className="rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border backdrop-blur-md"
           style={{
-            background: isDark ? 'rgba(15, 23, 42, 0.6)' : 'rgba(240, 246, 255, 0.8)',
-            borderColor: isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(0, 102, 204, 0.2)',
           }}
         >
           <div>

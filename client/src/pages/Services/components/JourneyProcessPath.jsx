@@ -77,7 +77,6 @@ export default function JourneyProcessPath() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-b"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Our Process — The Curved Growth Journey"
     >
@@ -166,7 +165,6 @@ export default function JourneyProcessPath() {
                       backgroundColor: isActive
                         ? isDark ? '#FFFFFF' : '#080A0F'
                         : isDark ? 'rgba(12, 16, 26, 0.9)' : 'rgba(255, 255, 255, 0.95)',
-                      borderColor: isActive ? s.color : isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)',
                       color: isActive ? (isDark ? '#080A0F' : '#FFFFFF') : s.color,
                       boxShadow: isActive ? `0 0 30px ${s.color}60` : 'none',
                     }}
@@ -231,7 +229,6 @@ export default function JourneyProcessPath() {
                     className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium border"
                     style={{
                       backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)',
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
                       color: isDark ? '#D4D4D8' : '#374151',
                     }}
                   >

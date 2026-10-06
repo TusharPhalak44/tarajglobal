@@ -23,8 +23,8 @@ export const TelemetryStatusBadge = () => {
       >
         {/* Pulsing Live Green LED */}
         <div className="relative flex items-center justify-center">
-          <span className="animate-ping absolute inline-flex h-3.5 w-3.5 rounded-full bg-emerald-400 opacity-60" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_#10B981]" />
+          <span className="animate-ping absolute inline-flex h-3.5 w-3.5 opacity-60" />
+          <span className="relative inline-flex h-2 w-2" />
         </div>
 
         {/* Micro Category Tag */}
@@ -60,8 +60,8 @@ export const TelemetryStatusBadge = () => {
       >
         {/* Pulsing Electric Blue LED */}
         <div className="relative flex items-center justify-center">
-          <span className="animate-ping absolute inline-flex h-3.5 w-3.5 rounded-full bg-[#00A6FF] opacity-60" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A6FF] shadow-[0_0_8px_#00A6FF]" />
+          <span className="animate-ping absolute inline-flex h-3.5 w-3.5 opacity-60" />
+          <span className="relative inline-flex h-2 w-2" />
         </div>
 
         {/* Micro Category Tag */}

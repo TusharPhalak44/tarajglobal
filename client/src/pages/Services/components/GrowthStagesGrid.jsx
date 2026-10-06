@@ -83,10 +83,8 @@ export default function GrowthStagesGrid() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 12 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-4"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mb-4"
               style={{
-                background: isDark ? 'rgba(56, 189, 248, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
                 color: isDark ? '#38BDF8' : '#0066CC',
               }}
             >
@@ -151,7 +149,6 @@ export default function GrowthStagesGrid() {
                   background: isDark
                     ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(8, 12, 24, 0.95) 100%)'
                     : 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%)',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                   boxShadow: isDark
                     ? '0 20px 45px -15px rgba(0, 0, 0, 0.7)'
                     : '0 20px 45px -15px rgba(0, 102, 204, 0.08)',
@@ -223,7 +220,6 @@ export default function GrowthStagesGrid() {
                 </div>
 
                 {/* Stage Services Pills */}
-                <div className="pt-6 border-t" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}>
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider block mb-3" style={{ color: isDark ? '#64748B' : '#94A3B8' }}>
                     KEY SERVICES IN THIS STAGE
                   </span>
@@ -234,8 +230,6 @@ export default function GrowthStagesGrid() {
                         to={srv.link}
                         className="group/pill inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200"
                         style={{
-                          background: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)',
-                          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                           color: isDark ? '#E2E8F0' : '#1E293B',
                         }}
                         onMouseEnter={(e) => {

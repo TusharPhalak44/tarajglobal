@@ -124,7 +124,7 @@ function Terms() {
         <Container>
           {/* ══ Header / Hero Area ══════════════════════════════════════════ */}
           <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide mb-4">
+            <div className="inline-flex items-center gap-2 bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide mb-4">
               <Scale className="w-3.5 h-3.5 text-primary" />
               <span>Legal Service Agreement</span>
             </div>
@@ -605,7 +605,7 @@ function Terms() {
                   </h2>
                 </div>
                 <p>
-                  Your privacy is important to us. All personal data collected through the Website or in connection with our services is processed in accordance with our <Link to="/privacy" className="text-primary font-bold hover:underline">Privacy Policy</Link>. Please review our <Link to="/privacy" className="text-primary font-bold hover:underline">Privacy Policy</Link> to understand our data collection, usage, security, and disclosure practices.
+                  Your privacy is important to us. All personal data collected through the Website or in connection with our services is processed in accordance with our <Link to="/privacy" className="text-accent font-bold hover:underline">Privacy Policy</Link>. Please review our <Link to="/privacy" className="text-accent font-bold hover:underline">Privacy Policy</Link> to understand our data collection, usage, security, and disclosure practices.
                 </p>
               </section>
 
@@ -623,7 +623,7 @@ function Terms() {
                   </h2>
                 </div>
                 <p>
-                  Our Website utilizes cookies and tracking technologies to enhance user experience, remember preferences, and analyze website traffic. For comprehensive information regarding our cookie usage and instructions on how to manage your consent preferences, please consult our <Link to="/cookies" className="text-primary font-bold hover:underline">Cookie Policy</Link>.
+                  Our Website utilizes cookies and tracking technologies to enhance user experience, remember preferences, and analyze website traffic. For comprehensive information regarding our cookie usage and instructions on how to manage your consent preferences, please consult our <Link to="/cookies" className="text-accent font-bold hover:underline">Cookie Policy</Link>.
                 </p>
               </section>
 
@@ -762,11 +762,11 @@ function Terms() {
 
                 <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <span className="text-xs sm:text-sm text-text-secondary">
-                    Review our data protection framework in our <Link to="/privacy" className="text-primary font-semibold hover:underline">Privacy Policy</Link>.
+                    Review our data protection framework in our <Link to="/privacy" className="text-accent font-semibold hover:underline">Privacy Policy</Link>.
                   </span>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-black font-bold text-xs tracking-wider hover:bg-primary-light transition-colors shadow-sm shrink-0"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-black font-bold text-xs tracking-wider hover:bg-accent-light transition-colors shadow-sm shrink-0"
                   >
                     <span>Contact Our Team</span>
                     <ArrowRight className="w-3.5 h-3.5" />

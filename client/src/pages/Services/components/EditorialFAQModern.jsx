@@ -51,7 +51,6 @@ export default function EditorialFAQModern() {
       className="relative py-28 lg:py-40 overflow-hidden select-none border-t"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Frequently Asked Questions — Editorial FAQ"
     >
@@ -86,7 +85,6 @@ export default function EditorialFAQModern() {
           </div>
 
           {/* RIGHT: Clean Editorial Accordion List */}
-          <div className="lg:col-span-7 divide-y" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
             {FAQS.map((faq, idx) => {
               const isOpen = openIdx === idx
 

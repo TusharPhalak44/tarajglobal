@@ -121,13 +121,11 @@ export default function ModernServicesHero() {
           animate={prefersReducedMotion ? {} : { scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute -top-32 -left-32 w-[650px] h-[650px] rounded-full blur-[140px]"
-          style={{ background: isDark ? 'rgba(0, 166, 255, 0.18)' : 'rgba(0, 102, 204, 0.12)' }}
         />
         <motion.div
           animate={prefersReducedMotion ? {} : { scale: [1, 1.2, 1], opacity: [0.35, 0.65, 0.35] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
           className="absolute top-1/4 -right-32 w-[700px] h-[700px] rounded-full blur-[150px]"
-          style={{ background: isDark ? 'rgba(255, 109, 0, 0.16)' : 'rgba(255, 107, 0, 0.1)' }}
         />
 
         {/* Cyber Digital Dot Matrix */}
@@ -151,10 +149,8 @@ export default function ModernServicesHero() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider self-start mb-6 backdrop-blur-xl"
+              className="inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-wider self-start mb-6 backdrop-blur-xl"
               style={{
-                background: isDark ? 'rgba(0, 166, 255, 0.1)' : 'rgba(0, 102, 204, 0.08)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.35)' : '1px solid rgba(0, 102, 204, 0.25)',
                 color: isDark ? '#38BDF8' : '#0066CC',
                 boxShadow: isDark ? '0 0 25px rgba(0, 166, 255, 0.25)' : 'none',
               }}
@@ -239,8 +235,6 @@ export default function ModernServicesHero() {
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
               className="hidden sm:flex absolute -top-6 -right-4 z-20 items-center gap-2.5 px-4 py-2 rounded-2xl backdrop-blur-xl border shadow-xl"
               style={{
-                background: isDark ? 'rgba(15, 23, 42, 0.85)' : 'rgba(255, 255, 255, 0.9)',
-                borderColor: isDark ? 'rgba(56, 189, 248, 0.4)' : 'rgba(0, 102, 204, 0.3)',
                 color: isDark ? '#FFFFFF' : '#0F172A',
               }}
             >
@@ -261,14 +255,12 @@ export default function ModernServicesHero() {
                 background: isDark
                   ? 'linear-gradient(135deg, rgba(13, 23, 42, 0.88) 0%, rgba(8, 12, 24, 0.95) 100%)'
                   : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 246, 255, 0.9) 100%)',
-                border: isDark ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid rgba(0, 102, 204, 0.2)',
                 boxShadow: isDark
                   ? '0 30px 70px -15px rgba(0, 0, 0, 0.85), 0 0 45px rgba(0, 166, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.12)'
                   : '0 30px 70px -15px rgba(0, 102, 204, 0.18), inset 0 1px 0 rgba(255, 255, 255, 1)',
               }}
             >
               {/* Terminal Top Bar */}
-              <div className="flex items-center justify-between pb-5 mb-6 border-b" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
                 <div className="flex items-center gap-2.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/90 shadow-sm" />
                   <div className="w-3 h-3 rounded-full bg-amber-500/90 shadow-sm" />
@@ -279,13 +271,12 @@ export default function ModernServicesHero() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
+                    <span className="relative inline-flex h-2 w-2" />
                   </span>
                   <span
                     className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"
                     style={{
-                      background: isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(0, 102, 204, 0.1)',
                       color: isDark ? '#38BDF8' : '#0066CC',
                     }}
                   >
@@ -348,8 +339,6 @@ export default function ModernServicesHero() {
                   transition={{ duration: 0.35, ease: 'easeOut' }}
                   className="p-5 sm:p-6 rounded-2xl"
                   style={{
-                    background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                    border: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
                   }}
                 >
                   <div className="flex items-start justify-between gap-4 mb-3">
@@ -375,7 +364,7 @@ export default function ModernServicesHero() {
                       </div>
                     </div>
                     <div
-                      className="px-3 py-1 rounded-full text-xs font-mono font-bold shrink-0"
+                      className="text-xs font-mono font-bold shrink-0"
                       style={{
                         background: `${currentStep.color}18`,
                         color: currentStep.color,
@@ -396,9 +385,7 @@ export default function ModernServicesHero() {
                         key={i}
                         className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium"
                         style={{
-                          background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
                           color: isDark ? '#CBD5E1' : '#334155',
-                          border: isDark ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(0, 0, 0, 0.05)',
                         }}
                       >
                         <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: currentStep.color }} />
@@ -425,7 +412,6 @@ export default function ModernServicesHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="pt-6 sm:pt-8 border-t grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
-          style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}
         >
           {TRUST_PILLS.map((pill, idx) => {
             const Icon = pill.icon
@@ -434,8 +420,6 @@ export default function ModernServicesHero() {
                 key={idx}
                 className="flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 hover:translate-y-[-2px]"
                 style={{
-                  background: isDark ? 'rgba(255, 255, 255, 0.02)' : 'rgba(255, 255, 255, 0.7)',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
                   boxShadow: isDark ? 'none' : '0 2px 10px rgba(0, 0, 0, 0.03)',
                 }}
               >

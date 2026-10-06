@@ -70,7 +70,7 @@ const Sidebar = () => {
               to={item.path}
               className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${
                 isActive
-                  ? 'bg-primary text-white'
+                  ? 'bg-accent text-white'
                   : 'text-gray-400 hover:bg-gray-800 hover:text-white'
               }`}
             >
@@ -96,7 +96,7 @@ const Sidebar = () => {
       {/* Logout */}
       <div className="p-4 border-t border-gray-800">
         <button
-          className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 text-gray-400 hover:bg-gray-800 hover:text-text-primary dark:text-white`}
+          className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 text-gray-400 hover:bg-gray-800 hover:text-text-accent dark:text-white`}
         >
           <LogOut size={20} className="flex-shrink-0" />
           <AnimatePresence>

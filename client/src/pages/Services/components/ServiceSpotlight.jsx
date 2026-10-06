@@ -23,7 +23,6 @@ export default function ServiceSpotlight() {
       className="relative py-28 sm:py-36 lg:py-40 px-4 sm:px-8 lg:px-14 border-b overflow-hidden select-none"
       style={{
         backgroundColor: isDark ? '#05070B' : '#FFFFFF',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -133,7 +132,6 @@ export default function ServiceSpotlight() {
                     className="px-3.5 py-2 rounded-md text-[11px] font-mono font-bold tracking-wider uppercase border backdrop-blur-md flex items-center gap-2"
                     style={{
                       backgroundColor: isDark ? 'rgba(5, 7, 11, 0.85)' : 'rgba(255, 255, 255, 0.9)',
-                      borderColor: isDark ? 'rgba(56, 189, 248, 0.3)' : 'rgba(2, 132, 199, 0.25)',
                       color: isDark ? '#FFFFFF' : '#090D15',
                     }}
                   >
@@ -152,7 +150,6 @@ export default function ServiceSpotlight() {
                   className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between px-4 py-2.5 rounded-md border backdrop-blur-md text-xs font-mono"
                   style={{
                     backgroundColor: isDark ? 'rgba(5, 7, 11, 0.85)' : 'rgba(255, 255, 255, 0.9)',
-                    borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.1)',
                     color: isDark ? '#FFFFFF' : '#090D15',
                   }}
                 >

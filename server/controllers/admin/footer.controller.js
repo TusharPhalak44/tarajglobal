@@ -64,6 +64,9 @@ export const updateFooterSettings = async (req, res) => {
     if (data.logo_url && data.logo_url.startsWith('data:image/')) {
       data.logo_url = saveImageIfBase64(data.logo_url)
     }
+    if (data.cert_image_url && data.cert_image_url.startsWith('data:image/')) {
+      data.cert_image_url = saveImageIfBase64(data.cert_image_url)
+    }
     const result = await FooterSettings.update(data)
     res.json({
       success: true,

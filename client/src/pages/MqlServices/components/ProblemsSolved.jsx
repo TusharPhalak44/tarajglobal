@@ -322,7 +322,7 @@ const ProblemsSolved = () => {
 
         {/* ── COMPACT SECTION HEADER ── */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5 backdrop-blur-md mb-2 shadow-xs">
+          <div className="inline-flex items-center gap-1.5   mb-2">
             <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
               Automated MQL Transformation

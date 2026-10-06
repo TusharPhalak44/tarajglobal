@@ -83,7 +83,6 @@ export default function JourneyHero() {
       className="relative min-h-[92vh] flex flex-col justify-between pt-28 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 overflow-hidden select-none border-b"
       style={{
         backgroundColor: isDark ? '#06080E' : '#FAFBFD',
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       }}
       aria-label="Turn B2B Demand Into Real Pipeline — Taraj Global Services"
     >
@@ -126,7 +125,6 @@ export default function JourneyHero() {
                 className="font-mono text-[11px] font-bold tracking-[0.25em] uppercase px-3.5 py-1 rounded-full"
                 style={{
                   backgroundColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)',
                   color: isDark ? '#A1A1AA' : '#52525B',
                 }}
               >
@@ -200,12 +198,10 @@ export default function JourneyHero() {
               style={{
                 y: networkY,
                 backgroundColor: isDark ? 'rgba(12, 16, 26, 0.75)' : 'rgba(255, 255, 255, 0.85)',
-                borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
                 boxShadow: isDark ? '0 30px 60px -15px rgba(0, 0, 0, 0.7)' : '0 20px 45px -15px rgba(0, 102, 204, 0.08)',
               }}
             >
               {/* Header Label */}
-              <div className="flex items-center justify-between pb-4 mb-2 border-b" style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }}>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-widest" style={{ color: isDark ? '#A1A1AA' : '#6B7280' }}>
                   B2B GROWTH NETWORK
                 </span>
@@ -244,7 +240,6 @@ export default function JourneyHero() {
                       left: n.x,
                       top: n.y,
                       backgroundColor: isDark ? 'rgba(8, 10, 16, 0.92)' : 'rgba(255, 255, 255, 0.95)',
-                      borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.1)',
                       boxShadow: `0 8px 25px -5px ${n.color}25`,
                     }}
                   >
@@ -284,7 +279,7 @@ export default function JourneyHero() {
         <button
           type="button"
           onClick={handleScrollToDiscovery}
-          className="flex items-center gap-1.5 hover:text-sky-400 transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 hover:text-accent transition-colors cursor-pointer"
         >
           <span>EXPLORE JOURNEY</span>
           <ArrowDown className="w-3.5 h-3.5" />
