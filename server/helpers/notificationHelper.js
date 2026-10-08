@@ -179,13 +179,13 @@ const notifications = {
   }),
 
   // Job application notifications
-  newApplication: (applicantName, jobId) => ({
+  newApplication: (applicantName, jobTitle, applicationId) => ({
     title: 'New Job Application',
-    message: `New application received from ${applicantName}`,
+    message: `New application received from ${applicantName} for ${jobTitle}`,
     type: 'info',
     action_url: `/admin/applications`,
     entity_type: 'job_application',
-    entity_id: jobId
+    entity_id: typeof applicationId === 'number' ? applicationId : (parseInt(applicationId, 10) || null)
   }),
 
   // Media notifications

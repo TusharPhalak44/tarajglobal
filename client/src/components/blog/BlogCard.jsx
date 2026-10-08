@@ -43,8 +43,8 @@ const BlogCard = ({ blog, index, onReadMore }) => {
           loading="lazy"
           onError={(e) => {
             const rawImg = blog.featured_image || blog.image
-            if (rawImg && typeof rawImg === 'string' && rawImg.startsWith('/uploads') && !e.currentTarget.src.includes(':5000')) {
-              e.currentTarget.src = `http://localhost:5000${rawImg}`
+            if (rawImg && typeof rawImg === 'string' && rawImg.startsWith('/uploads') && !e.currentTarget.src.includes(':5001')) {
+              e.currentTarget.src = `http://localhost:5001${rawImg}`
               return
             }
             e.currentTarget.onerror = null

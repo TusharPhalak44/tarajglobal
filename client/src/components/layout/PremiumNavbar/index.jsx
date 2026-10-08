@@ -62,7 +62,7 @@ const SERVICES_DATA = [
   }
 ]
 
-export const PremiumNavbar = () => {
+export const PremiumNavbar = ({ isPreview = false }) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -73,6 +73,7 @@ export const PremiumNavbar = () => {
 
   // Scroll listener with Lenis & window fallback
   useEffect(() => {
+    if (isPreview) return; // Disable scroll listener in preview mode
     const handleScroll = () => {
       const scrollPos = window.lenis ? window.lenis.scroll : window.scrollY
       setIsScrolled(scrollPos > 30)
@@ -85,7 +86,7 @@ export const PremiumNavbar = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isPreview])
 
   // Close menus upon page navigation
   useEffect(() => {
@@ -228,13 +229,13 @@ export const PremiumNavbar = () => {
     fetchNavbarData()
   }, [location.pathname, fetchNavbarData])
 
-  const hasTopHeader = logoData.header_visible && headerItems.length > 0 && !isScrolled
+  const hasTopHeader = logoData.header_visible && headerItems.length > 0 && (!isScrolled || isPreview)
 
   return (
-    <>
+    <div className={isPreview ? "relative w-full h-full z-10" : ""}>
       {/* ── TOP HEADER ANNOUNCEMENT BAR (CMS MANAGED) ───────────────────── */}
       {hasTopHeader && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-950/95 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-white/10 text-xs h-8 px-4 flex items-center backdrop-blur-md">
+        <div className={`${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 bg-white dark:bg-slate-950/95 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-white/10 text-xs h-8 px-4 flex items-center backdrop-blur-md`}>
           <div className="max-w-[1600px] w-full mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4 text-[11px] font-medium">
               {headerItems.filter(h => h.url.startsWith('mailto:') || h.url.startsWith('tel:')).map(item => (
@@ -242,6 +243,7 @@ export const PremiumNavbar = () => {
                   key={item.id}
                   href={item.url}
                   className="inline-flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-[#0066CC] dark:hover:text-[#00A6FF] transition-colors"
+                  onClick={e => isPreview && e.preventDefault()}
                 >
                   {item.url.startsWith('mailto:') ? <Mail size={12} className="text-[#0066CC] dark:text-[#00A6FF]" /> : <Phone size={12} className="text-[#0066CC] dark:text-[#00A6FF]" />}
                   <span>{item.label}</span>
@@ -254,6 +256,7 @@ export const PremiumNavbar = () => {
                   key={item.id}
                   href={item.url}
                   className="inline-flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-200 hover:text-[#0066CC] dark:hover:text-[#00A6FF] transition-colors"
+                  onClick={e => isPreview && e.preventDefault()}
                 >
                   <span>{item.label}</span>
                   <ArrowRight size={11} className="opacity-70 text-[#0066CC] dark:text-[#00A6FF]" />
@@ -265,7 +268,7 @@ export const PremiumNavbar = () => {
       )}
 
       <header
-        className={`fixed ${hasTopHeader ? 'top-8' : 'top-0'} left-0 right-0 z-40 transition-all duration-300 ${isScrolled
+        className={`${isPreview ? 'absolute' : 'fixed'} ${hasTopHeader ? 'top-8' : 'top-0'} left-0 right-0 z-40 transition-all duration-300 ${(isScrolled && !isPreview)
             ? 'h-[74px] sm:h-[80px] bg-white/95 dark:bg-[#070B14]/95 backdrop-blur-2xl border-b border-slate-200/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/50'
             : 'h-[80px] sm:h-[88px] bg-white/85 dark:bg-[#070B14]/85 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/[0.07]'
           }`}
@@ -293,12 +296,19 @@ export const PremiumNavbar = () => {
               to="/"
               className="flex items-center gap-2.5 sm:gap-3.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0 group cursor-pointer select-none"
               aria-label={logoData.logo_alt || logoData.logo_text || "Taraj Global Home"}
+              onClick={e => isPreview && e.preventDefault()}
             >
               {/* Ultra-premium animated SVG TG Emblem / Logo */}
               <TGAnimatedLogo
                 logoUrl={logoData.logo_url}
                 alt={logoData.logo_alt || "Taraj Global Logo"}
               />
+              
+              {logoData.show_logo_text && logoData.logo_text && (
+                <span className="inline-block font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white font-display">
+                  {logoData.logo_text}
+                </span>
+              )}
             </Link>
           </div>
 
@@ -552,7 +562,7 @@ export const PremiumNavbar = () => {
         logoText={logoData.logo_text}
         navLinks={filteredNavLinks}
       />
-    </>
+    </div>
   )
 }
 

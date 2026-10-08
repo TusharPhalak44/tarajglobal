@@ -25,7 +25,7 @@ class Blog {
       params.push(filters.limit)
     }
 
-    const [rows] = await db.execute(query, params)
+    const [rows] = await db.query(query, params)
     return rows
   }
 

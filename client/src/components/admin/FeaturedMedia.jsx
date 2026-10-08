@@ -99,9 +99,14 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
       onChange(uploadedUrl)
     } catch (error) {
       console.error('Upload failed:', error)
-      alert('Failed to upload file. Please try again.')
+      const errorMsg = error.response?.data?.message || 'Failed to upload file. Please try again.'
+      alert(errorMsg)
       setPreviewUrl('')
-      setMediaType('image')
+      setFileName('')
+      setFileSize('')
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
     } finally {
       setUploading(false)
       setUploadProgress(0)

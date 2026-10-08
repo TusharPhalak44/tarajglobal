@@ -194,7 +194,7 @@ export const Hero = () => {
           </div>
 
           {/* ══ Right Visual Block: Signature Revenue Signal Field (Span 5) ═ */}
-          <div ref={visualRef} className={`lg:col-span-5 flex justify-center relative w-full h-full min-h-[400px] sm:min-h-[500px] ${isDark ? 'mix-blend-screen' : ''}`}>
+          <div ref={visualRef} className="lg:col-span-5 flex justify-center relative w-full h-full min-h-[400px] sm:min-h-[500px]">
             <HeroRightAnimation />
           </div>
 

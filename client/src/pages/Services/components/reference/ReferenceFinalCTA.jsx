@@ -60,10 +60,10 @@ export default function ReferenceFinalCTA() {
               <button
                 type="button"
                 onClick={() => navigate('/contact')}
-                className="inline-flex items-center gap-2.5 bg-[#FF6D00] hover:bg-[#FF8A00] text-black text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-xl shadow-[#FF6D00]/30 cursor-pointer group"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#FF6D00] to-[#FF8500] hover:from-[#E05E00] hover:to-[#FF6D00] text-white text-xs font-mono font-bold uppercase tracking-wider shadow-lg shadow-[#FF6D00]/25 hover:shadow-xl hover:shadow-[#FF6D00]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer group"
               >
                 <span>Start a Conversation</span>
-                <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>

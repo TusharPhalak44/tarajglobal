@@ -51,7 +51,7 @@ const upload = multer({
 // @route   GET /api/admin/media
 // @desc    Get all media
 // @access  Private
-router.get('/', checkPermission('media.upload'), async (req, res) => {
+router.get('/', checkPermission('media.view'), async (req, res) => {
   try {
     const { type, search, page = 1, limit = 20 } = req.query
     const offset = (page - 1) * limit
@@ -69,7 +69,7 @@ router.get('/', checkPermission('media.upload'), async (req, res) => {
       params.push(`%${search}%`, `%${search}%`)
     }
     
-    const [media] = await db.execute(`
+    const [media] = await db.query(`
       SELECT m.*, u.name as uploaded_by_name
       FROM media m
       LEFT JOIN users u ON m.uploaded_by = u.id
@@ -146,7 +146,7 @@ router.post('/upload', checkPermission('media.upload'), upload.single('file'), a
 // @route   PUT /api/admin/media/:id
 // @desc    Update media metadata
 // @access  Private
-router.put('/:id', checkPermission('media.upload'), async (req, res) => {
+router.put('/:id', checkPermission('media.edit'), async (req, res) => {
   try {
     const { alt_text, caption, description } = req.body
     
@@ -164,7 +164,7 @@ router.put('/:id', checkPermission('media.upload'), async (req, res) => {
 // @route   DELETE /api/admin/media/:id
 // @desc    Delete media
 // @access  Private
-router.delete('/:id', checkPermission('media.upload'), async (req, res) => {
+router.delete('/:id', checkPermission('media.delete'), async (req, res) => {
   try {
     const [media] = await db.execute('SELECT * FROM media WHERE id = ?', [req.params.id])
     

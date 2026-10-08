@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  resolve:({
+  plugins: [react(), viteCompression({ algorithm: 'gzip' })],
+  resolve: ({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
@@ -24,11 +25,11 @@ export default defineConfig({
   }),
   server: {
     host: true,
-    port: 3000,
-    strictPort: false,   // allow fallback to 3001, 3002 etc. if 3000 is taken
+    port: 3001,
+    strictPort: false,   // allow fallback if 3001 is taken
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://localhost:5001',
         changeOrigin: true,
         secure: false,
         configure: (proxy) => {
@@ -38,18 +39,18 @@ export default defineConfig({
         },
       },
       '/uploads': {
-        target: 'http://localhost:5000',
+        target: 'http://localhost:5001',
         changeOrigin: true,
         secure: false,
       },
       '/sitemap.xml': {
-        target: 'http://localhost:5000/api/seo/sitemap.xml',
+        target: 'http://localhost:5001/api/seo/sitemap.xml',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/sitemap.xml$/, '')
       },
       '/robots.txt': {
-        target: 'http://localhost:5000/api/seo/robots.txt',
+        target: 'http://localhost:5001/api/seo/robots.txt',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/robots.txt$/, '')
@@ -57,21 +58,6 @@ export default defineConfig({
     },
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'vendor-react'
-            }
-            if (id.includes('framer-motion') || id.includes('gsap')) {
-              return 'vendor-animation'
-            }
-            return 'vendor'
-          }
-        }
-      }
-    },
     chunkSizeWarningLimit: 1000,
   }
 })

@@ -1236,7 +1236,7 @@ function Careers() {
         method: 'POST',
         body: formDataToSend
       }).catch(() => {
-        return fetch('http://localhost:5000/api/jobs/job-application', {
+        return fetch('http://localhost:5001/api/jobs/job-application', {
           method: 'POST',
           body: formDataToSend
         })
@@ -1640,101 +1640,109 @@ function Careers() {
             </div>
 
             {/* ── ASYMMETRIC EDITORIAL GALLERY COMPOSITION ── */}
-            {filteredPhotos.length >= 6 && (
+            {filteredPhotos.length > 0 && (
               <div className="flex flex-col gap-6 lg:gap-8">
+                {filteredPhotos.length >= 6 ? (
+                  <>
+                    {/* Upper Block: Hero Featured Photo (7 cols) + Asymmetric Vertical Stack (5 cols) */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                      {/* Photo 01: Hero Featured Image (~55% width desktop) */}
+                      <div className="lg:col-span-7">
+                        <EditorialGalleryItem
+                          photo={filteredPhotos[0]}
+                          num="01"
+                          category={filteredPhotos[0].category || "CELEBRATION"}
+                          index={0}
+                          isFeatured={true}
+                          className="w-full aspect-[16/11] lg:aspect-auto lg:h-[540px]"
+                          onClick={() => setSelectedAlbum(filteredPhotos[0])}
+                          onMouseEnter={() => setGalleryCursorHovered(true)}
+                          onMouseLeave={() => setGalleryCursorHovered(false)}
+                        />
+                      </div>
 
-                {/* Upper Block: Hero Featured Photo (7 cols) + Asymmetric Vertical Stack (5 cols) */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                      {/* Top Right Stack: Photo 02 (Tall crop) + Photo 03 (Wide crop) */}
+                      <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
+                        <EditorialGalleryItem
+                          photo={filteredPhotos[1]}
+                          num="02"
+                          category={filteredPhotos[1].category || "AWARDS"}
+                          index={1}
+                          className="w-full aspect-[4/3] lg:aspect-auto lg:h-[258px]"
+                          onClick={() => setSelectedAlbum(filteredPhotos[1])}
+                          onMouseEnter={() => setGalleryCursorHovered(true)}
+                          onMouseLeave={() => setGalleryCursorHovered(false)}
+                        />
+                        <EditorialGalleryItem
+                          photo={filteredPhotos[2]}
+                          num="03"
+                          category={filteredPhotos[2].category || "COLLABORATION"}
+                          index={2}
+                          className="w-full aspect-[16/9] lg:aspect-auto lg:h-[258px]"
+                          onClick={() => setSelectedAlbum(filteredPhotos[2])}
+                          onMouseEnter={() => setGalleryCursorHovered(true)}
+                          onMouseLeave={() => setGalleryCursorHovered(false)}
+                        />
+                      </div>
+                    </div>
 
-                  {/* Photo 01: Hero Featured Image (~55% width desktop) */}
-                  <div className="lg:col-span-7">
-                    <EditorialGalleryItem
-                      photo={filteredPhotos[0]}
-                      num="01"
-                      category="CELEBRATION"
-                      index={0}
-                      isFeatured={true}
-                      className="w-full aspect-[16/11] lg:aspect-auto lg:h-[540px]"
-                      onClick={() => setSelectedAlbum(filteredPhotos[0])}
-                      onMouseEnter={() => setGalleryCursorHovered(true)}
-                      onMouseLeave={() => setGalleryCursorHovered(false)}
-                    />
+                    {/* Lower Block: The Overlapping Moment (Photo 04) + Photo 05 + Photo 06 */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch relative">
+                      {[3, 4, 5].map((idx) => (
+                        <div key={idx} className="relative z-10">
+                          <EditorialGalleryItem
+                            photo={filteredPhotos[idx]}
+                            num={`0${idx + 1}`}
+                            category={filteredPhotos[idx].category || "MILESTONE"}
+                            index={idx}
+                            className="w-full aspect-[4/3] lg:aspect-auto lg:h-[310px]"
+                            onClick={() => setSelectedAlbum(filteredPhotos[idx])}
+                            onMouseEnter={() => setGalleryCursorHovered(true)}
+                            onMouseLeave={() => setGalleryCursorHovered(false)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Remaining albums if more than 6 */}
+                    {filteredPhotos.length > 6 && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch relative">
+                        {filteredPhotos.slice(6).map((photo, idx) => (
+                          <div key={idx + 6} className="relative z-10">
+                            <EditorialGalleryItem
+                              photo={photo}
+                              num={String(idx + 7).padStart(2, '0')}
+                              category={photo.category || "GALLERY"}
+                              index={idx + 6}
+                              className="w-full aspect-[4/3] lg:aspect-auto lg:h-[310px]"
+                              onClick={() => setSelectedAlbum(photo)}
+                              onMouseEnter={() => setGalleryCursorHovered(true)}
+                              onMouseLeave={() => setGalleryCursorHovered(false)}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch relative">
+                    {/* Dynamic grid for less than 6 albums */}
+                    {filteredPhotos.map((photo, idx) => (
+                      <div key={idx} className="relative z-10">
+                        <EditorialGalleryItem
+                          photo={photo}
+                          num={`0${idx + 1}`}
+                          category={photo.category || "GALLERY"}
+                          index={idx}
+                          className="w-full aspect-[4/3] lg:aspect-auto lg:h-[350px]"
+                          onClick={() => setSelectedAlbum(photo)}
+                          onMouseEnter={() => setGalleryCursorHovered(true)}
+                          onMouseLeave={() => setGalleryCursorHovered(false)}
+                        />
+                      </div>
+                    ))}
                   </div>
-
-                  {/* Top Right Stack: Photo 02 (Tall crop) + Photo 03 (Wide crop) */}
-                  <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
-                    {/* Photo 02: Tall Crop */}
-                    <EditorialGalleryItem
-                      photo={filteredPhotos[1]}
-                      num="02"
-                      category="AWARDS"
-                      index={1}
-                      className="w-full aspect-[4/3] lg:aspect-auto lg:h-[258px]"
-                      onClick={() => setSelectedAlbum(filteredPhotos[1])}
-                      onMouseEnter={() => setGalleryCursorHovered(true)}
-                      onMouseLeave={() => setGalleryCursorHovered(false)}
-                    />
-
-                    {/* Photo 03: Wide Crop */}
-                    <EditorialGalleryItem
-                      photo={filteredPhotos[2]}
-                      num="03"
-                      category="COLLABORATION"
-                      index={2}
-                      className="w-full aspect-[16/9] lg:aspect-auto lg:h-[258px]"
-                      onClick={() => setSelectedAlbum(filteredPhotos[2])}
-                      onMouseEnter={() => setGalleryCursorHovered(true)}
-                      onMouseLeave={() => setGalleryCursorHovered(false)}
-                    />
-                  </div>
-                </div>
-
-                {/* Lower Block: The Overlapping Moment (Photo 04) + Photo 05 + Photo 06 */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch relative">
-
-                  {/* Photo 04: RnR Spring Accolades (Positioned without overlap) */}
-                  <div className="lg:col-span-4 relative z-10">
-                    <EditorialGalleryItem
-                      photo={filteredPhotos[3]}
-                      num="04"
-                      category="RECOGNITION"
-                      index={3}
-                      className="w-full aspect-[4/3] lg:aspect-auto lg:h-[310px]"
-                      onClick={() => setSelectedAlbum(filteredPhotos[3])}
-                      onMouseEnter={() => setGalleryCursorHovered(true)}
-                      onMouseLeave={() => setGalleryCursorHovered(false)}
-                    />
-                  </div>
-
-                  {/* Photo 05: Modern HQ Life */}
-                  <div className="lg:col-span-4 relative z-10">
-                    <EditorialGalleryItem
-                      photo={filteredPhotos[4]}
-                      num="05"
-                      category="MODERN HQ"
-                      index={4}
-                      className="w-full aspect-[16/10] lg:aspect-auto lg:h-[310px]"
-                      onClick={() => setSelectedAlbum(filteredPhotos[4])}
-                      onMouseEnter={() => setGalleryCursorHovered(true)}
-                      onMouseLeave={() => setGalleryCursorHovered(false)}
-                    />
-                  </div>
-
-                  {/* Photo 06: Milestone Summit */}
-                  <div className="lg:col-span-4 relative z-10">
-                    <EditorialGalleryItem
-                      photo={filteredPhotos[5]}
-                      num="06"
-                      category="MILESTONE"
-                      index={5}
-                      className="w-full aspect-[16/10] lg:aspect-auto lg:h-[310px]"
-                      onClick={() => setSelectedAlbum(filteredPhotos[5])}
-                      onMouseEnter={() => setGalleryCursorHovered(true)}
-                      onMouseLeave={() => setGalleryCursorHovered(false)}
-                    />
-                  </div>
-                </div>
-
+                )}
               </div>
             )}
 

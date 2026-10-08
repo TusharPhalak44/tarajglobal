@@ -237,8 +237,8 @@ const Users = () => {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Team & Role-Based Access Control (RBAC)"
-        subtitle="Manage administrative operators, editorial staff, HR recruiters, and system permissions."
+        title="Team & User Management"
+        subtitle="Manage administrators and blog creator users."
         breadcrumbs={[{ label: 'Users & RBAC' }]}
         onRefresh={() => fetchUsers(true)}
         isRefreshing={isRefreshing}
@@ -297,12 +297,8 @@ const Users = () => {
             className="admin-select text-sm min-w-[140px]"
           >
             <option value="">All Roles</option>
-            <option value="super_admin">Super Admin</option>
-            <option value="admin">Admin</option>
-            <option value="editor">Editor</option>
-            <option value="hr_recruiter">HR Recruiter</option>
-            <option value="content_manager">Content Manager</option>
-            <option value="user">Standard User</option>
+            <option value="admin">Admin (Full Access)</option>
+            <option value="user">User (Blog Creator)</option>
           </select>
 
           <select
@@ -348,9 +344,17 @@ const Users = () => {
                   <tr key={u.id} className="group">
                     <td>
                       <div className="flex items-center gap-3 min-w-[200px]">
-                        <div className="w-5 h-5 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-sm text-[#00A6FF] shrink-0">
-                          {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
-                        </div>
+                        {u.avatar ? (
+                          <img
+                            src={u.avatar}
+                            alt={u.name}
+                            className="w-8 h-8 rounded-full object-cover border border-[var(--admin-border-subtle)] shrink-0"
+                          />
+                        ) : (
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-sm text-[#00A6FF] shrink-0">
+                            {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
+                          </div>
+                        )}
                         <div className="min-w-0">
                           <p className="font-bold text-sm sm:text-base text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors truncate">
                             {u.name}
@@ -530,12 +534,8 @@ const Users = () => {
                     onChange={(e) => setCreateForm({ ...createForm, role: e.target.value })}
                     className="admin-select text-sm font-semibold"
                   >
-                    <option value="super_admin">Super Admin</option>
-                    <option value="admin">Admin</option>
-                    <option value="editor">Editor</option>
-                    <option value="hr_recruiter">HR Recruiter</option>
-                    <option value="content_manager">Content Manager</option>
-                    <option value="user">Standard User</option>
+                    <option value="admin">Admin (Full Access)</option>
+                    <option value="user">User (Blog Creator)</option>
                   </select>
                 </div>
 
@@ -622,12 +622,8 @@ const Users = () => {
                     onChange={(e) => setEditForm({ ...editForm, role: e.target.value })}
                     className="admin-select text-sm font-semibold"
                   >
-                    <option value="super_admin">Super Admin</option>
-                    <option value="admin">Admin</option>
-                    <option value="editor">Editor</option>
-                    <option value="hr_recruiter">HR Recruiter</option>
-                    <option value="content_manager">Content Manager</option>
-                    <option value="user">Standard User</option>
+                    <option value="admin">Admin (Full Access)</option>
+                    <option value="user">User (Blog Creator)</option>
                   </select>
                 </div>
 

@@ -412,8 +412,8 @@ function BlogDetails() {
                   src={featuredImg}
                   alt={blog.title}
                   onError={(e) => {
-                    if (featuredImg && typeof featuredImg === 'string' && featuredImg.startsWith('/uploads') && !e.currentTarget.src.includes(':5000')) {
-                      e.currentTarget.src = `http://localhost:5000${featuredImg}`
+                    if (featuredImg && typeof featuredImg === 'string' && featuredImg.startsWith('/uploads') && !e.currentTarget.src.includes(':5001')) {
+                      e.currentTarget.src = `http://localhost:5001${featuredImg}`
                       return
                     }
                     e.currentTarget.onerror = null

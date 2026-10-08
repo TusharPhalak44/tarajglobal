@@ -18,6 +18,7 @@ import {
 import { adminAPI } from '@api'
 import FeaturedMedia from '@components/admin/FeaturedMedia'
 import { analyzeSEO } from '@utils/seoAnalyzer'
+import { useAuth } from '@context/AuthContext'
 import PageHeader from '@components/admin/PageHeader'
 import { DashboardSkeleton } from '@components/admin/LoadingSkeleton'
 
@@ -37,6 +38,7 @@ const quillModules = {
 const EditBlog = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  const { user } = useAuth()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [tagsInput, setTagsInput] = useState('')
@@ -488,17 +490,24 @@ const EditBlog = () => {
                 <label className="block text-sm font-bold text-[var(--admin-text-primary)] mb-1.5">
                   Author
                 </label>
-                <select
-                  name="author_id"
-                  value={editForm.author_id}
-                  onChange={handleInputChange}
-                  className="admin-select w-full text-sm"
-                >
-                  <option value="">Select Author</option>
-                  {authors.map((a) => (
-                    <option key={a.id} value={a.id}>{a.name}</option>
-                  ))}
-                </select>
+                {user?.role === 'user' ? (
+                  <div className="admin-input w-full text-sm bg-[var(--admin-bg-elevated)] text-[var(--admin-text-primary)] cursor-not-allowed flex items-center justify-between border border-[var(--admin-border-subtle)]">
+                    <span className="font-semibold">{authors.find(a => a.id === editForm.author_id)?.name || user?.name || user?.email || 'Author'}</span>
+                    <span className="text-[12px] bg-blue-500/10 text-blue-500 font-bold px-2 py-0.5 rounded">You (Auto-assigned)</span>
+                  </div>
+                ) : (
+                  <select
+                    name="author_id"
+                    value={editForm.author_id}
+                    onChange={handleInputChange}
+                    className="admin-select w-full text-sm"
+                  >
+                    <option value="">Select Author</option>
+                    {authors.map((a) => (
+                      <option key={a.id} value={a.id}>{a.name}</option>
+                    ))}
+                  </select>
+                )}
               </div>
 
               <div>

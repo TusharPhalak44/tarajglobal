@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import {
   Plus,
   Edit2,
@@ -198,7 +199,8 @@ const CMSOurClients = () => {
   const activeClients = clients.filter(c => !!c.is_active)
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-16">
+    <div className="admin-page-container relative min-h-screen bg-[#F8FAFC] dark:bg-[#07090E] overflow-hidden -m-4 sm:-m-6 lg:-m-8 p-4 sm:p-6 lg:p-8">
+      <div className="space-y-6 max-w-7xl mx-auto pb-16 relative z-10">
       <PageHeader
         title="Enterprise Clients CMS"
         subtitle="Manage brand showcase, section copy, and client logo reel on the live website"
@@ -229,17 +231,17 @@ const CMSOurClients = () => {
 
       {/* Summary KPI Strip */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="admin-card p-4 flex items-center justify-between">
+        <div className="bg-white/60 dark:bg-[#121622]/60 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none p-4 flex items-center justify-between">
           <div>
             <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Total Brands</div>
-            <div className="text-2xl font-black text-text-primary mt-1">{clients.length}</div>
+            <div className="text-2xl font-black text-[#F97316] mt-1">{clients.length}</div>
           </div>
-          <div className="w-5 h-5 rounded-xl bg-primary/30 dark:bg-primary/10 flex items-center justify-center text-primary">
+          <div className="w-5 h-5 rounded-xl bg-[#F97316]/20 dark:bg-[#F97316]/10 flex items-center justify-center text-[#F97316]">
             <Building2 className="w-5 h-5" />
           </div>
         </div>
 
-        <div className="admin-card p-4 flex items-center justify-between">
+        <div className="bg-white/60 dark:bg-[#121622]/60 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none p-4 flex items-center justify-between">
           <div>
             <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Active in Marquee</div>
             <div className="text-2xl font-black text-emerald-400 mt-1">{activeClients.length}</div>
@@ -249,7 +251,7 @@ const CMSOurClients = () => {
           </div>
         </div>
 
-        <div className="admin-card p-4 flex items-center justify-between">
+        <div className="bg-white/60 dark:bg-[#121622]/60 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none p-4 flex items-center justify-between">
           <div>
             <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Section State</div>
             <div className="text-base font-bold mt-1.5">
@@ -265,10 +267,10 @@ const CMSOurClients = () => {
           </div>
         </div>
 
-        <div className="admin-card p-4 flex items-center justify-between">
+        <div className="bg-white/60 dark:bg-[#121622]/60 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none p-4 flex items-center justify-between">
           <div>
             <div className="text-sm font-semibold uppercase tracking-wider text-text-muted">Reel Speed</div>
-            <div className="text-sm font-mono font-bold text-text-primary mt-1.5">Continuous 20s</div>
+            <div className="text-sm font-mono font-bold text-[#F97316] mt-1.5">Continuous 20s</div>
           </div>
           <div className="w-5 h-5 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
             <Sparkles className="w-5 h-5" />
@@ -277,11 +279,11 @@ const CMSOurClients = () => {
       </div>
 
       {/* Section Settings Card */}
-      <div className="admin-card p-6 space-y-6">
+      <div className="bg-white/60 dark:bg-[#121622]/60 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none p-6 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[var(--admin-border)]">
           <div>
-            <h2 className="text-base font-bold text-text-primary flex items-center gap-2">
-              <Settings className="w-4 h-4 text-primary" />
+            <h2 className="text-base font-bold text-[#F97316] flex items-center gap-2">
+              <Settings className="w-4 h-4 text-[#F97316]" />
               Homepage Clients Section Parameters
             </h2>
             <p className="text-sm text-text-muted mt-0.5">Customize the heading, gradient accents, and subtext displayed above the marquee</p>
@@ -292,7 +294,7 @@ const CMSOurClients = () => {
                 type="checkbox"
                 checked={sectionSettings.is_visible}
                 onChange={(e) => setSettings(s => ({ ...s, is_visible: e.target.checked }))}
-                className="w-4 h-4 rounded text-primary"
+                className="w-4 h-4 rounded text-[#F97316]"
               />
               <span>Display Section on Homepage</span>
             </label>
@@ -363,10 +365,10 @@ const CMSOurClients = () => {
       </div>
 
       {/* Clients Roster Table */}
-      <div className="admin-card overflow-hidden">
+      <div className="bg-white/60 dark:bg-[#121622]/60 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none overflow-hidden">
         <div className="p-5 border-b border-[var(--admin-border)] flex items-center justify-between">
-          <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-primary" />
+          <h3 className="text-base font-bold text-[#F97316] flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-[#F97316]" />
             Client Brand Roster ({clients.length})
           </h3>
           <button onClick={openAdd} className="admin-btn-primary text-sm flex items-center gap-2">
@@ -421,7 +423,7 @@ const CMSOurClients = () => {
                           href={client.website_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm font-mono text-primary hover:underline inline-flex items-center gap-1"
+                          className="text-sm font-mono text-[#F97316] hover:underline inline-flex items-center gap-1"
                         >
                           <span>{client.website_url.replace(/^https?:\/\//, '')}</span>
                           <ArrowUpRight className="w-3 h-3" />
@@ -470,10 +472,10 @@ const CMSOurClients = () => {
 
       {/* Live Homepage Marquee Simulation */}
       {activeClients.length > 0 && (
-        <div className="admin-card p-6 space-y-4">
+        <div className="bg-white/60 dark:bg-[#121622]/60 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none p-6 space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-sm font-bold uppercase tracking-wider text-text-muted flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-primary" /> Live Client Strip Preview
+              <Sparkles className="w-4 h-4 text-[#F97316]" /> Live Client Strip Preview
             </span>
             <span className="text-sm text-text-muted font-mono">{activeClients.length} logos in active stream</span>
           </div>
@@ -481,13 +483,13 @@ const CMSOurClients = () => {
           <div className="p-6 rounded-2xl bg-background dark:bg-[#07090E] border border-[var(--admin-border)] overflow-hidden">
             <div className="text-center mb-6">
               {sectionSettings.eyebrow && (
-                <div className="text-[12px] font-mono font-bold tracking-widest text-primary uppercase mb-1">
+                <div className="text-[12px] font-mono font-bold tracking-widest text-[#F97316] uppercase mb-1">
                   {sectionSettings.eyebrow}
                 </div>
               )}
               <h4 className="text-lg font-black text-text-primary dark:text-white">
                 <span>{sectionSettings.title_white} </span>
-                <span className="bg-gradient-to-r from-[#00A6FF] to-[#FF6D00] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#F97316] to-[#EA580C] bg-clip-text text-transparent">
                   {sectionSettings.title_gradient}
                 </span>
               </h4>
@@ -517,12 +519,12 @@ const CMSOurClients = () => {
       )}
 
       {/* Create / Edit Client Modal */}
-      {showModal && editingClient && (
+      {showModal && editingClient && createPortal(
         <div className="admin-modal-backdrop">
-          <div className="admin-modal-content max-w-lg">
+          <div className="admin-modal-content max-w-lg bg-white dark:bg-[#121622] rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl">
             <div className="p-6 border-b border-[var(--admin-border)] flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-bold text-text-primary">
+                <h3 className="text-lg font-bold text-[#F97316]">
                   {editingClient.id ? 'Edit Client Record' : 'Register New Partner'}
                 </h3>
                 <p className="text-sm text-text-muted mt-0.5">Configure client brand identity and external URL</p>
@@ -559,7 +561,7 @@ const CMSOurClients = () => {
                       disabled={uploadingLogo}
                       className="admin-btn-secondary w-full text-sm flex items-center justify-center gap-2"
                     >
-                      <Upload className="w-4 h-4 text-primary" />
+                      <Upload className="w-4 h-4 text-[#F97316]" />
                       {uploadingLogo ? 'Uploading Asset...' : 'Upload Image File'}
                     </button>
                     <input
@@ -630,7 +632,7 @@ const CMSOurClients = () => {
                       type="checkbox"
                       checked={editingClient.is_active}
                       onChange={(e) => setEditing(p => ({ ...p, is_active: e.target.checked }))}
-                      className="w-4 h-4 rounded text-primary"
+                      className="w-4 h-4 rounded text-[#F97316]"
                     />
                     <span>Active in Marquee</span>
                   </label>
@@ -657,19 +659,24 @@ const CMSOurClients = () => {
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Delete Confirm Modal */}
-      <ConfirmModal
-        isOpen={deleteConfirm.open}
-        title="Remove Enterprise Client"
-        message={`Are you sure you want to delete "${deleteConfirm.name}"? This brand logo will immediately be removed from the public website marquee.`}
-        confirmLabel="Delete Client"
-        variant="danger"
-        onConfirm={executeDelete}
-        onCancel={() => setDeleteConfirm({ open: false, id: null, name: '' })}
-      />
+      {deleteConfirm.open && createPortal(
+        <ConfirmModal
+          isOpen={deleteConfirm.open}
+          title="Remove Enterprise Client"
+          message={`Are you sure you want to delete "${deleteConfirm.name}"? This brand logo will immediately be removed from the public website marquee.`}
+          confirmLabel="Delete Client"
+          variant="danger"
+          onConfirm={executeDelete}
+          onCancel={() => setDeleteConfirm({ open: false, id: null, name: '' })}
+        />,
+        document.body
+      )}
+    </div>
     </div>
   )
 }

@@ -127,16 +127,42 @@ export const refreshToken = async (req, res) => {
 // ── Get Me ─────────────────────────────────────────────────────────────────
 export const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id)
-    if (!user) {
+    const [users] = await db.execute('SELECT * FROM users WHERE id = ?', [req.user.id])
+    if (users.length === 0) {
       return res.status(404).json({ success: false, message: 'User not found' })
     }
+    const user = users[0]
+    delete user.password
     return res.json({
       success: true,
-      user: { id: user.id, name: user.name, email: user.email, role: user.role, avatar: user.avatar || null, phone: user.phone || null, department: user.department || null },
+      user
     })
   } catch (error) {
+    console.error('getMe error:', error)
     return res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+}
+
+// Helper to ensure profile columns exist in users table
+const ensureProfileColumns = async () => {
+  try {
+    const [columns] = await db.execute(`
+      SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
+      WHERE TABLE_NAME = 'users'
+    `)
+    const colNames = columns.map(c => c.COLUMN_NAME)
+
+    if (!colNames.includes('avatar')) {
+      await db.execute('ALTER TABLE users ADD COLUMN avatar VARCHAR(500) NULL AFTER role').catch(() => {})
+    }
+    if (!colNames.includes('phone')) {
+      await db.execute('ALTER TABLE users ADD COLUMN phone VARCHAR(50) NULL').catch(() => {})
+    }
+    if (!colNames.includes('department')) {
+      await db.execute('ALTER TABLE users ADD COLUMN department VARCHAR(100) NULL').catch(() => {})
+    }
+  } catch (e) {
+    console.warn('ensureProfileColumns error:', e.message)
   }
 }
 
@@ -146,35 +172,49 @@ export const updateProfile = async (req, res) => {
     const { name, email, avatar, phone, department } = req.body
     const userId = req.user.id
 
+    // Check if user exists
+    const [userRows] = await db.execute('SELECT * FROM users WHERE id = ?', [userId])
+    if (userRows.length === 0) {
+      return res.status(404).json({ success: false, message: 'User not found' })
+    }
+
     // Check if email is already taken by another user
-    if (email) {
+    if (email && email !== userRows[0].email) {
       const [existing] = await db.execute('SELECT id FROM users WHERE email = ? AND id != ?', [email, userId])
       if (existing.length > 0) {
         return res.status(400).json({ success: false, message: 'Email already in use' })
       }
     }
 
+    await ensureProfileColumns()
+
+    const [cols] = await db.execute(`
+      SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
+      WHERE TABLE_NAME = 'users'
+    `)
+    const colNames = cols.map(c => c.COLUMN_NAME)
+
     // Update user
     const updates = []
     const values = []
 
-    if (name !== undefined) {
+    if (name !== undefined && colNames.includes('name')) {
       updates.push('name = ?')
       values.push(name)
     }
-    if (email !== undefined) {
+    if (email !== undefined && colNames.includes('email')) {
       updates.push('email = ?')
       values.push(email)
     }
-    if (avatar !== undefined) {
+    if (avatar !== undefined && colNames.includes('avatar')) {
       updates.push('avatar = ?')
       values.push(avatar)
     }
-    if (phone !== undefined) {
+    if (phone !== undefined && colNames.includes('phone')) {
       updates.push('phone = ?')
       values.push(phone)
     }
-    if (department !== undefined) {
+    if (department !== undefined && colNames.includes('department')) {
       updates.push('department = ?')
       values.push(department)
     }
@@ -187,8 +227,9 @@ export const updateProfile = async (req, res) => {
     await db.execute(`UPDATE users SET ${updates.join(', ')} WHERE id = ?`, values)
 
     // Get updated user
-    const [users] = await db.execute('SELECT id, name, email, role, avatar, phone, department FROM users WHERE id = ?', [userId])
+    const [users] = await db.execute('SELECT * FROM users WHERE id = ?', [userId])
     const updatedUser = users[0]
+    delete updatedUser.password
 
     return res.json({
       success: true,
@@ -197,7 +238,7 @@ export const updateProfile = async (req, res) => {
     })
   } catch (error) {
     console.error('Update profile error:', error)
-    return res.status(500).json({ success: false, message: 'Internal server error' })
+    return res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 }
 
@@ -211,19 +252,23 @@ export const uploadAvatar = async (req, res) => {
     const fileUrl = `/uploads/avatars/${req.file.filename}`
     const userId = req.user.id
 
+    await ensureProfileColumns()
+
     await db.execute('UPDATE users SET avatar = ? WHERE id = ?', [fileUrl, userId])
-    const [users] = await db.execute('SELECT id, name, email, role, avatar, phone, department FROM users WHERE id = ?', [userId])
+    const [users] = await db.execute('SELECT * FROM users WHERE id = ?', [userId])
+    const updatedUser = users[0]
+    delete updatedUser.password
 
     return res.json({
       success: true,
       message: 'Profile photo uploaded successfully',
       url: fileUrl,
       file_url: fileUrl,
-      user: users[0]
+      user: updatedUser
     })
   } catch (error) {
     console.error('Upload avatar error:', error)
-    return res.status(500).json({ success: false, message: 'Internal server error' })
+    return res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 }
 

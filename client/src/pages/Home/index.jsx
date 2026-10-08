@@ -12,6 +12,8 @@ import Stats from '@components/sections/Stats'
 import HowWeWork from '@components/sections/HowWeWork'
 
 
+import { useSEOData } from '@hooks/useSEOData'
+
 const homeSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -49,17 +51,19 @@ const homeSchema = {
 }
 
 function Home() {
+  const { seoData, loading } = useSEOData('page', 'home', {
+    title: "B2B Lead Generation & Demand Generation Agency | Taraj Global",
+    description: "Scale your sales pipeline with Taraj Global. We deliver high-impact B2B lead generation, account-based marketing (ABM), appointment setting, and verified B2B data for SaaS and technology companies.",
+    keywords: "B2B lead generation, demand generation agency, B2B sales pipeline, SaaS lead generation, qualified B2B leads, account-based marketing agency, B2B appointment setting, intent-based marketing, sales qualified leads, verified B2B intelligence",
+    canonical: "/",
+    ogTitle: "Taraj Global | Powering Smarter B2B Pipeline Growth",
+    ogDescription: "Accelerate pipeline velocity with verified B2B data, demand generation campaigns, and targeted decision-maker outreach.",
+    schemaJson: homeSchema
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Lead Generation & Demand Generation Agency | Taraj Global"
-        description="Scale your sales pipeline with Taraj Global. We deliver high-impact B2B lead generation, account-based marketing (ABM), appointment setting, and verified B2B data for SaaS and technology companies."
-        keywords="B2B lead generation, demand generation agency, B2B sales pipeline, SaaS lead generation, qualified B2B leads, account-based marketing agency, B2B appointment setting, intent-based marketing, sales qualified leads, verified B2B intelligence"
-        canonical="/"
-        ogTitle="Taraj Global | Powering Smarter B2B Pipeline Growth"
-        ogDescription="Accelerate pipeline velocity with verified B2B data, demand generation campaigns, and targeted decision-maker outreach."
-        schemaJson={homeSchema}
-      />
+      <SEO {...seoData} schemaJson={homeSchema} />
 
       <div className="relative min-h-screen">
         {/* Dynamic Scroll-Linked Zoom In & Out Kinetic Background */}

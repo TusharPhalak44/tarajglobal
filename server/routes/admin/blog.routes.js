@@ -14,7 +14,7 @@ router.get('/', [
   query('limit').optional().isInt({ min: 1, max: 100 }),
   query('status').optional().custom((value) => {
     if (!value || value === '') return true;
-    if (!['draft', 'published', 'archived'].includes(value)) {
+    if (!['draft', 'published', 'archived', 'scheduled'].includes(value)) {
       throw new Error('Invalid status value');
     }
     return true;
@@ -41,7 +41,7 @@ router.post('/', [
   body('category_id').optional({ nullable: true, checkFalsy: true }).isInt().withMessage('Category ID must be an integer'),
   body('author_id').optional({ nullable: true, checkFalsy: true }).isInt().withMessage('Author ID must be an integer'),
   body('tags').optional({ nullable: true, checkFalsy: true }).isArray(),
-  body('status').optional({ nullable: true, checkFalsy: true }).isIn(['draft', 'published', 'archived']),
+  body('status').optional({ nullable: true, checkFalsy: true }).isIn(['draft', 'published', 'archived', 'scheduled']),
   body('featured').optional({ nullable: true, checkFalsy: true }).isBoolean(),
   body('featured_image').optional({ nullable: true, checkFalsy: true }),
   body('seo_title').optional({ nullable: true, checkFalsy: true }),
@@ -61,7 +61,7 @@ router.put('/:id', [
   body('excerpt').optional({ nullable: true, checkFalsy: true }),
   body('category_id').optional({ nullable: true, checkFalsy: true }).isInt().withMessage('Category ID must be an integer'),
   body('author_id').optional({ nullable: true, checkFalsy: true }).isInt().withMessage('Author ID must be an integer'),
-  body('status').optional({ nullable: true, checkFalsy: true }).isIn(['draft', 'published', 'archived']),
+  body('status').optional({ nullable: true, checkFalsy: true }).isIn(['draft', 'published', 'archived', 'scheduled']),
   body('featured').optional({ nullable: true, checkFalsy: true }).isBoolean(),
   body('featured_image').optional({ nullable: true, checkFalsy: true }),
   body('seo_title').optional({ nullable: true, checkFalsy: true }),
@@ -81,7 +81,7 @@ router.delete('/:id', checkPermission('blog.delete'), blogController.deleteBlog)
 // @access  Private
 router.patch('/:id/status', [
   hasAnyPermission(['blog.publish', 'blog.approve', 'blog.archive']),
-  body('status').isIn(['draft', 'published', 'archived']).withMessage('Invalid status')
+  body('status').isIn(['draft', 'published', 'archived', 'scheduled']).withMessage('Invalid status')
 ], validate, blogController.updateBlogStatus)
 
 // @route   POST /api/admin/blogs/:id/duplicate
@@ -104,7 +104,7 @@ router.post('/:id/revisions/:versionId/restore', checkPermission('blog.edit'), b
 // @access  Private
 router.post('/bulk', [
   hasAnyPermission(['blog.delete', 'blog.publish', 'blog.archive']),
-  body('action').isIn(['delete', 'publish', 'archive', 'category']).withMessage('Invalid action'),
+  body('action').isIn(['delete', 'publish', 'archive', 'scheduled', 'category']).withMessage('Invalid action'),
   body('blog_ids').isArray({ min: 1 }).withMessage('Blog IDs array is required'),
   body('category_id').optional().isInt()
 ], validate, blogController.bulkBlogAction)

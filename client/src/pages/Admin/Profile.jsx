@@ -228,7 +228,9 @@ const Profile = () => {
       setSaving(true)
       const response = await authAPI.updateProfile({
         name: formData.name.trim(),
-        email: formData.email.trim()
+        email: formData.email.trim(),
+        phone: formData.phone?.trim() || '',
+        department: formData.department?.trim() || ''
       })
       const updated = response.data?.user || response.data
       if (updated && updateUser) {
@@ -323,7 +325,7 @@ const Profile = () => {
   }
 
   const isAdminOrSuper = user?.role === 'super_admin' || user?.role === 'admin'
-  const avatarUrl = user?.avatar?.startsWith('http') ? user.avatar : user?.avatar ? `http://localhost:5000${user.avatar}` : null
+  const avatarUrl = user?.avatar?.startsWith('http') ? user.avatar : user?.avatar ? `http://localhost:5001${user.avatar}` : null
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
@@ -920,7 +922,7 @@ const Profile = () => {
             <div className="divide-y divide-[var(--admin-border-subtle)]">
               {teamUsers.map((u) => {
                 const isCurrent = u.id === user?.id
-                const uAvatar = u.avatar?.startsWith('http') ? u.avatar : u.avatar ? `http://localhost:5000${u.avatar}` : null
+                const uAvatar = u.avatar?.startsWith('http') ? u.avatar : u.avatar ? `http://localhost:5001${u.avatar}` : null
                 return (
                   <div key={u.id} className="py-3.5 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3.5 min-w-0">

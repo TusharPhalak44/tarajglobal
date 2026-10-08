@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
     let query = `
       SELECT j.*
       FROM careers j
-      WHERE j.status = 'published'
+      WHERE (j.status = 'published' OR j.status = 'active' OR j.status IS NULL)
     `
     const params = []
     
@@ -119,18 +119,34 @@ router.post('/job-application', upload.single('resume'), async (req, res) => {
       [first_name, last_name, email, phone, job_title, resume_path]
     )
 
-    // Notify admins about new application
-    const application = { first_name, last_name, email, phone }
+    // Notify admins and candidate about new application
+    const application = { first_name, last_name, email, phone, resume_path }
     const job = { title: job_title }
-    const adminEmail = process.env.ADMIN_EMAIL || 'info@tarajglobal.com'
+    const adminEmail = process.env.CAREER_EMAIL || process.env.HR_EMAIL || 'hr@tarajglobal.com'
     
+    // 1. Send in-app notification to admins
     try {
       await notificationHelper.notifyAdmins(
         notificationHelper.notifications.newApplication(first_name + ' ' + last_name, job_title, result.insertId)
       )
-      await emailService.sendNewApplicationNotification(application, job, adminEmail)
-    } catch (notifyError) {
-      console.error('Failed to send application notification:', notifyError)
+    } catch (inAppError) {
+      console.error('Failed to create in-app notification:', inAppError.message)
+    }
+
+    // 2. Send email notification to Admin/Recruiter
+    try {
+      const adminMailRes = await emailService.sendNewApplicationNotification(application, job, adminEmail)
+      console.log('Admin notification email result:', adminMailRes)
+    } catch (adminEmailError) {
+      console.error('Failed to send admin notification email:', adminEmailError.message)
+    }
+
+    // 3. Send confirmation email to Candidate
+    try {
+      const candidateMailRes = await emailService.sendCandidateApplicationConfirmation(application, job)
+      console.log('Candidate confirmation email result:', candidateMailRes)
+    } catch (candidateEmailError) {
+      console.error('Failed to send candidate confirmation email:', candidateEmailError.message)
     }
 
     res.status(201).json({

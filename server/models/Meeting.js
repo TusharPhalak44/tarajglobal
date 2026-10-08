@@ -1,9 +1,9 @@
 import db from '../config/db.js'
-import { v4 as uuidv4 } from 'uuid'
+import crypto from 'crypto'
 
 class Meeting {
   static async create(meetingData) {
-    const bookingId = uuidv4()
+    const bookingId = crypto.randomUUID()
     const [result] = await db.execute(
       `INSERT INTO meetings (booking_id, full_name, email, company, phone, meeting_date, meeting_time, time_zone, meeting_type, status) 
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,

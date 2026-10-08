@@ -30,7 +30,7 @@ router.get('/', checkPermission('analytics.view'), async (req, res) => {
       params.push(`%${search}%`, `%${search}%`, `%${search}%`)
     }
     
-    const [leads] = await db.execute(`
+    const [leads] = await db.query(`
       SELECT c.*, u.name as assigned_to_name
       FROM contacts c
       LEFT JOIN users u ON c.assigned_to = u.id

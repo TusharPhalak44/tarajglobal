@@ -7,13 +7,26 @@ import db from '../../config/db.js'
 
 const router = express.Router()
 
+// Middleware: Only admin can access user management
+const requireAdmin = (req, res, next) => {
+  if (req.user?.role !== 'admin' && req.user?.role !== 'super_admin') {
+    return res.status(403).json({ success: false, message: 'Access denied. Administrator privileges required.' })
+  }
+  next()
+}
+
+// Apply admin guard to ALL user management routes
+router.use(requireAdmin)
+
 // @route   GET /api/admin/users
 // @desc    Get all users
-// @access  Private
+// @access  Private (Super Admin only)
 router.get('/', async (req, res) => {
   try {
     const { role, status, search, page = 1, limit = 20 } = req.query
-    const offset = (page - 1) * limit
+    const limitNum = parseInt(limit) || 20
+    const pageNum = parseInt(page) || 1
+    const offset = (pageNum - 1) * limitNum
     
     let whereClause = 'WHERE 1=1'
     const params = []
@@ -33,13 +46,13 @@ router.get('/', async (req, res) => {
       params.push(`%${search}%`, `%${search}%`)
     }
     
-    const [users] = await db.execute(`
-      SELECT id, name, email, role, status, last_login_at, created_at
+    const [users] = await db.query(`
+      SELECT id, name, email, role, avatar, status, last_login_at, created_at
       FROM users
       ${whereClause}
       ORDER BY created_at DESC
       LIMIT ? OFFSET ?
-    `, [...params, parseInt(limit), offset])
+    `, [...params, limitNum, offset])
     
     const [countResult] = await db.execute(`SELECT COUNT(*) as total FROM users ${whereClause}`, params)
     
@@ -48,10 +61,10 @@ router.get('/', async (req, res) => {
       data: {
         users,
         pagination: {
-          page: parseInt(page),
-          limit: parseInt(limit),
+          page: pageNum,
+          limit: limitNum,
           total: countResult[0].total,
-          totalPages: Math.ceil(countResult[0].total / limit)
+          totalPages: Math.ceil(countResult[0].total / limitNum)
         }
       }
     })
@@ -68,16 +81,11 @@ router.post('/', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
   body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
-  body('role').optional().isIn(['super_admin', 'admin', 'editor', 'hr_recruiter', 'content_manager', 'user']).withMessage('Invalid role'),
+  body('role').optional().isIn(['admin', 'user']).withMessage('Role must be either admin or user.'),
   body('status').optional().isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status')
 ], validate, async (req, res) => {
   try {
     const { name, email, password, role = 'user', status = 'active' } = req.body
-    
-    // Privilege escalation guard: only super_admin can create super_admin accounts
-    if (role === 'super_admin' && req.user.role !== 'super_admin') {
-      return res.status(403).json({ success: false, message: 'Insufficient permissions to assign this role.' })
-    }
     
     // Check if user exists
     const [existing] = await db.execute('SELECT id FROM users WHERE email = ?', [email])
@@ -108,7 +116,7 @@ router.post('/', [
 router.put('/:id', [
   body('name').optional().trim().notEmpty().withMessage('Name cannot be empty'),
   body('email').optional().isEmail().withMessage('Valid email is required'),
-  body('role').optional().isIn(['super_admin', 'admin', 'editor', 'hr_recruiter', 'content_manager', 'user']).withMessage('Invalid role'),
+  body('role').optional().isIn(['admin', 'user']).withMessage('Role must be either admin or user.'),
   body('status').optional().isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status')
 ], validate, async (req, res) => {
   try {
@@ -127,11 +135,6 @@ router.put('/:id', [
       if (duplicate.length > 0) {
         return res.status(400).json({ success: false, message: 'A user with this email address already exists' })
       }
-    }
-    
-    // Privilege escalation guard: only super_admin can promote others to super_admin
-    if (role === 'super_admin' && req.user.role !== 'super_admin') {
-      return res.status(403).json({ success: false, message: 'Insufficient permissions to assign this role.' })
     }
     
     const updates = []
@@ -172,11 +175,11 @@ router.delete('/:id', async (req, res) => {
       return res.status(404).json({ success: false, message: 'User not found' })
     }
     
-    // Protect last super_admin from deletion
-    if (existing[0].role === 'super_admin') {
-      const [superAdminCount] = await db.execute("SELECT COUNT(*) as count FROM users WHERE role = 'super_admin'")
-      if (superAdminCount[0].count <= 1) {
-        return res.status(400).json({ success: false, message: 'Cannot delete the last super admin' })
+    // Protect last administrator from deletion
+    if (['admin', 'super_admin'].includes(existing[0].role)) {
+      const [adminCount] = await db.execute("SELECT COUNT(*) as count FROM users WHERE role IN ('admin', 'super_admin')")
+      if (adminCount[0].count <= 1) {
+        return res.status(400).json({ success: false, message: 'Cannot delete the last administrator' })
       }
     }
 
@@ -228,11 +231,11 @@ router.patch('/:id/status', [
       return res.status(404).json({ success: false, message: 'User not found' })
     }
     
-    // Protect last super_admin from deactivation
-    if (existing[0].role === 'super_admin' && status !== 'active') {
-      const [superAdminCount] = await db.execute("SELECT COUNT(*) as count FROM users WHERE role = 'super_admin' AND status = 'active'")
-      if (superAdminCount[0].count <= 1) {
-        return res.status(400).json({ success: false, message: 'Cannot deactivate the last active super admin' })
+    // Protect last administrator from deactivation
+    if (['admin', 'super_admin'].includes(existing[0].role) && status !== 'active') {
+      const [adminCount] = await db.execute("SELECT COUNT(*) as count FROM users WHERE role IN ('admin', 'super_admin') AND status = 'active'")
+      if (adminCount[0].count <= 1) {
+        return res.status(400).json({ success: false, message: 'Cannot deactivate the last active administrator' })
       }
     }
     

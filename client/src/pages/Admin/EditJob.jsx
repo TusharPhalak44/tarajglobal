@@ -23,12 +23,14 @@ const EditJob = () => {
   const [error, setError] = useState('')
   const [editForm, setEditForm] = useState({
     title: '',
+    department: '',
+    experience: '',
     description: '',
     requirements: '',
     location: '',
-    type: 'full-time',
+    type: 'Full-Time',
     salary: '',
-    status: 'draft'
+    status: 'published'
   })
 
   useEffect(() => {
@@ -42,12 +44,14 @@ const EditJob = () => {
       const jobData = response.data.data || response.data
       setEditForm({
         title: jobData.title || '',
+        department: jobData.department || '',
+        experience: jobData.experience || '',
         description: jobData.description || '',
         requirements: jobData.requirements || '',
         location: jobData.location || '',
-        type: jobData.type || 'full-time',
+        type: jobData.type || 'Full-Time',
         salary: jobData.salary || '',
-        status: jobData.status || 'draft'
+        status: jobData.status || 'published'
       })
     } catch (err) {
       console.error('Failed to fetch job:', err)
@@ -144,13 +148,13 @@ const EditJob = () => {
               <h3 className="text-base font-bold text-[var(--admin-text-primary)]">
                 Position Details & Logistics
               </h3>
-              <p className="text-sm text-[var(--admin-text-muted)]">Title, location parameters, and remuneration.</p>
+              <p className="text-sm text-[var(--admin-text-muted)]">Title, department category, location parameters, and requirements.</p>
             </div>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                 Position Title <span className="text-[#F43F5E]">*</span>
               </label>
               <input
@@ -163,9 +167,23 @@ const EditJob = () => {
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Department / Category
+                </label>
+                <input
+                  type="text"
+                  name="department"
+                  value={editForm.department}
+                  onChange={handleInputChange}
+                  placeholder="e.g. SALES & DEMAND GEN"
+                  className="admin-input"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Location
                 </label>
                 <input
@@ -173,12 +191,15 @@ const EditJob = () => {
                   name="location"
                   value={editForm.location}
                   onChange={handleInputChange}
+                  placeholder="e.g. Kharadi, Pune (On-Site)"
                   className="admin-input"
                 />
               </div>
+            </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Employment Type
                 </label>
                 <select
@@ -187,15 +208,29 @@ const EditJob = () => {
                   onChange={handleInputChange}
                   className="admin-select text-sm"
                 >
-                  <option value="full-time">Full-Time</option>
-                  <option value="part-time">Part-Time</option>
-                  <option value="contract">Contract</option>
-                  <option value="internship">Internship</option>
+                  <option value="Full-Time">Full-Time</option>
+                  <option value="Part-Time">Part-Time</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Internship">Internship</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                  Experience Level
+                </label>
+                <input
+                  type="text"
+                  name="experience"
+                  value={editForm.experience}
+                  onChange={handleInputChange}
+                  placeholder="e.g. 1 - 3 Years"
+                  className="admin-input"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Salary / Compensation
                 </label>
                 <input
@@ -203,40 +238,41 @@ const EditJob = () => {
                   name="salary"
                   value={editForm.salary}
                   onChange={handleInputChange}
+                  placeholder="e.g. Competitive / $60k - $80k"
                   className="admin-input"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                 Job Description <span className="text-[#F43F5E]">*</span>
               </label>
               <textarea
                 name="description"
                 value={editForm.description}
                 onChange={handleInputChange}
-                rows={6}
+                rows={4}
                 className="admin-input resize-y text-sm leading-relaxed"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
-                Requirements & Qualifications
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                Requirements & Qualifications (One per line)
               </label>
               <textarea
                 name="requirements"
                 value={editForm.requirements}
                 onChange={handleInputChange}
                 rows={5}
-                className="admin-input resize-y text-sm leading-relaxed"
+                className="admin-input resize-y text-sm leading-relaxed font-mono"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                 Publication Status
               </label>
               <select
@@ -245,8 +281,9 @@ const EditJob = () => {
                 onChange={handleInputChange}
                 className="admin-select text-sm font-semibold"
               >
-                <option value="draft">Draft</option>
+                <option value="published">Published (Live on Careers)</option>
                 <option value="active">Active (Open to Public)</option>
+                <option value="draft">Draft</option>
                 <option value="archived">Archived (Closed)</option>
               </select>
             </div>

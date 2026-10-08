@@ -11,20 +11,24 @@ import emailService from '../services/email.service.js'
 
 const router = express.Router()
 
-// Email transporter configuration using SMTP
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-  port: process.env.EMAIL_PORT || 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER || 'careers@tarajglobal.com',
-    pass: process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS || 'your-email-password'
-  }
-})
+// Helper functions to dynamically fetch current environment settings
+const getTransporter = () => {
+  return nodemailer.createTransport({
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.EMAIL_PORT || '587', 10),
+    secure: process.env.EMAIL_PORT === '465',
+    auth: {
+      user: process.env.EMAIL_USER || 'tgs.admin001@gmail.com',
+      pass: process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  })
+}
 
-// Admin email for notifications
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'info@tarajglobal.com'
-const FROM_EMAIL = process.env.EMAIL_FROM || 'careers@tarajglobal.com'
+const getAdminEmail = () => process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'tgs.admin001@gmail.com'
+const getFromEmail = () => process.env.EMAIL_FROM || process.env.EMAIL_USER || 'tgs.admin001@gmail.com'
 
 // @route   POST /api/contact/meeting
 // @desc    Book a meeting and send confirmation email
@@ -38,6 +42,8 @@ router.post('/meeting', [
 ], validate, async (req, res) => {
   try {
     const { fullName, email, company, phone, date, time, timeZone } = req.body
+    const FROM_EMAIL = getFromEmail()
+    const ADMIN_EMAIL = getAdminEmail()
     
     // Default timezone if not provided
     const finalTimeZone = timeZone || 'Asia/Kolkata'
@@ -75,9 +81,57 @@ router.post('/meeting', [
       day: 'numeric' 
     })
     
+    // Calculate UTC Dates for RFC 5545 iCalendar standard & Google Calendar 1-Click Link
+    const [hours, minutes] = time.split(':').map(n => parseInt(n, 10))
+    const [year, month, day] = formattedDate.split('-').map(n => parseInt(n, 10))
+
+    let startDateObj = new Date(Date.UTC(year, month - 1, day, hours, minutes, 0))
+    if (finalTimeZone.includes('Kolkata') || finalTimeZone.includes('India') || finalTimeZone === 'IST' || finalTimeZone.includes('Asia')) {
+      startDateObj = new Date(startDateObj.getTime() - (5.5 * 60 * 60 * 1000))
+    } else if (finalTimeZone.includes('New_York') || finalTimeZone === 'EST' || finalTimeZone === 'EDT') {
+      startDateObj = new Date(startDateObj.getTime() + (5 * 60 * 60 * 1000))
+    } else if (finalTimeZone.includes('Los_Angeles') || finalTimeZone === 'PST' || finalTimeZone === 'PDT') {
+      startDateObj = new Date(startDateObj.getTime() + (8 * 60 * 60 * 1000))
+    }
+
+    const endDateObj = new Date(startDateObj.getTime() + 30 * 60 * 1000)
+    const formatICalUTC = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+
+    const startUTC = formatICalUTC(startDateObj)
+    const endUTC = formatICalUTC(endDateObj)
+    const dtStamp = formatICalUTC(new Date())
+
+    const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Strategy Call with Taraj Global')}&dates=${startUTC}/${endUTC}&details=${encodeURIComponent(`Strategy Call meeting with ${fullName} (${company}).\nEmail: ${email}\nPhone: ${phone || 'N/A'}`)}&location=${encodeURIComponent('Online Strategy Call (Taraj Global)')}&add=${encodeURIComponent(email)}`
+
+    const eventUid = `meeting-${bookingResult.bookingId || Date.now()}@tarajglobal.com`
+
+    const icalContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Taraj Global Solutions//Meeting System//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:REQUEST',
+      'BEGIN:VEVENT',
+      `UID:${eventUid}`,
+      `DTSTAMP:${dtStamp}`,
+      `DTSTART:${startUTC}`,
+      `DTEND:${endUTC}`,
+      'SUMMARY:Strategy Call with Taraj Global',
+      `DESCRIPTION:Strategy Call meeting booked by ${fullName} (${company}, ${email}, Phone: ${phone || 'N/A'}).`,
+      'LOCATION:Online Strategy Call (Taraj Global)',
+      `ORGANIZER;CN="Taraj Global":mailto:${FROM_EMAIL}`,
+      `ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN="${fullName}":mailto:${email}`,
+      `ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE;CN="Taraj Global Admin":mailto:${ADMIN_EMAIL}`,
+      'STATUS:CONFIRMED',
+      'SEQUENCE:0',
+      'TRANSP:OPAQUE',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n')
+
     // User confirmation email
     const userMailOptions = {
-      from: FROM_EMAIL,
+      from: getFromEmail(),
       to: email,
       subject: 'Your Meeting with Taraj Global is Confirmed',
       html: `
@@ -172,6 +226,12 @@ router.post('/meeting', [
                 <div class="detail-value">${email}</div>
               </div>
             </div>
+
+            <div style="text-align: center; margin: 25px 0;">
+              <a href="${googleCalUrl}" target="_blank" style="background: linear-gradient(135deg, #00A6FF, #0077CC); color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 8px rgba(0,166,255,0.3);">
+                📅 Add to Google Calendar
+              </a>
+            </div>
             
             <p>Our team looks forward to speaking with you and discussing how Taraj Global can support your B2B growth and lead generation goals.</p>
             
@@ -185,52 +245,18 @@ router.post('/meeting', [
           </div>
         </body>
         </html>
-      `
+      `,
+      icalEvent: {
+        filename: 'invite.ics',
+        method: 'REQUEST',
+        content: icalContent
+      }
     }
-    
-    // Generate iCal event content
-    const [hours, minutes] = time.split(':');
-    const startHour = parseInt(hours, 10);
-    const startMin = parseInt(minutes, 10);
-    let endMin = startMin + 30;
-    let endHour = startHour;
-    if (endMin >= 60) {
-      endMin -= 60;
-      endHour += 1;
-    }
-    
-    const dtStart = `${formattedDate.replace(/-/g, '')}T${startHour.toString().padStart(2, '0')}${startMin.toString().padStart(2, '0')}00`;
-    const dtEnd = `${formattedDate.replace(/-/g, '')}T${endHour.toString().padStart(2, '0')}${endMin.toString().padStart(2, '0')}00`;
-    const dtStamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-    
-    const icalContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Taraj Global//EN
-CALSCALE:GREGORIAN
-METHOD:REQUEST
-BEGIN:VEVENT
-UID:${Date.now()}@tarajglobal.com
-DTSTAMP:${dtStamp}
-DTSTART;TZID=${finalTimeZone}:${dtStart}
-DTEND;TZID=${finalTimeZone}:${dtEnd}
-SUMMARY:Strategy Call with Taraj Global
-DESCRIPTION:Strategy Call booking for ${fullName} (${email}).
-ORGANIZER;CN=Taraj Global:mailto:${FROM_EMAIL}
-ATTENDEE;RSVP=TRUE:mailto:${email}
-STATUS:CONFIRMED
-END:VEVENT
-END:VCALENDAR`;
-
-    userMailOptions.icalEvent = {
-      filename: 'meeting-invitation.ics',
-      method: 'request',
-      content: icalContent
-    };
     
     // Admin notification email
     const adminMailOptions = {
-      from: FROM_EMAIL,
-      to: ADMIN_EMAIL,
+      from: getFromEmail(),
+      to: getAdminEmail(),
       subject: 'New Meeting Booking - Taraj Global',
       html: `
         <!DOCTYPE html>
@@ -332,22 +358,29 @@ END:VCALENDAR`;
                 <div class="detail-value">${bookingResult.bookingId}</div>
               </div>
             </div>
+
+            <div style="text-align: center; margin: 25px 0;">
+              <a href="${googleCalUrl}" target="_blank" style="background: linear-gradient(135deg, #FF6D00, #E65100); color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 8px rgba(255,109,0,0.3);">
+                📅 Add to Admin Google Calendar
+              </a>
+            </div>
           </div>
         </body>
         </html>
-      `
+      `,
+      icalEvent: {
+        filename: 'invite.ics',
+        method: 'REQUEST',
+        content: icalContent
+      }
     }
     
-    adminMailOptions.icalEvent = {
-      filename: 'meeting-invitation.ics',
-      method: 'request',
-      content: icalContent
-    };
-    
+    const activeTransporter = getTransporter()
+
     // Send user confirmation email
     let userEmailSent = false
     try {
-      await transporter.sendMail(userMailOptions)
+      await activeTransporter.sendMail(userMailOptions)
       userEmailSent = true
       console.log('User confirmation email sent successfully to:', email)
     } catch (emailError) {
@@ -356,8 +389,8 @@ END:VCALENDAR`;
     
     // Send admin notification email
     try {
-      await transporter.sendMail(adminMailOptions)
-      console.log('Admin notification email sent successfully')
+      await activeTransporter.sendMail(adminMailOptions)
+      console.log('Admin notification email sent successfully to:', getAdminEmail())
     } catch (adminEmailError) {
       console.error('Admin email sending failed:', adminEmailError.message)
     }
@@ -431,7 +464,7 @@ router.post('/', [
       // Also send email notification to admin
       await emailService.sendLeadNotification(
         { name, email, company, phone, message },
-        ADMIN_EMAIL
+        getAdminEmail()
       )
       
       // Send confirmation email to the user

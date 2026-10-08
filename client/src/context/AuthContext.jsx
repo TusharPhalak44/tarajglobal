@@ -15,8 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   const isAuthorizedRole = (role) => {
     if (!role) return false
-    const validRoles = ['super_admin', 'admin', 'editor', 'hr_recruiter', 'content_manager', 'user']
-    return validRoles.includes(role) || role !== 'guest'
+    return ['admin', 'super_admin', 'user'].includes(role)
   }
 
   const checkAuth = async () => {
@@ -26,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         const userData = JSON.parse(localStorage.getItem('user') || '{}')
         setUser(userData)
         setIsAuthenticated(true)
-        setIsAdmin(isAuthorizedRole(userData.role))
+        setIsAdmin(userData.role === 'admin' || userData.role === 'super_admin')
       }
     } catch (error) {
       console.error('Auth check failed:', error)
@@ -46,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
       setUser(user)
       setIsAuthenticated(true)
-      setIsAdmin(isAuthorizedRole(user.role))
+      setIsAdmin(user.role === 'admin' || user.role === 'super_admin')
 
       return { success: true }
     } catch (error) {

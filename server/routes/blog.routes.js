@@ -39,8 +39,7 @@ router.get('/', async (req, res) => {
     query += ' ORDER BY b.updated_at DESC, b.created_at DESC'
     
     if (limit) {
-      query += ' LIMIT ?'
-      params.push(parseInt(limit))
+      query += ` LIMIT ${parseInt(limit) || 10}`
     }
     
     const [blogs] = await db.execute(query, params)
@@ -53,7 +52,7 @@ router.get('/', async (req, res) => {
     res.json({ success: true, data: formatted })
   } catch (error) {
     console.error('Get blogs error:', error)
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    res.status(500).json({ success: false, message: 'Internal server error', error: error.message, stack: error.stack })
   }
 })
 

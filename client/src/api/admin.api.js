@@ -66,8 +66,11 @@ export const adminAPI = {
   // Media
   getMedia: (params) => api.get('/admin/media', { params }),
   uploadMedia: (formData, config = {}) => api.post('/admin/media/upload', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-    ...config
+    ...config,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      ...(config.headers || {})
+    }
   }),
   deleteMedia: (id) => api.delete(`/admin/media/${id}`),
 

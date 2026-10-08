@@ -19,4 +19,12 @@ function AdminRoute({ children }) {
   return children
 }
 
+export function RequireAdminOnly({ children }) {
+  const { user } = useAuth()
+  if (user?.role === 'user') {
+    return <Navigate to="/admin/blogs" replace />
+  }
+  return children
+}
+
 export default AdminRoute

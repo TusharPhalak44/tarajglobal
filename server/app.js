@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
+import compression from 'compression'
 import 'dotenv/config'
 
 // Import routes
@@ -19,6 +20,7 @@ import footerRoutes from './routes/footer.routes.js'
 import careerGalleryRoutes from './routes/career_gallery.routes.js'
 import analyticsRoutes from './routes/analytics.routes.js'
 import seoRoutes from './routes/seo.routes.js'
+import chatRoutes from './routes/chat.routes.js'
 
 // Import middleware
 import { errorHandler } from './middleware/error.middleware.js'
@@ -114,10 +116,13 @@ const analyticsLimiter = rateLimit({
   message: { success: false, message: 'Rate limit exceeded.' }
 })
 
+// Response compression
+app.use(compression())
+
 // Body parser middleware
 // Limit to 1mb for public routes to prevent ReDoS/DoS via large payloads
-app.use(express.json({ limit: '1mb' }))
-app.use(express.urlencoded({ extended: true, limit: '1mb' }))
+app.use(express.json({ limit: '50mb' }))
+app.use(express.urlencoded({ extended: true, limit: '50mb' }))
 
 // Static files
 app.use('/uploads', express.static('uploads'))
@@ -137,6 +142,7 @@ app.use('/api/footer', footerRoutes)
 app.use('/api/career-gallery', careerGalleryRoutes)
 app.use('/api/analytics', analyticsLimiter, analyticsRoutes)
 app.use('/api/seo', seoRoutes)
+app.use('/api/chat', chatRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => {

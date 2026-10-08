@@ -27,7 +27,7 @@ const applicationController = {
         params.push(searchTerm, searchTerm, searchTerm)
       }
 
-      const [applications] = await db.execute(`
+      const [applications] = await db.query(`
         SELECT *
         FROM job_applications
         ${whereClause}

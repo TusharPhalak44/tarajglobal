@@ -6,11 +6,42 @@ import db from '../../config/db.js'
 
 const router = express.Router()
 
+// Helper to ensure careers table has all required columns
+const ensureCareersColumns = async () => {
+  try {
+    const [columns] = await db.execute(`
+      SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
+      WHERE TABLE_NAME = 'careers'
+    `)
+    const colNames = columns.map(c => c.COLUMN_NAME)
+
+    if (!colNames.includes('slug')) {
+      await db.execute('ALTER TABLE careers ADD COLUMN slug VARCHAR(255) NULL').catch(() => {})
+    }
+    if (!colNames.includes('department')) {
+      await db.execute('ALTER TABLE careers ADD COLUMN department VARCHAR(255) NULL').catch(() => {})
+    }
+    if (!colNames.includes('experience')) {
+      await db.execute('ALTER TABLE careers ADD COLUMN experience VARCHAR(255) NULL').catch(() => {})
+    }
+    if (!colNames.includes('salary')) {
+      await db.execute('ALTER TABLE careers ADD COLUMN salary VARCHAR(255) NULL').catch(() => {})
+    }
+    if (!colNames.includes('status')) {
+      await db.execute("ALTER TABLE careers ADD COLUMN status ENUM('draft', 'published', 'archived', 'active') DEFAULT 'published'").catch(() => {})
+    }
+  } catch (err) {
+    console.warn('ensureCareersColumns error:', err.message)
+  }
+}
+
 // @route   GET /api/admin/jobs
 // @desc    Get all jobs
 // @access  Private
-router.get('/', checkPermission('job.create'), async (req, res) => {
+router.get('/', checkPermission('job.view'), async (req, res) => {
   try {
+    await ensureCareersColumns()
+
     const { status, search, page = 1, limit = 10 } = req.query
     const offset = (page - 1) * limit
     
@@ -18,8 +49,8 @@ router.get('/', checkPermission('job.create'), async (req, res) => {
     const params = []
     
     if (status && status !== 'all') {
-      whereClause += ' AND j.status = ?'
-      params.push(status)
+      whereClause += ' AND (j.status = ? OR (j.status = "active" AND ? = "published"))'
+      params.push(status, status)
     }
 
     if (search && search.trim()) {
@@ -28,7 +59,7 @@ router.get('/', checkPermission('job.create'), async (req, res) => {
       params.push(searchTerm, searchTerm, searchTerm, searchTerm, searchTerm)
     }
     
-    const [jobs] = await db.execute(`
+    const [jobs] = await db.query(`
       SELECT j.*,
         (SELECT COUNT(*) FROM job_applications ja WHERE ja.job_title = j.title OR ja.job_title = CAST(j.id AS CHAR)) as application_count
       FROM careers j
@@ -46,20 +77,21 @@ router.get('/', checkPermission('job.create'), async (req, res) => {
         pagination: {
           page: parseInt(page),
           limit: parseInt(limit),
-          total: countResult[0].total,
-          totalPages: Math.ceil(countResult[0].total / limit)
+          total: countResult[0]?.total || 0,
+          totalPages: Math.ceil((countResult[0]?.total || 0) / limit)
         }
       }
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    console.error('Get admin jobs error:', error)
+    res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 })
 
 // @route   GET /api/admin/jobs/:id
 // @desc    Get job by ID
 // @access  Private
-router.get('/:id', checkPermission('job.create'), async (req, res) => {
+router.get('/:id', checkPermission('job.view'), async (req, res) => {
   try {
     const { id } = req.params
     
@@ -75,7 +107,8 @@ router.get('/:id', checkPermission('job.create'), async (req, res) => {
     
     res.json({ success: true, data: jobs[0] })
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    console.error('Get job by ID error:', error)
+    res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 })
 
@@ -88,64 +121,74 @@ router.post('/', [
   body('description').notEmpty().withMessage('Description is required')
 ], validate, async (req, res) => {
   try {
-    const { title, description, requirements, location, type, salary, status } = req.body
+    const { title, description, requirements, location, type, salary, department, experience, status } = req.body
     
-    // Check if status column exists in careers table
+    await ensureCareersColumns()
+
     const [columns] = await db.execute(`
       SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
-      WHERE TABLE_NAME = 'careers' AND COLUMN_NAME = 'status'
+      WHERE TABLE_NAME = 'careers'
     `)
-    
-    // Add status column if it doesn't exist
-    if (columns.length === 0) {
-      try {
-        await db.execute(`ALTER TABLE careers ADD COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft'`)
-        console.log('Added status column to careers table')
-      } catch (alterError) {
-        console.log('Could not add status column:', alterError.message)
-      }
-    } else {
-      // Check if status column has old enum values and update
-      try {
-        const [columnInfo] = await db.execute(`
-          SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS 
-          WHERE TABLE_NAME = 'careers' AND COLUMN_NAME = 'status'
-        `)
-        
-        if (columnInfo.length > 0 && (columnInfo[0].COLUMN_TYPE.includes('active') || columnInfo[0].COLUMN_TYPE.includes('open'))) {
-          console.log('Updating status column enum to draft, published, archived')
-          // Update existing rows to use new status values
-          await db.execute(`
-            UPDATE careers 
-            SET status = CASE 
-              WHEN status IN ('active', 'open') THEN 'published'
-              WHEN status IN ('closed') THEN 'archived'
-              ELSE status
-            END
-          `)
-          
-          // Modify the column to use new enum
-          await db.execute(`
-            ALTER TABLE careers 
-            MODIFY COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft'
-          `)
-          console.log('Status column enum updated successfully')
-        }
-      } catch (alterError) {
-        console.log('Could not update status column:', alterError.message)
-      }
-    }
-    
+    const colNames = columns.map(c => c.COLUMN_NAME)
+
     const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+
+    const insertCols = ['title', 'description']
+    const insertVals = [title, description]
+    const placeholders = ['?', '?']
+
+    if (colNames.includes('slug')) {
+      insertCols.push('slug')
+      insertVals.push(slug)
+      placeholders.push('?')
+    }
+    if (requirements !== undefined && colNames.includes('requirements')) {
+      insertCols.push('requirements')
+      insertVals.push(requirements)
+      placeholders.push('?')
+    }
+    if (location !== undefined && colNames.includes('location')) {
+      insertCols.push('location')
+      insertVals.push(location)
+      placeholders.push('?')
+    }
+    if (type !== undefined && colNames.includes('type')) {
+      insertCols.push('type')
+      insertVals.push(type || 'full-time')
+      placeholders.push('?')
+    }
+    if (department !== undefined && colNames.includes('department')) {
+      insertCols.push('department')
+      insertVals.push(department)
+      placeholders.push('?')
+    }
+    if (experience !== undefined && colNames.includes('experience')) {
+      insertCols.push('experience')
+      insertVals.push(experience)
+      placeholders.push('?')
+    }
+    if (salary !== undefined && colNames.includes('salary')) {
+      insertCols.push('salary')
+      insertVals.push(salary)
+      placeholders.push('?')
+    }
+    if (colNames.includes('status')) {
+      insertCols.push('status')
+      insertVals.push(status || 'published')
+      placeholders.push('?')
+    }
+
+    const query = `INSERT INTO careers (${insertCols.join(', ')}) VALUES (${placeholders.join(', ')})`
+    const [result] = await db.execute(query, insertVals)
     
-    const [result] = await db.execute(
-      `INSERT INTO careers (title, slug, description, requirements, location, type, salary, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [title, slug, description, requirements, location, type || 'full-time', salary, status || 'draft']
-    )
-    
-    res.status(201).json({ success: true, data: { id: result.insertId, slug } })
+    res.status(201).json({ 
+      success: true, 
+      message: 'Job position created successfully',
+      data: { id: result.insertId, slug } 
+    })
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    console.error('Create job error:', error)
+    res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 })
 
@@ -154,51 +197,52 @@ router.post('/', [
 // @access  Private
 router.put('/:id', [
   checkPermission('job.edit'),
-  body('title').optional().trim().notEmpty(),
-  body('status').optional().custom((value) => {
-    if (value === undefined || value === null || value === '') return true;
-    if (!['draft', 'published', 'archived'].includes(value)) {
-      throw new Error('Invalid status value');
-    }
-    return true;
-  })
+  body('title').optional().trim().notEmpty()
 ], validate, async (req, res) => {
   try {
     const { id } = req.params
-    const { title, description, requirements, location, type, salary, status } = req.body
+    const { title, description, requirements, location, type, salary, department, experience, status } = req.body
     
-    // Build update query dynamically
+    await ensureCareersColumns()
+
+    const [columns] = await db.execute(`
+      SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
+      WHERE TABLE_NAME = 'careers'
+    `)
+    const colNames = columns.map(c => c.COLUMN_NAME)
+
     const updates = []
     const values = []
     
-    if (title !== undefined) { 
+    if (title !== undefined && colNames.includes('title')) { 
       updates.push('title = ?')
       values.push(title)
-      updates.push('slug = ?')
-      values.push(title.toLowerCase().replace(/[^a-z0-9]+/g, '-'))
+      if (colNames.includes('slug')) {
+        updates.push('slug = ?')
+        values.push(title.toLowerCase().replace(/[^a-z0-9]+/g, '-'))
+      }
     }
-    if (description !== undefined) { updates.push('description = ?'); values.push(description) }
-    if (requirements !== undefined) { updates.push('requirements = ?'); values.push(requirements) }
-    if (location !== undefined) { updates.push('location = ?'); values.push(location) }
-    if (type !== undefined) { updates.push('type = ?'); values.push(type) }
-    if (salary !== undefined) { updates.push('salary = ?'); values.push(salary) }
+    if (description !== undefined && colNames.includes('description')) { updates.push('description = ?'); values.push(description) }
+    if (requirements !== undefined && colNames.includes('requirements')) { updates.push('requirements = ?'); values.push(requirements) }
+    if (location !== undefined && colNames.includes('location')) { updates.push('location = ?'); values.push(location) }
+    if (type !== undefined && colNames.includes('type')) { updates.push('type = ?'); values.push(type) }
+    if (department !== undefined && colNames.includes('department')) { updates.push('department = ?'); values.push(department) }
+    if (experience !== undefined && colNames.includes('experience')) { updates.push('experience = ?'); values.push(experience) }
+    if (salary !== undefined && colNames.includes('salary')) { updates.push('salary = ?'); values.push(salary) }
+    if (status !== undefined && colNames.includes('status')) { updates.push('status = ?'); values.push(status) }
     
-    // Always include status if provided in request
-    if (status !== undefined) { 
-      updates.push('status = ?'); 
-      values.push(status)
+    if (updates.length > 0) {
+      values.push(id)
+      await db.execute(
+        `UPDATE careers SET ${updates.join(', ')} WHERE id = ?`,
+        values
+      )
     }
-    
-    values.push(id)
-    
-    await db.execute(
-      `UPDATE careers SET ${updates.join(', ')} WHERE id = ?`,
-      values
-    )
     
     res.json({ success: true, message: 'Job updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    console.error('Update job error:', error)
+    res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 })
 
@@ -210,7 +254,8 @@ router.delete('/:id', checkPermission('job.delete'), async (req, res) => {
     await db.execute('DELETE FROM careers WHERE id = ?', [req.params.id])
     res.json({ success: true, message: 'Job deleted successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    console.error('Delete job error:', error)
+    res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 })
 
@@ -219,11 +264,12 @@ router.delete('/:id', checkPermission('job.delete'), async (req, res) => {
 // @access  Private
 router.patch('/:id/status', [
   checkPermission('job.publish'),
-  body('status').isIn(['draft', 'published', 'archived']).withMessage('Invalid status')
+  body('status').notEmpty().withMessage('Status is required')
 ], validate, async (req, res) => {
   try {
     const { status } = req.body
     
+    await ensureCareersColumns()
     await db.execute(
       'UPDATE careers SET status = ? WHERE id = ?',
       [status, req.params.id]
@@ -231,7 +277,8 @@ router.patch('/:id/status', [
     
     res.json({ success: true, message: 'Job status updated successfully' })
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    console.error('Update job status error:', error)
+    res.status(500).json({ success: false, message: error.message || 'Internal server error' })
   }
 })
 

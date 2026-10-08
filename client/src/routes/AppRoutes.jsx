@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import MainLayout from '@layouts/MainLayout'
 import AdminLayout from '@layouts/AdminLayout'
 import AuthLayout from '@layouts/AuthLayout'
-import AdminRoute from '@routes/AdminRoute'
+import AdminRoute, { RequireAdminOnly } from '@routes/AdminRoute'
 
 // Pages - Lazy Loaded for performance
 const Home = lazy(() => import('@pages/Home'))
@@ -36,6 +36,7 @@ const NotFound = lazy(() => import('@pages/NotFound'))
 
 // Admin Pages - Lazy Loaded
 const Dashboard = lazy(() => import('@pages/Admin/Dashboard'))
+const LiveChat = lazy(() => import('@pages/Admin/LiveChat'))
 const Blogs = lazy(() => import('@pages/Admin/Blogs'))
 const CreateBlog = lazy(() => import('@pages/Admin/CreateBlog'))
 const EditBlog = lazy(() => import('@pages/Admin/EditBlog'))
@@ -120,33 +121,34 @@ function AppRoutes() {
 
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
-        <Route index element={<Dashboard />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route index element={<RequireAdminOnly><Dashboard /></RequireAdminOnly>} />
+        <Route path="dashboard" element={<RequireAdminOnly><Dashboard /></RequireAdminOnly>} />
         <Route path="blogs" element={<Blogs />} />
         <Route path="blogs/create" element={<CreateBlog />} />
         <Route path="blogs/edit/:id" element={<EditBlog />} />
         <Route path="drafts" element={<Drafts />} />
-        <Route path="archives" element={<Archives />} />
-        <Route path="jobs" element={<Jobs />} />
-        <Route path="jobs/edit/:id" element={<EditJob />} />
-        <Route path="applications" element={<Applications />} />
-        <Route path="media" element={<Media />} />
-        <Route path="categories" element={<Categories />} />
-        <Route path="authors" element={<Authors />} />
-        <Route path="users" element={<Users />} />
+        <Route path="archives" element={<RequireAdminOnly><Archives /></RequireAdminOnly>} />
+        <Route path="jobs" element={<RequireAdminOnly><Jobs /></RequireAdminOnly>} />
+        <Route path="jobs/edit/:id" element={<RequireAdminOnly><EditJob /></RequireAdminOnly>} />
+        <Route path="applications" element={<RequireAdminOnly><Applications /></RequireAdminOnly>} />
+        <Route path="media" element={<RequireAdminOnly><Media /></RequireAdminOnly>} />
+        <Route path="categories" element={<RequireAdminOnly><Categories /></RequireAdminOnly>} />
+        <Route path="authors" element={<RequireAdminOnly><Authors /></RequireAdminOnly>} />
+        <Route path="users" element={<RequireAdminOnly><Users /></RequireAdminOnly>} />
         <Route path="profile" element={<Profile />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="seo" element={<SEO />} />
-        <Route path="seo-analytics" element={<SEOAnalytics />} />
-        <Route path="leads" element={<Leads />} />
-        <Route path="audit-logs" element={<AuditLogs />} />
-        <Route path="notifications" element={<Notifications />} />
-        <Route path="cms/navbar" element={<CMSNavbar />} />
-        <Route path="cms/footer" element={<CMSFooter />} />
-        <Route path="cms/clients" element={<CMSOurClients />} />
-        <Route path="career-gallery" element={<CareerGallery />} />
-        <Route path="footer" element={<FooterManagement />} />
-        <Route path="payments" element={<PaymentGateways />} />
+        <Route path="settings" element={<RequireAdminOnly><Settings /></RequireAdminOnly>} />
+        <Route path="seo" element={<RequireAdminOnly><SEO /></RequireAdminOnly>} />
+        <Route path="seo-analytics" element={<RequireAdminOnly><SEOAnalytics /></RequireAdminOnly>} />
+        <Route path="leads" element={<RequireAdminOnly><Leads /></RequireAdminOnly>} />
+        <Route path="chat" element={<RequireAdminOnly><LiveChat /></RequireAdminOnly>} />
+        <Route path="audit-logs" element={<RequireAdminOnly><AuditLogs /></RequireAdminOnly>} />
+        <Route path="notifications" element={<RequireAdminOnly><Notifications /></RequireAdminOnly>} />
+        <Route path="cms/navbar" element={<RequireAdminOnly><CMSNavbar /></RequireAdminOnly>} />
+        <Route path="cms/footer" element={<RequireAdminOnly><CMSFooter /></RequireAdminOnly>} />
+        <Route path="cms/clients" element={<RequireAdminOnly><CMSOurClients /></RequireAdminOnly>} />
+        <Route path="career-gallery" element={<RequireAdminOnly><CareerGallery /></RequireAdminOnly>} />
+        <Route path="footer" element={<RequireAdminOnly><FooterManagement /></RequireAdminOnly>} />
+        <Route path="payments" element={<RequireAdminOnly><PaymentGateways /></RequireAdminOnly>} />
       </Route>
 
       {/* 404 */}

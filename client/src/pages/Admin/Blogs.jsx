@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { adminAPI } from '@api'
 import { analyzeSEO } from '@utils/seoAnalyzer'
+import { useAuth } from '@context/AuthContext'
 import PageHeader from '@components/admin/PageHeader'
 import StatusBadge from '@components/admin/StatusBadge'
 import EmptyState from '@components/admin/EmptyState'
@@ -24,6 +25,7 @@ import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Blogs = () => {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [loading, setLoading] = useState(true)
   const [blogs, setBlogs] = useState([])
   const [pagination, setPagination] = useState({ page: 1, limit: 15, total: 0, totalPages: 0 })
@@ -292,12 +294,14 @@ const Blogs = () => {
                                     Move to Draft
                                   </button>
                                 )}
-                                <button
-                                  onClick={() => handleDelete(blog)}
-                                  className="w-full text-left px-3 py-2 text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] rounded-lg font-semibold mt-1"
-                                >
-                                  Delete
-                                </button>
+                                {user?.role !== 'user' && (
+                                  <button
+                                    onClick={() => handleDelete(blog)}
+                                    className="w-full text-left px-3 py-2 text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] rounded-lg font-semibold mt-1"
+                                  >
+                                    Delete
+                                  </button>
+                                )}
                         </ActionDropdown>
                       </div>
                     </td>

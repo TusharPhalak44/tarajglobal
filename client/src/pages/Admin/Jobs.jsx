@@ -41,12 +41,14 @@ const Jobs = () => {
 
   const [createForm, setCreateForm] = useState({
     title: '',
+    department: 'Sales & Demand Gen',
+    location: 'Kharadi, Pune (On-Site)',
+    type: 'Full-Time',
+    experience: '1 - 3 Years',
     description: '',
     requirements: '',
-    location: '',
-    type: 'full-time',
     salary: '',
-    status: 'draft'
+    status: 'published'
   })
 
   const showToast = (msg) => {
@@ -114,15 +116,17 @@ const Jobs = () => {
       setShowCreateModal(false)
       setCreateForm({
         title: '',
+        department: 'Sales & Demand Gen',
+        location: 'Kharadi, Pune (On-Site)',
+        type: 'Full-Time',
+        experience: '1 - 3 Years',
         description: '',
         requirements: '',
-        location: '',
-        type: 'full-time',
         salary: '',
-        status: 'draft'
+        status: 'published'
       })
       fetchJobs()
-      showToast('Career position created successfully!')
+      showToast('Career position published live successfully!')
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create position')
     } finally {
@@ -360,79 +364,169 @@ const Jobs = () => {
       {showCreateModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-xs animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowCreateModal(false)} />
-          <div className="relative max-w-lg w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
-              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Post Career Position</h3>
-              <button onClick={() => setShowCreateModal(false)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
-                <X className="w-4 h-4" />
+          <div className="relative max-w-2xl w-full max-h-[90vh] flex flex-col bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl z-10 shadow-2xl overflow-hidden">
+            <div className="flex items-center justify-between p-5 border-b border-[var(--admin-border-subtle)] bg-[var(--admin-bg-elevated)]/50">
+              <div>
+                <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Post New Career Position</h3>
+                <p className="text-xs text-[var(--admin-text-muted)] mt-0.5">Fill in position parameters to publish live on the Careers portal</p>
+              </div>
+              <button onClick={() => setShowCreateModal(false)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-surface)]">
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            {error && (
-              <div className="p-3 rounded-xl bg-[var(--admin-danger-soft)] border border-[var(--admin-danger)]/30 text-[var(--admin-danger)] text-sm font-semibold">
-                {error}
-              </div>
-            )}
+            <div className="p-6 overflow-y-auto space-y-4 admin-scrollbar">
+              {error && (
+                <div className="p-3.5 rounded-xl bg-[var(--admin-danger-soft)] border border-[var(--admin-danger)]/30 text-[var(--admin-danger)] text-xs font-semibold">
+                  {error}
+                </div>
+              )}
 
-            <form onSubmit={handleCreateJob} className="space-y-4">
-              <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Position Title *</label>
-                <input
-                  type="text"
-                  value={createForm.title}
-                  onChange={(e) => setCreateForm({ ...createForm, title: e.target.value })}
-                  placeholder="e.g. Senior B2B Demand Strategist"
-                  className="admin-input w-full"
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
+              <form id="create-job-form" onSubmit={handleCreateJob} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Location</label>
+                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                    Position Title <span className="text-[var(--admin-danger)]">*</span>
+                  </label>
                   <input
                     type="text"
-                    value={createForm.location}
-                    onChange={(e) => setCreateForm({ ...createForm, location: e.target.value })}
-                    placeholder="e.g. Remote / Hybrid"
+                    value={createForm.title}
+                    onChange={(e) => setCreateForm({ ...createForm, title: e.target.value })}
+                    placeholder="e.g. B2B Sales Development Representative (SDR)"
+                    className="admin-input w-full font-medium"
+                    required
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                      Department / Category
+                    </label>
+                    <input
+                      type="text"
+                      value={createForm.department}
+                      onChange={(e) => setCreateForm({ ...createForm, department: e.target.value })}
+                      placeholder="e.g. SALES & DEMAND GEN"
+                      className="admin-input w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                      Location
+                    </label>
+                    <input
+                      type="text"
+                      value={createForm.location}
+                      onChange={(e) => setCreateForm({ ...createForm, location: e.target.value })}
+                      placeholder="e.g. Kharadi, Pune (On-Site)"
+                      className="admin-input w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                      Employment Type
+                    </label>
+                    <select
+                      value={createForm.type}
+                      onChange={(e) => setCreateForm({ ...createForm, type: e.target.value })}
+                      className="admin-select w-full text-xs"
+                    >
+                      <option value="Full-Time">Full-Time</option>
+                      <option value="Part-Time">Part-Time</option>
+                      <option value="Contract">Contract</option>
+                      <option value="Internship">Internship</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                      Experience Level
+                    </label>
+                    <input
+                      type="text"
+                      value={createForm.experience}
+                      onChange={(e) => setCreateForm({ ...createForm, experience: e.target.value })}
+                      placeholder="e.g. 1 - 3 Years"
+                      className="admin-input w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                      Publication Status
+                    </label>
+                    <select
+                      value={createForm.status}
+                      onChange={(e) => setCreateForm({ ...createForm, status: e.target.value })}
+                      className="admin-select w-full text-xs font-semibold"
+                    >
+                      <option value="published">Published (Live on Careers)</option>
+                      <option value="draft">Draft (Private)</option>
+                      <option value="archived">Archived (Closed)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                    Short Description <span className="text-[var(--admin-danger)]">*</span>
+                  </label>
+                  <textarea
+                    value={createForm.description}
+                    onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
+                    rows={3}
+                    placeholder="Execute outbound multi-channel discovery across enterprise ICPs in North America and EMEA. Connect directly with C-suite and VP-level decision-makers."
+                    className="admin-textarea w-full text-xs leading-relaxed"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                    Key Qualifications & Requirements (One per line)
+                  </label>
+                  <textarea
+                    value={createForm.requirements}
+                    onChange={(e) => setCreateForm({ ...createForm, requirements: e.target.value })}
+                    rows={4}
+                    placeholder="Proven experience in B2B outbound prospecting&#10;Understanding of ICP qualification (BANT, MEDDPIC frameworks)&#10;Strong written and verbal communication in English&#10;Familiarity with CRM tools (HubSpot, Salesforce)"
+                    className="admin-textarea w-full text-xs font-mono leading-relaxed"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase tracking-wider mb-1.5">
+                    Salary / Remuneration (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={createForm.salary}
+                    onChange={(e) => setCreateForm({ ...createForm, salary: e.target.value })}
+                    placeholder="e.g. Competitive / $60k - $80k"
                     className="admin-input w-full"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Employment Type</label>
-                  <select
-                    value={createForm.type}
-                    onChange={(e) => setCreateForm({ ...createForm, type: e.target.value })}
-                    className="admin-select w-full"
-                  >
-                    <option value="full-time">Full-time</option>
-                    <option value="part-time">Part-time</option>
-                    <option value="contract">Contract</option>
-                  </select>
-                </div>
-              </div>
+              </form>
+            </div>
 
-              <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Description *</label>
-                <textarea
-                  value={createForm.description}
-                  onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
-                  rows={3}
-                  placeholder="Responsibilities and day-to-day role overview..."
-                  className="admin-textarea w-full"
-                  required
-                />
-              </div>
-
-              <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-[var(--admin-border-subtle)]">
-                <button type="button" onClick={() => setShowCreateModal(false)} className="admin-btn admin-btn-secondary h-9 px-4 text-sm">
-                  Cancel
-                </button>
-                <button type="submit" disabled={saving} className="admin-btn admin-btn-primary h-9 px-4 text-sm shadow-md">
-                  {saving ? 'Posting...' : 'Post Position'}
-                </button>
-              </div>
-            </form>
+            <div className="flex items-center justify-end gap-3 p-4 border-t border-[var(--admin-border-subtle)] bg-[var(--admin-bg-elevated)]/30">
+              <button
+                type="button"
+                onClick={() => setShowCreateModal(false)}
+                className="admin-btn admin-btn-secondary text-xs h-9 px-4"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                form="create-job-form"
+                disabled={saving}
+                className="admin-btn admin-btn-primary text-xs h-9 px-5 shadow-lg shadow-[#00A6FF]/20"
+              >
+                {saving ? 'Posting Position...' : 'Publish Position'}
+              </button>
+            </div>
           </div>
         </div>
       )}

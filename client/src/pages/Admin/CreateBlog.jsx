@@ -19,6 +19,7 @@ import {
 import { adminAPI } from '@api'
 import FeaturedMedia from '@components/admin/FeaturedMedia'
 import { analyzeSEO, getSEOStatusColor, getSEOStatusBg } from '@utils/seoAnalyzer'
+import { useAuth } from '@context/AuthContext'
 import PageHeader from '@components/admin/PageHeader'
 
 import ReactQuill from 'react-quill-new'
@@ -36,6 +37,7 @@ const quillModules = {
 
 const CreateBlog = () => {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
@@ -461,17 +463,24 @@ const CreateBlog = () => {
                 <label className="block text-sm font-bold text-[var(--admin-text-primary)] mb-1.5">
                   Author
                 </label>
-                <select
-                  name="author_id"
-                  value={createForm.author_id}
-                  onChange={handleInputChange}
-                  className="admin-select w-full text-sm"
-                >
-                  <option value="">Select Author</option>
-                  {authors.map((a) => (
-                    <option key={a.id} value={a.id}>{a.name}</option>
-                  ))}
-                </select>
+                {user?.role === 'user' ? (
+                  <div className="admin-input w-full text-sm bg-[var(--admin-bg-elevated)] text-[var(--admin-text-primary)] cursor-not-allowed flex items-center justify-between border border-[var(--admin-border-subtle)]">
+                    <span className="font-semibold">{user?.name || user?.email || 'Current User'}</span>
+                    <span className="text-[12px] bg-blue-500/10 text-blue-500 font-bold px-2 py-0.5 rounded">You (Auto-assigned)</span>
+                  </div>
+                ) : (
+                  <select
+                    name="author_id"
+                    value={createForm.author_id}
+                    onChange={handleInputChange}
+                    className="admin-select w-full text-sm"
+                  >
+                    <option value="">Select Author (Default: You)</option>
+                    {authors.map((a) => (
+                      <option key={a.id} value={a.id}>{a.name}</option>
+                    ))}
+                  </select>
+                )}
               </div>
 
               <div>

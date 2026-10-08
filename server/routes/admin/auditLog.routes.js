@@ -10,7 +10,9 @@ const router = express.Router()
 router.get('/', checkPermission('user.create'), async (req, res) => {
   try {
     const { user_id, action, module, page = 1, limit = 50 } = req.query
-    const offset = (page - 1) * limit
+    const limitNum = parseInt(limit) || 50
+    const pageNum = parseInt(page) || 1
+    const offset = (pageNum - 1) * limitNum
     
     let whereClause = 'WHERE 1=1'
     const params = []
@@ -30,14 +32,14 @@ router.get('/', checkPermission('user.create'), async (req, res) => {
       params.push(module)
     }
     
-    const [logs] = await db.execute(`
+    const [logs] = await db.query(`
       SELECT al.*, u.name as user_name, u.email as user_email
       FROM audit_logs al
       LEFT JOIN users u ON al.user_id = u.id
       ${whereClause}
       ORDER BY al.created_at DESC
       LIMIT ? OFFSET ?
-    `, [...params, parseInt(limit), offset])
+    `, [...params, limitNum, offset])
     
     const [countResult] = await db.execute(`SELECT COUNT(*) as total FROM audit_logs al ${whereClause}`, params)
     
@@ -46,10 +48,10 @@ router.get('/', checkPermission('user.create'), async (req, res) => {
       data: {
         logs,
         pagination: {
-          page: parseInt(page),
-          limit: parseInt(limit),
+          page: pageNum,
+          limit: limitNum,
           total: countResult[0].total,
-          totalPages: Math.ceil(countResult[0].total / limit)
+          totalPages: Math.ceil(countResult[0].total / limitNum)
         }
       }
     })

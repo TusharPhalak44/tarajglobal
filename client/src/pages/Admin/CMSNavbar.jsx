@@ -31,6 +31,7 @@ import {
 } from 'lucide-react'
 import { adminAPI } from '@api'
 import TGAnimatedLogo from '@components/layout/PremiumNavbar/TGAnimatedLogo'
+import { PremiumNavbar } from '@components/layout/PremiumNavbar'
 import { useTheme } from '@context/ThemeContext'
 
 const CMSNavbar = () => {
@@ -1148,102 +1149,48 @@ const CMSNavbar = () => {
                   </div>
                 )}
 
-                {/* ── Simulated Main Navbar Bar ──────────────────────────────── */}
-                <div className="h-[76px] px-4 sm:px-6 bg-background dark:bg-[#070B14]/90 backdrop-blur-xl border-b border-border dark:border-white/10 flex items-center justify-between gap-3 relative">
-                  {/* Left: Brand Logo / Header Image */}
-                  <div className="flex items-center gap-3">
-                    <TGAnimatedLogo
-                      logoUrl={logoPreview}
-                      alt={logoAlt || logoText || 'Header Logo'}
-                    />
-
-                    {showLogoText && logoText && (
-                      <span className="inline-block font-extrabold text-base sm:text-base tracking-tight text-text-primary dark:text-white font-display">
-                        {logoText}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Center: Desktop Navigation Items */}
-                  {previewDevice !== 'mobile' ? (
-                    <nav className="flex items-center gap-1 bg-white/[0.04] p-2 rounded-2xl border border-white/[0.08] backdrop-blur-md">
-                      {navItems.filter(item => item.is_active).map((item) => {
-                        const isServices = item.url === '/services' || item.label?.toLowerCase().includes('service')
-
-                        return (
-                          <div key={item.id} className="relative">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                if (isServices) setPreviewServicesOpen(!previewServicesOpen)
-                              }}
-                              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
-                                isServices && previewServicesOpen
-                                  ? 'text-[#00A6FF] bg-white/10'
-                                  : 'text-slate-200 hover:text-[#00A6FF] hover:bg-white/5'
-                              }`}
-                            >
-                              <span>{item.label}</span>
-                              {isServices && (
-                                <ChevronDown
-                                  size={12}
-                                  className={`transition-transform duration-200 ${previewServicesOpen ? 'rotate-180 text-[#00A6FF]' : 'text-text-secondary dark:text-slate-400'}`}
-                                />
-                              )}
-                            </button>
-
-                            {/* Simulated Services Mega Dropdown */}
-                            {isServices && previewServicesOpen && (
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-surface dark:bg-[#0a0f1d] border border-border dark:border-white/15 rounded-2xl p-4 shadow-2xl space-y-2 z-50 animate-in fade-in slide-in-from-top-2">
-                                <div className="text-[12px] font-mono font-bold uppercase tracking-wider text-[#00A6FF] border-b border-border dark:border-white/10 pb-1.5">
-                                  Our Core Capabilities
-                                </div>
-                                <div className="space-y-1 text-sm text-text-secondary dark:text-slate-300">
-                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
-                                    • B2B Demand Generation
-                                  </div>
-                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
-                                    • MQL & HQL Marketing
-                                  </div>
-                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
-                                    • Account-Based Marketing (ABM)
-                                  </div>
-                                  <div className="p-2 rounded-lg hover:bg-surface/80 dark:bg-white/5 hover:text-[#00A6FF] cursor-pointer transition-colors">
-                                    • Appointment Setting
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        )
-                      })}
-                    </nav>
+                  {previewDevice === 'desktop' ? (
+                    <div className="relative h-[88px]">
+                      <PremiumNavbar isPreview={true} />
+                    </div>
                   ) : (
-                    // Mobile Hamburger Trigger
-                    <button
-                      type="button"
-                      onClick={() => setPreviewMobileMenuOpen(!previewMobileMenuOpen)}
-                      className="p-2 rounded-xl bg-surface/90 dark:bg-white/10 text-text-primary dark:text-white hover:bg-white/20 transition-all cursor-pointer"
-                    >
-                      {previewMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-                    </button>
-                  )}
+                    <div className="h-[76px] px-4 sm:px-6 bg-background dark:bg-[#070B14]/90 backdrop-blur-xl border-b border-border dark:border-white/10 flex items-center justify-between gap-3 relative">
+                      {/* Left: Brand Logo / Header Image */}
+                      <div className="flex items-center gap-3">
+                        <TGAnimatedLogo
+                          logoUrl={logoPreview}
+                          alt={logoAlt || logoText || 'Header Logo'}
+                        />
 
-                  {/* Right Action Button */}
-                  <div className="flex items-center gap-3">
-                    <StarButton
-              
-              lightColor="#FF6D00"
-              backgroundColor="rgba(0,166,255,0.15)"
-              className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
-            >
-              <span className="flex items-center justify-center gap-2 min-h-[44px] px-8">
-                <span>Let's Talk</span>
-                <ArrowRight size={15} />
-              </span>
-            </StarButton>
-                  </div>
-                </div>
+                        {showLogoText && logoText && (
+                          <span className="inline-block font-extrabold text-base sm:text-base tracking-tight text-text-primary dark:text-white font-display">
+                            {logoText}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Right Action Button and Hamburger */}
+                      <div className="flex items-center gap-3">
+                        <StarButton
+                          lightColor="#FF6D00"
+                          backgroundColor="rgba(0,166,255,0.15)"
+                          className={`w-full sm:w-auto rounded-[100px] cursor-pointer ${isDark ? "shadow-lg shadow-primary/20" : ""}`}
+                        >
+                          <span className="flex items-center justify-center gap-2 min-h-[44px] px-8">
+                            <span>Let's Talk</span>
+                            <ArrowRight size={15} />
+                          </span>
+                        </StarButton>
+                        <button
+                          type="button"
+                          onClick={() => setPreviewMobileMenuOpen(!previewMobileMenuOpen)}
+                          className="p-2 rounded-xl bg-surface/90 dark:bg-white/10 text-text-primary dark:text-white hover:bg-white/20 transition-all cursor-pointer"
+                        >
+                          {previewMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                 {/* Mobile Drawer Simulation (when opened on mobile) */}
                 {previewDevice === 'mobile' && previewMobileMenuOpen && (

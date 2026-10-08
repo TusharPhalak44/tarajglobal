@@ -161,10 +161,10 @@ export default function ReferenceObjective() {
               <button
                 type="button"
                 onClick={scrollToCoreServices}
-                style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2 border border-border dark:border-slate-800 dark:border-white/30  dark:text-text-accent dark:text-white text-xs font-mono font-bold uppercase tracking-wider hover: hover:text-text-accent dark:text-white dark:hover: dark:hover:text-black transition-all cursor-pointer group"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#FF6D00] to-[#FF8500] hover:from-[#E05E00] hover:to-[#FF6D00] text-white text-xs font-mono font-bold uppercase tracking-wider shadow-lg shadow-[#FF6D00]/25 hover:shadow-xl hover:shadow-[#FF6D00]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer group"
               >
                 <span>View All Services</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>

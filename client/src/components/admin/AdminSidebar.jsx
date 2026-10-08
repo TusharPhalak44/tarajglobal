@@ -24,7 +24,8 @@ import {
   Users as UsersIcon,
   BarChart2,
   CreditCard,
-  Sparkles
+  Sparkles,
+  MessageSquare
 } from 'lucide-react'
 import { useAuth } from '@context/AuthContext'
 import TGSAdminLogo from './TGSAdminLogo'
@@ -39,50 +40,69 @@ export const AdminSidebar = ({
   const navigate = useNavigate()
   const { user, logout } = useAuth()
 
-  const navSections = [
-    {
-      group: 'OVERVIEW',
-      items: [
-        { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
+  const isUserRole = user?.role === 'user'
+
+  const navSections = isUserRole
+    ? [
+        {
+          group: 'MY CONTENT',
+          items: [
+            { icon: FileText, label: 'My Blogs', path: '/admin/blogs' },
+            { icon: FileEdit, label: 'My Drafts', path: '/admin/drafts' },
+          ]
+        },
+        {
+          group: 'ACCOUNT',
+          items: [
+            { icon: User, label: 'My Profile', path: '/admin/profile' },
+          ]
+        }
       ]
-    },
-    {
-      group: 'CONTENT',
-      items: [
-        { icon: FileText, label: 'Blogs', path: '/admin/blogs' },
-        { icon: FileEdit, label: 'Drafts', path: '/admin/drafts' },
-        { icon: Archive, label: 'Archives', path: '/admin/archives' },
-        { icon: FolderOpen, label: 'Categories', path: '/admin/categories' },
-        { icon: User, label: 'Authors', path: '/admin/authors' },
-        { icon: Image, label: 'Media Vault', path: '/admin/media' },
-        { icon: LayoutTemplate, label: 'Navbar CMS', path: '/admin/cms/navbar' },
-        { icon: Footprints, label: 'Footer CMS', path: '/admin/footer' },
-        { icon: UsersIcon, label: 'Client Logos', path: '/admin/cms/clients' },
-        { icon: Image, label: 'Culture Gallery', path: '/admin/career-gallery' },
+    : [
+        {
+          group: 'OVERVIEW',
+          items: [
+            { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
+          ]
+        },
+        {
+          group: 'CONTENT',
+          items: [
+            { icon: FileText, label: 'Blogs', path: '/admin/blogs' },
+            { icon: FileEdit, label: 'Drafts', path: '/admin/drafts' },
+            { icon: Archive, label: 'Archives', path: '/admin/archives' },
+            { icon: FolderOpen, label: 'Categories', path: '/admin/categories' },
+            { icon: User, label: 'Authors', path: '/admin/authors' },
+            { icon: Image, label: 'Media Vault', path: '/admin/media' },
+            { icon: LayoutTemplate, label: 'Navbar CMS', path: '/admin/cms/navbar' },
+            { icon: Footprints, label: 'Footer CMS', path: '/admin/footer' },
+            { icon: UsersIcon, label: 'Client Logos', path: '/admin/cms/clients' },
+            { icon: Image, label: 'Culture Gallery', path: '/admin/career-gallery' },
+          ]
+        },
+        {
+          group: 'BUSINESS',
+          items: [
+            { icon: Building, label: 'Inbound Leads', path: '/admin/leads' },
+            { icon: MessageSquare, label: 'Live Chat Console', path: '/admin/chat' },
+            { icon: Briefcase, label: 'Career Positions', path: '/admin/jobs' },
+            { icon: Users, label: 'Candidates', path: '/admin/applications' },
+            { icon: CreditCard, label: 'Payments', path: '/admin/payments' },
+          ]
+        },
+        {
+          group: 'SYSTEM',
+          items: [
+            { icon: Globe, label: 'SEO Metadata', path: '/admin/seo' },
+            { icon: BarChart2, label: 'SEO Analytics', path: '/admin/seo-analytics' },
+            { icon: Users, label: 'Team & Users', path: '/admin/users' },
+            { icon: Activity, label: 'Audit Trail', path: '/admin/audit-logs' },
+            { icon: Bell, label: 'Notifications', path: '/admin/notifications' },
+            { icon: Settings, label: 'Settings', path: '/admin/settings' },
+            { icon: User, label: 'Admin Profile', path: '/admin/profile' },
+          ]
+        }
       ]
-    },
-    {
-      group: 'BUSINESS',
-      items: [
-        { icon: Building, label: 'Inbound Leads', path: '/admin/leads' },
-        { icon: Briefcase, label: 'Career Positions', path: '/admin/jobs' },
-        { icon: Users, label: 'Candidates', path: '/admin/applications' },
-        { icon: CreditCard, label: 'Payments', path: '/admin/payments' },
-      ]
-    },
-    {
-      group: 'SYSTEM',
-      items: [
-        { icon: Globe, label: 'SEO Metadata', path: '/admin/seo' },
-        { icon: BarChart2, label: 'SEO Analytics', path: '/admin/seo-analytics' },
-        { icon: Users, label: 'Team & RBAC', path: '/admin/users' },
-        { icon: Activity, label: 'Audit Trail', path: '/admin/audit-logs' },
-        { icon: Bell, label: 'Notifications', path: '/admin/notifications' },
-        { icon: Settings, label: 'Settings', path: '/admin/settings' },
-        { icon: User, label: 'Admin Profile', path: '/admin/profile' },
-      ]
-    }
-  ]
 
   const handleLogout = async () => {
     await logout()
@@ -211,7 +231,7 @@ export const AdminSidebar = ({
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00A6FF] to-[#0077CC] p-[1px] shrink-0 overflow-hidden">
                   {user?.avatar ? (
                     <img
-                      src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5000${user.avatar}`}
+                      src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5001${user.avatar}`}
                       alt={user.name || 'Admin'}
                       className="w-full h-full object-cover rounded-[7px]"
                     />
@@ -248,7 +268,7 @@ export const AdminSidebar = ({
               >
                 {user?.avatar ? (
                   <img
-                    src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5000${user.avatar}`}
+                    src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5001${user.avatar}`}
                     alt={user.name || 'Admin'}
                     className="w-full h-full object-cover rounded-[9px]"
                   />

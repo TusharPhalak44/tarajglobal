@@ -235,18 +235,8 @@ export const Footer = () => {
   // Active offices or defaults
   const officesToRender = rawOffices.filter((o) => o.is_visible !== 0)
 
-  // Default offices
+  // Default offices (US first, then India)
   const defaultOffices = [
-    {
-      id: 'pune',
-      name: 'Pune, India',
-      city: 'Pune',
-      country: 'India',
-      address: 'The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, 411017',
-      phone: '+91 96655-99442',
-      email: 'info@tarajglobal.com',
-      isPST: false,
-    },
     {
       id: 'sf',
       name: 'San Francisco',
@@ -257,26 +247,39 @@ export const Footer = () => {
       email: 'info@tarajglobal.com',
       isPST: true,
     },
+    {
+      id: 'pune',
+      name: 'Pune, India',
+      city: 'Pune',
+      country: 'India',
+      address: 'The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, 411017',
+      phone: '+91 96655-99442',
+      email: 'info@tarajglobal.com',
+      isPST: false,
+    },
   ]
 
-  const activeOffices = (footerData && footerData.offices)
-    ? officesToRender.map((o) => {
-        const text = `${o.name || ''} ${o.city || ''} ${o.country || ''} ${o.state || ''}`.toLowerCase()
-        const isPST = text.includes('francisco') || text.includes('usa') || text.includes('california') || text.includes('us')
-        const address = [o.address_line_1, o.address_line_2, o.city, o.postal_code].filter(Boolean).join(', ')
-        return {
-          id: o.id,
-          name: o.name || `${o.city || ''}, ${o.country || ''}`,
-          city: o.city,
-          country: o.country,
-          address: address || 'Global Business Complex',
-          phone: o.phone,
-          email: o.email || 'info@tarajglobal.com',
-          map_url: o.map_url,
-          icon: o.icon,
-          isPST,
-        }
-      })
+  const mappedOffices = officesToRender.map((o) => {
+    const text = `${o.name || ''} ${o.city || ''} ${o.country || ''} ${o.state || ''}`.toLowerCase()
+    const isPST = text.includes('francisco') || text.includes('usa') || text.includes('california') || text.includes('us')
+    const address = [o.address_line_1, o.address_line_2, o.city, o.postal_code].filter(Boolean).join(', ')
+    return {
+      id: o.id,
+      name: o.name || `${o.city || ''}, ${o.country || ''}`,
+      city: o.city,
+      country: o.country,
+      address: address || 'Global Business Complex',
+      phone: o.phone,
+      email: o.email || 'info@tarajglobal.com',
+      map_url: o.map_url,
+      icon: o.icon,
+      isPST,
+    }
+  })
+
+  // Ensure US office comes first, then India
+  const activeOffices = (footerData && footerData.offices && mappedOffices.length > 0)
+    ? [...mappedOffices].sort((a, b) => (b.isPST ? 1 : 0) - (a.isPST ? 1 : 0))
     : defaultOffices
 
   // Active social links or defaults
@@ -335,7 +338,7 @@ export const Footer = () => {
 
             {/* Description / Content (Clearly visible & high contrast) */}
             {settings.is_description_visible !== 0 && settings.is_description_visible !== false && (
-              <p className="text-slate-700 dark:text-slate-200 text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
+              <p className="text-slate-700 dark:text-slate-200 text-sm sm:text-base leading-relaxed max-w-sm font-medium">
                 {settings.company_description ||
                   'Taraj Global is an ISO certified demand generation agency.'}
               </p>
@@ -417,9 +420,9 @@ export const Footer = () => {
                           <button
                             type="button"
                             onClick={openPreferences}
-                            className={`footer-nav-link text-slate-600 dark:text-slate-300 ${hoverClass} transition-all duration-200 text-xs sm:text-sm inline-flex items-center gap-1 group py-0.5 text-left cursor-pointer`}
+                            className={`footer-nav-link text-slate-700 dark:text-slate-200 ${hoverClass} transition-all duration-200 text-sm sm:text-[15px] font-medium inline-flex items-center gap-1 group py-0.5 text-left cursor-pointer`}
                           >
-                            <ChevronRight size={12} className={`opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${chevronColor}`} />
+                            <ChevronRight size={13} className={`opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${chevronColor}`} />
                             <span className="group-hover:translate-x-0.5 transition-transform duration-200">
                               {link.label}
                             </span>
@@ -435,9 +438,9 @@ export const Footer = () => {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`footer-nav-link text-slate-600 dark:text-slate-300 ${hoverClass} transition-all duration-200 text-xs sm:text-sm inline-flex items-center gap-1 group py-0.5`}
+                            className={`footer-nav-link text-slate-700 dark:text-slate-200 ${hoverClass} transition-all duration-200 text-sm sm:text-[15px] font-medium inline-flex items-center gap-1 group py-0.5`}
                           >
-                            <ChevronRight size={12} className={`opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${chevronColor}`} />
+                            <ChevronRight size={13} className={`opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${chevronColor}`} />
                             <span className="group-hover:translate-x-0.5 transition-transform duration-200">
                               {link.label}
                             </span>
@@ -450,9 +453,9 @@ export const Footer = () => {
                       <li key={link.id || lIdx}>
                         <Link
                           to={link.url || '/'}
-                          className={`footer-nav-link text-slate-600 dark:text-slate-300 ${hoverClass} transition-all duration-200 text-xs sm:text-sm inline-flex items-center gap-1 group py-0.5`}
+                          className={`footer-nav-link text-slate-700 dark:text-slate-200 ${hoverClass} transition-all duration-200 text-sm sm:text-[15px] font-medium inline-flex items-center gap-1 group py-0.5`}
                         >
-                          <ChevronRight size={12} className={`opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${chevronColor}`} />
+                          <ChevronRight size={13} className={`opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${chevronColor}`} />
                           <span className="group-hover:translate-x-0.5 transition-transform duration-200">
                             {link.label}
                           </span>
@@ -467,7 +470,7 @@ export const Footer = () => {
 
           {/* ── COLUMN 5 (SPAN 3): GLOBAL HUBS & CLOCKS ────────────── */}
           <div className="lg:col-span-3 space-y-4 pt-4 sm:pt-7 lg:pt-16">
-            <div className="space-y-3 text-xs">
+            <div className="space-y-3.5 text-sm">
               {activeOffices.map((office, oIdx) => {
                 const isPST = office.isPST
                 const accentColor = isPST ? '#FF6D00' : '#00A6FF'
@@ -476,31 +479,31 @@ export const Footer = () => {
                 return (
                   <div
                     key={office.id || oIdx}
-                    className={`footer-office-card p-3.5 rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] space-y-2 transition-all duration-300 ${
+                    className={`footer-office-card p-4 rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] space-y-2.5 transition-all duration-300 ${
                       isPST ? 'hover:border-[#FF6D00]/50' : 'hover:border-[#00A6FF]/50'
                     } shadow-sm`}
                   >
                     <div className="flex flex-wrap min-[360px]:flex-nowrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-1.5 font-bold text-sm text-slate-900 dark:text-text-primary dark:text-white">
+                      <div className="flex items-center gap-1.5 font-bold text-base text-slate-900 dark:text-text-primary dark:text-white">
                         {isPST ? (
-                          <Building2 size={14} className="text-[#FF6D00] flex-shrink-0" />
+                          <Building2 size={15} className="text-[#FF6D00] flex-shrink-0" />
                         ) : (
-                          <MapPin size={14} className="text-[#00A6FF] flex-shrink-0" />
+                          <MapPin size={15} className="text-[#00A6FF] flex-shrink-0" />
                         )}
                         <span>{office.name}</span>
                       </div>
                       <span
-                        className={`text-[11px] font-mono font-bold flex items-center gap-1 px-2 py-0.5 rounded-md ${
+                        className={`text-xs sm:text-sm font-mono font-bold flex items-center gap-1 px-2.5 py-0.5 rounded-md ${
                           isPST
                             ? 'text-[#FF6D00] dark:text-[#FB923C] bg-[#FF6D00]/10 dark:bg-[#FF6D00]/15'
                             : 'text-[#00A6FF] dark:text-[#38BDF8] bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15'
                         }`}
                       >
-                        <Clock size={11} /> {clockTime}
+                        <Clock size={12} /> {clockTime}
                       </span>
                     </div>
 
-                    <p className="text-[11px] sm:text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-200 font-medium">
                       {office.address}
                     </p>
 
@@ -508,20 +511,20 @@ export const Footer = () => {
                       {office.phone && (
                         <a
                           href={`tel:${office.phone.replace(/[^0-9+]/g, '')}`}
-                          className={`inline-flex items-center gap-1.5 text-xs font-mono font-bold hover:underline py-0.5 ${
+                          className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-semibold hover:underline py-0.5 ${
                             isPST ? 'text-[#FF6D00] dark:text-[#FB923C]' : 'text-[#00A6FF] dark:text-[#38BDF8]'
                           }`}
                         >
-                          <Phone size={12} />
+                          <Phone size={13} />
                           {office.phone}
                         </a>
                       )}
                       {office.email && (
                         <a
                           href={`mailto:${office.email}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-600 dark:text-slate-300 hover:text-[#00A6FF] hover:underline py-0.5"
+                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-medium text-slate-700 dark:text-slate-200 hover:text-[#00A6FF] hover:underline py-0.5"
                         >
-                          <Mail size={12} className={`text-[${accentColor}]`} />
+                          <Mail size={13} className={`text-[${accentColor}]`} />
                           {office.email}
                         </a>
                       )}
@@ -538,12 +541,12 @@ export const Footer = () => {
       {/* ── BOTTOM LEGAL BAR, COPYRIGHT & BACK TO TOP ────────────────────── */}
       <div className="relative z-10 border-t border-slate-200/80 dark:border-white/10 bg-slate-100/70 dark:bg-black/40 py-5">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
 
             {/* Copyright */}
-            <div className="text-slate-500 dark:text-slate-400 text-center md:text-left">
+            <div className="text-slate-600 dark:text-slate-300 text-center md:text-left font-medium">
               &copy; {currentYear}{' '}
-              <span className="font-bold text-slate-800 dark:text-slate-200">
+              <span className="font-bold text-slate-900 dark:text-slate-100">
                 {settings.copyright_text
                   ? settings.copyright_text.replace('{year}', currentYear).replace('Copyright © ', '').replace(/Copyright\s*©?\s*\d*\s*/i, '')
                   : 'Taraj Global Solutions Private Limited. All rights reserved.'}
@@ -551,7 +554,7 @@ export const Footer = () => {
             </div>
 
             {/* Legal & Cookie Policy Navigation */}
-            <div className="flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-5 gap-y-2 text-slate-600 dark:text-slate-300 text-xs">
+            <div className="flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-5 gap-y-2 text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-medium">
               {(footerData && footerData.sections) ? (
                 legalLinks.map((ll, idx) => {
                   const isCookieAction =
@@ -608,11 +611,11 @@ export const Footer = () => {
               onClick={scrollToTop}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-white/[0.05] text-slate-700 dark:text-slate-200 hover:text-[#FF6D00] hover:border-[#FF6D00] dark:hover:border-[#FF6D00] transition-all shadow-sm cursor-pointer text-xs font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-white/[0.05] text-slate-800 dark:text-slate-100 hover:text-[#FF6D00] hover:border-[#FF6D00] dark:hover:border-[#FF6D00] transition-all shadow-sm cursor-pointer text-xs sm:text-sm font-bold"
               aria-label="Scroll back to top"
             >
               <span>Back to top</span>
-              <ArrowUp size={13} className="text-[#00A6FF]" />
+              <ArrowUp size={14} className="text-[#00A6FF]" />
             </motion.button>
 
           </div>

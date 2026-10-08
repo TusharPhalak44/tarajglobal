@@ -116,6 +116,12 @@ export const getAllBlogs = async (req, res) => {
       params.push(searchPattern, searchPattern, searchPattern)
     }
 
+    // RBAC: Standard users can only see their own blogs; Admins see all blogs
+    if (req.user && req.user.role === 'user') {
+      whereClause += ' AND b.created_by = ?'
+      params.push(req.user.id)
+    }
+
     const [blogs] = await db.execute(`
       SELECT 
         b.*,
@@ -126,8 +132,8 @@ export const getAllBlogs = async (req, res) => {
       LEFT JOIN authors a ON b.author_id = a.id
       ${whereClause}
       ORDER BY b.updated_at DESC, b.created_at DESC 
-      LIMIT ? OFFSET ?
-    `, [...params, parseInt(limit), parseInt(offset)])
+      LIMIT ${parseInt(limit) || 10} OFFSET ${parseInt(offset) || 0}
+    `, params)
     
     const [countResult] = await db.execute(`SELECT COUNT(*) as total FROM blogs b ${whereClause}`, params)
     
@@ -203,6 +209,14 @@ export const getBlogById = async (req, res) => {
     }
 
     const blog = blogs[0];
+
+    // RBAC: Standard user can only view their own blogs
+    if (req.user && req.user.role === 'user' && blog.created_by && blog.created_by !== req.user.id) {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied. You can only access your own blogs.'
+      })
+    }
     blog.featured_image = blog.featured_image || blog.image
     blog.image = blog.image || blog.featured_image
     try { blog.tags = blog.tags ? (typeof blog.tags === 'string' ? JSON.parse(blog.tags) : blog.tags) : [] } catch(e) { blog.tags = [] }
@@ -297,13 +311,58 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('?')
     }
 
-    if (columnNames.includes('author_id') && author_id) {
+    // Determine effective author:
+    // If standard user: author MUST automatically be that user only!
+    // If admin: can pick an author, or default to admin themselves if none selected.
+    let effectiveAuthorId = author_id || null
+    let effectiveAuthorName = null
+
+    const resolveAuthorForUser = async (userId, userEmail, userName) => {
+      try {
+        const [existing] = await db.execute('SELECT id, name FROM authors WHERE user_id = ? OR email = ?', [userId, userEmail || ''])
+        if (existing.length > 0) {
+          return existing[0]
+        }
+        const aName = userName || userEmail || 'User'
+        let aSlug = slugify(aName, { lower: true, strict: true })
+        const [slugCheck] = await db.execute('SELECT id FROM authors WHERE slug = ?', [aSlug])
+        if (slugCheck.length > 0) {
+          aSlug = `${aSlug}-${Date.now().toString().slice(-4)}`
+        }
+        const [ins] = await db.execute(
+          'INSERT INTO authors (user_id, name, email, slug, status) VALUES (?, ?, ?, ?, ?)',
+          [userId, aName, userEmail || null, aSlug, 'active']
+        )
+        return { id: ins.insertId, name: aName }
+      } catch (e) {
+        console.error('Error resolving author for user:', e)
+        return { id: null, name: userName || 'Author' }
+      }
+    }
+
+    if (req.user?.role === 'user') {
+      const userAuthor = await resolveAuthorForUser(req.user.id, req.user.email, req.user.name)
+      effectiveAuthorId = userAuthor.id
+      effectiveAuthorName = userAuthor.name
+    } else {
+      if (effectiveAuthorId) {
+        const [aRows] = await db.execute('SELECT name FROM authors WHERE id = ?', [effectiveAuthorId])
+        if (aRows.length > 0) effectiveAuthorName = aRows[0].name
+      } else if (req.user) {
+        const adminAuthor = await resolveAuthorForUser(req.user.id, req.user.email, req.user.name)
+        effectiveAuthorId = adminAuthor.id
+        effectiveAuthorName = adminAuthor.name
+      }
+    }
+
+    if (columnNames.includes('author_id') && effectiveAuthorId) {
       insertColumns.push('author_id')
-      insertValues.push(author_id)
+      insertValues.push(effectiveAuthorId)
       valuePlaceholders.push('?')
-    } else if (columnNames.includes('author') && author_id) {
+    }
+    if (columnNames.includes('author') && effectiveAuthorName) {
       insertColumns.push('author')
-      insertValues.push(author_id)
+      insertValues.push(effectiveAuthorName)
       valuePlaceholders.push('?')
     }
 
@@ -320,7 +379,7 @@ export const createBlog = async (req, res) => {
     // Always try to add status column, if it doesn't exist, add it to the table
     if (!columnNames.includes('status')) {
       try {
-        await db.execute(`ALTER TABLE blogs ADD COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft'`)        columnNames.push('status')
+        await db.execute(`ALTER TABLE blogs ADD COLUMN status ENUM('draft', 'published', 'archived', 'scheduled') DEFAULT 'draft'`)        columnNames.push('status')
       } catch (alterError) {      }
     } else {
       // If status column exists but has old enum values, update it
@@ -331,7 +390,7 @@ export const createBlog = async (req, res) => {
           WHERE TABLE_NAME = 'blogs' AND COLUMN_NAME = 'status'
         `)
         
-        if (columnInfo.length > 0 && columnInfo[0].COLUMN_TYPE.includes('in_review')) {
+        if (columnInfo.length > 0 && (columnInfo[0].COLUMN_TYPE.includes('in_review') || !columnInfo[0].COLUMN_TYPE.includes('scheduled'))) {
           // Update existing rows to use new status values
           await db.execute(`
             UPDATE blogs 
@@ -344,7 +403,7 @@ export const createBlog = async (req, res) => {
           // Modify the column to use new enum
           await db.execute(`
             ALTER TABLE blogs 
-            MODIFY COLUMN status ENUM('draft', 'published', 'archived') DEFAULT 'draft'
+            MODIFY COLUMN status ENUM('draft', 'published', 'archived', 'scheduled') DEFAULT 'draft'
           `)        }
       } catch (alterError) {      }
     }
@@ -422,6 +481,12 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('?')
     }
 
+    if (columnNames.includes('created_by') && req.user?.id) {
+      insertColumns.push('created_by')
+      insertValues.push(req.user.id)
+      valuePlaceholders.push('?')
+    }
+
     // Insert blog    const query = `INSERT INTO blogs (${insertColumns.join(', ')}) VALUES (${valuePlaceholders.join(', ')})`
     const [result] = await db.execute(query, insertValues)    const blogId = result.insertId
 
@@ -474,6 +539,16 @@ export const updateBlog = async (req, res) => {
 
     const currentBlog = currentBlogs[0]
 
+    // RBAC: Standard user can ONLY edit their own blogs!
+    if (req.user && req.user.role === 'user') {
+      if (currentBlog.created_by && currentBlog.created_by !== req.user.id) {
+        return res.status(403).json({
+          success: false,
+          message: 'Access denied. You can only edit your own blogs.'
+        })
+      }
+    }
+
     // Handle slug generation/update
     let slug = currentBlog.slug
     if (customSlug && customSlug !== currentBlog.slug) {
@@ -495,7 +570,15 @@ export const updateBlog = async (req, res) => {
     if (content !== undefined) { updates.push('content = ?'); values.push(content) }
     if (excerpt !== undefined) { updates.push('excerpt = ?'); values.push(excerpt) }
     if (category_id !== undefined) { updates.push('category_id = ?'); values.push(category_id || null) }
-    if (author_id !== undefined) { updates.push('author_id = ?'); values.push(author_id || null) }
+    // Only admins can change author_id on update
+    if (author_id !== undefined && req.user?.role !== 'user') { 
+      updates.push('author_id = ?')
+      values.push(author_id || null) 
+    }
+    if (req.user?.id) {
+      updates.push('updated_by = ?')
+      values.push(req.user.id)
+    }
     
     // Always include status if provided in request
     if (status !== undefined) { 
@@ -532,7 +615,7 @@ export const updateBlog = async (req, res) => {
       values.push(seo_keywords || null)
     }
 
-    if (tags !== undefined) {
+    if (tags !== undefined && currentBlog.tags !== undefined) {
       updates.push('tags = ?')
       values.push(JSON.stringify(tags))
     }
@@ -639,6 +722,14 @@ export const deleteBlog = async (req, res) => {
   try {
     const { id } = req.params
 
+    // RBAC: Only administrators can delete blogs
+    if (req.user && req.user.role === 'user') {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied. Only administrators can delete blogs.'
+      })
+    }
+
     // Get blog before deletion for cleanup
     const [blogs] = await db.execute('SELECT * FROM blogs WHERE id = ?', [id])
     if (blogs.length === 0) {
@@ -706,6 +797,16 @@ export const updateBlogStatus = async (req, res) => {
     }
 
     const currentBlog = blogs[0]
+
+    // RBAC: Standard user can only update status of their own blogs
+    if (req.user && req.user.role === 'user') {
+      if (currentBlog.created_by && currentBlog.created_by !== req.user.id) {
+        return res.status(403).json({
+          success: false,
+          message: 'Access denied. You can only update status of your own blogs.'
+        })
+      }
+    }
     let seoScore = currentBlog.seo_score
     let seoAnalysis = currentBlog.seo_analysis
 
