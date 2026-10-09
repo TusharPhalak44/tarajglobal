@@ -37,6 +37,7 @@ import PageHeader from '@components/admin/PageHeader'
 import LoadingSkeleton from '@components/admin/LoadingSkeleton'
 import EmptyState from '@components/admin/EmptyState'
 import ConfirmModal from '@components/admin/ConfirmModal'
+import { mediaUrl } from '@utils/media'
 
 const Profile = () => {
   const { user, updateUser } = useAuth()
@@ -325,7 +326,7 @@ const Profile = () => {
   }
 
   const isAdminOrSuper = user?.role === 'super_admin' || user?.role === 'admin'
-  const avatarUrl = user?.avatar?.startsWith('http') ? user.avatar : user?.avatar ? `http://localhost:5001${user.avatar}` : null
+  const avatarUrl = user?.avatar?.startsWith('http') ? user.avatar : user?.avatar ? mediaUrl(user.avatar) : null
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
@@ -922,7 +923,7 @@ const Profile = () => {
             <div className="divide-y divide-[var(--admin-border-subtle)]">
               {teamUsers.map((u) => {
                 const isCurrent = u.id === user?.id
-                const uAvatar = u.avatar?.startsWith('http') ? u.avatar : u.avatar ? `http://localhost:5001${u.avatar}` : null
+                const uAvatar = u.avatar?.startsWith('http') ? u.avatar : u.avatar ? mediaUrl(u.avatar) : null
                 return (
                   <div key={u.id} className="py-3.5 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3.5 min-w-0">

@@ -57,7 +57,6 @@ const Leads = lazy(() => import('@pages/Admin/Leads'))
 const AuditLogs = lazy(() => import('@pages/Admin/AuditLogs'))
 const Notifications = lazy(() => import('@pages/Admin/Notifications'))
 const CMSNavbar = lazy(() => import('@pages/Admin/CMSNavbar'))
-const CMSFooter = lazy(() => import('@pages/Admin/CMSFooter'))
 const CMSOurClients = lazy(() => import('@pages/Admin/CMSOurClients'))
 const FooterManagement = lazy(() => import('@pages/Admin/FooterManagement'))
 const CareerGallery = lazy(() => import('@pages/Admin/CareerGallery/index.jsx'))
@@ -111,6 +110,7 @@ function AppRoutes() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="cookies" element={<CookiePolicy />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
 
       {/* Auth / Admin Login Route */}
@@ -144,15 +144,12 @@ function AppRoutes() {
         <Route path="audit-logs" element={<RequireAdminOnly><AuditLogs /></RequireAdminOnly>} />
         <Route path="notifications" element={<RequireAdminOnly><Notifications /></RequireAdminOnly>} />
         <Route path="cms/navbar" element={<RequireAdminOnly><CMSNavbar /></RequireAdminOnly>} />
-        <Route path="cms/footer" element={<RequireAdminOnly><CMSFooter /></RequireAdminOnly>} />
+        <Route path="cms/footer" element={<Navigate to="/admin/footer" replace />} />
         <Route path="cms/clients" element={<RequireAdminOnly><CMSOurClients /></RequireAdminOnly>} />
         <Route path="career-gallery" element={<RequireAdminOnly><CareerGallery /></RequireAdminOnly>} />
         <Route path="footer" element={<RequireAdminOnly><FooterManagement /></RequireAdminOnly>} />
         <Route path="payments" element={<RequireAdminOnly><PaymentGateways /></RequireAdminOnly>} />
       </Route>
-
-      {/* 404 */}
-      <Route path="*" element={<NotFound />} />
     </Routes>
     </Suspense>
   )

@@ -1,13 +1,11 @@
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
-import rateLimit from 'express-rate-limit'
 import compression from 'compression'
 import 'dotenv/config'
 
 // Import routes
 import authRoutes from './routes/auth.routes.js'
-import serviceRoutes from './routes/service.routes.js'
 import blogRoutes from './routes/blog.routes.js'
 import jobRoutes from './routes/job.routes.js'
 import categoryRoutes from './routes/category.routes.js'
@@ -24,6 +22,7 @@ import chatRoutes from './routes/chat.routes.js'
 
 // Import middleware
 import { errorHandler } from './middleware/error.middleware.js'
+import { apiLimiter, analyticsLimiter } from './middleware/rateLimit.middleware.js'
 
 const app = express()
 
@@ -69,72 +68,25 @@ app.use(cors({
   credentials: true,
 }))
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: isDev ? 10000 : 100, // relaxed limit in development
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    success: false,
-    message: 'Too many requests from this IP, please try again later.'
-  }
-})
-app.use('/api/', limiter)
-
-// Strict rate limiter for login — prevents brute-force attacks
-const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // only 10 login attempts per 15 min per IP
-  standardHeaders: true,
-  legacyHeaders: false,
-  skipSuccessfulRequests: true, // don't count successful logins
-  message: {
-    success: false,
-    message: 'Too many login attempts. Please try again in 15 minutes.'
-  }
-})
-
-// Strict rate limiter for public forms — prevents spam
-const formLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: isDev ? 1000 : 10, // 10 form submissions per IP per hour
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    success: false,
-    message: 'Too many submissions from this IP. Please try again in an hour.'
-  }
-})
-
-// Analytics rate limiter — prevents data flooding
-const analyticsLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: isDev ? 10000 : 60, // 60 tracking calls per minute per IP
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { success: false, message: 'Rate limit exceeded.' }
-})
+app.use('/api/', apiLimiter)
 
 // Response compression
 app.use(compression())
 
-// Body parser middleware
-// Limit to 1mb for public routes to prevent ReDoS/DoS via large payloads
-app.use(express.json({ limit: '50mb' }))
-app.use(express.urlencoded({ extended: true, limit: '50mb' }))
+// File uploads use multer (multipart), so JSON bodies stay small; rich blog HTML needs headroom.
+app.use(express.json({ limit: '5mb' }))
+app.use(express.urlencoded({ extended: true, limit: '5mb' }))
 
 // Static files
 app.use('/uploads', express.static('uploads'))
 
 // API routes
 app.use('/api/auth', authRoutes)
-app.use('/api/services', serviceRoutes)
 app.use('/api/blog', blogRoutes)
 app.use('/api/jobs', jobRoutes)
 app.use('/api/categories', categoryRoutes)
 app.use('/api/authors', authorRoutes)
-app.use('/api/contact', formLimiter, contactRoutes)
+app.use('/api/contact', contactRoutes)
 app.use('/api/upload', uploadRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/cms', cmsRoutes)

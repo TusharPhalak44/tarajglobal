@@ -25,9 +25,12 @@ import seoRoutes from './admin/seo.routes.js'
 import cmsRoutes from './admin/cms.routes.js'
 import footerRoutes from './admin/footer.routes.js'
 
+const guardWrites = (permission) => (req, res, next) =>
+  req.method === 'GET' ? next() : checkPermission(permission)(req, res, next)
+
 // Mount sub-routes
 router.use('/blogs', blogRoutes)
-router.use('/categories', categoryRoutes)
+router.use('/categories', guardWrites('category.manage'), categoryRoutes)
 router.use('/tags', tagRoutes)
 router.use('/authors', authorRoutes)
 router.use('/media', mediaRoutes)
@@ -40,7 +43,7 @@ router.use('/audit-logs', auditLogRoutes)
 router.use('/analytics', analyticsRoutes)
 router.use('/settings', settingsRoutes)
 router.use('/seo', seoRoutes)
-router.use('/cms', cmsRoutes)
-router.use('/footer', footerRoutes)
+router.use('/cms', guardWrites('cms.edit'), cmsRoutes)
+router.use('/footer', guardWrites('cms.edit'), footerRoutes)
 
 export default router

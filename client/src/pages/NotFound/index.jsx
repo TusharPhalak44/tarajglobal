@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { Home, Briefcase, Mail, BookOpen, ArrowLeft } from 'lucide-react'
 import SEO from '@components/common/SEO'
 import Container from '@components/layout/Container'
-import ChatBot from '@components/chatbot/ChatBot'
 
 function NotFound() {
   return (
@@ -14,7 +13,7 @@ function NotFound() {
         description="The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
         noIndex={true}
       />
-      <div className="min-h-screen bg-background flex items-center justify-center py-20">
+      <div className="min-h-[70vh] bg-background flex items-center justify-center py-16">
         <Container>
           <div className="max-w-2xl mx-auto text-center space-y-8">
             {/* 404 Code Badge */}
@@ -101,7 +100,6 @@ function NotFound() {
             </motion.div>
           </div>
         </Container>
-        <ChatBot />
       </div>
     </>
   )

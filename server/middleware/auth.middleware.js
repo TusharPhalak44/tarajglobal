@@ -1,6 +1,17 @@
 import { verifyToken } from '../utils/jwt.js'
 import { isTokenBlacklisted } from '../utils/tokenBlacklist.js'
 
+export const optionalAuthenticate = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '')
+  if (!token || isTokenBlacklisted(token)) return next()
+  try {
+    req.user = verifyToken(token)
+  } catch (_) {
+    req.user = null
+  }
+  next()
+}
+
 export const authenticate = (req, res, next) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '')
@@ -33,8 +44,9 @@ export const authenticate = (req, res, next) => {
 }
 
 export const authorize = (...roles) => {
+  const allowed = roles.includes('admin') ? [...roles, 'super_admin'] : roles
   return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
+    if (!req.user || !allowed.includes(req.user.role)) {
       return res.status(403).json({ 
         success: false, 
         message: 'Not authorized to access this route' 

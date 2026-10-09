@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 
 // Components matching the exact reference image design blueprint
 import ReferenceHero from './components/reference/ReferenceHero'
@@ -9,84 +8,36 @@ import ReferenceCoreServices from './components/reference/ReferenceCoreServices'
 import ReferenceImpactIndustries from './components/reference/ReferenceImpactIndustries'
 import ReferenceFinalCTA from './components/reference/ReferenceFinalCTA'
 
+const SERVICE_LIST = [
+  ['Sales Qualified Leads (SQL) Services', '/sql-services'],
+  ['BANT Lead Generation Services', '/bant-lead-generation'],
+  ['Marketing Qualified Leads (MQL) Services', '/mql-services'],
+  ['High-Quality Leads (HQL) Services', '/hql-services'],
+  ['B2B Appointment Setting Services', '/b2b-appointment-setting'],
+  ['B2B Email Marketing Services', '/b2b-email-marketing'],
+  ['Account-Based Marketing (ABM) Services', '/abm'],
+  ['Content Syndication Services', '/content-syndication'],
+  ['Demand Generation Services', '/demand-generation'],
+  ['B2B Webinar Services', '/webinar-services'],
+  ['Lead Nurturing Services', '/lead-nurturing'],
+  ['B2B List Building Services', '/b2b-list-building'],
+  ['Database Cleansing Services', '/database-cleansing'],
+]
+
 const servicesSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "B2B Lead Generation & Demand Generation Services",
-  "itemListElement": [
-    {
+  "itemListElement": SERVICE_LIST.map(([name, path], index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
       "@type": "Service",
-      "position": 1,
-      "name": "Sales Qualified Leads (SQL) Services",
-      "url": "https://tarajglobal.com/sql-services"
+      "name": name,
+      "url": `https://tarajglobal.com${path}`,
+      "provider": { "@type": "Organization", "name": "Taraj Global", "url": "https://tarajglobal.com" },
     },
-    {
-      "@type": "Service",
-      "position": 2,
-      "name": "BANT Lead Generation Services",
-      "url": "https://tarajglobal.com/bant-lead-generation"
-    },
-    {
-      "@type": "Service",
-      "position": 3,
-      "name": "Marketing Qualified Leads (MQL) Services",
-      "url": "https://tarajglobal.com/mql-services"
-    },
-    {
-      "@type": "Service",
-      "position": 4,
-      "name": "B2B Appointment Setting Services",
-      "url": "https://tarajglobal.com/b2b-appointment-setting"
-    },
-    {
-      "@type": "Service",
-      "position": 5,
-      "name": "B2B Email Marketing Services",
-      "url": "https://tarajglobal.com/b2b-email-marketing"
-    },
-    {
-      "@type": "Service",
-      "position": 6,
-      "name": "Account-Based Marketing (ABM) Services",
-      "url": "https://tarajglobal.com/abm"
-    },
-    {
-      "@type": "Service",
-      "position": 7,
-      "name": "Content Syndication Services",
-      "url": "https://tarajglobal.com/content-syndication"
-    },
-    {
-      "@type": "Service",
-      "position": 8,
-      "name": "Demand Generation Services",
-      "url": "https://tarajglobal.com/demand-generation"
-    },
-    {
-      "@type": "Service",
-      "position": 9,
-      "name": "B2B Webinar Services",
-      "url": "https://tarajglobal.com/webinar-services"
-    },
-    {
-      "@type": "Service",
-      "position": 10,
-      "name": "Lead Nurturing Services",
-      "url": "https://tarajglobal.com/lead-nurturing"
-    },
-    {
-      "@type": "Service",
-      "position": 11,
-      "name": "B2B List Building Services",
-      "url": "https://tarajglobal.com/b2b-list-building"
-    },
-    {
-      "@type": "Service",
-      "position": 12,
-      "name": "Database Cleansing Services",
-      "url": "https://tarajglobal.com/database-cleansing"
-    }
-  ]
+  })),
 }
 
 function Services() {
@@ -118,8 +69,6 @@ function Services() {
         {/* Section 06: Final CTA */}
         <ReferenceFinalCTA />
 
-        {/* Interactive Chatbot */}
-        <ChatBot />
       </div>
     </>
   )

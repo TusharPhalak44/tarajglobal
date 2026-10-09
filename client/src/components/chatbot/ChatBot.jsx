@@ -128,16 +128,25 @@ export default function ChatBot() {
     }
   }, [open, minimised, session])
 
-  // Poll for new messages every 3 seconds when chat is open and session exists
+  const messagesRef = useRef(messages)
+  const visibleRef = useRef(open && !minimised)
+  messagesRef.current = messages
+  visibleRef.current = open && !minimised
+  const isChatVisible = open && !minimised
+
+  // Poll faster while the panel is visible; slow down in the background to save requests.
   useEffect(() => {
     if (!session || !session.session_token) return
 
     let isMounted = true
 
     const poll = async () => {
+      if (document.hidden) return
       try {
-        const lastId = messages.length > 0 ? messages[messages.length - 1].id : 0
-        const res = await fetch(`/api/chat/poll?session_token=${session.session_token}&last_id=${lastId}`)
+        const current = messagesRef.current
+        const lastId = current.length > 0 ? current[current.length - 1].id : 0
+        const res = await fetch(`/api/chat/poll?session_token=${encodeURIComponent(session.session_token)}&last_id=${lastId}`)
+        if (!res.ok) return
         const data = await res.json()
 
         if (isMounted && data.success && data.data?.messages?.length > 0) {
@@ -146,7 +155,7 @@ export default function ChatBot() {
             const existingIds = new Set(prev.map(m => m.id))
             const filtered = newMsgs.filter(m => !existingIds.has(m.id))
             if (filtered.length > 0) {
-              if (!open || minimised) setUnread((n) => n + filtered.length)
+              if (!visibleRef.current) setUnread((n) => n + filtered.length)
               return [...prev, ...filtered]
             }
             return prev
@@ -155,15 +164,14 @@ export default function ChatBot() {
       } catch (err) {}
     }
 
-    // Initial poll
     poll()
 
-    const interval = setInterval(poll, 3000)
+    const interval = setInterval(poll, isChatVisible ? 3000 : 15000)
     return () => {
       isMounted = false
       clearInterval(interval)
     }
-  }, [session, messages, open, minimised])
+  }, [session, isChatVisible])
 
   // Scroll detection
   const handleScroll = () => {

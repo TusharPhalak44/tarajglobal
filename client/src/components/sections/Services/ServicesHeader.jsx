@@ -21,23 +21,9 @@ const ServicesHeader = () => {
         }}
         className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-[1.16] mb-6 dark:text-text-primary dark:text-white"
       >
-        <motion.span
-          className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ 
-            delay: 0.4, 
-            duration: 0.6, 
-            ease: [0.22, 1, 0.36, 1] 
-          }}
-          whileHover={{ 
-            scale: 1.05,
-            textShadow: "0 0 30px rgba(0, 166, 255, 0.5)"
-          }}
-        >
-          B2B Growth Expertise
-        </motion.span>
+        <span className="text-[#00A6FF]">B2B </span>
+        <span className="text-slate-900 dark:text-white">Growth </span>
+        <span className="text-[#FF6D00]">Expertise</span>
       </motion.h2>
 
       <motion.p

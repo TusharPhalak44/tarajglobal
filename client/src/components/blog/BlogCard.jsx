@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Clock, ArrowRight, User } from 'lucide-react'
+import { mediaUrl } from '@utils/media'
 
 const BlogCard = ({ blog, index, onReadMore }) => {
   const formatDate = (dateString) => {
@@ -38,15 +39,10 @@ const BlogCard = ({ blog, index, onReadMore }) => {
       {/* Featured Cover Image Container */}
       <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
         <img
-          src={blog.featured_image || blog.image || fallbackImg}
+          src={mediaUrl(blog.featured_image || blog.image) || fallbackImg}
           alt={blog.title}
           loading="lazy"
           onError={(e) => {
-            const rawImg = blog.featured_image || blog.image
-            if (rawImg && typeof rawImg === 'string' && rawImg.startsWith('/uploads') && !e.currentTarget.src.includes(':5001')) {
-              e.currentTarget.src = `http://localhost:5001${rawImg}`
-              return
-            }
             e.currentTarget.onerror = null
             e.currentTarget.src = fallbackImg
           }}

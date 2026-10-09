@@ -1,6 +1,5 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -9,7 +8,7 @@ import ProblemsSolved from './components/ProblemsSolved'
 import MqlProcess from './components/MqlProcess'
 import WhatTarajDelivers from './components/WhatTarajDelivers'
 import WhyChoose from './components/WhyChoose'
-import FAQ from './components/FAQ'
+import FAQ, { FAQS } from './components/FAQ'
 import CTA from './components/CTA'
 
 // ─── JSON-LD Structured Data ─────────────────────────────────────────────────
@@ -21,7 +20,7 @@ const mqlSchema = {
       "@type": "Service",
       "name": "Marketing Qualified Leads (MQL) Services",
       "description": "High-fit Marketing Qualified Leads (MQL) generation delivering verified decision-makers exhibiting clear buying intent through personalized outreach, content syndication, and predictive lead scoring.",
-      "url": "https://www.tarajglobal.com/mql-services",
+      "url": "https://tarajglobal.com/mql-services",
       "provider": {
         "@type": "Organization",
         "name": "Taraj Global",
@@ -37,90 +36,29 @@ const mqlSchema = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.tarajglobal.com/",
+          "item": "https://tarajglobal.com/",
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Services",
-          "item": "https://www.tarajglobal.com/services",
+          "item": "https://tarajglobal.com/services",
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "MQL Services",
-          "item": "https://www.tarajglobal.com/mql-services",
+          "item": "https://tarajglobal.com/mql-services",
         },
       ],
     },
     {
       "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is a Marketing Qualified Lead (MQL) in B2B?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A Marketing Qualified Lead (MQL) is a verified business prospect who matches your Ideal Customer Profile (ICP) and has actively engaged with your solutions—such as downloading whitepapers, attending webinars, or interacting with high-intent content—signaling genuine evaluation interest.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How do MQL services differ from SQL services?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "An MQL represents an engaged prospect who fits demographic/firmographic criteria and has demonstrated topical intent, whereas a Sales Qualified Lead (SQL) has advanced further to confirm explicit budget, buying authority, defined pain points, and an active procurement timeline.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How does Taraj Global score and qualify MQLs?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We use a multi-touch scoring methodology evaluating firmographic fit (revenue, employee size, tech install base), demographic seniority (job titles, department authority), and behavioral engagement signals before delivering verified records.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Can we customize criteria and screening questions for our campaigns?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Every MQL program is tailored to your exact specifications. You can specify mandatory parameters such as minimum employee count, target geographies, software install base, and custom screening questions.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How do you verify prospect data and eliminate bounce rates?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We run every contact record through automated syntax checking, triple-layer SMTP validation, and manual data audits to guarantee 100% active, contactable corporate inboxes with zero bounce risk.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "What content formats perform best for generating high-intent MQLs?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Analyst reports, industry benchmark whitepapers, technical implementation guides, product comparison matrixes, and live webinars generate the highest intent signals among senior B2B decision-makers.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How are MQLs delivered to our CRM or marketing automation platform?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We provide direct native sync to HubSpot, Salesforce, Marketo, or Eloqua, as well as secure API webhook endpoints or structured CSV batch deliveries complete with full engagement telemetry and consent timestamps.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "What is the delivery timeline and pacing for an MQL campaign?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Following campaign kickoff and ICP alignment, initial lead flow typically begins within 5 to 7 business days. Deliveries can be throttled or batched to align with your SDR team’s capacity and follow-up cadence.",
-          },
-        },
-      ],
+      "mainEntity": FAQS.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
     },
   ],
 }
@@ -170,7 +108,6 @@ const MqlServices = () => {
         {/* Section 9 — Final CTA */}
         <CTA />
 
-        <ChatBot />
       </div>
     </>
   )

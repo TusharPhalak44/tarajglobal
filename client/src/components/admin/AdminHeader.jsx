@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { useAuth } from '@context/AuthContext'
 import { useTheme } from '@context/ThemeContext'
+import { mediaUrl } from '@utils/media'
 
 export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarCollapsed }) => {
   const { user, logout } = useAuth()
@@ -135,7 +136,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#00A6FF] to-[#0066CC] p-[1px] shadow-sm overflow-hidden">
               {user?.avatar ? (
                 <img
-                  src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5001${user.avatar}`}
+                  src={user.avatar.startsWith('http') ? user.avatar : mediaUrl(user.avatar)}
                   alt={user.name || 'User'}
                   className="w-full h-full object-cover rounded-[7px]"
                 />

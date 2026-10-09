@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer'
 
+const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+
 // Create transporter
 const createTransporter = () => {
   const host = process.env.EMAIL_HOST || process.env.SMTP_HOST || 'smtp.gmail.com'
@@ -13,7 +15,7 @@ const createTransporter = () => {
     secure: port === 465,
     auth: user && pass ? { user, pass } : undefined,
     tls: {
-      rejectUnauthorized: false
+      rejectUnauthorized: process.env.NODE_ENV === 'production'
     }
   })
 }
@@ -217,18 +219,20 @@ export const sendCandidateApplicationConfirmation = async (application, job) => 
 
 // Send lead notification
 export const sendLeadNotification = async (lead, recipients) => {
-  const adminEmail = recipients || process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'tgs.admin001@gmail.com'
+  const adminEmail = recipients || process.env.ADMIN_EMAIL || process.env.EMAIL_USER
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #00A6FF;">New Lead Received</h2>
       <p>A new lead has been submitted through the contact form.</p>
       <p><strong>Lead Details:</strong></p>
       <ul>
-        <li>Name: ${lead.name}</li>
-        <li>Email: ${lead.email}</li>
-        <li>Company: ${lead.company || 'Not provided'}</li>
-        <li>Phone: ${lead.phone || 'Not provided'}</li>
-        <li>Message: ${lead.message || 'No message'}</li>
+        <li>Name: ${esc(lead.name)}</li>
+        <li>Email: ${esc(lead.email)}</li>
+        <li>Company: ${esc(lead.company || 'Not provided')}</li>
+        <li>Phone: ${esc(lead.phone || 'Not provided')}</li>
+        <li>Message: ${esc(lead.message || 'No message')}</li>
+        <li>Lead source: ${esc(lead.source || 'contact_form')}</li>
+        <li>Pages: ${esc(lead.page_url || 'Not captured')}</li>
       </ul>
       <p>Log in to the admin panel to follow up with this lead.</p>
       <p>Best regards,<br>TaRaj Team</p>
@@ -251,12 +255,12 @@ export const sendLeadConfirmation = async (lead) => {
         <h2 style="color: white; margin: 0;">Thank You for Contacting Us</h2>
       </div>
       <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px;">
-        <p>Hi ${lead.name},</p>
+        <p>Hi ${esc(lead.name)},</p>
         <p>Thank you for reaching out to TaRaj Global. We have received your message and our team will get back to you shortly.</p>
         <p><strong>Your Message Details:</strong></p>
         <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #00A6FF;">
-          <p><strong>Subject:</strong> ${lead.subject || 'Contact Form Submission'}</p>
-          <p><strong>Message:</strong><br/> ${lead.message}</p>
+          <p><strong>Subject:</strong> ${esc(lead.subject || 'Contact Form Submission')}</p>
+          <p><strong>Message:</strong><br/> ${esc(lead.message)}</p>
         </div>
         <p>Best regards,<br>The TaRaj Global Team</p>
       </div>
@@ -273,7 +277,7 @@ export const sendLeadConfirmation = async (lead) => {
 
 // Send blog published notification
 export const sendBlogPublishedNotification = async (blog, recipients) => {
-  const adminEmail = recipients || process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'tgs.admin001@gmail.com'
+  const adminEmail = recipients || process.env.ADMIN_EMAIL || process.env.EMAIL_USER
   const blogUrl = `${process.env.CLIENT_URL || 'http://localhost:3001'}/blog/${blog.slug}`
 
   const html = `
@@ -296,7 +300,7 @@ export const sendBlogPublishedNotification = async (blog, recipients) => {
 
 // Send Chatbot lead notification to Admin
 export const sendChatLeadNotification = async (session) => {
-  const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'tgs.admin001@gmail.com'
+  const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USER
   const adminChatUrl = `${process.env.CLIENT_URL || 'http://localhost:3001'}/admin/chat`
 
   const html = `
@@ -314,19 +318,19 @@ export const sendChatLeadNotification = async (session) => {
           <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #334155;">
             <tr>
               <td style="padding: 6px 0; font-weight: bold; width: 130px;">First Name:</td>
-              <td style="padding: 6px 0;">${session.first_name}</td>
+              <td style="padding: 6px 0;">${esc(session.first_name)}</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Last Name:</td>
-              <td style="padding: 6px 0;">${session.last_name}</td>
+              <td style="padding: 6px 0;">${esc(session.last_name)}</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Email:</td>
-              <td style="padding: 6px 0;"><a href="mailto:${session.email}" style="color: #00A6FF; font-weight: 600;">${session.email}</a></td>
+              <td style="padding: 6px 0;"><a href="mailto:${esc(session.email)}" style="color: #00A6FF; font-weight: 600;">${esc(session.email)}</a></td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Phone Number:</td>
-              <td style="padding: 6px 0;">${session.phone || 'Not provided'}</td>
+              <td style="padding: 6px 0;">${esc(session.phone || 'Not provided')}</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Started At:</td>

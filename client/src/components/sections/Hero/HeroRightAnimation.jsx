@@ -25,16 +25,15 @@ export const HeroRightAnimation = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/20 blur-[100px] pointer-events-none -z-10 rounded-full" />
       
       {/* Video Container */}
-      <div className="relative w-full max-w-[600px] rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,166,255,0.15)] bg-black/40 backdrop-blur-md">
+      <div className="relative w-full max-w-[560px] rounded-[1.75rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.35)] bg-black/40">
         <video
           ref={videoRef}
           src="/video.mp4"
-          controls
           loop
           muted
           autoPlay
           playsInline
-          className="w-full h-auto max-h-[550px] object-cover rounded-[2rem]"
+          className="w-full h-auto max-h-[420px] object-cover block"
         />
       </div>
     </div>

@@ -5,7 +5,6 @@ import GetInTouch from '@components/sections/Contact/GetInTouch'
 import ContactForm from '@components/sections/Contact/ContactForm'
 import OfficeLocation from '@components/sections/Contact/OfficeLocation'
 import MeetingBooking from '@components/sections/Contact/MeetingBooking'
-import ChatBot from '@components/chatbot/ChatBot'
 
 const contactSchema = {
   "@context": "https://schema.org",
@@ -57,7 +56,6 @@ function Contact() {
         <ContactForm />
         <OfficeLocation />
         <MeetingBooking isOpen={showBooking} onClose={() => setShowBooking(false)} />
-        <ChatBot />
       </div>
     </>
   )

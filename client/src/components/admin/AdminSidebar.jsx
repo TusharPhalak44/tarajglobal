@@ -29,6 +29,7 @@ import {
 } from 'lucide-react'
 import { useAuth } from '@context/AuthContext'
 import TGSAdminLogo from './TGSAdminLogo'
+import { mediaUrl } from '@utils/media'
 
 export const AdminSidebar = ({ 
   isOpen, 
@@ -231,7 +232,7 @@ export const AdminSidebar = ({
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00A6FF] to-[#0077CC] p-[1px] shrink-0 overflow-hidden">
                   {user?.avatar ? (
                     <img
-                      src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5001${user.avatar}`}
+                      src={user.avatar.startsWith('http') ? user.avatar : mediaUrl(user.avatar)}
                       alt={user.name || 'Admin'}
                       className="w-full h-full object-cover rounded-[7px]"
                     />
@@ -268,7 +269,7 @@ export const AdminSidebar = ({
               >
                 {user?.avatar ? (
                   <img
-                    src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5001${user.avatar}`}
+                    src={user.avatar.startsWith('http') ? user.avatar : mediaUrl(user.avatar)}
                     alt={user.name || 'Admin'}
                     className="w-full h-full object-cover rounded-[9px]"
                   />

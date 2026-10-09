@@ -1,6 +1,5 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -110,7 +109,6 @@ const DemandGeneration = () => {
         {/* Section 9 — Final CTA */}
         <CTA />
 
-        <ChatBot />
       </div>
     </>
   )

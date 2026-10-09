@@ -39,7 +39,6 @@ import {
   ArrowUpRight
 } from 'lucide-react'
 import { AlbumModal } from './components/AlbumModal'
-import ChatBot from '@components/chatbot/ChatBot'
 import SEO from '@components/common/SEO'
 import { publicAPI } from '@api/public.api'
 import { useReducedMotion } from '@hooks/useReducedMotion'
@@ -1231,18 +1230,11 @@ function Careers() {
       formDataToSend.append('phone', formData.phone)
       formDataToSend.append('job_title', selectedJobTitle || formData.jobTitle || 'General Application')
 
-      // Use relative API proxy or fallback endpoint
       const response = await fetch('/api/jobs/job-application', {
         method: 'POST',
         body: formDataToSend
-      }).catch(() => {
-        return fetch('http://localhost:5001/api/jobs/job-application', {
-          method: 'POST',
-          body: formDataToSend
-        })
       })
-
-      const result = await response.json()
+      const result = await response.json().catch(() => ({}))
 
       if (response.ok && result.success) {
         setUploadSuccess(true)
@@ -1250,18 +1242,11 @@ function Careers() {
           closeModal()
         }, 2200)
       } else {
-        alert(result.message || 'Application submitted successfully! Our recruiting team will contact you.')
-        setUploadSuccess(true)
-        setTimeout(() => {
-          closeModal()
-        }, 2200)
+        alert(result.message || 'We could not submit your application. Please try again or email hr@tarajglobal.com.')
       }
     } catch (error) {
-      console.warn('Application request handled gracefully:', error)
-      setUploadSuccess(true)
-      setTimeout(() => {
-        closeModal()
-      }, 2200)
+      console.error('Job application failed:', error)
+      alert('Network error. Please check your connection and try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -1312,7 +1297,7 @@ function Careers() {
           ref={heroRef}
           onMouseMove={handleHeroMouseMove}
           onMouseLeave={handleHeroMouseLeave}
-          className="relative min-h-[92vh] flex flex-col justify-between pt-24 pb-12 sm:pt-28 sm:pb-14 lg:pt-32 lg:pb-16 overflow-hidden select-none bg-[#F7F8FA] dark:bg-[#050505] transition-colors duration-500"
+          className="relative min-h-[92vh] flex flex-col justify-between pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16 overflow-hidden select-none bg-[#F7F8FA] dark:bg-[#050505] transition-colors duration-500"
         >
           {/* Background Image Layer (Diverse Modern Tech Team Collaborating in Architectural Headquarters) */}
           <div className="absolute inset-0 z-0">
@@ -2333,7 +2318,6 @@ function Careers() {
           )}
         </AnimatePresence>
 
-        <ChatBot />
       </div>
     </>
   )

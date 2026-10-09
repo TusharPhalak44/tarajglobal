@@ -23,9 +23,9 @@ export function FlowButton({
         disabled || isLoading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer hover:border-transparent active:scale-[0.95]'
       } ${
         isPrimary
-          ? 'border-[#FF6D00] dark:border-[#FF6D00] bg-[#FF6D00]/[0.08] dark:bg-[#FF6D00]/25 text-[#FF6D00] dark:text-white hover:text-white shadow-xs hover:border-[#FF6D00] dark:hover:border-[#FF6D00] hover:shadow-[0_6px_25px_rgba(255,109,0,0.35)] dark:shadow-[0_0_20px_rgba(255,109,0,0.25)] dark:hover:shadow-[0_0_30px_rgba(255,109,0,0.65)]'
+          ? 'border-[#FF6D00] bg-[#FF6D00] text-white hover:text-white shadow-[0_8px_22px_rgba(255,109,0,0.38)] hover:bg-[#e86200] hover:border-[#e86200]'
           : isSecondaryOrDark
-          ? 'border-slate-300 dark:border-white/35 bg-white/90 dark:bg-white/10 backdrop-blur-md text-slate-800 dark:text-white hover:text-white shadow-xs hover:shadow-[0_4px_20px_rgba(15,23,42,0.2)] dark:shadow-[0_0_15px_rgba(255,255,255,0.06)] dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.18)]'
+          ? 'border-slate-400 dark:border-white/55 bg-white/80 dark:bg-white/[0.06] backdrop-blur-md text-slate-900 dark:text-white hover:text-white shadow-xs hover:border-[#FF6D00] dark:hover:border-[#FF6D00]'
           : 'border-slate-300 dark:border-white/30 bg-transparent text-slate-800 dark:text-white hover:text-white'
       } ${className}`}
       {...props}
@@ -35,7 +35,7 @@ export function FlowButton({
         <ArrowRight
           className={`absolute w-3.5 h-3.5 left-[-25%] fill-none z-[9] group-hover:left-3.5 group-hover:stroke-white transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
             isPrimary
-              ? 'stroke-[#FF6D00] dark:stroke-[#FF6D00]'
+              ? 'stroke-white'
               : 'stroke-slate-800 dark:stroke-white'
           }`}
         />
@@ -63,7 +63,7 @@ export function FlowButton({
         <ArrowRight
           className={`absolute w-3.5 h-3.5 right-3.5 fill-none z-[9] group-hover:right-[-25%] group-hover:stroke-white transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
             isPrimary
-              ? 'stroke-[#FF6D00] dark:stroke-[#FF6D00]'
+              ? 'stroke-white'
               : 'stroke-slate-800 dark:stroke-white'
           }`}
         />

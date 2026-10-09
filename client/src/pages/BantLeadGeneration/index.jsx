@@ -1,6 +1,5 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -21,7 +20,7 @@ const bantSchema = {
       "@type": "Service",
       "name": "BANT Lead Generation Services",
       "description": "Maximize sales conversion with BANT-qualified B2B leads. Taraj Global rigorously verifies Budget, Authority, Need, and Timeline for every prospect delivered.",
-      "url": "https://www.tarajglobal.com/bant-lead-generation",
+      "url": "https://tarajglobal.com/bant-lead-generation",
       "provider": {
         "@type": "Organization",
         "name": "Taraj Global",
@@ -37,19 +36,19 @@ const bantSchema = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.tarajglobal.com/",
+          "item": "https://tarajglobal.com/",
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Services",
-          "item": "https://www.tarajglobal.com/services",
+          "item": "https://tarajglobal.com/services",
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "BANT Lead Generation",
-          "item": "https://www.tarajglobal.com/bant-lead-generation",
+          "item": "https://tarajglobal.com/bant-lead-generation",
         },
       ],
     },
@@ -110,7 +109,6 @@ const BantLeadGeneration = () => {
         {/* Section 9 — CTA */}
         <CTA />
 
-        <ChatBot />
       </div>
     </>
   )

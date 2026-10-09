@@ -46,7 +46,7 @@ const BlogListings = () => {
     <div className="bg-background text-text-primary transition-colors duration-300">
 
       {/* ── 1. PROFESSIONAL EDITORIAL HERO SECTION ────────────────────── */}
-      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden border-b border-slate-200/80 dark:border-white/5 bg-gradient-to-b from-slate-50/60 via-background to-background">
+      <section className="relative pt-10 pb-16 lg:pt-14 lg:pb-20 overflow-hidden border-b border-slate-200/80 dark:border-white/5 bg-gradient-to-b from-slate-50/60 via-background to-background">
 
         {/* Subtle Ambient Background Glow */}
         <div

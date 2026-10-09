@@ -1,6 +1,5 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 
 import HqlHero from './components/HqlHero'
 import WhatIsHqlService from './components/WhatIsHqlService'
@@ -9,7 +8,7 @@ import WhatProblemsSolved from './components/WhatProblemsSolved'
 import HqlProcessWorkflow from './components/HqlProcessWorkflow'
 import WhatTarajDelivers from './components/WhatTarajDelivers'
 import HqlWhyChoose from './components/HqlWhyChoose'
-import HqlFAQ from './components/HqlFAQ'
+import HqlFAQ, { FAQS } from './components/HqlFAQ'
 import HqlCTA from './components/HqlCTA'
 
 // ─── JSON-LD Structured Data for HQL Services ─────────────────────────────────
@@ -56,72 +55,11 @@ const hqlSchema = {
     },
     {
       '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'What is a High-Quality Lead (HQL)?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'A High-Quality Lead (HQL) is a verified B2B prospect who strictly matches your custom Ideal Customer Profile (ICP), holds direct purchasing or evaluation authority, has demonstrated verified engagement with relevant problem-solving assets, and has answered specific qualifying questions.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'How is an HQL different from an MQL or cold lead?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'While an MQL is often just an unverified form download or gate-click with unknown authority, an HQL is manually and algorithmically validated for seniority, current tech stack, active business pain points, and purchase timeline before sales outreach.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'How does Taraj Global verify decision-maker data?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'We execute a multi-tier validation process combining real-time SMTP handshake checks, algorithmic mailbox pinging, LinkedIn profile audits, and live telephone verification to ensure 100% accurate contact dossiers with zero email bounce rates.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'What kind of custom screening questions can we include?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'You can specify 2 to 4 mandatory discovery questions tailored to your solution—such as current software vendor, renewal dates, team size, cloud deployment model, or immediate operational bottlenecks.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Can we define our exact Ideal Customer Profile (ICP)?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Yes. You retain complete control over targeting criteria including company revenue, employee headcount, industry verticals, geographic regions, target tech stacks (technographics), and specific job titles or seniority levels.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'How are HQL leads delivered to our sales or SDR team?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Leads can be pushed in real-time directly into your CRM (Salesforce, HubSpot, Marketo) via custom webhooks, or delivered in encrypted CSV/Excel batches with full prospect dossiers and engagement timestamps.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Are your HQL lead generation practices GDPR and CCPA compliant?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Absolutely. All outreach and lead generation strictly adhere to global privacy frameworks including GDPR, CCPA, and CAN-SPAM, complete with documented opt-in consent and clear audit trails for every contact.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: "What is Taraj Global's lead replacement guarantee SLA?",
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Every HQL campaign is backed by our 14-day 1-to-1 lead replacement guarantee. If any lead bounces, has an inaccurate job title, or does not meet your agreed qualification criteria, we replace it at zero extra cost.',
-          },
-        },
-      ],
+      mainEntity: FAQS.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
     },
   ],
 }
@@ -171,8 +109,6 @@ export default function HqlServices() {
         {/* Section 8 — Final High-Converting CTA */}
         <HqlCTA />
 
-        {/* AI Assistant ChatBot */}
-        <ChatBot />
       </div>
     </>
   )

@@ -118,12 +118,11 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[48px] font-black text-text-primary tracking-tight leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-6 mt-2 sm:mt-0"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[42px] xl:text-[52px] font-black text-text-primary tracking-tight leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-6 mt-2 sm:mt-0"
             >
               <span>Generate </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#0088FF] to-cta font-black inline-block">
-                Qualified B2B Leads
-              </span>
+              <span className="text-[#00A6FF]">Qualified </span>
+              <span className="text-[#FF6D00]">B2B Leads</span>
               <span className="block mt-1.5 text-text-primary">
                 and Build a Stronger Sales Pipeline
               </span>
@@ -136,7 +135,7 @@ export const Hero = () => {
               transition={{ duration: 0.7, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base md:text-lg text-text-secondary leading-relaxed font-normal max-w-[560px] mb-6 sm:mb-8"
             >
-              Taraj Global helps B2B SaaS and technology companies generate high-quality B2B leads, connect with the right decision-makers, and build a stronger sales pipeline through data-driven demand generation, targeted lead generation, account-based marketing, and personalized outreach.
+              Taraj Global helps B2B SaaS and technology companies reach the right decision-makers and turn that attention into a qualified sales pipeline.
             </motion.p>
 
             {/* Enterprise CTA Action Center */}
@@ -194,7 +193,7 @@ export const Hero = () => {
           </div>
 
           {/* ══ Right Visual Block: Signature Revenue Signal Field (Span 5) ═ */}
-          <div ref={visualRef} className="lg:col-span-5 flex justify-center relative w-full h-full min-h-[400px] sm:min-h-[500px]">
+          <div ref={visualRef} className="lg:col-span-5 flex justify-center relative w-full min-h-0 lg:min-h-[420px]">
             <HeroRightAnimation />
           </div>
 

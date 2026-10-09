@@ -26,7 +26,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 overflow-hidden bg-background text-text-primary"
+      className="relative pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden bg-background text-text-primary"
       aria-label="Meet DemandFlow Bridge"
     >
       {/* Background Ambience & Cyber Grid */}
@@ -112,7 +112,7 @@ const Hero = () => {
 
             <button
               onClick={() => scrollToSection('ecosystem')}
-              style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
+              style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
             >
               <span>See How It Works</span>
             </button>

@@ -320,7 +320,7 @@ const Hero = () => {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-[80vh] lg:min-h-[82vh] flex items-center justify-center overflow-hidden bg-background pt-20 pb-6 sm:pt-22 sm:pb-8 lg:pt-22 lg:pb-8 transition-colors duration-300"
+      className="relative min-h-[80vh] lg:min-h-[82vh] flex items-center justify-center overflow-hidden bg-background pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-10 lg:pb-8 transition-colors duration-300"
       aria-label="MQL Lead Generation Hero"
     >
       {/* Background */}
@@ -386,7 +386,7 @@ const Hero = () => {
               <span className="block pb-1 sm:pb-1.5">Generate Marketing Qualified Leads</span>
               <span
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
-                style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #38BDF8 50%, #FF6D00 100%)' }}
+                style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
                 That Move Your Pipeline Forward
               </span>
@@ -407,7 +407,7 @@ const Hero = () => {
                 id="hero-cta-primary"
                 className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-text-accent dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
                 style={{
-                  background: 'linear-gradient(90deg, #FF6D00 0%, #0080CC 100%)',
+                  background: '#FF6D00',
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
                 }}
               >
@@ -418,8 +418,8 @@ const Hero = () => {
               <button
                 onClick={handleSeeHowItWorks}
                 id="hero-cta-secondary"
-                className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer hover:"
-                style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }}
+                className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer hover:brightness-110"
+                style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
               >
                 Explore Our Services
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />

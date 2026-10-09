@@ -17,6 +17,7 @@ import PageHeader from '@components/admin/PageHeader'
 import EmptyState from '@components/admin/EmptyState'
 import ConfirmModal from '@components/admin/ConfirmModal'
 import { TableSkeleton } from '@components/admin/LoadingSkeleton'
+import { mediaUrl } from '@utils/media'
 
 const Media = () => {
   const [loading, setLoading] = useState(true)
@@ -86,7 +87,7 @@ const Media = () => {
   }
 
   const handleCopyLink = (item) => {
-    const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5001${item.file_url}`
+    const fullUrl = item.file_url?.startsWith('http') ? item.file_url : mediaUrl(item.file_url)
     navigator.clipboard.writeText(fullUrl).then(() => {
       setMessage({ type: 'success', text: 'Asset URL copied.' })
       setTimeout(() => setMessage({ type: '', text: '' }), 2500)
@@ -95,7 +96,7 @@ const Media = () => {
 
   const handleDownload = async (item) => {
     try {
-      const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5001${item.file_url}`
+      const fullUrl = item.file_url?.startsWith('http') ? item.file_url : mediaUrl(item.file_url)
       const response = await fetch(fullUrl)
       if (!response.ok) throw new Error('Download failed')
       
@@ -236,7 +237,7 @@ const Media = () => {
       ) : viewMode === 'grid' ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {media.map((item) => {
-            const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5001${item.file_url}`
+            const fullUrl = item.file_url?.startsWith('http') ? item.file_url : mediaUrl(item.file_url)
             const isVideo = item.file_type?.includes('video') || item.file_url?.endsWith('.mp4')
 
             return (
@@ -305,7 +306,7 @@ const Media = () => {
       ) : (
         <div className="space-y-2">
           {media.map((item) => {
-            const fullUrl = item.file_url?.startsWith('http') ? item.file_url : `http://localhost:5001${item.file_url}`
+            const fullUrl = item.file_url?.startsWith('http') ? item.file_url : mediaUrl(item.file_url)
 
             return (
               <div 
@@ -375,7 +376,7 @@ const Media = () => {
 
             <div className="max-h-[50vh] flex items-center justify-center bg-[var(--admin-bg-elevated)] rounded-xl p-3 overflow-hidden border border-[var(--admin-border-subtle)]">
               <img
-                src={previewItem.file_url?.startsWith('http') ? previewItem.file_url : `http://localhost:5001${previewItem.file_url}`}
+                src={previewItem.file_url?.startsWith('http') ? previewItem.file_url : mediaUrl(previewItem.file_url)}
                 alt=""
                 className="max-h-[45vh] object-contain rounded-lg"
               />

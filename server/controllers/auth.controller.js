@@ -62,7 +62,11 @@ export const login = async (req, res) => {
 // ── Register ───────────────────────────────────────────────────────────────
 export const register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body
+    if (process.env.NODE_ENV === 'production' && process.env.ALLOW_PUBLIC_REGISTRATION !== 'true') {
+      return res.status(403).json({ success: false, message: 'Registration is disabled. Ask an administrator for an account.' })
+    }
+
+    const { name, email, password } = req.body
 
     const existing = await User.findByEmail(email)
     if (existing) {
@@ -70,7 +74,7 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
-    const userId = await User.create({ name, email, password: hashedPassword, role: role || 'user' })
+    const userId = await User.create({ name, email, password: hashedPassword, role: 'user' })
     const user   = await User.findById(userId)
 
     const token        = generateToken({ id: user.id, email: user.email, role: user.role })

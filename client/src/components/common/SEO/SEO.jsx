@@ -54,7 +54,7 @@ const SEO = ({
       ) : (
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       )}
-      <link rel="canonical" href={canonicalUrl} />
+      {!noIndex && <link rel="canonical" href={canonicalUrl} />}
 
       {/* Open Graph Tags */}
       <meta property="og:site_name" content={DEFAULT_META.siteName} />

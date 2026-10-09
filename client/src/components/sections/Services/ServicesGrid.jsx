@@ -94,6 +94,17 @@ const services = [
   },
 ]
 
+const moreServices = [
+  { title: 'Content Syndication', link: '/content-syndication' },
+  { title: 'SQL Services', link: '/sql-services' },
+  { title: 'Demand Generation', link: '/demand-generation' },
+  { title: 'List Building', link: '/b2b-list-building' },
+  { title: 'Database Cleansing', link: '/database-cleansing' },
+  { title: 'Lead Nurturing', link: '/lead-nurturing' },
+  { title: 'Webinar Services', link: '/webinar-services' },
+  { title: 'DemandFlow Bridge', link: '/demandflow-bridge' },
+]
+
 const CYCLE_DURATION_MS = 6000 // 6 seconds per step
 
 const ServicesGrid = () => {
@@ -145,7 +156,7 @@ const ServicesGrid = () => {
       {/* Main Dual-Pane Interactive Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Pane: Detailed Display Card */}
-        <div className="lg:col-span-7 relative h-full flex flex-col justify-center">
+        <div className="order-2 lg:order-1 lg:col-span-7 relative flex flex-col justify-center">
           {/* Ambient Glows Behind Card */}
           <div className="absolute -top-12 -left-12 w-72 h-72 bg-primary/30 dark:bg-primary/10 blur-[90px] rounded-full -z-10 pointer-events-none" />
           <div className="absolute -bottom-12 right-0 w-64 h-64 bg-accent/10 blur-[80px] rounded-full -z-10 pointer-events-none" />
@@ -157,14 +168,14 @@ const ServicesGrid = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative overflow-hidden h-full flex flex-col justify-center cursor-pointer lg:cursor-default"
+              className="relative w-full min-h-[380px] sm:min-h-[440px] cursor-pointer lg:cursor-default"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onClick={() => setIsFlipped((prev) => !prev)}
               style={{ perspective: '1000px' }}
             >
               <motion.div
-                className="relative w-full h-full"
+                className="relative w-full h-full min-h-[380px] sm:min-h-[440px]"
                 animate={{ rotateY: isCardFlipped ? 180 : 0 }}
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
                 style={{ transformStyle: 'preserve-3d' }}
@@ -296,7 +307,7 @@ const ServicesGrid = () => {
         </div>
 
         {/* Right Pane: Interactive 2x2 Grid Stack */}
-        <div className="lg:col-span-5 flex items-center justify-center">
+        <div className="order-1 lg:order-2 lg:col-span-5 flex items-center justify-center">
           <div className="relative w-full max-w-[500px]">
             {/* Grid of Cards */}
             <div className="w-full grid grid-cols-2 gap-3 relative z-20">
@@ -461,6 +472,29 @@ const ServicesGrid = () => {
               <div className="w-1 h-1 rounded-full bg-border" />
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="mt-8 sm:mt-10 px-1">
+        <p className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400 mb-3">
+          The rest of the pipeline
+        </p>
+        <div className="flex flex-wrap justify-center gap-2">
+          {moreServices.map((item) => (
+            <Link
+              key={item.link}
+              to={item.link}
+              className="px-3.5 py-2 rounded-full text-sm font-semibold border border-slate-300/80 dark:border-white/15 text-slate-800 dark:text-slate-100 bg-white/70 dark:bg-white/[0.04] hover:border-[#00A6FF] hover:text-[#00A6FF] transition-colors"
+            >
+              {item.title}
+            </Link>
+          ))}
+          <Link
+            to="/services"
+            className="px-3.5 py-2 rounded-full text-sm font-semibold text-white bg-[#FF6D00] hover:bg-[#e86200] transition-colors"
+          >
+            All services
+          </Link>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import nodemailer from 'nodemailer'
 import db from '../config/db.js'
 import notificationHelper from '../helpers/notificationHelper.js'
 import emailService from '../services/email.service.js'
+import { formLimiter } from '../middleware/rateLimit.middleware.js'
 
 const router = express.Router()
 
@@ -18,22 +19,22 @@ const getTransporter = () => {
     port: parseInt(process.env.EMAIL_PORT || '587', 10),
     secure: process.env.EMAIL_PORT === '465',
     auth: {
-      user: process.env.EMAIL_USER || 'tgs.admin001@gmail.com',
+      user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS
     },
     tls: {
-      rejectUnauthorized: false
+      rejectUnauthorized: process.env.NODE_ENV === 'production'
     }
   })
 }
 
-const getAdminEmail = () => process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'tgs.admin001@gmail.com'
-const getFromEmail = () => process.env.EMAIL_FROM || process.env.EMAIL_USER || 'tgs.admin001@gmail.com'
+const getAdminEmail = () => process.env.ADMIN_EMAIL || process.env.EMAIL_USER
+const getFromEmail = () => process.env.EMAIL_FROM || process.env.EMAIL_USER
 
 // @route   POST /api/contact/meeting
 // @desc    Book a meeting and send confirmation email
 // @access  Public
-router.post('/meeting', [
+router.post('/meeting', formLimiter, [
   body('fullName').trim().notEmpty().withMessage('Full name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
   body('company').trim().notEmpty().withMessage('Company name is required'),
@@ -422,13 +423,24 @@ router.post('/meeting', [
 // @route   POST /api/contact
 // @desc    Submit contact form and create lead
 // @access  Public
-router.post('/', [
+router.post('/', formLimiter, [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
   body('message').trim().notEmpty().withMessage('Message is required')
 ], validate, async (req, res) => {
   try {
     const { name, email, phone, subject, message, company } = req.body
+    const attribution = req.body.attribution && typeof req.body.attribution === 'object' ? req.body.attribution : {}
+    const clip = (value, max) => String(value || '').slice(0, max)
+    const leadSource = clip(attribution.channel || 'contact_form', 100)
+    const pageUrl = clip(
+      [
+        attribution.source_page && `from: ${attribution.source_page}`,
+        attribution.landing_page && `landing: ${attribution.landing_page}`,
+        attribution.referrer && `referrer: ${attribution.referrer}`,
+      ].filter(Boolean).join(' | ') || req.headers.referer || '/',
+      500
+    )
     
     // Save to contacts table (for leads management)
     const insertQuery = `
@@ -444,7 +456,7 @@ router.post('/', [
         page_url,
         created_at,
         updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, 'new', 'contact_form', ?, NOW(), NOW())
+      ) VALUES (?, ?, ?, ?, ?, ?, 'new', ?, ?, NOW(), NOW())
     `
     
     const [result] = await db.execute(insertQuery, [
@@ -454,7 +466,8 @@ router.post('/', [
       company || '',
       subject || '',
       message,
-      req.headers.referer || req.headers.origin || '/'
+      leadSource,
+      pageUrl
     ])
     
     // Notify admins about new lead and send email
@@ -463,7 +476,7 @@ router.post('/', [
       
       // Also send email notification to admin
       await emailService.sendLeadNotification(
-        { name, email, company, phone, message },
+        { name, email, company, phone, message, source: leadSource, page_url: pageUrl },
         getAdminEmail()
       )
       

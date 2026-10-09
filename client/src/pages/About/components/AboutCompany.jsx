@@ -458,7 +458,7 @@ export const AboutCompany = () => {
       </div>
 
       {/* ── SECTION 01: HERO — THE TARAJ GLOBAL DNA ──────────────────── */}
-      <section className="relative pt-32 pb-10 sm:pt-21 sm:pb-12 lg:pt-30 lg:pb-14 overflow-hidden">
+      <section className="relative pt-10 pb-10 sm:pt-12 sm:pb-12 lg:pt-14 lg:pb-14 overflow-hidden">
         <div className="max-w-[1360px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
           {/* Eyebrow with Beacon Animation */}

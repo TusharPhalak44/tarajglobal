@@ -1,7 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
 import BlogListings from '@components/blog/BlogListings'
-import ChatBot from '@components/chatbot/ChatBot'
 
 const blogSchema = {
   "@context": "https://schema.org",
@@ -31,7 +30,6 @@ function Blog() {
       />
       <div className="min-h-screen bg-background">
         <BlogListings />
-        <ChatBot />
       </div>
     </>
   )

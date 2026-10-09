@@ -1,7 +1,5 @@
 import express from 'express'
-import { body } from 'express-validator'
-import { validate } from '../middleware/validation.middleware.js'
-import { authenticate, authorize } from '../middleware/auth.middleware.js'
+import { optionalAuthenticate } from '../middleware/auth.middleware.js'
 import db from '../config/db.js'
 
 const router = express.Router()
@@ -38,9 +36,8 @@ router.get('/', async (req, res) => {
     
     query += ' ORDER BY b.updated_at DESC, b.created_at DESC'
     
-    if (limit) {
-      query += ` LIMIT ${parseInt(limit) || 10}`
-    }
+    const safeLimit = Math.min(Math.max(parseInt(limit, 10) || 10, 1), 100)
+    query += ` LIMIT ${safeLimit}`
     
     const [blogs] = await db.execute(query, params)
     const formatted = blogs.map(b => ({
@@ -52,19 +49,19 @@ router.get('/', async (req, res) => {
     res.json({ success: true, data: formatted })
   } catch (error) {
     console.error('Get blogs error:', error)
-    res.status(500).json({ success: false, message: 'Internal server error', error: error.message, stack: error.stack })
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
 
 // @route   GET /api/blog/:slug
 // @desc    Get blog post by slug
 // @access  Public
-router.get('/:slug', async (req, res) => {
+router.get('/:slug', optionalAuthenticate, async (req, res) => {
   try {
     const { slug } = req.params
     const { preview } = req.query
 
-    const isPreview = (preview === 'true' || preview === true)
+    const isPreview = (preview === 'true' || preview === true) && Boolean(req.user?.id)
     const whereCondition = isPreview
       ? 'WHERE (b.slug = ? OR b.id = ?)'
       : "WHERE (b.slug = ? OR b.id = ?) AND b.status = 'published'"
@@ -99,48 +96,6 @@ router.get('/:slug', async (req, res) => {
     res.json({ success: true, data: blog })
   } catch (error) {
     console.error('Get blog by slug error:', error)
-    res.status(500).json({ success: false, message: 'Internal server error' })
-  }
-})
-
-// @route   POST /api/blog
-// @desc    Create a new blog post
-// @access  Private/Admin
-router.post('/', authenticate, authorize('admin'), [
-  body('title').trim().notEmpty().withMessage('Title is required'),
-  body('content').trim().notEmpty().withMessage('Content is required')
-], validate, async (req, res) => {
-  try {
-    // This is handled by admin routes
-    res.json({ success: true, message: 'Use /api/admin/blogs for blog management' })
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
-  }
-})
-
-// @route   PUT /api/blog/:id
-// @desc    Update a blog post
-// @access  Private/Admin
-router.put('/:id', authenticate, authorize('admin'), [
-  body('title').trim().notEmpty().withMessage('Title is required'),
-  body('content').trim().notEmpty().withMessage('Content is required')
-], validate, async (req, res) => {
-  try {
-    // This is handled by admin routes
-    res.json({ success: true, message: 'Use /api/admin/blogs for blog management' })
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' })
-  }
-})
-
-// @route   DELETE /api/blog/:id
-// @desc    Delete a blog post
-// @access  Private/Admin
-router.delete('/:id', authenticate, authorize('admin'), async (req, res) => {
-  try {
-    // This is handled by admin routes
-    res.json({ success: true, message: 'Use /api/admin/blogs for blog management' })
-  } catch (error) {
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })

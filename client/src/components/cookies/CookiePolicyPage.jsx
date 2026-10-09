@@ -46,7 +46,7 @@ const CookiePolicyPage = () => {
         ogDescription="Learn how we use cookies and manage your privacy preferences."
         schemaJson={cookieSchema}
       />
-      <div className="min-h-screen bg-background dark:bg-[#050505] py-16 md:py-24">
+      <div className="min-h-screen bg-background dark:bg-[#050505] pt-8 pb-16 md:pt-10 md:pb-24">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

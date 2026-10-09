@@ -1,6 +1,5 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -21,7 +20,7 @@ const appointmentSchema = {
       "@type": "Service",
       "name": "B2B Appointment Setting Services",
       "description": "Taraj Global provides B2B appointment setting services that connect sales teams with relevant decision-makers through targeted prospecting, personalized outreach, qualification, and buyer intelligence.",
-      "url": "https://www.tarajglobal.com/b2b-appointment-setting",
+      "url": "https://tarajglobal.com/b2b-appointment-setting",
       "provider": {
         "@type": "Organization",
         "name": "Taraj Global",
@@ -37,19 +36,19 @@ const appointmentSchema = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.tarajglobal.com/",
+          "item": "https://tarajglobal.com/",
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Services",
-          "item": "https://www.tarajglobal.com/services",
+          "item": "https://tarajglobal.com/services",
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "B2B Appointment Setting",
-          "item": "https://www.tarajglobal.com/b2b-appointment-setting",
+          "item": "https://tarajglobal.com/b2b-appointment-setting",
         },
       ],
     },
@@ -110,7 +109,6 @@ const B2bAppointmentSetting = () => {
         {/* Section 9 — CTA */}
         <CTA />
 
-        <ChatBot />
       </div>
     </>
   )

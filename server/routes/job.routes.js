@@ -5,6 +5,7 @@ import path from 'path'
 import fs from 'fs'
 import emailService from '../services/email.service.js'
 import notificationHelper from '../helpers/notificationHelper.js'
+import { formLimiter } from '../middleware/rateLimit.middleware.js'
 
 const router = express.Router()
 
@@ -83,7 +84,7 @@ router.get('/:id', async (req, res) => {
     const [jobs] = await db.execute(`
       SELECT j.*
       FROM careers j
-      WHERE j.id = ? AND j.status = 'published'
+      WHERE j.id = ? AND (j.status = 'published' OR j.status = 'active' OR j.status IS NULL)
     `, [id])
     
     if (jobs.length === 0) {
@@ -100,7 +101,7 @@ router.get('/:id', async (req, res) => {
 // @route   POST /api/public/job-application
 // @desc    Submit job application
 // @access  Public
-router.post('/job-application', upload.single('resume'), async (req, res) => {
+router.post('/job-application', formLimiter, upload.single('resume'), async (req, res) => {
   try {
     const { first_name, last_name, email, phone, job_title } = req.body
     const resume_path = req.file ? req.file.path : null

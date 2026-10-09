@@ -58,6 +58,7 @@ const SERVICES_DATA = [
     items: [
       { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Custom human-verified decision-maker lists', icon: Search },
       { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Data hygiene, enrichment and deduplication', icon: Database },
+      { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'One platform connecting data, outreach and pipeline', icon: Layers },
     ]
   }
 ]
@@ -128,6 +129,8 @@ export const PremiumNavbar = ({ isPreview = false }) => {
     '/sql-services',
     '/bant-lead-generation',
     '/mql-services',
+    '/hql-services',
+    '/demandflow-bridge',
     '/b2b-appointment-setting',
     '/b2b-email-marketing',
     '/abm',
@@ -159,8 +162,8 @@ export const PremiumNavbar = ({ isPreview = false }) => {
   // Filter out Industries from navLinks
   const filteredNavLinks = navLinks.filter(item => item.name !== 'Industries')
 
-  const fetchNavbarData = useCallback(() => {
-    cmsAPI.getLogo()
+  const fetchNavbarData = useCallback((fresh = false) => {
+    cmsAPI.getLogo(fresh)
       .then(res => {
         const data = res.data?.data || res.data
         if (data) {
@@ -173,7 +176,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
       })
       .catch(() => {})
 
-    cmsAPI.getNavbarItems()
+    cmsAPI.getNavbarItems(fresh)
       .then(res => {
         const raw = res.data?.data || res.data
         if (Array.isArray(raw)) {
@@ -183,7 +186,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
           setHeaderItems(headers)
           if (navs.length > 0) {
             setNavLinks(navs.map(item => ({
-              name: item.label,
+            name: item.label?.trim().toLowerCase() === 'career' ? 'Careers' : item.label,
               path: item.url,
               id: item.id
             })))
@@ -193,12 +196,11 @@ export const PremiumNavbar = ({ isPreview = false }) => {
       .catch(() => {})
   }, [])
 
-  // Fetch on mount & listen for real-time changes across tabs & components
+  // Fetch once on mount; refetch only when an admin publishes navbar changes.
   useEffect(() => {
     fetchNavbarData()
 
-    const handleSync = () => fetchNavbarData()
-    window.addEventListener('focus', handleSync)
+    const handleSync = () => fetchNavbarData(true)
     window.addEventListener('taraj_navbar_updated', handleSync)
 
     const handleStorage = (e) => {
@@ -217,19 +219,22 @@ export const PremiumNavbar = ({ isPreview = false }) => {
     }
 
     return () => {
-      window.removeEventListener('focus', handleSync)
       window.removeEventListener('taraj_navbar_updated', handleSync)
       window.removeEventListener('storage', handleStorage)
       if (bc) bc.close()
     }
   }, [fetchNavbarData])
 
-  // Re-fetch whenever user returns to public routes
-  useEffect(() => {
-    fetchNavbarData()
-  }, [location.pathname, fetchNavbarData])
+  const visibleHeaderItems = headerItems.filter(
+    (item) => !/234[-.\s]?567[-.\s]?8900|123[-.\s]?456[-.\s]?7890/.test(`${item.label || ''} ${item.url || ''}`)
+  )
+  const topBarEnabled = Boolean(logoData.header_visible && visibleHeaderItems.length > 0)
+  const hasTopHeader = topBarEnabled && (!isScrolled || isPreview)
 
-  const hasTopHeader = logoData.header_visible && headerItems.length > 0 && (!isScrolled || isPreview)
+  useEffect(() => {
+    if (isPreview) return
+    document.documentElement.style.setProperty('--nav-top-bar', topBarEnabled ? '32px' : '0px')
+  }, [topBarEnabled, isPreview])
 
   return (
     <div className={isPreview ? "relative w-full h-full z-10" : ""}>
@@ -238,7 +243,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
         <div className={`${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 bg-white dark:bg-slate-950/95 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-white/10 text-xs h-8 px-4 flex items-center backdrop-blur-md`}>
           <div className="max-w-[1600px] w-full mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4 text-[11px] font-medium">
-              {headerItems.filter(h => h.url.startsWith('mailto:') || h.url.startsWith('tel:')).map(item => (
+              {visibleHeaderItems.filter(h => h.url.startsWith('mailto:') || h.url.startsWith('tel:')).map(item => (
                 <a
                   key={item.id}
                   href={item.url}
@@ -251,7 +256,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
               ))}
             </div>
             <div className="flex items-center gap-4 text-[11px]">
-              {headerItems.filter(h => !h.url.startsWith('mailto:') && !h.url.startsWith('tel:')).map(item => (
+              {visibleHeaderItems.filter(h => !h.url.startsWith('mailto:') && !h.url.startsWith('tel:')).map(item => (
                 <a
                   key={item.id}
                   href={item.url}

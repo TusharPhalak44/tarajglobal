@@ -17,6 +17,23 @@
   box-sizing: border-box;
 }
 
+/* Fixed header height. --nav-top-bar is set by PremiumNavbar when the CMS announcement bar is enabled. */
+:root {
+  --nav-top-bar: 0px;
+  --nav-height: 80px;
+  --nav-offset: calc(var(--nav-height) + var(--nav-top-bar));
+}
+
+@media (min-width: 640px) {
+  :root {
+    --nav-height: 88px;
+  }
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-offset) + 16px);
+}
+
 /* ── Lenis Smooth Scroll Recommended Rules ────────────────────────────── */
 html.lenis,
 html.lenis body {
@@ -1077,6 +1094,8 @@ body::before {
 /* Override only when they are deliberately colored (primary, accent etc) */
 .light [class*="text-primary"] { color: var(--primary) !important; }
 .light [class*="text-cta"], .light [class*="text-accent"] { color: var(--cta) !important; }
+/* Orange hero actions stay white in both themes. */
+#hero-cta-primary { color: #fff !important; }
 
 /* ── 29. TRANSPARENT BUTTON FIXES — most critical visibility issue ─────────── */
 /* Buttons with transparent/white-opacity backgrounds become invisible in light */

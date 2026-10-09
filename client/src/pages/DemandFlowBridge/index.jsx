@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '@components/common/SEO'
 import Hero from './components/Hero'
 import WhatIsPlatform from './components/WhatIsPlatform'
 import ConnectedEcosystem from './components/ConnectedEcosystem'
@@ -49,47 +49,14 @@ const DemandFlowBridge = () => {
 
   return (
     <div className="relative w-full bg-background min-h-screen selection:bg-primary/40 dark:bg-primary/20 selection:text-primary">
-      <Helmet>
-        {/* Basic SEO */}
-        <title>DemandFlow Bridge | Unified Business Operations Platform | Taraj Global</title>
-        <meta
-          name="description"
-          content="Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
-        />
-        <link rel="canonical" href="https://tarajglobal.com/demandflow-bridge" />
-        <meta
-          name="keywords"
-          content="business operations platform, CRM and lead management, sales management platform, HRMS platform, client management, payroll management, business operations software, unified business platform, Taraj Global, DemandFlow Bridge"
-        />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tarajglobal.com/demandflow-bridge" />
-        <meta
-          property="og:title"
-          content="DemandFlow Bridge | Unified Business Operations Platform | Taraj Global"
-        />
-        <meta
-          property="og:description"
-          content="Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
-        />
-        <meta property="og:image" content="https://tarajglobal.com/demandflow-admin.png" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="DemandFlow Bridge | Unified Business Operations Platform | Taraj Global"
-        />
-        <meta
-          name="twitter:description"
-          content="Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
-        />
-        <meta name="twitter:image" content="https://tarajglobal.com/demandflow-admin.png" />
-
-        {/* Schema.org Structured Data */}
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
+      <SEO
+        title="DemandFlow Bridge | Unified Business Operations Platform | Taraj Global"
+        description="Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
+        keywords="business operations platform, CRM and lead management, sales management platform, HRMS platform, client management, payroll management, business operations software, unified business platform, Taraj Global, DemandFlow Bridge"
+        canonical="/demandflow-bridge"
+        ogImage="/demandflow-admin.png"
+        schemaJson={jsonLd}
+      />
 
       {/* 1. HERO */}
       <Hero />

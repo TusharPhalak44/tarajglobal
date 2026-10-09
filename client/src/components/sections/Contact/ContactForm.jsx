@@ -21,6 +21,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react'
 import { contactAPI } from '@api/contact.api'
+import { getAttribution } from '@utils/attribution'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import FlowButton from '../../ui/FlowButton'
 import './Contact.css'
@@ -190,6 +191,7 @@ const ContactForm = () => {
         phone: formData.phone,
         subject: resolvedSubject,
         message: formData.message,
+        attribution: getAttribution(),
       })
       setIsSubmitting(false)
       setIsSubmitted(true)

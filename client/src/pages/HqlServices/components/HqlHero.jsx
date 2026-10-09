@@ -342,7 +342,7 @@ export default function HqlHero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-[80vh] lg:min-h-[82vh] flex items-center justify-center overflow-hidden bg-background pt-20 pb-6 sm:pt-22 sm:pb-8 lg:pt-22 lg:pb-8 transition-colors duration-300"
+      className="relative min-h-[80vh] lg:min-h-[82vh] flex items-center justify-center overflow-hidden bg-background pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-10 lg:pb-8 transition-colors duration-300"
       aria-label="High-Quality Leads (HQL) Hero"
     >
       {/* Background */}
@@ -407,7 +407,7 @@ export default function HqlHero() {
               <span className="block pb-1 sm:pb-1.5">Convert High-Intent Decision-Makers</span>
               <span
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
-                style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #38BDF8 50%, #FF6D00 100%)' }}
+                style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
                 With Verified High-Quality Leads (HQL)
               </span>
@@ -442,7 +442,7 @@ export default function HqlHero() {
                 onClick={handleSeeHowItWorks}
                 id="hero-cta-secondary"
                 className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
-                style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }}
+                style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
               >
                 See How It Works
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />

@@ -598,7 +598,7 @@ const CreateBlog = () => {
                       <span className="text-blue-600 text-[12px] font-bold">G</span>
                     </div>
                     <div className="text-[12px] text-[var(--admin-text-secondary)] truncate">
-                      https://www.tarajglobal.com › blog › {createForm.slug || 'your-blog-slug'}
+                      https://tarajglobal.com › blog › {createForm.slug || 'your-blog-slug'}
                     </div>
                   </div>
                   <div className="text-[var(--admin-primary)] text-base font-semibold truncate hover:underline cursor-pointer">

@@ -3,7 +3,6 @@ import SEO from '@components/common/SEO'
 import AboutCompany from './components/AboutCompany'
 import OurTeam from './components/OurTeam'
 import LivingIntelligenceGrid from './components/LivingIntelligenceGrid'
-import ChatBot from '@components/chatbot/ChatBot'
 
 const aboutSchema = {
   "@context": "https://schema.org",
@@ -39,7 +38,6 @@ function About() {
           <AboutCompany />
           <OurTeam />
         </div>
-        <ChatBot />
       </div>
     </>
   )

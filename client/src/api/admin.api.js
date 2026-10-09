@@ -108,20 +108,6 @@ export const adminAPI = {
   getLogo: () => api.get('/admin/cms/logo', { params: { _t: Date.now() } }),
   updateLogo: (data) => api.put('/admin/cms/logo', data),
 
-  // CMS - Footer Links
-  getCMSFooterLinks: () => api.get('/admin/cms/footer-links'),
-  createCMSFooterLink: (data) => api.post('/admin/cms/footer-links', data),
-  updateCMSFooterLink: (id, data) => api.put(`/admin/cms/footer-links/${id}`, data),
-  deleteCMSFooterLink: (id) => api.delete(`/admin/cms/footer-links/${id}`),
-  reorderCMSFooterLinks: (data) => api.put('/admin/cms/footer-links/reorder', data),
-
-  // CMS - Footer Social Links
-  getCMSFooterSocialLinks: () => api.get('/admin/cms/footer-social-links'),
-  createCMSFooterSocialLink: (data) => api.post('/admin/cms/footer-social-links', data),
-  updateCMSFooterSocialLink: (id, data) => api.put(`/admin/cms/footer-social-links/${id}`, data),
-  deleteCMSFooterSocialLink: (id) => api.delete(`/admin/cms/footer-social-links/${id}`),
-  reorderCMSFooterSocialLinks: (data) => api.put('/admin/cms/footer-social-links/reorder', data),
-
   // ==================== FOOTER MANAGEMENT ====================
   getFooterSettings: () => api.get('/admin/footer/settings'),
   updateFooterSettings: (data) => api.put('/admin/footer/settings', data),

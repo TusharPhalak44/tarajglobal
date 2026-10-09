@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { useCookies } from '../cookies/CookieContext'
 import { useAuth } from '../../context/AuthContext'
 import api from '../../api/axios'
+import { trackAttribution } from '../../utils/attribution'
 
 // Helper to generate or retrieve a unique session ID
 const getSessionId = () => {
@@ -18,6 +19,11 @@ const PageTracker = () => {
   const location = useLocation()
   const { preferences } = useCookies()
   const { user } = useAuth()
+
+  // Session-only lead attribution; sent to the server only when the visitor submits a form.
+  useEffect(() => {
+    trackAttribution(location.pathname, location.search)
+  }, [location.pathname, location.search])
 
   useEffect(() => {
     // Only track if the user has accepted the 'analytics' cookie preference

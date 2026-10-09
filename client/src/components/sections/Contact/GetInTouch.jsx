@@ -31,7 +31,7 @@ const GetInTouch = ({ onBookMeeting }) => {
     }
   }
   return (
-    <section className="get-in-touch-section relative z-20 overflow-visible bg-background">
+    <section className="get-in-touch-section relative z-20 overflow-x-clip bg-background">
       {/* ── Animated Gold Wave: Leads this section as it smoothly flows UP over the fixed hero on scroll ── */}
       <AnimatedGoldWave />
 

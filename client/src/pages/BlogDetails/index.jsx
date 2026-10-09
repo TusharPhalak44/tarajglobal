@@ -22,9 +22,9 @@ import {
 import Container from '@components/layout/Container'
 import ShareArticle from '@components/blog/ShareArticle'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 import BlogCard from '@components/blog/BlogCard'
 import { publicAPI } from '@api/public.api'
+import { mediaUrl } from '@utils/media'
 
 function BlogDetails() {
   const { slug } = useParams()
@@ -230,7 +230,7 @@ function BlogDetails() {
   // ── LOADING STATE ──
   if (loading) {
     return (
-      <div className="min-h-screen bg-background pt-28 pb-20">
+      <div className="min-h-screen bg-background pt-10 pb-20">
         <Container>
           <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
             <div className="h-5 bg-slate-200 dark:bg-white/10 rounded w-1/4" />
@@ -298,14 +298,14 @@ function BlogDetails() {
       <div className="bg-background min-h-screen text-text-primary transition-colors duration-300 pb-20">
         {/* ── PREVIEW MODE BANNER ── */}
         {new URLSearchParams(window.location.search).get('preview') === 'true' && (
-          <div className="bg-amber-500/15 border-b border-amber-500/30 text-amber-500 dark:text-amber-400 py-3 px-4 text-center text-sm font-semibold flex items-center justify-center gap-2 sticky top-0 z-40 backdrop-blur-md">
+          <div className="bg-amber-500/15 border-b border-amber-500/30 text-amber-500 dark:text-amber-400 py-3 px-4 text-center text-sm font-semibold flex items-center justify-center gap-2 sticky top-nav z-30 backdrop-blur-md">
             <Eye size={16} />
             <span>Admin Preview Mode &bull; Status: <strong className="uppercase">{blog?.status || 'Draft'}</strong></span>
           </div>
         )}
 
         {/* ── TOP BREADCRUMB & BACK ACTION ─────────────────────────── */}
-        <section className="pt-24 pb-6 lg:pt-28 border-b border-slate-200/80 dark:border-white/5 bg-slate-50/50 dark:bg-black/20">
+        <section className="pt-8 pb-6 lg:pt-10 border-b border-slate-200/80 dark:border-white/5 bg-slate-50/50 dark:bg-black/20">
           <Container>
             <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
 
@@ -409,13 +409,9 @@ function BlogDetails() {
               {/* Featured Cover Image */}
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 dark:border-white/10 shadow-[0_12px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.6)] my-6 sm:my-8">
                 <img
-                  src={featuredImg}
+                  src={mediaUrl(featuredImg)}
                   alt={blog.title}
                   onError={(e) => {
-                    if (featuredImg && typeof featuredImg === 'string' && featuredImg.startsWith('/uploads') && !e.currentTarget.src.includes(':5001')) {
-                      e.currentTarget.src = `http://localhost:5001${featuredImg}`
-                      return
-                    }
                     e.currentTarget.onerror = null
                     e.currentTarget.src = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=700&fit=crop&q=80'
                   }}
@@ -555,7 +551,6 @@ function BlogDetails() {
           </section>
         )}
 
-        <ChatBot />
       </div>
     </>
   )

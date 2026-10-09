@@ -1,13 +1,14 @@
 import express from 'express'
 import chatController from '../controllers/chat.controller.js'
 import { authenticate, authorize } from '../middleware/auth.middleware.js'
+import { chatWriteLimiter, chatPollLimiter } from '../middleware/rateLimit.middleware.js'
 
 const router = express.Router()
 
 // Public Chatbot Endpoints
-router.post('/session', chatController.createSession)
-router.post('/message', chatController.sendMessage)
-router.get('/poll', chatController.pollMessages)
+router.post('/session', chatWriteLimiter, chatController.createSession)
+router.post('/message', chatWriteLimiter, chatController.sendMessage)
+router.get('/poll', chatPollLimiter, chatController.pollMessages)
 
 // Admin Live Chat Console Endpoints
 router.get('/admin/sessions', authenticate, authorize('admin'), chatController.getAdminSessions)

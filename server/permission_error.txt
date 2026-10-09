@@ -1,3 +1,0 @@
-TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
-    at file:///C:/Users/TGS33/Desktop/TGS/tarajglobal/server/middleware/permission.middleware.js:19:31
-    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)

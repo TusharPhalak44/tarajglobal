@@ -21,7 +21,6 @@ import {
   ChevronDown
 } from 'lucide-react'
 import Container from '@components/layout/Container'
-import ChatBot from '@components/chatbot/ChatBot'
 import SEO from '@components/common/SEO'
 import { Link } from 'react-router-dom'
 
@@ -111,7 +110,7 @@ function Privacy() {
         schemaJson={privacySchema}
       />
 
-      <div className="min-h-screen bg-background pt-24 sm:pt-28 pb-20 select-text">
+      <div className="min-h-screen bg-background pt-8 sm:pt-10 pb-20 select-text">
         <Container>
           {/* ══ Header / Hero Area ══════════════════════════════════════════ */}
           <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
@@ -561,7 +560,6 @@ function Privacy() {
             </div>
           </div>
         </Container>
-        <ChatBot />
       </div>
     </>
   )

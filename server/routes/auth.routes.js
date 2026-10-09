@@ -15,12 +15,20 @@ const loginLimiter = rateLimit({
   message: { success: false, message: 'Too many login attempts. Please try again in 15 minutes.' }
 })
 
+const sensitiveLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many requests. Please try again in 15 minutes.' }
+})
+
 const router = express.Router()
 
 // @route   POST /api/auth/register
 // @desc    Register a new user
 // @access  Public
-router.post('/register', [
+router.post('/register', sensitiveLimiter, [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
   body('password')
@@ -46,7 +54,7 @@ router.post('/logout', authenticate, authController.logout)
 // @route   POST /api/auth/refresh
 // @desc    Refresh access token
 // @access  Public
-router.post('/refresh', authController.refreshToken)
+router.post('/refresh', sensitiveLimiter, authController.refreshToken)
 
 // @route   GET /api/auth/me
 // @desc    Get current user
@@ -113,14 +121,14 @@ router.put('/me', [
 // @route   POST /api/auth/forgot-password
 // @desc    Send password reset email
 // @access  Public
-router.post('/forgot-password', [
+router.post('/forgot-password', sensitiveLimiter, [
   body('email').isEmail().withMessage('Valid email is required')
 ], validate, authController.forgotPassword)
 
 // @route   POST /api/auth/reset-password
 // @desc    Reset password
 // @access  Public
-router.post('/reset-password', [
+router.post('/reset-password', sensitiveLimiter, [
   body('token').notEmpty().withMessage('Token is required'),
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
 ], validate, authController.resetPassword)

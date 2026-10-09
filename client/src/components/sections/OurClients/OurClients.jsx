@@ -93,8 +93,8 @@ export const OurClients = () => {
             transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.12] mb-2.5 font-heading"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white mr-2 sm:mr-3">
-              {settings.title_white}
+            <span className="text-slate-900 dark:text-white mr-2 sm:mr-3">
+              {settings.title_white}{' '}
             </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00]">
               {settings.title_gradient}

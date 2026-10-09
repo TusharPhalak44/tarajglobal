@@ -27,7 +27,7 @@ export default function ReferenceHero() {
   return (
     <section
       id="reference-hero"
-      className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 lg:py-24 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white overflow-hidden border-b border-slate-200 dark:border-white/10 select-none transition-colors duration-300"
+      className="relative min-h-[92vh] flex flex-col justify-center pt-10 pb-16 lg:pt-12 lg:pb-24 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white overflow-hidden border-b border-slate-200 dark:border-white/10 select-none transition-colors duration-300"
     >
       {/* Subtle background glow */}
       <div className="absolute top-1/4 left-1/3 w-[600px] h-[400px] bg-[#FF6D00]/10 dark:bg-[#FF6D00]/10 rounded-full blur-[170px] pointer-events-none -z-10" />

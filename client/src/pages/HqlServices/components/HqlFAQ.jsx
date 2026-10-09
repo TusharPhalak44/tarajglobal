@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, HelpCircle } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 
-const FAQS = [
+export const FAQS = [
   {
     id: 'faq-1',
     num: '01',

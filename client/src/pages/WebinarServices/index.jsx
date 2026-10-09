@@ -1,6 +1,5 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
-import ChatBot from '@components/chatbot/ChatBot'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -9,7 +8,7 @@ import ProblemsSolved from './components/ProblemsSolved'
 import WebinarProcess from './components/WebinarProcess'
 import WhatTarajDelivers from './components/WhatTarajDelivers'
 import WhyChoose from './components/WhyChoose'
-import FAQ from './components/FAQ'
+import FAQ, { FAQS } from './components/FAQ'
 import CTA from './components/CTA'
 
 // ─── JSON-LD Structured Data for Webinar Services ────────────────────────────
@@ -55,72 +54,11 @@ const webinarSchema = {
     },
     {
       "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What are B2B webinar services?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "B2B webinar services are specialized demand generation solutions that help businesses plan, promote, and execute virtual events to engage decision-makers and convert attendees into sales-qualified leads.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How do B2B webinar campaigns generate leads?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Campaigns generate leads by targeting relevant industry professionals with high-value educational content, capturing verified registration data, and evaluating live attendee engagement and intent signals.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Who should use webinar marketing services?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "B2B SaaS companies, enterprise technology vendors, IT providers, and consulting firms looking to showcase expertise and accelerate complex sales cycles benefit most from webinar marketing.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How do you attract the right webinar audience?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We define your Ideal Customer Profile (ICP), filter target account lists by firmographics and intent, and deploy personalized multi-channel outreach directly to verified decision-makers.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How are webinar leads qualified?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Leads are scored using multi-signal telemetry—including session watch duration, poll responses, questions asked, resource downloads, and BANT criteria.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How do you engage prospects before and after a webinar?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Before the event, we send calendar holds, speaker teasers, and preparation materials. After the event, we deliver session replays, custom takeaway assets, and personalized sales follow-ups.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "What happens to webinar leads after the event?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sales-ready leads are immediately routed into your CRM with rich discussion dossiers, while less engaged registrants enter targeted nurture workflows.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How does DemandFlow Bridge support webinar campaigns?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "DemandFlow Bridge acts as the central command layer—automating invitation sequences, verifying registrant data, tracking live attendee engagement, and syncing qualified leads directly to your sales reps.",
-          },
-        },
-      ],
+      "mainEntity": FAQS.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
     },
   ],
 }
@@ -168,7 +106,6 @@ const WebinarServices = () => {
         {/* Section 9 — CTA */}
         <CTA />
 
-        <ChatBot />
       </div>
     </>
   )
