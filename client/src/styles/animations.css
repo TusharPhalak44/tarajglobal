@@ -1,6 +1,4 @@
-/* ── Taraj Global Animation System ─────────────────────────────────────── */
-
-:root {
+:root{
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
@@ -15,8 +13,7 @@
     opacity: 1;
   }
 }
-
-.animate-fade-in {
+.animate-fade-in{
   animation: fadeIn 0.6s var(--ease-smooth) forwards;
 }
 
@@ -31,8 +28,7 @@
     transform: translateY(0);
   }
 }
-
-.animate-fade-in-up {
+.animate-fade-in-up{
   animation: fadeInUp 0.7s var(--ease-smooth) forwards;
 }
 
@@ -47,8 +43,7 @@
     transform: translateY(0);
   }
 }
-
-.animate-fade-in-down {
+.animate-fade-in-down{
   animation: fadeInDown 0.7s var(--ease-smooth) forwards;
 }
 
@@ -63,8 +58,7 @@
     transform: translateX(0);
   }
 }
-
-.animate-slide-in-left {
+.animate-slide-in-left{
   animation: slideInLeft 0.7s var(--ease-smooth) forwards;
 }
 
@@ -79,8 +73,7 @@
     transform: translateX(0);
   }
 }
-
-.animate-slide-in-right {
+.animate-slide-in-right{
   animation: slideInRight 0.7s var(--ease-smooth) forwards;
 }
 
@@ -95,8 +88,7 @@
     transform: scale(1);
   }
 }
-
-.animate-scale-in {
+.animate-scale-in{
   animation: scaleIn 0.6s var(--ease-smooth) forwards;
 }
 
@@ -109,8 +101,7 @@
     transform: translateY(-8px);
   }
 }
-
-.animate-float {
+.animate-float{
   animation: floatSlow 4s ease-in-out infinite;
 }
 
@@ -123,8 +114,7 @@
     transform: translateX(200%);
   }
 }
-
-.animate-shimmer {
+.animate-shimmer{
   animation: shimmer 2.5s infinite;
 }
 
@@ -139,8 +129,7 @@
     filter: drop-shadow(0 0 25px rgba(0, 166, 255, 0.6));
   }
 }
-
-.animate-glow-pulse {
+.animate-glow-pulse{
   animation: glowPulse 3s ease-in-out infinite;
 }
 
@@ -153,8 +142,7 @@
     stroke-dashoffset: 0;
   }
 }
-
-.animate-data-stream {
+.animate-data-stream{
   stroke-dasharray: 8, 8;
   animation: dataStream 2s linear infinite;
 }
@@ -168,19 +156,15 @@
     transform: translateX(-50%);
   }
 }
-
-.animate-marquee {
+.animate-marquee{
   display: flex;
   width: max-content;
   animation: marqueeScroll 25s linear infinite;
 }
-
-.animate-marquee:hover {
+.animate-marquee:hover{
   animation-play-state: paused;
 }
-
-/* ── Global Section Laser Divider ────────────────────────────────────────── */
-.global-section-laser-divider {
+.global-section-laser-divider{
   position: absolute;
   left: 0;
   right: 0;
@@ -191,21 +175,13 @@
   pointer-events: none;
   transition: background-color 0.3s ease;
 }
-
-.light .global-section-laser-divider,
-:root:not(.dark) .global-section-laser-divider {
-  background: rgba(0, 0, 0, 0.07);
-}
-
-.laser-pos-bottom {
+.laser-pos-bottom{
   bottom: 0;
 }
-
-.laser-pos-top {
+.laser-pos-top{
   top: 0;
 }
-
-.global-laser-beam {
+.global-laser-beam{
   position: absolute;
   top: 0;
   height: 100%;
@@ -213,13 +189,11 @@
   filter: drop-shadow(0 0 8px currentColor);
   animation: globalLaserSweep 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
-
-.global-laser-cyan {
+.global-laser-cyan{
   color: #00A6FF;
   background: linear-gradient(90deg, transparent 0%, rgba(0, 166, 255, 0.95) 50%, rgba(56, 189, 248, 0.8) 80%, transparent 100%);
 }
-
-.global-laser-amber {
+.global-laser-amber{
   color: #FF6D00;
   animation-delay: 4s;
   background: linear-gradient(90deg, transparent 0%, rgba(255, 109, 0, 0.95) 50%, rgba(251, 146, 60, 0.8) 80%, transparent 100%);
@@ -243,25 +217,21 @@
 }
 
 /* ── Accessibility: prefers-reduced-motion ─────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  *,
+@media (prefers-reduced-motion: reduce) {*,
   *::before,
-  *::after {
+  *::after{
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
-  .animate-marquee {
+.animate-marquee{
     animation: none !important;
   }
-
-  .animate-float,
+.animate-float,
   .animate-glow-pulse,
   .animate-shimmer,
-  .global-laser-beam {
+  .global-laser-beam{
     animation: none !important;
     display: none !important;
-  }
-}
+  }}

@@ -1,4 +1,4 @@
-:root {
+:root{
   /* Colors - Brand Color Palette (Dark Mode Default) */
   --bg-primary: #050505;
   --bg-secondary: #121212;
@@ -114,76 +114,8 @@
   --z-tooltip: 1070;
 }
 
-/* =====================================================================
-   LIGHT THEME — Full Semantic Token System
-   Every token is intentionally designed for visual hierarchy.
-   Do NOT change these without testing both Light and Dark Mode.
-   ===================================================================== */
-.light {
-  /* ── Page Backgrounds — layered hierarchy ─────────────────────────── */
-  --bg-primary:        #E8EDF5;   /* page base — distinct light cool blue */
-  --bg-secondary:      #DFE6F0;   /* alternate section bg */
-  --background:        #E8EDF5;   /* root bg */
-  --hero:              #E8EDF5;   /* hero section */
-  --surface:           #FFFFFF;   /* card / panel surface */
-  --surface-alt:       #F2F6FA;   /* alternate card / section */
-  --surface-elevated:  #FFFFFF;   /* elevated modal / tooltip */
-  --surface-secondary: #DFE6F0;   /* deepest section bg */
-
-  /* ── Brand Colors — Professional light palette ─────────────────────── */
-  --primary:           #0066CC;
-  --primary-light:     #E0EDFF;
-  --primary-dark:      #004FA3;
-  --accent:            #E85D00;
-  --cta:               #E85D00;
-  --cta-hover:         #FF7520;
-  --cta-light:         #FFF0E5;
-
-  /* ── Status Colors ─────────────────────────────────────────────────── */
-  --success:           #0E9F6E;
-  --success-light:     #D1FAE5;
-  --warning:           #D97706;
-  --warning-light:     #FEF3C7;
-  --error:             #DC2626;
-  --error-light:       #FEE2E2;
-  --info:              #2563EB;
-  --info-light:        #DBEAFE;
-
-  /* ── Text Colors — Clear hierarchy ────────────────────────────────── */
-  --text-primary:      #111827;   /* headings, strong labels */
-  --text-secondary:    #374151;   /* body copy */
-  --text-tertiary:     #6B7280;   /* captions, helper text */
-  --text-muted:        #9CA3AF;   /* placeholders, disabled */
-  --text-light:        #D1D5DB;   /* decorative / very faint */
-
-  /* ── Borders — Visible in light mode ──────────────────────────────── */
-  --border:            #D1D9E6;   /* standard border */
-  --border-light:      #E2E8F4;   /* subtle border */
-  --border-subtle:     #EDF2F9;   /* hairline */
-  --border-strong:     #A0AABB;   /* emphasis border */
-
-  /* ── Shadows — Soft, premium ───────────────────────────────────────── */
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg:  0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.05);
-  --shadow-xl:  0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06);
-  --shadow-glow-primary: 0 0 20px rgba(0,102,204,0.14);
-  --shadow-glow-accent:  0 0 20px rgba(232,93,0,0.14);
-
-  /* ── Gradients ─────────────────────────────────────────────────────── */
-  --gradient-primary: linear-gradient(135deg, #0066CC 0%, #0088FF 100%);
-  --gradient-accent:  linear-gradient(135deg, #E85D00 0%, #FF7520 100%);
-  --gradient-subtle:  linear-gradient(135deg, #F4F7FB 0%, #FFFFFF 100%);
-
-  /* ── Interactive States ────────────────────────────────────────────── */
-  --hover-bg:          #EBF0F8;
-  --hover-border:      #A0AABB;
-  --hover-elevate:     translateY(-2px);
-}
-
 /* ── Responsive Typography Scale: Tablet (max-width: 1024px) ── */
-@media (max-width: 1024px) {
-  :root {
+@media (max-width: 1024px) {:root{
     --font-size-h1: 40px;
     --font-size-h2: 30px;
     --font-size-h3: 24px;
@@ -194,12 +126,10 @@
     --font-size-subtitle: 17px;
     --font-size-nav: 15px;
     --font-size-button: 15px;
-  }
-}
+  }}
 
 /* ── Responsive Typography Scale: Mobile (max-width: 640px) ── */
-@media (max-width: 640px) {
-  :root {
+@media (max-width: 640px) {:root{
     --font-size-h1: 32px;
     --font-size-h2: 26px;
     --font-size-h3: 22px;
@@ -211,5 +141,4 @@
     --font-size-small: 13px;
     --font-size-nav: 15px;
     --font-size-button: 15px;
-  }
-}
+  }}

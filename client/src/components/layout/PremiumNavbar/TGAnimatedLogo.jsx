@@ -36,6 +36,17 @@ const DIGITAL_PIXELS = [
   { id: 'p10', d: 'M 861,138 861,148 870,148 870,138 Z', fill: '#FF5722', stroke: '#FFAB91', origin: '865px 143px', times: [0, 0.12, 0.24, 0.42, 0.70, 0.76, 0.78, 0.86, 0.92, 1], op: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0], sc: [0, 0, 0, 0, 0, 1.45, 1, 1.12, 1, 0] }
 ]
 
+// Normalized cycle timings for 6.4-second continuous sequence:
+// 1. 0.00 -> 0.12: Letter 'T' becomes visible first
+// 2. 0.12 -> 0.24: Letter 'G' becomes visible slightly after (T stays visible)
+// 3. 0.24 -> 0.42: Blue Arc becomes visible (T & G stay visible)
+// 4. 0.42 -> 0.60: Orange Arc becomes visible (T, G, Blue stay visible)
+// 5. 0.60 -> 0.78: Green Arc & Digital Telemetry Pixels burst & assemble (All elements stay visible)
+// 6. 0.78 -> 0.92: Full logo assembly in complete brilliant unity with active pixel shimmer!
+// 7. 0.92 -> 1.00: Smooth transition to loop continuously
+const CYCLE_DURATION = 6.4
+const CYCLE_TIMES = [0, 0.12, 0.24, 0.42, 0.60, 0.78, 0.92, 1]
+
 /**
  * TGAnimatedLogo - Ultra-sharp animated SVG emblem for Taraj Global.
  * 
@@ -140,8 +151,21 @@ const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
           </linearGradient>
         </defs>
 
-        {/* Letters and arcs stay fully drawn. A looping build made the mark look cropped. */}
-        <g id="tg-letter-t">
+        {/* ── 3. LETTER 'T': SHOWS 1ST (ONE BY ONE) & STAYS VISIBLE ──────────── */}
+        <motion.g
+          id="tg-letter-t"
+          style={{ originX: '380px', originY: '380px' }}
+          animate={{
+            opacity: [0, 1, 1, 1, 1, 1, 1, 0],
+            scale: [0.92, 1.025, 1, 1, 1, 1, 1, 0.92]
+          }}
+          transition={{
+            duration: CYCLE_DURATION,
+            times: CYCLE_TIMES,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
           {PATHS.tLetter.map((p, i) => (
             <path
               key={`t-${i}`}
@@ -153,9 +177,23 @@ const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
               fillRule="evenodd"
             />
           ))}
-        </g>
+        </motion.g>
 
-        <g id="tg-letter-g">
+        {/* ── 4. LETTER 'G': SHOWS 2ND (SLIGHTLY AFTER T) & STAYS VISIBLE ─────── */}
+        <motion.g
+          id="tg-letter-g"
+          style={{ originX: '480px', originY: '450px' }}
+          animate={{
+            opacity: [0, 0, 1, 1, 1, 1, 1, 0],
+            scale: [0.92, 0.92, 1.025, 1, 1, 1, 1, 0.92]
+          }}
+          transition={{
+            duration: CYCLE_DURATION,
+            times: CYCLE_TIMES,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
           <path
             d={PATHS.gLetter}
             fill="url(#gGradient)"
@@ -164,9 +202,23 @@ const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
             strokeLinejoin="round"
             fillRule="evenodd"
           />
-        </g>
+        </motion.g>
 
-        <g id="tg-blue-arc">
+        {/* ── 5. BLUE ARC: SHOWS 3RD & STAYS VISIBLE ──────────────────────────── */}
+        <motion.g
+          id="tg-blue-arc"
+          style={{ originX: '390px', originY: '415.5px' }}
+          animate={{
+            opacity: [0, 0, 0, 1, 1, 1, 1, 0],
+            scale: [0.94, 0.94, 0.94, 1.018, 1, 1, 1, 0.94]
+          }}
+          transition={{
+            duration: CYCLE_DURATION,
+            times: CYCLE_TIMES,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
           <path
             d={PATHS.blueArc}
             fill="url(#blueArcGradient)"
@@ -175,9 +227,23 @@ const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
             strokeLinejoin="round"
             fillRule="evenodd"
           />
-        </g>
+        </motion.g>
 
-        <g id="tg-orange-arc">
+        {/* ── 6. ORANGE ARC: SHOWS 4TH & STAYS VISIBLE ────────────────────────── */}
+        <motion.g
+          id="tg-orange-arc"
+          style={{ originX: '450px', originY: '415.5px' }}
+          animate={{
+            opacity: [0, 0, 0, 0, 1, 1, 1, 0],
+            scale: [0.94, 0.94, 0.94, 0.94, 1.018, 1, 1, 0.94]
+          }}
+          transition={{
+            duration: CYCLE_DURATION,
+            times: CYCLE_TIMES,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
           <path
             d={PATHS.orangeArc}
             fill="url(#orangeArcGradient)"
@@ -186,9 +252,23 @@ const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
             strokeLinejoin="round"
             fillRule="evenodd"
           />
-        </g>
+        </motion.g>
 
-        <g id="tg-green-arc">
+        {/* ── 7. GREEN ARC: SHOWS 5TH & STAYS VISIBLE ─────────────────────────── */}
+        <motion.g
+          id="tg-green-arc"
+          style={{ originX: '450px', originY: '440px' }}
+          animate={{
+            opacity: [0, 0, 0, 0, 0, 1, 1, 0],
+            scale: [0.94, 0.94, 0.94, 0.94, 0.94, 1.018, 1, 0.94]
+          }}
+          transition={{
+            duration: CYCLE_DURATION,
+            times: CYCLE_TIMES,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
           {PATHS.greenArc.map((pathStr, i) => (
             <path
               key={`anim-g-${i}`}
@@ -200,11 +280,12 @@ const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
               fillRule="evenodd"
             />
           ))}
-        </g>
+        </motion.g>
 
+        {/* ── 8. DIGITAL TELEMETRY PIXELS: INDIVIDUAL STAGGERED BURST & SHIMMER ── */}
         <g id="tg-digital-pixel-cluster" shapeRendering="geometricPrecision">
           {DIGITAL_PIXELS.map((pixel) => (
-            <path
+            <motion.path
               key={pixel.id}
               d={pixel.d}
               fill={pixel.fill}
@@ -214,6 +295,19 @@ const TGAnimatedLogo = ({ alt = 'Taraj Global Logo', className = '' }) => {
               strokeMiterlimit="4"
               fillRule="evenodd"
               shapeRendering="geometricPrecision"
+              style={{
+                transformOrigin: pixel.origin
+              }}
+              animate={{
+                opacity: pixel.op,
+                scale: pixel.sc
+              }}
+              transition={{
+                duration: CYCLE_DURATION,
+                times: pixel.times,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
             />
           ))}
         </g>

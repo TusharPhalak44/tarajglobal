@@ -42,7 +42,7 @@ export function FlowButton({
       )}
 
       {/* Button Text shifts right on hover */}
-      <span className="relative z-[1] -translate-x-2.5 group-hover:translate-x-2.5 transition-all duration-[800ms] ease-out tracking-wide flex items-center gap-2">
+      <span className="relative z-[1] -translate-x-2.5 group-hover:translate-x-2.5 transition-all duration-[800ms] ease-out tracking-[0.025em] flex items-center gap-2">
         {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
         {text}
       </span>

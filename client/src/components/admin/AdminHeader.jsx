@@ -3,8 +3,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { 
   Menu, 
   Search, 
-  Sun, 
-  Moon, 
   User, 
   LogOut, 
   Settings, 
@@ -12,12 +10,10 @@ import {
   Shield
 } from 'lucide-react'
 import { useAuth } from '@context/AuthContext'
-import { useTheme } from '@context/ThemeContext'
 import { mediaUrl } from '@utils/media'
 
 export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarCollapsed }) => {
   const { user, logout } = useAuth()
-  const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -111,20 +107,6 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
           <span>Live Site</span>
           <ExternalLink className="w-4 h-4 text-[var(--admin-text-muted)]" />
         </a>
-
-        {/* Theme Switcher */}
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-accent)] hover:bg-[var(--admin-bg-elevated)] border border-transparent hover:border-[var(--admin-border-base)] transition-all"
-          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          aria-label="Toggle Theme"
-        >
-          {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-400 hover:rotate-45 transition-transform" />
-          ) : (
-            <Moon className="w-4 h-4 text-[#00A6FF] hover:-rotate-12 transition-transform" />
-          )}
-        </button>
 
         {/* Profile Dropdown Trigger */}
         <div className="relative" ref={profileRef}>

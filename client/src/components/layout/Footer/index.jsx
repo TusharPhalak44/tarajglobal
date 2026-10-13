@@ -98,7 +98,7 @@ export const Footer = () => {
         bc.onmessage = (e) => {
           if (e.data?.type === 'FOOTER_UPDATED') handleSync()
         }
-      } catch (_) {}
+      } catch (_) { }
     }
 
     return () => {
@@ -386,14 +386,14 @@ export const Footer = () => {
             const dotClass = isCyan
               ? 'bg-[#00A6FF]'
               : isAmber
-              ? 'bg-[#FF6D00]'
-              : 'bg-slate-400 dark:bg-slate-500'
+                ? 'bg-[#FF6D00]'
+                : 'bg-slate-400 dark:bg-slate-500'
 
             const headingClass = isCyan
               ? 'text-[#00A6FF] dark:text-[#38BDF8]'
               : isAmber
-              ? 'text-[#FF6D00] dark:text-[#FB923C]'
-              : 'text-slate-800 dark:text-slate-200'
+                ? 'text-[#FF6D00] dark:text-[#FB923C]'
+                : 'text-slate-800 dark:text-slate-200'
 
             const hoverClass = isAmber
               ? 'hover:text-[#FF6D00] dark:hover:text-[#FF6D00]'
@@ -479,9 +479,8 @@ export const Footer = () => {
                 return (
                   <div
                     key={office.id || oIdx}
-                    className={`footer-office-card p-4 rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] space-y-2.5 transition-all duration-300 ${
-                      isPST ? 'hover:border-[#FF6D00]/50' : 'hover:border-[#00A6FF]/50'
-                    } shadow-sm`}
+                    className={`footer-office-card p-4 rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] space-y-2.5 transition-all duration-300 ${isPST ? 'hover:border-[#FF6D00]/50' : 'hover:border-[#00A6FF]/50'
+                      } shadow-sm`}
                   >
                     <div className="flex flex-wrap min-[360px]:flex-nowrap items-center justify-between gap-2">
                       <div className="flex items-center gap-1.5 font-bold text-base text-slate-900 dark:text-text-primary dark:text-white">
@@ -493,11 +492,10 @@ export const Footer = () => {
                         <span>{office.name}</span>
                       </div>
                       <span
-                        className={`text-xs sm:text-sm font-mono font-bold flex items-center gap-1 px-2.5 py-0.5 rounded-md ${
-                          isPST
-                            ? 'text-[#FF6D00] dark:text-[#FB923C] bg-[#FF6D00]/10 dark:bg-[#FF6D00]/15'
-                            : 'text-[#00A6FF] dark:text-[#38BDF8] bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15'
-                        }`}
+                        className={`text-xs sm:text-sm font-mono font-bold flex items-center gap-1 px-2.5 py-0.5 rounded-md ${isPST
+                          ? 'text-[#FF6D00] dark:text-[#FB923C] bg-[#FF6D00]/10 dark:bg-[#FF6D00]/15'
+                          : 'text-[#00A6FF] dark:text-[#38BDF8] bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15'
+                          }`}
                       >
                         <Clock size={12} /> {clockTime}
                       </span>
@@ -511,9 +509,8 @@ export const Footer = () => {
                       {office.phone && (
                         <a
                           href={`tel:${office.phone.replace(/[^0-9+]/g, '')}`}
-                          className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-semibold hover:underline py-0.5 ${
-                            isPST ? 'text-[#FF6D00] dark:text-[#FB923C]' : 'text-[#00A6FF] dark:text-[#38BDF8]'
-                          }`}
+                          className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-semibold hover:underline py-0.5 ${isPST ? 'text-[#FF6D00] dark:text-[#FB923C]' : 'text-[#00A6FF] dark:text-[#38BDF8]'
+                            }`}
                         >
                           <Phone size={13} />
                           {office.phone}

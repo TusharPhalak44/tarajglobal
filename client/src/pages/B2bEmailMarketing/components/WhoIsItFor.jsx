@@ -195,31 +195,28 @@ const WhoIsItFor = () => {
   const sectionRef = useRef(null)
   const desktopPinRef = useRef(null)
   const activeIndexRef = useRef(0)
-  const tabRefs = useRef([])
   const prefersReducedMotion = useReducedMotion()
 
   const active = AUDIENCES[currentIndex] || AUDIENCES[0]
   const activeId = active.id
 
-  // GSAP ScrollTrigger Pinned Storytelling on Desktop (Identical to HowWeWork on Home page)
+  // Pinned storytelling only on wide screens. A phone must never get the pin spacer.
   useEffect(() => {
-    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
-    if (!isDesktop || prefersReducedMotion || !sectionRef.current || !desktopPinRef.current) return
-
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
+    if (prefersReducedMotion) return
+    const mm = gsap.matchMedia()
+    mm.add('(min-width: 1024px)', () => {
+      if (!sectionRef.current || !desktopPinRef.current) return
+      const trigger = ScrollTrigger.create({
         id: 'who-is-it-for-scroll',
         trigger: sectionRef.current,
         pin: desktopPinRef.current,
         start: 'center center',
-        end: '+=1600px', // ~350vh scroll distance, matching HowWeWork
+        end: '+=1600px',
         scrub: 1,
         anticipatePin: 1,
         onUpdate: (self) => {
           const p = self.progress
           setScrollProgress(p)
-
-          // Update active audience stage 0-3 based on scroll progress
           const currentStage = Math.min(Math.floor(p * AUDIENCES.length), AUDIENCES.length - 1)
           if (currentStage !== activeIndexRef.current) {
             activeIndexRef.current = currentStage
@@ -227,33 +224,10 @@ const WhoIsItFor = () => {
           }
         },
       })
-    }, sectionRef)
-
-    return () => ctx.revert()
+      return () => trigger.kill()
+    })
+    return () => mm.revert()
   }, [prefersReducedMotion])
-
-  // Automatic progression on mobile / fallback (<1024px)
-  useEffect(() => {
-    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
-    if (isDesktop && !prefersReducedMotion) return
-
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % AUDIENCES.length)
-    }, 4000)
-
-    return () => clearInterval(timer)
-  }, [currentIndex, prefersReducedMotion])
-
-  // Auto-scroll active tab into view on mobile
-  useEffect(() => {
-    if (tabRefs.current[currentIndex]) {
-      tabRefs.current[currentIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center',
-      })
-    }
-  }, [currentIndex])
 
   const handleSelect = (idx) => {
     setCurrentIndex(idx)
@@ -286,7 +260,7 @@ const WhoIsItFor = () => {
       aria-label="Is B2B Email Marketing Right for Your Business?"
     >
       {/* Background accents — clean, soft, almost-white with very subtle radial light */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden="true">
         <div
           className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[450px] rounded-full blur-[140px] opacity-15"
           style={{ background: 'radial-gradient(circle, rgba(0,166,255,0.18) 0%, transparent 70%)' }}
@@ -566,84 +540,50 @@ const WhoIsItFor = () => {
           </div>
         </motion.div>
 
-        {/* ── Mobile & Small Screens: Horizontally Auto-Scrolling Tabs + Content Card ── */}
-        <div className="md:hidden space-y-3">
-          {/* Horizontal scrollable tab row with auto-scroll ref */}
-          <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 px-1 -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* Phone: a wrapping grid. Nothing scrolls sideways and nothing advances on its own. */}
+        <div className="md:hidden min-w-0 space-y-3">
+          <div role="tablist" aria-label="Target audiences" className="grid grid-cols-2 gap-2">
             {AUDIENCES.map((aud, idx) => {
               const isActive = idx === currentIndex
-
               return (
                 <button
                   key={aud.id}
-                  ref={(el) => {
-                    tabRefs.current[idx] = el
-                  }}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
-                      ? 'bg-surface shadow-md border-primary'
-                      : 'bg-surface/50 border-border/70'
-                  }`}
+                  className="min-w-0 rounded-2xl border px-3 py-3 text-left"
                   style={{
-                    borderColor: isActive ? aud.color : undefined,
-                    minWidth: '220px',
+                    borderColor: isActive ? aud.color : 'rgba(255,255,255,0.12)',
+                    background: isActive ? 'var(--surface)' : 'transparent',
                   }}
                 >
-                  <div className="flex items-center justify-between gap-1 mb-1">
-                    <span
-                      className="text-[9px] font-mono font-bold uppercase tracking-wider line-clamp-1"
-                      style={{ color: isActive ? aud.color : 'var(--text-secondary)' }}
-                    >
-                      {aud.tagline}
-                    </span>
-                    <span className="text-[10px] font-mono font-black" style={{ color: aud.color }}>
-                      {aud.num}
-                    </span>
-                  </div>
-                  <div
-                    className={`text-sm font-bold ${
-                      isActive ? 'text-text-primary' : 'text-text-secondary'
-                    }`}
-                  >
+                  <span className="font-mono text-[11px] font-bold" style={{ color: aud.color }}>{aud.num}</span>
+                  <span className={`mt-1 block text-[14px] font-bold leading-snug ${isActive ? 'text-text-primary' : 'text-text-secondary'}`}>
                     {aud.label}
-                  </div>
-                  {/* Progress line */}
-                  {isActive && (
-                    <div className="w-full h-1 bg-border/40 rounded-full mt-2.5 overflow-hidden">
-                      <motion.div
-                        key={`prog-mob-${currentIndex}`}
-                        initial={{ width: '0%' }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: 4.0, ease: 'linear' }}
-                        className="h-full"
-                        style={{ backgroundColor: aud.color }}
-                      />
-                    </div>
-                  )}
+                  </span>
                 </button>
               )
             })}
           </div>
 
-          {/* Active mobile content card */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
-              initial={{ opacity: 0, y: 16 }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.35 }}
-              className="p-5 sm:p-6 rounded-2xl bg-surface shadow-lg relative overflow-hidden transition-all duration-300"
-              style={{ border: `2px solid ${active.color}`, boxShadow: `0 8px 24px -8px ${active.color}25` }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
+              className="min-w-0 rounded-2xl bg-surface p-4 shadow-lg"
+              style={{ border: `2px solid ${active.color}` }}
             >
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: active.color }} />
-                <span className="text-[11px] font-mono font-bold uppercase" style={{ color: active.color }}>
+              <div className="mb-2 flex items-start gap-2">
+                <span className="mt-1 h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: active.color }} />
+                <span className="text-[11px] font-mono font-bold uppercase leading-relaxed break-words" style={{ color: active.color }}>
                   {active.tagline}
                 </span>
               </div>
-              <h4 className="text-xl font-black text-text-primary mb-2.5">{active.label}</h4>
+              <h4 className="mb-3 text-xl font-black leading-tight text-text-primary">{active.label}</h4>
 
               {/* Mobile Image Preview */}
               <div
@@ -657,8 +597,8 @@ const WhoIsItFor = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-text-primary dark:text-white pointer-events-none">
-                  <span className="text-[10px] font-mono font-bold text-white/90">{active.label}</span>
+                <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between gap-2 pointer-events-none">
+                  <span className="min-w-0 truncate text-[10px] font-mono font-bold text-white/90">{active.label}</span>
                   <span
                     className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded text-text-primary dark:text-white"
                     style={{ backgroundColor: active.color }}
@@ -680,7 +620,7 @@ const WhoIsItFor = () => {
                     >
                       <Check className="w-2 h-2" strokeWidth={2.5} />
                     </div>
-                    <span>{pt}</span>
+                    <span className="min-w-0 break-words">{pt}</span>
                   </div>
                 ))}
               </div>

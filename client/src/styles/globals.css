@@ -16,67 +16,40 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-/* Fixed header height. --nav-top-bar is set by PremiumNavbar when the CMS announcement bar is enabled. */
-:root {
+:root{
   --nav-top-bar: 0px;
   --nav-height: 80px;
   --nav-offset: calc(var(--nav-height) + var(--nav-top-bar));
 }
 
-@media (min-width: 640px) {
-  :root {
+@media (min-width: 640px) {:root{
     --nav-height: 88px;
-  }
-}
-
-html {
+  }}
+html{
   scroll-padding-top: calc(var(--nav-offset) + 16px);
 }
-
-/* ── Lenis Smooth Scroll Recommended Rules ────────────────────────────── */
 html.lenis,
-html.lenis body {
+html.lenis body{
   height: auto;
 }
-
-.lenis.lenis-smooth {
+.lenis.lenis-smooth{
   scroll-behavior: auto !important;
 }
-
-.lenis.lenis-smooth [data-lenis-prevent] {
+.lenis.lenis-smooth [data-lenis-prevent]{
   overscroll-behavior: contain;
 }
-
-.lenis.lenis-stopped {
+.lenis.lenis-stopped{
   overflow: clip;
 }
-
-.lenis.lenis-smooth iframe {
+.lenis.lenis-smooth iframe{
   pointer-events: none;
 }
-
-/* ── Smooth theme transition on every element ─────────────────────────────── */
-*,
-*::before,
-*::after {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Exempt animations / transforms from the blanket transition */
-.motion-safe\:transition-none,
-[data-framer-motion],
-canvas {
-  transition: none !important;
-}
-
-html {
+html{
   max-width: 100%;
   overflow-x: clip;
   position: relative;
 }
-
-body {
+body{
   font-family: var(--font-sans);
   color: var(--text-primary);
   background-color: var(--background);
@@ -90,7 +63,6 @@ body {
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
-
 p,
 h1,
 h2,
@@ -101,38 +73,32 @@ h6,
 span,
 a,
 button,
-label {
+label{
   overflow-wrap: break-word;
 }
-
 img,
 video,
 canvas,
-svg {
+svg{
   max-width: 100%;
   height: auto;
 }
-
-a {
+a{
   text-decoration: none;
   color: inherit;
 }
-
-button {
+button{
   cursor: pointer;
   border: none;
   background: none;
   font-family: inherit;
 }
-
 input,
 textarea,
-select {
+select{
   font-family: inherit;
 }
-
-/* Orange Gradient Glow Effects */
-body::before {
+body::before{
   content: '';
   position: fixed;
   top: 0;
@@ -146,9 +112,7 @@ body::before {
   pointer-events: none;
   z-index: -1;
 }
-
-/* Glassmorphism Card Effect */
-.glass-card {
+.glass-card{
   background: rgba(26, 26, 26, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -157,23 +121,17 @@ body::before {
     0 4px 24px rgba(0, 0, 0, 0.4),
     0 0 40px rgba(255, 109, 0, 0.05);
 }
-
-/* Orange Glow Border */
-.glow-border-orange {
+.glow-border-orange{
   box-shadow:
     0 0 0 1px rgba(255, 109, 0, 0.2),
     0 0 20px rgba(255, 109, 0, 0.1);
 }
-
-/* Blue Glow Border */
-.glow-border-blue {
+.glow-border-blue{
   box-shadow:
     0 0 0 1px rgba(0, 166, 255, 0.2),
     0 0 20px rgba(0, 166, 255, 0.1);
 }
-
-/* Animated Gradient Background */
-.animated-gradient {
+.animated-gradient{
   background: linear-gradient(135deg,
       rgba(255, 109, 0, 0.1) 0%,
       rgba(255, 166, 0, 0.05) 50%,
@@ -193,257 +151,30 @@ body::before {
     background-position: 100% 50%;
   }
 }
-
-/* ── Theme-aware decoration blobs ──────────────────────────────────────────── */
-.theme-blob-orange {
+.theme-blob-orange{
   background: rgba(255, 109, 0, 0.10);
 }
-
-.light .theme-blob-orange {
-  background: rgba(255, 109, 0, 0.06);
-}
-
-.theme-blob-blue {
+.theme-blob-blue{
   background: rgba(0, 166, 255, 0.08);
 }
-
-.light .theme-blob-blue {
-  background: rgba(0, 166, 255, 0.05);
-}
-
-.theme-glow-overlay {
+.theme-glow-overlay{
   background:
     radial-gradient(circle at 30% 40%, rgba(255, 109, 0, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 70% 60%, rgba(255, 166, 0, 0.10) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(0, 166, 255, 0.05) 0%, transparent 60%);
 }
-
-.light .theme-glow-overlay {
-  background:
-    radial-gradient(circle at 30% 40%, rgba(255, 109, 0, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(255, 166, 0, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(0, 166, 255, 0.02) 0%, transparent 60%);
-}
-
-/* ── Light mode: body ::before glow override ──────────────────────────────── */
-.light body::before {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(0, 102, 204, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(0, 102, 204, 0.03) 0%, transparent 40%);
-}
-
-/* ── Light mode: glass card override ─────────────────────────────────────── */
-.light .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
-}
-
-/* ── Light mode surface cards (bg-surface components) ────────────────────── */
-.light .bg-surface {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-}
-
-/* ── Premium card styles (Dark & Light) ─────────────────────────────────── */
-.premium-card {
+.premium-card{
   background: rgba(11, 15, 25, 0.98);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
   transition: all var(--transition-normal);
 }
-
-.dark .premium-card {
+.dark .premium-card{
   background: rgba(11, 15, 25, 0.98);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
 }
-
-.light .premium-card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-}
-
-.light .premium-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-  border-color: var(--border-light);
-}
-
-/* ── Light mode elevated cards ─────────────────────────────────────────────── */
-.light .card-elevated {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
-}
-
-/* ── Light mode subtle background sections ─────────────────────────────────── */
-.light .bg-subtle {
-  background: var(--surface-alt);
-}
-
-/* ── Light mode premium button styles ─────────────────────────────────────── */
-.light .btn-primary {
-  background: var(--gradient-primary);
-  box-shadow: var(--shadow-glow-primary);
-  transition: all var(--transition-normal);
-}
-
-.light .btn-primary:hover {
-  box-shadow: 0 0 30px rgba(0, 102, 204, 0.25);
-  transform: translateY(-1px);
-}
-
-.light .btn-accent {
-  background: var(--gradient-accent);
-  box-shadow: var(--shadow-glow-accent);
-  transition: all var(--transition-normal);
-}
-
-.light .btn-accent:hover {
-  box-shadow: 0 0 30px rgba(255, 107, 0, 0.25);
-  transform: translateY(-1px);
-}
-
-/* ── Light mode input/form styling ───────────────────────────────────────── */
-.light input,
-.light textarea,
-.light select {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
-}
-
-.light input:focus,
-.light textarea:focus,
-.light select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-md);
-  outline: none;
-}
-
-.light input::placeholder,
-.light textarea::placeholder {
-  color: var(--text-muted);
-}
-
-/* ── Light mode badge/tag styling ─────────────────────────────────────────── */
-.light .badge {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  border: 1px solid var(--border);
-}
-
-.light .badge-accent {
-  background: var(--cta-light);
-  color: var(--cta);
-  border: 1px solid var(--border);
-}
-
-.light .badge-success {
-  background: var(--success-light);
-  color: var(--success);
-  border: 1px solid var(--border);
-}
-
-/* ── Light mode navigation styling ───────────────────────────────────────── */
-.light .nav-link {
-  color: var(--text-secondary);
-  transition: all var(--transition-normal);
-  position: relative;
-}
-
-.light .nav-link:hover {
-  color: var(--primary);
-}
-
-.light .nav-link.active {
-  color: var(--primary);
-}
-
-.light .nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--gradient-primary);
-  border-radius: 2px;
-}
-
-/* ── Light mode hero section enhancements ─────────────────────────────────── */
-.light .hero-section {
-  background: linear-gradient(180deg, var(--hero) 0%, var(--surface-alt) 100%);
-  position: relative;
-}
-
-.light .hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(0, 102, 204, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(255, 107, 0, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-/* ── Light mode hero badge styling ───────────────────────────────────────── */
-.light .hero-badge {
-  background: var(--primary-light);
-  border: 1px solid var(--border);
-  color: var(--primary-dark);
-  box-shadow: var(--shadow-sm);
-}
-
-/* ── Light mode hero text gradient ───────────────────────────────────────── */
-.light .hero-text-gradient {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ── Light mode hero button styling ───────────────────────────────────────── */
-.light .hero-button-primary {
-  background: var(--gradient-primary);
-  box-shadow: var(--shadow-glow-primary);
-  transition: all var(--transition-normal);
-}
-
-.light .hero-button-primary:hover {
-  box-shadow: 0 0 30px rgba(0, 102, 204, 0.25);
-  transform: translateY(-2px);
-}
-
-.light .hero-button-secondary {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
-}
-
-.light .hero-button-secondary:hover {
-  background: var(--hover-bg);
-  border-color: var(--hover-border);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-/* ── Dark mode hero button styling ───────────────────────────────────────── */
-.hero-button-primary {
+.hero-button-primary{
   background: linear-gradient(135deg, #00A6FF, #FF6D00);
   box-shadow: 0 4px 20px rgba(0, 166, 255, 0.25);
   transition: all var(--transition-normal);
@@ -459,8 +190,7 @@ body::before {
     box-shadow: 0 4px 30px rgba(0, 166, 255, 0.5), 0 0 20px rgba(0, 166, 255, 0.3), 0 0 30px rgba(0, 166, 255, 0.2);
   }
 }
-
-.hero-button-primary:hover {
+.hero-button-primary:hover{
   box-shadow: 0 0 40px rgba(0, 166, 255, 0.6), 0 0 25px rgba(0, 166, 255, 0.4), 0 0 35px rgba(0, 166, 255, 0.3);
   transform: translateY(-2px);
   animation: glow-primary-hover 1.5s ease-in-out infinite alternate;
@@ -475,8 +205,7 @@ body::before {
     box-shadow: 0 0 50px rgba(0, 166, 255, 0.8), 0 0 35px rgba(0, 166, 255, 0.5), 0 0 45px rgba(0, 166, 255, 0.4);
   }
 }
-
-.hero-button-secondary {
+.hero-button-secondary{
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
@@ -494,8 +223,7 @@ body::before {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.05);
   }
 }
-
-.hero-button-secondary:hover {
+.hero-button-secondary:hover{
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.15);
@@ -512,27 +240,16 @@ body::before {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
   }
 }
-
-/* ── Light mode section dividers ─────────────────────────────────────────── */
-.light .section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-}
-
-/* ── Hide scrollbar for testimonials ─────────────────────────────────────── */
-.testimonials-scroll {
+.testimonials-scroll{
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-.testimonials-scroll::-webkit-scrollbar {
+.testimonials-scroll::-webkit-scrollbar{
   display: none;
 }
-
-/* ── Interactive Slide Arrow Button (.btn-read-article / .btn-apply-role) ── */
 .btn-read-article,
 .btn-apply-role,
-.btn-slide-arrow {
+.btn-slide-arrow{
   position: relative;
   z-index: 0;
   background: white;
@@ -552,27 +269,24 @@ body::before {
   line-height: 1.125rem;
   white-space: nowrap;
 }
-
 .dark .btn-read-article,
 .dark .btn-apply-role,
-.dark .btn-slide-arrow {
+.dark .btn-slide-arrow{
   background: #111625;
   color: #E2E8F0;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
-
 .btn-read-article span,
 .btn-apply-role span,
-.btn-slide-arrow span {
+.btn-slide-arrow span{
   position: relative;
   z-index: 2;
   transition: all 0.3s ease;
   display: inline-block;
 }
-
 .btn-read-article:before,
 .btn-apply-role:before,
-.btn-slide-arrow:before {
+.btn-slide-arrow:before{
   content: "→";
   position: absolute;
   top: 0;
@@ -586,10 +300,9 @@ body::before {
   font-size: 0.875rem;
   font-weight: 600;
 }
-
 .btn-read-article:after,
 .btn-apply-role:after,
-.btn-slide-arrow:after {
+.btn-slide-arrow:after{
   content: "";
   position: absolute;
   top: 0;
@@ -600,580 +313,35 @@ body::before {
   transition: all 0.3s ease;
   z-index: 1;
 }
-
 .btn-read-article:hover,
 .btn-apply-role:hover,
-.btn-slide-arrow:hover {
+.btn-slide-arrow:hover{
   padding-right: 32px;
   padding-left: 10px;
   border-color: #2563EB;
   color: white !important;
 }
-
 .btn-read-article:hover span,
 .btn-apply-role:hover span,
-.btn-slide-arrow:hover span {
+.btn-slide-arrow:hover span{
   color: white !important;
 }
-
 .btn-read-article:hover:before,
 .btn-apply-role:hover:before,
-.btn-slide-arrow:hover:before {
+.btn-slide-arrow:hover:before{
   right: 10px;
 }
-
 .btn-read-article:hover:after,
 .btn-apply-role:hover:after,
-.btn-slide-arrow:hover:after {
+.btn-slide-arrow:hover:after{
   width: 100%;
 }
-
 .btn-read-article:active,
 .btn-apply-role:active,
-.btn-slide-arrow:active {
+.btn-slide-arrow:active{
   transform: translateY(2px);
 }
-
-
-/* ============================================================
-   TARAJ GLOBAL — COMPREHENSIVE LIGHT MODE OVERRIDE LAYER
-   Generated: CSS-variable-aware overrides for all hardcoded
-   dark Tailwind classes. Dark Mode is 100% untouched.
-   ============================================================ */
-
-/* ── 1. BASE BODY & HTML ──────────────────────────────────────────────────── */
-.light body {
-  background-color: var(--background);
-  color: var(--text-primary);
-}
-
-/* ── 2. HARDCODED DARK BACKGROUNDS → Light surfaces ─────────────────────── */
-/* These target Tailwind's arbitrary value classes that hardcode dark hex */
-.light [class*="bg-[#050505]"],
-.light [class*="bg-[#050D1A]"],
-.light [class*="bg-[#070D18]"],
-.light [class*="bg-[#060D1F]"],
-.light [class*="bg-[#0a0a0a]"],
-.light [class*="bg-[#030509]"],
-.light [class*="bg-[#0B0F1A]"],
-.light [class*="bg-[#0D1117]"],
-.light [class*="bg-[#111625]"],
-.light [class*="bg-[#0A1222]"],
-.light [class*="bg-[#0B1424]"],
-.light [class*="bg-[#0c0c0c]"] {
-  background-color: var(--background) !important;
-}
-
-/* Surface-level dark cards */
-.light [class*="bg-[#0d0d0d]"],
-.light [class*="bg-[#111111]"],
-.light [class*="bg-[#121212]"],
-.light [class*="bg-[#141414]"],
-.light [class*="bg-[#161616]"],
-.light [class*="bg-[#181818]"],
-.light [class*="bg-[#1a1a1a]"],
-.light [class*="bg-[#0a0f1e]"],
-.light [class*="bg-[#080c18]"] {
-  background-color: var(--surface) !important;
-}
-
-/* Elevated card darks */
-.light [class*="bg-slate-900"],
-.light [class*="bg-slate-950"],
-.light [class*="bg-gray-900"],
-.light [class*="bg-gray-950"],
-.light [class*="bg-zinc-900"],
-.light [class*="bg-zinc-950"],
-.light [class*="bg-neutral-900"],
-.light [class*="bg-neutral-950"] {
-  background-color: var(--surface) !important;
-}
-
-.light [class*="bg-slate-800"],
-.light [class*="bg-gray-800"],
-.light [class*="bg-zinc-800"] {
-  background-color: #F1F5F9 !important;
-}
-
-/* ── 3. WHITE/OPACITY BACKGROUNDS → Light-mode equivalents ──────────────── */
-/* Dark mode uses rgba(white, X) for glass cards. In light mode flip to slate */
-.light [class*="bg-white/5"],
-.light [class*="bg-white/[0.05]"] {
-  background-color: rgba(0,0,0,0.03) !important;
-}
-.light [class*="bg-white/10"],
-.light [class*="bg-white/[0.10]"],
-.light [class*="bg-white/[0.1]"] {
-  background-color: rgba(0,0,0,0.05) !important;
-}
-.light [class*="bg-white/20"],
-.light [class*="bg-white/[0.20]"],
-.light [class*="bg-white/[0.2]"] {
-  background-color: rgba(0,0,0,0.06) !important;
-}
-
-/* ── 4. BORDERS ──────────────────────────────────────────────────────────── */
-/* Dark mode uses white/opacity borders — replace with visible light borders */
-.light [class*="border-white/5"],
-.light [class*="border-white/8"],
-.light [class*="border-white/10"],
-.light [class*="border-white/[0.08]"],
-.light [class*="border-white/[0.1]"] {
-  border-color: var(--border) !important;
-}
-.light [class*="border-white/15"],
-.light [class*="border-white/20"],
-.light [class*="border-white/25"],
-.light [class*="border-white/30"] {
-  border-color: var(--border) !important;
-}
-.light [class*="border-slate-800"],
-.light [class*="border-slate-700"],
-.light [class*="border-gray-800"],
-.light [class*="border-gray-700"] {
-  border-color: var(--border) !important;
-}
-/* Fix border-border/30 (too faint in light) */
-.light [class*="border-border"] {
-  border-color: #D1D9E6 !important;
-}
-
-/* ── 5. TEXT COLORS ──────────────────────────────────────────────────────── */
-/* text-white without dark: prefix = invisible in light mode */
-.light [class*="text-white"]:not([class*="dark:"]):not([class*="bg-primary"]):not([class*="bg-cta"]):not([class*="bg-blue"]):not([class*="bg-gradient"]):not([class*="bg-[#00A6FF"]):not(button[class*="bg-"]) {
-  color: var(--text-primary) !important;
-}
-.light [class*="text-white/40"],
-.light [class*="text-white/50"],
-.light [class*="text-white/60"] {
-  color: var(--text-secondary) !important;
-}
-.light [class*="text-white/70"],
-.light [class*="text-white/80"] {
-  color: var(--text-primary) !important;
-}
-.light [class*="text-slate-400"],
-.light [class*="text-slate-500"] {
-  color: var(--text-secondary) !important;
-}
-.light [class*="text-slate-300"] {
-  color: var(--text-primary) !important;
-}
-.light [class*="text-gray-400"],
-.light [class*="text-gray-500"] {
-  color: var(--text-secondary) !important;
-}
-
-/* ── 6. NAVBAR & HEADER ──────────────────────────────────────────────────── */
-.light nav,
-.light header {
-  color: var(--text-primary);
-}
-
-/* Scrolled navbar in light */
-.light [class*="bg-hero/95"],
-.light [class*="bg-hero"] {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border) !important;
-}
-
-/* Nav links */
-.light nav a,
-.light nav button {
-  color: var(--text-secondary);
-}
-.light nav a:hover,
-.light nav button:hover {
-  color: var(--primary);
-}
-
-/* Dropdown menus */
-.light [class*="bg-surface"] {
-  background-color: var(--surface) !important;
-  border-color: var(--border) !important;
-  box-shadow: var(--shadow-lg) !important;
-}
-
-/* ── 7. CARDS ────────────────────────────────────────────────────────────── */
-/* Any card that isn't explicitly colored becomes white with border */
-.light .glass-card,
-.light [class*="glass-card"] {
-  background: rgba(255, 255, 255, 0.92) !important;
-  border: 1px solid var(--border) !important;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
-}
-
-/* Generic dark cards become white */
-.light [class*="rounded-xl"][class*="border"],
-.light [class*="rounded-2xl"][class*="border"],
-.light [class*="rounded-lg"][class*="border"] {
-  border-color: var(--border) !important;
-}
-
-/* ── 8. SECTION BACKGROUNDS — Alternating light rhythm ──────────────────── */
-/* Give sections visual separation in light mode */
-.light section {
-  background-color: var(--background);
-}
-
-/* Sections with dark bg classes → clean light sections */
-.light section[class*="bg-[#"],
-.light section[class*="bg-slate-9"],
-.light section[class*="bg-gray-9"],
-.light section[class*="bg-black"] {
-  background-color: var(--background) !important;
-}
-
-/* ── 9. HERO SECTION ─────────────────────────────────────────────────────── */
-.light [aria-label*="Hero"],
-.light [aria-label*="hero"] {
-  background-color: var(--hero) !important;
-}
-
-/* Hero section grid/dot overlay - make visible */
-.light [style*="backgroundImage"][style*="linear-gradient"][style*="#00A6FF"] {
-  opacity: 0.08 !important;
-}
-
-/* ── 10. FORM ELEMENTS ───────────────────────────────────────────────────── */
-.light input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
-.light textarea,
-.light select {
-  background-color: #FFFFFF !important;
-  border: 1px solid #D1D9E6 !important;
-  color: var(--text-primary) !important;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04) !important;
-}
-
-.light input::placeholder,
-.light textarea::placeholder {
-  color: #94A3B8 !important;
-}
-
-.light input:focus,
-.light textarea:focus,
-.light select:focus {
-  border-color: var(--primary) !important;
-  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.12) !important;
-  outline: none !important;
-}
-
-/* ── 11. BUTTONS — Context-aware ─────────────────────────────────────────── */
-/* Outline/ghost buttons */
-.light button[class*="border-white"],
-.light a[class*="border-white"] {
-  border-color: var(--border) !important;
-  color: var(--text-primary) !important;
-}
-
-/* Keep brand-colored buttons intact */
-.light [class*="bg-primary"],
-.light [class*="bg-cta"],
-.light [class*="bg-accent"] {
-  /* Brand colors remain — no override */
-}
-
-/* Secondary button (glass style) */
-.light .hero-button-secondary {
-  background: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--text-primary) !important;
-  box-shadow: var(--shadow-sm) !important;
-  animation: none !important;
-}
-
-.light .hero-button-secondary:hover {
-  background: var(--hover-bg) !important;
-  border-color: var(--hover-border) !important;
-  box-shadow: var(--shadow-md) !important;
-}
-
-/* ── 12. DIVIDERS & SEPARATORS ───────────────────────────────────────────── */
-.light [class*="border-t"],
-.light [class*="border-b"],
-.light [class*="border-l"],
-.light [class*="border-r"] {
-  border-color: var(--border);
-}
-
-/* Horizontal rules */
-.light hr {
-  border-color: var(--border);
-}
-
-/* Section laser dividers */
-.light .section-divider,
-.light [class*="divider"] {
-  background: linear-gradient(90deg, transparent, var(--border), transparent) !important;
-}
-
-/* ── 13. ICON COLORS ─────────────────────────────────────────────────────── */
-/* SVG icons that inherit white become dark */
-.light svg[class*="text-white"],
-.light svg[class*="stroke-white"],
-.light [class*="text-white"] > svg,
-.light [class*="fill-white"] {
-  color: var(--text-secondary) !important;
-}
-
-/* ── 14. MOBILE MENU ─────────────────────────────────────────────────────── */
-.light .mobile-menu-content {
-  background-color: var(--surface) !important;
-  border-color: var(--border) !important;
-}
-
-/* ── 15. STATS & NUMBER CARDS ────────────────────────────────────────────── */
-.light [class*="text-white"][class*="font-bold"],
-.light [class*="text-white"][class*="font-black"],
-.light [class*="text-white"][class*="font-semibold"] {
-  color: var(--text-primary) !important;
-}
-
-/* ── 16. FOOTER ──────────────────────────────────────────────────────────── */
-.light footer,
-.light [class*="footer"],
-.light .footer-master-root {
-  background-color: var(--surface) !important;
-  border-top: 1px solid var(--border) !important;
-  color: var(--text-primary) !important;
-}
-
-.light footer a,
-.light .footer-master-root a {
-  color: var(--text-secondary) !important;
-}
-
-.light footer a:hover,
-.light .footer-master-root a:hover {
-  color: var(--primary) !important;
-}
-
-/* ── 17. BACKDROP BLUR GLASSMORPHISM CONTAINERS ──────────────────────────── */
-.light [class*="backdrop-blur"] {
-  background-color: rgba(255, 255, 255, 0.85) !important;
-  border-color: var(--border) !important;
-}
-
-/* Exception: don't override elements that already have a brand color bg */
-.light [class*="bg-primary"][class*="backdrop-blur"],
-.light [class*="bg-cta"][class*="backdrop-blur"] {
-  background-color: revert !important;
-}
-
-/* ── 18. ANIMATION CONTAINERS — keep visible ─────────────────────────────── */
-/* HeroRightAnimation panels */
-.light [class*="bg-[#0a0a0a]"],
-.light [class*="bg-[#0A0A0A]"] {
-  background-color: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-}
-
-/* ── 19. SERVICE PAGE COMPONENTS ─────────────────────────────────────────── */
-.light [class*="bg-slate-50"] {
-  background-color: var(--background) !important;
-}
-
-/* Workflow cards */
-.light [class*="rounded"][class*="bg-slate"] {
-  background-color: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-}
-
-/* ── 20. SCROLLBAR ──────────────────────────────────────────────────────── */
-.light ::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-.light ::-webkit-scrollbar-thumb {
-  background: #C4CADB;
-  border-radius: 4px;
-}
-
-.light ::-webkit-scrollbar-thumb:hover {
-  background: #A0AABB;
-}
-
-/* ── 21. SELECTION ───────────────────────────────────────────────────────── */
-.light ::selection {
-  background: rgba(0, 102, 204, 0.15);
-  color: var(--text-primary);
-}
-
-/* ── 22. BADGE & TAG COMPONENTS ──────────────────────────────────────────── */
-.light [class*="rounded-full"][class*="bg-white/"] {
-  background-color: rgba(0, 102, 204, 0.08) !important;
-  border-color: rgba(0, 102, 204, 0.2) !important;
-  color: var(--primary) !important;
-}
-
-/* ── 23. TABLE ───────────────────────────────────────────────────────────── */
-.light table {
-  border-color: var(--border);
-}
-
-.light th {
-  background-color: var(--surface) !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border) !important;
-}
-
-.light td {
-  border-color: var(--border) !important;
-  color: var(--text-primary) !important;
-}
-
-.light tr:hover {
-  background-color: var(--hover-bg) !important;
-}
-
-/* ── 24. MODAL / OVERLAY ─────────────────────────────────────────────────── */
-.light [role="dialog"],
-.light [class*="modal"] {
-  background-color: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-  box-shadow: var(--shadow-xl) !important;
-  color: var(--text-primary) !important;
-}
-
-
-/* ── 25. DARK-ONLY DECORATIVE GLOWS — suppress in light ─────────────────── */
-/* Decorative glows are too faint on white — suppress and rely on subtle ones */
-.light [class*="shadow-[0_0_"][class*="rgba(0, 166, 255"],
-.light [class*="shadow-primary"] {
-  box-shadow: var(--shadow-md) !important;
-}
-
-/* ── 26. TYPOGRAPHY — ensure all text is readable ────────────────────────── */
-.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
-  color: var(--text-primary);
-}
-
-.light p {
-  color: var(--text-secondary);
-}
-
-/* Gradient text — preserve brand gradients */
-.light [class*="bg-gradient-to-"][class*="text-transparent"] {
-  /* Keep gradient text — intentional brand styling */
-}
-
-/* ── 27. TAILWIND 'dark:' CLASSES — already handled by Tailwind ───────────  
-   Note: Tailwind's darkMode:'class' means dark: only fires when html.dark.
-   When html.light is set, dark: classes DON'T fire. So any element with ONLY
-   dark: classes and no light variant will show the base (unstyled) value.
-   The overrides above handle the most common patterns. ────────────────────── */
-
-/* ── 28. SMALL & XS TYPOGRAPHY — boost weight & contrast in light ─────────── */
-/* Small text (text-xs, text-sm) needs darker color + slightly heavier weight 
-   in light mode to be as legible as it is on dark backgrounds */
-.light [class*="text-xs"],
-.light [class*="text-[10px]"],
-.light [class*="text-[11px]"],
-.light [class*="text-[12px]"] {
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-/* Labels & captions that use font-medium should stay semibold in light */
-.light [class*="text-xs"][class*="font-medium"],
-.light [class*="text-sm"][class*="font-medium"] {
-  font-weight: 600;
-}
-
-/* Ensure mono/tracking text like badges is dark enough */
-.light [class*="font-mono"],
-.light [class*="tracking-wide"],
-.light [class*="tracking-wider"],
-.light [class*="tracking-widest"],
-.light [class*="uppercase"] {
-  color: var(--text-secondary);
-}
-
-/* Override only when they are deliberately colored (primary, accent etc) */
-.light [class*="text-primary"] { color: var(--primary) !important; }
-.light [class*="text-cta"], .light [class*="text-accent"] { color: var(--cta) !important; }
-/* Orange hero actions stay white in both themes. */
-#hero-cta-primary { color: #fff !important; }
-
-/* ── 29. TRANSPARENT BUTTON FIXES — most critical visibility issue ─────────── */
-/* Buttons with transparent/white-opacity backgrounds become invisible in light */
-
-/* Pattern: bg-white/5, bg-white/10 on buttons */
-.light button[class*="bg-white/"],
-.light a[role="button"][class*="bg-white/"] {
-  background-color: rgba(0, 0, 0, 0.08) !important;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  color: var(--text-primary) !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
-}
-.light button[class*="bg-white/"]:hover,
-.light a[role="button"][class*="bg-white/"]:hover {
-  background-color: rgba(0, 0, 0, 0.12) !important;
-}
-
-/* Pattern: glassmorphism buttons bg-surface/80 or similar */
-.light button[class*="bg-surface"],
-.light a[role="button"][class*="bg-surface"] {
-  background-color: var(--surface) !important;
-  border: 1px solid var(--border-strong) !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
-}
-
-/* Secondary/ghost buttons with dark-only styling */
-.light button[class*="border-white/"]:not(.group\/star-button),
-.light button[class*="border-border/"]:not(.group\/star-button) {
-  border: 1px solid rgba(0, 0, 0, 0.2) !important;
-  background-color: rgba(0, 0, 0, 0.04) !important;
-  color: var(--text-primary) !important;
-}
-.light button[class*="border-white/"]:not(.group\/star-button):hover,
-.light button[class*="border-border/"]:not(.group\/star-button):hover {
-  background-color: rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Buttons that use dark-text-white (no dark: prefix) */
-.light button:not([class*="bg-primary"]):not([class*="bg-cta"]):not([class*="bg-[#"]):not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-red"]):not([class*="text-text"]):not(.group\/star-button) {
-  color: var(--text-primary);
-}
-
-/* ── 30. HERO GRID — make grid visible without dark: prefix reliance ────────── */
-/* The Hero grid is now JS-driven (isDark ternary), so no override needed.
-   But page-level section grids may still use CSS only. Handle them here: */
-.light [style*="linear-gradient(to right, #00A6FF 1px"] {
-  opacity: 0.15 !important;
-  background-image: linear-gradient(to right, #94A3B8 1px, transparent 1px),
-                    linear-gradient(to bottom, #94A3B8 1px, transparent 1px) !important;
-}
-
-/* ── 31. NAV LINKS — ensure readability in light scrolled state ─────────────── */
-.light nav a:not([class*="bg-primary"]):not([class*="bg-cta"]) {
-  color: var(--text-secondary);
-}
-
-.light nav a:hover:not([class*="bg-primary"]):not([class*="bg-cta"]) {
-  color: var(--primary);
-}
-
-/* Active nav link */
-.light nav a[aria-current="page"] {
-  color: var(--primary);
-}
-
-/* ── 32. BADGE / PILL COMPONENTS ────────────────────────────────────────────── */
-/* Pill badges with dark-only opacity backgrounds */
-.light [class*="bg-primary/10"] { background-color: rgba(0, 102, 204, 0.10) !important; }
-.light [class*="bg-primary/20"] { background-color: rgba(0, 102, 204, 0.15) !important; }
-.light [class*="bg-cta/10"]    { background-color: rgba(232, 93, 0, 0.10) !important; }
-.light [class*="bg-cta/20"]    { background-color: rgba(232, 93, 0, 0.15) !important; }
-
-/* ── 33. SECTION BACKGROUNDS — alternating rhythm ──────────────────────────── */
-/* Sections that explicitly use surface-alt get a subtle tint */
-.light [class*="bg-surface-alt"],
-.light [class*="bg-surface\/"] {
-  background-color: var(--surface-alt) !important;
-}
+#hero-cta-primary{ color: #fff !important; }
 
 /* ── END LIGHT MODE LAYER ────────────────────────────────────────────────── */
 

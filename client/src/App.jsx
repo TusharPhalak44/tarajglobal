@@ -3,6 +3,7 @@ import AppRoutes from './routes/AppRoutes'
 import { HelmetProvider } from 'react-helmet-async'
 import { AuthProvider } from './context/AuthContext'
 import { ThemeProvider } from './context/ThemeContext'
+import { RecoveryProvider } from './context/RecoveryContext'
 import { CookieProvider } from './components/cookies/CookieContext'
 import CookieBanner from './components/cookies/CookieBanner'
 import CookieModal from './components/cookies/CookieModal'
@@ -19,7 +20,9 @@ function App() {
             <ScrollToTop />
             <PageTracker />
             <SmoothScrollProvider>
-              <AppRoutes />
+              <RecoveryProvider>
+                <AppRoutes />
+              </RecoveryProvider>
               <CookieBanner />
               <CookieModal />
             </SmoothScrollProvider>
