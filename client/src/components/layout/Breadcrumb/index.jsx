@@ -11,6 +11,7 @@ const breadcrumbMap = {
   privacy: 'Privacy Policy',
   terms: 'Terms & Conditions',
   cookies: 'Cookie Policy',
+  sitemap: 'Sitemap',
   'sql-services': 'Sales Qualified Leads (SQL)',
   'hql-services': 'High-Quality Leads (HQL)',
   'bant-lead-generation': 'BANT Lead Generation',

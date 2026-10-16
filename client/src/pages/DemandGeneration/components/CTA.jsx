@@ -147,20 +147,13 @@ const CTA = () => {
         <motion.div style={prefersReducedMotion ? {} : { y }}>
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex items-center gap-2 mb-3.5  text-primary"
+            className="flex items-center justify-center mb-3.5 text-primary"
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            {!prefersReducedMotion && (
-              <motion.span
-                className="w-1.5 h-1.5 rounded-full bg-primary"
-                animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-                transition={{ duration: 1.6, repeat: Infinity }}
-              />
-            )}
-            <span className="text-[10px] font-mono font-bold tracking-[0.22em] uppercase">
+            <span className="text-xs font-semibold tracking-[0.22em] uppercase">
               Get Started
             </span>
           </motion.div>

@@ -25,6 +25,16 @@ const PageTracker = () => {
     trackAttribution(location.pathname, location.search)
   }, [location.pathname, location.search])
 
+  // SPA route navigation tracking for Google Analytics 4 (gtag.js)
+  useEffect(() => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('config', 'G-5JGYCGHMBY', {
+        page_path: location.pathname + location.search,
+        page_title: document.title,
+      })
+    }
+  }, [location.pathname, location.search])
+
   useEffect(() => {
     // Only track if the user has accepted the 'analytics' cookie preference
     if (preferences && preferences.analytics) {

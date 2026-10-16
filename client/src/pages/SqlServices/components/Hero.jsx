@@ -163,8 +163,7 @@ function CommandCenter({ prefersReducedMotion }) {
           DEMANDFLOW BRIDGE™ // SQL PIPELINE COMMAND
         </div>
         <div className="ml-auto flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[#72D669] animate-pulse" />
-          <span className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider">LIVE TELEMETRY</span>
+          <span className="text-[10px] font-mono text-text-secondary dark:text-white/60 tracking-wider uppercase">VERIFIED PIPELINE</span>
         </div>
       </div>
 
@@ -344,17 +343,9 @@ const Hero = () => {
           {/* ── Left: Content ── */}
           <div className="flex flex-col justify-center order-1 lg:order-1">
 
-            {/* Eyebrow badge */}
-            <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full w-fit mb-4"
-              style={{ background: 'rgba(0,166,255,0.08)', border: '1px solid rgba(0,166,255,0.25)' }}>
-              {!prefersReducedMotion && (
-                <motion.span
-                  className="w-1.5 h-1.5 rounded-full bg-[#00A6FF]"
-                  animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-                  transition={{ duration: 1.6, repeat: Infinity }}
-                />
-              )}
-              <span className="text-[11px] font-mono font-bold tracking-[0.22em] text-[#00A6FF] uppercase">
+            {/* Eyebrow */}
+            <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 SQL LEAD GENERATION
               </span>
             </motion.div>

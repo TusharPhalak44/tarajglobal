@@ -65,7 +65,7 @@ export default function ContactHero({ onBookMeeting }) {
           className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[220px] rounded-full blur-[110px] pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse at center, rgba(255, 190, 0, 0.45) 0%, rgba(255, 140, 0, 0.2) 50%, transparent 75%)',
+              'radial-gradient(ellipse at center, rgba(255, 140, 0, 0.45) 0%, rgba(255, 109, 0, 0.2) 50%, transparent 75%)',
           }}
         />
  
@@ -109,7 +109,7 @@ export default function ContactHero({ onBookMeeting }) {
             onClick={onBookMeeting}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="relative group px-8 sm:px-10 py-4 sm:py-4.5 rounded-full font-extrabold text-sm sm:text-base tracking-[0.15em] uppercase text-black bg-white hover:bg-[#FFF9E6] shadow-[0_0_35px_rgba(255,200,50,0.45)] hover:shadow-[0_0_50px_rgba(255,210,70,0.65)] transition-all duration-300 cursor-pointer overflow-hidden"
+            className="relative group px-8 sm:px-10 py-4 sm:py-4.5 rounded-full font-extrabold text-sm sm:text-base tracking-[0.15em] uppercase text-black bg-white hover:bg-[#FFF7ED] shadow-[0_0_35px_rgba(255,140,20,0.45)] hover:shadow-[0_0_50px_rgba(255,160,50,0.65)] transition-all duration-300 cursor-pointer overflow-hidden"
           >
             {/* Subtle Shimmer Sweep */}
             <span

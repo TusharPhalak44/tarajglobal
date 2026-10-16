@@ -317,11 +317,7 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                           >
                             {SERVICES_SUBGROUPS.map((group) => (
                               <div key={group.category} className="space-y-1">
-                                <div className="flex items-center gap-2 px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-text-secondary dark:text-slate-400 dark:text-slate-500">
-                                  <span
-                                    className="w-2 h-2 rounded-full"
-                                    style={{ backgroundColor: group.accent }}
-                                  />
+                                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-text-secondary dark:text-slate-400">
                                   <span>{group.category}</span>
                                 </div>
                                 <div className="grid grid-cols-1 gap-1">

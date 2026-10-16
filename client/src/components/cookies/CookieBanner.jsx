@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { X } from 'lucide-react'
+import { X, Check, SlidersHorizontal } from 'lucide-react'
 import { useCookies } from './CookieContext'
 import { useTheme } from '@context/ThemeContext'
-import { LiquidMetalButton } from '../ui/LiquidMetalButton'
 
 const CookieBanner = () => {
   const { isBannerVisible, acceptAll, openPreferences, closeBanner } = useCookies()
@@ -12,15 +11,15 @@ const CookieBanner = () => {
   const isDark = theme === 'dark'
   const [isHoveredClose, setIsHoveredClose] = useState(false)
 
-  if (!isBannerVisible) return null
-
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ y: 100, opacity: 0, scale: 0.94 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        exit={{ y: 100, opacity: 0, scale: 0.94 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      {isBannerVisible && (
+        <motion.div
+          key="cookie-banner"
+          initial={{ y: 80, opacity: 0, scale: 0.96 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          exit={{ y: 80, opacity: 0, scale: 0.96 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 w-[430px] max-w-[calc(100vw-32px)] sm:max-w-[92%] md:bottom-8 md:left-8 md:w-[460px]"
         role="dialog"
         aria-labelledby="cookie-banner-title"
@@ -130,34 +129,74 @@ const CookieBanner = () => {
               .
             </p>
 
-            {/* Action Buttons: Liquid Metal Buttons */}
+            {/* Action Buttons: Ultra-Modern UI */}
             <div className="grid grid-cols-2 gap-3 pt-2 w-full">
-              {/* Customize Button (Liquid Metal) */}
-              <LiquidMetalButton
-                label="Customize"
+              {/* Customize Button (Sleek Glassmorphic Secondary Action) */}
+              <motion.button
+                type="button"
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={openPreferences}
-                width="100%"
-                height={44}
-                borderRadius="14px"
-                backgroundColor="rgba(0,166,255,0.15)"
-                textColor={isDark ? "#F8FAFC" : "#0F172A"}
-              />
+                className="relative group flex items-center justify-center gap-2 h-11 px-4 rounded-xl font-medium text-xs sm:text-sm transition-all duration-200 cursor-pointer select-none overflow-hidden border"
+                style={{
+                  backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : '#F1F5F9',
+                  borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : '#E2E8F0',
+                  color: isDark ? '#E2E8F0' : '#334155',
+                  backdropFilter: 'blur(8px)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.10)' : '#E2E8F0'
+                  e.currentTarget.style.borderColor = isDark ? 'rgba(0, 166, 255, 0.45)' : '#94A3B8'
+                  e.currentTarget.style.color = isDark ? '#FFFFFF' : '#0F172A'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.05)' : '#F1F5F9'
+                  e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.12)' : '#E2E8F0'
+                  e.currentTarget.style.color = isDark ? '#E2E8F0' : '#334155'
+                }}
+                aria-label="Customize cookie preferences"
+              >
+                <SlidersHorizontal size={14} className="opacity-70 group-hover:opacity-100 transition-opacity shrink-0" />
+                <span className="font-medium tracking-tight">Customize</span>
+              </motion.button>
 
-              {/* Accept All Button (Liquid Metal) */}
-              <LiquidMetalButton
-                label="Accept All"
+              {/* Accept All Button (Electric Blue Gradient with Glow & Specular Sheen) */}
+              <motion.button
+                type="button"
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={acceptAll}
-                width="100%"
-                height={44}
-                borderRadius="14px"
-                backgroundColor="rgba(0,166,255,0.15)"
-                textColor="#FFFFFF"
-              />
+                className="relative group flex items-center justify-center gap-2 h-11 px-4 rounded-xl font-semibold text-xs sm:text-sm text-white transition-all duration-200 cursor-pointer select-none overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, #00A6FF 0%, #0077EE 100%)',
+                  boxShadow: isDark
+                    ? '0 4px 20px -2px rgba(0, 166, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25)'
+                    : '0 4px 16px -2px rgba(0, 166, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = isDark
+                    ? '0 6px 26px 0px rgba(0, 166, 255, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
+                    : '0 6px 22px 0px rgba(0, 166, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = isDark
+                    ? '0 4px 20px -2px rgba(0, 166, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25)'
+                    : '0 4px 16px -2px rgba(0, 166, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+                }}
+                aria-label="Accept all cookies"
+              >
+                {/* Modern light sweep shimmer effect on hover */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
+
+                <Check size={15} className="stroke-[2.5] shrink-0" />
+                <span className="font-semibold tracking-tight">Accept All</span>
+              </motion.button>
             </div>
 
           </div>
         </div>
       </motion.div>
+      )}
     </AnimatePresence>
   )
 }

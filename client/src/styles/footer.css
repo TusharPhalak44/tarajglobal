@@ -1,128 +1,158 @@
-.footer-master-root{
+/* ═════════════════════════════════════════════════════════════════════
+   TARAJ GLOBAL ENTERPRISE FOOTER - GRADIENT THEMED & DYNAMIC
+   ═════════════════════════════════════════════════════════════════════ */
+
+.footer-master-root {
   position: relative;
   width: 100%;
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  /* Light Mode: Clean mostly-white soft slate */
+  background-color: #FAFAFA;
 }
-.footer-laser-divider{
+
+.dark .footer-master-root {
+  /* Dark Mode: Sleek previous dark background */
+  background-color: #070B14;
+}
+
+/* ── Sleek Corporate Top Border ───────────────────────────────────── */
+.footer-top-border {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  z-index: 20;
-}
-.footer-laser-beam{
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 320px;
-  filter: drop-shadow(0 0 10px currentColor);
-  animation: footerLaserMove 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-.footer-laser-cyan{
-  color: #00A6FF;
-  background: linear-gradient(90deg, transparent 0%, rgba(0, 166, 255, 0.95) 50%, rgba(56, 189, 248, 0.8) 80%, transparent 100%);
-}
-.footer-laser-amber{
-  color: #FF6D00;
-  animation-delay: 4.5s;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 109, 0, 0.95) 50%, rgba(251, 146, 60, 0.8) 80%, transparent 100%);
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 166, 255, 0.35) 25%,
+      rgba(255, 109, 0, 0.35) 75%,
+      transparent 100%);
+  z-index: 10;
 }
 
-@keyframes footerLaserMove {
-  0% {
-    left: -350px;
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-  }
-}
-.footer-orb-cyan{
-  animation: footerOrbPulseCyan 10s ease-in-out infinite alternate;
-}
-.footer-orb-amber{
-  animation: footerOrbPulseAmber 12s ease-in-out infinite alternate;
-}
-
-@keyframes footerOrbPulseCyan {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(30px, 20px) scale(1.15);
-    opacity: 1;
-  }
-}
-
-@keyframes footerOrbPulseAmber {
-  0% {
-    transform: translate(0, 0) scale(1.1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(-35px, -20px) scale(0.95);
-    opacity: 0.6;
-  }
-}
-.footer-mesh-grid{
-  background-image: 
+/* ── Ambient Background Grid Overlay ──────────────────────────────── */
+.footer-mesh-grid {
+  background-image:
     linear-gradient(to right, currentColor 1px, transparent 1px),
     linear-gradient(to bottom, currentColor 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
-}
-.footer-cta-card{
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.dark .footer-cta-card{
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
-}
-.footer-cta-card:hover{
-  border-color: rgba(0, 166, 255, 0.35);
-}
-.footer-office-card{
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.25s ease,
-              background-color 0.25s ease,
-              box-shadow 0.25s ease;
-}
-.footer-office-card:hover{
-  transform: translateY(-2px);
-}
-.dark .footer-office-card:hover{
-  background-color: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 8px 20px -4px rgba(0, 166, 255, 0.15);
-}
-.footer-nav-link{
-  position: relative;
-}
-.footer-nav-link:hover{
-  font-weight: 500;
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgb(255, 255, 255) 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgb(255, 255, 255) 20%, transparent 80%);
 }
 
-/* ── Accessibility: Reduced Motion ───────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {.footer-laser-beam,
-  .footer-orb-cyan,
-  .footer-orb-amber{
+/* ── Looping Background Typography Watermark (Coming from Left & Fading to Right) ── */
+.footer-watermark-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  /* Gradual fade mask: coming from left and fading softly to the right */
+  mask-image: linear-gradient(90deg,
+      transparent 0%,
+      black 10%,
+      black 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg,
+      transparent 0%,
+      black 10%,
+      black 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      transparent 100%);
+}
+
+.footer-watermark-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: watermarkDriftRight 28s linear infinite;
+}
+
+.footer-watermark-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 3rem;
+}
+
+.footer-watermark-svg {
+  height: 260px;
+  width: auto;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .footer-watermark-svg {
+    height: 310px;
+  }
+
+  .footer-watermark-item {
+    padding: 0 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-watermark-svg {
+    height: 360px;
+  }
+
+  .footer-watermark-item {
+    padding: 0 6rem;
+  }
+}
+
+/* Fluid Continuous Motion: Left to Right */
+@keyframes watermarkDriftRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+/* ── Clean Corporate Office Cards ─────────────────────────────────── */
+.footer-office-card {
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-office-card:hover {
+  border-color: rgba(255, 109, 0, 0.4);
+}
+
+.dark .footer-office-card:hover {
+  border-color: rgba(0, 166, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 16px -2px rgba(0, 166, 255, 0.1);
+}
+
+/* ── Network Arcs Data Stream Animation ──────────────────────────── */
+@keyframes dataStreamPulse {
+  0% {
+    stroke-dashoffset: 160;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.footer-arc-stream {
+  will-change: stroke-dashoffset;
+}
+
+/* ── Accessibility: Reduced Motion ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .footer-watermark-track,
+  .footer-arc-stream {
     animation: none !important;
   }
-.footer-cta-card,
-  .footer-office-card,
-  .footer-nav-link{
-    transition: none !important;
-  }
-.footer-office-card:hover{
-    transform: none !important;
-  }}
+}

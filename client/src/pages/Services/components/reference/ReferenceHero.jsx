@@ -15,6 +15,7 @@ const SERVICE_INDEX = [
 
 export default function ReferenceHero() {
   const navigate = useNavigate()
+
   const [activeIndex, setActiveIndex] = useState(0)
 
   const scrollToCoreServices = () => {
@@ -36,14 +37,13 @@ export default function ReferenceHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* ══════════ LEFT COLUMN: Copy & CTAs (5 cols) ══════════ */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            {/* Eyebrow: — OUR SERVICES */}
+            {/* Eyebrow: OUR SERVICES */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 mb-6"
+              className="inline-flex items-center mb-6"
             >
-              <span className="w-4 h-[2px] bg-[#FF6D00]" />
               <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-[#FF6D00]">
                 OUR SERVICES
               </span>
@@ -77,17 +77,17 @@ export default function ReferenceHero() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5"
             >
-              <FlowButton 
-                text="Explore Our Services" 
-                variant="primary" 
-                onClick={scrollToCoreServices} 
-                className="w-full sm:w-auto min-h-[44px]" 
+              <FlowButton
+                text="Explore Our Services"
+                variant="primary"
+                onClick={scrollToCoreServices}
+                className="w-full sm:w-auto min-h-[44px]"
               />
-              <FlowButton 
-                text="Talk to Our Experts" 
-                variant="dark" 
-                onClick={() => navigate('/contact')} 
-                className="w-full sm:w-auto min-h-[44px]" 
+              <FlowButton
+                text="Talk to Our Experts"
+                variant="dark"
+                onClick={() => navigate('/contact')}
+                className="w-full sm:w-auto min-h-[44px]"
               />
             </motion.div>
           </div>
@@ -151,7 +151,7 @@ export default function ReferenceHero() {
                   transition={{ duration: 1.5, ease: 'easeOut' }}
                 />
                 <circle cx="350" cy="70" r="7" fill="#FF8A00" filter="url(#glow)" />
-                <circle cx="350" cy="70" r="16" stroke="#FF6D00" strokeWidth="1.5" opacity="0.6" className="animate-ping" />
+                <circle cx="350" cy="70" r="14" stroke="#FF6D00" strokeWidth="1" opacity="0.3" />
               </svg>
             </motion.div>
           </div>
@@ -173,15 +173,15 @@ export default function ReferenceHero() {
                     onMouseEnter={() => setActiveIndex(idx)}
                     onClick={() => navigate(item.route)}
                     className={`group relative p-3 sm:p-3.5 rounded-xl border transition-all duration-300 cursor-pointer flex items-center gap-3.5 ${isActive
-                        ? 'border-[#FF6D00] bg-orange-50/70 dark:bg-white/[0.04] shadow-[0_4px_20px_rgba(255,109,0,0.18)] dark:shadow-[0_0_20px_rgba(255,109,0,0.25)]'
-                        : 'border-slate-200/80 dark:border-white/5 bg-white/80 dark:bg-transparent hover:border-slate-300 dark:hover:border-white/20 hover:bg-white dark:hover:bg-white/[0.02] shadow-sm dark:shadow-none'
+                      ? 'border-[#FF6D00] bg-orange-50/70 dark:bg-white/[0.04] shadow-[0_4px_20px_rgba(255,109,0,0.18)] dark:shadow-[0_0_20px_rgba(255,109,0,0.25)]'
+                      : 'border-slate-200/80 dark:border-white/5 bg-white/80 dark:bg-transparent hover:border-slate-300 dark:hover:border-white/20 hover:bg-white dark:hover:bg-white/[0.02] shadow-sm dark:shadow-none'
                       }`}
                   >
                     {/* Number Badge */}
                     <div
                       className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${isActive
-                          ? 'bg-[#FF6D00] text-black font-black'
-                          : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-white/40 group-hover:text-slate-900 dark:group-hover:text-white/70'
+                        ? 'bg-[#FF6D00] text-black font-black'
+                        : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-white/40 group-hover:text-slate-900 dark:group-hover:text-white/70'
                         }`}
                     >
                       {item.num}

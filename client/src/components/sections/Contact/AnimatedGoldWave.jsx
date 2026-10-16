@@ -36,48 +36,48 @@ export default function AnimatedGoldWave() {
         className="relative block w-[calc(100%+4px)] -ml-[2px] h-full text-background fill-current transition-colors duration-300 border-none outline-none"
       >
         <defs>
-          {/* Subtle Back Dark Gold Gradient */}
+          {/* Subtle Back Orange Wave Gradient */}
           <linearGradient id="goldBackGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#B45309" stopOpacity="0.22" />
-            <stop offset="25%" stopColor="#D97706" stopOpacity="0.32" />
-            <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.38" />
-            <stop offset="75%" stopColor="#D97706" stopOpacity="0.32" />
-            <stop offset="100%" stopColor="#B45309" stopOpacity="0.22" />
+            <stop offset="0%" stopColor="#C2410C" stopOpacity="0.22" />
+            <stop offset="25%" stopColor="#EA580C" stopOpacity="0.32" />
+            <stop offset="50%" stopColor="#FB923C" stopOpacity="0.38" />
+            <stop offset="75%" stopColor="#EA580C" stopOpacity="0.32" />
+            <stop offset="100%" stopColor="#C2410C" stopOpacity="0.22" />
           </linearGradient>
 
-          {/* Secondary Warm Amber / Gold Gradient */}
+          {/* Secondary Light Orange Translucent Gradient */}
           <linearGradient id="amberSecondaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#D97706" stopOpacity="0.38" />
-            <stop offset="30%" stopColor="#F59E0B" stopOpacity="0.5" />
-            <stop offset="60%" stopColor="#FBBF24" stopOpacity="0.55" />
-            <stop offset="85%" stopColor="#F59E0B" stopOpacity="0.45" />
-            <stop offset="100%" stopColor="#D97706" stopOpacity="0.38" />
+            <stop offset="0%" stopColor="#EA580C" stopOpacity="0.38" />
+            <stop offset="30%" stopColor="#F97316" stopOpacity="0.5" />
+            <stop offset="60%" stopColor="#FB923C" stopOpacity="0.55" />
+            <stop offset="85%" stopColor="#F97316" stopOpacity="0.45" />
+            <stop offset="100%" stopColor="#EA580C" stopOpacity="0.38" />
           </linearGradient>
 
-          {/* Premium Thin Glowing Gold Contour Gradient */}
+          {/* Glowing Light Orange Contour Gradient */}
           <linearGradient id="goldContourGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#F59E0B" />
-            <stop offset="25%" stopColor="#FDE047" />
-            <stop offset="50%" stopColor="#F59E0B" />
-            <stop offset="75%" stopColor="#FBBF24" />
-            <stop offset="100%" stopColor="#D97706" />
+            <stop offset="0%" stopColor="#F97316" />
+            <stop offset="25%" stopColor="#FFB066" />
+            <stop offset="50%" stopColor="#FB923C" />
+            <stop offset="75%" stopColor="#FFB066" />
+            <stop offset="100%" stopColor="#F97316" />
           </linearGradient>
 
-          {/* Soft Elegant Outer Glow Filter (1-3px delicate contour, not neon) */}
+          {/* Soft Elegant Outer Light Orange Glow Filter */}
           <filter id="goldContourGlow" x="-20%" y="-60%" width="140%" height="220%">
             <feDropShadow
               dx="0"
               dy="-1"
-              stdDeviation="2"
-              floodColor="#F59E0B"
-              floodOpacity="0.75"
+              stdDeviation="2.5"
+              floodColor="#F97316"
+              floodOpacity="0.8"
             />
             <feDropShadow
               dx="0"
               dy="0"
-              stdDeviation="0.8"
-              floodColor="#FEF08A"
-              floodOpacity="0.9"
+              stdDeviation="1"
+              floodColor="#FFB066"
+              floodOpacity="0.95"
             />
           </filter>
         </defs>

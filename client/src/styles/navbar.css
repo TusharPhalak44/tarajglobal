@@ -34,8 +34,9 @@
 }
 
 .mobile-menu-content {
-  background-color: white;
-  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+  background-color: var(--surface);
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.5);
+  color: var(--text-primary);
 }
 
 /* Dropdown Animation */
@@ -76,14 +77,16 @@
 
 /* Mobile Menu Item */
 .mobile-menu-item {
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
 }
 
 .mobile-menu-item:hover {
-  background-color: #f3f4f6;
+  background-color: var(--surface-alt);
+  color: var(--text-primary);
 }
 
 .mobile-menu-item.active {
-  background-color: #0ea5e9;
-  color: white;
+  background-color: var(--primary);
+  color: #ffffff;
 }

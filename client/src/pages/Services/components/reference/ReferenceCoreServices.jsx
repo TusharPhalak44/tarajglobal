@@ -151,8 +151,7 @@ export default function ReferenceCoreServices() {
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-4 h-[2px] bg-[#FF6D00]" />
+          <div className="inline-flex items-center mb-3">
             <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
               OUR CORE SERVICES
             </span>

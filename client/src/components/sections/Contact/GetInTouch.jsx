@@ -190,11 +190,6 @@ const GetInTouch = ({ onBookMeeting }) => {
                     >
                       <Mail size={36} className="text-primary" />
                     </div>
-                    {/* Ping dot */}
-                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
-                      <span className="relative inline-flex h-3 w-3" />
-                    </span>
                   </motion.div>
                 </div>
 

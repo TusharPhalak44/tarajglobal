@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { ShieldCheck } from 'lucide-react'
 import { cmsAPI } from '@api/cms.api'
+import { LogoMarquee } from '@components/animations/LogoMarquee'
 
 const FALLBACK_LOGOS = [
-  { id: 'mitel', client_name: 'Mitel', logo_path: '/mitel.png' },
-  { id: 'vonage', client_name: 'Vonage', logo_path: '/Vonage.png' },
-  { id: 'ringcentral', client_name: 'RingCentral', logo_path: '/ringcentral.png' },
-  { id: 'avaya', client_name: 'AVAYA', logo_path: '/Avaya.webp' },
-  { id: 'microsoft', client_name: 'Microsoft', logo_path: '/micro.png' },
-  { id: 'oracle', client_name: 'Oracle', logo_path: '/ora.png' },
+  { id: 'avaya', client_name: 'AVAYA', logo_path: '/Avaya.webp', category: 'Unified Communications', metric: '+42% Sales Pipeline' },
+  { id: 'mitel', client_name: 'Mitel', logo_path: '/mitel.png', category: 'Enterprise Telecom', metric: '3.8x C-Suite Reach' },
+  { id: 'ringcentral', client_name: 'RingCentral', logo_path: '/ringcentral.png', category: 'Cloud Communications', metric: '99.8% Data Accuracy' },
+  { id: 'vonage', client_name: 'Vonage', logo_path: '/Vonage.png', category: 'Communications APIs', metric: '+48% Meeting Conversion' },
+  { id: 'microsoft', client_name: 'Microsoft Partner', logo_path: '/micro.png', category: 'Cloud & Enterprise', metric: '14-Day Cadence Ramp' },
+  { id: 'oracle', client_name: 'Oracle Partner', logo_path: '/ora.png', category: 'Database & Systems', metric: 'Full Committee ABM' },
 ]
-
-const FALLBACK_SETTINGS = {
-  title_white: 'Trusted by',
-  title_gradient: 'leading B2B brands',
-  is_visible: true,
-}
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''
 const resolveImg = (path) => {
@@ -26,7 +22,8 @@ const resolveImg = (path) => {
 
 export const OurClients = () => {
   const [logos, setLogos] = useState(FALLBACK_LOGOS)
-  const [settings, setSettings] = useState(FALLBACK_SETTINGS)
+  const [isVisible, setIsVisible] = useState(true)
+  const [settings, setSettings] = useState({})
 
   useEffect(() => {
     const load = async () => {
@@ -37,42 +34,76 @@ export const OurClients = () => {
         ])
         const rawClients = clientsRes.data?.data || clientsRes.data || []
         if (Array.isArray(rawClients) && rawClients.length > 0) setLogos(rawClients)
-        if (settingsRes.data?.data) setSettings(settingsRes.data.data)
+        if (settingsRes.data?.data) {
+          setSettings(settingsRes.data.data)
+          if (settingsRes.data.data.is_visible !== undefined) {
+            setIsVisible(settingsRes.data.data.is_visible)
+          }
+        }
       } catch (err) {
-        console.warn('OurClients: CMS fetch failed, using defaults', err)
+        // Fallback to static verified logos
       }
     }
     load()
   }, [])
 
-  if (!settings.is_visible) return null
-
-  // Two identical halves so the -50% loop has no seam, repeated so a short list still fills the bar.
-  const loop = [...logos, ...logos, ...logos, ...logos]
+  if (!isVisible) return null
 
   return (
-    <section aria-label="Our clients" className="overflow-hidden border-y border-border bg-background">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-5 py-7 sm:py-8 lg:flex-row lg:items-center lg:gap-10">
-        <p className="shrink-0 px-5 text-[13px] font-semibold uppercase tracking-[0.12em] text-text-secondary sm:px-8 lg:pl-12 lg:pr-0">
-          {[settings.title_white, settings.title_gradient].filter(Boolean).join(' ')}
-        </p>
-        <div className="relative min-w-0 flex-1 overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent" />
-          <ul className="animate-marquee items-center gap-14 sm:gap-20">
-            {loop.map((logo, index) => (
-              <li key={`${logo.id}-${index}`} aria-hidden={index >= logos.length} className="shrink-0">
+    <section
+      id="trust"
+      aria-label="Enterprise Client Trust Strip"
+      className="relative bg-[#070B14] py-12 sm:py-14 border-t border-white/[0.08] overflow-hidden select-none"
+    >
+      {/* ── Ambient Radial Lighting ─────────────────────────────────────── */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[260px] rounded-full bg-[#00A6FF]/[0.06] blur-[130px]" />
+      </div>
+
+      <div className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-10">
+        
+        {/* ── Section Header (Clean Pre-header matching Hero) ───────────── */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2">
+          <div className="inline-flex items-center justify-center mb-1">
+            <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+              {settings.eyebrow || 'TRUSTED BY ENTERPRISE TEAMS'}
+            </p>
+          </div>
+
+          <h2 className="text-xl sm:text-3xl lg:text-[34px] font-black tracking-tight text-white leading-tight">
+            {settings.title_white || 'Trusted by Global Leaders,'}{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00]">
+              {settings.title_gradient || 'Proven Across B2B Markets'}
+            </span>
+          </h2>
+        </div>
+
+        {/* ── One Single Client Scroller Only ─────────────────────────────── */}
+        <div className="relative rounded-2xl border border-white/[0.08] bg-gradient-to-r from-white/[0.03] via-white/[0.06] to-white/[0.03] p-3 sm:p-4 backdrop-blur-md shadow-xl overflow-hidden">
+          <LogoMarquee
+            items={logos}
+            speed={28}
+            direction="left"
+            pauseOnHover={true}
+            renderItem={(logo) => (
+              <div className="group relative flex items-center justify-center min-w-[165px] sm:min-w-[200px] h-[76px] sm:h-[86px] px-6 py-2.5 rounded-xl border border-white/60 bg-white/95 hover:bg-white shadow-[0_4px_16px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_24px_rgba(0,166,255,0.3)] hover:border-[#00A6FF] transition-all duration-300 cursor-pointer">
                 <img
                   src={resolveImg(logo.logo_path || logo.src)}
-                  alt={index < logos.length ? (logo.client_name || logo.alt || logo.name || '') : ''}
-                  className="h-8 w-auto max-w-[140px] object-contain sm:h-10"
+                  alt={logo.client_name || 'Enterprise Client'}
+                  className="h-8 sm:h-9 w-auto max-w-[130px] sm:max-w-[150px] object-contain select-none transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                 />
-              </li>
-            ))}
-          </ul>
+                {logo.metric && (
+                  <span className="absolute -bottom-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-mono font-bold bg-[#070B14] text-[#38BDF8] border border-[#00A6FF]/40 px-2.5 py-0.5 rounded-full shadow-lg whitespace-nowrap z-10">
+                    {logo.metric}
+                  </span>
+                )}
+              </div>
+            )}
+          />
         </div>
+
       </div>
     </section>
   )

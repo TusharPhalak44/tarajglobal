@@ -580,7 +580,7 @@ const WhatProblemsSolved = () => {
                         <span>{item.problem.title}</span>
                         {isActive && (
                           <span
-                            className="w-2 h-2 rounded-full animate-ping shrink-0 ml-1"
+                            className="w-1.5 h-1.5 rounded-full shrink-0 ml-1"
                             style={{ backgroundColor: item.color }}
                           />
                         )}

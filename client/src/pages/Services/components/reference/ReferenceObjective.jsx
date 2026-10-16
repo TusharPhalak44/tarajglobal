@@ -141,8 +141,7 @@ export default function ReferenceObjective() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* ══════════ LEFT COLUMN: Heading & Copy (4 cols) ══════════ */}
           <div className="lg:col-span-4 flex flex-col justify-start">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-4 h-[2px] bg-[#FF6D00]" />
+            <div className="inline-flex items-center mb-4">
               <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">
                 WHAT DO YOU NEED?
               </span>
@@ -197,9 +196,9 @@ export default function ReferenceObjective() {
                     >
                       <Icon className="w-5 h-5" />
 
-                      {/* Active Ring Pulse */}
+                      {/* Active Ring */}
                       {isActive && (
-                        <span className="absolute -inset-1 rounded-full border border-[#FF6D00]/50 animate-ping pointer-events-none" />
+                        <span className="absolute -inset-1 rounded-full border border-[#FF6D00]/40 pointer-events-none" />
                       )}
                     </div>
 

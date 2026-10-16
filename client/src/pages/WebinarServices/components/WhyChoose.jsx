@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import { useTheme } from '@context/ThemeContext'
 import {
   Crosshair,
   Briefcase,
@@ -54,22 +55,11 @@ const PILLARS = [
 ]
 
 const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
-  const [isDark, setIsDark] = useState(false)
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
   const [isHovered, setIsHovered] = useState(false)
   const cardRef = useRef(null)
-
-  useEffect(() => {
-    const checkDark = () => {
-      setIsDark(document.documentElement.classList.contains('dark'))
-    }
-    checkDark()
-
-    const observer = new MutationObserver(checkDark)
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
-
-    return () => observer.disconnect()
-  }, [])
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return
@@ -185,10 +175,9 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2   mb-2.5"
+            className="flex items-center justify-center mb-2.5"
           >
-            <Star className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               Why Taraj Global
             </span>
           </motion.div>

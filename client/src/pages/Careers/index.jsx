@@ -706,8 +706,7 @@ const EditorialInfoPanel = ({
 
           {/* Bottom Accent Anchor */}
           <div className="pt-4 mt-4 border-t border-border/50 dark:border-white/5 flex items-center justify-between text-[10px] font-mono tracking-wider">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-[2px] bg-[#00A6FF]" />
+            <div className="flex items-center">
               <span className="uppercase tracking-widest text-text-tertiary font-bold text-[10px]">
                 TARAJ REVENUE ARCHITECTURE
               </span>
@@ -1319,15 +1318,11 @@ function Careers() {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-              className="inline-flex items-center gap-2.5    text-[#1A1A2E] dark:text-white font-mono text-[11px] sm:text-xs tracking-[0.16em] uppercase mb-6 sm:mb-8 transition-colors duration-300"
+              className="flex items-center gap-2.5 text-[#1A1A2E] dark:text-white text-xs font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 transition-colors duration-300"
             >
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full opacity-75" style={{ animationDuration: '2.5s' }} />
-                <span className="relative inline-flex h-2 w-2" />
-              </span>
-              <span className="text-[#4A5568] dark:text-white/80 font-medium">CAREERS AT TARAJ GLOBAL</span>
-              <span className="text-[#718096] dark:text-white/40">&bull;</span>
-              <span className="text-[#1A1A2E] dark:text-text-primary dark:text-white font-bold">WE ARE HIRING IN PUNE</span>
+              <span className="text-primary font-semibold">CAREERS AT TARAJ GLOBAL</span>
+              <span className="text-slate-400 dark:text-white/40">&bull;</span>
+              <span className="text-text-primary dark:text-white font-bold">WE ARE HIRING IN PUNE</span>
             </motion.div>
 
             {/* Huge Bold Heading (Matching "THE FUTURE IS BRIGHT" in reference image) */}
@@ -1746,7 +1741,7 @@ function Careers() {
             }}
             transition={{ opacity: { duration: 0.15 }, scale: { duration: 0.15 } }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-ping" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF]" />
             <span>EXPLORE ALBUM</span>
           </motion.div>
         </section>
@@ -1956,10 +1951,7 @@ function Careers() {
                   {/* Top Status Header */}
                   <div className="relative z-10 mb-5 flex items-center justify-between pb-4 border-b border-border/50 dark:border-white/10">
                     <div className="inline-flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
-                        <span className="relative inline-flex h-2 w-2" />
-                      </span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">
                         TALENT ACQUISITION POD
                       </span>

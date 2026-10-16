@@ -279,10 +279,9 @@ const WhoIsItFor = () => {
         <div className="max-w-4xl mx-auto text-center mb-3.5 lg:mb-4">
           <motion.div
             {...fadeUp(0)}
-            className="inline-flex items-center gap-2 mb-2"
+            className="flex items-center justify-center mb-2"
           >
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-primary uppercase">
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               Target Audience
             </span>
           </motion.div>

@@ -19,27 +19,59 @@ export const CookieProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
-  // Load preferences from localStorage on mount
+  // Load preferences from localStorage on mount, ensuring website loads first
   useEffect(() => {
+    let timerId = null
+
+    const scheduleBannerAppearance = (shouldShow) => {
+      if (!shouldShow) return
+
+      const triggerDelayedBanner = () => {
+        // Generous delay so the page, hero, and interactive UI render smoothly first
+        timerId = setTimeout(() => {
+          setIsBannerVisible(true)
+        }, 2000)
+      }
+
+      if (document.readyState === 'complete') {
+        triggerDelayedBanner()
+      } else {
+        const handleWindowLoad = () => {
+          triggerDelayedBanner()
+        }
+        window.addEventListener('load', handleWindowLoad, { once: true })
+        // Fallback timer in case the window load event doesn't fire or takes unusually long
+        timerId = setTimeout(() => {
+          setIsBannerVisible(true)
+        }, 3500)
+      }
+    }
+
     const loadPreferences = () => {
       try {
         const stored = localStorage.getItem(STORAGE_KEY)
         if (stored) {
           const parsed = JSON.parse(stored)
           setPreferences(parsed)
-          setIsBannerVisible(!parsed.consentGiven)
+          if (!parsed.consentGiven) {
+            scheduleBannerAppearance(true)
+          }
         } else {
-          setIsBannerVisible(true)
+          scheduleBannerAppearance(true)
         }
       } catch (error) {
         console.error('Error loading cookie preferences:', error)
-        setIsBannerVisible(true)
+        scheduleBannerAppearance(true)
       } finally {
         setIsLoading(false)
       }
     }
 
     loadPreferences()
+
+    return () => {
+      if (timerId) clearTimeout(timerId)
+    }
   }, [])
 
   // Save preferences to localStorage

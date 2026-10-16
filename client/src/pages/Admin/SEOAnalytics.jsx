@@ -192,7 +192,7 @@ const SEOAnalytics = () => {
                           <tr key={session.id || idx} className="group">
                             <td>
                               <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-[#72D669] shrink-0 animate-ping" />
+                                <span className="w-2 h-2 rounded-full bg-[#72D669] shrink-0" />
                                 <span className="font-mono text-sm font-bold text-[var(--admin-text-primary)] truncate max-w-md">
                                   {session.path || session.url || '/'}
                                 </span>

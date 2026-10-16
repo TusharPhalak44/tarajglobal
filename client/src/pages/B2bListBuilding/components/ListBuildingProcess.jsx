@@ -98,20 +98,15 @@ const ListBuildingProcess = () => {
       <div className="relative max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── COMPACT SECTION HEADER & TITLE ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5">
-          {/* Eyebrow Badge */}
+          {/* Eyebrow */}
           <motion.div
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2   mb-3 "
+            className="flex items-center justify-center mb-3"
           >
-            <motion.span
-              className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] shadow-xs"
-              animate={prefersReducedMotion ? {} : { scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 1.8, repeat: Infinity }}
-            />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-primary dark:text-[#00d2ff] uppercase">
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               How Our Process Works
             </span>
           </motion.div>

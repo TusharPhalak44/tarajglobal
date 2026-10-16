@@ -1,24 +1,36 @@
-:root{
+:root {
   /* Colors - Brand Color Palette (Dark Mode Default) */
   --bg-primary: #050505;
   --bg-secondary: #121212;
   --background: #050505;
   --hero: #050505;
   --surface: #121212;
+  --surface-alt: #181E29;
+  --surface-elevated: #1F2937;
   --primary: #00A6FF;
   --primary-light: #33B8FF;
   --primary-dark: #0085CC;
   --accent: #FF6D00;
   --cta: #FF6D00;
   --cta-hover: #FFA600;
+  --cta-light: #FF8533;
   --success: #72D669;
+  --success-light: #86EFAC;
+  --warning: #F59E0B;
+  --warning-light: #FCD34D;
+  --error: #EF4444;
+  --error-light: #FCA5A5;
+  --info: #3B82F6;
+  --info-light: #93C5FD;
   --text-primary: #F5F5F5;
   --text-secondary: #94A3B8;
   --text-muted: #94A3B8;
+  --text-light: #FFFFFF;
   --border: rgba(255, 255, 255, 0.08);
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --info: #3B82F6;
+  --border-light: rgba(255, 255, 255, 0.15);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --color-primary: var(--primary);
+  --color-border: var(--border);
 
   /* ── ONE GLOBAL TYPOGRAPHY SYSTEM (TGS BRAND STANDARD) ── */
   --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -112,6 +124,42 @@
   --z-modal: 1050;
   --z-popover: 1060;
   --z-tooltip: 1070;
+}
+
+/* Light Theme Variables */
+:root:not(.dark),
+.light {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --background: #F8FAFC;
+  --hero: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-alt: #F1F5F9;
+  --surface-elevated: #FFFFFF;
+  --primary: #0085CC;
+  --primary-light: #00A6FF;
+  --primary-dark: #006BB3;
+  --accent: #FF6D00;
+  --cta: #FF6D00;
+  --cta-hover: #E05E00;
+  --cta-light: #FF8533;
+  --success: #16A34A;
+  --success-light: #BBF7D0;
+  --warning: #D97706;
+  --warning-light: #FEF3C7;
+  --error: #DC2626;
+  --error-light: #FEE2E2;
+  --info: #2563EB;
+  --info-light: #DBEAFE;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --text-light: #0F172A;
+  --border: rgba(15, 23, 42, 0.10);
+  --border-light: rgba(15, 23, 42, 0.16);
+  --border-subtle: rgba(15, 23, 42, 0.05);
+  --color-primary: var(--primary);
+  --color-border: var(--border);
 }
 
 /* ── Responsive Typography Scale: Tablet (max-width: 1024px) ── */

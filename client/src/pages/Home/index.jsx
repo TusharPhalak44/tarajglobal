@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Mail } from 'lucide-react'
+import { Mail, ArrowRight } from 'lucide-react'
 import SEO from '@components/common/SEO'
-import Hero from '@components/sections/Hero'
-import GrowthIntro from '@components/sections/GrowthIntro/GrowthIntro'
-import OurClients from '@components/sections/OurClients'
-import HowWeWork from '@components/sections/HowWeWork'
+import Hero from '@components/sections/Hero/Hero'
+import GetToKnowUs from '@components/sections/GetToKnowUs/GetToKnowUs'
+import OurClients from '@components/sections/OurClients/OurClients'
 import Services from '@components/sections/Services/Services'
-import Stats from '@components/sections/Stats'
+import BusinessOutcomes from '@components/sections/BusinessOutcomes/BusinessOutcomes'
 import Testimonials from '@components/sections/Testimonials/Testimonials'
+import WhyTarajGlobal from '@components/sections/WhyTarajGlobal/WhyTarajGlobal'
+import HowWeWork from '@components/sections/HowWeWork/HowWeWork'
+import HomeFAQ from '@components/sections/FAQ/HomeFAQ'
 import { FlowButton } from '@components/ui/FlowButton'
 import { useSEOData } from '@hooks/useSEOData'
-import { FIXES, GOALS, useRecovery } from '@context/RecoveryContext'
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -45,17 +46,58 @@ const homeSchema = {
       "publisher": {
         "@id": "https://tarajglobal.com/#organization"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tarajglobal.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a tech-powered B2B demand generation agency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A tech-powered B2B demand generation agency combines strategic account outreach with custom software infrastructure. Rather than relying solely on manual processes or generic third-party databases, tech-powered agencies build proprietary verification and CRM tools to deliver 99.8% data accuracy and predictable pipeline growth."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does TaRaj Global verify prospect data before client delivery?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TaRaj Global processes all prospect research through an in-house verification engine. This custom tool conducts multi-pass validation on direct-dial phone numbers and tests email deliverability in real time, eliminating bounce rates and duplicate contacts before leads flow into our client delivery CRM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between B2B lead generation and demand generation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B lead generation focuses on acquiring individual contact details (MQLs). B2B demand generation is a full-funnel strategy designed to generate category awareness, nurture intent-qualified buying committees, and convert accounts into verified sales opportunities (SQLs) and closed-loop revenue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does TaRaj Global support pipeline growth across US, EMEA, and APAC?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TaRaj Global maintains global data verification operations compliance-mapped for North America (CCPA), Europe (GDPR), and APAC. Our infrastructure enables technology companies to scale personalized account outreach to enterprise decision-makers worldwide."
+          }
+        }
+      ]
     }
   ]
 }
 
 const CHAPTERS = [
-  { id: 'start', label: 'Challenge' },
-  { id: 'journey', label: 'Methodology' },
-  { id: 'services', label: 'Solutions' },
-  { id: 'results', label: 'Impact' },
-  { id: 'stories', label: 'Case Studies' },
-  { id: 'next', label: 'Consultation' },
+  { id: 'hero', label: 'The Growth Engine' },
+  { id: 'enterprise-architecture', label: 'Growth Architecture' },
+  { id: 'services', label: 'Our Services' },
+  { id: 'trust', label: 'Client Trust' },
+  { id: 'testimonials', label: 'Client Testimonials' },
+  { id: 'why-taraj', label: 'Why Taraj Global' },
+  { id: 'how-we-work', label: 'How We Work' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'cta', label: 'Get Started' },
 ]
 
 function ChapterRail() {
@@ -68,7 +110,7 @@ function ChapterRail() {
           if (entry.isIntersecting) setActive(entry.target.id)
         })
       },
-      { rootMargin: '-45% 0px -50% 0px' }
+      { rootMargin: '-40% 0px -45% 0px' }
     )
     CHAPTERS.forEach(({ id }) => {
       const el = document.getElementById(id)
@@ -79,8 +121,8 @@ function ChapterRail() {
 
   return (
     <nav
-      aria-label="Page chapters"
-      className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-3"
+      aria-label="Page navigation chapters"
+      className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-3 pointer-events-none"
     >
       {CHAPTERS.map(({ id, label }, i) => {
         const isActive = active === id
@@ -89,19 +131,19 @@ function ChapterRail() {
             key={id}
             href={`#${id}`}
             aria-current={isActive ? 'true' : undefined}
-            className="group flex items-center justify-end gap-3"
+            className="group flex items-center justify-end gap-3 pointer-events-auto self-end max-w-fit"
           >
             <span
-              className={`rounded-md bg-surface px-2 py-1 text-[12px] font-semibold opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 ${
-                isActive ? 'text-text-primary' : 'text-text-secondary'
+              className={`pointer-events-none rounded-md bg-[#07090E]/95 border border-white/10 px-2.5 py-1 text-[11.5px] font-semibold opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 shadow-xl ${
+                isActive ? 'text-white' : 'text-text-secondary'
               }`}
             >
-              <span className="font-mono text-text-muted mr-1.5">0{i + 1}</span>
+              <span className="font-mono text-[#00A6FF] mr-1.5">0{i + 1}</span>
               {label}
             </span>
             <span
-              className={`block rounded-full transition-all duration-300 ${
-                isActive ? 'h-6 w-1.5 bg-primary' : 'h-1.5 w-1.5 bg-slate-400/50 group-hover:bg-text-primary'
+              className={`block rounded-full transition-all duration-300 shrink-0 ${
+                isActive ? 'h-6 w-1.5 bg-[#00A6FF]' : 'h-1.5 w-1.5 bg-slate-500/40 group-hover:bg-white'
               }`}
             />
           </a>
@@ -111,87 +153,57 @@ function ChapterRail() {
   )
 }
 
-function RecoveryHandoff() {
-  const { route, visited, nextStop } = useRecovery()
-  if (!nextStop) return null
+function NextStep() {
   return (
-    <Link
-      to={nextStop}
-      className="group mx-auto mt-8 flex max-w-xl items-center gap-4 rounded-2xl border border-[#00A6FF]/40 bg-[#00A6FF]/[0.07] p-5 text-left transition-colors hover:border-[#00A6FF]"
+    <section
+      id="cta"
+      className="relative bg-background py-12 sm:py-14 lg:py-16 overflow-hidden border-t border-white/[0.08]"
+      aria-labelledby="cta-heading"
     >
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#00A6FF] text-[15px] font-black text-white">
-        {visited.filter((p) => route.includes(p)).length + 1}
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block text-[12px] font-semibold uppercase tracking-[0.14em] text-primary">Strategic Growth Roadmap · Recommended Solution</span>
-        <span className="mt-0.5 block text-lg font-bold text-text-primary">{FIXES[nextStop].title}</span>
-        <span className="block text-[14px] text-text-secondary">{FIXES[nextStop].fixes}</span>
-      </span>
-      <ArrowRight size={18} className="shrink-0 text-primary transition-transform group-hover:translate-x-1" />
-    </Link>
-  )
-}
+      <div className="relative mx-auto max-w-[850px] px-5 sm:px-8 text-center">
+        
+        {/* Eyebrow (Clean Pre-header matching Hero) */}
+        <div className="inline-flex items-center justify-center mb-2.5 sm:mb-3">
+          <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+            GET STARTED
+          </p>
+        </div>
 
-function NextStep({ activeGoal, onSelectGoal }) {
-  return (
-    <section id="next" className="relative bg-background py-20 lg:py-28 overflow-hidden" aria-labelledby="next-heading">
-      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-px w-[min(900px,90%)] bg-gradient-to-r from-transparent via-[#00A6FF]/60 to-transparent" />
-      <div className="relative mx-auto max-w-[900px] px-5 sm:px-8 text-center">
-        <p className="text-[13px] font-mono font-semibold uppercase tracking-[0.16em] text-primary mb-4">
-          06 — GET STARTED
-        </p>
-        <h2 id="next-heading" className="text-3xl sm:text-5xl font-black tracking-[-0.03em] leading-[1.08] text-text-primary">
-          {activeGoal ? (
-            <>Accelerate your pipeline: <span className="text-cta">"{activeGoal.problem}"</span></>
-          ) : (
-            <>Ready to scale <span className="text-primary">predictable revenue</span> for your business?</>
-          )}
+        {/* Headline */}
+        <h2
+          id="cta-heading"
+          className="text-2xl sm:text-4xl lg:text-[46px] font-black tracking-[-0.03em] leading-[1.15] text-white"
+        >
+          Ready to Accelerate Your{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00]">
+            Global B2B Revenue Pipeline
+          </span>
+          ?
         </h2>
-        <p className="mt-5 text-base sm:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-          Book a 30-minute strategic pipeline review with our demand generation leaders. We will audit your ICP, analyze your current funnel conversion, and outline a high-impact 90-day pipeline roadmap.
+
+        {/* Supporting Copy */}
+        <p className="mt-3.5 text-sm sm:text-base text-slate-200 max-w-2xl mx-auto leading-relaxed">
+          Partner with a tech-powered demand generation agency that combines custom verification tools with a unified CRM delivery engine across US, EMEA, and APAC.
         </p>
 
-        {!activeGoal && (
-          <div className="mt-8">
-            <p className="text-[13px] text-text-muted mb-3">Explore tailored solutions by growth objective:</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {GOALS.map((goal) => (
-                <button
-                  key={goal.id}
-                  type="button"
-                  onClick={() => onSelectGoal(goal.id)}
-                  className="rounded-full border border-border px-4 py-2 text-[14px] font-medium text-text-secondary hover:border-primary hover:text-text-primary transition-colors"
-                >
-                  {goal.problem}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeGoal && <RecoveryHandoff />}
-
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+        {/* CTAs */}
+        <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3.5">
           <Link to="/contact" className="w-full sm:w-auto">
-            <FlowButton text="Schedule a Pipeline Review" variant="primary" className="w-full sm:w-auto min-h-[48px] justify-center" />
+            <FlowButton
+              text="Schedule Your Pipeline Strategy Call"
+              variant="primary"
+              className="w-full sm:w-auto min-h-[48px] px-8 justify-center text-[15px] font-bold shadow-[0_10px_25px_-8px_rgba(255,109,0,0.5)]"
+            />
           </Link>
           <a
             href="mailto:info@tarajglobal.com"
-            className="inline-flex items-center gap-2 text-[15px] font-semibold text-text-secondary hover:text-text-primary transition-colors min-h-[48px] px-4"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 text-[14px] font-semibold text-white hover:border-[#00A6FF] hover:bg-[#00A6FF]/10 transition-colors w-full sm:w-auto"
           >
-            <Mail size={16} /> info@tarajglobal.com
+            <Mail size={15} className="text-[#00A6FF]" />
+            <span>Talk to Our Team</span>
           </a>
         </div>
 
-        {activeGoal && (
-          <button
-            type="button"
-            onClick={() => onSelectGoal(null)}
-            className="mt-6 inline-flex items-center gap-1 text-[13px] text-text-muted hover:text-text-primary transition-colors"
-          >
-            Explore different growth objectives <ArrowRight size={13} />
-          </button>
-        )}
       </div>
     </section>
   )
@@ -208,21 +220,38 @@ function Home() {
     schemaJson: homeSchema
   })
 
-  const { goal: activeGoal, setGoal: setGoalId } = useRecovery()
-  const [introClosed, setIntroClosed] = useState(false)
-
   return (
     <>
       <SEO {...seoData} schemaJson={homeSchema} />
-      <GrowthIntro onClose={() => setIntroClosed(true)} />
+      
       <ChapterRail />
-      <Hero goals={GOALS} activeGoal={activeGoal} onSelectGoal={setGoalId} replayKey={introClosed ? 'after-intro' : 'initial'} />
+      
+      {/* 01. Hero Section: The Growth Engine */}
+      <Hero />
+
+      {/* 02. Enterprise Growth Architecture */}
+      <GetToKnowUs />
+
+      {/* 03. Our Services */}
+      <Services />
+
+      {/* 04. Client Trust (One Client Scroller Only, Above Testimonials) */}
       <OurClients />
-      <HowWeWork activeGoal={activeGoal} />
-      <Services activeGoal={activeGoal} />
-      <Stats activeGoal={activeGoal} />
-      <Testimonials activeGoal={activeGoal} />
-      <NextStep activeGoal={activeGoal} onSelectGoal={setGoalId} />
+
+      {/* 07. Client Testimonials */}
+      <Testimonials />
+
+      {/* 08. Why Taraj Global */}
+      <WhyTarajGlobal />
+
+      {/* 09. How We Work */}
+      <HowWeWork />
+
+      {/* 10. Frequently Asked Questions */}
+      <HomeFAQ />
+
+      {/* 11. Final Call to Action */}
+      <NextStep />
     </>
   )
 }

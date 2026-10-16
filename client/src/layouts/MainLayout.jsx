@@ -22,7 +22,6 @@ function MainLayout() {
         {showNextFix && <NextFix />}
       </main>
       <Footer />
-      <GrowthMeter />
       <ChatBot />
     </div>
   )

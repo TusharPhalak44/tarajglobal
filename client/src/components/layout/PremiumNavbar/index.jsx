@@ -393,12 +393,8 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                               {SERVICES_DATA.map((col) => (
                                 <div key={col.title} className="space-y-3">
-                                  <div className="flex items-center gap-2 pb-1.5 border-b border-slate-100 dark:border-white/5">
-                                    <span
-                                      className="w-2.5 h-2.5 rounded-full"
-                                      style={{ backgroundColor: col.accent, boxShadow: `0 0 8px ${col.accent}` }}
-                                    />
-                                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
+                                  <div className="pb-2 border-b border-slate-100 dark:border-white/5">
+                                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
                                       {col.title}
                                     </span>
                                   </div>

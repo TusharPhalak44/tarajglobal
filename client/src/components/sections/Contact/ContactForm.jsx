@@ -244,9 +244,8 @@ const ContactForm = () => {
             <p className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
               Thank you for reaching out. Our growth strategists have received your brief and will connect with you within 2 hours.
             </p>
-            <div className="inline-flex items-center gap-2  text-slate-500 dark:text-slate-400 text-sm font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Priority Ingestion Active
+            <div className="flex items-center justify-center text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider">
+              Priority Response Active
             </div>
           </motion.div>
         </div>
@@ -363,14 +362,13 @@ const ContactForm = () => {
             <div className="lg:col-span-5 p-5 sm:p-6 lg:p-7 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200/80 dark:border-white/10 bg-slate-50/70 dark:bg-black/25 relative">
               
               <div>
-                {/* Live Status Pill */}
-                <div className="inline-flex items-center gap-2    text-primary dark:text-[#00d2ff] mb-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00d2ff] animate-ping" />
-                  <span className="text-sm font-mono font-bold tracking-[0.18em] uppercase">
+                {/* Direct Inquiry Title */}
+                <div className="flex items-center gap-2 text-primary dark:text-[#00d2ff] mb-2.5">
+                  <span className="text-xs font-semibold tracking-[0.18em] uppercase">
                     Direct Inquiry
                   </span>
                   <span className="text-text-secondary dark:text-slate-300 dark:text-white/20">|</span>
-                  <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                  <span className="text-xs font-medium text-slate-600 dark:text-slate-300">
                     &lt; 2h Response
                   </span>
                 </div>

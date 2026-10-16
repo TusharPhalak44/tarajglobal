@@ -187,11 +187,8 @@ const WhatTarajDelivers = () => {
     const container = tabRailRef.current
     const activeBtn = container.querySelector(`[data-tab-idx="${activeIdx}"]`)
     if (activeBtn) {
-      const containerRect = container.getBoundingClientRect()
-      const btnRect = activeBtn.getBoundingClientRect()
-      if (btnRect.left < containerRect.left || btnRect.right > containerRect.right) {
-        activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-      }
+      const scrollLeft = activeBtn.offsetLeft - (container.clientWidth / 2) + (activeBtn.clientWidth / 2)
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' })
     }
   }, [activeIdx])
 

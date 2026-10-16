@@ -31,6 +31,7 @@ const DatabaseCleansing = lazy(() => import('@pages/DatabaseCleansing'))
 const Privacy = lazy(() => import('@pages/Privacy'))
 const Terms = lazy(() => import('@pages/Terms'))
 const CookiePolicy = lazy(() => import('@components/cookies/CookiePolicyPage'))
+const Sitemap = lazy(() => import('@pages/Sitemap'))
 const Login = lazy(() => import('@pages/Login'))
 const NotFound = lazy(() => import('@pages/NotFound'))
 
@@ -98,6 +99,8 @@ function AppRoutes() {
         <Route path="b2b-appointment-setting" element={<B2bAppointmentSetting />} />
         <Route path="b2b-email-marketing" element={<B2bEmailMarketing />} />
         <Route path="b2b-email-marketinig" element={<Navigate to="/b2b-email-marketing" replace />} />
+        <Route path="lead-qualification" element={<Navigate to="/sql-services" replace />} />
+        <Route path="prospect-data-enrichment" element={<Navigate to="/b2b-list-building" replace />} />
         <Route path="industries" element={<Navigate to="/services" replace />} />
         <Route path="demandflow-bridge" element={<DemandFlowBridge />} />
         <Route path="abm" element={<Abm />} />
@@ -110,6 +113,7 @@ function AppRoutes() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="cookies" element={<CookiePolicy />} />
+        <Route path="sitemap" element={<Sitemap />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

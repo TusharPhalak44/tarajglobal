@@ -149,20 +149,13 @@ const CTA = () => {
         <motion.div style={prefersReducedMotion ? {} : { y }}>
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex items-center gap-2 mb-3.5    text-primary dark:text-[#00A6FF]"
+            className="flex items-center justify-center mb-3.5 text-primary dark:text-[#00A6FF]"
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            {!prefersReducedMotion && (
-              <motion.span
-                className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00A6FF]"
-                animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-                transition={{ duration: 1.6, repeat: Infinity }}
-              />
-            )}
-            <span className="text-[10px] font-mono font-bold tracking-[0.22em] uppercase">
+            <span className="text-xs font-semibold tracking-[0.22em] uppercase">
               Get Started
             </span>
           </motion.div>
@@ -262,14 +255,10 @@ const CTA = () => {
                 style={{ backgroundColor: currPillar.color }}
               />
 
-              {/* Live Pulsing Radar Beacon Dot */}
-              <div className="relative flex items-center justify-center w-2.5 h-2.5 shrink-0">
+              {/* Category Indicator Dot */}
+              <div className="relative flex items-center justify-center w-2 h-2 shrink-0">
                 <span
-                  className="absolute w-full h-full rounded-full animate-ping opacity-75"
-                  style={{ backgroundColor: currPillar.color }}
-                />
-                <span
-                  className="relative w-2 h-2 rounded-full shadow-xs"
+                  className="w-2 h-2 rounded-full shadow-xs"
                   style={{ backgroundColor: currPillar.color }}
                 />
               </div>

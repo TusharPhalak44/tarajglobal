@@ -54,10 +54,9 @@ const Hero = () => {
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2  text-primary mb-5"
+            className="flex items-center justify-center text-primary mb-5"
           >
-            <Cpu className="w-3.5 h-3.5 animate-pulse text-primary" />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase">
               Powering Business Operations
             </span>
           </motion.div>
@@ -143,16 +142,16 @@ const Hero = () => {
 
               {/* Secure App URL */}
               <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-md bg-background dark:bg-slate-950/80 border border-border dark:border-white/10 text-xs font-mono text-text-secondary dark:text-slate-300">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 <span className="font-semibold text-text-primary dark:text-white">demandflow.tarajglobal.com</span>
                 <span className="text-slate-500">/bridge/overview</span>
               </div>
 
-              {/* Live Telemetry Pill */}
+              {/* Status Badge */}
               <div className="flex items-center gap-2">
-                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400 font-semibold">
-                  <Activity className="w-3 h-3 animate-pulse" />
-                  <span>SYSTEM ONLINE</span>
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/5 border border-border dark:border-white/10 text-[11px] font-mono text-text-secondary dark:text-slate-300 font-semibold">
+                  <Activity className="w-3 h-3 text-primary" />
+                  <span>PLATFORM CONSOLE</span>
                 </div>
               </div>
             </div>
@@ -170,8 +169,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none" />
 
               {/* Top Floating Badge */}
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background dark:bg-slate-950/90 backdrop-blur-md border border-border dark:border-white/15 text-xs font-mono font-bold text-text-primary dark:text-white shadow-lg">
-                <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background dark:bg-slate-950/90 backdrop-blur-md border border-border dark:border-white/15 text-xs font-bold text-text-primary dark:text-white shadow-lg">
                 <span className="text-primary font-bold">DemandFlow Bridge™</span>
                 <span className="text-text-secondary dark:text-slate-300 hidden sm:inline">• Unified Business Operations Platform</span>
               </div>

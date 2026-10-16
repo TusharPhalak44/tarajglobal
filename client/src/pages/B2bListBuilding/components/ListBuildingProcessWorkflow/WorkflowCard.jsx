@@ -95,7 +95,6 @@ export default function WorkflowCard({
               ease: 'easeInOut',
             }}
           />
-          <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] shadow-[0_0_8px_currentColor] animate-ping" />
         </>
       )}
 
@@ -170,10 +169,7 @@ export default function WorkflowCard({
               <span>Verified</span>
             </>
           ) : isActive ? (
-            <>
-              <span className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] animate-ping" />
-              <span>Active</span>
-            </>
+            <span>Active</span>
           ) : (
             <span>Ready</span>
           )}

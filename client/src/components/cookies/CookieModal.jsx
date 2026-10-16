@@ -157,30 +157,41 @@ const CookieModal = () => {
               </div>
 
               {/* Footer */}
-              <div className="flex flex-col sm:flex-row gap-2 p-4 border-t border-border dark:border-white/10 bg-surface/80 dark:bg-white/5">
+              <div className="flex flex-col sm:flex-row gap-2.5 p-4 sm:p-5 border-t border-border dark:border-white/10 bg-surface/90 dark:bg-[#0C111C]/90 backdrop-blur-md">
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
+                  type="button"
+                  whileHover={{ scale: 1.01, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleSave}
-                  className="flex-1 px-6 py-3 bg-gradient-to-r from-cta to-accent text-white rounded-lg font-semibold hover:from-cta-hover hover:to-accent transition-all focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
+                  className="flex-1 h-11 px-5 rounded-xl font-semibold text-xs sm:text-sm text-white transition-all cursor-pointer select-none flex items-center justify-center gap-2"
+                  style={{
+                    background: 'linear-gradient(135deg, #FF6D00 0%, #FF8533 100%)',
+                    boxShadow: '0 4px 16px -2px rgba(255, 109, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25)',
+                  }}
                 >
                   Save Preferences
                 </motion.button>
                 
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
+                  type="button"
+                  whileHover={{ scale: 1.01, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleAcceptAll}
-                  className="flex-1 px-6 py-3 bg-surface/90 dark:bg-white/10 border border-border dark:border-white/20 text-text-accent dark:text-white rounded-lg font-semibold hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
+                  className="flex-1 h-11 px-5 rounded-xl font-semibold text-xs sm:text-sm text-white transition-all cursor-pointer select-none flex items-center justify-center gap-2"
+                  style={{
+                    background: 'linear-gradient(135deg, #00A6FF 0%, #0077EE 100%)',
+                    boxShadow: '0 4px 16px -2px rgba(0, 166, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25)',
+                  }}
                 >
                   Accept All
                 </motion.button>
                 
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
+                  type="button"
+                  whileHover={{ scale: 1.01, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={closePreferences}
-                  className="flex-1 px-6 py-3 bg-transparent border border-border dark:border-white/20 text-text-secondary rounded-lg font-semibold hover:bg-surface/90 dark:bg-white/10 hover:text-text-accent dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background text-sm md:text-base"
+                  className="h-11 px-5 rounded-xl font-medium text-xs sm:text-sm text-text-secondary hover:text-white transition-all border border-border dark:border-white/10 hover:border-white/20 bg-white/[0.03] hover:bg-white/[0.08] cursor-pointer select-none flex items-center justify-center"
                 >
                   Cancel
                 </motion.button>

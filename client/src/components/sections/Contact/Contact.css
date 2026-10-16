@@ -1,4 +1,11 @@
-.container{
+.contact-hero .container,
+.get-in-touch-section .container,
+.contact-cards-section .container,
+.contact-form-section .container,
+.office-location-section .container,
+.business-info-section .container,
+.faq-section .container,
+.contact-cta-section .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;

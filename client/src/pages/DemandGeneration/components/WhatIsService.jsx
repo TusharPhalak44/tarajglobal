@@ -87,16 +87,9 @@ const WhatIsService = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 mb-4"
+            className="flex items-center justify-center mb-4"
           >
-            <motion.span
-              className="w-2 h-2 rounded-full bg-primary"
-              initial={prefersReducedMotion ? {} : { scale: 0.8, opacity: 0.5 }}
-              whileInView={prefersReducedMotion ? {} : { scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.35, ease: 'easeOut' }}
-            />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] text-primary uppercase">
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               B2B DEMAND GENERATION
             </span>
           </motion.div>

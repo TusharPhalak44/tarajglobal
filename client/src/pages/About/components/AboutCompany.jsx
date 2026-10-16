@@ -466,14 +466,10 @@ export const AboutCompany = () => {
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5   mb-4 sm:mb-6"
+            className="flex items-center justify-center mb-4 sm:mb-6"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
-              <span className="relative inline-flex h-2 w-2" />
-            </span>
-            <span className="text-sm sm:text-sm font-mono font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-text-secondary via-text-primary to-text-secondary dark:from-slate-300 dark:via-white dark:to-slate-300 bg-clip-text text-transparent">
-              ABOUT TARAJ GLOBAL &bull; GLOBAL B2B DEMAND GENERATION
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              ABOUT TARAJ GLOBAL SOLUTIONS &bull; GLOBAL B2B DEMAND GENERATION
             </span>
           </motion.div>
 
@@ -535,7 +531,7 @@ export const AboutCompany = () => {
             transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.2 }}
             className="text-sm sm:text-base lg:text-lg text-text-secondary leading-relaxed font-normal max-w-2xl mx-auto mb-5 sm:mb-6"
           >
-            Taraj Global helps businesses build meaningful connections with decision-makers through data, technology and strategic demand generation.
+            Taraj Global Solutions helps businesses build meaningful connections with decision-makers through data, technology and strategic demand generation.
           </motion.p>
 
           {/* Animated Premium CTA Button */}
@@ -557,11 +553,7 @@ export const AboutCompany = () => {
               )}
 
               {/* Button Glass Inner Body */}
-              <span className="relative inline-flex items-center gap-2.5   text-sm sm:text-sm font-semibold text-slate-800 dark:text-text-primary dark:text-white transition-colors duration-200">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
-                  <span className="relative inline-flex h-2 w-2" />
-                </span>
+              <span className="relative inline-flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-text-primary dark:text-white transition-colors duration-200">
                 <span>Discover Our Story</span>
                 <ArrowRight
                   size={15}
@@ -582,7 +574,7 @@ export const AboutCompany = () => {
             <div className="flex items-center justify-center gap-3 mb-5 sm:mb-6 text-center">
               <span className="h-[1px] w-8 sm:w-12 bg-border/60 dark:bg-white/10" />
               <span className="text-sm sm:text-sm font-mono tracking-[0.25em] uppercase text-text-muted">
-                TARAJ GLOBAL &bull; EST. B2B GROWTH SYSTEM
+                TARAJ GLOBAL SOLUTIONS &bull; EST. B2B GROWTH SYSTEM
               </span>
               <span className="h-[1px] w-8 sm:w-12 bg-border/60 dark:bg-white/10" />
             </div>
@@ -781,10 +773,7 @@ export const AboutCompany = () => {
                         {/* Node Indicator Dot with 3D Energy Ripple Bloom */}
                         <div className="flex items-center justify-center mb-2.5 relative">
                           {isActive && !prefersReducedMotion && (
-                            <>
-                              <span className="absolute w-7 h-7 rounded-full bg-[#00A6FF]/35 animate-ping pointer-events-none" />
-                              <span className="absolute w-5 h-5 rounded-full bg-[#00E5FF]/45 blur-[3px] pointer-events-none" />
-                            </>
+                            <span className="absolute w-5 h-5 rounded-full bg-[#00E5FF]/20 blur-[2px] pointer-events-none" />
                           )}
                           <div
                             className={`relative z-10 w-2.5 h-2.5 rounded-full transition-all duration-300 ${isActive
@@ -942,7 +931,7 @@ export const AboutCompany = () => {
                 className="space-y-3 sm:space-y-3.5 text-sm sm:text-base text-text-secondary leading-relaxed font-normal max-w-2xl"
               >
                 <p>
-                  <strong className="text-text-primary font-semibold">Taraj Global</strong> was founded to solve the core inefficiency in modern B2B demand generation: unverified data, spam outbound, and hollow metrics. From day one, we committed to deep account intelligence, org-chart mapping, and verified decision-maker access.
+                  <strong className="text-text-primary font-semibold">Taraj Global Solutions</strong> was founded to solve the core inefficiency in modern B2B demand generation: unverified data, spam outbound, and hollow metrics. From day one, we committed to deep account intelligence, org-chart mapping, and verified decision-maker access.
                 </p>
                 <p>
                   Today, enterprise technology leaders across North America, Europe, and Asia-Pacific trust our Pune &amp; San Francisco revenue teams to deliver qualified opportunities that convert to closed business.
@@ -1165,13 +1154,13 @@ export const AboutCompany = () => {
                         onMouseEnter={() => setHoveredFieldNode(node.id)}
                         onMouseLeave={() => setHoveredFieldNode(null)}
                       >
-                        {/* Active Pulse Ring */}
+                        {/* Active Indicator Ring */}
                         {isNodeActive && (
                           <circle
-                            r="18"
+                            r="16"
                             fill="#00A6FF"
-                            opacity="0.15"
-                            className="animate-ping"
+                            opacity="0.2"
+                            className="transition-opacity duration-300"
                           />
                         )}
 
@@ -1325,10 +1314,7 @@ export const AboutCompany = () => {
               className="inline-flex items-center gap-2 mb-2.5 relative overflow-hidden"
             >
               <span className="relative flex h-2 w-2">
-                {!prefersReducedMotion && (
-                  <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
-                )}
-                <span className="relative inline-flex h-2 w-2" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00A6FF]" />
               </span>
               <span className="text-sm sm:text-sm font-mono font-bold tracking-[0.2em] uppercase text-[#00A6FF]">
                 FOUNDATIONAL VALUES
@@ -1803,7 +1789,7 @@ export const AboutCompany = () => {
               <div className="relative w-full px-0.5 py-1">
                 <div className="flex items-center justify-between text-sm font-mono font-bold tracking-wider mb-1.5 text-text-muted">
                   <span className="flex items-center gap-1.5 transition-colors duration-300" style={{ color: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color }}>
-                    <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color }} />
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color }} />
                     <span className="uppercase">
                       STAGE 0{activePrincipleIndex + 1} &bull; {GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].shortTitle}
                     </span>
@@ -1892,9 +1878,9 @@ export const AboutCompany = () => {
                         <div className="flex items-center gap-3">
                           {/* Node Number with subtle scale & indicator ring */}
                           <div className="relative flex items-center justify-center">
-                            {isActive && !prefersReducedMotion && (
+                            {isActive && (
                               <span
-                                className="absolute -inset-1 rounded-full animate-ping opacity-30"
+                                className="absolute -inset-1 rounded-full opacity-20"
                                 style={{ backgroundColor: principle.color }}
                               />
                             )}
@@ -1994,8 +1980,8 @@ export const AboutCompany = () => {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,166,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,166,255,0.035)_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
 
           {/* Faint Decorative Circuit Geometric Nodes */}
-          <div className="absolute top-12 left-1/4 w-1.5 h-1.5 rounded-full bg-[#00A6FF]/40 animate-ping" style={{ animationDuration: '4s' }} />
-          <div className="absolute bottom-16 right-1/4 w-1.5 h-1.5 rounded-full bg-[#FF6D00]/40 animate-ping" style={{ animationDuration: '5s' }} />
+          <div className="absolute top-12 left-1/4 w-1.5 h-1.5 rounded-full bg-[#00A6FF]/30" />
+          <div className="absolute bottom-16 right-1/4 w-1.5 h-1.5 rounded-full bg-[#FF6D00]/30" />
         </motion.div>
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -2259,7 +2245,7 @@ export const AboutCompany = () => {
 
                     {/* Bottom Connecting Port Marker */}
                     <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-1">
-                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[#00A6FF] animate-ping' : 'bg-slate-300 dark:bg-white/20'}`} />
+                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[#00A6FF]' : 'bg-slate-300 dark:bg-white/20'}`} />
                     </div>
                   </motion.div>
                 )
@@ -2417,11 +2403,7 @@ export const AboutCompany = () => {
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
 
                     {/* Central Status Badge */}
-                    <div className="inline-flex items-center gap-1.5   text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase">
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full opacity-75" />
-                        <span className="relative inline-flex h-1.5 w-1.5" />
-                      </span>
+                    <div className="inline-flex items-center text-primary dark:text-[#00E5FF] text-xs font-semibold tracking-wider uppercase">
                       <span>Strategic Growth Engine</span>
                     </div>
 
@@ -2580,7 +2562,7 @@ export const AboutCompany = () => {
                   >
                     {/* Top Connecting Port Marker */}
                     <div className="absolute top-1 left-1/2 -translate-x-1/2 flex items-center gap-1">
-                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[#00E5FF] animate-ping' : 'bg-slate-300 dark:bg-white/20'}`} />
+                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[#00E5FF]' : 'bg-slate-300 dark:bg-white/20'}`} />
                     </div>
 
                     <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
@@ -2648,7 +2630,7 @@ export const AboutCompany = () => {
               className="p-6 rounded-3xl text-center bg-white dark:bg-[#141414] border border-primary/30 dark:border-white/10 shadow-[0_8px_25px_rgba(0,0,0,0.16)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45)] relative overflow-hidden mb-6"
             >
               <div className="inline-flex items-center gap-1.5   text-primary dark:text-[#00E5FF] text-sm font-mono font-bold tracking-wider uppercase mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF]" />
                 <span>Strategic Growth Engine</span>
               </div>
 

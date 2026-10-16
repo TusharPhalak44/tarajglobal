@@ -140,23 +140,23 @@
 
 /* Breadcrumb */
 .breadcrumb {
-  background-color: #f9fafb;
+  background-color: transparent;
   padding: 1rem 0;
 }
 
 .breadcrumb-item {
   display: flex;
   align-items: center;
-  color: #6b7280;
-  transition: color 0.2s ease;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
 }
 
 .breadcrumb-item:hover {
-  color: #0ea5e9;
+  color: var(--primary);
 }
 
 .breadcrumb-item.active {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -180,8 +180,8 @@
 .loading-overlay {
   position: fixed;
   inset: 0;
-  background-color: white;
-  z-index: 100;
+  background-color: var(--background);
+  z-index: var(--z-modal);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -95,7 +95,6 @@ export default function WorkflowCard({
               ease: 'easeInOut',
             }}
           />
-          <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary dark:bg-[#00f0ff] shadow-[0_0_8px_currentColor] animate-ping" />
         </>
       )}
 
@@ -154,9 +153,8 @@ export default function WorkflowCard({
       <div className="mt-1 pt-1 border-t border-slate-200/80 dark:border-[#0099ff]/15 flex items-center justify-between text-[8.5px] sm:text-[9px] font-mono text-slate-500 dark:text-[#00a6ff]/70">
         <span className="uppercase tracking-wider font-medium">{step.category}</span>
         {isActive ? (
-          <span className="text-primary dark:text-[#00f0ff] font-bold flex items-center gap-1">
-            <span className="w-1 h-1 rounded-full bg-primary dark:bg-[#00f0ff] animate-pulse" />
-            ACTIVE
+          <span className="text-primary dark:text-[#00f0ff] font-bold text-[8.5px] uppercase tracking-wider">
+            Active
           </span>
         ) : (
           <span className="opacity-0 group-hover:opacity-100 transition-opacity text-text-secondary dark:text-slate-400 dark:text-white/60">

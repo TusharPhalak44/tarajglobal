@@ -333,7 +333,7 @@ const Drafts = () => {
       {selectedDrafts.length > 0 && (
         <div className="p-4 rounded-xl bg-[var(--admin-primary-soft)] border border-[var(--admin-border-active)] flex items-center justify-between gap-4 animate-slide-down flex-wrap">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#00A6FF] animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-[#00A6FF]" />
             <span className="text-sm font-bold text-[var(--admin-text-primary)]">
               {selectedDrafts.length} draft(s) selected
             </span>

@@ -239,7 +239,7 @@ export default function LiveChat() {
                 <div className="flex items-center gap-2">
                   {currentSession.isLiveAgentActive ? (
                     <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5 shadow-sm">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
                       Live Agent Active (Bot Muted)
                     </span>
                   ) : (

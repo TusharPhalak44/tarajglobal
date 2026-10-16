@@ -1,2 +1,12 @@
 /* Forward import from styles/footer.css */
 @import '../../../styles/footer.css';
+
+/* ── Accessibility: Respect User Reduced Motion Preferences ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  .telemetry-pulse,
+  .telemetry-ripple,
+  #site-footer animateMotion,
+  #site-footer animate {
+    animation: none !important;
+  }
+}

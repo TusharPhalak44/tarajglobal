@@ -40,8 +40,7 @@ export default function ReferenceImpactIndustries() {
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-4 h-[2px] bg-[#FF6D00]" />
+          <div className="inline-flex items-center mb-3">
             <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
               PROVEN EXPERTISE & IMPACT
             </span>
@@ -82,8 +81,7 @@ export default function ReferenceImpactIndustries() {
             </div>
 
             <div>
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="w-4 h-[2px] bg-[#FF6D00]" />
+              <div className="inline-flex items-center mb-4">
                 <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
                   THE IMPACT
                 </span>
@@ -119,8 +117,7 @@ export default function ReferenceImpactIndustries() {
             {/* Header of Industries box */}
             <div className="flex items-center justify-between pb-5 border-b border-slate-100 dark:border-white/10 mb-6">
               <div>
-                <div className="inline-flex items-center gap-2 mb-1">
-                  <span className="w-4 h-[2px] bg-[#FF6D00]" />
+                <div className="inline-flex items-center mb-1">
                   <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-white/50">
                     INDUSTRIES WE SERVE
                   </span>

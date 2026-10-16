@@ -1,144 +1,175 @@
-import React, { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useReducedMotion } from '@hooks/useReducedMotion'
+import React from 'react'
+import { Star } from 'lucide-react'
+import AnimatedGrid from '@components/animations/AnimatedGrid'
 
-const LEAK_LABEL = {
-  reach: 'Account Targeting',
-  data: 'Data Accuracy',
-  convert: 'Lead Conversion',
-  meetings: 'Meeting Velocity',
-}
-
-const STORIES = [
-  {
-    id: 'innovatetech',
-    company: 'InnovateTech Solutions',
-    companyLogo: '/Vonage.png',
-    leak: 'convert',
-    quote: "Taraj Global's data-driven approach and attention to detail sets them apart. They don't just deliver leads; they deliver opportunities that convert. Our partnership has been instrumental in scaling our business growth.",
-  },
+export const TESTIMONIALS_DATA = [
   {
     id: 'avaya',
     company: 'Avaya Global Systems',
     companyLogo: '/Avaya.webp',
-    leak: 'reach',
-    quote: 'Taraj Global transformed our B2B demand generation strategy. Their targeted outreach helped us connect with high-value enterprise accounts and build a high-velocity sales pipeline with verified decision-makers.',
+    category: 'Enterprise Demand Generation',
+    quote: 'Combining targeted ABM with their in-house verification tool helped us engage active buying committees with zero data bounce. Their automated pipeline delivery routes qualified C-suite meetings straight into our CRM',
   },
   {
     id: 'oracle-partner',
     company: 'Oracle Solutions Partner',
     companyLogo: '/ora.png',
-    leak: 'data',
-    quote: 'Working with Taraj Global improved our ability to reach verified decision-makers across global accounts. The quality of qualified leads and account-based intelligence is exceptional.',
+    category: 'Account-Based Intelligence',
+    quote: 'The speed and precision of TaRaj Global infrastructure set them apart. Their real-time intent signal tracking allowed us to connect with high-intent enterprise decision-makers right when they entered an active buying cycle.',
   },
   {
     id: 'mitel',
     company: 'Mitel Networks',
     companyLogo: '/mitel.png',
-    leak: 'meetings',
-    quote: "The content syndication and appointment setting programs delivered exceptional results. We've seen a measurable increase in qualified pipeline and executive engagement across our key verticals.",
+    category: 'Appointment Setting & Syndication',
+    quote: "Their tech-backed content syndication and appointment setting generated a measurable surge in executive engagement. Having live client portal access made tracking campaign SLAs and pipeline velocity effortless.",
   },
   {
     id: 'ringcentral',
     company: 'RingCentral Inc.',
     companyLogo: '/ringcentral.png',
-    leak: 'meetings',
-    quote: 'Their B2B lead generation services helped us reach the right audience and accelerate our sales cycle. The Taraj Global team is proactive, knowledgeable, and focused on delivering real revenue impact.',
+    category: 'B2B Lead Acceleration',
+    quote: "TaRaj Global's proprietary outreach stack significantly shortened our enterprise sales cycles. Their multi-pass verification ensured zero duplicate contacts, delivering high-converting accounts directly into our sales workflows.",
+  },
+  {
+    id: 'vonage',
+    company: 'Vonage Enterprise Solutions',
+    companyLogo: '/Vonage.png',
+    category: 'Lead Conversion & Sales Pipeline',
+    quote: "Taraj Global's data-driven approach and attention to detail sets them apart. They don't just deliver leads; they deliver opportunities that convert. Our partnership has been instrumental in scaling our business growth.",
   },
   {
     id: 'microsoft-partner',
     company: 'Microsoft Solutions Partner',
     companyLogo: '/micro.png',
-    leak: 'data',
-    quote: 'Taraj Global provided a targeted B2B lead generation strategy that helped us identify relevant prospects and create predictable new enterprise revenue opportunities with zero duplicate data.',
+    category: 'Decision-Maker Discovery',
+    quote: 'Operating on custom infrastructure rather than generic databases makes a huge difference. TaRaj Global delivered a predictable flow of BANT-qualified opportunities with strict 99.8% data accuracy across our target verticals.',
   },
 ]
 
-function storyFor(goalId) {
-  const index = STORIES.findIndex((story) => story.leak === goalId)
-  return index >= 0 ? index : 0
-}
-
-export const Testimonials = ({ activeGoal }) => {
-  const reducedMotion = useReducedMotion()
-  const [index, setIndex] = useState(() => storyFor(activeGoal?.id))
-
-  useEffect(() => {
-    if (activeGoal?.id) setIndex(storyFor(activeGoal.id))
-  }, [activeGoal?.id])
-
-  const current = STORIES[index]
-  const sameLeak = activeGoal?.id === current.leak
-
+export const Testimonials = () => {
   return (
-    <section id="stories" className="relative bg-surface py-20 lg:py-28" aria-labelledby="stories-heading">
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
-        <div className="max-w-3xl">
-          <p className="mb-4 font-mono text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">05 — CLIENT SUCCESS</p>
-          <h2 id="stories-heading" className="text-3xl sm:text-5xl font-black tracking-[-0.03em] leading-[1.08] text-text-primary">
-            Trusted by Global Technology Leaders &amp; <span className="text-cta">High-Growth Brands</span>.
-          </h2>
-          <p className="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-text-secondary">
-            Read how enterprise sales and marketing teams scaled qualified pipeline and accelerated deal velocity with Taraj Global.
+    <section
+      id="testimonials"
+      className="relative bg-[#070B14] py-14 sm:py-16 lg:py-20 border-b border-white/[0.08] overflow-hidden select-none"
+      aria-labelledby="testimonials-heading"
+    >
+      {/* ── Ambient Radial Lighting & Subtle Technical Grid Background ─── */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[340px] rounded-full bg-[#00A6FF]/[0.06] blur-[140px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[250px] rounded-full bg-[#FF6D00]/[0.04] blur-[130px]" />
+      </div>
+
+      <AnimatedGrid size={64} opacity={0.03} />
+
+      {/* ── Section Header (Matching Screenshot Layout & Typography) ─── */}
+      <div className="text-center max-w-2xl mx-auto px-4 mb-8 sm:mb-10">
+        {/* Pre-header Eyebrow matching Hero and other sections */}
+        <div className="inline-flex items-center justify-center mb-2.5 sm:mb-3">
+          <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+            CLIENT TESTIMONIALS
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-8">
-          <div role="tablist" aria-label="Choose a client story" className="flex gap-2 overflow-x-auto pb-1 lg:col-span-4 lg:flex-col lg:gap-1 lg:overflow-visible lg:pb-0">
-            {STORIES.map((story, i) => {
-              const selected = i === index
-              return (
-                <button
-                  key={story.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setIndex(i)}
-                  className={`flex shrink-0 items-center gap-3 rounded-full border px-3 py-2 text-left transition-colors lg:w-full lg:rounded-2xl lg:px-4 lg:py-3 ${
-                    selected
-                      ? 'border-primary bg-[#07090E] text-text-primary'
-                      : 'border-white/10 text-text-secondary hover:border-white/25 hover:text-text-primary'
-                  }`}
-                >
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-white p-1.5">
-                    <img src={story.companyLogo} alt="" className="max-h-full max-w-full object-contain" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block truncate text-[14px] font-bold">{story.company}</span>
-                    <span className={`block text-[12px] ${selected ? 'text-primary' : 'text-text-muted'}`}>{LEAK_LABEL[story.leak]}</span>
-                  </span>
-                </button>
-              )
-            })}
-          </div>
+        {/* Main Headline */}
+        <h2
+          id="testimonials-heading"
+          className="text-3xl sm:text-4xl lg:text-[46px] font-black tracking-[-0.03em] leading-[1.12] text-white"
+        >
+          Trusted by Enterprise {' '}
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00]">
+            Revenue Leaders
+          </span>
+        </h2>
 
-          <div className="lg:col-span-8" role="tabpanel">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.figure
-                key={current.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: reducedMotion ? 0 : 0.22 }}
-                className="flex min-h-[380px] flex-col justify-between rounded-[28px] border border-white/10 bg-[#07090E] p-6 sm:p-8 lg:p-10"
-              >
-                <div>
-                  <p className="font-mono text-[12px] font-semibold uppercase tracking-[0.16em] text-primary">
-                    {sameLeak ? 'Same leak as yours' : 'Their leak'} · {LEAK_LABEL[current.leak]}
-                  </p>
-                  <blockquote className="mt-6 text-xl sm:text-3xl font-semibold leading-[1.35] tracking-[-0.02em] text-text-primary">
-                    “{current.quote}”
-                  </blockquote>
+        {/* Subtitle */}
+        <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
+          Real impact delivered to global technology enterprises and fast-scaling B2B organizations.
+        </p>
+
+        {/* Centered Small Gradient Bar Accent */}
+        <div className="w-14 h-[3px] mx-auto rounded-full bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00] mt-3.5" />
+      </div>
+
+      {/* ── Continuous Infinite Loop Card Scroller ─── */}
+      <div className="relative w-full overflow-hidden py-4">
+        {/* Left & Right Bilateral Edge Gradient Fade Masks */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-36 z-10 bg-gradient-to-r from-[#070B14] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-36 z-10 bg-gradient-to-l from-[#070B14] to-transparent" />
+
+        {/* Continuous Seamless Infinite Marquee Track */}
+        <div
+          className="flex items-stretch gap-5 sm:gap-6 w-max animate-marquee hover:[animation-play-state:paused]"
+          style={{
+            animation: 'marqueeScroll 45s linear infinite',
+            willChange: 'transform',
+          }}
+        >
+          {[...TESTIMONIALS_DATA, ...TESTIMONIALS_DATA].map((item, index) => (
+            <div
+              key={`${item.id}-${index}`}
+              className="group relative w-[340px] sm:w-[400px] shrink-0 rounded-2xl border border-white/10 bg-[#090E1B]/95 p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl shadow-xl hover:border-[#00A6FF]/50 hover:shadow-[0_10px_30px_rgba(0,166,255,0.14)] hover:-translate-y-1 transition-all duration-300"
+            >
+              {/* Subtle Top-Right Tech Crosshair Accent */}
+              <span className="absolute top-5 right-5 text-slate-500/60 font-mono text-sm select-none pointer-events-none group-hover:text-[#00A6FF] transition-colors">
+                +
+              </span>
+
+              <div>
+                {/* Top Row: Client Logo Badge & 5.0 Star Rating Badge */}
+                <div className="flex items-center justify-between gap-3 mb-5">
+                  {/* Clean White Rounded Logo Badge */}
+                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-2 shadow-sm shrink-0">
+                    <img
+                      src={item.companyLogo}
+                      alt={item.company}
+                      className="max-h-7 max-w-[85%] object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* 5-Star Rating Pill */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#05070E] border border-white/10 shadow-inner">
+                    <div className="flex items-center gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={12}
+                          className="fill-[#FBBF24] text-[#FBBF24]"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs font-bold text-white font-mono ml-0.5">
+                      5.0
+                    </span>
+                  </div>
                 </div>
-                <figcaption className="mt-10 flex items-center gap-4">
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white p-2">
-                    <img src={current.companyLogo} alt="" className="max-h-full max-w-full object-contain" />
-                  </span>
-                  <span className="text-lg font-bold text-text-primary">{current.company}</span>
-                </figcaption>
-              </motion.figure>
-            </AnimatePresence>
-          </div>
+
+                {/* Client Company Name */}
+                <h3 className="text-base sm:text-[17px] font-bold text-white tracking-tight mb-2.5 leading-snug">
+                  {item.company}
+                </h3>
+
+                {/* Quotation Marks Symbol */}
+                <div className="text-slate-400/80 mb-2.5">
+                  <svg width="22" height="16" viewBox="0 0 24 18" fill="currentColor">
+                    <path d="M0 10.5C0 4.7 4.1 0.7 10 0L8.5 4C5.5 4.5 4.1 6.5 4 8.5H10V18H0V10.5ZM14 10.5C14 4.7 18.1 0.7 24 0L22.5 4C19.5 4.5 18.1 6.5 18 8.5H24V18H14V10.5Z" />
+                  </svg>
+                </div>
+
+                {/* Testimonial Quote Text */}
+                <p className="text-xs sm:text-[13.5px] italic text-slate-300 leading-relaxed font-normal">
+                  "{item.quote}"
+                </p>
+              </div>
+
+              {/* Minimal Clean Card Footer */}
+              <div className="mt-5 pt-3.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <span className="text-[#00A6FF]">{item.category}</span>
+                <span className="text-slate-500">Verified Client</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

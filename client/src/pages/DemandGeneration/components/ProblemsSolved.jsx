@@ -613,7 +613,7 @@ const ProblemsSolved = () => {
                       <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
-                          <span className="w-2 h-2 rounded-full animate-ping shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
                       <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
@@ -804,7 +804,7 @@ const ProblemsSolved = () => {
                       <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
                         <span>{item.solution.title}</span>
                         {isActive && (
-                          <span className="w-2 h-2 rounded-full animate-ping shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
                       <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">

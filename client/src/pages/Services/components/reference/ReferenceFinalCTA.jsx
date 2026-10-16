@@ -40,8 +40,7 @@ export default function ReferenceFinalCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           {/* ══════════ LEFT COLUMN: Heading, Paragraph & Orange Pill Button (7 cols) ══════════ */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-4 h-[2px] bg-[#FF6D00]" />
+            <div className="inline-flex items-center mb-4">
               <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
                 LET'S GROW TOGETHER
               </span>

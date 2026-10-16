@@ -87,16 +87,9 @@ const WhatIsService = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 mb-4"
+            className="flex items-center justify-center mb-4"
           >
-            <motion.span
-              className="w-2 h-2 rounded-full bg-primary"
-              initial={prefersReducedMotion ? {} : { scale: 0.8, opacity: 0.5 }}
-              whileInView={prefersReducedMotion ? {} : { scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.35, ease: 'easeOut' }}
-            />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] text-primary uppercase">
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               Service Definition
             </span>
           </motion.div>
@@ -280,18 +273,7 @@ const WhatIsService = () => {
                         {/* Micro-interaction indicator */}
                         <div className="shrink-0 flex items-center justify-center w-5 h-5">
                           {item.type === 'target' && (
-                            <div className="relative w-4 h-4 flex items-center justify-center">
-                              <motion.span
-                                className="absolute w-full h-full rounded-full border border-primary opacity-60"
-                                animate={
-                                  prefersReducedMotion || !isActive
-                                    ? {}
-                                    : { scale: [0.6, 1.3, 0.6], opacity: [0.8, 0, 0.8] }
-                                }
-                                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                              />
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                            </div>
+                            <div className="w-2 h-2 rounded-sm bg-primary/80" />
                           )}
 
                           {item.type === 'engage' && (
