@@ -5,11 +5,11 @@ import { LogoMarquee } from '@components/animations/LogoMarquee'
 
 const FALLBACK_LOGOS = [
   { id: 'avaya', client_name: 'AVAYA', logo_path: '/Avaya.webp', category: 'Unified Communications', metric: '+42% Sales Pipeline' },
-  { id: 'mitel', client_name: 'Mitel', logo_path: '/mitel.png', category: 'Enterprise Telecom', metric: '3.8x C-Suite Reach' },
+  { id: 'mitel', client_name: 'Mitel', logo_path: '/Mitel.png', category: 'Enterprise Telecom', metric: '3.8x C-Suite Reach' },
   { id: 'ringcentral', client_name: 'RingCentral', logo_path: '/ringcentral.png', category: 'Cloud Communications', metric: '99.8% Data Accuracy' },
   { id: 'vonage', client_name: 'Vonage', logo_path: '/Vonage.png', category: 'Communications APIs', metric: '+48% Meeting Conversion' },
-  { id: 'microsoft', client_name: 'Microsoft Partner', logo_path: '/micro.png', category: 'Cloud & Enterprise', metric: '14-Day Cadence Ramp' },
-  { id: 'oracle', client_name: 'Oracle Partner', logo_path: '/ora.png', category: 'Database & Systems', metric: 'Full Committee ABM' },
+  { id: 'microsoft', client_name: 'Microsoft Partner', logo_path: '/Microsoft.png', category: 'Cloud & Enterprise', metric: '14-Day Cadence Ramp' },
+  { id: 'oracle', client_name: 'Oracle Partner', logo_path: '/Oracle.png', category: 'Database & Systems', metric: 'Full Committee ABM' },
 ]
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || ''
@@ -18,6 +18,44 @@ const resolveImg = (path) => {
   if (path.startsWith('http') || path.startsWith('//')) return path
   if (path.startsWith('/uploads/')) return `${BASE_URL}${path}`
   return path
+}
+
+// Custom sizing rules: keep Avaya balanced while boosting all other logos (Microsoft, Oracle, RingCentral, Mitel, Vonage)
+const getLogoClasses = (logo) => {
+  const str = `${logo.client_name || ''} ${logo.logo_path || ''} ${logo.src || ''} ${logo.id || ''}`.toLowerCase()
+
+  if (str.includes('avaya')) {
+    // Keep Avaya at its standard, compact height
+    return 'h-7 sm:h-8 w-auto max-w-[125px] sm:max-w-[135px]'
+  }
+
+  if (str.includes('oracle')) {
+    // Oracle has a very wide 4.2:1 aspect ratio; allow generous width and taller height
+    return 'h-11 sm:h-12 md:h-[50px] w-auto max-w-[185px] sm:max-w-[205px]'
+  }
+
+  if (str.includes('micro')) {
+    // Microsoft / Microsoft Partner
+    return 'h-11 sm:h-12 md:h-[52px] w-auto max-w-[175px] sm:max-w-[195px]'
+  }
+
+  if (str.includes('ringcentral')) {
+    // RingCentral
+    return 'h-10 sm:h-11 md:h-12 w-auto max-w-[170px] sm:max-w-[190px]'
+  }
+
+  if (str.includes('mitel')) {
+    // Mitel
+    return 'h-10 sm:h-11 md:h-12 w-auto max-w-[165px] sm:max-w-[185px]'
+  }
+
+  if (str.includes('vonage')) {
+    // Vonage
+    return 'h-10 sm:h-11 md:h-12 w-auto max-w-[160px] sm:max-w-[180px]'
+  }
+
+  // Default fallback for any other enterprise client added via CMS
+  return 'h-11 sm:h-12 md:h-13 w-auto max-w-[170px] sm:max-w-[195px]'
 }
 
 export const OurClients = () => {
@@ -61,7 +99,7 @@ export const OurClients = () => {
       </div>
 
       <div className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-10">
-        
+
         {/* ── Section Header (Clean Pre-header matching Hero) ───────────── */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2">
           <div className="inline-flex items-center justify-center mb-1">
@@ -86,11 +124,11 @@ export const OurClients = () => {
             direction="left"
             pauseOnHover={true}
             renderItem={(logo) => (
-              <div className="group relative flex items-center justify-center min-w-[165px] sm:min-w-[200px] h-[76px] sm:h-[86px] px-6 py-2.5 rounded-xl border border-white/60 bg-white/95 hover:bg-white shadow-[0_4px_16px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_24px_rgba(0,166,255,0.3)] hover:border-[#00A6FF] transition-all duration-300 cursor-pointer">
+              <div className="group relative flex items-center justify-center min-w-[190px] sm:min-w-[225px] h-[88px] sm:h-[98px] px-6 py-3 rounded-xl border border-white/60 bg-white/95 hover:bg-white shadow-[0_4px_16px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_24px_rgba(0,166,255,0.3)] hover:border-[#00A6FF] transition-all duration-300 cursor-pointer">
                 <img
                   src={resolveImg(logo.logo_path || logo.src)}
                   alt={logo.client_name || 'Enterprise Client'}
-                  className="h-8 sm:h-9 w-auto max-w-[130px] sm:max-w-[150px] object-contain select-none transition-transform duration-300 group-hover:scale-105"
+                  className={`${getLogoClasses(logo)} object-contain select-none transition-transform duration-300 group-hover:scale-105`}
                   loading="lazy"
                   decoding="async"
                 />

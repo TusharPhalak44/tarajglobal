@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Star } from 'lucide-react'
 import AnimatedGrid from '@components/animations/AnimatedGrid'
 
@@ -14,7 +14,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: 'oracle-partner',
     company: 'Oracle Solutions Partner',
-    companyLogo: '/ora.png',
+    companyLogo: '/Oracle.png',
     category: 'Account-Based Intelligence',
     rating: 5.0,
     quote: 'The speed and precision of TaRaj Global infrastructure set them apart. Their real-time intent signal tracking allowed us to connect with high-intent enterprise decision-makers right when they entered an active buying cycle.',
@@ -22,7 +22,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: 'mitel',
     company: 'Mitel Networks',
-    companyLogo: '/mitel.png',
+    companyLogo: '/Mitel.png',
     category: 'Appointment Setting & Syndication',
     rating: 4.3,
     quote: "Their tech-backed content syndication and appointment setting generated a measurable surge in executive engagement. Having live client portal access made tracking campaign SLAs and pipeline velocity effortless.",
@@ -46,7 +46,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: 'microsoft-partner',
     company: 'Microsoft Solutions Partner',
-    companyLogo: '/micro.png',
+    companyLogo: '/Microsoft.png',
     category: 'Decision-Maker Discovery',
     rating: 3.8,
     quote: 'Operating on custom infrastructure rather than generic databases makes a huge difference. TaRaj Global delivered a predictable flow of BANT-qualified opportunities with strict 99.8% data accuracy across our target verticals.',
@@ -76,6 +76,8 @@ const renderStars = (rating = 5.0) => {
 }
 
 export const Testimonials = () => {
+  const [isPaused, setIsPaused] = useState(false)
+
   return (
     <section
       id="testimonials"
@@ -120,23 +122,35 @@ export const Testimonials = () => {
       </div>
 
       {/* ── Continuous Infinite Loop Card Scroller ─── */}
-      <div className="relative w-full overflow-hidden py-4">
+      <div
+        className="relative w-full overflow-hidden py-4"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
         {/* Left & Right Bilateral Edge Gradient Fade Masks */}
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-36 z-10 bg-gradient-to-r from-[#070B14] to-transparent" />
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-36 z-10 bg-gradient-to-l from-[#070B14] to-transparent" />
 
         {/* Continuous Seamless Infinite Marquee Track */}
         <div
-          className="flex items-stretch gap-5 sm:gap-6 w-max animate-marquee hover:[animation-play-state:paused]"
+          className="flex items-stretch gap-5 sm:gap-6 w-max animate-marquee hover:![animation-play-state:paused]"
           style={{
-            animation: 'marqueeScroll 45s linear infinite',
+            animationName: 'marqueeScroll',
+            animationDuration: '45s',
+            animationTimingFunction: 'linear',
+            animationIterationCount: 'infinite',
+            animationPlayState: isPaused ? 'paused' : 'running',
             willChange: 'transform',
           }}
         >
           {[...TESTIMONIALS_DATA, ...TESTIMONIALS_DATA].map((item, index) => (
             <div
               key={`${item.id}-${index}`}
-              className="group relative w-[340px] sm:w-[400px] shrink-0 rounded-2xl border border-white/10 bg-[#090E1B]/95 p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl shadow-xl hover:border-[#00A6FF]/50 hover:shadow-[0_10px_30px_rgba(0,166,255,0.14)] hover:-translate-y-1 transition-all duration-300"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              className="group relative w-[340px] sm:w-[400px] shrink-0 rounded-2xl border border-white/10 bg-[#090E1B]/95 p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl shadow-xl hover:border-[#00A6FF]/50 hover:shadow-[0_10px_30px_rgba(0,166,255,0.14)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
               {/* Subtle Top-Right Tech Crosshair Accent */}
               <span className="absolute top-5 right-5 text-slate-500/60 font-mono text-sm select-none pointer-events-none group-hover:text-[#00A6FF] transition-colors">
@@ -147,11 +161,15 @@ export const Testimonials = () => {
                 {/* Top Row: Client Logo Badge & 5.0 Star Rating Badge */}
                 <div className="flex items-center justify-between gap-3 mb-5">
                   {/* Clean White Rounded Logo Badge */}
-                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-2 shadow-sm shrink-0">
+                  <div className="w-14 h-12 rounded-xl bg-white flex items-center justify-center p-2 shadow-sm shrink-0">
                     <img
                       src={item.companyLogo}
                       alt={item.company}
-                      className="max-h-7 max-w-[85%] object-contain"
+                      className={
+                        (item.id === 'avaya' || item.company?.toLowerCase().includes('avaya'))
+                          ? "max-h-6.5 max-w-[80%] object-contain"
+                          : "max-h-8.5 max-w-[92%] object-contain"
+                      }
                       loading="lazy"
                     />
                   </div>
