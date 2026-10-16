@@ -52,6 +52,17 @@ export const LivingIntelligenceGrid = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [prefersReducedMotion])
 
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile, { passive: true })
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   return (
     <div
       ref={containerRef}
@@ -60,7 +71,7 @@ export const LivingIntelligenceGrid = () => {
     >
       {/* ── LAYER 1: ULTRA-CLEAN TECHNICAL GEOMETRIC GRID ──────────────── */}
       <motion.div
-        style={{ y: prefersReducedMotion ? 0 : gridParallaxY }}
+        style={{ y: prefersReducedMotion || isMobile ? 0 : gridParallaxY }}
         className="absolute inset-0 w-full h-full"
       >
         {/* Light Theme Primary Grid: Crisp 64px hairline grid */}
@@ -173,8 +184,8 @@ export const LivingIntelligenceGrid = () => {
       {/* ── LAYER 3: CONNECTED INTELLIGENCE NODES & PULSES ─────────────── */}
       <motion.div
         style={{
-          y: prefersReducedMotion ? 0 : nodesParallaxY,
-          x: prefersReducedMotion ? 0 : mouseMoveX,
+          y: prefersReducedMotion || isMobile ? 0 : nodesParallaxY,
+          x: prefersReducedMotion || isMobile ? 0 : mouseMoveX,
         }}
         className="absolute inset-0 w-full h-full"
       >

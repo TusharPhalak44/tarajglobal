@@ -27,10 +27,10 @@ import TGAnimatedLogo from './TGAnimatedLogo'
 
 const menuItems = [
   { index: '01', name: 'Home', path: '/', icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
-  { index: '02', name: 'About Us', path: '/about', icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
-  { index: '03', name: 'Services', path: '/services', icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
-  { index: '04', name: 'Careers', path: '/careers', icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
-  { index: '05', name: 'Blogs', path: '/blog', icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
+  { index: '02', name: 'Services', path: '/services', icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
+  { index: '03', name: 'Careers', path: '/careers', icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
+  { index: '04', name: 'Blogs', path: '/blog', icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
+  { index: '05', name: 'Who We Are', path: '/about', icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
   { index: '06', name: 'Contact Us', path: '/contact', icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },
 ]
 
@@ -136,42 +136,62 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
 
   const knownItemsMeta = {
     '/': { icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
-    '/about': { icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
     '/services': { icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
     '/careers': { icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
     '/blog': { icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
+    '/about': { icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
     '/contact': { icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },
   }
 
   const effectiveMenuItems = (navLinks && navLinks.length > 0)
-    ? navLinks.map((link, idx) => {
-        const meta = knownItemsMeta[link.path] || {}
-        const isServices = link.path === '/services' || link.name?.toLowerCase() === 'services'
-        const isExternal =
-          link.path?.startsWith('http://') ||
-          link.path?.startsWith('https://') ||
-          link.path?.startsWith('mailto:') ||
-          link.path?.startsWith('tel:')
-        return {
-          index: String(idx + 1).padStart(2, '0'),
-          name: link.name,
-          path: link.path,
-          icon: meta.icon || Sparkles,
-          desc: meta.desc || `${link.name} Navigation`,
-          color: meta.color || '#00A6FF',
-          isServices,
-          isExternal
+    ? (() => {
+        const mapped = navLinks.map((link) => {
+          let name = link.name
+          if (link.path === '/about' || name?.toLowerCase() === 'about us') {
+            name = 'Who We Are'
+          }
+          const meta = knownItemsMeta[link.path] || {}
+          const isServices = link.path === '/services' || name?.toLowerCase() === 'services'
+          const isExternal =
+            link.path?.startsWith('http://') ||
+            link.path?.startsWith('https://') ||
+            link.path?.startsWith('mailto:') ||
+            link.path?.startsWith('tel:')
+          return {
+            name,
+            path: link.path,
+            icon: meta.icon || Sparkles,
+            desc: meta.desc || `${name} Navigation`,
+            color: meta.color || '#00A6FF',
+            isServices,
+            isExternal
+          }
+        })
+        // Ensure Who We Are is placed immediately after Blogs
+        const withoutWho = mapped.filter(item => item.path !== '/about' && item.name !== 'Who We Are')
+        const whoItem = mapped.find(item => item.path === '/about' || item.name === 'Who We Are')
+        const blogIndex = withoutWho.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
+        if (whoItem && blogIndex !== -1) {
+          withoutWho.splice(blogIndex + 1, 0, whoItem)
+          return withoutWho.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
         }
-      })
+        return mapped.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
+      })()
     : menuItems
 
-  // Lock body scroll when mobile drawer is open
+  // Lock body scroll and pause Lenis when mobile drawer is open
   useEffect(() => {
     if (isOpen) {
       const originalOverflow = document.body.style.overflow
       document.body.style.overflow = 'hidden'
+      if (window.lenis) {
+        window.lenis.stop()
+      }
       return () => {
         document.body.style.overflow = originalOverflow
+        if (window.lenis) {
+          window.lenis.start()
+        }
       }
     }
   }, [isOpen])
@@ -207,16 +227,19 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
             {/* ── HEADER: BRAND + GLOBAL PORTAL ───────────────────────── */}
             <div className="relative z-10 flex items-center justify-between px-5 sm:px-7 py-4 sm:py-5 border-b border-slate-100 dark:border-white/10 flex-shrink-0 bg-slate-50/60 dark:bg-white/[0.02]">
               <div className="flex items-center gap-3">
-                <Link to="/" onClick={onClose} className="group flex items-center gap-2.5 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0">
+                <Link to="/" onClick={onClose} className="group flex items-center gap-2 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 border-0 ring-0">
                   <TGAnimatedLogo
                     logoUrl={logoUrl}
-                    alt={logoText || "Taraj Global"}
+                    alt={logoText || "Taraj Global Logo"}
+                    className="w-[36px] h-[36px] sm:w-[42px] sm:h-[42px]"
                   />
-                  {logoText && (
-                    <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-text-primary dark:text-white font-display">
-                      {logoText}
-                    </span>
-                  )}
+                  <img
+                    src="/taraj-solutions-wordmark.png"
+                    alt="Taraj Global Solutions - Business Simplified"
+                    className="h-5 sm:h-6 w-auto max-w-[115px] sm:max-w-[140px] object-contain select-none"
+                    style={{ imageRendering: '-webkit-optimize-contrast' }}
+                    loading="eager"
+                  />
                 </Link>
                 <div className="pl-3 border-l border-slate-200 dark:border-white/10">
                   <span className="text-[10px] font-mono font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase flex items-center gap-1.5">
@@ -253,52 +276,45 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                 if (item.isServices) {
                   return (
                     <motion.div key={item.path} variants={itemVariants} className="space-y-1.5">
-                      <div
-                        className={`p-3 sm:p-3.5 min-h-[48px] rounded-2xl border transition-all duration-200 flex items-center justify-between cursor-pointer relative overflow-hidden bg-slate-50/50 dark:bg-white/[0.02] border-slate-200/70 dark:border-white/5 hover:border-primary/40 dark:hover:border-[#00E5FF]/30 shadow-2xs`}
-                        onClick={() => setIsServicesExpanded(!isServicesExpanded)}
-                      >
-                        <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
-                          <span className="font-mono text-[11px] font-bold shrink-0 text-text-secondary dark:text-slate-400 dark:text-slate-500">
+                      <div className="p-3 sm:p-3.5 min-h-[48px] rounded-2xl border transition-all duration-200 flex items-center justify-between relative overflow-hidden bg-slate-50/50 dark:bg-white/[0.02] border-slate-200/70 dark:border-white/5 hover:border-primary/40 dark:hover:border-[#00E5FF]/30 shadow-2xs group">
+                        {/* Direct link to /services on mobile */}
+                        <Link
+                          to="/services"
+                          onClick={onClose}
+                          className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1 cursor-pointer focus:outline-none"
+                        >
+                          <span className="font-mono text-[11px] font-bold shrink-0 text-text-secondary dark:text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-[#00E5FF]">
                             {item.index}
                           </span>
 
-                          <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+                          <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
                             <Icon size={16} strokeWidth={2} />
                           </div>
 
                           <div className="min-w-0">
-                            <h4 className="text-[15px] font-bold tracking-tight leading-snug text-slate-900 dark:text-text-primary dark:text-white">
+                            <h4 className="text-[15px] font-bold tracking-tight leading-snug text-slate-900 dark:text-text-primary dark:text-white group-hover:text-primary dark:group-hover:text-[#00E5FF] transition-colors">
                               {item.name}
                             </h4>
                             <p className="text-[11px] text-slate-500 dark:text-slate-400 font-normal truncate mt-0.5">
                               {item.desc}
                             </p>
                           </div>
-                        </div>
+                        </Link>
 
-                        {/* Expand / Collapse button */}
-                        <div className="flex items-center gap-1.5 shrink-0 pl-2">
-                          <Link
-                            to="/services"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              onClose()
-                            }}
-                            className="text-[11px] font-mono font-bold text-[#00A6FF] hover:underline px-2 py-1 rounded-md bg-sky-500/10"
-                          >
-                            All
-                          </Link>
+                        {/* Separate Chevron Accordion Button */}
+                        <div className="flex items-center gap-1 shrink-0 pl-2">
                           <button
                             type="button"
                             onClick={(e) => {
+                              e.preventDefault()
                               e.stopPropagation()
                               setIsServicesExpanded(!isServicesExpanded)
                             }}
-                            aria-label="Toggle services list"
-                            className="p-1 rounded-lg text-text-secondary dark:text-slate-400 hover:text-primary transition-transform"
+                            aria-label={isServicesExpanded ? "Collapse services" : "Expand services"}
+                            className="p-2 rounded-xl text-slate-400 hover:text-primary hover:bg-slate-200/60 dark:hover:bg-white/10 transition-colors cursor-pointer focus:outline-none"
                           >
                             <ChevronDown
-                              size={16}
+                              size={18}
                               className={`transition-transform duration-300 ${isServicesExpanded ? 'rotate-180 text-primary' : ''}`}
                             />
                           </button>

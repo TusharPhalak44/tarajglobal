@@ -9,13 +9,6 @@ import {
   Database,
   ArrowRight,
   ArrowUpRight,
-  Sparkles,
-  Filter,
-  CheckCircle2,
-  PhoneCall,
-  Layers,
-  RefreshCw,
-  Video,
   ChevronDown,
 } from 'lucide-react'
 
@@ -119,18 +112,6 @@ export const SERVICES_DATA = [
     laserTarget: { x: 59.0, y: 53.5 },
     laserCurve: 'M 60.0 46.5 C 60.0 49.0, 59.5 51.0, 59.0 53.5',
   },
-]
-
-// Extended B2B Demand Generation Solutions mentioned at the bottom
-export const ADDITIONAL_SERVICES = [
-  { id: 'bant', title: 'BANT Lead Generation', route: '/bant-lead-generation', icon: CheckCircle2 },
-  { id: 'mql', title: 'MQL Lead Generation', route: '/mql-services', icon: Filter },
-  { id: 'hql', title: 'HQL Lead Delivery', route: '/hql-services', icon: PhoneCall },
-  { id: 'webinar', title: 'Webinar Demand Services', route: '/webinar-services', icon: Video },
-  { id: 'database-cleansing', title: 'Database Cleansing & Hygiene', route: '/database-cleansing', icon: RefreshCw },
-  { id: 'lead-nurturing', title: 'Lead Nurturing & Retargeting', route: '/lead-nurturing', icon: Layers },
-  { id: 'demand-gen', title: 'Omnichannel Demand Gen', route: '/demand-generation', icon: Megaphone },
-  { id: 'demandflow-bridge', title: 'DemandFlow Bridge™', route: '/demandflow-bridge', icon: Sparkles },
 ]
 
 // Central Hub position on services.png
@@ -470,55 +451,6 @@ export const Services = ({
               })}
             </div>
           </div>
-        </div>
-
-        {/* ── Bottom Section: Extended Specialized Services (Compact Direct Buttons) ── */}
-        <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-200 dark:border-white/10">
-          
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2.5">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6D00]" />
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
-                More Specialized B2B Capabilities
-              </h3>
-            </div>
-
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00A6FF] hover:text-[#38BDF8] transition-colors"
-            >
-              <span>View All 14+ Service Offerings</span>
-              <ArrowRight size={13} />
-            </Link>
-          </div>
-
-          {/* Compact Button Pills */}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            {ADDITIONAL_SERVICES.map((item) => {
-              const ItemIcon = item.icon
-
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => navigate(item.route)}
-                  className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:bg-slate-50 dark:hover:bg-[#00A6FF]/10 transition-all duration-200 cursor-pointer text-left shadow-2xs hover:shadow-xs"
-                >
-                  <div className="w-4 h-4 rounded flex items-center justify-center bg-slate-100 dark:bg-white/5 group-hover:bg-[#00A6FF]/20 group-hover:text-[#00A6FF] transition-colors text-slate-500 dark:text-slate-400 shrink-0">
-                    <ItemIcon size={11} />
-                  </div>
-                  <span className="text-xs font-medium text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
-                    {item.title}
-                  </span>
-                  <ArrowUpRight
-                    size={12}
-                    className="text-slate-400 group-hover:text-[#00A6FF] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
-                  />
-                </button>
-              )
-            })}
-          </div>
-
         </div>
 
       </div>

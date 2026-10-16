@@ -27,9 +27,9 @@ export const ROUTES = {
     h1: 'B2B Lead Generation & Demand Generation Agency',
   },
   '/about': {
-    title: 'About Taraj Global | B2B Demand Generation & Growth Partner',
+    title: 'Who We Are | Taraj Global B2B Demand Generation & Growth Partner',
     description: 'Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven demand generation and lead qualification.',
-    h1: 'About Taraj Global',
+    h1: 'Who We Are - Taraj Global',
   },
   '/services': {
     title: 'Strategic B2B Services for Sustainable Growth | Taraj Global',

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ChevronRight, Home } from 'lucide-react'
 
 const breadcrumbMap = {
-  about: 'About Us',
+  about: 'Who We Are',
   services: 'Services',
   careers: 'Careers',
   blog: 'Blog',

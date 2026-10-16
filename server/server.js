@@ -1,14 +1,20 @@
 import 'dotenv/config'
 import app from './app.js'
 import db from './config/db.js'
+import ensureSchema from './database/migrations/ensure-schema.js'
 
 const PORT = process.env.PORT || 5001
 
-// Test database connection
+// Test database connection & ensure critical tables exist
 db.getConnection()
-  .then((connection) => {
+  .then(async (connection) => {
     console.log('✅ Database connected successfully')
     connection.release()
+    try {
+      await ensureSchema()
+    } catch (migErr) {
+      console.warn('⚠️  Schema integrity check notice:', migErr.message)
+    }
   })
   .catch((error) => {
     console.warn('⚠️  Database connection failed:', error.message)

@@ -296,22 +296,10 @@ export const AboutCompany = () => {
   // DNA Signal Pulse Loop (Flow: DATA -> PEOPLE -> PRECISION -> GROWTH)
   useEffect(() => {
     if (prefersReducedMotion) return
-    const DURATION = 4800
-    let animId
-    const startTime = performance.now()
-
-    const tick = (currentTime) => {
-      const elapsed = (currentTime - startTime) % DURATION
-      const progress = elapsed / DURATION
-      // Exact synchronization with column centers (11%, 37%, 63%, 89%) and SVG trajectory
-      const currentIndex =
-        progress < 0.24 ? 0 : progress < 0.50 ? 1 : progress < 0.76 ? 2 : 3
-      setActiveNode((prev) => (prev !== currentIndex ? currentIndex : prev))
-      animId = requestAnimationFrame(tick)
-    }
-
-    animId = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(animId)
+    const timer = setInterval(() => {
+      setActiveNode((prev) => (prev + 1) % 4)
+    }, 1200)
+    return () => clearInterval(timer)
   }, [prefersReducedMotion])
 
   const scrollToStory = () => {
@@ -323,43 +311,14 @@ export const AboutCompany = () => {
 
   // Heritage Precision in Motion (PRECISION FIELD)
   const [hoveredFieldNode, setHoveredFieldNode] = useState(null)
-  const [signalProgress, setSignalProgress] = useState(0)
-  const fieldSignalPathRef = useRef(null)
-  const [fieldSignalCoord, setFieldSignalCoord] = useState({ x: 110, y: 105 })
+  const [activeFieldNodeIndex, setActiveFieldNodeIndex] = useState(0)
 
   useEffect(() => {
     if (prefersReducedMotion || !isHeritageInView) return
-    let animId
-    let startTime = null
-    const DURATION = 8000 // 8s calm cycle
-
-    const tick = (timestamp) => {
-      if (!startTime) startTime = timestamp
-      const elapsed = (timestamp - startTime) % DURATION
-      const progress = elapsed / DURATION
-      setSignalProgress(progress)
-
-      if (fieldSignalPathRef.current) {
-        try {
-          const totalLength = fieldSignalPathRef.current.getTotalLength()
-          const point = fieldSignalPathRef.current.getPointAtLength(progress * totalLength)
-          setFieldSignalCoord({ x: point.x, y: point.y })
-        } catch (e) {
-          // ignore
-        }
-      }
-
-      animId = requestAnimationFrame(tick)
-    }
-
-    const timeoutId = setTimeout(() => {
-      animId = requestAnimationFrame(tick)
-    }, 1000)
-
-    return () => {
-      clearTimeout(timeoutId)
-      if (animId) cancelAnimationFrame(animId)
-    }
+    const timer = setInterval(() => {
+      setActiveFieldNodeIndex((prev) => (prev + 1) % 4)
+    }, 2000)
+    return () => clearInterval(timer)
   }, [isHeritageInView, prefersReducedMotion])
 
   // Section 03: "THE GROWTH INTELLIGENCE FIELD" State & Interactive Progression
@@ -380,6 +339,8 @@ export const AboutCompany = () => {
   // Auto-activation cycling: 01 -> 02 -> 03 -> 04 every 3.2s when in view, until user interacts
   useEffect(() => {
     if (prefersReducedMotion || !isIntelligenceInView || hasPrinciplesUserInteracted) return
+    // On mobile devices, avoid automatic accordion expansion to prevent layout shift while reading
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return
 
     const interval = setInterval(() => {
       setActivePrincipleIndex((prev) => {
@@ -419,6 +380,8 @@ export const AboutCompany = () => {
   // Auto-activation cycling: 01 -> 02 -> 03 -> 04 every 2.8s when in view, until user interacts
   useEffect(() => {
     if (prefersReducedMotion || !isCapabilitiesInView || hasCapabilitiesUserInteracted) return
+    // On mobile devices, avoid automatic cycling that can cause repaints while scrolling
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return
 
     const interval = setInterval(() => {
       setActiveCapabilityIndex((prev) => (prev + 1) % 4)
@@ -545,15 +508,15 @@ export const AboutCompany = () => {
               onClick={scrollToStory}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="relative group p-[1.5px] rounded-full overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_28px_rgba(0,166,255,0.45)] cursor-pointer shadow-md shadow-accent"
+              className="relative group inline-flex items-center justify-center p-[1.5px] rounded-full overflow-hidden bg-slate-200 dark:bg-white/10 transition-shadow duration-300 hover:shadow-[0_0_28px_rgba(0,166,255,0.45)] cursor-pointer"
             >
               {/* Rotating Continuous Border Glow Beam */}
               {!prefersReducedMotion && (
-                <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)]" />
+                <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00A6FF_0%,transparent_40%,transparent_60%,#00A6FF_100%)] pointer-events-none" />
               )}
 
-              {/* Button Glass Inner Body */}
-              <span className="relative inline-flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-text-primary dark:text-white transition-colors duration-200">
+              {/* Button Inner Body with Opaque Background */}
+              <span className="relative inline-flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-white dark:bg-[#070B16] text-xs sm:text-sm font-semibold text-slate-800 dark:text-white transition-colors duration-200">
                 <span>Discover Our Story</span>
                 <ArrowRight
                   size={15}
@@ -992,12 +955,10 @@ export const AboutCompany = () => {
                   />
 
                   {/* 3. Connecting Lines to Central PRECISION Marker */}
-                  {INTELLIGENCE_FIELD_NODES.map((node) => {
+                  {INTELLIGENCE_FIELD_NODES.map((node, nIdx) => {
                     const isNodeActive =
                       hoveredFieldNode === node.id ||
-                      (!prefersReducedMotion &&
-                        signalProgress >= node.signalRange[0] &&
-                        signalProgress <= node.signalRange[1])
+                      (!prefersReducedMotion && activeFieldNodeIndex === nIdx)
 
                     return (
                       <line
@@ -1016,12 +977,10 @@ export const AboutCompany = () => {
                   })}
 
                   {/* 4. Structured Cluster Dots & Links for each Node */}
-                  {INTELLIGENCE_FIELD_NODES.map((node) => {
+                  {INTELLIGENCE_FIELD_NODES.map((node, nIdx) => {
                     const isNodeActive =
                       hoveredFieldNode === node.id ||
-                      (!prefersReducedMotion &&
-                        signalProgress >= node.signalRange[0] &&
-                        signalProgress <= node.signalRange[1])
+                      (!prefersReducedMotion && activeFieldNodeIndex === nIdx)
 
                     return (
                       <g key={`cluster-group-${node.id}`}>
@@ -1057,17 +1016,23 @@ export const AboutCompany = () => {
                     )
                   })}
 
-                  {/* 5. Traveling Signal Path (Calculated & Tracked) */}
+                  {/* 5. Traveling Signal Path */}
                   <path
-                    ref={fieldSignalPathRef}
+                    id="heritageFieldSignalPath"
                     d="M 110,105 L 410,95 L 395,335 L 125,335 L 260,215"
                     fill="none"
                     stroke="transparent"
                   />
 
-                  {/* 6. Traveling Blue Signal */}
+                  {/* 6. Traveling Blue Signal via Hardware-Accelerated SVG animateMotion */}
                   {!prefersReducedMotion && isHeritageInView && (
-                    <g transform={`translate(${fieldSignalCoord.x}, ${fieldSignalCoord.y})`}>
+                    <g>
+                      <animateMotion
+                        dur="8s"
+                        repeatCount="indefinite"
+                      >
+                        <mpath href="#heritageFieldSignalPath" />
+                      </animateMotion>
                       <circle
                         r="5"
                         fill="#00A6FF"
@@ -1139,12 +1104,10 @@ export const AboutCompany = () => {
                   </g>
 
                   {/* 8. Four Intelligence Nodes (ICP, DATA, PEOPLE, SIGNALS) */}
-                  {INTELLIGENCE_FIELD_NODES.map((node) => {
+                  {INTELLIGENCE_FIELD_NODES.map((node, nIdx) => {
                     const isNodeActive =
                       hoveredFieldNode === node.id ||
-                      (!prefersReducedMotion &&
-                        signalProgress >= node.signalRange[0] &&
-                        signalProgress <= node.signalRange[1])
+                      (!prefersReducedMotion && activeFieldNodeIndex === nIdx)
 
                     return (
                       <g
@@ -1810,6 +1773,7 @@ export const AboutCompany = () => {
               </div>
 
               {/* 4 Connected Interactive Principle Nodes (Staggered reveal: 950ms -> 1050ms -> 1150ms -> 1250ms) */}
+              {/* 4 Connected Interactive Principle Nodes */}
               <div className="space-y-2.5">
                 {GROWTH_INTELLIGENCE_PRINCIPLES.map((principle, idx) => {
                   const isActive = activePrincipleIndex === idx
@@ -1818,20 +1782,11 @@ export const AboutCompany = () => {
                     ? false
                     : !isActive && hoveredPrincipleIndex !== null && !isHovered
 
-                  const delayOffset = 0.95 + idx * 0.10
-
                   return (
-                    <motion.button
+                    <div
                       key={principle.id}
-                      type="button"
-                      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 15 }}
-                      animate={isIntelligenceInView ? { opacity: isMuted ? 0.55 : 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 15 }}
-                      transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : delayOffset, ease: [0.22, 1, 0.36, 1] }}
                       onClick={() => handleSelectPrinciple(idx)}
-                      onMouseEnter={() => {
-                        setHoveredPrincipleIndex(idx)
-                        handleSelectPrinciple(idx)
-                      }}
+                      onMouseEnter={() => setHoveredPrincipleIndex(idx)}
                       onMouseLeave={() => setHoveredPrincipleIndex(null)}
                       style={{
                         borderColor: isActive ? principle.color : undefined,
@@ -1841,9 +1796,9 @@ export const AboutCompany = () => {
                             : `0 6px 18px -4px ${principle.color}22`
                           : undefined,
                       }}
-                      className={`w-full text-left p-4 sm:p-4.5 rounded-xl border transition-all duration-350 group cursor-pointer focus:outline-none relative overflow-hidden ${isActive
-                        ? 'bg-surface/90 dark:bg-white/[0.04] -translate-y-1 scale-[1.01]'
-                        : 'bg-surface/30 dark:bg-white/[0.015] border-border/60 dark:border-white/10 hover:opacity-100 hover:bg-surface/50 hover:-translate-y-0.5'
+                      className={`w-full text-left p-4 sm:p-4.5 rounded-xl border transition-colors duration-250 group cursor-pointer focus:outline-none relative overflow-hidden select-none ${isActive
+                        ? 'bg-surface/90 dark:bg-white/[0.04]'
+                        : 'bg-surface/30 dark:bg-white/[0.015] border-border/60 dark:border-white/10 hover:opacity-100 hover:bg-surface/50'
                         }`}
                     >
                       {/* Active / Hover Circular Glow Ring */}
@@ -1894,7 +1849,7 @@ export const AboutCompany = () => {
 
                           <span className="h-3 w-[1px] bg-border/60 dark:bg-white/10" />
 
-                          {/* Principle Title (Shifts 2-3px on active/hover) */}
+                          {/* Principle Title */}
                           <h4
                             className={`text-sm sm:text-[15px] font-bold uppercase tracking-tight transition-all duration-300 ${isActive
                               ? 'text-text-primary translate-x-1'
@@ -1923,23 +1878,25 @@ export const AboutCompany = () => {
                         </div>
                       </div>
 
-                      {/* Expanding Dynamic Description with Spring/Easeout */}
-                      <AnimatePresence>
+                      {/* Expanding Dynamic Description with zero margin/padding jump */}
+                      <AnimatePresence initial={false}>
                         {isActive && (
                           <motion.div
-                            initial={{ opacity: 0, height: 0, y: 4 }}
-                            animate={{ opacity: 1, height: 'auto', y: 0 }}
-                            exit={{ opacity: 0, height: 0, y: 4 }}
-                            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                            className="overflow-hidden mt-2.5 pt-2.5 border-t border-border/40 dark:border-white/5 relative z-10"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                            className="overflow-hidden relative z-10"
                           >
-                            <p className="text-sm sm:text-[13px] text-text-secondary leading-relaxed font-normal">
-                              {principle.desc}
-                            </p>
+                            <div className="mt-2.5 pt-2.5 border-t border-border/40 dark:border-white/5">
+                              <p className="text-sm sm:text-[13px] text-text-secondary leading-relaxed font-normal">
+                                {principle.desc}
+                              </p>
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </motion.button>
+                    </div>
                   )
                 })}
               </div>

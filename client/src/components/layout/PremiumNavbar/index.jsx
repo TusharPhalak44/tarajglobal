@@ -152,10 +152,10 @@ export const PremiumNavbar = ({ isPreview = false }) => {
   const [headerItems, setHeaderItems] = useState([])
   const [navLinks, setNavLinks] = useState([
     { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Careers', path: '/careers' },
     { name: 'Blogs', path: '/blog' },
+    { name: 'Who We Are', path: '/about' },
     { name: 'Contact Us', path: '/contact' },
   ])
 
@@ -185,11 +185,26 @@ export const PremiumNavbar = ({ isPreview = false }) => {
           const navs = allItems.filter(item => (item.section === 'navbar' || !item.section) && (item.is_active === 1 || item.is_active === true))
           setHeaderItems(headers)
           if (navs.length > 0) {
-            setNavLinks(navs.map(item => ({
-            name: item.label?.trim().toLowerCase() === 'career' ? 'Careers' : item.label,
-              path: item.url,
-              id: item.id
-            })))
+            const mapped = navs.map(item => {
+              let label = item.label
+              if (label?.trim().toLowerCase() === 'career') label = 'Careers'
+              if (item.url === '/about' || label?.trim().toLowerCase() === 'about us') label = 'Who We Are'
+              return {
+                name: label,
+                path: item.url,
+                id: item.id
+              }
+            })
+            // Ensure Who We Are appears immediately after Blogs
+            const withoutWho = mapped.filter(item => item.path !== '/about' && item.name !== 'Who We Are')
+            const whoItem = mapped.find(item => item.path === '/about' || item.name === 'Who We Are') || { name: 'Who We Are', path: '/about' }
+            const blogIndex = withoutWho.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
+            if (blogIndex !== -1) {
+              withoutWho.splice(blogIndex + 1, 0, whoItem)
+              setNavLinks(withoutWho)
+            } else {
+              setNavLinks(mapped)
+            }
           }
         }
       })
@@ -303,17 +318,21 @@ export const PremiumNavbar = ({ isPreview = false }) => {
               aria-label={logoData.logo_alt || logoData.logo_text || "Taraj Global Home"}
               onClick={e => isPreview && e.preventDefault()}
             >
-              {/* Ultra-premium animated SVG TG Emblem / Logo */}
+              {/* Ultra-premium animated SVG TG Emblem */}
               <TGAnimatedLogo
                 logoUrl={logoData.logo_url}
                 alt={logoData.logo_alt || "Taraj Global Logo"}
+                className="w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] md:w-[52px] md:h-[52px]"
               />
               
-              {logoData.show_logo_text && logoData.logo_text && (
-                <span className="inline-block font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white font-display">
-                  {logoData.logo_text}
-                </span>
-              )}
+              {/* Official Brand Wordmark: TARAJ GLOBAL SOLUTIONS / BUSINESS SIMPLIFIED */}
+              <img
+                src="/taraj-solutions-wordmark.png"
+                alt="Taraj Global Solutions - Business Simplified"
+                className="h-6 sm:h-7 md:h-8 w-auto max-w-[135px] sm:max-w-[165px] md:max-w-[195px] object-contain select-none group-hover:brightness-110 transition-all duration-300"
+                style={{ imageRendering: '-webkit-optimize-contrast' }}
+                loading="eager"
+              />
             </Link>
           </div>
 

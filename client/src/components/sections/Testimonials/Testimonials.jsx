@@ -8,6 +8,7 @@ export const TESTIMONIALS_DATA = [
     company: 'Avaya Global Systems',
     companyLogo: '/Avaya.webp',
     category: 'Enterprise Demand Generation',
+    rating: 4.7,
     quote: 'Combining targeted ABM with their in-house verification tool helped us engage active buying committees with zero data bounce. Their automated pipeline delivery routes qualified C-suite meetings straight into our CRM',
   },
   {
@@ -15,6 +16,7 @@ export const TESTIMONIALS_DATA = [
     company: 'Oracle Solutions Partner',
     companyLogo: '/ora.png',
     category: 'Account-Based Intelligence',
+    rating: 5.0,
     quote: 'The speed and precision of TaRaj Global infrastructure set them apart. Their real-time intent signal tracking allowed us to connect with high-intent enterprise decision-makers right when they entered an active buying cycle.',
   },
   {
@@ -22,6 +24,7 @@ export const TESTIMONIALS_DATA = [
     company: 'Mitel Networks',
     companyLogo: '/mitel.png',
     category: 'Appointment Setting & Syndication',
+    rating: 4.3,
     quote: "Their tech-backed content syndication and appointment setting generated a measurable surge in executive engagement. Having live client portal access made tracking campaign SLAs and pipeline velocity effortless.",
   },
   {
@@ -29,6 +32,7 @@ export const TESTIMONIALS_DATA = [
     company: 'RingCentral Inc.',
     companyLogo: '/ringcentral.png',
     category: 'B2B Lead Acceleration',
+    rating: 3.9,
     quote: "TaRaj Global's proprietary outreach stack significantly shortened our enterprise sales cycles. Their multi-pass verification ensured zero duplicate contacts, delivering high-converting accounts directly into our sales workflows.",
   },
   {
@@ -36,6 +40,7 @@ export const TESTIMONIALS_DATA = [
     company: 'Vonage Enterprise Solutions',
     companyLogo: '/Vonage.png',
     category: 'Lead Conversion & Sales Pipeline',
+    rating: 5.0,
     quote: "Taraj Global's data-driven approach and attention to detail sets them apart. They don't just deliver leads; they deliver opportunities that convert. Our partnership has been instrumental in scaling our business growth.",
   },
   {
@@ -43,9 +48,32 @@ export const TESTIMONIALS_DATA = [
     company: 'Microsoft Solutions Partner',
     companyLogo: '/micro.png',
     category: 'Decision-Maker Discovery',
+    rating: 3.8,
     quote: 'Operating on custom infrastructure rather than generic databases makes a huge difference. TaRaj Global delivered a predictable flow of BANT-qualified opportunities with strict 99.8% data accuracy across our target verticals.',
   },
 ]
+
+// Helper to render fractional and filled star icons cleanly
+const renderStars = (rating = 5.0) => {
+  return [0, 1, 2, 3, 4].map((i) => {
+    const fillPercent = Math.max(0, Math.min(100, Math.round((rating - i) * 100)))
+    return (
+      <div key={i} className="relative w-3.5 h-3.5 flex items-center justify-center shrink-0">
+        {/* Muted background star */}
+        <Star size={12} className="text-slate-600 fill-slate-700/50" />
+        {/* Precision golden fill overlay */}
+        {fillPercent > 0 && (
+          <div
+            className="absolute top-0 left-0 bottom-0 overflow-hidden"
+            style={{ width: `${fillPercent}%` }}
+          >
+            <Star size={12} className="fill-[#FBBF24] text-[#FBBF24] shrink-0" style={{ minWidth: 12 }} />
+          </div>
+        )}
+      </div>
+    )
+  })
+}
 
 export const Testimonials = () => {
   return (
@@ -128,19 +156,13 @@ export const Testimonials = () => {
                     />
                   </div>
 
-                  {/* 5-Star Rating Pill */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#05070E] border border-white/10 shadow-inner">
+                  {/* Rating Pill */}
+                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-[#05070E] border border-white/10 shadow-inner">
                     <div className="flex items-center gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          size={12}
-                          className="fill-[#FBBF24] text-[#FBBF24]"
-                        />
-                      ))}
+                      {renderStars(item.rating || 5.0)}
                     </div>
                     <span className="text-xs font-bold text-white font-mono ml-0.5">
-                      5.0
+                      {(item.rating || 5.0).toFixed(1)}
                     </span>
                   </div>
                 </div>

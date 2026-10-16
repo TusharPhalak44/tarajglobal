@@ -88,18 +88,25 @@ export const SmoothScrollProvider = ({ children }) => {
 
     document.addEventListener('click', handleAnchorClick, { capture: true })
 
-    // Observe body size changes (e.g. accordion expansions, image loading) to auto-recalculate scroll bounds
+    // Observe body size changes (e.g. accordion expansions, image loading) with debouncing to prevent layout thrashing during animations
     let resizeObserver = null
+    let resizeTimer = null
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => {
-        lenis.resize()
-        refreshScrollTrigger()
+        if (resizeTimer) clearTimeout(resizeTimer)
+        resizeTimer = setTimeout(() => {
+          if (lenisRef.current) {
+            lenisRef.current.resize()
+          }
+          refreshScrollTrigger()
+        }, 120)
       })
       resizeObserver.observe(document.body)
     }
 
     return () => {
       document.removeEventListener('click', handleAnchorClick, { capture: true })
+      if (resizeTimer) clearTimeout(resizeTimer)
       if (resizeObserver) resizeObserver.disconnect()
       disconnectGSAP()
       lenis.destroy()

@@ -19,6 +19,7 @@ import careerGalleryRoutes from './routes/career_gallery.routes.js'
 import analyticsRoutes from './routes/analytics.routes.js'
 import seoRoutes from './routes/seo.routes.js'
 import chatRoutes from './routes/chat.routes.js'
+import audienceRoutes from './routes/audience.routes.js'
 
 // Import middleware
 import { errorHandler } from './middleware/error.middleware.js'
@@ -95,6 +96,7 @@ app.use('/api/career-gallery', careerGalleryRoutes)
 app.use('/api/analytics', analyticsLimiter, analyticsRoutes)
 app.use('/api/seo', seoRoutes)
 app.use('/api/chat', chatRoutes)
+app.use('/api/audience', audienceRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => {

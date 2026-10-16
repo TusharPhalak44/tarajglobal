@@ -11,8 +11,8 @@ const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 const navLinks = [
-  ['/', 'Home'], ['/services', 'Services'], ['/about', 'About Us'], ['/blog', 'Blog'],
-  ['/careers', 'Careers'], ['/contact', 'Contact Us'],
+  ['/', 'Home'], ['/services', 'Services'], ['/careers', 'Careers'], ['/blog', 'Blog'],
+  ['/about', 'Who We Are'], ['/contact', 'Contact Us'],
 ]
 
 function headTags(route, meta) {

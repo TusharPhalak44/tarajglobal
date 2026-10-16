@@ -92,3 +92,28 @@ INSERT INTO settings (key_name, value) VALUES
 ('contact_email', 'info@tarajglobal.com'),
 ('contact_phone', '+1 234 567 890')
 ON DUPLICATE KEY UPDATE key_name=key_name;
+
+CREATE TABLE IF NOT EXISTS chat_sessions (
+  id VARCHAR(64) PRIMARY KEY,
+  session_token VARCHAR(128) NOT NULL UNIQUE,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) DEFAULT NULL,
+  status ENUM('active', 'closed') DEFAULT 'active',
+  last_admin_reply_at DATETIME DEFAULT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS chat_messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  session_id VARCHAR(64) NOT NULL,
+  sender_type ENUM('user', 'bot', 'admin') NOT NULL,
+  sender_name VARCHAR(100) DEFAULT NULL,
+  message TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (session_id) REFERENCES chat_sessions(id) ON DELETE CASCADE,
+  INDEX idx_session_created (session_id, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

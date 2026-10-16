@@ -11,6 +11,7 @@ import Testimonials from '@components/sections/Testimonials/Testimonials'
 import WhyTarajGlobal from '@components/sections/WhyTarajGlobal/WhyTarajGlobal'
 import HowWeWork from '@components/sections/HowWeWork/HowWeWork'
 import HomeFAQ from '@components/sections/FAQ/HomeFAQ'
+import AudienceIntelligence from '@components/sections/AudienceIntelligence'
 import { FlowButton } from '@components/ui/FlowButton'
 import { useSEOData } from '@hooks/useSEOData'
 
@@ -92,6 +93,7 @@ const CHAPTERS = [
   { id: 'hero', label: 'The Growth Engine' },
   { id: 'enterprise-architecture', label: 'Growth Architecture' },
   { id: 'services', label: 'Our Services' },
+  { id: 'reach', label: 'Audience Intelligence' },
   { id: 'trust', label: 'Client Trust' },
   { id: 'testimonials', label: 'Client Testimonials' },
   { id: 'why-taraj', label: 'Why Taraj Global' },
@@ -235,7 +237,10 @@ function Home() {
       {/* 03. Our Services */}
       <Services />
 
-      {/* 04. Client Trust (One Client Scroller Only, Above Testimonials) */}
+      {/* 04. Global Audience Intelligence */}
+      <AudienceIntelligence />
+
+      {/* 05. Client Trust (One Client Scroller Only, Above Testimonials) */}
       <OurClients />
 
       {/* 07. Client Testimonials */}

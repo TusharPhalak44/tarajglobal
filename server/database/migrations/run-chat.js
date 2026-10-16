@@ -1,16 +1,6 @@
-import mysql from 'mysql2/promise'
-import 'dotenv/config'
+import db from '../../config/db.js'
 
 const runChatMigration = async () => {
-  const connection = await mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'root',
-    database: process.env.DB_NAME || 'tarajglobal',
-    port: process.env.DB_PORT || 3306,
-    multipleStatements: true
-  })
-
   try {
     const createSessionsTable = `
       CREATE TABLE IF NOT EXISTS chat_sessions (
@@ -40,14 +30,20 @@ const runChatMigration = async () => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
     `
 
-    await connection.query(createSessionsTable)
-    await connection.query(createMessagesTable)
+    await db.query(createSessionsTable)
+    await db.query(createMessagesTable)
     console.log('✅ Chat tables migration completed successfully!')
   } catch (error) {
     console.error('❌ Chat migration failed:', error.message)
-  } finally {
-    await connection.end()
+    throw error
   }
 }
 
-runChatMigration()
+export default runChatMigration
+
+// Run immediately if executed directly
+if (process.argv[1]?.endsWith('run-chat.js')) {
+  runChatMigration()
+    .then(() => process.exit(0))
+    .catch(() => process.exit(1))
+}

@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import {
   Linkedin,
   Twitter,
-  Youtube,
   Instagram,
   Globe
 } from 'lucide-react'
 import { useCookies } from '@components/cookies/CookieContext'
 import { cmsAPI } from '@api'
 import FooterNetworkMap from './FooterNetworkMap'
+import TGAnimatedLogo from '../PremiumNavbar/TGAnimatedLogo'
 import './footer.css'
 
 export const Footer = () => {
@@ -65,6 +65,7 @@ export const Footer = () => {
     { label: 'Industries', url: '/services' },
     { label: 'Careers', url: '/careers' },
     { label: 'Blogs', url: '/blog' },
+    { label: 'Who We Are', url: '/about' },
     { label: 'Contact Us', url: '/contact' },
   ]
 
@@ -72,8 +73,13 @@ export const Footer = () => {
   const renderSocialIcon = (platform) => {
     const key = (platform || '').toLowerCase()
     if (key.includes('linkedin')) return <Linkedin size={18} />
-    if (key.includes('twitter') || key.includes('x')) return <Twitter size={18} />
-    if (key.includes('youtube')) return <Youtube size={18} />
+    if (key.includes('twitter') || key.includes('x')) {
+      return (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      )
+    }
     if (key.includes('instagram')) return <Instagram size={18} />
     return <Globe size={18} />
   }
@@ -85,11 +91,8 @@ export const Footer = () => {
     if (key.includes('linkedin')) {
       return `${base} bg-white/[0.05] border border-white/10 text-slate-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/60 hover:text-[#0A66C2] hover:shadow-[0_0_18px_rgba(10,102,194,0.4),inset_0_1px_1px_rgba(255,255,255,0.25)] hover:scale-[1.05] focus-visible:ring-[#0A66C2]`
     }
-    if (key.includes('twitter') || key.includes('x')) {
-      return `${base} bg-white/[0.05] border border-white/10 text-slate-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] hover:bg-white/15 hover:border-white/50 hover:text-white hover:shadow-[0_0_18px_rgba(255,255,255,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] hover:scale-[1.05] focus-visible:ring-white`
-    }
-    if (key.includes('youtube')) {
-      return `${base} bg-white/[0.05] border border-white/10 text-slate-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] hover:bg-[#FF0000]/20 hover:border-[#FF0000]/60 hover:text-[#FF0000] hover:shadow-[0_0_18px_rgba(255,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.25)] hover:scale-[1.05] focus-visible:ring-[#FF0000]`
+    if (key.includes('twitter') || key === 'x') {
+      return `${base} bg-white/[0.05] border border-white/10 text-slate-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] hover:bg-white/15 hover:border-white/50 hover:text-white hover:shadow-[0_0_18px_rgba(255,255,255,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:scale-[1.05] focus-visible:ring-white`
     }
     if (key.includes('instagram')) {
       return `${base} bg-white/[0.05] border border-white/10 text-slate-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] hover:bg-gradient-to-tr hover:from-[#FF543E]/20 hover:via-[#C837AB]/20 hover:to-[#4158D0]/20 hover:border-[#E1306C]/60 hover:text-[#E1306C] hover:shadow-[0_0_18px_rgba(225,48,108,0.4),inset_0_1px_1px_rgba(255,255,255,0.25)] hover:scale-[1.05] focus-visible:ring-[#E1306C]`
@@ -99,14 +102,37 @@ export const Footer = () => {
 
   const defaultSocials = [
     { platform: 'LinkedIn', url: 'https://www.linkedin.com/company/taraj-global/' },
-    { platform: 'X', url: 'https://twitter.com/tarajglobal' },
-    { platform: 'YouTube', url: 'https://youtube.com/@tarajglobal' },
-    { platform: 'Instagram', url: 'https://www.instagram.com/tarajglobal' },
+    { platform: 'X', url: 'https://x.com/TaRajGlobal' },
+    { platform: 'Instagram', url: 'https://www.instagram.com/taraj_global' },
   ]
 
   const rawSocialLinks = Array.isArray(footerData?.socialLinks) ? footerData.socialLinks : []
-  const activeSocials = rawSocialLinks.filter((s) => s.is_visible !== 0)
-  const socialsToRender = activeSocials.length > 0 ? activeSocials : defaultSocials
+  const activeSocials = rawSocialLinks
+    .filter((s) => s.is_visible !== 0 && !s.platform?.toLowerCase().includes('youtube'))
+    .map((s) => {
+      const p = (s.platform || '').toLowerCase()
+      if (p === 'x' || p === 'twitter') {
+        return { ...s, platform: 'X', url: s.url && s.url.includes('x.com/TaRajGlobal') ? s.url : 'https://x.com/TaRajGlobal' }
+      }
+      if (p.includes('instagram')) {
+        return { ...s, url: s.url && s.url.includes('taraj_global') ? s.url : 'https://www.instagram.com/taraj_global' }
+      }
+      return s
+    })
+  
+  // Merge active socials from DB with guaranteed presence of X and Instagram
+  const mergedSocials = activeSocials.length > 0 ? [...activeSocials] : [...defaultSocials]
+  defaultSocials.forEach((def) => {
+    const hasDef = mergedSocials.some(
+      (s) => s.platform?.toLowerCase() === def.platform.toLowerCase() ||
+             (def.platform === 'X' && (s.platform?.toLowerCase() === 'twitter' || s.platform?.toLowerCase() === 'x'))
+    )
+    if (!hasDef) {
+      mergedSocials.push(def)
+    }
+  })
+
+  const socialsToRender = mergedSocials.filter(s => !s.platform?.toLowerCase().includes('youtube'))
 
   return (
     <footer
@@ -136,23 +162,20 @@ export const Footer = () => {
             className="group flex flex-col items-center focus:outline-none"
             aria-label="Taraj Global Home"
           >
-            {/* TG Circular Logo with subtle ambient reactive glow */}
+            {/* TG Animated Circular Emblem with subtle ambient reactive glow */}
             <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-[#00A6FF]/25 blur-xl group-hover:bg-[#FF6D00]/30 transition-all duration-500 scale-115 pointer-events-none" />
-              <img
-                src="/circle.png"
+              <div className="absolute inset-0 rounded-full bg-[#00A6FF]/20 blur-xl group-hover:bg-[#FF6D00]/25 transition-all duration-500 scale-115 pointer-events-none" />
+              <TGAnimatedLogo
+                className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 lg:w-[80px] lg:h-[80px] drop-shadow-[0_2px_16px_rgba(0,166,255,0.4)]"
                 alt="Taraj Global Emblem"
-                className="relative z-10 w-20 h-20 sm:w-22 sm:h-22 lg:w-[90px] lg:h-[90px] object-contain drop-shadow-[0_2px_12px_rgba(0,166,255,0.4)] group-hover:scale-105 transition-transform duration-300 select-none"
-                style={{ imageRendering: 'high-quality' }}
-                loading="eager"
               />
             </div>
 
-            {/* Wordmark: TARAJ GLOBAL / BUSINESS SIMPLIFIED (Large, High-Contrast & Clear) */}
+            {/* Wordmark: TARAJ GLOBAL SOLUTIONS / BUSINESS SIMPLIFIED */}
             <img
-              src="/middle.png"
-              alt="Taraj Global - Business Simplified"
-              className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto max-w-[360px] sm:max-w-[430px] lg:max-w-[480px] object-contain mt-2 sm:mt-2.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] group-hover:brightness-105 transition-all duration-300 select-none"
+              src="/taraj-solutions-wordmark.png"
+              alt="Taraj Global Solutions - Business Simplified"
+              className="h-7 sm:h-8 lg:h-9 xl:h-10 w-auto max-w-[280px] sm:max-w-[340px] lg:max-w-[400px] object-contain mt-2 sm:mt-2.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] group-hover:brightness-110 transition-all duration-300 select-none"
               style={{ imageRendering: '-webkit-optimize-contrast' }}
               loading="eager"
             />
