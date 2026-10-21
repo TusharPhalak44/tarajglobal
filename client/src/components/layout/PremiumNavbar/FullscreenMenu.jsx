@@ -39,7 +39,6 @@ const SERVICES_SUBGROUPS = [
     category: 'Lead Generation',
     accent: '#00A6FF',
     items: [
-      { name: 'Email Marketing', path: '/b2b-email-marketing' },
       { name: 'MQL Services', path: '/mql-services' },
       { name: 'HQL Services', path: '/hql-services' },
       { name: 'BANT Services', path: '/bant-lead-generation' },
@@ -48,14 +47,23 @@ const SERVICES_SUBGROUPS = [
     ],
   },
   {
+    category: 'Channels & Programs',
+    accent: '#8B5CF6',
+    items: [
+      { name: 'Email Marketing', path: '/b2b-email-marketing' },
+      { name: 'Content Syndication', path: '/content-syndication' },
+      { name: 'Webinar Services', path: '/webinar-services' },
+    ],
+  },
+  {
     category: 'Demand & ABM',
     accent: '#FF6D00',
     items: [
-      { name: 'Lead Nurturing', path: '/lead-nurturing' },
-      { name: 'Content Syndication', path: '/content-syndication' },
-      { name: 'Account-Based Marketing', path: '/abm' },
-      { name: 'Webinar Services', path: '/webinar-services' },
       { name: 'Demand Generation', path: '/demand-generation' },
+      { name: 'Full Funnel Demand', path: '/full-funnel-demand' },
+      { name: 'Account-Based Marketing', path: '/abm' },
+      { name: 'Account Based Experience', path: '/account-based-experience' },
+      { name: 'Lead Nurturing', path: '/lead-nurturing' },
     ],
   },
   {
@@ -64,6 +72,7 @@ const SERVICES_SUBGROUPS = [
     items: [
       { name: 'B2B List Building', path: '/b2b-list-building' },
       { name: 'Database Cleansing', path: '/database-cleansing' },
+      { name: 'DemandFlow Bridge', path: '/demandflow-bridge' },
     ],
   },
 ]

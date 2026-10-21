@@ -28,6 +28,8 @@ const LeadNurturing = lazy(() => import('@pages/LeadNurturing'))
 const DemandGeneration = lazy(() => import('@pages/DemandGeneration'))
 const B2bListBuilding = lazy(() => import('@pages/B2bListBuilding'))
 const DatabaseCleansing = lazy(() => import('@pages/DatabaseCleansing'))
+const FullFunnelDemand = lazy(() => import('@pages/FullFunnelDemand'))
+const AccountBasedExperience = lazy(() => import('@pages/AccountBasedExperience'))
 const Privacy = lazy(() => import('@pages/Privacy'))
 const Terms = lazy(() => import('@pages/Terms'))
 const CookiePolicy = lazy(() => import('@components/cookies/CookiePolicyPage'))
@@ -112,6 +114,9 @@ function AppRoutes() {
         <Route path="webinar-services" element={<WebinarServices />} />
         <Route path="lead-nurturing" element={<LeadNurturing />} />
         <Route path="demand-generation" element={<DemandGeneration />} />
+        <Route path="full-funnel-demand" element={<FullFunnelDemand />} />
+        <Route path="account-based-experience" element={<AccountBasedExperience />} />
+        <Route path="abx" element={<Navigate to="/account-based-experience" replace />} />
         <Route path="b2b-list-building" element={<B2bListBuilding />} />
         <Route path="database-cleansing" element={<DatabaseCleansing />} />
         <Route path="privacy" element={<Privacy />} />

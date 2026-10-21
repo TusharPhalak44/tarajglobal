@@ -1,26 +1,18 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Target, Zap, Database } from 'lucide-react'
+import { ArrowRight, Target, Zap, Database, Layers } from 'lucide-react'
 
 const PILLARS = [
   {
     id: 'lead-generation',
-    num: '01',
+    // num: '01',
     heading: 'Lead Generation',
     tagline: 'High-intent buyer discovery and sales-ready pipeline inflow',
     icon: Target,
     services: [
       {
-        num: '01',
-        line1: 'Email',
-        line2: 'Marketing',
-        route: '/b2b-email-marketing',
-        tag: 'Outbound Outreach',
-        image: '/email-service.jpg',
-      },
-      {
-        num: '02',
+        // num: '01',
         line1: 'MQL',
         line2: 'Services',
         route: '/mql-services',
@@ -28,7 +20,7 @@ const PILLARS = [
         image: '/mql.png',
       },
       {
-        num: '03',
+        // num: '02',
         line1: 'HQL',
         line2: 'Services',
         route: '/hql-services',
@@ -36,7 +28,7 @@ const PILLARS = [
         image: '/hql.png',
       },
       {
-        num: '04',
+        // num: '03',
         line1: 'BANT',
         line2: 'Services',
         route: '/bant-lead-generation',
@@ -44,7 +36,7 @@ const PILLARS = [
         image: '/bant.png',
       },
       {
-        num: '05',
+        // num: '04',
         line1: 'SQL',
         line2: 'Services',
         route: '/sql-services',
@@ -52,7 +44,7 @@ const PILLARS = [
         image: '/sql-lead-qualification-journey.jpg',
       },
       {
-        num: '06',
+        // num: '05',
         line1: 'Appointment',
         line2: 'Generation',
         route: '/b2b-appointment-setting',
@@ -62,22 +54,22 @@ const PILLARS = [
     ],
   },
   {
-    id: 'demand-abm',
-    num: '02',
-    heading: 'Demand & ABM',
-    tagline: 'Hyper-targeted account acquisition and continuous market demand',
-    icon: Zap,
+    id: 'channels-programs',
+    // num: '02',
+    heading: 'Channels & Programs',
+    tagline: 'Multi-channel outbound distribution, syndication, and qualified audience acquisition',
+    icon: Layers,
     services: [
       {
-        num: '01',
-        line1: 'Lead',
-        line2: 'Nurturing',
-        route: '/lead-nurturing',
-        tag: 'Pipeline Retention',
-        image: '/lead%20nurturing.png',
+        // num: '01',
+        line1: 'Email',
+        line2: 'Marketing',
+        route: '/b2b-email-marketing',
+        tag: 'Outbound Outreach',
+        image: '/email-service.jpg',
       },
       {
-        num: '02',
+        // num: '02',
         line1: 'Content',
         line2: 'Syndication',
         route: '/content-syndication',
@@ -85,7 +77,40 @@ const PILLARS = [
         image: '/content%20syndication.png',
       },
       {
-        num: '03',
+        // num: '03',
+        line1: 'Webinar',
+        line2: 'Services',
+        route: '/webinar-services',
+        tag: 'Audience Acquisition',
+        image: '/webinar.png',
+      },
+    ],
+  },
+  {
+    id: 'demand-abm',
+    // num: '03',
+    heading: 'Demand & ABM',
+    tagline: 'Hyper-targeted account acquisition and continuous market demand',
+    icon: Zap,
+    services: [
+      {
+        // num: '01',
+        line1: 'Demand',
+        line2: 'Generation',
+        route: '/demand-generation',
+        tag: 'Full-Funnel Demand',
+        image: '/demandflow-campaigns.png',
+      },
+      {
+        // num: '02',
+        line1: 'Full Funnel',
+        line2: 'Demand',
+        route: '/full-funnel-demand',
+        tag: 'End-to-End Pipeline',
+        image: '/demandflow-tracking.png',
+      },
+      {
+        // num: '03',
         line1: 'Account-Based',
         line2: 'Marketing (ABM)',
         route: '/abm',
@@ -93,32 +118,32 @@ const PILLARS = [
         image: '/abm.avif',
       },
       {
-        num: '04',
-        line1: 'Webinar',
-        line2: 'Services',
-        route: '/webinar-services',
-        tag: 'Audience Acquisition',
-        image: '/webinar.png',
+        // num: '04',
+        line1: 'Account Based',
+        line2: 'Experience (ABX)',
+        route: '/account-based-experience',
+        tag: 'Omnichannel ABX',
+        image: '/demandflow-personalization.png',
       },
       {
-        num: '05',
-        line1: 'Demand',
-        line2: 'Generation',
-        route: '/demand-generation',
-        tag: 'Full-Funnel Demand',
-        image: '/demandflow-campaigns.png',
+        // num: '05',
+        line1: 'Lead',
+        line2: 'Nurturing',
+        route: '/lead-nurturing',
+        tag: 'Pipeline Retention',
+        image: '/lead%20nurturing.png',
       },
     ],
   },
   {
     id: 'data-operations',
-    num: '03',
+    // num: '04',
     heading: 'Data & Operations',
     tagline: 'Accurate B2B intelligence, CRM verification, and data hygiene',
     icon: Database,
     services: [
       {
-        num: '01',
+        // num: '01',
         line1: 'B2B List',
         line2: 'Building',
         route: '/b2b-list-building',
@@ -126,7 +151,7 @@ const PILLARS = [
         image: '/b2b-list-building.png',
       },
       {
-        num: '02',
+        // num: '02',
         line1: 'Database',
         line2: 'Cleansing',
         route: '/database-cleansing',
@@ -164,7 +189,7 @@ export default function ReferenceCoreServices() {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 dark:text-white/60 leading-relaxed font-normal lg:max-w-md lg:pb-1">
-              Structured into three strategic pillars: Lead Generation, Demand & ABM, and Data & Operations to move your pipeline forward.
+              Structured into strategic pillars: Lead Generation, Channels & Programs, Demand & ABM, and Data & Operations to move your pipeline forward.
             </p>
           </div>
         </div>
@@ -179,17 +204,15 @@ export default function ReferenceCoreServices() {
               <button
                 key={pillar.id}
                 onClick={() => setActiveFilter(pillar.id)}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${
-                  isActive
-                    ? 'bg-[#FF6D00] text-black shadow-md shadow-[#FF6D00]/25'
-                    : 'border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/5 text-slate-600 dark:text-white/70 hover:border-[#FF6D00] hover:text-slate-900 dark:hover:text-white'
-                }`}
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${isActive
+                  ? 'bg-[#FF6D00] text-black shadow-md shadow-[#FF6D00]/25'
+                  : 'border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/5 text-slate-600 dark:text-white/70 hover:border-[#FF6D00] hover:text-slate-900 dark:hover:text-white'
+                  }`}
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span>{pillar.heading}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                  isActive ? 'bg-black/20 text-black' : 'bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-white/60'
-                }`}>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${isActive ? 'bg-black/20 text-black' : 'bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-white/60'
+                  }`}>
                   {pillar.services.length}
                 </span>
               </button>
@@ -232,13 +255,14 @@ export default function ReferenceCoreServices() {
                 </div>
 
                 {/* ── Services Grid for this Pillar ── */}
-                <div className={`grid gap-4 ${
-                  pillar.services.length <= 2
-                    ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 max-w-2xl'
+                <div className={`grid gap-4 ${pillar.services.length <= 2
+                  ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 max-w-2xl'
+                  : pillar.services.length === 3
+                    ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-4xl'
                     : pillar.services.length === 6
-                    ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6'
-                    : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5'
-                }`}>
+                      ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6'
+                      : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5'
+                  }`}>
                   {pillar.services.map((card, idx) => (
                     <motion.div
                       key={card.route + idx}

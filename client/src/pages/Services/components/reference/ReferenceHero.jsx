@@ -34,9 +34,9 @@ export default function ReferenceHero() {
       <div className="absolute top-1/4 left-1/3 w-[600px] h-[400px] bg-[#FF6D00]/10 dark:bg-[#FF6D00]/10 rounded-full blur-[170px] pointer-events-none -z-10" />
 
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
-          {/* ══════════ LEFT COLUMN: Copy & CTAs (5 cols) ══════════ */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* ══════════ LEFT COLUMN: Copy & CTAs (7 cols) ══════════ */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Eyebrow: OUR SERVICES */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
@@ -45,7 +45,7 @@ export default function ReferenceHero() {
               className="inline-flex items-center mb-6"
             >
               <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-[#FF6D00]">
-                OUR SERVICES
+                TECH-ENABLED B2B GROWTH INFRASTRUCTURE
               </span>
             </motion.div>
 
@@ -56,8 +56,8 @@ export default function ReferenceHero() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-900 dark:text-text-primary dark:text-white"
             >
-              Strategic B2B Services <br />
-              for <span className="text-[#FF6D00]">Sustainable Growth</span>
+              Strategic Data Driven B2B Services for 
+              <span className="text-[#FF6D00]"> Sustainable Growth </span>
             </motion.h1>
 
             {/* Description */}
@@ -65,9 +65,9 @@ export default function ReferenceHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-6 text-sm sm:text-base text-slate-600 dark:text-white/70 leading-relaxed font-normal max-w-lg"
+              className="mt-6 text-base sm:text-lg text-slate-600 dark:text-white/70 leading-relaxed font-normal max-w-2xl"
             >
-              We help businesses find the right accounts, engage the right people and create real opportunities. Our data-driven B2B services are designed to build a stronger pipeline and fuel long-term growth.
+              We help enterprise technology brands identify the right target accounts, engage key decision-makers with buyer intent signals, and engineer verifiable pipeline opportunities. Powered by custom in-house data verification infrastructure, live client portal access, and closed-loop CRM integration across US, EMEA, and APAC markets.
             </motion.p>
 
             {/* CTAs */}
@@ -84,7 +84,7 @@ export default function ReferenceHero() {
                 className="w-full sm:w-auto min-h-[44px]"
               />
               <FlowButton
-                text="Talk to Our Experts"
+                text="Talk to Our Growth Experts"
                 variant="dark"
                 onClick={() => navigate('/contact')}
                 className="w-full sm:w-auto min-h-[44px]"
@@ -92,13 +92,13 @@ export default function ReferenceHero() {
             </motion.div>
           </div>
 
-          {/* ══════════ MIDDLE COLUMN: B2B Growth Visual with Orange Glowing Curve (4 cols) ══════════ */}
-          <div className="lg:col-span-4 flex justify-center">
+          {/* ══════════ RIGHT COLUMN: B2B Growth Visual with Orange Glowing Curve (5 cols) ══════════ */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-full aspect-[4/5] max-w-[380px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 bg-surface dark:bg-slate-900 shadow-2xl shadow-slate-300/60 dark:shadow-black/80"
+              className="relative w-full aspect-[4/5] max-w-[420px] lg:max-w-[460px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 bg-surface dark:bg-slate-900 shadow-2xl shadow-slate-300/60 dark:shadow-black/80"
             >
               {/* Background Business Photo */}
               <motion.div
@@ -156,7 +156,8 @@ export default function ReferenceHero() {
             </motion.div>
           </div>
 
-          {/* ══════════ RIGHT COLUMN: Interactive Service Index (3 cols) ══════════ */}
+          {/* ══════════ RIGHT COLUMN: Interactive Service Index (Commented Out) ══════════ */}
+          {/*
           <div className="lg:col-span-3 flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, x: 25 }}
@@ -177,7 +178,6 @@ export default function ReferenceHero() {
                       : 'border-slate-200/80 dark:border-white/5 bg-white/80 dark:bg-transparent hover:border-slate-300 dark:hover:border-white/20 hover:bg-white dark:hover:bg-white/[0.02] shadow-sm dark:shadow-none'
                       }`}
                   >
-                    {/* Number Badge */}
                     <div
                       className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${isActive
                         ? 'bg-[#FF6D00] text-black font-black'
@@ -187,7 +187,6 @@ export default function ReferenceHero() {
                       {item.num}
                     </div>
 
-                    {/* Service Name */}
                     <span
                       className={`text-xs sm:text-sm font-bold tracking-wide transition-colors ${isActive ? 'text-slate-950 dark:text-white font-black' : 'text-slate-600 dark:text-white/60 group-hover:text-slate-950 dark:group-hover:text-white'
                         }`}
@@ -199,6 +198,7 @@ export default function ReferenceHero() {
               })}
             </motion.div>
           </div>
+          */}
         </div>
       </div>
     </section>

@@ -19,6 +19,8 @@ export const publicAPI = {
   
   // Contact
   bookMeeting: (data) => api.post('/contact/meeting', data),
+  cancelMeeting: (data) => api.post('/contact/meeting/cancel', data),
+  rescheduleMeeting: (data) => api.post('/contact/meeting/reschedule', data),
 
   // Career Gallery
   getCareerGallery: () => api.get('/career-gallery'),

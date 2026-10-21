@@ -13,6 +13,8 @@ export const SERVICES = [
   { path: '/abm', name: 'Account-Based Marketing (ABM)' },
   { path: '/content-syndication', name: 'Content Syndication' },
   { path: '/demand-generation', name: 'Demand Generation' },
+  { path: '/full-funnel-demand', name: 'Full Funnel Demand' },
+  { path: '/account-based-experience', name: 'Account Based Experience (ABX)' },
   { path: '/webinar-services', name: 'Webinar Services' },
   { path: '/lead-nurturing', name: 'Lead Nurturing' },
   { path: '/b2b-list-building', name: 'B2B List Building' },
@@ -95,6 +97,16 @@ export const ROUTES = {
     title: 'B2B Demand Generation Services | Demand Generation Agency | Taraj Global',
     description: 'Taraj Global provides B2B demand generation services that help technology and SaaS companies reach target audiences, engage decision-makers, generate qualified leads, and build stronger sales pipelines.',
     h1: 'B2B Demand Generation Services',
+  },
+  '/full-funnel-demand': {
+    title: 'Full Funnel Demand Generation Services | Pipeline Acceleration | Taraj Global',
+    description: 'Taraj Global unifies top-of-funnel brand awareness, mid-funnel buying committee education, and bottom-of-funnel sales qualification into a high-velocity revenue engine.',
+    h1: 'Full Funnel Demand Generation Services',
+  },
+  '/account-based-experience': {
+    title: 'Account Based Experience (ABX) Services | Modern Account Growth | Taraj Global',
+    description: 'Evolve your ABM into synchronized Account Based Experiences. Taraj Global unifies buyer intent, multi-stakeholder personalization, and high-impact RevOps execution powered by DemandFlow Bridge.',
+    h1: 'Account Based Experience (ABX) Services',
   },
   '/webinar-services': {
     title: 'B2B Webinar Services | Webinar Lead Generation | Taraj Global',

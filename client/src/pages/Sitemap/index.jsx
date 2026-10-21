@@ -39,13 +39,24 @@ const SITEMAP_SECTIONS = [
     title: 'Lead Generation & Qualification',
     desc: 'Bespoke intent verification and lead qualification tiers.',
     icon: Target,
-    color: '#10B981',
+    color: '#00A6FF',
     links: [
-      { name: 'Sales Qualified Leads (SQL)', path: '/sql-services', desc: 'Sales-ready opportunities matched with active intent.' },
+      { name: 'Marketing Qualified Leads (MQL)', path: '/mql-services', desc: 'High-volume target account engagement programs.' },
       { name: 'High-Quality Leads (HQL)', path: '/hql-services', desc: 'Verified intent and confirmed stakeholder interest.' },
       { name: 'BANT Lead Generation', path: '/bant-lead-generation', desc: 'Validated for Budget, Authority, Need, and Timeline.' },
-      { name: 'Marketing Qualified Leads (MQL)', path: '/mql-services', desc: 'High-volume target account engagement programs.' },
+      { name: 'Sales Qualified Leads (SQL)', path: '/sql-services', desc: 'Sales-ready opportunities matched with active intent.' },
       { name: 'B2B Appointment Setting', path: '/b2b-appointment-setting', desc: 'Direct confirmed meetings on sales calendars.' },
+    ],
+  },
+  {
+    title: 'Channels & Programs',
+    desc: 'Multi-channel outbound syndication, email, and executive webinar programs.',
+    icon: Mail,
+    color: '#8B5CF6',
+    links: [
+      { name: 'B2B Email Marketing', path: '/b2b-email-marketing', desc: 'Precision outbound and multi-touch nurture cadences.' },
+      { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepaper distribution to verified buying committees.' },
+      { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive webinar attendance acquisition.' },
     ],
   },
   {
@@ -54,12 +65,11 @@ const SITEMAP_SECTIONS = [
     icon: Layers,
     color: '#FF6D00',
     links: [
-      { name: 'Account-Based Marketing (ABM)', path: '/abm', desc: 'Targeted multi-tier key account penetration.' },
       { name: 'Full-Funnel Demand Generation', path: '/demand-generation', desc: 'Holistic pipeline velocity and multi-touch outbound.' },
-      { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepaper distribution to verified buying committees.' },
-      { name: 'B2B Email Marketing', path: '/b2b-email-marketing', desc: 'Precision outbound and multi-touch nurture cadences.' },
+      { name: 'Full Funnel Demand', path: '/full-funnel-demand', desc: 'Unified intent-driven pipeline acceleration and stage conversion.' },
+      { name: 'Account-Based Marketing (ABM)', path: '/abm', desc: 'Targeted multi-tier key account penetration.' },
+      { name: 'Account Based Experience (ABX)', path: '/account-based-experience', desc: 'Synchronized buyer journeys and buying committee personalization.' },
       { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage account engagement cadences.' },
-      { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive webinar attendance acquisition.' },
     ],
   },
   {

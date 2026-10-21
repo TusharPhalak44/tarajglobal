@@ -42,6 +42,7 @@ export const SmoothScrollProvider = ({ children }) => {
       syncTouch: false, // Ensures natural, native-feeling touch scroll on mobile
       infinite: false,
       autoRaf: false, // Driven cleanly by GSAP ticker
+      allowNestedScroll: true, // Allow native nested scroll in modals and containers
     })
 
     lenisRef.current = lenis

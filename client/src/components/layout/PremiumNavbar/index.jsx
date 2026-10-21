@@ -33,32 +33,40 @@ const SERVICES_DATA = [
     title: 'Lead Generation',
     accent: '#00A6FF',
     items: [
-      { name: 'Email Marketing', path: '/b2b-email-marketing', desc: 'Cold outbound and multi-touch nurture cadences', icon: Mail },
-      { name: 'MQL Services', path: '/mql-services', desc: 'High-volume engaged marketing prospects', icon: TrendingUp },
-      { name: 'HQL Services', path: '/hql-services', desc: 'High-quality leads with verified intent and interest', icon: ShieldCheck },
-      { name: 'BANT Services', path: '/bant-lead-generation', desc: 'Budget, Authority, Need & Timeline qualified', icon: CheckCircle2 },
-      { name: 'SQL Services', path: '/sql-services', desc: 'Sales-ready leads matched with active intent', icon: Target },
-      { name: 'Appointment Generation', path: '/b2b-appointment-setting', desc: 'Direct confirmed meetings on sales calendars', icon: Calendar },
+      { name: 'MQL Services', path: '/mql-services', desc: 'High-volume engaged prospects', icon: TrendingUp },
+      { name: 'HQL Services', path: '/hql-services', desc: 'Verified intent & confirmed interest', icon: ShieldCheck },
+      { name: 'BANT Services', path: '/bant-lead-generation', desc: 'Budget, authority & need qualified', icon: CheckCircle2 },
+      { name: 'SQL Services', path: '/sql-services', desc: 'Sales-ready leads matched to ICP', icon: Target },
+      { name: 'Appointment Generation', path: '/b2b-appointment-setting', desc: 'Direct confirmed calendar meetings', icon: Calendar },
+    ]
+  },
+  {
+    title: 'Channels & Programs',
+    accent: '#8B5CF6',
+    items: [
+      { name: 'Email Marketing', path: '/b2b-email-marketing', desc: 'Cold outbound & nurture cadences', icon: Mail },
+      { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepapers to targeted buying groups', icon: FileSpreadsheet },
+      { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive attendees', icon: Sparkles },
     ]
   },
   {
     title: 'Demand & ABM',
     accent: '#FF6D00',
     items: [
-      { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage account engagement cadences', icon: RefreshCw },
-      { name: 'Content Syndication', path: '/content-syndication', desc: 'Distribute whitepapers to targeted buying groups', icon: FileSpreadsheet },
-      { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key account penetration', icon: Layers },
-      { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive webinar attendees', icon: Sparkles },
-      { name: 'Demand Generation', path: '/demand-generation', desc: 'Full-funnel pipeline and velocity growth', icon: Zap },
+      { name: 'Demand Generation', path: '/demand-generation', desc: 'Full-funnel pipeline & velocity', icon: Zap },
+      { name: 'Full Funnel Demand', path: '/full-funnel-demand', desc: 'End-to-end intent & revenue capture', icon: TrendingUp },
+      { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key accounts', icon: Layers },
+      { name: 'Account Based Experience', path: '/account-based-experience', desc: 'Omnichannel buyer journey & ABX', icon: Target },
+      { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage engagement cadences', icon: RefreshCw },
     ]
   },
   {
     title: 'Data & Operations',
     accent: '#10B981',
     items: [
-      { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Custom human-verified decision-maker lists', icon: Search },
-      { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Data hygiene, enrichment and deduplication', icon: Database },
-      { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'One platform connecting data, outreach and pipeline', icon: Layers },
+      { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Human-verified ICP contact lists', icon: Search },
+      { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Hygiene, enrichment & dedup', icon: Database },
+      { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'Connecting data, outreach & pipeline', icon: Layers },
     ]
   }
 ]
@@ -136,6 +144,8 @@ export const PremiumNavbar = ({ isPreview = false }) => {
     '/abm',
     '/content-syndication',
     '/demand-generation',
+    '/full-funnel-demand',
+    '/account-based-experience',
     '/webinar-services',
     '/lead-nurturing',
     '/b2b-list-building',
@@ -354,7 +364,6 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                 return (
                   <div
                     key={item.path || item.name}
-                    className="relative"
                     onMouseEnter={() => {
                       handleDropdownEnter()
                       setHoveredNav('Services')
@@ -386,102 +395,6 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                         />
                       )}
                     </NavLink>
-
-                    {/* Mega-Dropdown Menu */}
-                    <AnimatePresence>
-                      {isServicesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          onMouseEnter={handleDropdownEnter}
-                          onMouseLeave={handleDropdownLeave}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[880px] max-w-[95vw] z-50 pointer-events-auto"
-                          role="menu"
-                          aria-label="Services Menu"
-                        >
-                          {/* Invisible hover bridge to prevent mouse-leave gaps */}
-                          <div className="absolute -top-3 left-0 right-0 h-4" />
-
-                          <div className="relative bg-white/95 dark:bg-[#0C1220]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl p-6 overflow-hidden">
-                            {/* Top Ambient Glow Hairline */}
-                            <div className="absolute top-0 left-0 right-0 h-[2px]    " />
-
-                            {/* 3 Columns Grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                              {SERVICES_DATA.map((col) => (
-                                <div key={col.title} className="space-y-3">
-                                  <div className="pb-2 border-b border-slate-100 dark:border-white/5">
-                                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
-                                      {col.title}
-                                    </span>
-                                  </div>
-
-                                  <div className="space-y-1">
-                                    {col.items.map((serviceItem) => {
-                                      const Icon = serviceItem.icon
-                                      return (
-                                        <Link
-                                          key={serviceItem.path}
-                                          to={serviceItem.path}
-                                          onClick={() => setIsServicesOpen(false)}
-                                          className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-all group/item"
-                                        >
-                                          <div
-                                            className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-transform group-hover/item:scale-110 group-hover/item:shadow-sm"
-                                            style={{
-                                              backgroundColor: `${col.accent}15`,
-                                              color: col.accent,
-                                              border: `1px solid ${col.accent}30`
-                                            }}
-                                          >
-                                            <Icon size={14} />
-                                          </div>
-
-                                          <div className="flex flex-col">
-                                            <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-[#00A6FF] dark:group-hover/item:text-[#00A6FF] transition-colors leading-tight">
-                                              {serviceItem.name}
-                                            </span>
-                                            <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 leading-snug mt-0.5">
-                                              {serviceItem.desc}
-                                            </span>
-                                          </div>
-                                        </Link>
-                                      )
-                                    })}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-
-                            {/* Bottom Bar: Explore All + Rapid SLA */}
-                            <div className="mt-5 pt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-xs bg-slate-50/70 dark:bg-white/[0.02] -mx-6 -mb-6 px-6 py-3.5">
-                              <Link
-                                to="/services"
-                                onClick={() => setIsServicesOpen(false)}
-                                className="inline-flex items-center gap-1.5 font-bold text-[#00A6FF] hover:underline"
-                              >
-                                <span>Explore All 12 Growth Solutions</span>
-                                <ArrowRight size={13} />
-                              </Link>
-
-                              <div className="flex items-center gap-4 text-[11px] font-mono text-slate-500 dark:text-slate-400 hidden sm:flex">
-                                <span className="flex items-center gap-1.5">
-                                  <ShieldCheck size={13} className="text-emerald-500" />
-                                  99.8% Data Accuracy SLA
-                                </span>
-                                <span className="text-text-secondary dark:text-slate-300 dark:text-slate-700">|</span>
-                                <span className="text-[#FF6D00] font-semibold flex items-center gap-1">
-                                  <Zap size={13} className="text-[#FF6D00]" />
-                                  48–72h Rapid Outbound
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
                   </div>
                 )
               }
@@ -561,6 +474,102 @@ export const PremiumNavbar = ({ isPreview = false }) => {
             </div>
 
           </div>
+
+          {/* ── 4. SERVICES MEGA-DROPDOWN MENU (ONE-FRAME, VIEWPORT-CENTERED) ── */}
+          <AnimatePresence>
+            {isServicesOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 6, x: '-50%' }}
+                animate={{ opacity: 1, y: 0, x: '-50%' }}
+                exit={{ opacity: 0, y: 4, x: '-50%' }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                onMouseEnter={handleDropdownEnter}
+                onMouseLeave={handleDropdownLeave}
+                className="absolute top-full left-1/2 pt-2.5 w-[1040px] xl:w-[1080px] max-w-[calc(100vw-32px)] z-50 pointer-events-auto"
+                role="menu"
+                aria-label="Services Menu"
+              >
+                {/* Invisible hover bridge to prevent mouse-leave gaps */}
+                <div className="absolute -top-3 left-0 right-0 h-4" />
+
+                <div className="relative bg-white/95 dark:bg-[#0C1220]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-5 xl:p-6 overflow-hidden">
+                  {/* Top Ambient Glow Hairline */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF]/40 to-transparent" />
+
+                  {/* 4 Equal Columns Grid - Guaranteed One Frame */}
+                  <div className="grid grid-cols-4 gap-4 xl:gap-5">
+                    {SERVICES_DATA.map((col) => (
+                      <div key={col.title} className="space-y-2.5">
+                        <div className="pb-2 border-b border-slate-100 dark:border-white/5">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
+                            {col.title}
+                          </span>
+                        </div>
+
+                        <div className="space-y-0.5">
+                          {col.items.map((serviceItem) => {
+                            const Icon = serviceItem.icon
+                            return (
+                              <Link
+                                key={serviceItem.path}
+                                to={serviceItem.path}
+                                onClick={() => setIsServicesOpen(false)}
+                                className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100/90 dark:hover:bg-white/[0.06] transition-all group/item"
+                              >
+                                <div
+                                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover/item:scale-110 group-hover/item:shadow-sm"
+                                  style={{
+                                    backgroundColor: `${col.accent}15`,
+                                    color: col.accent,
+                                    border: `1px solid ${col.accent}30`
+                                  }}
+                                >
+                                  <Icon size={13} />
+                                </div>
+
+                                <div className="flex flex-col min-w-0">
+                                  <span className="text-[12.5px] font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-[#00A6FF] dark:group-hover/item:text-[#00A6FF] transition-colors leading-tight truncate">
+                                    {serviceItem.name}
+                                  </span>
+                                  <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 leading-snug mt-0.5">
+                                    {serviceItem.desc}
+                                  </span>
+                                </div>
+                              </Link>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Bottom Bar: Explore All + Rapid SLA */}
+                  <div className="mt-4 pt-3 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-xs bg-slate-50/70 dark:bg-white/[0.02] -mx-5 -mb-5 px-5 py-3 xl:-mx-6 xl:-mb-6 xl:px-6">
+                    <Link
+                      to="/services"
+                      onClick={() => setIsServicesOpen(false)}
+                      className="inline-flex items-center gap-1.5 font-bold text-[#00A6FF] hover:underline"
+                    >
+                      <span>Explore All Growth Solutions</span>
+                      <ArrowRight size={13} />
+                    </Link>
+
+                    <div className="flex items-center gap-4 text-[11px] font-mono text-slate-500 dark:text-slate-400 hidden sm:flex">
+                      <span className="flex items-center gap-1.5">
+                        <ShieldCheck size={13} className="text-emerald-500" />
+                        99.8% Data Accuracy SLA
+                      </span>
+                      <span className="text-slate-300 dark:text-slate-700">|</span>
+                      <span className="text-[#FF6D00] font-semibold flex items-center gap-1">
+                        <Zap size={13} className="text-[#FF6D00]" />
+                        48–72h Rapid Outbound
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
 

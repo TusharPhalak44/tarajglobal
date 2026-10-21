@@ -20,7 +20,7 @@ const LEADERSHIP_MEMBERS = [
   {
     id: 'tushar',
     name: 'Tushar Phalak',
-    roleTag: 'CO-FOUNDER & CTO',
+    roleTag: 'Director Of Growth And Marketing',
     position: 'Growth, Marketing & Demand Generation',
     introduction:
       'Tushar Phalak leads growth architecture and campaign strategy at TaRaj Global, specializing in multi-touch B2B lead generation and ABM. He integrates real-time intent telemetry with custom deliverability engines, helping enterprise SaaS and technology brands scale market penetration and convert target account intent into qualified pipeline across global markets.',
@@ -33,7 +33,7 @@ const LEADERSHIP_MEMBERS = [
   {
     id: 'abhishek',
     name: 'Abhishek Rikibe',
-    roleTag: 'CO-FOUNDER & COO',
+    roleTag: 'Director Of Client Success & Partnerships',
     position: 'Client Success, Relationships & Partnerships',
     introduction:
       'Abhishek Rikibe directs enterprise client operations and global partnerships, ensuring strict adherence to TaRaj Global’s 99.8% Data Accuracy SLA. He oversees client portal onboarding, providing revenue leaders with single-pane campaign telemetry, instant lead alerts, and automated CRM pipeline routing (Salesforce, HubSpot) to drive high retention and measurable ROI.',
@@ -186,17 +186,15 @@ export const OurTeam = () => {
                     if (isLeft) handlePrev()
                     if (isRight) handleNext()
                   }}
-                  className={`pointer-events-auto relative w-[92%] sm:w-[440px] md:w-[470px] lg:w-[490px] rounded-3xl p-6 sm:p-7 border transition-all duration-300 overflow-hidden ${
-                    isCenter
-                      ? 'bg-[#091122] border-[#00A6FF]/40 shadow-[0_12px_45px_rgba(0,166,255,0.2)] cursor-default'
-                      : 'bg-[#080D1A] border-white/10 hover:border-white/25 hover:opacity-85 cursor-pointer shadow-lg'
-                  }`}
+                  className={`pointer-events-auto relative w-[92%] sm:w-[440px] md:w-[470px] lg:w-[490px] rounded-3xl p-6 sm:p-7 border transition-all duration-300 overflow-hidden ${isCenter
+                    ? 'bg-[#091122] border-[#00A6FF]/40 shadow-[0_12px_45px_rgba(0,166,255,0.2)] cursor-default'
+                    : 'bg-[#080D1A] border-white/10 hover:border-white/25 hover:opacity-85 cursor-pointer shadow-lg'
+                    }`}
                 >
                   {/* Top Ambient Glow Line on Center Card */}
                   <div
-                    className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${
-                      isCenter ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${isCenter ? 'opacity-100' : 'opacity-0'
+                      }`}
                   />
 
                   {/* Card Content Layout */}
@@ -205,9 +203,8 @@ export const OurTeam = () => {
                     <div className="relative mb-4">
                       {/* Ambient Accent Ring */}
                       <div
-                        className={`absolute inset-0 rounded-full transition-opacity duration-300 ${
-                          isCenter ? 'bg-[#00A6FF]/15 ring-2 ring-[#00A6FF]/30 opacity-100' : 'opacity-0'
-                        }`}
+                        className={`absolute inset-0 rounded-full transition-opacity duration-300 ${isCenter ? 'bg-[#00A6FF]/15 ring-2 ring-[#00A6FF]/30 opacity-100' : 'opacity-0'
+                          }`}
                         style={{ transform: 'scale(1.15)' }}
                       />
 
@@ -314,11 +311,10 @@ export const OurTeam = () => {
                     type="button"
                     onClick={() => setActiveIndex(idx)}
                     aria-label={`Go to ${member.name}`}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      isActive
-                        ? 'w-7 bg-gradient-to-r from-[#00A6FF] to-[#00E5FF]'
-                        : 'w-2 bg-white/20 hover:bg-white/40'
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${isActive
+                      ? 'w-7 bg-gradient-to-r from-[#00A6FF] to-[#00E5FF]'
+                      : 'w-2 bg-white/20 hover:bg-white/40'
+                      }`}
                   />
                 )
               })}

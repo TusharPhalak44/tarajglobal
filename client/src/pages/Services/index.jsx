@@ -44,12 +44,12 @@ function Services() {
   return (
     <>
       <SEO
-        title="Strategic B2B Services for Sustainable Growth | Taraj Global"
-        description="We help businesses find the right accounts, engage the right people and create real opportunities. Our data-driven B2B services are designed to build a stronger pipeline and fuel long-term growth."
+        title="Strategic Data-Driven B2B Services | TaRaj Global"
+        description="Discover TaRaj Global's data-driven B2B services: Lead Generation, Channels & Programs, Demand & ABM/ABX, and Data Operations across US, EMEA, and APAC markets."
         keywords="B2B services, B2B lead generation, B2B demand generation, B2B appointment setting, account-based marketing, B2B email marketing, MQL services, BANT lead generation, content syndication, lead nurturing, B2B list building, database cleansing"
         canonical="/services"
-        ogTitle="Taraj Global | Strategic B2B Services for Sustainable Growth"
-        ogDescription="We help businesses find the right accounts, engage the right people and create real opportunities. Our data-driven B2B services are designed to build a stronger pipeline and fuel long-term growth."
+        ogTitle="Taraj Global | Strategic Data-Driven B2B Services "
+        ogDescription="Discover TaRaj Global's data-driven B2B services: Lead Generation, Channels & Programs, Demand & ABM/ABX, and Data Operations across US, EMEA, and APAC markets."
         schemaJson={servicesSchema}
       />
 

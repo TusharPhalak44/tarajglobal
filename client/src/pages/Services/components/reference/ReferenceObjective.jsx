@@ -20,7 +20,7 @@ const OBJECTIVES = [
     label: 'Generate Leads',
     icon: Target,
     heading: 'Generate Leads',
-    desc: 'Identify and connect with the decision-makers who matter most.',
+    desc: 'Capture MQLs, HQLs, BANT, and SQLs filtered through intent signals and multi-touch outbound cadences matched strictly against your ICP.',
     recommended: [
       { name: 'B2B Lead Generation', route: '/sql-services' },
       { name: 'BANT Lead Generation', route: '/bant-lead-generation' },
@@ -37,6 +37,8 @@ const OBJECTIVES = [
     desc: 'Transform passive market prospects into active in-market buyers.',
     recommended: [
       { name: 'Demand Generation', route: '/demand-generation' },
+      { name: 'Full Funnel Demand', route: '/full-funnel-demand' },
+      { name: 'Account Based Experience', route: '/account-based-experience' },
       { name: 'Content Syndication', route: '/content-syndication' },
       { name: 'Webinar Services', route: '/webinar-services' },
     ],
@@ -142,18 +144,17 @@ export default function ReferenceObjective() {
           {/* ══════════ LEFT COLUMN: Heading & Copy (4 cols) ══════════ */}
           <div className="lg:col-span-4 flex flex-col justify-start">
             <div className="inline-flex items-center mb-4">
-              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">
-                WHAT DO YOU NEED?
+              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
+                GROWTH OBJECTIVES
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-tight">
-              Choose Your <br />
-              Growth Objective
+            <h2 className="text-[28px] sm:text-[32px] font-black tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-tight">
+              What Do You Need?
             </h2>
 
-            <p className="mt-5 text-sm sm:text-base text-slate-600 dark:text-white/70 leading-relaxed font-normal">
-              Every business has different goals. Select what you want to achieve and explore the right services for your needs.
+            <p className="section-subtext mt-4 text-[16px] text-slate-600 dark:text-white/70 leading-relaxed font-normal">
+              Select your immediate revenue goal to deploy custom growth architecture, intent-driven engagement, or zero-bounce contact infrastructure.
             </p>
 
             <div className="mt-8">

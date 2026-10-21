@@ -38,7 +38,11 @@ export const sendEmail = async (options) => {
     console.log(`✅ Email sent successfully to ${options.to}: ${info.messageId}`)
     return { success: true, messageId: info.messageId }
   } catch (error) {
-    console.error(`❌ Email send error to ${options.to}:`, error.message)
+    if (error.message?.includes('550-5.4.5') || error.message?.includes('Daily user sending limit exceeded')) {
+      console.error(`❌ GMAIL DAILY SENDING LIMIT EXCEEDED when sending to ${options.to}: Google has blocked outgoing emails on account (${process.env.EMAIL_USER}) with error 550-5.4.5. Please update EMAIL_USER & EMAIL_PASSWORD in server/.env with a new Gmail account or domain SMTP.`)
+    } else {
+      console.error(`❌ Email send error to ${options.to}:`, error.message)
+    }
     return { success: false, error: error.message }
   }
 }
