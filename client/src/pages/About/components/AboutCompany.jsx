@@ -34,95 +34,17 @@ import {
   Compass,
   Check,
   ChevronRight,
+  ChevronLeft,
   Crosshair,
   Share2,
   Search,
-  Send
+  Send,
+  RotateCcw
 } from 'lucide-react'
 import { useTheme } from '@context/ThemeContext'
 import { StarButton } from '@components/ui/StarButton'
+import { GrowthArchitectureFunnel } from './GrowthArchitectureFunnel'
 
-const INTELLIGENCE_FIELD_NODES = [
-  {
-    id: 'icp',
-    label: 'ICP',
-    sublabel: 'ACCOUNT FIT',
-    x: 110,
-    y: 105,
-    cluster: [
-      { x: 55, y: 75 },
-      { x: 75, y: 145 },
-      { x: 165, y: 65 },
-      { x: 45, y: 125 },
-      { x: 145, y: 145 },
-    ],
-    relatedLabels: ['Tier-1 Accounts', 'Tech Stack', 'Firmographics'],
-    signalRange: [0.0, 0.22],
-  },
-  {
-    id: 'data',
-    label: 'DATA',
-    sublabel: 'VERIFIED RECORDS',
-    x: 410,
-    y: 95,
-    cluster: [
-      { x: 465, y: 65 },
-      { x: 365, y: 55 },
-      { x: 475, y: 135 },
-      { x: 355, y: 135 },
-      { x: 445, y: 165 },
-    ],
-    relatedLabels: ['Direct Dials', 'Email SLA', 'Mobile Validated'],
-    signalRange: [0.24, 0.48],
-  },
-  {
-    id: 'people',
-    label: 'PEOPLE',
-    sublabel: 'ORG-CHART MAP',
-    x: 395,
-    y: 335,
-    cluster: [
-      { x: 455, y: 305 },
-      { x: 345, y: 375 },
-      { x: 465, y: 375 },
-      { x: 355, y: 305 },
-      { x: 425, y: 265 },
-    ],
-    relatedLabels: ['Economic Buyers', 'Buying Committee', 'Champions'],
-    signalRange: [0.5, 0.72],
-  },
-  {
-    id: 'signals',
-    label: 'SIGNALS',
-    sublabel: 'BUYER INTENT',
-    x: 125,
-    y: 335,
-    cluster: [
-      { x: 65, y: 305 },
-      { x: 175, y: 375 },
-      { x: 65, y: 375 },
-      { x: 165, y: 295 },
-      { x: 95, y: 265 },
-    ],
-    relatedLabels: ['Hiring Surges', 'Tech Adoption', 'Intent Spikes'],
-    signalRange: [0.74, 0.9],
-  },
-]
-
-const BACKGROUND_FIELD_DOTS = [
-  { x: 40, y: 40 },
-  { x: 180, y: 30 },
-  { x: 260, y: 50 },
-  { x: 330, y: 30 },
-  { x: 480, y: 40 },
-  { x: 30, y: 220 },
-  { x: 490, y: 220 },
-  { x: 40, y: 400 },
-  { x: 210, y: 410 },
-  { x: 260, y: 390 },
-  { x: 320, y: 410 },
-  { x: 480, y: 400 },
-]
 
 const DNA_NODES = [
   {
@@ -151,38 +73,50 @@ const GROWTH_INTELLIGENCE_PRINCIPLES = [
   {
     num: '01',
     id: 'node-01',
-    title: 'DATA PRECISION FIRST',
-    shortTitle: 'DATA PRECISION',
+    title: 'Proprietary Verification Tooling',
+    shortTitle: 'Proprietary Verification',
+    category: 'DATA HYGIENE',
     color: '#00A6FF',
-    desc: 'We eliminate vanity volume. Every record is verified against live org-charts with strict 99.8% accuracy SLAs.',
-    badge: '99.8% Accuracy SLA',
+    accentGrad: 'from-[#00A6FF] to-[#00E5FF]',
+    icon: ShieldCheck,
+    desc: 'We developed and maintained our own internal validation software. Every prospect email and direct-dial contact passes through automated deliverability checks post-research to enforce our 99.8% SLA.',
+    badge: '99.8% Accuracy Standard',
   },
   {
     num: '02',
     id: 'node-02',
-    title: 'HIGH-VELOCITY OUTBOUND',
-    shortTitle: 'VELOCITY',
+    title: 'Closed-Loop CRM Delivery',
+    shortTitle: 'CRM Delivery',
+    category: 'INTEGRATION',
     color: '#FF6D00',
-    desc: 'Multi-channel outbound cadence engineered to launch within 48–72 hours and compress enterprise sales cycles.',
-    badge: '48–72h Outbound SLA',
+    accentGrad: 'from-[#FF6D00] to-[#FFA600]',
+    icon: Database,
+    desc: 'Eliminating handoff friction. Every qualified opportunity flows through our native CRM delivery system, seamlessly syncing into client tech stacks (Salesforce, HubSpot, custom APIs).',
+    badge: 'Direct Tech Stack Sync',
   },
   {
     num: '03',
     id: 'node-03',
-    title: 'ZERO DUPLICATE GUARANTEE',
-    shortTitle: 'ZERO DUPLICATES',
+    title: 'Live Client Portal Transparency',
+    shortTitle: 'Client Portal Transparency',
+    category: 'TRANSPARENCY',
     color: '#72D669',
-    desc: 'Bespoke account suppression and data hygiene protocols guarantee 100% unique, high-intent buyer accounts.',
-    badge: '100% Unique Accounts',
+    accentGrad: 'from-[#72D669] to-[#00E5FF]',
+    icon: Activity,
+    desc: 'True operational visibility. Clients access a dedicated portal to view campaign telemetry, receive real-time lead alerts, and track SLA delivery in real time.',
+    badge: '24/7 Client Visibility',
   },
   {
     num: '04',
     id: 'node-04',
-    title: 'STRATEGIC PARTNERSHIP',
-    shortTitle: 'PARTNERSHIP',
-    color: '#FFA600',
-    desc: 'We operate as an agile extension of your revenue team with continuous optimization and transparent reporting.',
-    badge: 'Agile Extension',
+    title: 'Cross-Border Compliance Architecture',
+    shortTitle: 'Cross-Border Compliance',
+    category: 'COMPLIANCE',
+    color: '#00E5FF',
+    accentGrad: 'from-[#00E5FF] to-[#00A6FF]',
+    icon: Globe2,
+    desc: 'Built for global expansion. Our data research operations adhere to strict regional compliance standards, including GDPR (EMEA) and CCPA (North America).',
+    badge: 'GDPR & CCPA Enforced',
   },
 ]
 
@@ -190,10 +124,9 @@ const B2B_GROWTH_ENGINE_CAPABILITIES = [
   {
     id: 'lead-gen',
     number: '01',
-    title: 'B2B Lead Generation',
+    title: 'Precision Lead Generation & Data Verification',
     category: 'DATA & TARGETING',
-    description: 'Identify and reach high-fit enterprise accounts with triple-verified B2B data, precise title targeting, and guaranteed zero duplicate records.',
-    metric: '99.8% Data Accuracy',
+    description: 'Identify and engage decision-makers across target accounts. Every prospect record is processed through our custom post-research verification tool—validating active email deliverability and direct-dial phones to enforce a strict 99.8% SLA with zero duplicate contacts.',
     metricType: 'accuracy',
     color: '#00A6FF',
     accentGrad: 'from-[#00A6FF] to-[#00E5FF]',
@@ -204,9 +137,9 @@ const B2B_GROWTH_ENGINE_CAPABILITIES = [
   {
     id: 'abm-accel',
     number: '02',
-    title: 'Demand & ABM Acceleration',
+    title: 'Account-Based Marketing (ABM) & Velocity',
     category: 'MULTI-TOUCH ENGAGEMENT',
-    description: 'Engage buyer groups across multiple channels through intent-driven Account-Based Marketing, content syndication, and high-velocity outbound.',
+    description: 'Orchestrate multi-touch ABM cadences across active buying committees. Powered by live intent telemetry, we engage high-value accounts through personalized email, content syndication, and multi-channel outreach when they enter an active buying cycle.',
     metric: 'Multi-Touch Velocity',
     metricType: 'velocity',
     color: '#FF6D00',
@@ -218,10 +151,9 @@ const B2B_GROWTH_ENGINE_CAPABILITIES = [
   {
     id: 'research-intel',
     number: '03',
-    title: 'Research & Intelligence',
-    subtitle: 'Proprietary Account Mapping',
+    title: 'Org-Chart Intelligence & Intent Telemetry',
     category: 'ACCOUNT INTELLIGENCE',
-    description: 'In-depth org-chart mapping to identify the true economic decision-makers and budget holders.',
+    description: 'Map complex enterprise buying structures before launching outreach. Our research team combines intent signal telemetry with deep org-chart analysis to isolate true economic buyers, budget owners, and technical evaluators.',
     color: '#72D669',
     accentGrad: 'from-[#72D669] to-[#00E5FF]',
     glowColor: 'rgba(114,214,105,0.35)',
@@ -231,10 +163,8 @@ const B2B_GROWTH_ENGINE_CAPABILITIES = [
   {
     id: 'outbound-conv',
     number: '04',
-    title: 'Outbound Conversion',
-    subtitle: 'Executive Appointment Setting',
-    category: 'PIPELINE CONVERSION',
-    description: 'Direct peer-to-peer outreach that secures confirmed calendar slots with enterprise buyers.',
+    title: 'Executive Appointment Setting & CRM Routing', category: 'PIPELINE CONVERSION',
+    description: ' Convert qualified decision-makers into confirmed discovery calls directly on your sales calendars. Opportunities are scored against strict BANT parameters and routed automatically into your CRM pipeline alongside full account dossiers.',
     color: '#00E5FF',
     accentGrad: 'from-[#00E5FF] to-[#00A6FF]',
     glowColor: 'rgba(0,229,255,0.35)',
@@ -309,61 +239,23 @@ export const AboutCompany = () => {
     }
   }
 
-  // Heritage Precision in Motion (PRECISION FIELD)
-  const [hoveredFieldNode, setHoveredFieldNode] = useState(null)
-  const [activeFieldNodeIndex, setActiveFieldNodeIndex] = useState(0)
 
-  useEffect(() => {
-    if (prefersReducedMotion || !isHeritageInView) return
-    const timer = setInterval(() => {
-      setActiveFieldNodeIndex((prev) => (prev + 1) % 4)
-    }, 2000)
-    return () => clearInterval(timer)
-  }, [isHeritageInView, prefersReducedMotion])
-
-  // Section 03: "THE GROWTH INTELLIGENCE FIELD" State & Interactive Progression
+  // Section 03: "FOUNDATIONAL VALUES" (Mission, Vision & Operating Principles)
   const intelligenceSectionRef = useRef(null)
   const isIntelligenceInView = useInView(intelligenceSectionRef, { once: true, margin: '-60px' })
-  const [activePrincipleIndex, setActivePrincipleIndex] = useState(0)
-  const [scrollProgressPct, setScrollProgressPct] = useState(25)
-  const [hoveredPrincipleIndex, setHoveredPrincipleIndex] = useState(null)
-  const [hoveredStrategicBlock, setHoveredStrategicBlock] = useState(null)
-  const [coreReactionKey, setCoreReactionKey] = useState(0)
-  const [hasPrinciplesUserInteracted, setHasPrinciplesUserInteracted] = useState(false)
-  const activePrincipleRef = useRef(0)
+  const [activeSubsection, setActiveSubsection] = useState(0)
+  const [isSubsectionHovered, setIsSubsectionHovered] = useState(false)
 
-  const triggerCoreReaction = () => {
-    setCoreReactionKey((prev) => prev + 1)
-  }
-
-  // Auto-activation cycling: 01 -> 02 -> 03 -> 04 every 3.2s when in view, until user interacts
+  // Section 03 Automatic Accordion Rotation (Cycles every 3.2s when in view, pauses on hover)
   useEffect(() => {
-    if (prefersReducedMotion || !isIntelligenceInView || hasPrinciplesUserInteracted) return
-    // On mobile devices, avoid automatic accordion expansion to prevent layout shift while reading
-    if (typeof window !== 'undefined' && window.innerWidth < 768) return
+    if (prefersReducedMotion || !isIntelligenceInView || isSubsectionHovered) return
 
     const interval = setInterval(() => {
-      setActivePrincipleIndex((prev) => {
-        const next = (prev + 1) % 4
-        activePrincipleRef.current = next
-        setScrollProgressPct(Math.round(((next + 1) / 4) * 100))
-        return next
-      })
-      triggerCoreReaction()
+      setActiveSubsection((prev) => (prev + 1) % GROWTH_INTELLIGENCE_PRINCIPLES.length)
     }, 3200)
 
     return () => clearInterval(interval)
-  }, [isIntelligenceInView, hasPrinciplesUserInteracted, prefersReducedMotion])
-
-  const handleSelectPrinciple = (idx) => {
-    if (!hasPrinciplesUserInteracted) {
-      setHasPrinciplesUserInteracted(true)
-    }
-    activePrincipleRef.current = idx
-    setActivePrincipleIndex(idx)
-    setScrollProgressPct(Math.round(((idx + 1) / 4) * 100))
-    triggerCoreReaction()
-  }
+  }, [prefersReducedMotion, isIntelligenceInView, isSubsectionHovered])
 
   // Section 04: "THE B2B GROWTH ENGINE" (Full-Funnel Capabilities) State
   const capabilitiesSectionRef = useRef(null)
@@ -432,7 +324,7 @@ export const AboutCompany = () => {
             className="flex items-center justify-center mb-4 sm:mb-6"
           >
             <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              ABOUT TARAJ GLOBAL SOLUTIONS &bull; GLOBAL B2B DEMAND GENERATION
+              THE TECHNOLOGY & TEAM BEHIND TARAJ GLOBAL
             </span>
           </motion.div>
 
@@ -452,36 +344,27 @@ export const AboutCompany = () => {
                   },
                 },
               }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-text-primary leading-[1.08]"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-text-primary leading-[1.12]"
             >
               <motion.span
                 variants={{
                   hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
                 }}
-                className="block sm:whitespace-nowrap bg-gradient-to-r from-text-primary via-text-primary to-text-secondary dark:from-white dark:via-slate-100 dark:to-slate-300 bg-clip-text text-transparent"
+                className="block sm:whitespace-nowrap text-text-primary dark:text-white"
               >
-                WE CONNECT
+                Engineered B2B
               </motion.span>
+
               <motion.span
                 variants={{
                   hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
                 }}
-                className="block sm:whitespace-nowrap bg-gradient-to-r from-text-primary via-slate-700 to-[#00A6FF] dark:from-slate-200 dark:via-slate-100 dark:to-[#00A6FF] bg-clip-text text-transparent"
+                className="block sm:whitespace-nowrap mt-1 sm:mt-1.5"
               >
-                THE RIGHT PEOPLE
-              </motion.span>
-              <motion.span
-                variants={{
-                  hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-                }}
-                className="block sm:whitespace-nowrap text-text-primary"
-              >
-                WITH THE{' '}
-                <span className="bg-gradient-to-r from-[#00A6FF] via-[#00D2FF] to-[#38BDF8] bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(0,166,255,0.4)]">
-                  RIGHT OPPORTUNITIES.
+                <span className="inline-block bg-gradient-to-r from-[#00A6FF] via-[#00D2FF] to-[#38BDF8] bg-clip-text text-transparent">
+                  In-House Innovation
                 </span>
               </motion.span>
             </motion.h1>
@@ -494,7 +377,7 @@ export const AboutCompany = () => {
             transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.2 }}
             className="text-sm sm:text-base lg:text-lg text-text-secondary leading-relaxed font-normal max-w-2xl mx-auto mb-5 sm:mb-6"
           >
-            Taraj Global Solutions helps businesses build meaningful connections with decision-makers through data, technology and strategic demand generation.
+            Founded to replace broken, unverified lead generation with accountable growth architecture. Operating from San Francisco and Pune, our revenue engineers combine custom verification tooling with transparent client portal access to power global enterprise pipelines.
           </motion.p>
 
           {/* Animated Premium CTA Button */}
@@ -517,7 +400,7 @@ export const AboutCompany = () => {
 
               {/* Button Inner Body with Opaque Background */}
               <span className="relative inline-flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-white dark:bg-[#070B16] text-xs sm:text-sm font-semibold text-slate-800 dark:text-white transition-colors duration-200">
-                <span>Discover Our Story</span>
+                <span>Explore Our Operations</span>
                 <ArrowRight
                   size={15}
                   className="text-[#00A6FF] transition-transform duration-300 group-hover:translate-x-1.5"
@@ -850,27 +733,25 @@ export const AboutCompany = () => {
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          {/* ── DESKTOP SPLIT-SCREEN (55% LEFT / 45% RIGHT) & MOBILE EDITORIAL FLOW ── */}
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          {/* ── DESKTOP SPLIT-SCREEN (50% LEFT / 50% RIGHT) & MOBILE EDITORIAL FLOW ── */}
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-            {/* ── LEFT / STORY COLUMN (55% on Desktop) ── */}
-            <div className="w-full lg:col-span-7 flex flex-col space-y-4 sm:space-y-5 order-1 lg:order-1">
+            {/* ── LEFT / STORY COLUMN (6 cols on Desktop) ── */}
+            <div className="w-full lg:col-span-6 flex flex-col space-y-4 sm:space-y-5 order-1 lg:order-1">
 
-              {/* Eyebrow & Headline (Order 1 on mobile) */}
+              {/* Eyebrow & Headline */}
               <div className="space-y-3 sm:space-y-4">
-                {/* Eyebrow */}
                 <motion.div
                   initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="text-sm font-mono font-bold tracking-[0.24em] uppercase text-text-muted">
+                  <span className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-text-muted">
                     OUR HERITAGE <span className="text-text-muted/40">•</span> <span className="text-[#00A6FF]">PRECISION SCALE</span>
                   </span>
                 </motion.div>
 
-                {/* Main Headline (2-3 lines editorial, not oversized) */}
                 <motion.h2
                   initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -878,1036 +759,243 @@ export const AboutCompany = () => {
                   transition={{ duration: 0.8, delay: prefersReducedMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
                   className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18] text-text-primary"
                 >
-                  Built on a simple truth:{' '}
-                  <span className="block sm:inline text-text-primary">
-                    Predictable revenue demands <span className="text-[#00A6FF]">verified precision</span>.
-                  </span>
+                  Why We Built Our Own B2B{' '}
+                  <span className="bg-gradient-to-r from-[#00A6FF] via-[#33B8FF] to-[#00E5FF] bg-clip-text text-transparent">
+                    Growth Architecture
+                  </span>.
                 </motion.h2>
               </div>
 
-              {/* Story Paragraphs - combined with natural tight spacing */}
+              {/* Story Paragraphs - Clean left-aligned modern typography */}
               <motion.div
                 initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: prefersReducedMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="space-y-3 sm:space-y-3.5 text-sm sm:text-base text-text-secondary leading-relaxed font-normal max-w-2xl"
+                className="space-y-4 text-base text-text-secondary leading-relaxed max-w-prose"
               >
-                <p>
-                  <strong className="text-text-primary font-semibold">Taraj Global Solutions</strong> was founded to solve the core inefficiency in modern B2B demand generation: unverified data, spam outbound, and hollow metrics. From day one, we committed to deep account intelligence, org-chart mapping, and verified decision-maker access.
+                <p className="font-semibold text-text-primary">
+                  In a market crowded with generic database vendors and outsourced lead aggregators, TaRaj Global was established to restore engineering discipline to outbound revenue generation.
                 </p>
                 <p>
-                  Today, enterprise technology leaders across North America, Europe, and Asia-Pacific trust our Pune &amp; San Francisco revenue teams to deliver qualified opportunities that convert to closed business.
+                  We recognized early that enterprise sales teams don't need vanity lead counts—they need verified, sales-ready decision-makers. By engineering our own post-research verification tool and unifying campaign delivery inside a single CRM infrastructure, we eliminated the risk of zero-deliverability data and duplicate accounts.
+                </p>
+                <p className="text-sm text-text-muted">
+                  Today, enterprise technology firms across North America, Europe, the Middle East, and Asia-Pacific trust our dual-headquarter teams in San Francisco and Pune to execute compliant, high-velocity revenue operations.
                 </p>
               </motion.div>
 
             </div>
 
-            {/* ── RIGHT COLUMN (~45% on Desktop): “PRECISION FIELD” INTELLIGENCE VISUALIZATION ── */}
-            <div className="w-full lg:col-span-5 flex items-center justify-center order-2 lg:order-2 my-2 lg:my-0">
-
-              {/* Visual Container */}
-              <motion.div
-                initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: prefersReducedMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full max-w-[500px] aspect-[520/440] relative rounded-2xl bg-surface/30 dark:bg-white/[0.015] border border-border/50 dark:border-white/5 p-2 sm:p-4 backdrop-blur-sm shadow-sm select-none"
-              >
-                {/* SVG Visual Canvas */}
-                <svg
-                  viewBox="0 0 520 440"
-                  className="w-full h-full overflow-visible"
-                  fill="none"
-                >
-                  <defs>
-                    <linearGradient id="fieldBeamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#00A6FF" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#00A6FF" stopOpacity="0.2" />
-                    </linearGradient>
-                    <filter id="fieldGlow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-                      <feMerge>
-                        <feMergeNode />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  </defs>
-
-                  {/* 1. Subtle Background Grid Points */}
-                  {BACKGROUND_FIELD_DOTS.map((pt, i) => (
-                    <circle
-                      key={`bg-dot-${i}`}
-                      cx={pt.x}
-                      cy={pt.y}
-                      r="1.5"
-                      className="fill-slate-300 dark:fill-white/10"
-                    />
-                  ))}
-
-                  {/* 2. Outer Perimeter Ring / Connection Lines between Nodes */}
-                  <path
-                    d="M 110,105 L 410,95 L 395,335 L 125,335 Z"
-                    className="stroke-slate-200/80 dark:stroke-white/5"
-                    strokeWidth="1"
-                    strokeDasharray="3 3"
-                    fill="none"
-                  />
-
-                  {/* 3. Connecting Lines to Central PRECISION Marker */}
-                  {INTELLIGENCE_FIELD_NODES.map((node, nIdx) => {
-                    const isNodeActive =
-                      hoveredFieldNode === node.id ||
-                      (!prefersReducedMotion && activeFieldNodeIndex === nIdx)
-
-                    return (
-                      <line
-                        key={`spoke-${node.id}`}
-                        x1={node.x}
-                        y1={node.y}
-                        x2={260}
-                        y2={215}
-                        stroke={isNodeActive ? '#00A6FF' : 'currentColor'}
-                        strokeOpacity={isNodeActive ? 0.75 : 0.12}
-                        strokeWidth={isNodeActive ? 1.8 : 1}
-                        className={`transition-all duration-300 ${isNodeActive ? '' : 'stroke-slate-400 dark:stroke-white'
-                          }`}
-                      />
-                    )
-                  })}
-
-                  {/* 4. Structured Cluster Dots & Links for each Node */}
-                  {INTELLIGENCE_FIELD_NODES.map((node, nIdx) => {
-                    const isNodeActive =
-                      hoveredFieldNode === node.id ||
-                      (!prefersReducedMotion && activeFieldNodeIndex === nIdx)
-
-                    return (
-                      <g key={`cluster-group-${node.id}`}>
-                        {/* Cluster connecting lines */}
-                        {node.cluster.map((cpt, ci) => (
-                          <line
-                            key={`c-line-${node.id}-${ci}`}
-                            x1={node.x}
-                            y1={node.y}
-                            x2={cpt.x}
-                            y2={cpt.y}
-                            stroke={isNodeActive ? '#00A6FF' : 'currentColor'}
-                            strokeOpacity={isNodeActive ? 0.45 : 0.08}
-                            strokeWidth="0.8"
-                            className={`transition-all duration-300 ${isNodeActive ? '' : 'stroke-slate-400 dark:stroke-white'
-                              }`}
-                          />
-                        ))}
-                        {/* Cluster Dots */}
-                        {node.cluster.map((cpt, ci) => (
-                          <circle
-                            key={`c-dot-${node.id}-${ci}`}
-                            cx={cpt.x}
-                            cy={cpt.y}
-                            r={isNodeActive ? 2.5 : 1.8}
-                            fill={isNodeActive ? '#00A6FF' : 'currentColor'}
-                            fillOpacity={isNodeActive ? 0.75 : 0.2}
-                            className={`transition-all duration-300 ${isNodeActive ? '' : 'text-slate-400 dark:text-white'
-                              }`}
-                          />
-                        ))}
-                      </g>
-                    )
-                  })}
-
-                  {/* 5. Traveling Signal Path */}
-                  <path
-                    id="heritageFieldSignalPath"
-                    d="M 110,105 L 410,95 L 395,335 L 125,335 L 260,215"
-                    fill="none"
-                    stroke="transparent"
-                  />
-
-                  {/* 6. Traveling Blue Signal via Hardware-Accelerated SVG animateMotion */}
-                  {!prefersReducedMotion && isHeritageInView && (
-                    <g>
-                      <animateMotion
-                        dur="8s"
-                        repeatCount="indefinite"
-                      >
-                        <mpath href="#heritageFieldSignalPath" />
-                      </animateMotion>
-                      <circle
-                        r="5"
-                        fill="#00A6FF"
-                        filter="url(#fieldGlow)"
-                        opacity="0.95"
-                      />
-                      <circle r="2.5" fill="#ffffff" />
-                    </g>
-                  )}
-
-                  {/* 7. Central PRECISION Marker */}
-                  <g
-                    transform="translate(260, 215)"
-                    className="cursor-default"
-                  >
-                    {/* Ambient subtle breathing ring */}
-                    <circle
-                      r="48"
-                      className="fill-background stroke-border dark:stroke-white/10"
-                      strokeWidth="1"
-                    />
-                    <circle
-                      r="38"
-                      fill="#00A6FF"
-                      fillOpacity="0.04"
-                      className="stroke-[#00A6FF]/30"
-                      strokeWidth="1.2"
-                      strokeDasharray="4 3"
-                    />
-
-                    {/* Central Core Circle */}
-                    <circle
-                      r="22"
-                      className="fill-background stroke-[#00A6FF] stroke-[1.8]"
-                    />
-
-                    {/* Precision Icon/Dot */}
-                    <circle
-                      r="4.5"
-                      fill="#00A6FF"
-                      className="animate-pulse"
-                      style={{ animationDuration: '3s' }}
-                    />
-
-                    {/* Central Label */}
-                    <text
-                      y="-28"
-                      textAnchor="middle"
-                      className="font-mono text-sm font-extrabold tracking-[0.2em] fill-[#00A6FF] uppercase"
-                    >
-                      PRECISION
-                    </text>
-
-                    {/* Subtext */}
-                    <text
-                      y="32"
-                      textAnchor="middle"
-                      className="font-mono text-sm font-semibold tracking-wider fill-text-muted uppercase"
-                    >
-                      VERIFIED
-                    </text>
-                    <text
-                      y="42"
-                      textAnchor="middle"
-                      className="font-mono text-sm font-semibold tracking-wider fill-text-muted uppercase"
-                    >
-                      DECISION-MAKER DATA
-                    </text>
-                  </g>
-
-                  {/* 8. Four Intelligence Nodes (ICP, DATA, PEOPLE, SIGNALS) */}
-                  {INTELLIGENCE_FIELD_NODES.map((node, nIdx) => {
-                    const isNodeActive =
-                      hoveredFieldNode === node.id ||
-                      (!prefersReducedMotion && activeFieldNodeIndex === nIdx)
-
-                    return (
-                      <g
-                        key={`node-${node.id}`}
-                        transform={`translate(${node.x}, ${node.y})`}
-                        className="cursor-pointer transition-transform duration-300"
-                        onMouseEnter={() => setHoveredFieldNode(node.id)}
-                        onMouseLeave={() => setHoveredFieldNode(null)}
-                      >
-                        {/* Active Indicator Ring */}
-                        {isNodeActive && (
-                          <circle
-                            r="16"
-                            fill="#00A6FF"
-                            opacity="0.2"
-                            className="transition-opacity duration-300"
-                          />
-                        )}
-
-                        {/* Outer Marker Ring */}
-                        <circle
-                          r={isNodeActive ? 12 : 9}
-                          className={`transition-all duration-300 ${isNodeActive
-                            ? 'fill-background stroke-[#00A6FF] stroke-[2]'
-                            : 'fill-background stroke-slate-300 dark:stroke-white/20 stroke-[1.2]'
-                            }`}
-                        />
-
-                        {/* Inner Bullet */}
-                        <circle
-                          r={isNodeActive ? 4.5 : 3}
-                          className={`transition-all duration-300 ${isNodeActive ? 'fill-[#00A6FF]' : 'fill-slate-400 dark:fill-white/40'
-                            }`}
-                        />
-
-                        {/* Label Badge */}
-                        <text
-                          y={node.y > 220 ? 24 : -18}
-                          textAnchor="middle"
-                          className={`font-mono text-sm font-extrabold tracking-wider transition-colors duration-300 ${isNodeActive
-                            ? 'fill-[#00A6FF]'
-                            : 'fill-text-primary'
-                            }`}
-                        >
-                          {node.label}
-                        </text>
-
-                        {/* Sublabel */}
-                        <text
-                          y={node.y > 220 ? 34 : -28}
-                          textAnchor="middle"
-                          className={`font-mono text-sm tracking-wider uppercase transition-colors duration-300 ${isNodeActive
-                            ? 'fill-[#00A6FF]/80 font-semibold'
-                            : 'fill-text-muted'
-                            }`}
-                        >
-                          {node.sublabel}
-                        </text>
-                      </g>
-                    )
-                  })}
-                </svg>
-
-                {/* Micro hover indicator badge */}
-                {hoveredFieldNode && (
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-background/90 border border-[#00A6FF]/30 backdrop-blur text-sm font-mono text-[#00A6FF] tracking-wider uppercase shadow-sm">
-                    {INTELLIGENCE_FIELD_NODES.find((n) => n.id === hoveredFieldNode)?.relatedLabels.join(' • ')}
-                  </div>
-                )}
-              </motion.div>
-
+            {/* ── RIGHT COLUMN: PRECISION FUNNEL (GROWTH ARCHITECTURE) ── */}
+            <div className="w-full lg:col-span-6 flex items-center justify-center order-2 lg:order-2 my-2 lg:my-0">
+              <GrowthArchitectureFunnel />
             </div>
-
           </div>
 
         </div>
       </section>
 
-      {/* ── SECTION 03: THE GROWTH INTELLIGENCE FIELD ──────────────────── */}
+      {/* ── SECTION 03: PURPOSE-DRIVEN STRATEGY (MISSION & VISION + EXPANDING SUBSECTION ACCORDION) ── */}
       <section
         id="foundational-values"
         ref={intelligenceSectionRef}
-        className="relative py-14 sm:py-18 lg:py-20 border-t border-border/60 dark:border-white/10 overflow-hidden bg-background text-text-primary transition-colors duration-500"
+        className="relative py-8 sm:py-10 lg:py-12 border-t border-border/60 dark:border-white/10 overflow-hidden bg-slate-50/50 dark:bg-[#070B14] transition-colors duration-500"
       >
-        {/* ══ 1. BACKGROUND INTELLIGENCE ENVIRONMENT & MOTION ══════════════ */}
+        {/* Subtle Ambient Technical Lighting */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-          {/* Moving / Panning Background Grid (0ms sequence start) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={
-              isIntelligenceInView
-                ? {
-                  opacity: isDark ? 0.05 : 0.035,
-                  backgroundPosition: !prefersReducedMotion ? ['0px 0px', '24px 24px'] : '0px 0px',
-                }
-                : { opacity: 0 }
-            }
-            transition={{
-              opacity: { duration: 0.8, ease: 'easeOut' },
-              backgroundPosition: { repeat: Infinity, duration: 24, ease: 'linear' },
-            }}
-            className="absolute inset-0 bg-[radial-gradient(#00A6FF_1px,transparent_1px)] [background-size:24px_24px]"
-          />
-
-          {/* Subtle Ambient Light Fields */}
-          <div
-            className="absolute -top-12 left-10 w-80 h-80 rounded-full blur-[140px] pointer-events-none transition-opacity duration-700"
-            style={{
-              backgroundColor: '#00A6FF',
-              opacity: isDark ? 0.06 : 0.02,
-            }}
-          />
-          <div
-            className="absolute top-1/2 right-12 -translate-y-1/2 w-96 h-96 rounded-full blur-[150px] pointer-events-none transition-colors duration-700"
-            style={{
-              backgroundColor: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color,
-              opacity: isDark ? 0.08 : 0.025,
-            }}
-          />
-          <div
-            className="absolute -bottom-16 left-1/4 w-80 h-80 rounded-full blur-[140px] pointer-events-none transition-opacity duration-700"
-            style={{
-              backgroundColor: '#FF6D00',
-              opacity: isDark ? 0.05 : 0.018,
-            }}
-          />
-
-          {/* Tiny Floating Geometric Data Particles */}
-          {!prefersReducedMotion && isIntelligenceInView && (
-            <>
-              {[
-                { top: '14%', left: '8%', size: 2.5, dur: 7.2, delay: 0 },
-                { top: '35%', left: '46%', size: 2, dur: 8.5, delay: 1.2 },
-                { top: '78%', left: '16%', size: 3, dur: 9.0, delay: 0.5 },
-                { top: '22%', right: '12%', size: 2.5, dur: 6.8, delay: 1.8 },
-                { top: '82%', right: '18%', size: 2, dur: 8.0, delay: 0.8 },
-              ].map((p, i) => (
-                <motion.div
-                  key={`intel-dot-${i}`}
-                  className="absolute rounded-full bg-[#00A6FF]/40 pointer-events-none"
-                  style={{ top: p.top, left: p.left, right: p.right, width: p.size, height: p.size }}
-                  animate={{
-                    y: [0, -10, 0],
-                    opacity: [0.15, 0.45, 0.15],
-                  }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: p.dur,
-                    delay: p.delay,
-                    ease: 'easeInOut',
-                  }}
-                />
-              ))}
-            </>
-          )}
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[300px] bg-[#00A6FF]/[0.04] dark:bg-[#00A6FF]/[0.07] rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[320px] bg-[#03BBD0]/[0.04] dark:bg-[#03BBD0]/[0.07] rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(120,150,200,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(120,150,200,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_75%_75%_at_50%_50%,#000_60%,transparent_100%)]" />
         </div>
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          {/* ── COMPACT SECTION HEADER (REVEAL TIMINGS: 150ms -> 250ms -> 400ms) ── */}
-          <div className="max-w-3xl mb-10 sm:mb-12">
-            {/* Eyebrow (150ms + growing accent line) */}
-            <motion.div
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-              animate={isIntelligenceInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-              transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 mb-2.5 relative overflow-hidden"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00A6FF]" />
-              </span>
-              <span className="text-sm sm:text-sm font-mono font-bold tracking-[0.2em] uppercase text-[#00A6FF]">
-                FOUNDATIONAL VALUES
-              </span>
-
-              {/* Eyebrow Micro Accent Line Growing from 0 to 100% */}
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isIntelligenceInView ? { width: '100%' } : { width: 0 }}
-                transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.18, ease: 'easeOut' }}
-                className="absolute bottom-0 left-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent pointer-events-none"
-              />
-            </motion.div>
-
-            {/* Main Heading (250ms grouped reveal) */}
-            <motion.h2
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
-              animate={isIntelligenceInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
-              transition={{ duration: 0.55, delay: prefersReducedMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary leading-[1.12] mb-2.5"
-            >
-              OUR MISSION, VISION &amp;{' '}
-              <span className="bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#38BDF8] bg-clip-text text-transparent">
-                CORE PRINCIPLES
-              </span>
-            </motion.h2>
-
-            {/* Subtext (400ms reveal) */}
-            <motion.p
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 15 }}
-              animate={isIntelligenceInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 15 }}
-              transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.40, ease: [0.22, 1, 0.36, 1] }}
-              className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal max-w-2xl"
-            >
-              The operating blueprint that guides our revenue engineering team across every campaign.
-            </motion.p>
+          {/* ── SECTION HEADER (COMPACT) ── */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 sm:mb-5">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#00A6FF] uppercase">
+                  Foundational Values
+                </span>
+              </div>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-text-primary leading-tight">
+                Purpose-Driven Strategy.{' '}
+                <span className="bg-gradient-to-r from-[#00A6FF] via-[#33B8FF] to-[#00E5FF] bg-clip-text text-transparent">
+                  Flawless Execution.
+                </span>
+              </h2>
+            </div>
+            <p className="text-xs sm:text-[13px] text-text-secondary max-w-md md:text-right font-normal leading-relaxed">
+              Two foundational strategic pillars powering our global revenue operations, realized across all four core operating principles.
+            </p>
           </div>
 
-          {/* ── TWO-COLUMN STRATEGIC & INTELLIGENCE NETWORK COMPOSITION ───── */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* ── MISSION & VISION PARENT STRATEGIC PILLARS (TIER 1 - COMPACT) ── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
 
-            {/* ── LEFT COLUMN: MISSION (500ms) & VISION (600ms) STRATEGIC BLOCKS (50%) ───── */}
-            <div className="lg:col-span-6 space-y-6 sm:space-y-8">
+            {/* Mission Pillar Card */}
+            <div
+              className="rounded-xl sm:rounded-2xl p-3 sm:p-3.5 border transition-all duration-300 backdrop-blur-xl relative overflow-hidden bg-surface/90 dark:bg-[#0B1528] border-[#00A6FF]/40 shadow-[0_8px_25px_rgba(0,166,255,0.1)] ring-1 ring-[#00A6FF]/25"
+            >
+              <div className="flex items-center justify-between gap-2.5 mb-1.5">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center bg-[#00A6FF]/20 text-[#00A6FF] border border-[#00A6FF]/40 shadow-sm shrink-0">
+                    <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
 
-              {/* Mission Block (500ms entrance + visible black/dark elevation shadow + subtle hover) */}
-              {(() => {
-                const isMissionActive = hoveredStrategicBlock === 'mission'
-                const isMissionMuted = hoveredStrategicBlock === 'vision'
+                    <h3 className="text-lg sm:text-[20px] font-bold text-text-primary tracking-tight leading-tight">
+                      Our Mission
+                    </h3>
+                  </div>
+                </div>
 
-                return (
-                  <motion.div
-                    initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
-                    animate={
-                      isIntelligenceInView
-                        ? {
-                          opacity: isMissionMuted ? 0.75 : 1,
-                          y: isMissionActive && !prefersReducedMotion ? -3 : 0,
-                        }
-                        : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }
-                    }
-                    transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.50, ease: [0.22, 1, 0.36, 1] }}
-                    onMouseEnter={() => setHoveredStrategicBlock('mission')}
-                    onMouseLeave={() => setHoveredStrategicBlock(null)}
-                    onClick={() => setHoveredStrategicBlock((prev) => (prev === 'mission' ? null : 'mission'))}
-                    className={`group p-6 sm:p-7 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer select-none bg-white dark:bg-[#141414] border ${isMissionActive
-                      ? 'border-[#00A6FF]/60 dark:border-[#00A6FF]/70 shadow-[0_12px_32px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.52),0_4px_12px_rgba(0,0,0,0.35)]'
-                      : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.18),0_2px_8px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#00A6FF]/40'
-                      }`}
-                  >
-                    {/* Top Subtle Inner Highlight Line for Layered Depth */}
-                    <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
-
-                    {/* Left Brand Accent Bar */}
-                    <div
-                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b from-[#00A6FF] to-[#00E5FF] transition-all duration-350 ${isMissionActive
-                        ? 'w-[4px] shadow-[0_0_10px_rgba(0,166,255,0.6)]'
-                        : 'w-[3px]'
-                        }`}
-                    />
-
-                    {/* Faint Internal Blue Decorative Arc */}
-                    <svg
-                      className={`absolute -right-3 -bottom-3 w-36 h-36 pointer-events-none transition-all duration-500 overflow-visible ${isMissionActive ? 'opacity-25' : 'opacity-10 dark:opacity-15'
-                        }`}
-                      viewBox="0 0 100 100"
-                    >
-                      <path
-                        d="M 15 90 C 35 25, 75 25, 95 65"
-                        stroke="#00A6FF"
-                        strokeWidth="1.5"
-                        strokeDasharray="4 3"
-                        fill="none"
-                      />
-                    </svg>
-
-                    {/* Header Row: Visual Anchor 01 Badge + Accent Line + Title + Badge */}
-                    <div className="flex items-center justify-between mb-3.5 relative z-10">
-                      <div className="flex items-center gap-3">
-                        {/* 01 Number Container */}
-                        <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border border-[#00A6FF]/30 shadow-[0_0_8px_rgba(0,166,255,0.15)]">
-                          {/* Animated Circular Outline SVG */}
-                          <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none p-[1px]" viewBox="0 0 28 28">
-                            <circle
-                              cx="14"
-                              cy="14"
-                              r="11.5"
-                              fill="none"
-                              stroke="#00A6FF"
-                              strokeWidth="1"
-                              strokeOpacity="0.25"
-                            />
-                            <circle
-                              cx="14"
-                              cy="14"
-                              r="11.5"
-                              fill="none"
-                              stroke="#00A6FF"
-                              strokeWidth="1.5"
-                              strokeDasharray="72.2"
-                              strokeDashoffset={isMissionActive ? 0 : 72.2}
-                              className="transition-all duration-500 ease-out"
-                            />
-                          </svg>
-                          <span
-                            className={`font-mono text-sm font-bold text-[#00A6FF] transition-all duration-350 ${isMissionActive ? 'scale-[1.10] -rotate-3' : 'scale-100 rotate-0'
-                              }`}
-                          >
-                            01
-                          </span>
-                        </div>
-
-                        {/* Visible Default Accent Line (36px -> 76px) + Traveling Signal Dot on Hover */}
-                        <div
-                          className="relative h-[2px] rounded-full transition-all duration-350 overflow-visible bg-[#00A6FF]/20"
-                          style={{ width: isMissionActive ? '76px' : '36px' }}
-                        >
-                          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#00A6FF] to-[#00E5FF]" />
-                          {isMissionActive && !prefersReducedMotion && (
-                            <motion.div
-                              initial={{ left: '0%', opacity: 0 }}
-                              animate={{ left: ['0%', '100%'], opacity: [0, 1, 0] }}
-                              transition={{ repeat: Infinity, duration: 1.2, ease: 'easeInOut' }}
-                              className="absolute -top-[3px] w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#00A6FF]"
-                            />
-                          )}
-                        </div>
-
-                        {/* Heading Shift */}
-                        <span
-                          className={`font-mono text-sm font-bold tracking-[0.2em] uppercase transition-all duration-350 ${isMissionActive ? 'translate-x-1 text-[#00A6FF]' : 'text-text-primary'
-                            }`}
-                        >
-                          OUR MISSION
-                        </span>
-                      </div>
-
-                      {/* Strategic Purpose Label */}
-                      <span
-                        className={`text-sm font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded border transition-all duration-350 ${isMissionActive
-                          ? 'bg-[#00A6FF]/15 text-text-primary border-[#00A6FF]/40'
-                          : 'text-text-muted bg-surface/70 dark:bg-white/5 border-border/60 dark:border-white/5'
-                          }`}
-                      >
-                        STRATEGIC PURPOSE
-                      </span>
-                    </div>
-
-                    {/* Mission Paragraph (Rises 2px on hover) */}
-                    <p
-                      className={`text-[15px] sm:text-[16px] text-text-primary leading-[1.65] font-normal relative z-10 transition-transform duration-350 ${isMissionActive ? '-translate-y-[2px]' : 'translate-y-0'
-                        }`}
-                    >
-                      To empower B2B SaaS and technology enterprises with predictable, high-converting demand generation engines and verified decision-maker intelligence that consistently turn market opportunity into measurable revenue outcomes.
-                    </p>
-                  </motion.div>
-                )
-              })()}
-
-              {/* Vision Block (600ms entrance + visible black/dark elevation shadow + subtle hover) */}
-              {(() => {
-                const isVisionActive = hoveredStrategicBlock === 'vision'
-                const isVisionMuted = hoveredStrategicBlock === 'mission'
-
-                return (
-                  <motion.div
-                    initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
-                    animate={
-                      isIntelligenceInView
-                        ? {
-                          opacity: isVisionMuted ? 0.75 : 1,
-                          y: isVisionActive && !prefersReducedMotion ? -3 : 0,
-                        }
-                        : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }
-                    }
-                    transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.60, ease: [0.22, 1, 0.36, 1] }}
-                    onMouseEnter={() => setHoveredStrategicBlock('vision')}
-                    onMouseLeave={() => setHoveredStrategicBlock(null)}
-                    onClick={() => setHoveredStrategicBlock((prev) => (prev === 'vision' ? null : 'vision'))}
-                    className={`group p-6 sm:p-7 rounded-2xl relative overflow-hidden transition-all duration-350 cursor-pointer select-none bg-white dark:bg-[#141414] border ${isVisionActive
-                      ? 'border-[#72D669]/60 dark:border-[#72D669]/70 shadow-[0_12px_32px_rgba(0,0,0,0.22),0_4px_12px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.52),0_4px_12px_rgba(0,0,0,0.35)]'
-                      : 'border-slate-200/90 dark:border-white/[0.08] shadow-[0_8px_25px_rgba(0,0,0,0.18),0_2px_8px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.45),0_2px_8px_rgba(0,0,0,0.30)] hover:border-[#72D669]/40'
-                      }`}
-                  >
-                    {/* Top Subtle Inner Highlight Line for Layered Depth */}
-                    <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/15 to-transparent pointer-events-none" />
-
-                    {/* Left Brand Accent Bar */}
-                    <div
-                      className={`absolute left-0 top-0 bottom-0 bg-gradient-to-b from-[#72D669] to-[#FFA600] transition-all duration-350 ${isVisionActive
-                        ? 'w-[4px] shadow-[0_0_10px_rgba(114,214,105,0.6)]'
-                        : 'w-[3px]'
-                        }`}
-                    />
-
-                    {/* Faint Internal Green/Amber Decorative Arc */}
-                    <svg
-                      className={`absolute -right-3 -bottom-3 w-36 h-36 pointer-events-none transition-all duration-500 overflow-visible ${isVisionActive ? 'opacity-25' : 'opacity-10 dark:opacity-15'
-                        }`}
-                      viewBox="0 0 100 100"
-                    >
-                      <path
-                        d="M 10 90 C 40 20, 80 20, 95 60"
-                        stroke="#72D669"
-                        strokeWidth="1.5"
-                        strokeDasharray="4 3"
-                        fill="none"
-                      />
-                    </svg>
-
-                    {/* Header Row: Visual Anchor 02 Badge + Accent Line + Title + Badge */}
-                    <div className="flex items-center justify-between mb-3.5 relative z-10">
-                      <div className="flex items-center gap-3">
-                        {/* 02 Number Container */}
-                        <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-[#72D669]/10 dark:bg-[#72D669]/15 border border-[#72D669]/30 shadow-[0_0_8px_rgba(114,214,105,0.15)]">
-                          {/* Animated Circular Outline SVG */}
-                          <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none p-[1px]" viewBox="0 0 28 28">
-                            <circle
-                              cx="14"
-                              cy="14"
-                              r="11.5"
-                              fill="none"
-                              stroke="#72D669"
-                              strokeWidth="1"
-                              strokeOpacity="0.25"
-                            />
-                            <circle
-                              cx="14"
-                              cy="14"
-                              r="11.5"
-                              fill="none"
-                              stroke="#72D669"
-                              strokeWidth="1.5"
-                              strokeDasharray="72.2"
-                              strokeDashoffset={isVisionActive ? 0 : 72.2}
-                              className="transition-all duration-500 ease-out"
-                            />
-                          </svg>
-                          <span
-                            className={`font-mono text-sm font-bold text-[#72D669] transition-all duration-350 ${isVisionActive ? 'scale-[1.10] rotate-3' : 'scale-100 rotate-0'
-                              }`}
-                          >
-                            02
-                          </span>
-                        </div>
-
-                        {/* Visible Default Accent Line (36px -> 76px) + Traveling Signal Dot on Hover */}
-                        <div
-                          className="relative h-[2px] rounded-full transition-all duration-350 overflow-visible bg-[#72D669]/20"
-                          style={{ width: isVisionActive ? '76px' : '36px' }}
-                        >
-                          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#72D669] to-[#FFA600]" />
-                          {isVisionActive && !prefersReducedMotion && (
-                            <motion.div
-                              initial={{ left: '0%', opacity: 0 }}
-                              animate={{ left: ['0%', '100%'], opacity: [0, 1, 0] }}
-                              transition={{ repeat: Infinity, duration: 1.2, ease: 'easeInOut' }}
-                              className="absolute -top-[3px] w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#72D669]"
-                            />
-                          )}
-                        </div>
-
-                        {/* Heading Shift */}
-                        <span
-                          className={`font-mono text-sm font-bold tracking-[0.2em] uppercase transition-all duration-350 ${isVisionActive ? 'translate-x-1 text-[#72D669]' : 'text-text-primary'
-                            }`}
-                        >
-                          OUR VISION
-                        </span>
-                      </div>
-
-                      {/* North Star Label */}
-                      <span
-                        className={`text-sm font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded border transition-all duration-350 ${isVisionActive
-                          ? 'bg-[#72D669]/15 text-text-primary border-[#72D669]/40'
-                          : 'text-text-muted bg-surface/70 dark:bg-white/5 border-border/60 dark:border-white/5'
-                          }`}
-                      >
-                        NORTH STAR
-                      </span>
-                    </div>
-
-                    {/* Vision Paragraph (Rises 2px on hover) */}
-                    <p
-                      className={`text-[15px] sm:text-[16px] text-text-primary leading-[1.65] font-normal relative z-10 transition-transform duration-350 ${isVisionActive ? '-translate-y-[2px]' : 'translate-y-0'
-                        }`}
-                    >
-                      To stand as the world's most dependable B2B growth architecture partner, trusted by global category leaders to pioneer intelligent, data-driven revenue systems across international markets.
-                    </p>
-                  </motion.div>
-                )
-              })()}
-
-              {/* Strategic Architecture Note */}
-              <div className="flex items-center gap-3 px-3 py-1.5 text-sm font-mono text-text-muted">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
-                <span>MISSION &amp; VISION POWER STRATEGY &bull; 4 PRINCIPLES POWER EXECUTION</span>
               </div>
+              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed pl-10 sm:pl-11">
+                To equip global B2B SaaS and enterprise tech leaders with accountable, tech-backed growth operations-combining automated contact verification with closed-loop CRM delivery to turn target accounts into measurable business outcomes.
+              </p>
             </div>
 
-            {/* ── RIGHT COLUMN: ABSTRACT INTELLIGENCE CORE (650ms) & INTERACTIVE NODES (50%) ── */}
-            <div className="lg:col-span-6 space-y-4">
-
-              {/* Central Intelligence Core Display (650ms scale + opacity entrance) */}
-              <motion.div
-                initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.75 }}
-                animate={isIntelligenceInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: prefersReducedMotion ? 1 : 0.75 }}
-                transition={{ duration: 0.65, delay: prefersReducedMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className="p-4 sm:p-5 rounded-2xl bg-surface/30 dark:bg-white/[0.015] border border-border/60 dark:border-white/10 relative overflow-hidden select-none"
-              >
-                {/* Visual SVG Network Matrix */}
-                <div className="relative flex items-center justify-between gap-4 py-2">
-
-                  {/* Left Flow Nodes Indicator */}
-                  <div className="space-y-1">
-                    <span className="font-mono text-sm uppercase tracking-widest text-[#00A6FF] font-bold block">
-                      NODE 01 &bull; 03
-                    </span>
-                    <span className="text-sm text-text-muted font-medium">Data &amp; Hygiene</span>
+            {/* Vision Pillar Card (Matching Blue Color Scheme) */}
+            <div
+              className="rounded-xl sm:rounded-2xl p-3 sm:p-3.5 border transition-all duration-300 backdrop-blur-xl relative overflow-hidden bg-surface/90 dark:bg-[#0B1528] border-[#00A6FF]/40 shadow-[0_8px_25px_rgba(0,166,255,0.1)] ring-1 ring-[#00A6FF]/25"
+            >
+              <div className="flex items-center justify-between gap-2.5 mb-1.5">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center bg-[#00A6FF]/20 text-[#00A6FF] border border-[#00A6FF]/40 shadow-sm shrink-0">
+                    <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
+                  <div>
 
-                  {/* Central Animated Geometric Intelligence Core */}
-                  <motion.div
-                    key={`core-reaction-${coreReactionKey}`}
-                    initial={{ scale: 1 }}
-                    animate={{ scale: [1, 1.06, 1] }}
-                    transition={{ duration: 0.4, ease: 'easeOut' }}
-                    className="relative flex items-center justify-center"
-                  >
-                    {/* Breathing Ambient Aura (Shifts color dynamically) */}
-                    <div
-                      className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-full blur-xl transition-all duration-500 pointer-events-none opacity-35"
-                      style={{
-                        backgroundColor: GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color,
-                        transform: !prefersReducedMotion ? 'scale(1.035)' : 'none',
-                      }}
-                    />
-
-                    {/* SVG Orbit Tracks & Counter-Rotating Rings */}
-                    <svg className="w-28 h-28 sm:w-32 sm:h-32 overflow-visible" viewBox="0 0 100 100">
-                      {/* Base Dashed Outer Orbit Ring (750ms reveal) */}
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="46"
-                        fill="none"
-                        className="stroke-border/80 dark:stroke-white/15"
-                        strokeWidth="1"
-                        strokeDasharray="4 3"
-                      />
-
-                      {/* 1. Outer Ring: Slow Clockwise Rotation (15s) with Traveling Signal Dot (4.5s) */}
-                      {!prefersReducedMotion && (
-                        <g className="animate-spin" style={{ animationDuration: '15s' }}>
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="46"
-                            fill="none"
-                            stroke={GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color}
-                            strokeWidth="1.2"
-                            strokeDasharray="24 110"
-                            strokeLinecap="round"
-                          />
-                          {/* Glowing Signal Dot Orbiting on Outer Ring */}
-                          <circle
-                            cx="50"
-                            cy="4"
-                            r="2.8"
-                            fill="#FFFFFF"
-                            stroke={GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color}
-                            strokeWidth="1.5"
-                          />
-                        </g>
-                      )}
-
-                      {/* 2. Inner Ring: Slow Counter-Clockwise Rotation (22s) */}
-                      {!prefersReducedMotion && (
-                        <g className="animate-spin" style={{ animationDuration: '22s', animationDirection: 'reverse' }}>
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="38"
-                            fill="none"
-                            stroke={GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color}
-                            strokeOpacity="0.35"
-                            strokeWidth="0.8"
-                            strokeDasharray="6 8"
-                          />
-                        </g>
-                      )}
-
-                      {/* Dynamic Core Body (850ms path/ring reveal) */}
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="34"
-                        className="fill-background stroke-border dark:stroke-white/15"
-                        strokeWidth="1"
-                      />
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="30"
-                        fill={GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color}
-                        fillOpacity="0.10"
-                        stroke={GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color}
-                        strokeWidth="1.5"
-                        className="transition-colors duration-500"
-                      />
-                    </svg>
-
-                    {/* Central Core Monospace Label */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-1">
-                      <span className="font-mono text-[8.5px] font-extrabold tracking-wider uppercase text-text-primary leading-tight mb-0.5">
-                        TARAJ
-                      </span>
-                      <span
-                        className="font-mono text-[7px] font-extrabold tracking-normal uppercase transition-colors duration-500 leading-tight"
-                        style={{ color: GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color }}
-                      >
-                        INTELLIGENCE
-                      </span>
-                    </div>
-                  </motion.div>
-
-                  {/* Right Flow Nodes Indicator */}
-                  <div className="space-y-1 text-right">
-                    <span className="font-mono text-sm uppercase tracking-widest text-[#FF6D00] font-bold block">
-                      NODE 02 &bull; 04
-                    </span>
-                    <span className="text-sm text-text-muted font-medium">Cadence &amp; Integration</span>
+                    <h3 className="text-lg sm:text-[20px] font-bold text-text-primary tracking-tight leading-tight">
+                      Our Vision
+                    </h3>
                   </div>
-                </div>
-
-                {/* SVG Progressive Connection Paths between Nodes & Core */}
-                <svg className="w-full h-3 overflow-visible pointer-events-none mt-1" viewBox="0 0 400 12" fill="none">
-                  {/* Progressive Path Length Drawing on Entrance (850ms) */}
-                  <motion.path
-                    d="M 30 6 L 160 6 M 240 6 L 370 6"
-                    stroke={GROWTH_INTELLIGENCE_PRINCIPLES[hoveredPrincipleIndex !== null ? hoveredPrincipleIndex : activePrincipleIndex].color}
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                    strokeOpacity="0.4"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={isIntelligenceInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-                    transition={{ duration: 0.8, delay: prefersReducedMotion ? 0 : 0.85, ease: 'easeOut' }}
-                  />
-                </svg>
-              </motion.div>
-
-              {/* Active Scroll Progression Bar (like HowWeWork) */}
-              <div className="relative w-full px-0.5 py-1">
-                <div className="flex items-center justify-between text-sm font-mono font-bold tracking-wider mb-1.5 text-text-muted">
-                  <span className="flex items-center gap-1.5 transition-colors duration-300" style={{ color: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color }}>
-                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color }} />
-                    <span className="uppercase">
-                      STAGE 0{activePrincipleIndex + 1} &bull; {GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].shortTitle}
-                    </span>
-                  </span>
-                  <span className="text-sm text-text-muted font-mono">
-                    STAGE SEQUENCE &bull; {scrollProgressPct}%
-                  </span>
-                </div>
-                <div className="w-full h-1.5 bg-slate-200/80 dark:bg-white/10 rounded-full overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-300 shadow-[0_0_12px_rgba(0,166,255,0.7)]"
-                    style={{
-                      width: `${scrollProgressPct}%`,
-                      backgroundColor: GROWTH_INTELLIGENCE_PRINCIPLES[activePrincipleIndex].color,
-                    }}
-                  />
                 </div>
               </div>
+              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed pl-10 sm:pl-11">
+                To remain the global gold standard in tech-enabled B2B demand generation, recognized for operating superior verification software, transparent client portals, and zero-bounce execution engines across global markets.
+              </p>
+            </div>
 
-              {/* 4 Connected Interactive Principle Nodes (Staggered reveal: 950ms -> 1050ms -> 1150ms -> 1250ms) */}
-              {/* 4 Connected Interactive Principle Nodes */}
-              <div className="space-y-2.5">
-                {GROWTH_INTELLIGENCE_PRINCIPLES.map((principle, idx) => {
-                  const isActive = activePrincipleIndex === idx
-                  const isHovered = hoveredPrincipleIndex === idx
-                  const isMuted = !isActive && hoveredPrincipleIndex === null
-                    ? false
-                    : !isActive && hoveredPrincipleIndex !== null && !isHovered
+          </div>
 
-                  return (
-                    <div
-                      key={principle.id}
-                      onClick={() => handleSelectPrinciple(idx)}
-                      onMouseEnter={() => setHoveredPrincipleIndex(idx)}
-                      onMouseLeave={() => setHoveredPrincipleIndex(null)}
-                      style={{
-                        borderColor: isActive ? principle.color : undefined,
-                        boxShadow: isActive
-                          ? isDark
-                            ? `0 8px 24px -6px ${principle.color}33`
-                            : `0 6px 18px -4px ${principle.color}22`
-                          : undefined,
-                      }}
-                      className={`w-full text-left p-4 sm:p-4.5 rounded-xl border transition-colors duration-250 group cursor-pointer focus:outline-none relative overflow-hidden select-none ${isActive
-                        ? 'bg-surface/90 dark:bg-white/[0.04]'
-                        : 'bg-surface/30 dark:bg-white/[0.015] border-border/60 dark:border-white/10 hover:opacity-100 hover:bg-surface/50'
-                        }`}
+          {/* ── 4 EXPANDING INTERACTIVE SUBSECTION CARDS (ACCORDION ANIMATION - REDUCED HEIGHT) ── */}
+          <div
+            onMouseEnter={() => setIsSubsectionHovered(true)}
+            onMouseLeave={() => setIsSubsectionHovered(false)}
+            className="w-full flex flex-col md:flex-row gap-2.5 sm:gap-3 h-auto md:h-[265px] lg:h-[280px]"
+          >
+            {GROWTH_INTELLIGENCE_PRINCIPLES.map((sub, idx) => {
+              const SubIcon = sub.icon
+              const isActive = activeSubsection === idx
+
+              return (
+                <motion.div
+                  key={sub.id}
+                  layout
+                  transition={{
+                    layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+                  }}
+                  onMouseEnter={() => {
+                    setIsSubsectionHovered(true)
+                    setActiveSubsection(idx)
+                  }}
+                  onMouseLeave={() => setIsSubsectionHovered(false)}
+                  onClick={() => setActiveSubsection(idx)}
+                  style={{
+                    flex: isActive ? 3.4 : 0.8,
+                  }}
+                  className={`group relative rounded-xl sm:rounded-2xl overflow-hidden transition-colors duration-300 flex flex-col justify-between select-none ${isActive
+                    ? 'bg-gradient-to-br from-[#86D8E4] via-[#48CBDC] to-[#03BBD0] text-[#082F49] border border-[#22D3EE]/50 shadow-[0_14px_35px_rgba(3,187,208,0.25)] ring-1 ring-[#22D3EE]/30'
+                    : 'bg-surface/70 dark:bg-white/[0.03] border border-border/80 dark:border-white/10 hover:border-[#03BBD0]/40 hover:bg-surface/90 dark:hover:bg-white/[0.06] cursor-pointer'
+                    } p-3.5 sm:p-4.5 min-h-[85px] md:min-h-0`}
+                >
+                  {/* EXPANDED VIEW */}
+                  {isActive ? (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.25, delay: 0.08 }}
+                      className="h-full flex flex-col justify-between relative z-10 w-full"
                     >
-                      {/* Active / Hover Circular Glow Ring */}
-                      {isActive && (
-                        <div
-                          className="absolute -right-10 -top-10 w-32 h-32 rounded-full blur-2xl pointer-events-none transition-opacity duration-500"
+                      {/* Giant Faint Watermark Number */}
+                      <span className="absolute top-5 right-1 sm:right-2 text-5xl sm:text-6xl lg:text-7xl font-black text-[#03BBD0]/100 pointer-events-none select-none font-mono leading-none">
+                        {sub.num}.
+                      </span>
+
+                      {/* Top Row: Glass Icon Badge + Parent Relationship Tag */}
+                      <div className="flex items-start justify-between gap-2 relative z-10">
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#0F9EB6] border border-white/40 flex items-center justify-center text-white shadow-sm shrink-0">
+                          <SubIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white" />
+                        </div>
+                        <span className="text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-md bg-[#E4F8F8] border border-white/70 text-[#0E4A59] tracking-wider uppercase shadow-sm">
+                          MISSION & VISION • PRINCIPLE {sub.num}
+                        </span>
+                      </div>
+
+                      {/* Bottom Content Area */}
+                      <div className="mt-3 md:mt-auto relative z-10">
+                        <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest uppercase text-[#083344] mb-0.5">
+                          {sub.num}. {sub.category}
+                        </div>
+                        <h4 className="text-base sm:text-lg lg:text-xl font-bold text-[#082F49] tracking-tight leading-snug mb-1">
+                          {sub.title}
+                        </h4>
+                        <p className="text-xs sm:text-[13px] text-[#0E384D] font-medium leading-relaxed max-w-xl mb-2 line-clamp-2 sm:line-clamp-3">
+                          {sub.desc}
+                        </p>
+                        <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-[#E4F8F8] border border-white/70 text-[#0E4A59] shadow-sm">
+                          <CheckCircle2 className="w-3 h-3 text-[#0F9EB6]" />
+                          {sub.badge}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    /* COLLAPSED VIEW */
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                      className="h-full flex flex-row md:flex-col items-center justify-between w-full"
+                    >
+                      {/* Faded Top Number */}
+                      <span className="text-base sm:text-lg font-mono font-black text-text-muted/40 text-center md:pt-1">
+                        {sub.num}.
+                      </span>
+
+                      {/* Centered Circular Icon Badge */}
+                      <div className="w-8 h-8 rounded-full bg-surface/90 dark:bg-white/[0.05] border border-border/80 dark:border-white/10 flex items-center justify-center text-text-muted group-hover:text-[#03BBD0] transition-all shadow-sm">
+                        <SubIcon className="w-3.5 h-3.5" />
+                      </div>
+
+                      {/* Vertical Title Text */}
+                      <div className="hidden md:flex flex-1 items-center justify-center overflow-hidden pb-2">
+                        <span
+                          className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-text-muted group-hover:text-text-primary transition-colors whitespace-nowrap"
                           style={{
-                            backgroundColor: principle.color,
-                            opacity: isDark ? 0.15 : 0.08,
+                            writingMode: 'vertical-rl',
+                            transform: 'rotate(180deg)',
                           }}
-                        />
-                      )}
-
-                      {/* Active Traveling Signal Micro-Animation across bottom edge */}
-                      {isActive && !prefersReducedMotion && (
-                        <motion.div
-                          key={`active-signal-${principle.id}`}
-                          initial={{ left: '0%', width: '0%', opacity: 0 }}
-                          animate={{
-                            left: ['0%', '0%', '100%'],
-                            width: ['0%', '40%', '0%'],
-                            opacity: [0, 1, 0],
-                          }}
-                          transition={{ duration: 0.6, ease: 'easeInOut' }}
-                          className="absolute bottom-0 h-[2px] pointer-events-none z-10"
-                          style={{ backgroundColor: principle.color }}
-                        />
-                      )}
-
-                      {/* Header Row: Number + Short Title + Status */}
-                      <div className="flex items-center justify-between relative z-10">
-                        <div className="flex items-center gap-3">
-                          {/* Node Number with subtle scale & indicator ring */}
-                          <div className="relative flex items-center justify-center">
-                            {isActive && (
-                              <span
-                                className="absolute -inset-1 rounded-full opacity-20"
-                                style={{ backgroundColor: principle.color }}
-                              />
-                            )}
-                            <span
-                              className="font-mono text-sm font-bold tracking-widest transition-all duration-300"
-                              style={{ color: isActive ? principle.color : undefined }}
-                            >
-                              {principle.num}
-                            </span>
-                          </div>
-
-                          <span className="h-3 w-[1px] bg-border/60 dark:bg-white/10" />
-
-                          {/* Principle Title */}
-                          <h4
-                            className={`text-sm sm:text-[15px] font-bold uppercase tracking-tight transition-all duration-300 ${isActive
-                              ? 'text-text-primary translate-x-1'
-                              : 'text-text-secondary group-hover:text-text-primary group-hover:translate-x-0.5'
-                              }`}
-                          >
-                            {principle.title}
-                          </h4>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                          <span
-                            className={`text-sm font-mono font-semibold px-2 py-0.5 rounded transition-all duration-300 ${isActive
-                              ? 'bg-surface dark:bg-white/10 text-text-primary border border-border/60 dark:border-white/10'
-                              : 'text-text-muted opacity-0 group-hover:opacity-100'
-                              }`}
-                          >
-                            {principle.badge}
-                          </span>
-                          <ArrowRight
-                            size={14}
-                            className={`transition-all duration-300 ${isActive ? 'translate-x-0' : '-translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
-                              }`}
-                            style={{ color: isActive ? principle.color : undefined }}
-                          />
-                        </div>
+                        >
+                          {sub.shortTitle || sub.title}
+                        </span>
                       </div>
 
-                      {/* Expanding Dynamic Description with zero margin/padding jump */}
-                      <AnimatePresence initial={false}>
-                        {isActive && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                            className="overflow-hidden relative z-10"
-                          >
-                            <div className="mt-2.5 pt-2.5 border-t border-border/40 dark:border-white/5">
-                              <p className="text-sm sm:text-[13px] text-text-secondary leading-relaxed font-normal">
-                                {principle.desc}
-                              </p>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )
-                })}
-              </div>
-
-            </div>
-
+                      {/* Mobile Horizontal Title */}
+                      <span className="md:hidden text-xs font-bold text-text-primary truncate ml-2">
+                        {sub.shortTitle || sub.title}
+                      </span>
+                    </motion.div>
+                  )}
+                </motion.div>
+              )
+            })}
           </div>
 
         </div>
       </section>
-
       {/* ── SECTION 04: THE B2B GROWTH ENGINE (FULL-FUNNEL CAPABILITIES / WHAT WE DO) ── */}
       <section
         id="what-we-do"
@@ -1953,7 +1041,7 @@ export const AboutCompany = () => {
               className="inline-flex items-center gap-2  text-primary text-sm font-mono font-bold tracking-wider uppercase mb-3"
             >
               <Zap size={12} className="text-[#00A6FF] animate-pulse" />
-              <span>Full-Funnel Capabilities</span>
+              <span>OUR REVENUE ENGINEERING CAPABILITIES</span>
             </motion.div>
 
             {/* Step 03: Heading (+25px upward reveal) */}
@@ -1963,9 +1051,10 @@ export const AboutCompany = () => {
               transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
               className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary mb-4 leading-tight"
             >
-              What We{' '}
+              Full-Funnel Tech-Enabled{' '}
               <span className="bg-gradient-to-r from-primary via-[#00E5FF] to-cta bg-clip-text text-transparent">
-                Do
+                Demand Capabilities
+
               </span>
             </motion.h2>
 
@@ -1976,7 +1065,7 @@ export const AboutCompany = () => {
               transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="text-text-secondary text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-2xl mx-auto"
             >
-              Bespoke demand generation solutions architected for high-growth enterprise SaaS and technology organizations.
+              Architected for enterprise SaaS and technology organizations scaling across North America, EMEA, and APAC.
             </motion.p>
           </div>
 

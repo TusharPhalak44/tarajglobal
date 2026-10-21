@@ -187,11 +187,10 @@ const FAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2   mb-2.5"
+            className="flex items-center justify-center mb-2.5"
           >
-            <HelpCircle className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              FAQ
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+              Frequently Asked Questions
             </span>
           </motion.div>
 

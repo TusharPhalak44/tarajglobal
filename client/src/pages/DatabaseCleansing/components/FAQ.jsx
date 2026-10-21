@@ -182,10 +182,9 @@ const FAQ = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-7">
-          <div className="inline-flex items-center gap-2   mb-2.5">
-            <HelpCircle className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Got Questions?
+          <div className="flex items-center justify-center mb-2.5">
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+              Frequently Asked Questions
             </span>
           </div>
 

@@ -1,15 +1,16 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { Linkedin, Mail } from 'lucide-react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
+import { motion } from 'framer-motion'
+import { Linkedin, Mail, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 
 const LEADERSHIP_MEMBERS = [
   {
     id: 'hanmant',
     name: 'Hanmant Dhotre',
-    position: 'Vision, leadership & business direction',
+    roleTag: 'FOUNDER & CEO',
+    position: 'Vision, Leadership & Business Direction',
     introduction:
-      'Hanmant Dhotre leads TaRaj Global with a clear vision to help businesses build stronger and more predictable B2B growth. As Founder and CEO, he focuses on innovation, data-driven strategies, and delivering meaningful business outcomes. His leadership continues to shape TaRaj Global as a trusted partner for organizations looking to create better opportunities and sustainable growth.',
+      'Hanmant Dhotre founded TaRaj Global to replace unverified B2B outbound marketing with engineered growth architecture. Under his leadership, the firm scaled into an ISO 9001:2015 and ISO 27001:2022 certified enterprise. He guides technical strategy across US, EMEA, and APAC markets using proprietary verification tools to deliver predictable revenue pipeline.',
     image: '/Hanmant-Dhotre.webp',
     social: {
       linkedin: 'https://www.linkedin.com/in/hanmant-dhotre-3799b425/',
@@ -19,9 +20,10 @@ const LEADERSHIP_MEMBERS = [
   {
     id: 'tushar',
     name: 'Tushar Phalak',
-    position: 'Growth, marketing & demand generation',
+    roleTag: 'CO-FOUNDER & CTO',
+    position: 'Growth, Marketing & Demand Generation',
     introduction:
-      'Tushar Phalak drives TaRaj Global’s growth and marketing strategy, with a strong focus on B2B demand generation, digital marketing, and scalable growth initiatives. He combines data-driven thinking with market-focused strategies to strengthen the brand, expand opportunities, and build marketing systems that deliver measurable business impact.',
+      'Tushar Phalak leads growth architecture and campaign strategy at TaRaj Global, specializing in multi-touch B2B lead generation and ABM. He integrates real-time intent telemetry with custom deliverability engines, helping enterprise SaaS and technology brands scale market penetration and convert target account intent into qualified pipeline across global markets.',
     image: '/Tushar-Phalak-1.webp',
     social: {
       linkedin: 'https://www.linkedin.com/in/tushar-phalak-b44088101/',
@@ -31,9 +33,10 @@ const LEADERSHIP_MEMBERS = [
   {
     id: 'abhishek',
     name: 'Abhishek Rikibe',
-    position: 'Client success, relationships & partnerships',
+    roleTag: 'CO-FOUNDER & COO',
+    position: 'Client Success, Relationships & Partnerships',
     introduction:
-      'Abhishek Rikibe leads Client Success and Partnerships at TaRaj Global, focusing on building trusted relationships and creating long-term business value. He works closely with clients to understand their goals, connect their needs with effective solutions, and foster strong collaboration that supports sustainable growth and lasting partnerships.',
+      'Abhishek Rikibe directs enterprise client operations and global partnerships, ensuring strict adherence to TaRaj Global’s 99.8% Data Accuracy SLA. He oversees client portal onboarding, providing revenue leaders with single-pane campaign telemetry, instant lead alerts, and automated CRM pipeline routing (Salesforce, HubSpot) to drive high retention and measurable ROI.',
     image: '/Abhishek-Rikibe.webp',
     social: {
       linkedin: 'https://www.linkedin.com/in/abhishek-rikibe-834196231/',
@@ -42,316 +45,295 @@ const LEADERSHIP_MEMBERS = [
   },
 ]
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   LINE-BY-LINE BIO SCROLL REVEAL COMPONENT
-   Dynamically and responsively measures rendered line wraps and reveals
-   each line progressively upon scroll entrance.
-───────────────────────────────────────────────────────────────────────────── */
-const LineByLineBio = ({ text, className, isProfileInView }) => {
-  const prefersReducedMotion = useReducedMotion()
-
-  if (prefersReducedMotion) {
-    return <p className={className}>{text}</p>
-  }
-
-  return (
-    <motion.p
-      initial={{ opacity: 0, y: 10 }}
-      animate={isProfileInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-      transition={{ duration: 0.45, delay: 0.18 }}
-      className={`leading-relaxed ${className || ''}`}
-    >
-      {text}
-    </motion.p>
-  )
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   LEADER PROFILE ROW (Independent Scroll Observer & Responsive Zig-Zag)
-───────────────────────────────────────────────────────────────────────────── */
-const LeaderRow = ({ member, index, isEven, prefersReducedMotion }) => {
-  const rowRef = useRef(null)
-  const isRowInView = useInView(rowRef, { once: true, amount: 0.25 })
-
-  const profileVariants = {
-    hidden: {
-      opacity: 0,
-      y: 25,
-      scale: 0.97,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.65,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  }
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.96 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-    },
-  }
-
-  const isSecondRow = index === 1
-
-  return (
-    <motion.div
-      ref={rowRef}
-      variants={prefersReducedMotion ? {} : profileVariants}
-      initial={prefersReducedMotion ? {} : 'hidden'}
-      animate={isRowInView ? 'visible' : 'hidden'}
-      className="relative flex flex-col items-center"
-    >
-      <motion.div
-        whileHover={prefersReducedMotion ? {} : { y: -3 }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="w-full lg:max-w-[1080px] lg:mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-14 rounded-3xl p-4 sm:p-6 transition-shadow duration-300 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/30"
-      >
-        {/* ── PORTRAIT COLUMN (Ordered 2 on Desktop for Row 2) ──────────────── */}
-        <div
-          className={`relative flex-shrink-0 flex flex-col items-center ${isSecondRow ? 'order-1 lg:order-2' : ''
-            }`}
-        >
-          {/* Ambient Glow */}
-          <div
-            className="absolute inset-0 rounded-full bg-primary/40 dark:bg-primary/20 blur-3xl pointer-events-none"
-            style={{ transform: 'scale(1.2)' }}
-          />
-
-          {/* Floating container with subtle idle motion */}
-          <motion.div
-            animate={prefersReducedMotion ? {} : { y: [0, -2, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative"
-          >
-            {/* Accent ring */}
-            <div
-              className="absolute inset-0 rounded-full pointer-events-none"
-              style={{
-                background: `conic-gradient(from 0deg, var(--primary), var(--cta), var(--primary))`,
-                padding: '3px',
-                borderRadius: '50%',
-                filter: 'blur(0.5px)',
-              }}
-            >
-              <div className="w-full h-full rounded-full bg-background" />
-            </div>
-
-            {/* Main portrait with hover scale micro-animation */}
-            <motion.div
-              variants={prefersReducedMotion ? {} : imageVariants}
-              whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20 cursor-pointer"
-              style={{
-                boxShadow:
-                  '0 20px 40px -12px rgba(var(--primary-rgb), 0.22), 0 0 0 4px rgba(var(--primary-rgb), 0.1)',
-              }}
-            >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                style={{ objectPosition: 'center 25%' }}
-                loading="lazy"
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                  if (e.target.nextElementSibling) {
-                    e.target.nextElementSibling.style.display = 'flex'
-                  }
-                }}
-              />
-              <div
-                className="absolute inset-0 flex items-center justify-center bg-primary/30 dark:bg-primary/10"
-                style={{ display: 'none' }}
-              >
-                <span className="text-5xl">👤</span>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Social Links with Hover Scale */}
-          <div className="flex gap-3.5 mt-5 relative z-10">
-            <motion.a
-              whileHover={{ scale: 1.08, y: -1 }}
-              whileTap={{ scale: 0.96 }}
-              href={member.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 rounded-full bg-primary/30 dark:bg-primary/10 border-2 border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm min-w-[44px] min-h-[44px]"
-              aria-label={`${member.name} LinkedIn`}
-            >
-              <Linkedin className="w-4.5 h-4.5" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.08, y: -1 }}
-              whileTap={{ scale: 0.96 }}
-              href={`mailto:${member.social.email}`}
-              className="w-11 h-11 rounded-full bg-cta/30 dark:bg-cta/10 border-2 border-cta/30 flex items-center justify-center text-cta hover:bg-cta hover:text-white hover:border-cta transition-all duration-300 shadow-sm min-w-[44px] min-h-[44px]"
-              aria-label={`Email ${member.name}`}
-            >
-              <Mail className="w-4.5 h-4.5" />
-            </motion.a>
-          </div>
-        </div>
-
-        {/* ── CONTENT COLUMN ──────────────────────────────────────────────── */}
-        <div
-          className={`flex-1 text-left ${isSecondRow ? 'order-2 lg:order-1' : ''
-            }`}
-        >
-          {/* Name */}
-          <motion.h3
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
-            animate={isRowInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.08 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-1.5 sm:mb-2 tracking-tight"
-          >
-            {member.name}
-          </motion.h3>
-
-          {/* Position */}
-          <motion.p
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 8 }}
-            animate={isRowInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-            transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.14 }}
-            className="text-base sm:text-lg md:text-xl font-semibold bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent mb-3 sm:mb-4"
-          >
-            {member.position}
-          </motion.p>
-
-          {/* Line-by-Line Bio Scroll Reveal */}
-          <LineByLineBio
-            text={member.introduction}
-            isProfileInView={isRowInView}
-            className="text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl mx-auto lg:mx-0 font-normal [text-wrap:pretty]"
-          />
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   MAIN OUR TEAM COMPONENT
-───────────────────────────────────────────────────────────────────────────── */
 export const OurTeam = () => {
   const prefersReducedMotion = useReducedMotion()
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  )
 
-  const headingVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
+  const touchStartX = useRef(0)
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % LEADERSHIP_MEMBERS.length)
+  }, [])
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + LEADERSHIP_MEMBERS.length) % LEADERSHIP_MEMBERS.length)
+  }, [])
+
+  // Auto-rotation loop (every 4.5 seconds)
+  useEffect(() => {
+    if (isPaused) return
+    const interval = setInterval(() => {
+      handleNext()
+    }, 4500)
+    return () => clearInterval(interval)
+  }, [isPaused, handleNext])
+
+  // Responsive offset calculation
+  const offset = windowWidth < 640 ? 150 : windowWidth < 1024 ? 270 : 390
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') handlePrev()
+      if (e.key === 'ArrowRight') handleNext()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handlePrev, handleNext])
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = (e) => {
+    const touchEndX = e.changedTouches[0].clientX
+    const diff = touchStartX.current - touchEndX
+    if (diff > 45) {
+      handleNext()
+    } else if (diff < -45) {
+      handlePrev()
+    }
+  }
+
+  // Helper to determine role and position for each card
+  const getCardPosition = (index) => {
+    const diff = (index - activeIndex + LEADERSHIP_MEMBERS.length) % LEADERSHIP_MEMBERS.length
+    if (diff === 0) return 'center'
+    if (diff === 1) return 'right'
+    return 'left'
   }
 
   return (
     <section
       id="leadership"
       aria-label="Meet Our Leaders"
-      className="relative pt-9 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 lg:pb-20 overflow-hidden bg-background"
+      className="relative pt-10 sm:pt-14 lg:pt-16 pb-12 sm:pb-16 lg:pb-20 overflow-hidden bg-background select-none"
     >
-      {/* Background with alternating subtle geometric zones */}
-      <div className="absolute inset-0 bg-background pointer-events-none select-none">
-        {/* Zone 1 - Behind Leader 1 (left side) */}
-        <motion.div
-          className="absolute top-0 left-0 w-1/2 h-[45%] opacity-[0.03]"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 0.03, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          style={{
-            background: 'linear-gradient(135deg, var(--primary) 0%, transparent 70%)',
-            clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)',
-          }}
-        />
-
-        {/* Zone 2 - Behind Leader 2 (right side) */}
-        <motion.div
-          className="absolute top-[35%] right-0 w-1/2 h-[45%] opacity-[0.03]"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 0.03, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          style={{
-            background: 'linear-gradient(225deg, var(--cta) 0%, transparent 70%)',
-            clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)',
-          }}
-        />
-
-        {/* Zone 3 - Behind Leader 3 (left side) */}
-        <motion.div
-          className="absolute bottom-0 left-0 w-1/2 h-[45%] opacity-[0.03]"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 0.03, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          style={{
-            background: 'linear-gradient(135deg, var(--primary) 0%, transparent 70%)',
-            clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)',
-          }}
-        />
-
-        {/* Subtle curved accent shapes */}
-        <div
-          className="absolute top-[15%] left-[10%] w-[450px] h-[450px] rounded-full opacity-[0.02]"
-          style={{
-            background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
-          }}
-        />
-
-        <div
-          className="absolute bottom-[15%] right-[10%] w-[380px] h-[380px] rounded-full opacity-[0.02]"
-          style={{
-            background: 'radial-gradient(circle, var(--cta) 0%, transparent 70%)',
-          }}
-        />
+      {/* ── Ambient Radial Lighting ─── */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[320px] rounded-full bg-[#00A6FF]/[0.05] blur-[150px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[240px] rounded-full bg-[#FF6D00]/[0.03] blur-[140px]" />
       </div>
 
       <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── SECTION HEADING ───────────────────────────────────────────── */}
-        <motion.div
-          variants={prefersReducedMotion ? {} : headingVariants}
-          initial={prefersReducedMotion ? {} : 'hidden'}
-          whileInView={prefersReducedMotion ? {} : 'visible'}
-          viewport={{ once: true, amount: 0.2 }}
-          className="relative text-center mb-10 sm:mb-12 lg:mb-14"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-3 tracking-tight">
+        <div className="relative text-center mb-8 sm:mb-10 lg:mb-12">
+          {/* Pre-header Eyebrow (Matching Homepage Section Style) */}
+          <div className="inline-flex items-center justify-center mb-2.5 sm:mb-3">
+            <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+              EXECUTIVE LEADERSHIP
+            </p>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
             MEET OUR{' '}
-            <span className="bg-gradient-to-r from-purple-500 to-violet-500 bg-clip-text text-transparent">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#FF6D00]">
               LEADERS
             </span>
           </h2>
-          <div className="w-20 sm:w-24 h-1 mx-auto bg-gradient-to-r from-purple-500 to-violet-500 rounded-full" />
-        </motion.div>
+          <div className="w-20 sm:w-24 h-1 mx-auto bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#FF6D00] rounded-full mt-2.5" />
+          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mt-2.5 font-normal leading-relaxed">
+            The visionary architects and engineers steering TaRaj Global's B2B demand generation operations across global technology markets.
+          </p>
+        </div>
 
-        {/* ── LEADERSHIP PROFILES (ZIG-ZAG WITH LINE-BY-LINE BIO REVEAL) ── */}
-        <div className="space-y-12 sm:space-y-14 lg:space-y-16">
+        {/* ── ONE FRAME 3D CAROUSEL STAGE ─────────────────────────────── */}
+        <div
+          className="relative w-full max-w-5xl mx-auto h-[540px] sm:h-[500px] md:h-[480px] flex items-center justify-center overflow-visible"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{ perspective: '1200px' }}
+        >
           {LEADERSHIP_MEMBERS.map((member, index) => {
-            const isEven = index % 2 === 0
+            const position = getCardPosition(index)
+            const isCenter = position === 'center'
+            const isLeft = position === 'left'
+            const isRight = position === 'right'
+
+            const xPos = isCenter ? 0 : isLeft ? -offset : offset
+
             return (
-              <LeaderRow
+              <div
                 key={member.id}
-                member={member}
-                index={index}
-                isEven={isEven}
-                prefersReducedMotion={prefersReducedMotion}
-              />
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                style={{ zIndex: isCenter ? 30 : 10 }}
+              >
+                <motion.div
+                  animate={{
+                    x: xPos,
+                    scale: isCenter ? 1 : windowWidth < 640 ? 0.8 : 0.86,
+                    opacity: isCenter ? 1 : windowWidth < 640 ? 0.45 : 0.65,
+                    rotateY: isCenter ? 0 : isLeft ? 6 : -6,
+                  }}
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0.3 }
+                      : { duration: 0.65, ease: [0.16, 1, 0.3, 1] }
+                  }
+                  onClick={() => {
+                    if (isLeft) handlePrev()
+                    if (isRight) handleNext()
+                  }}
+                  className={`pointer-events-auto relative w-[92%] sm:w-[440px] md:w-[470px] lg:w-[490px] rounded-3xl p-6 sm:p-7 border transition-all duration-300 overflow-hidden ${
+                    isCenter
+                      ? 'bg-[#091122] border-[#00A6FF]/40 shadow-[0_12px_45px_rgba(0,166,255,0.2)] cursor-default'
+                      : 'bg-[#080D1A] border-white/10 hover:border-white/25 hover:opacity-85 cursor-pointer shadow-lg'
+                  }`}
+                >
+                  {/* Top Ambient Glow Line on Center Card */}
+                  <div
+                    className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${
+                      isCenter ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+
+                  {/* Card Content Layout */}
+                  <div className="flex flex-col items-center text-center">
+                    {/* Avatar Portrait with Ambient Ring */}
+                    <div className="relative mb-4">
+                      {/* Ambient Accent Ring */}
+                      <div
+                        className={`absolute inset-0 rounded-full transition-opacity duration-300 ${
+                          isCenter ? 'bg-[#00A6FF]/15 ring-2 ring-[#00A6FF]/30 opacity-100' : 'opacity-0'
+                        }`}
+                        style={{ transform: 'scale(1.15)' }}
+                      />
+
+                      {/* Portrait Circle */}
+                      <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-[#00A6FF]/50 shadow-xl shadow-[#00A6FF]/15">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          style={{ objectPosition: 'center 20%' }}
+                          loading="lazy"
+                          onError={(e) => {
+                            e.target.style.display = 'none'
+                            if (e.target.nextElementSibling) {
+                              e.target.nextElementSibling.style.display = 'flex'
+                            }
+                          }}
+                        />
+                        <div
+                          className="absolute inset-0 flex items-center justify-center bg-[#091122]"
+                          style={{ display: 'none' }}
+                        >
+                          <span className="text-4xl">👤</span>
+                        </div>
+                      </div>
+
+                      {/* Small badge overlay */}
+                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                        <span className="bg-[#00A6FF] text-white text-[10px] sm:text-[11px] font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full shadow-md uppercase">
+                          {member.roleTag}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Leader Name */}
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-1 mb-1">
+                      {member.name}
+                    </h3>
+
+                    {/* Position / Strategic Responsibility */}
+                    <p className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#FF6D00] bg-clip-text text-transparent mb-3 max-w-sm">
+                      {member.position}
+                    </p>
+
+                    {/* Bio Paragraph */}
+                    <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed font-normal mb-5 line-clamp-4 [text-wrap:pretty]">
+                      {member.introduction}
+                    </p>
+
+                    {/* Social Connect Links */}
+                    <div className="flex items-center gap-3">
+                      <motion.a
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={member.social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-9 h-9 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/30 flex items-center justify-center text-[#00A6FF] hover:bg-[#00A6FF] hover:text-white transition-all duration-200 shadow-sm"
+                        aria-label={`${member.name} LinkedIn Profile`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </motion.a>
+
+                      <motion.a
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={`mailto:${member.social.email}`}
+                        className="w-9 h-9 rounded-full bg-[#FF6D00]/10 border border-[#FF6D00]/30 flex items-center justify-center text-[#FF6D00] hover:bg-[#FF6D00] hover:text-white transition-all duration-200 shadow-sm"
+                        aria-label={`Email ${member.name}`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Mail className="w-4 h-4" />
+                      </motion.a>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             )
           })}
+        </div>
+
+        {/* ── INTERACTIVE CONTROLS: PREV / NEXT ARROWS & PAGINATION PILLS ── */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 sm:mt-6">
+          {/* Arrow Buttons & Dot Indicators */}
+          <div className="inline-flex items-center gap-3 bg-[#070D18]/90 border border-white/10 px-4 py-2 rounded-full">
+            {/* Prev Button */}
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous Leader"
+              className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-[#00A6FF]/20 border border-white/10 hover:border-[#00A6FF]/40 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Pagination Indicators */}
+            <div className="flex items-center gap-2 px-1">
+              {LEADERSHIP_MEMBERS.map((member, idx) => {
+                const isActive = activeIndex === idx
+                return (
+                  <button
+                    key={member.id}
+                    type="button"
+                    onClick={() => setActiveIndex(idx)}
+                    aria-label={`Go to ${member.name}`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? 'w-7 bg-gradient-to-r from-[#00A6FF] to-[#00E5FF]'
+                        : 'w-2 bg-white/20 hover:bg-white/40'
+                    }`}
+                  />
+                )
+              })}
+            </div>
+
+            {/* Next Button */}
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next Leader"
+              className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-[#00A6FF]/20 border border-white/10 hover:border-[#00A6FF]/40 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

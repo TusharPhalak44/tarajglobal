@@ -3,18 +3,34 @@ import SEO from '@components/common/SEO'
 import AboutCompany from './components/AboutCompany'
 import OurTeam from './components/OurTeam'
 import LivingIntelligenceGrid from './components/LivingIntelligenceGrid'
+import { AboutFAQ, ABOUT_FAQS } from '@components/sections/FAQ/HomeFAQ'
 
 const aboutSchema = {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "Who We Are - Taraj Global",
-  "url": "https://tarajglobal.com/about",
-  "description": "Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven marketing.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Taraj Global",
-    "url": "https://tarajglobal.com"
-  }
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "name": "Who We Are - Taraj Global",
+      "url": "https://tarajglobal.com/about",
+      "description": "Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven marketing.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Taraj Global",
+        "url": "https://tarajglobal.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": ABOUT_FAQS.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
 }
 
 function About() {
@@ -23,7 +39,7 @@ function About() {
       <SEO
         title="Who We Are | Taraj Global B2B Demand Generation & Growth Partner"
         description="Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven demand generation and lead qualification."
-        keywords="who we are, about Taraj Global, B2B marketing agency Pune, demand generation leadership, B2B lead gen company, Hanmant Dhotre, Tushar Phalak, Abhishek Rikibe, B2B growth agency, lead generation experts"
+        keywords="who we are, about us, about-us, about Taraj Global, B2B marketing agency Pune, demand generation leadership, B2B lead gen company, Hanmant Dhotre, Tushar Phalak, Abhishek Rikibe, B2B growth agency, lead generation experts"
         canonical="/about"
         ogTitle="Who We Are | Taraj Global - Powering B2B Growth With Qualified Opportunities"
         ogDescription="Learn how Taraj Global helps B2B SaaS and technology companies connect with the right decision-makers and build stronger sales pipelines."
@@ -37,6 +53,7 @@ function About() {
         <div className="relative z-10">
           <AboutCompany />
           <OurTeam />
+          <AboutFAQ />
         </div>
       </div>
     </>

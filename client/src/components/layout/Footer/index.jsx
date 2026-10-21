@@ -57,16 +57,16 @@ export const Footer = () => {
 
   const settings = footerData?.settings || {}
 
-  // ── Main Horizontal Nav Links (Matching User Design) ─────────────────────
+  // ── Main Horizontal Nav Links (Centered Command Bar) ─────────────────────
   const navLinks = [
     { label: 'Lead Generation', url: '/sql-services' },
     { label: 'Demand Generation', url: '/demand-generation' },
     { label: 'ABM', url: '/abm' },
     { label: 'Industries', url: '/services' },
-    { label: 'Careers', url: '/careers' },
-    { label: 'Blogs', url: '/blog' },
-    { label: 'Who We Are', url: '/about' },
     { label: 'Contact Us', url: '/contact' },
+    { label: 'Who We Are', url: '/about' },
+    { label: 'Blogs', url: '/blog' },
+    { label: 'Careers', url: '/careers' },
   ]
 
   // ── Social Icons Helper with Glassmorphism Brand Hover Treatments ─────────
@@ -155,8 +155,8 @@ export const Footer = () => {
       {/* ── Footer Foreground Content ────────────────────────────────────── */}
       <div className="relative z-10 w-full max-w-[1800px] mx-auto px-4 sm:px-8 xl:px-12 pt-4 sm:pt-5 pb-2.5">
         
-        {/* ── 1. CENTER BRANDING: CIRCULAR TG EMBLEM & WORDMARK (CLEAR & PROMINENT) ── */}
-        <div className="flex flex-col items-center justify-center text-center mb-2.5 sm:mb-3">
+        {/* ── 1. CENTER BRANDING: CIRCULAR TG EMBLEM & WORDMARK & SOCIAL ICONS ── */}
+        <div className="flex flex-col items-center justify-center text-center mb-3 sm:mb-4">
           <Link
             to="/"
             className="group flex flex-col items-center focus:outline-none"
@@ -180,55 +180,9 @@ export const Footer = () => {
               loading="eager"
             />
           </Link>
-        </div>
 
-        {/* ── 2. MAIN HORIZONTAL COMMAND BAR (FULL-WIDTH BALANCED) ─────────── */}
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-3 sm:gap-4 lg:gap-6 py-2 sm:py-2.5 border-t border-white/[0.08] lg:border-t-0">
-          
-          {/* LEFT: Dual ISO Certificates Badges (ENLARGED) */}
-          <div className="flex items-center shrink-0">
-            <img
-              src={settings.cert_image_url || "/footerimage.png"}
-              onError={(e) => {
-                e.currentTarget.onerror = null
-                e.currentTarget.src = "/footerimage.png"
-              }}
-              alt="Taraj Global ISO 27001 & ISO 9001 Certifications"
-              className="h-14 sm:h-16 lg:h-[66px] xl:h-[72px] w-auto object-contain select-none hover:brightness-110 transition-all drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Vertical Separator for Desktop */}
-          <div className="hidden lg:block h-9 w-[1px] bg-white/[0.16] mx-2 shrink-0" />
-
-          {/* CENTER: Main Navigation Links (Spreading Across Full Width) */}
-          <nav
-            aria-label="Footer Navigation"
-            className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 xl:gap-x-8 gap-y-1.5 text-center flex-1"
-          >
-            {navLinks.map((link, idx) => (
-              <React.Fragment key={link.label}>
-                {idx > 0 && (
-                  <span className="text-white/20 hidden sm:inline select-none text-xs font-light">
-                    |
-                  </span>
-                )}
-                <Link
-                  to={link.url}
-                  className="text-sm sm:text-[15px] font-semibold text-slate-100 hover:text-[#FF6D00] transition-colors duration-200 tracking-wide py-0.5 whitespace-nowrap"
-                >
-                  {link.label}
-                </Link>
-              </React.Fragment>
-            ))}
-          </nav>
-
-          {/* Vertical Separator for Desktop */}
-          <div className="hidden lg:block h-9 w-[1px] bg-white/[0.16] mx-2 shrink-0" />
-
-          {/* RIGHT: Glassmorphism Social Buttons */}
-          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+          {/* Social Icons Centered Directly Below Taraj Global Logo */}
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3 mt-3 sm:mt-3.5">
             {socialsToRender.map((social, sIdx) => (
               <a
                 key={social.id || social.platform || sIdx}
@@ -243,7 +197,49 @@ export const Footer = () => {
               </a>
             ))}
           </div>
+        </div>
 
+        {/* ── 2. MAIN HORIZONTAL COMMAND BAR (CENTERED NAVIGATION LINKS & BALANCED ISO BADGES) ─── */}
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-3 sm:gap-4 py-2 sm:py-2.5 border-t border-white/[0.08] lg:border-t-0">
+          
+          {/* LEFT: Dual ISO Certificates Badges (Non-overlapping, Flexbox Balanced) */}
+          <div className="flex items-center shrink-0 lg:w-[240px] justify-center lg:justify-start">
+            <img
+              src={settings.cert_image_url || "/footerimage.png"}
+              onError={(e) => {
+                e.currentTarget.onerror = null
+                e.currentTarget.src = "/footerimage.png"
+              }}
+              alt="Taraj Global ISO 27001 & ISO 9001 Certifications"
+              className="h-16 sm:h-20 lg:h-[78px] xl:h-[86px] w-auto object-contain select-none hover:brightness-110 transition-all drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
+              loading="lazy"
+            />
+          </div>
+
+          {/* CENTER: Main Navigation Links */}
+          <nav
+            aria-label="Footer Navigation"
+            className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4 lg:gap-x-5 gap-y-2 text-center flex-1 max-w-4xl px-2"
+          >
+            {navLinks.map((link, idx) => (
+              <React.Fragment key={link.label}>
+                {idx > 0 && (
+                  <span className="text-white/20 select-none text-xs font-light">
+                    |
+                  </span>
+                )}
+                <Link
+                  to={link.url}
+                  className="text-xs sm:text-sm lg:text-[14px] font-semibold text-slate-200 hover:text-[#FF6D00] transition-colors duration-200 tracking-wide py-0.5 whitespace-nowrap"
+                >
+                  {link.label}
+                </Link>
+              </React.Fragment>
+            ))}
+          </nav>
+
+          {/* RIGHT: Invisible Balancing Spacer for Desktop (Equal width to ISO on left) */}
+          <div className="hidden lg:flex shrink-0 lg:w-[240px] justify-end" aria-hidden="true" />
         </div>
 
         {/* ── 3. BOTTOM LEGAL BAR & COPYRIGHT ROW (COMPACT, FULL-WIDTH) ───── */}
@@ -255,9 +251,8 @@ export const Footer = () => {
             <span>
               {settings.copyright_text
                 ? settings.copyright_text
-                    .replace('{year}', currentYear)
-                    .replace('Copyright © ', '')
-                    .replace(/Copyright\s*©?\s*\d*\s*/i, '')
+                    .replace(/^(Copyright\s*)?©?\s*\d{4}\s*/i, '')
+                    .replace(/^(Copyright\s*)?©?\s*/i, '')
                 : 'Taraj Global Solutions Private Limited. All rights reserved.'}
             </span>
           </div>
