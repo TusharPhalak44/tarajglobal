@@ -205,8 +205,8 @@ function BlogDetails() {
       headline: blog.title,
       description: blog.excerpt || blog.title,
       image: featuredImg,
-      datePublished: blog.created_at || new Date().toISOString(),
-      dateModified: blog.updated_at || blog.created_at || new Date().toISOString(),
+      datePublished: blog.published_at || blog.created_at || new Date().toISOString(),
+      dateModified: blog.updated_at || blog.published_at || blog.created_at || new Date().toISOString(),
       author: {
         '@type': 'Person',
         name: blog.author_name || 'Taraj Global Editorial Team'
@@ -355,7 +355,7 @@ function BlogDetails() {
                 <span className="text-xs font-mono text-text-tertiary hidden sm:inline">•</span>
                 <span className="text-xs font-mono text-text-tertiary flex items-center gap-1.5">
                   <Calendar size={13} className="text-[#00A6FF]" />
-                  <span>{formatDate(blog.created_at)}</span>
+                  <span>{formatDate(blog.published_at || blog.created_at)}</span>
                 </span>
               </div>
 

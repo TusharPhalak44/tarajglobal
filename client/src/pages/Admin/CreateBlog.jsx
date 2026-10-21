@@ -60,7 +60,10 @@ const CreateBlog = () => {
     meta_title: '',
     meta_description: '',
     focus_keyword: '',
-    publish_date: ''
+    publish_date: '',
+    publish_time: '',
+    scheduled_date: '',
+    scheduled_time: ''
   })
 
   useEffect(() => {
@@ -180,12 +183,7 @@ const CreateBlog = () => {
     if (targetStatus === 'scheduled') {
       if (!createForm.scheduled_date) newErrors.scheduled_date = 'Date is required.'
       if (!createForm.scheduled_time) newErrors.scheduled_time = 'Time is required.'
-      if (createForm.scheduled_date && createForm.scheduled_time) {
-        const scheduledAt = new Date(`${createForm.scheduled_date}T${createForm.scheduled_time}`)
-        if (scheduledAt <= new Date()) {
-          newErrors.scheduled_date = 'Scheduled date must be in the future.'
-        }
-      }
+      // Note: Past dates are explicitly allowed for backdated publication!
     }
 
     setFieldErrors(newErrors)
@@ -196,16 +194,9 @@ const CreateBlog = () => {
 
     setError('')
 
-
-
     if (targetStatus === 'scheduled') {
       if (!createForm.scheduled_date || !createForm.scheduled_time) {
         setError('Please select both a date and time for scheduling.')
-        return
-      }
-      const scheduledAt = new Date(`${createForm.scheduled_date}T${createForm.scheduled_time}`)
-      if (scheduledAt <= new Date()) {
-        setError('Scheduled date must be in the future.')
         return
       }
     }
@@ -221,6 +212,29 @@ const CreateBlog = () => {
         featured_image: createForm.featured_image
       })
 
+      let finalStatus = targetStatus
+      let finalScheduledAt = null
+      let finalPublishedAt = null
+
+      if (targetStatus === 'scheduled' && createForm.scheduled_date && createForm.scheduled_time) {
+        const scheduledDateTime = new Date(`${createForm.scheduled_date}T${createForm.scheduled_time}`)
+        if (scheduledDateTime <= new Date()) {
+          // Date is in past -> Publish immediately with this backdate!
+          finalStatus = 'published'
+          finalPublishedAt = `${createForm.scheduled_date} ${createForm.scheduled_time}:00`
+          finalScheduledAt = null
+        } else {
+          finalStatus = 'scheduled'
+          finalScheduledAt = `${createForm.scheduled_date} ${createForm.scheduled_time}:00`
+          finalPublishedAt = null
+        }
+      } else if (targetStatus === 'published') {
+        if (createForm.publish_date) {
+          const timeVal = createForm.publish_time ? `${createForm.publish_time}:00` : '00:00:00'
+          finalPublishedAt = `${createForm.publish_date} ${timeVal}`
+        }
+      }
+
       const blogData = {
         title: createForm.title.trim(),
         slug: createForm.slug?.trim() || undefined,
@@ -228,8 +242,11 @@ const CreateBlog = () => {
         excerpt: createForm.excerpt || createForm.content.substring(0, 150),
         category_id: createForm.category_id ? parseInt(createForm.category_id, 10) : null,
         author_id: createForm.author_id ? parseInt(createForm.author_id, 10) : null,
-        status: targetStatus,
-        scheduled_at: targetStatus === 'scheduled' ? `${createForm.scheduled_date} ${createForm.scheduled_time}:00` : null,
+        status: finalStatus,
+        scheduled_at: finalScheduledAt,
+        published_at: finalPublishedAt,
+        publish_date: finalPublishedAt,
+        created_at: finalPublishedAt,
         tags: createForm.tags || [],
         featured_image: createForm.featured_image || null,
         seo_score: currentSeo?.score || 0,
@@ -288,11 +305,14 @@ const CreateBlog = () => {
           </button>
           <button
             type="button"
-            onClick={handleCreateBlog}
+            onClick={(e) => {
+              const statusToUse = createForm.status === 'draft' ? 'published' : createForm.status
+              handleCreateBlog(e, statusToUse)
+            }}
             disabled={saving}
             className="admin-btn admin-btn-primary font-semibold px-6"
           >
-            {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : 'Publish'}
+            {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : (createForm.status === 'scheduled' ? 'Schedule' : 'Publish')}
           </button>
         </div>
       </div>
@@ -494,7 +514,7 @@ const CreateBlog = () => {
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input type="radio" name="status" value="published" checked={createForm.status === 'published'} onChange={handleInputChange} className="accent-blue-600" />
-                    <span className="font-semibold text-blue-600 whitespace-nowrap">Publish Now</span>
+                    <span className="font-semibold text-blue-600 whitespace-nowrap">Publish</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input type="radio" name="status" value="scheduled" checked={createForm.status === 'scheduled'} onChange={handleInputChange} className="accent-blue-600" />
@@ -503,11 +523,48 @@ const CreateBlog = () => {
                 </div>
               </div>
 
+              {createForm.status === 'published' && (
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)]">
+                      Publish Date & Time
+                    </label>
+                    <span className="text-[11px] font-semibold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">
+                      Backdating allowed
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="date"
+                      name="publish_date"
+                      value={createForm.publish_date || ''}
+                      onChange={handleInputChange}
+                      className="admin-input w-full text-sm"
+                    />
+                    <input
+                      type="time"
+                      name="publish_time"
+                      value={createForm.publish_time || ''}
+                      onChange={handleInputChange}
+                      className="admin-input w-full text-sm"
+                    />
+                  </div>
+                  <p className="text-[11px] text-[var(--admin-text-muted)] mt-1.5">
+                    Pick any past/back date to post historical blogs, or leave empty for current time.
+                  </p>
+                </div>
+              )}
+
               {createForm.status === 'scheduled' && (
                 <div>
-                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] mb-1.5">
-                    Publish Date & Time <span className="text-red-500">*</span>
-                  </label>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)]">
+                      Scheduled Date & Time <span className="text-red-500">*</span>
+                    </label>
+                    <span className="text-[11px] font-semibold text-blue-500 bg-blue-500/10 px-2 py-0.5 rounded">
+                      Past dates publish immediately
+                    </span>
+                  </div>
                   <div className="grid grid-cols-2 gap-2">
                     <input
                       type="date"
@@ -526,6 +583,9 @@ const CreateBlog = () => {
                     />
                     {fieldErrors.scheduled_time && <span className="text-red-500 text-[13px] mt-1 block">{fieldErrors.scheduled_time}</span>}
                   </div>
+                  <p className="text-[11px] text-[var(--admin-text-muted)] mt-1.5">
+                    Select a future date to schedule, or a past date to publish immediately as backdated.
+                  </p>
                 </div>
               )}
             </div>

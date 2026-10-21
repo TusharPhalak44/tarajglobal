@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
       params.push(author)
     }
     
-    query += ' ORDER BY b.updated_at DESC, b.created_at DESC'
+    query += ' ORDER BY COALESCE(b.published_at, b.created_at) DESC, b.created_at DESC'
     
     const safeLimit = Math.min(Math.max(parseInt(limit, 10) || 10, 1), 100)
     query += ` LIMIT ${safeLimit}`

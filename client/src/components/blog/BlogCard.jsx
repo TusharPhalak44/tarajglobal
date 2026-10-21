@@ -72,7 +72,7 @@ const BlogCard = ({ blog, index, onReadMore }) => {
           {/* Metadata Row */}
           <div className="flex items-center gap-2 text-xs text-text-tertiary mb-3 font-mono">
             <Calendar size={13} className="text-[#00A6FF]" />
-            <span>{formatDate(blog.created_at)}</span>
+            <span>{formatDate(blog.published_at || blog.created_at)}</span>
           </div>
 
           {/* Article Title */}

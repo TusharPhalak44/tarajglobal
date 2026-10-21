@@ -255,8 +255,8 @@ const Blogs = () => {
                     </td>
                     <td className="px-4 py-4">
                       <div className="flex flex-col text-sm text-[var(--admin-text-secondary)]">
-                        <span>{new Date(blog.created_at || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                        <span className="text-[12px] text-[var(--admin-text-muted)]">{new Date(blog.created_at || Date.now()).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
+                        <span>{new Date(blog.published_at || blog.created_at || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                        <span className="text-[12px] text-[var(--admin-text-muted)]">{new Date(blog.published_at || blog.created_at || Date.now()).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
                       </div>
                     </td>
                     <td className="px-4 py-4 text-center font-medium text-[var(--admin-text-primary)]">

@@ -48,7 +48,10 @@ router.post('/', [
   body('seo_description').optional({ nullable: true, checkFalsy: true }),
   body('seo_keywords').optional({ nullable: true, checkFalsy: true }),
   body('canonical_url').optional({ nullable: true, checkFalsy: true }),
-  body('scheduled_at').optional({ nullable: true, checkFalsy: true })
+  body('scheduled_at').optional({ nullable: true, checkFalsy: true }),
+  body('published_at').optional({ nullable: true, checkFalsy: true }),
+  body('publish_date').optional({ nullable: true, checkFalsy: true }),
+  body('created_at').optional({ nullable: true, checkFalsy: true })
 ], validate, blogController.createBlog)
 
 // @route   PUT /api/admin/blogs/:id
@@ -68,7 +71,10 @@ router.put('/:id', [
   body('seo_description').optional({ nullable: true, checkFalsy: true }),
   body('seo_keywords').optional({ nullable: true, checkFalsy: true }),
   body('canonical_url').optional({ nullable: true, checkFalsy: true }),
-  body('scheduled_at').optional({ nullable: true, checkFalsy: true })
+  body('scheduled_at').optional({ nullable: true, checkFalsy: true }),
+  body('published_at').optional({ nullable: true, checkFalsy: true }),
+  body('publish_date').optional({ nullable: true, checkFalsy: true }),
+  body('created_at').optional({ nullable: true, checkFalsy: true })
 ], validate, blogController.updateBlog)
 
 // @route   DELETE /api/admin/blogs/:id

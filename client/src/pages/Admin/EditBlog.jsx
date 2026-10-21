@@ -58,7 +58,10 @@ const EditBlog = () => {
     meta_title: '',
     meta_description: '',
     focus_keyword: '',
-    publish_date: ''
+    publish_date: '',
+    publish_time: '',
+    scheduled_date: '',
+    scheduled_time: ''
   })
   const [categories, setCategories] = useState([])
   const [authors, setAuthors] = useState([])
@@ -83,6 +86,10 @@ const EditBlog = () => {
       const response = await adminAPI.getBlogById(id)
       const blogData = response.data.data || response.data
       
+        const rawPub = blogData.published_at || blogData.created_at
+        const pDate = rawPub ? new Date(new Date(rawPub).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[0] : ''
+        const pTime = rawPub ? new Date(new Date(rawPub).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[1].substring(0, 5) : ''
+
         const sDate = blogData.scheduled_at ? new Date(new Date(blogData.scheduled_at).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[0] : ''
         const sTime = blogData.scheduled_at ? new Date(new Date(blogData.scheduled_at).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[1].substring(0, 5) : ''
         const initialForm = {
@@ -95,6 +102,8 @@ const EditBlog = () => {
           author_id: blogData.author_id || '',
           featured_image: blogData.featured_image || blogData.image || '',
           tags: blogData.tags || [],
+          publish_date: pDate,
+          publish_time: pTime,
           scheduled_date: sDate,
           scheduled_time: sTime,
           meta_title: blogData.seo_title || '',
@@ -203,12 +212,7 @@ const EditBlog = () => {
       if (targetStatus === 'scheduled') {
         if (!editForm.scheduled_date) newErrors.scheduled_date = 'Date is required.'
         if (!editForm.scheduled_time) newErrors.scheduled_time = 'Time is required.'
-        if (editForm.scheduled_date && editForm.scheduled_time) {
-          const scheduledAt = new Date(`${editForm.scheduled_date}T${editForm.scheduled_time}`)
-          if (scheduledAt <= new Date()) {
-            newErrors.scheduled_date = 'Scheduled date must be in the future.'
-          }
-        }
+        // Past dates are explicitly allowed for backdating
       }
       
       setFieldErrors(newErrors)
@@ -233,17 +237,36 @@ const EditBlog = () => {
         setError('Please select both a date and time for scheduling.')
         return
       }
-      const scheduledAt = new Date(`${editForm.scheduled_date}T${editForm.scheduled_time}`)
-      if (scheduledAt <= new Date()) {
-        setError('Scheduled date must be in the future.')
-        return
-      }
     }
 
     setSaving(true)
 
     try {
       const currentSeo = analyzeSEO(editForm)
+
+      let finalStatus = targetStatus
+      let finalScheduledAt = null
+      let finalPublishedAt = null
+
+      if (targetStatus === 'scheduled' && editForm.scheduled_date && editForm.scheduled_time) {
+        const scheduledDateTime = new Date(`${editForm.scheduled_date}T${editForm.scheduled_time}`)
+        if (scheduledDateTime <= new Date()) {
+          // Backdated post: user picked a past date in schedule!
+          finalStatus = 'published'
+          finalPublishedAt = `${editForm.scheduled_date} ${editForm.scheduled_time}:00`
+          finalScheduledAt = null
+        } else {
+          finalStatus = 'scheduled'
+          finalScheduledAt = `${editForm.scheduled_date} ${editForm.scheduled_time}:00`
+          finalPublishedAt = null
+        }
+      } else if (targetStatus === 'published') {
+        if (editForm.publish_date) {
+          const timeStr = editForm.publish_time ? `${editForm.publish_time}:00` : '00:00:00'
+          finalPublishedAt = `${editForm.publish_date} ${timeStr}`
+        }
+      }
+
       const updateData = {
         title: editForm.title.trim(),
         slug: editForm.slug?.trim() || undefined,
@@ -251,8 +274,11 @@ const EditBlog = () => {
         excerpt: editForm.excerpt || editForm.content.substring(0, 150),
         category_id: editForm.category_id ? parseInt(editForm.category_id, 10) : null,
         author_id: editForm.author_id ? parseInt(editForm.author_id, 10) : null,
-        status: targetStatus,
-        scheduled_at: targetStatus === 'scheduled' ? `${editForm.scheduled_date} ${editForm.scheduled_time}:00` : null,
+        status: finalStatus,
+        scheduled_at: finalScheduledAt,
+        published_at: finalPublishedAt,
+        publish_date: finalPublishedAt,
+        created_at: finalPublishedAt,
         tags: editForm.tags || [],
         featured_image: editForm.featured_image || null,
         seo_score: currentSeo?.score || 0,
@@ -315,11 +341,14 @@ const EditBlog = () => {
           </button>
           <button
             type="button"
-            onClick={handleUpdateBlog}
+            onClick={(e) => {
+              const statusToUse = editForm.status === 'draft' ? 'published' : editForm.status
+              handleUpdateBlog(e, statusToUse)
+            }}
             disabled={saving}
             className="admin-btn admin-btn-primary font-semibold px-6"
           >
-            {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : 'Publish'}
+            {saving ? <><Clock className="w-4 h-4 animate-spin" /> Saving...</> : (editForm.status === 'scheduled' ? 'Schedule' : 'Publish')}
           </button>
         </div>
       </div>
@@ -521,7 +550,7 @@ const EditBlog = () => {
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input type="radio" name="status" value="published" checked={editForm.status === 'published'} onChange={handleInputChange} className="accent-blue-600" />
-                    <span className="font-semibold text-blue-600 whitespace-nowrap">Publish Now</span>
+                    <span className="font-semibold text-blue-600 whitespace-nowrap">Publish</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input type="radio" name="status" value="scheduled" checked={editForm.status === 'scheduled'} onChange={handleInputChange} className="accent-blue-600" />
@@ -530,30 +559,70 @@ const EditBlog = () => {
                 </div>
               </div>
 
-              {editForm.status === 'scheduled' && (
-              <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-primary)] mb-1.5">
-                  Publish Date & Time <span className="text-red-500">*</span>
-                </label>
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    type="date"
-                    name="scheduled_date"
-                    value={editForm.scheduled_date || ''}
-                    onChange={handleInputChange}
-                    className="admin-input w-full text-sm"
-                  />
-                  {fieldErrors.scheduled_date && <span className="text-red-500 text-[13px] mt-1 block">{fieldErrors.scheduled_date}</span>}
-                  <input
-                    type="time"
-                    name="scheduled_time"
-                    value={editForm.scheduled_time || ''}
-                    onChange={handleInputChange}
-                    className="admin-input w-full text-sm"
-                  />
-                  {fieldErrors.scheduled_time && <span className="text-red-500 text-[13px] mt-1 block">{fieldErrors.scheduled_time}</span>}
+              {editForm.status === 'published' && (
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)]">
+                      Publish Date & Time
+                    </label>
+                    <span className="text-[11px] font-semibold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">
+                      Backdating allowed
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="date"
+                      name="publish_date"
+                      value={editForm.publish_date || ''}
+                      onChange={handleInputChange}
+                      className="admin-input w-full text-sm"
+                    />
+                    <input
+                      type="time"
+                      name="publish_time"
+                      value={editForm.publish_time || ''}
+                      onChange={handleInputChange}
+                      className="admin-input w-full text-sm"
+                    />
+                  </div>
+                  <p className="text-[11px] text-[var(--admin-text-muted)] mt-1.5">
+                    Pick any past/back date to post historical blogs, or leave empty for current time.
+                  </p>
                 </div>
-              </div>
+              )}
+
+              {editForm.status === 'scheduled' && (
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)]">
+                      Scheduled Date & Time <span className="text-red-500">*</span>
+                    </label>
+                    <span className="text-[11px] font-semibold text-blue-500 bg-blue-500/10 px-2 py-0.5 rounded">
+                      Past dates publish immediately
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="date"
+                      name="scheduled_date"
+                      value={editForm.scheduled_date || ''}
+                      onChange={handleInputChange}
+                      className="admin-input w-full text-sm"
+                    />
+                    {fieldErrors.scheduled_date && <span className="text-red-500 text-[13px] mt-1 block">{fieldErrors.scheduled_date}</span>}
+                    <input
+                      type="time"
+                      name="scheduled_time"
+                      value={editForm.scheduled_time || ''}
+                      onChange={handleInputChange}
+                      className="admin-input w-full text-sm"
+                    />
+                    {fieldErrors.scheduled_time && <span className="text-red-500 text-[13px] mt-1 block">{fieldErrors.scheduled_time}</span>}
+                  </div>
+                  <p className="text-[11px] text-[var(--admin-text-muted)] mt-1.5">
+                    Select a future date to schedule, or a past date to publish immediately as backdated.
+                  </p>
+                </div>
               )}
             </div>
           </div>

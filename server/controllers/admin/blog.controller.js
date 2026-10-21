@@ -255,7 +255,10 @@ export const createBlog = async (req, res) => {
       canonical_url,
       seo_score,
       seo_analysis,
-      scheduled_at
+      scheduled_at,
+      published_at,
+      publish_date,
+      created_at
     } = req.body    // Check which columns exist in the blogs table
     const [columns] = await db.execute(`
       SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
@@ -281,14 +284,36 @@ export const createBlog = async (req, res) => {
     const insertValues = [title, content, excerpt || null]
     const valuePlaceholders = ['?', '?', '?']
 
-    // Add timestamp columns
+    // Determine back date / publish date
+    const effectivePublishDate = published_at || publish_date || null
+
+    // Add timestamp columns (support backdating created_at and published_at)
     if (columnNames.includes('created_at')) {
       insertColumns.push('created_at')
-      valuePlaceholders.push('NOW()')
+      if (effectivePublishDate) {
+        insertValues.push(effectivePublishDate)
+        valuePlaceholders.push('?')
+      } else if (created_at) {
+        insertValues.push(created_at)
+        valuePlaceholders.push('?')
+      } else {
+        valuePlaceholders.push('NOW()')
+      }
     }
     if (columnNames.includes('updated_at')) {
       insertColumns.push('updated_at')
       valuePlaceholders.push('NOW()')
+    }
+    if (columnNames.includes('published_at')) {
+      if (status === 'published' || effectivePublishDate) {
+        insertColumns.push('published_at')
+        if (effectivePublishDate) {
+          insertValues.push(effectivePublishDate)
+          valuePlaceholders.push('?')
+        } else {
+          valuePlaceholders.push('NOW()')
+        }
+      }
     }
 
     if (columnNames.includes('slug') && slug) {
@@ -525,7 +550,10 @@ export const updateBlog = async (req, res) => {
       canonical_url,
       seo_score,
       seo_analysis,
-      scheduled_at
+      scheduled_at,
+      published_at,
+      publish_date,
+      created_at
     } = req.body
 
     // Get current blog with all existing attributes
@@ -584,6 +612,31 @@ export const updateBlog = async (req, res) => {
     if (status !== undefined) { 
       updates.push('status = ?')
       values.push(status)
+    }
+
+    // Support updating back dates for published_at and created_at
+    const effectivePublishDate = published_at !== undefined ? published_at : publish_date
+    if (effectivePublishDate !== undefined) {
+      if ('published_at' in currentBlog) {
+        updates.push('published_at = ?')
+        values.push(effectivePublishDate || null)
+      }
+      if (effectivePublishDate && 'created_at' in currentBlog) {
+        updates.push('created_at = ?')
+        values.push(effectivePublishDate)
+      }
+    } else if (status === 'published' && !currentBlog.published_at && 'published_at' in currentBlog) {
+      updates.push('published_at = NOW()')
+    }
+
+    if (scheduled_at !== undefined && 'scheduled_at' in currentBlog) {
+      updates.push('scheduled_at = ?')
+      values.push(scheduled_at || null)
+    }
+
+    if (created_at !== undefined && effectivePublishDate === undefined && 'created_at' in currentBlog) {
+      updates.push('created_at = ?')
+      values.push(created_at)
     }
     
     const rawImage = req.body.featured_image !== undefined ? req.body.featured_image : req.body.image
@@ -816,8 +869,13 @@ export const updateBlogStatus = async (req, res) => {
       seoAnalysis = JSON.stringify(calculated)
     }
 
+    let pubUpdate = ''
+    if (status === 'published') {
+      pubUpdate = ', published_at = COALESCE(published_at, NOW())'
+    }
+
     await db.execute(
-      'UPDATE blogs SET status = ?, seo_score = ?, seo_analysis = ?, updated_at = NOW() WHERE id = ?',
+      `UPDATE blogs SET status = ?, seo_score = ?, seo_analysis = ?, updated_at = NOW()${pubUpdate} WHERE id = ?`,
       [status, seoScore, typeof seoAnalysis === 'string' ? seoAnalysis : JSON.stringify(seoAnalysis), id]
     )
 
@@ -1024,7 +1082,7 @@ export const bulkBlogAction = async (req, res) => {
 
       case 'publish':
         await db.execute(
-          `UPDATE blogs SET status = 'published', published_at = NOW(), updated_by = ? WHERE id IN (${placeholders})`,
+          `UPDATE blogs SET status = 'published', published_at = COALESCE(published_at, NOW()), updated_by = ? WHERE id IN (${placeholders})`,
           [req.user.id, ...blog_ids]
         )
         break
