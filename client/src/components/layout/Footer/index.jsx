@@ -64,7 +64,7 @@ export const Footer = () => {
     { label: 'ABM', url: '/abm' },
     { label: 'Industries', url: '/services' },
     { label: 'Contact Us', url: '/contact' },
-    { label: 'Who We Are', url: '/about' },
+    { label: 'Who We Are', url: '/who-we-are' },
     { label: 'Blogs', url: '/blog' },
     { label: 'Careers', url: '/careers' },
   ]

@@ -22,7 +22,7 @@ import PageHeader from '@components/admin/PageHeader'
 
 const STATIC_PAGES = [
   { id: 'home', title: 'Home Landing Page' },
-  { id: 'about', title: 'About Us' },
+  { id: 'who-we-are', title: 'Who We Are' },
   { id: 'services', title: 'Services Overview' },
   { id: 'contact', title: 'Contact Us' },
   { id: 'careers', title: 'Careers' },

@@ -28,6 +28,11 @@ export const ROUTES = {
     description: 'Scale your sales pipeline with Taraj Global. We deliver high-impact B2B lead generation, account-based marketing (ABM), appointment setting, and verified B2B data for SaaS and technology companies.',
     h1: 'B2B Lead Generation & Demand Generation Agency',
   },
+  '/who-we-are': {
+    title: 'Who We Are | Taraj Global B2B Demand Generation & Growth Partner',
+    description: 'Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven demand generation and lead qualification.',
+    h1: 'Who We Are - Taraj Global',
+  },
   '/about': {
     title: 'Who We Are | Taraj Global B2B Demand Generation & Growth Partner',
     description: 'Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven demand generation and lead qualification.',

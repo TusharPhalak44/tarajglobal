@@ -165,7 +165,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
     { name: 'Services', path: '/services' },
     { name: 'Careers', path: '/careers' },
     { name: 'Blogs', path: '/blog' },
-    { name: 'Who We Are', path: '/about' },
+    { name: 'Who We Are', path: '/who-we-are' },
     { name: 'Contact Us', path: '/contact' },
   ])
 
@@ -198,16 +198,19 @@ export const PremiumNavbar = ({ isPreview = false }) => {
             const mapped = navs.map(item => {
               let label = item.label
               if (label?.trim().toLowerCase() === 'career') label = 'Careers'
-              if (item.url === '/about' || label?.trim().toLowerCase() === 'about us') label = 'Who We Are'
+              const isAbout = item.url === '/about' || item.url === '/who-we-are' || label?.trim().toLowerCase() === 'about us'
+              if (isAbout) label = 'Who We Are'
+              const resolvedPath = isAbout ? '/who-we-are' : item.url
               return {
                 name: label,
-                path: item.url,
+                path: resolvedPath,
                 id: item.id
               }
             })
             // Ensure Who We Are appears immediately after Blogs
-            const withoutWho = mapped.filter(item => item.path !== '/about' && item.name !== 'Who We Are')
-            const whoItem = mapped.find(item => item.path === '/about' || item.name === 'Who We Are') || { name: 'Who We Are', path: '/about' }
+            const withoutWho = mapped.filter(item => item.path !== '/who-we-are' && item.path !== '/about' && item.name !== 'Who We Are')
+            const whoItem = mapped.find(item => item.path === '/who-we-are' || item.path === '/about' || item.name === 'Who We Are') || { name: 'Who We Are', path: '/who-we-are' }
+            whoItem.path = '/who-we-are'
             const blogIndex = withoutWho.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
             if (blogIndex !== -1) {
               withoutWho.splice(blogIndex + 1, 0, whoItem)

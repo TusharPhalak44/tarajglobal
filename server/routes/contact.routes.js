@@ -29,7 +29,10 @@ const getTransporter = () => {
 }
 
 const getAdminEmail = () => process.env.ADMIN_EMAIL || process.env.EMAIL_USER
-const getFromEmail = () => process.env.EMAIL_FROM || process.env.EMAIL_USER
+const getFromEmail = () => {
+  const addr = process.env.EMAIL_FROM || process.env.EMAIL_USER || 'info@tarajglobal.com'
+  return `"TaRaj Global" <${addr}>`
+}
 
 const logEmailError = (label, err) => {
   if (err?.message?.includes('550-5.4.5') || err?.message?.includes('Daily user sending limit exceeded')) {
@@ -163,7 +166,9 @@ router.post('/meeting', formLimiter, [
     const userMailOptions = {
       from: getFromEmail(),
       to: email,
+      replyTo: getAdminEmail(),
       subject: 'Your Meeting with Taraj Global is Confirmed',
+      text: `Hi ${fullName},\n\nThank you for scheduling a meeting with Taraj Global.\n\nYour meeting has been successfully confirmed.\n\nMeeting Details:\n- Date: ${displayDate}\n- Time: ${time}\n- Time Zone: ${finalTimeZone}\n- Email: ${email}\n\nAdd to Google Calendar:\n${googleCalUrl}\n\nBest regards,\nTaraj Global\ninfo@tarajglobal.com | +91 96655-99442`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -283,11 +288,13 @@ router.post('/meeting', formLimiter, [
       }
     }
     
-    // Admin notification email
+    // Admin notification email (clean HTML + plain-text fallback, no redundant ical to avoid self-spoofing filter)
     const adminMailOptions = {
       from: getFromEmail(),
       to: getAdminEmail(),
-      subject: 'New Meeting Booking - Taraj Global',
+      replyTo: email,
+      subject: `New Meeting Booking: ${fullName} (${company})`,
+      text: `New Meeting Booking Received\n\nCustomer Details:\n- Customer Name: ${fullName}\n- Customer Email: ${email}\n- Company: ${company}\n- Phone: ${phone || 'Not provided'}\n\nMeeting Details:\n- Date: ${displayDate}\n- Time: ${time}\n- Time Zone: ${finalTimeZone}\n- Meeting Type: Strategy Call\n- Booking ID: ${bookingResult.bookingId}\n\nAdd to Admin Google Calendar:\n${googleCalUrl}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -397,12 +404,7 @@ router.post('/meeting', formLimiter, [
           </div>
         </body>
         </html>
-      `,
-      icalEvent: {
-        filename: 'invite.ics',
-        method: 'REQUEST',
-        content: icalContent
-      }
+      `
     }
     
     // Send instant success response to client for zero-delay UI update
@@ -499,7 +501,9 @@ router.post('/meeting/cancel', formLimiter, [
     const clientCancelMail = {
       from: FROM_EMAIL,
       to: email,
+      replyTo: ADMIN_EMAIL,
       subject: 'Your Meeting with Taraj Global has been Cancelled',
+      text: `Hi ${fullName || 'there'},\n\nThis email confirms that your scheduled strategy call with Taraj Global on ${displayDate}${time ? ` at ${time}` : ''} (${finalTimeZone}) has been cancelled as requested.\n\nBest regards,\nTaraj Global Team\ninfo@tarajglobal.com | +91 96655-99442`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -576,7 +580,9 @@ router.post('/meeting/cancel', formLimiter, [
     const adminCancelMail = {
       from: FROM_EMAIL,
       to: ADMIN_EMAIL,
+      replyTo: email,
       subject: `Meeting Cancelled: ${fullName || email}`,
+      text: `Meeting Cancellation Notice\n\nCustomer: ${fullName || 'N/A'} (${email})\nOriginal Date: ${displayDate}\nOriginal Time: ${time || 'N/A'} (${finalTimeZone})\nBooking ID: ${bookingId || 'N/A'}${reason ? `\nReason: ${reason}` : ''}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -722,7 +728,9 @@ router.post('/meeting/reschedule', formLimiter, [
     const clientRescheduleMail = {
       from: FROM_EMAIL,
       to: email,
+      replyTo: ADMIN_EMAIL,
       subject: 'Your Meeting with Taraj Global is Rescheduled',
+      text: `Hi ${fullName || 'there'},\n\nYour strategy call appointment with Taraj Global has been rescheduled.\n\nNew Schedule:\n- Date: ${displayDate}\n- Time: ${time}\n- Time Zone: ${finalTimeZone}\n\nAdd to Google Calendar:\n${googleCalUrl}\n\nBest regards,\nTaraj Global Team\ninfo@tarajglobal.com | +91 96655-99442`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -800,7 +808,9 @@ router.post('/meeting/reschedule', formLimiter, [
     const adminRescheduleMail = {
       from: FROM_EMAIL,
       to: ADMIN_EMAIL,
+      replyTo: email,
       subject: `Meeting Rescheduled: ${fullName || email}`,
+      text: `Meeting Rescheduled Notice\n\nCustomer: ${fullName || 'N/A'} (${email})\nCompany: ${company || 'N/A'}${oldDisplayDate ? `\nPrevious: ${oldDisplayDate} at ${oldTime || 'N/A'}` : ''}\nNew Date: ${displayDate}\nNew Time: ${time} (${finalTimeZone})\nBooking ID: ${bookingId || 'N/A'}`,
       html: `
         <!DOCTYPE html>
         <html>

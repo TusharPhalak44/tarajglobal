@@ -12,7 +12,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 const navLinks = [
   ['/', 'Home'], ['/services', 'Services'], ['/careers', 'Careers'], ['/blog', 'Blog'],
-  ['/about', 'Who We Are'], ['/contact', 'Contact Us'],
+  ['/who-we-are', 'Who We Are'], ['/contact', 'Contact Us'],
 ]
 
 function headTags(route, meta) {

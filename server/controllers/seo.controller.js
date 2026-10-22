@@ -110,7 +110,7 @@ export const getRobotsTxt = async (req, res) => {
  * GET /api/seo/sitemap.xml
  */
 const SERVICE_ROUTES = ['sql-services', 'hql-services', 'mql-services', 'bant-lead-generation', 'b2b-appointment-setting', 'b2b-email-marketing', 'abm', 'content-syndication', 'demand-generation', 'webinar-services', 'lead-nurturing', 'b2b-list-building', 'database-cleansing', 'demandflow-bridge']
-const CORE_ROUTES = ['home', 'services', 'contact', 'about', 'blog', 'careers', 'sitemap']
+const CORE_ROUTES = ['home', 'services', 'contact', 'who-we-are', 'blog', 'careers', 'sitemap']
 const LEGAL_ROUTES = ['privacy', 'terms', 'cookies']
 
 const routePriority = (route) => {

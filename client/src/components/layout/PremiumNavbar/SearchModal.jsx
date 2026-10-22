@@ -22,7 +22,7 @@ const SEARCH_DIRECTORY = [
 
   // Pages
   { title: 'All Solutions & Services', path: '/services', category: 'Pages', desc: 'Explore all demand generation services', icon: Sparkles },
-  { title: 'Who We Are (About Us)', path: '/about', category: 'Pages', desc: 'Our mission, vision, and executive leadership behind Taraj Global', icon: FileText },
+  { title: 'Who We Are (About Us)', path: '/who-we-are', category: 'Pages', desc: 'Our mission, vision, and executive leadership behind Taraj Global', icon: FileText },
   { title: 'Careers at Taraj Global', path: '/careers', category: 'Pages', desc: 'Join our fast-growing demand generation team', icon: Briefcase },
   { title: 'Blogs & Insights', path: '/blog', category: 'Pages', desc: 'Latest B2B demand generation research and guides', icon: FileText },
   { title: 'Contact Us', path: '/contact', category: 'Pages', desc: 'Schedule a free pipeline and TAM consultation', icon: Mail },

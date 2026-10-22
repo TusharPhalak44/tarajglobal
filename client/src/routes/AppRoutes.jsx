@@ -81,11 +81,11 @@ function AppRoutes() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="about" element={<About />} />
-        <Route path="about-us" element={<Navigate to="/about" replace />} />
-        <Route path="aboutus" element={<Navigate to="/about" replace />} />
-        <Route path="about_us" element={<Navigate to="/about" replace />} />
-        <Route path="who-we-are" element={<Navigate to="/about" replace />} />
+        <Route path="who-we-are" element={<About />} />
+        <Route path="about" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="about-us" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="aboutus" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="about_us" element={<Navigate to="/who-we-are" replace />} />
         <Route path="services" element={<Services />} />
         <Route path="services/:id" element={<ServiceDetails />} />
         <Route path="blog" element={<Blog />} />

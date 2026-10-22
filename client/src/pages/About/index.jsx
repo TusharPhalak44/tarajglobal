@@ -11,7 +11,7 @@ const aboutSchema = {
     {
       "@type": "AboutPage",
       "name": "Who We Are - Taraj Global",
-      "url": "https://tarajglobal.com/about",
+      "url": "https://tarajglobal.com/who-we-are",
       "description": "Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven marketing.",
       "publisher": {
         "@type": "Organization",

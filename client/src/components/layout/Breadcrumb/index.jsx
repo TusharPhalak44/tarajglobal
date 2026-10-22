@@ -4,6 +4,7 @@ import { ChevronRight, Home } from 'lucide-react'
 
 const breadcrumbMap = {
   about: 'Who We Are',
+  'who-we-are': 'Who We Are',
   services: 'Services',
   careers: 'Careers',
   blog: 'Blog',

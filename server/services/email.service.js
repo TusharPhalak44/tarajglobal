@@ -26,12 +26,16 @@ export const sendEmail = async (options) => {
     const user = process.env.EMAIL_USER || process.env.SMTP_USER
     const transporter = createTransporter()
 
+    const fromAddr = options.from || process.env.EMAIL_FROM || user || 'info@tarajglobal.com'
+    const formattedFrom = fromAddr.includes('<') ? fromAddr : `"TaRaj Global" <${fromAddr}>`
+
     const mailOptions = {
-      from: process.env.EMAIL_FROM || user || '"Taraj Global Careers" <info@tarajglobal.com>',
+      from: formattedFrom,
       to: options.to,
+      replyTo: options.replyTo,
       subject: options.subject,
       html: options.html,
-      text: options.text
+      text: options.text || (options.html ? options.html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '')
     }
 
     const info = await transporter.sendMail(mailOptions)

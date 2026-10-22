@@ -28,7 +28,7 @@ const SITEMAP_SECTIONS = [
     color: '#00A6FF',
     links: [
       { name: 'Home', path: '/', desc: 'Predictable B2B pipeline generation homepage.' },
-      { name: 'Who We Are', path: '/about', desc: 'Our mission, leadership, and company pedigree.' },
+      { name: 'Who We Are', path: '/who-we-are', desc: 'Our mission, leadership, and company pedigree.' },
       { name: 'Services Overview', path: '/services', desc: 'Complete directory of B2B revenue and demand solutions.' },
       { name: 'Blog & Insights', path: '/blog', desc: 'Actionable B2B playbooks, guides, and strategy research.' },
       { name: 'Careers', path: '/careers', desc: 'Open roles and life at Taraj Global Solutions.' },
