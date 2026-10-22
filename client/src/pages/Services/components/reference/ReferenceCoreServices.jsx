@@ -8,17 +8,9 @@ const PILLARS = [
     id: 'lead-generation',
     // num: '01',
     heading: 'Lead Generation',
-    tagline: 'High-intent buyer discovery and sales-ready pipeline inflow',
+    tagline: 'Intent-driven buyer discovery, qualification frameworks (BANT, HQL, SQL), and confirmed C-suite appointment delivery.',
     icon: Target,
     services: [
-      {
-        // num: '01',
-        line1: 'MQL',
-        line2: 'Services',
-        route: '/mql-services',
-        tag: 'Marketing Qualified',
-        image: '/mql.png',
-      },
       {
         // num: '02',
         line1: 'HQL',
@@ -27,6 +19,15 @@ const PILLARS = [
         tag: 'High-Quality Leads',
         image: '/hql.png',
       },
+      {
+        // num: '01',
+        line1: 'MQL',
+        line2: 'Services',
+        route: '/mql-services',
+        tag: 'Marketing Qualified',
+        image: '/mql.png',
+      },
+
       {
         // num: '03',
         line1: 'BANT',
@@ -46,7 +47,7 @@ const PILLARS = [
       {
         // num: '05',
         line1: 'Appointment',
-        line2: 'Generation',
+        line2: 'Setting',
         route: '/b2b-appointment-setting',
         tag: 'Confirmed Meetings',
         image: '/appointment-setting.png',
@@ -54,10 +55,44 @@ const PILLARS = [
     ],
   },
   {
-    id: 'channels-programs',
+    id: 'demand-abm',
     // num: '02',
+    heading: 'Demand & ABM',
+    tagline: 'Account-Based Marketing, full-lifecycle Account-Based Experience (ABX), and full-funnel demand orchestration.',
+    icon: Zap,
+    services: [
+      {
+        // num: '01',
+        line1: 'Account-Based',
+        line2: 'Marketing (ABM)',
+        route: '/abm',
+        tag: 'Target Accounts',
+        image: '/abm.avif',
+      },
+      {
+        // num: '02',
+        line1: 'Account Based',
+        line2: 'Experience (ABX)',
+        route: '/account-based-experience',
+        tag: 'Omnichannel ABX',
+        image: '/demandflow-personalization.png',
+      },
+      {
+        // num: '03',
+        line1: 'Full Funnel',
+        line2: 'Demand',
+        route: '/full-funnel-demand',
+        tag: 'End-to-End Pipeline',
+        image: '/demandflow-tracking.png',
+      },
+
+    ],
+  },
+  {
+    id: 'channels-programs',
+    // num: '03',
     heading: 'Channels & Programs',
-    tagline: 'Multi-channel outbound distribution, syndication, and qualified audience acquisition',
+    tagline: 'Multi-touch outbound email cadences, whitepaper content syndication, event acceleration, and continuous lead nurturing.',
     icon: Layers,
     services: [
       {
@@ -84,62 +119,22 @@ const PILLARS = [
         tag: 'Audience Acquisition',
         image: '/webinar.png',
       },
-    ],
-  },
-  {
-    id: 'demand-abm',
-    // num: '03',
-    heading: 'Demand & ABM',
-    tagline: 'Hyper-targeted account acquisition and continuous market demand',
-    icon: Zap,
-    services: [
-      {
-        // num: '01',
-        line1: 'Demand',
-        line2: 'Generation',
-        route: '/demand-generation',
-        tag: 'Full-Funnel Demand',
-        image: '/demandflow-campaigns.png',
-      },
-      {
-        // num: '02',
-        line1: 'Full Funnel',
-        line2: 'Demand',
-        route: '/full-funnel-demand',
-        tag: 'End-to-End Pipeline',
-        image: '/demandflow-tracking.png',
-      },
       {
         // num: '03',
-        line1: 'Account-Based',
-        line2: 'Marketing (ABM)',
-        route: '/abm',
-        tag: 'Target Accounts',
-        image: '/abm.avif',
-      },
-      {
-        // num: '04',
-        line1: 'Account Based',
-        line2: 'Experience (ABX)',
-        route: '/account-based-experience',
-        tag: 'Omnichannel ABX',
-        image: '/demandflow-personalization.png',
-      },
-      {
-        // num: '05',
-        line1: 'Lead',
-        line2: 'Nurturing',
+        line1: 'Lead Nurturing',
+        line2: 'Services',
         route: '/lead-nurturing',
-        tag: 'Pipeline Retention',
+        tag: 'Audience Acquisition',
         image: '/lead%20nurturing.png',
       },
     ],
   },
+
   {
     id: 'data-operations',
     // num: '04',
     heading: 'Data & Operations',
-    tagline: 'Accurate B2B intelligence, CRM verification, and data hygiene',
+    tagline: 'Custom prospect research, automated CRM hygiene, and real-time middleware delivery enforcing a 99.8% Data Accuracy SLA.',
     icon: Database,
     services: [
       {
@@ -157,6 +152,14 @@ const PILLARS = [
         route: '/database-cleansing',
         tag: 'Verification & Hygiene',
         image: '/database%20cleansing.png',
+      },
+      {
+        // num: '03',
+        line1: 'DemandFlow',
+        line2: 'Bridge',
+        route: '/demandflow-bridge',
+        tag: 'Middleware Integration',
+        image: '/demandflow-personalization.png',
       },
     ],
   },
@@ -177,8 +180,8 @@ export default function ReferenceCoreServices() {
         {/* Section Header */}
         <div className="mb-12">
           <div className="inline-flex items-center mb-3">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
-              OUR CORE SERVICES
+            <span className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+              OUR CORE SERVICES • FULL-FUNNEL ARCHITECTURE
             </span>
           </div>
 
@@ -189,7 +192,8 @@ export default function ReferenceCoreServices() {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 dark:text-white/60 leading-relaxed font-normal lg:max-w-md lg:pb-1">
-              Structured into strategic pillars: Lead Generation, Channels & Programs, Demand & ABM, and Data & Operations to move your pipeline forward.
+              Structured into four strategic pillars: Lead Generation, Channels & Programs, Demand & ABM/ABX, and Data & Operations to engineer predictable pipeline velocity for enterprise B2B teams.
+
             </p>
           </div>
         </div>

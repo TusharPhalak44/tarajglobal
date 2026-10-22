@@ -86,7 +86,6 @@ export const FIXES = {
   '/b2b-appointment-setting': { title: 'B2B Appointment Setting', fixes: 'Confirmed discovery meetings placed directly on sales executive calendars.' },
   '/webinar-services': { title: 'Webinar Services', fixes: 'Targeted audience acquisition driving high attendance and post-event pipeline.' },
   '/demandflow-bridge': { title: 'DemandFlow Bridge™', fixes: 'Integrated platform uniting intelligence, campaign orchestration, and attribution.' },
-  '/about': { title: 'The Demand Generation Team', fixes: 'Meet the strategic revenue architects powering your pipeline growth.' },
 }
 
 const ROUTE_LIFT = 10

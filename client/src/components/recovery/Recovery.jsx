@@ -240,71 +240,140 @@ export function GrowthMeter() {
   )
 }
 
+const ENGINEERED_SOLUTIONS = [
+  {
+    num: '01',
+    problem: 'Wasted Campaign Spend',
+    problemDesc: 'Marketing budget wasted on out-of-market or non-ICP accounts.',
+    solution: 'TaRaj Solution',
+    solutionDesc: 'Intent-filtered ABM & ABX targeting ensuring 100% ICP alignment.',
+  },
+  {
+    num: '02',
+    problem: 'Contact Data Decay',
+    problemDesc: 'High email bounce rates and inaccurate CRM intelligence.',
+    solution: 'TaRaj Solution',
+    solutionDesc: '99.8% Data Accuracy SLA backed by our proprietary post-research verification tool.',
+  },
+  {
+    num: '03',
+    problem: 'Unqualified Lead Stalls',
+    problemDesc: 'High top-of-funnel volume stalling before sales qualification.',
+    solution: 'TaRaj Solution',
+    solutionDesc: 'Rigorous multi-stage vetting (BANT, HQL, SQL) before sales handoff.',
+  },
+  {
+    num: '04',
+    problem: 'Calendar Inefficiency',
+    problemDesc: 'Unpredictable meeting volume and underutilized sales capacity.',
+    solution: 'TaRaj Solution',
+    solutionDesc: 'Confirmed C-suite appointments synced directly to rep calendars with account dossiers.',
+  },
+]
+
 /** End-of-page handoff so no page is a dead end. */
 export function NextFix() {
   const { pathname } = useLocation()
-  const { goal, route, visited, nextStop, growth, brokeThrough, setGoal } = useRecovery()
+  const { goal, growth, brokeThrough } = useRecovery()
   const fix = FIXES[pathname]
-  const nextAfterThis = route.find((p) => p !== pathname && !visited.includes(p)) || (nextStop !== pathname ? nextStop : null)
-  const onRoute = route.includes(pathname)
+  const isServices = pathname === '/services'
+  const isOptimized = brokeThrough || isServices
 
   return (
-    <section aria-labelledby="next-fix-heading" className="relative overflow-hidden border-t border-white/10 bg-[#07090E] py-16 lg:py-20">
-      <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse at 20% 0%, rgba(0,166,255,0.12), transparent 55%)' }} />
-      <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:px-12">
-        <div className="lg:col-span-5">
-          <p className="font-mono text-[12px] font-semibold uppercase tracking-[0.18em] text-success">
-            {fix ? `Capability Explored${onRoute ? ' · on your roadmap' : ''}` : 'Pipeline Acceleration'}
+    <section aria-labelledby="next-fix-heading" className="relative overflow-hidden border-t border-white/10 bg-[#07090E] py-8 sm:py-10 lg:py-12">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse at 20% 0%, rgba(0,166,255,0.1), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(255,109,0,0.06), transparent 50%)',
+        }}
+      />
+      <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 gap-6 lg:gap-8 lg:grid-cols-12 px-4 sm:px-6 lg:px-8 items-center">
+        {/* Left Column: Heading, Subtext, Metric & Quick CTA */}
+        <div className="lg:col-span-5 flex flex-col justify-center">
+          <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF] flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
+            {isOptimized
+              ? 'Pipeline Acceleration & SLA Commitment'
+              : fix
+                ? 'Capability Explored'
+                : 'Pipeline Acceleration & SLA Commitment'}
           </p>
-          <h2 id="next-fix-heading" className="mt-3 text-3xl sm:text-4xl font-black leading-[1.1] tracking-[-0.02em] text-text-primary">
-            {brokeThrough ? 'Your pipeline roadmap is optimized.' : goal ? 'Accelerate Your Pipeline Velocity.' : 'Select Your Primary Growth Priority'}
-          </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-text-secondary">
-            {brokeThrough
-              ? `You’ve reviewed the core strategic capabilities required to scale pipeline velocity. Let’s execute on your pipeline.`
+
+          <h3 id="next-fix-heading" className="mt-2 text-2xl sm:text-[28px] lg:text-[30px] font-black leading-[1.15] tracking-[-0.02em] text-text-primary">
+            {isOptimized ? 'Your Revenue Roadmap is Fully Engineered' : goal ? 'Accelerate Your Pipeline Velocity.' : 'Select Your Primary Growth Priority'}
+          </h3>
+
+          <p className="mt-2.5 text-[13px] sm:text-[14px] leading-relaxed text-text-secondary max-w-lg">
+            {isOptimized
+              ? 'Eliminate operational friction and unverified outreach. Partner with an ISO 27001:2022 certified growth engine designed to scale qualified opportunity velocity.'
               : goal
                 ? `Your projected pipeline lift is +${growth}%. Explore each recommended capability to build a predictable revenue engine.`
                 : 'Select a priority to tailor your custom B2B demand generation roadmap.'}
           </p>
-          <div className="mt-6 flex items-center gap-4">
-            <Sparkline growth={growth} brokeThrough={brokeThrough} className="h-12 w-44" />
-            <span className={`text-3xl font-black tabular-nums ${brokeThrough ? 'text-cta' : 'text-primary'}`}>+{growth}%</span>
+
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 backdrop-blur-sm">
+              <Sparkline growth={isOptimized ? 52 : growth} brokeThrough={isOptimized} className="h-7 w-28 shrink-0" />
+              <div className="flex flex-col">
+                <span className={`text-2xl font-black tabular-nums leading-none ${isOptimized ? 'text-cta' : 'text-primary'}`}>
+                  {isOptimized ? '+52%' : `+${growth}%`}
+                </span>
+                <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-text-muted">
+                  Average Velocity Lift
+                </span>
+              </div>
+            </div>
+
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6D00] to-[#FF8500] hover:from-[#E05E00] hover:to-[#FF6D00] px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-md shadow-[#FF6D00]/25 transition-all hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
+            >
+              <span>Book a Review</span>
+              <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
         </div>
 
-        <div className="lg:col-span-6 lg:col-start-7">
-          {!goal ? (
-            <PainPicker onPick={setGoal} />
-          ) : brokeThrough || !nextAfterThis ? (
-            <Link
-              to="/contact"
-              className="group block rounded-2xl border border-[#FF6D00]/40 bg-[#FF6D00]/[0.08] p-6 transition-colors hover:border-[#FF6D00]"
-            >
-              <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-cta">Strategic Consultation</p>
-              <p className="mt-2 text-2xl font-black text-text-primary">Schedule a Pipeline Review</p>
-              <p className="mt-2 text-[15px] text-text-secondary">A 30-minute strategic consultation. We audit your ICP and deliver a clear 90-day pipeline roadmap.</p>
-              <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-bold text-cta">
-                Book a Pipeline Review <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
-          ) : (
-            <>
-              <Link
-                to={nextAfterThis}
-                className="group block rounded-2xl border border-[#00A6FF]/40 bg-[#00A6FF]/[0.07] p-6 transition-colors hover:border-[#00A6FF]"
+        {/* Right Column: 4 Compact Problem ➔ Solution Cards */}
+        <div className="lg:col-span-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+            {ENGINEERED_SOLUTIONS.map((card) => (
+              <div
+                key={card.num}
+                className="group relative flex flex-col justify-between rounded-xl border border-white/[0.08] bg-[#0A0E1A]/85 p-3.5 sm:p-4 backdrop-blur-md transition-all duration-200 hover:border-[#00A6FF]/40 hover:bg-[#0D1426] hover:shadow-[0_8px_24px_-8px_rgba(0,166,255,0.18)]"
               >
-                <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-primary">Recommended Next Capability</p>
-                <p className="mt-2 text-2xl font-black text-text-primary">{FIXES[nextAfterThis]?.title}</p>
-                <p className="mt-2 text-[15px] text-text-secondary">{FIXES[nextAfterThis]?.fixes}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-bold text-primary">
-                  Explore this capability <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-              <div className="mt-4 rounded-2xl border border-white/10 p-2">
-                <RouteSteps />
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/25 shrink-0">
+                        {card.num}
+                      </span>
+                      <span className="text-[13px] font-bold text-white tracking-tight truncate">
+                        {card.problem}
+                      </span>
+                    </div>
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500 shadow-[0_0_6px_rgba(244,63,94,0.6)]" />
+                  </div>
+
+                  <p className="text-[12px] text-slate-400 leading-snug">
+                    {card.problemDesc}
+                  </p>
+                </div>
+
+                <div className="mt-2.5 pt-2 border-t border-white/[0.07] flex items-start gap-1.5">
+                  <span className="mt-0.5 inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#22C55E]/15 text-[#22C55E]">
+                    <Check size={10} strokeWidth={3} />
+                  </span>
+                  <p className="text-[12px] leading-snug">
+                    <span className="font-bold text-[#22C55E]">{card.solution}:</span>{' '}
+                    <span className="text-slate-200">{card.solutionDesc}</span>
+                  </p>
+                </div>
               </div>
-            </>
-          )}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -56,6 +56,13 @@ export const ABOUT_FAQS = [
     answer:
       ' TaRaj Global processes all prospect intelligence through a custom in-house verification tool. This software conducts multi-pass validation on direct dials and tests active email deliverability in real time, eliminating bounce rates and duplicate records before client delivery.',
   },
+  {
+    id: 'about-faq-4',
+    num: '04',
+    question: 'Which types of companies does Taraj Global work with? ',
+    answer:
+      'We partner with B2B SaaS and technology companies that want to grow their sales pipeline. Our demand generation and lead qualification programs, including account-based marketing, content syndication, appointment setting and BANT/MQL/SQL lead delivery, are tailored to each client’s target audience, deal size and sales process. If you sell to businesses and need a steady flow of qualified conversations, we’d be glad to talk.',
+  },
 
 ]
 

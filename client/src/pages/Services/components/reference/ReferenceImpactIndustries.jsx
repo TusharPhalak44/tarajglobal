@@ -21,7 +21,7 @@ const METRICS = [
   {
     value: 10,
     suffix: 'M+',
-    label: 'Leads Generated',
+    label: 'Verified Prospects Delivered',
     caption: 'Verified Pipeline',
     icon: TrendingUp,
   },
@@ -29,7 +29,7 @@ const METRICS = [
     value: 1500,
     suffix: '+',
     separator: ',',
-    label: 'Clients',
+    label: 'Global Enterprise Partners',
     caption: 'Global B2B Accounts',
     icon: Users,
   },
@@ -37,14 +37,14 @@ const METRICS = [
     value: 2100,
     suffix: '+',
     separator: ',',
-    label: 'Monthly Leads',
+    label: ' Monthly Qualified Pipeline',
     caption: 'Sales-Ready Volume',
     icon: Zap,
   },
   {
     value: 16,
     suffix: '+',
-    label: 'Sectors',
+    label: 'Specialized Verticals Served',
     caption: 'Target Industries',
     icon: Globe,
   },
@@ -72,19 +72,19 @@ export default function ReferenceImpactIndustries() {
         {/* Section Header */}
         <div className="mb-12">
           <div className="inline-flex items-center mb-3">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
-              PROVEN EXPERTISE & IMPACT
+            <span className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+              PROVEN EXPERTISE & GLOBAL IMPACT
             </span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-[1.15]">
               Measurable Results Across <br className="hidden sm:inline" />
-              Target Industries
+              High-Growth B2B Sectors
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 dark:text-white/60 leading-relaxed font-normal lg:max-w-md lg:pb-1">
-              Combining audited performance data with specialized sector know-how to accelerate pipeline growth for modern B2B teams.
+              Combining in-house verification infrastructure with deep domain expertise to accelerate qualified pipeline velocity across specialized enterprise industries.
             </p>
           </div>
         </div>
@@ -116,17 +116,17 @@ export default function ReferenceImpactIndustries() {
             </div>
 
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF6D00]/10 border border-[#FF6D00]/25 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6D00] animate-pulse" />
-                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
-                  THE IMPACT
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/25 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
+                <span className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+                  VERIFIED IMPACT TELEMETRY
                 </span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-                Real Results. <br />
+                Engineered Precision. <br />
                 <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
-                  Lasting Growth.
+                  Predictable Pipeline.
                 </span>
               </h2>
             </div>
@@ -182,7 +182,7 @@ export default function ReferenceImpactIndustries() {
             <div className="flex items-center justify-between pt-4 border-t border-white/10 text-[11px] font-mono text-white/50 relative z-10">
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#FF6D00] animate-pulse" />
-                AUDITED GLOBAL REVENUE IMPACT
+                ISO 9001:2015 & ISO 27001:2022 CERTIFIED DELIVERY
               </span>
               <span className="text-white/30 hidden sm:inline">2026 VERIFIED</span>
             </div>
@@ -198,7 +198,7 @@ export default function ReferenceImpactIndustries() {
             <div className="relative z-10 mb-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/25 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
-                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#00A6FF]">
+                <span className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
                   INDUSTRIES WE SERVE
                 </span>
               </div>

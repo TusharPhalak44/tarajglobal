@@ -22,9 +22,9 @@ const OBJECTIVES = [
     heading: 'Generate Leads',
     desc: 'Capture MQLs, HQLs, BANT, and SQLs filtered through intent signals and multi-touch outbound cadences matched strictly against your ICP.',
     recommended: [
-      { name: 'B2B Lead Generation', route: '/sql-services' },
-      { name: 'BANT Lead Generation', route: '/bant-lead-generation' },
+      { name: 'HQL Services', route: '/hql-services' },
       { name: 'MQL Services', route: '/mql-services' },
+      { name: 'BANT Lead Generation', route: '/bant-lead-generation' },
       { name: 'SQL Lead Generation', route: '/sql-services' },
     ],
   },
@@ -34,13 +34,12 @@ const OBJECTIVES = [
     label: 'Create Demand',
     icon: Zap,
     heading: 'Create Demand',
-    desc: 'Transform passive market prospects into active in-market buyers.',
+    desc: 'Orchestrate targeted ABM, Account-Based Experience (ABX), and full-funnel demand strategies to build category authority and generate active buying intent.',
     recommended: [
-      { name: 'Demand Generation', route: '/demand-generation' },
-      { name: 'Full Funnel Demand', route: '/full-funnel-demand' },
+      { name: 'Account Based Marketing', route: '/abm' },
       { name: 'Account Based Experience', route: '/account-based-experience' },
-      { name: 'Content Syndication', route: '/content-syndication' },
-      { name: 'Webinar Services', route: '/webinar-services' },
+      { name: 'Full Funnel Demand', route: '/full-funnel-demand' },
+      { name: 'Demand Generation', route: '/demand-generation' },
     ],
   },
   {
@@ -49,11 +48,10 @@ const OBJECTIVES = [
     label: 'Reach Decision-Makers',
     icon: Users,
     heading: 'Reach Decision-Makers',
-    desc: 'Penetrate strategic C-suite and VP-level buying committees.',
+    desc: 'Deliver personalized email cadences and syndicate high-value content directly to verified enterprise decision-makers and C-suite buying committees.',
     recommended: [
-      { name: 'Account-Based Marketing', route: '/abm' },
       { name: 'B2B Email Marketing', route: '/b2b-email-marketing' },
-      { name: 'B2B Appointment Setting', route: '/b2b-appointment-setting' },
+      { name: 'Content Syndication', route: '/content-syndication' },
     ],
   },
   {
@@ -62,10 +60,10 @@ const OBJECTIVES = [
     label: 'Book Meetings',
     icon: Calendar,
     heading: 'Book Meetings',
-    desc: 'Fill your sales reps’ calendars with confirmed, qualified buyer conversations.',
+    desc: 'Secure confirmed C-suite discovery meetings directly on your sales reps calendars, backed by BANT qualification and pre-call account dossiers.',
     recommended: [
       { name: 'B2B Appointment Setting', route: '/b2b-appointment-setting' },
-      { name: 'SQL Lead Generation', route: '/sql-services' },
+
     ],
   },
   {
@@ -74,10 +72,10 @@ const OBJECTIVES = [
     label: 'Nurture Prospects',
     icon: HeartHandshake,
     heading: 'Nurture Prospects',
-    desc: 'Educate delayed opportunities and revive stalled pipeline accounts.',
+    desc: 'Deploy multi-stage email workflows, webinars, and event acceleration to continuously engage cold or warm accounts until buying readiness peaks.',
     recommended: [
       { name: 'Lead Nurturing', route: '/lead-nurturing' },
-      { name: 'Content Syndication', route: '/content-syndication' },
+      { name: 'Webinar Services', route: '/webinar-services' },
     ],
   },
   {
@@ -86,10 +84,11 @@ const OBJECTIVES = [
     label: 'Improve Data Quality',
     icon: Database,
     heading: 'Improve Data Quality',
-    desc: 'Cleanse legacy CRM databases and build custom-curated prospect lists.',
+    desc: 'Cleanse legacy CRM records and build custom contact lists using our proprietary in-house verification tool to enforce a 99.8% data accuracy SLA.',
     recommended: [
       { name: 'B2B List Building', route: '/b2b-list-building' },
       { name: 'Database Cleansing', route: '/database-cleansing' },
+      { name: 'DemandFlow Bridge', route: '/demandflow-bridge' },
     ],
   },
 ]
@@ -144,8 +143,8 @@ export default function ReferenceObjective() {
           {/* ══════════ LEFT COLUMN: Heading & Copy (4 cols) ══════════ */}
           <div className="lg:col-span-4 flex flex-col justify-start">
             <div className="inline-flex items-center mb-4">
-              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
-                GROWTH OBJECTIVES
+              <span className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+                SOLUTION FINDER • GOAL-BASED NAVIGATION
               </span>
             </div>
 
@@ -189,11 +188,10 @@ export default function ReferenceObjective() {
                   >
                     {/* Circle Icon with smooth scale & glow on active */}
                     <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 relative ${
-                        isActive
-                          ? 'bg-[#FF6D00] text-white shadow-lg shadow-[#FF6D00]/40 scale-110'
-                          : 'border border-slate-300 dark:border-white/10 bg-white dark:bg-[#0F1624] text-slate-600 dark:text-white/60 group-hover:border-[#FF6D00] group-hover:text-[#FF6D00]'
-                      }`}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 relative ${isActive
+                        ? 'bg-[#FF6D00] text-white shadow-lg shadow-[#FF6D00]/40 scale-110'
+                        : 'border border-slate-300 dark:border-white/10 bg-white dark:bg-[#0F1624] text-slate-600 dark:text-white/60 group-hover:border-[#FF6D00] group-hover:text-[#FF6D00]'
+                        }`}
                     >
                       <Icon className="w-5 h-5" />
 
@@ -205,11 +203,10 @@ export default function ReferenceObjective() {
 
                     {/* Label */}
                     <span
-                      className={`text-[11px] sm:text-xs font-bold text-center leading-tight transition-colors ${
-                        isActive
-                          ? 'text-slate-900 dark:text-white font-extrabold'
-                          : 'text-slate-500 dark:text-white/50 group-hover:text-slate-800 dark:group-hover:text-white'
-                      }`}
+                      className={`text-[11px] sm:text-xs font-bold text-center leading-tight transition-colors ${isActive
+                        ? 'text-slate-900 dark:text-white font-extrabold'
+                        : 'text-slate-500 dark:text-white/50 group-hover:text-slate-800 dark:group-hover:text-white'
+                        }`}
                     >
                       {obj.label}
                     </span>

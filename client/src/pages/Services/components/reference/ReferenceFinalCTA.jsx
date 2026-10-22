@@ -5,10 +5,10 @@ import { ArrowRight, Play, TrendingUp, Database, MessageSquare, Target } from 'l
 import { useTheme } from '@context/ThemeContext'
 
 const BULLETS = [
-  { text: 'More Leads', icon: TrendingUp },
-  { text: 'Better Data', icon: Database },
-  { text: 'Real Conversations', icon: MessageSquare },
-  { text: 'Stronger Pipeline', icon: Target },
+  { text: 'Verified Lead Velocity', icon: TrendingUp },
+  { text: '99.8% Accurate Data SLA', icon: Database },
+  { text: 'C-Suite Decision Committees', icon: MessageSquare },
+  { text: 'Predictable Closed-Loop Pipeline', icon: Target },
 ]
 
 export default function ReferenceFinalCTA() {
@@ -41,18 +41,18 @@ export default function ReferenceFinalCTA() {
           {/* ══════════ LEFT COLUMN: Heading, Paragraph & Orange Pill Button (7 cols) ══════════ */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             <div className="inline-flex items-center mb-4">
-              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
-                LET'S GROW TOGETHER
+              <span className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+                LET'S BUILD TOGETHER • TECH-FORWARD DEMAND ARCHITECTURE
               </span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-950 dark:text-text-primary dark:text-white">
               Ready to Build Your <br />
-              Next Growth Engine?
+              Next Revenue Growth Engine?
             </h2>
 
             <p className="mt-6 text-sm sm:text-base text-slate-700 dark:text-white/75 leading-relaxed font-normal max-w-xl">
-              Get in touch with our team and discover how our B2B services can help you generate more leads, reach the right accounts and create real business opportunities.
+              Connect with our growth architects to deploy proprietary verification tools, real-time intent telemetry, and automated CRM pipeline routing across US, EMEA, and APAC markets.
             </p>
 
             <div className="mt-8">

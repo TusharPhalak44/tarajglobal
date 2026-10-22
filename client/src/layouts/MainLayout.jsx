@@ -9,7 +9,8 @@ import { FIXES } from '@context/RecoveryContext'
 
 function MainLayout() {
   const { pathname } = useLocation()
-  const showNextFix = Boolean(FIXES[pathname]) || pathname === '/services'
+  const isAboutPage = pathname === '/about' || pathname === '/who-we-are'
+  const showNextFix = !isAboutPage && (Boolean(FIXES[pathname]) || pathname === '/services')
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

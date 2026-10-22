@@ -44,7 +44,7 @@ export default function ReferenceHero() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center mb-6"
             >
-              <span className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-[#FF6D00]">
+              <span className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
                 TECH-ENABLED B2B GROWTH INFRASTRUCTURE
               </span>
             </motion.div>
