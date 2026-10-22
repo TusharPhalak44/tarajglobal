@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import {
   ArrowLeft,
   Save,
@@ -14,10 +14,12 @@ import {
   Image,
   Layers,
   HelpCircle,
-  Eye
+  Eye,
+  Table
 } from 'lucide-react'
 import { adminAPI } from '@api'
 import FeaturedMedia from '@components/admin/FeaturedMedia'
+import TableEditorModal from '@components/admin/TableEditorModal'
 import { analyzeSEO, getSEOStatusColor, getSEOStatusBg } from '@utils/seoAnalyzer'
 import { useAuth } from '@context/AuthContext'
 import PageHeader from '@components/admin/PageHeader'
@@ -33,12 +35,24 @@ const quillModules = {
     ['link', 'image'],
     ['clean']
   ],
+  table: true
 };
+
+const cleanPastedDarkColors = (html) => {
+  if (!html || typeof html !== 'string') return html
+  return html
+    .replace(/color:\s*(rgb\(\s*(?:0|1[0-9]|2[0-9]|3[0-9]|4[0-9]|50)\s*,\s*(?:0|1[0-9]|2[0-9]|3[0-9]|4[0-9]|50)\s*,\s*(?:0|1[0-9]|2[0-9]|3[0-9]|4[0-9]|50)\s*\)|#000000|#000|black|#111111|#111|#1a1a1a|#222222|#222|#333333|#333)[;]?/gi, '')
+    .replace(/background-color:\s*(rgb\(\s*(?:24[5-9]|25[0-5])\s*,\s*(?:24[5-9]|25[0-5])\s*,\s*(?:24[5-9]|25[0-5])\s*\)|#ffffff|#fff|white)[;]?/gi, '')
+    .replace(/style="\s*"/gi, '')
+}
 
 const CreateBlog = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const { user } = useAuth()
+  const basePath = location.pathname.startsWith('/user') || user?.role === 'user' ? '/user' : '/admin'
   const [saving, setSaving] = useState(false)
+  const [showTableModal, setShowTableModal] = useState(false)
   const [error, setError] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
   const [categories, setCategories] = useState([])
@@ -238,7 +252,7 @@ const CreateBlog = () => {
       const blogData = {
         title: createForm.title.trim(),
         slug: createForm.slug?.trim() || undefined,
-        content: createForm.content,
+        content: cleanPastedDarkColors(createForm.content),
         excerpt: createForm.excerpt || createForm.content.substring(0, 150),
         category_id: createForm.category_id ? parseInt(createForm.category_id, 10) : null,
         author_id: createForm.author_id ? parseInt(createForm.author_id, 10) : null,
@@ -258,7 +272,7 @@ const CreateBlog = () => {
 
       await adminAPI.createBlog(blogData)
       alert('Article created successfully!')
-      navigate('/admin/blogs')
+      navigate(`${basePath}/blogs`)
     } catch (err) {
       console.error('Failed API:', err)
       if (err.response?.status === 409 || (err.response?.data?.message || '').toLowerCase().includes('duplicate') || (err.response?.data?.message || '').toLowerCase().includes('already exists')) {
@@ -287,7 +301,7 @@ const CreateBlog = () => {
       {/* Top Header - Wireframe style */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <button onClick={() => navigate('/admin/blogs')} className="p-2 hover:bg-[var(--admin-bg-elevated)] rounded-full text-[var(--admin-text-primary)]">
+          <button onClick={() => navigate(`${basePath}/blogs`)} className="p-2 hover:bg-[var(--admin-bg-elevated)] rounded-full text-[var(--admin-text-primary)]">
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="text-2xl font-bold text-[var(--admin-text-primary)] tracking-tight">Create New Blog Post</h1>
@@ -384,22 +398,173 @@ const CreateBlog = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-primary)] mb-1.5">
-                  Content <span className="text-red-500">*</span>
-                </label>
+                <div className="flex items-center justify-between mb-1.5 flex-wrap gap-2">
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)]">
+                    Content <span className="text-red-500">*</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowTableModal(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/30 hover:bg-[var(--admin-primary)] hover:text-white transition-all shadow-xs cursor-pointer"
+                    title="Insert an empty table or table with content"
+                  >
+                    <Table className="w-3.5 h-3.5" />
+                    <span>+ Table (Empty / Content)</span>
+                  </button>
+                </div>
                 <div className="bg-[var(--admin-bg-canvas)] rounded-lg">
                   <style>{`
-                    .ql-container {
-                      min-height: 500px;
+                    .quill {
+                      display: flex;
+                      flex-direction: column;
+                      border-radius: 0.5rem;
+                      border: 1px solid var(--admin-border-base, #e2e8f0);
+                      background-color: var(--admin-bg-surface);
+                      overflow: hidden;
+                    }
+                    .ql-toolbar.ql-snow {
+                      position: sticky;
+                      top: 0;
+                      z-index: 10;
+                      border: none;
+                      border-bottom: 1px solid var(--admin-border-base, #e2e8f0);
+                      border-top-left-radius: 0.5rem;
+                      border-top-right-radius: 0.5rem;
+                      background-color: var(--admin-bg-elevated, #f8fafc);
+                      flex-shrink: 0;
+                    }
+                    .ql-container.ql-snow {
+                      border: none;
+                      height: 520px;
+                      max-height: 520px;
+                      overflow-y: auto;
                       font-size: 16px;
                       border-bottom-left-radius: 0.5rem;
                       border-bottom-right-radius: 0.5rem;
                       font-family: inherit;
+                      background-color: #0f172a;
+                      color: #f1f5f9;
                     }
-                    .ql-toolbar {
-                      border-top-left-radius: 0.5rem;
-                      border-top-right-radius: 0.5rem;
-                      background-color: var(--admin-bg-elevated, #f8fafc);
+                    .ql-editor {
+                      min-height: 100%;
+                      height: auto;
+                      overflow-y: visible;
+                      color: #f1f5f9 !important;
+                    }
+
+                    /* Force white / light text on all pasted elements and override any inline black color */
+                    .ql-editor,
+                    .ql-editor * {
+                      color: #f1f5f9 !important;
+                    }
+
+                    .ql-editor h1,
+                    .ql-editor h1 *,
+                    .ql-editor h2,
+                    .ql-editor h2 *,
+                    .ql-editor h3,
+                    .ql-editor h3 *,
+                    .ql-editor h4,
+                    .ql-editor h4 *,
+                    .ql-editor h5,
+                    .ql-editor h5 *,
+                    .ql-editor h6,
+                    .ql-editor h6 *,
+                    .ql-editor strong,
+                    .ql-editor strong *,
+                    .ql-editor b,
+                    .ql-editor b * {
+                      color: #ffffff !important;
+                      font-weight: 700;
+                    }
+
+                    .ql-editor p,
+                    .ql-editor span,
+                    .ql-editor div,
+                    .ql-editor li,
+                    .ql-editor font {
+                      color: #f1f5f9 !important;
+                      background-color: transparent !important;
+                    }
+
+                    .ql-editor a,
+                    .ql-editor a * {
+                      color: #38bdf8 !important;
+                      text-decoration: underline !important;
+                    }
+
+                    .ql-editor blockquote,
+                    .ql-editor blockquote * {
+                      color: #cbd5e1 !important;
+                      border-left-color: #38bdf8 !important;
+                    }
+
+                    .ql-editor pre,
+                    .ql-editor code {
+                      background-color: #1e293b !important;
+                      color: #38bdf8 !important;
+                    }
+
+                    .ql-editor.ql-blank::before {
+                      color: #94a3b8 !important;
+                      font-style: normal;
+                    }
+
+                    /* Scrollbar Styling for Content Section */
+                    .ql-container::-webkit-scrollbar {
+                      width: 8px;
+                    }
+                    .ql-container::-webkit-scrollbar-track {
+                      background: #1e293b;
+                      border-bottom-right-radius: 0.5rem;
+                    }
+                    .ql-container::-webkit-scrollbar-thumb {
+                      background: #475569;
+                      border-radius: 4px;
+                    }
+                    .ql-container::-webkit-scrollbar-thumb:hover {
+                      background: #00A6FF;
+                    }
+
+                    /* Table styling in content */
+                    .ql-editor table {
+                      border-collapse: collapse;
+                      width: 100%;
+                      margin: 1.25rem 0;
+                      border: 1px solid #334155;
+                    }
+                    .ql-editor table th,
+                    .ql-editor table td {
+                      border: 1px solid #334155;
+                      padding: 8px 12px;
+                      min-width: 60px;
+                      color: #f1f5f9 !important;
+                    }
+                    .ql-editor table th,
+                    .ql-editor table th * {
+                      background-color: #1e293b !important;
+                      font-weight: 700;
+                      color: #ffffff !important;
+                    }
+                    .ql-editor table tr:nth-child(even) td {
+                      background-color: #0f172a !important;
+                    }
+                    .ql-editor table tr:nth-child(odd) td {
+                      background-color: #141f36 !important;
+                    }
+
+                    /* Dark theme support */
+                    .dark .quill {
+                      border-color: #334155;
+                    }
+                    .dark .ql-toolbar.ql-snow {
+                      background-color: #1e293b;
+                      border-color: #334155;
+                    }
+                    .dark .ql-container.ql-snow {
+                      background-color: #0f172a;
+                      border-color: #334155;
+                      color: #f1f5f9 !important;
                     }
                     .dark .ql-snow .ql-toolbar button, .dark .ql-snow .ql-toolbar .ql-picker-label {
                       color: #cbd5e1;
@@ -692,9 +857,24 @@ const CreateBlog = () => {
           </div>
         </div>
       </form>
+
+      {/* Interactive Table Editor Modal */}
+      <TableEditorModal
+        isOpen={showTableModal}
+        onClose={() => setShowTableModal(false)}
+        onInsertTable={(tableHtml) => {
+          setCreateForm(prev => {
+            const current = prev.content || ''
+            if (!current.trim() || current === '<p><br></p>') {
+              return { ...prev, content: tableHtml }
+            }
+            return { ...prev, content: current + tableHtml }
+          })
+        }}
+        currentContent={createForm.content}
+      />
     </div>
   )
-
 }
 
 export default CreateBlog

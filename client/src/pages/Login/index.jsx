@@ -6,11 +6,18 @@ import SEO from '@components/common/SEO'
 
 function Login() {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const { login, isAuthenticated, user } = useAuth()
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-  }, [])
+    if (isAuthenticated && user) {
+      if (user.role === 'user') {
+        navigate('/user/blogs', { replace: true })
+      } else {
+        navigate('/admin/dashboard', { replace: true })
+      }
+    }
+  }, [isAuthenticated, user, navigate])
 
   const [form, setForm] = useState({ email: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
@@ -43,7 +50,12 @@ function Login() {
     try {
       const result = await login({ email: form.email, password: form.password })
       if (result?.success) {
-        navigate('/admin/dashboard')
+        const storedUser = JSON.parse(localStorage.getItem('user') || '{}')
+        if (storedUser?.role === 'user') {
+          navigate('/user/blogs')
+        } else {
+          navigate('/admin/dashboard')
+        }
       } else {
         setApiError(result?.message || 'Invalid email or password.')
       }

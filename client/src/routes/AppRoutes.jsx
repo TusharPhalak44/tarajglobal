@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import MainLayout from '@layouts/MainLayout'
 import AdminLayout from '@layouts/AdminLayout'
 import AuthLayout from '@layouts/AuthLayout'
-import AdminRoute, { RequireAdminOnly } from '@routes/AdminRoute'
+import AdminRoute, { RequireAdminOnly, UserRoute } from '@routes/AdminRoute'
 
 // Pages - Lazy Loaded for performance
 const Home = lazy(() => import('@pages/Home'))
@@ -162,6 +162,18 @@ function AppRoutes() {
         <Route path="career-gallery" element={<RequireAdminOnly><CareerGallery /></RequireAdminOnly>} />
         <Route path="footer" element={<RequireAdminOnly><FooterManagement /></RequireAdminOnly>} />
         <Route path="payments" element={<RequireAdminOnly><PaymentGateways /></RequireAdminOnly>} />
+      </Route>
+
+      {/* User Routes */}
+      <Route path="/user" element={<UserRoute><AdminLayout /></UserRoute>}>
+        <Route index element={<Navigate to="/user/blogs" replace />} />
+        <Route path="dashboard" element={<Navigate to="/user/blogs" replace />} />
+        <Route path="blogs" element={<Blogs />} />
+        <Route path="blogs/create" element={<CreateBlog />} />
+        <Route path="blogs/edit/:id" element={<EditBlog />} />
+        <Route path="drafts" element={<Drafts />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="*" element={<Navigate to="/user/blogs" replace />} />
       </Route>
     </Routes>
     </Suspense>

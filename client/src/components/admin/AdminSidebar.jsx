@@ -41,21 +41,21 @@ export const AdminSidebar = ({
   const navigate = useNavigate()
   const { user, logout } = useAuth()
 
-  const isUserRole = user?.role === 'user'
+  const isUserRole = user?.role === 'user' || location.pathname.startsWith('/user')
 
   const navSections = isUserRole
     ? [
         {
           group: 'MY CONTENT',
           items: [
-            { icon: FileText, label: 'My Blogs', path: '/admin/blogs' },
-            { icon: FileEdit, label: 'My Drafts', path: '/admin/drafts' },
+            { icon: FileText, label: 'My Blogs', path: '/user/blogs' },
+            { icon: FileEdit, label: 'My Drafts', path: '/user/drafts' },
           ]
         },
         {
           group: 'ACCOUNT',
           items: [
-            { icon: User, label: 'My Profile', path: '/admin/profile' },
+            { icon: User, label: 'My Profile', path: '/user/profile' },
           ]
         }
       ]
@@ -130,7 +130,7 @@ export const AdminSidebar = ({
         {/* Brand Header with Unique Bespoke Logo */}
         <div className="h-[68px] flex-none px-3.5 flex items-center justify-between border-b border-[var(--admin-border-base)]">
           <Link 
-            to="/admin/dashboard" 
+            to={isUserRole ? "/user/blogs" : "/admin/dashboard"} 
             className="flex items-center gap-3 group min-w-0"
             onClick={onClose}
           >
@@ -147,7 +147,7 @@ export const AdminSidebar = ({
                 <div className="flex items-center gap-2 text-[9.5px] font-bold text-[var(--admin-text-muted)] tracking-wider uppercase">
                   <span className="text-[var(--admin-primary)]">TGS</span>
                   <span className="text-[var(--admin-text-dim)]">•</span>
-                  <span>COMMAND CENTER</span>
+                  <span>{isUserRole ? 'USER PORTAL' : 'COMMAND CENTER'}</span>
                 </div>
               </div>
             )}
@@ -188,7 +188,7 @@ export const AdminSidebar = ({
               {section.items.map((item) => {
                 const Icon = item.icon
                 const isActive = location.pathname === item.path || 
-                  (item.path !== '/admin/dashboard' && location.pathname.startsWith(item.path + '/'))
+                  (item.path !== '/admin/dashboard' && item.path !== '/user/dashboard' && location.pathname.startsWith(item.path + '/'))
 
                 return (
                   <Link
@@ -225,7 +225,7 @@ export const AdminSidebar = ({
           {(!isCollapsed || isOpen) ? (
             <div className="p-2.5 rounded-xl bg-[var(--admin-bg-card)] border border-[var(--admin-border-subtle)] flex items-center justify-between gap-2 shadow-xs admin-card-hover">
               <Link 
-                to="/admin/profile" 
+                to={isUserRole ? "/user/profile" : "/admin/profile"} 
                 onClick={onClose}
                 className="flex items-center gap-2.5 min-w-0 hover:opacity-80 transition-opacity"
               >

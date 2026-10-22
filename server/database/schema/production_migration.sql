@@ -1,4 +1,4 @@
-﻿-- MySQL dump 10.13  Distrib 8.0.46, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.46, for Linux (x86_64)
 --
 -- Host: localhost    Database: tarajglobal
 -- ------------------------------------------------------
@@ -19,7 +19,7 @@
 -- Current Database: `tarajglobal`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `tarajglobal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `tarajglobal` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE `tarajglobal`;
 
@@ -202,7 +202,7 @@ CREATE TABLE `career_event_photos` (
   PRIMARY KEY (`id`),
   KEY `event_id` (`event_id`),
   CONSTRAINT `career_event_photos_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `career_events` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +233,7 @@ CREATE TABLE `career_events` (
   `color` varchar(20) DEFAULT '#00A6FF',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

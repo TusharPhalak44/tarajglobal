@@ -42,9 +42,11 @@ const AdminLayout = () => {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  const isUser = location.pathname.startsWith('/user')
+
   return (
     <>
-      <SEO title="TGS Command Center | Taraj Global" noIndex={true} />
+      <SEO title={isUser ? "TGS User Portal | Taraj Global" : "TGS Command Center | Taraj Global"} noIndex={true} />
 
       <div className="admin-layout-root flex h-screen overflow-hidden bg-[var(--admin-bg-base)]">
         {/* Left Sidebar */}

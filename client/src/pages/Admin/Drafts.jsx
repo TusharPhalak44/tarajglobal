@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import ActionDropdown from '../../components/admin/ActionDropdown'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useAuth } from '@context/AuthContext'
 import { 
   Search, 
   Filter, 
@@ -27,6 +28,9 @@ import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Drafts = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const { user } = useAuth()
+  const basePath = location.pathname.startsWith('/user') || user?.role === 'user' ? '/user' : '/admin'
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [allDrafts, setAllDrafts] = useState([])
@@ -145,7 +149,7 @@ const Drafts = () => {
   const handleEdit = (draft) => {
     setActiveDropdown(null)
     if (draft.type === 'blog') {
-      navigate(`/admin/blogs/edit/${draft.id}`)
+      navigate(`${basePath}/blogs/edit/${draft.id}`)
     } else if (draft.type === 'job') {
       navigate(`/admin/jobs/edit/${draft.id}`)
     }
@@ -286,7 +290,7 @@ const Drafts = () => {
         isRefreshing={refreshing}
         actions={
           <button
-            onClick={() => navigate('/admin/blogs/create')}
+            onClick={() => navigate(`${basePath}/blogs/create`)}
             className="admin-btn admin-btn-primary shadow-lg shadow-[#00A6FF]/20"
           >
             <Plus className="w-4 h-4" />
@@ -363,7 +367,7 @@ const Drafts = () => {
             title="No draft records found"
             description={searchQuery || typeFilter ? "No drafts match your current search criteria." : "All your platform content is published live. Create a new draft article anytime."}
             actionLabel="Create New Draft"
-            onAction={() => navigate('/admin/blogs/create')}
+            onAction={() => navigate(`${basePath}/blogs/create`)}
           />
         </div>
       ) : (

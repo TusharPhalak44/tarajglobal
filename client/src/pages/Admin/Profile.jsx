@@ -319,7 +319,10 @@ const Profile = () => {
   if (loading) {
     return (
       <div className="space-y-6">
-        <PageHeader title="Operator Profile" subtitle="Manage your identity, access keys, and security privileges" />
+        <PageHeader 
+          title={isAdminOrSuper ? "Admin Profile" : "My Profile"} 
+          subtitle={isAdminOrSuper ? "Manage your identity, access keys, and security privileges" : "Manage your profile, password, and account settings"} 
+        />
         <LoadingSkeleton type="card" count={3} />
       </div>
     )
@@ -331,11 +334,13 @@ const Profile = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
       <PageHeader
-        title="Admin Profile & Security"
-        subtitle="Manage personal operator credentials, rotate security keys, and customize profile picture."
+        title={isAdminOrSuper ? "Admin Profile & Security" : "My Profile & Security"}
+        subtitle={isAdminOrSuper 
+          ? "Manage personal operator credentials, rotate security keys, and customize profile picture." 
+          : "Manage personal account details, update security password, and customize profile picture."}
         badge={
           <span className="px-2.5 py-0.5 rounded-full text-sm font-bold uppercase tracking-wider bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/20">
-            {user?.role || 'Admin'}
+            {user?.role === 'user' ? 'Member' : (user?.role || 'Admin')}
           </span>
         }
         actions={
@@ -441,7 +446,7 @@ const Profile = () => {
               </p>
               <p className="text-sm text-[var(--admin-text-secondary)] flex items-center gap-2">
                 <Building className="w-4 h-4 text-[var(--admin-text-muted)]" />
-                <span>Taraj Global Solutions Command Center</span>
+                <span>{isAdminOrSuper ? 'Taraj Global Solutions Command Center' : 'Taraj Global Workspace'}</span>
               </p>
             </div>
           </div>
@@ -488,7 +493,7 @@ const Profile = () => {
       {/* Tabs Navigation */}
       <div className="flex gap-2 border-b border-[var(--admin-border-base)] overflow-visible pb-0.5">
         {[
-          { id: 'overview', label: 'Operator Overview', icon: User },
+          { id: 'overview', label: isAdminOrSuper ? 'Operator Overview' : 'Profile Overview', icon: User },
           { id: 'edit', label: 'Edit Profile & Avatar', icon: Edit3 },
           { id: 'password', label: 'Change Security Password', icon: Key },
           ...(isAdminOrSuper ? [{ id: 'team', label: `Manage Team Admins (${teamUsers.length})`, icon: Users }] : []),
@@ -520,7 +525,7 @@ const Profile = () => {
             <div className="flex items-center justify-between pb-4 border-b border-[var(--admin-border-subtle)]">
               <div>
                 <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Profile Information</h3>
-                <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">Verified credentials for this administrative console</p>
+                <p className="text-sm text-[var(--admin-text-muted)] mt-0.5">{isAdminOrSuper ? 'Verified credentials for this administrative console' : 'Verified credentials for your user account'}</p>
               </div>
               <button
                 onClick={() => {

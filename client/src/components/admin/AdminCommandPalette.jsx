@@ -22,36 +22,48 @@ import {
   Command
 } from 'lucide-react'
 
+import { useAuth } from '@context/AuthContext'
+
 export const AdminCommandPalette = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef(null)
   const navigate = useNavigate()
+  const { user } = useAuth()
 
-  const commands = [
-    { label: 'Dashboard Overview', path: '/admin/dashboard', icon: LayoutDashboard, category: 'Overview' },
-    { label: 'Blog Posts & CMS', path: '/admin/blogs', icon: FileText, category: 'Content' },
-    { label: 'Create New Blog Post', path: '/admin/blogs/create', icon: FileText, category: 'Quick Action' },
-    { label: 'Draft Articles', path: '/admin/drafts', icon: FileText, category: 'Content' },
-    { label: 'Archived Content', path: '/admin/archives', icon: FolderOpen, category: 'Content' },
-    { label: 'Job Openings', path: '/admin/jobs', icon: Briefcase, category: 'Careers' },
-    { label: 'Job Applications', path: '/admin/applications', icon: Users, category: 'Careers' },
-    { label: 'Inbound Leads & CRM', path: '/admin/leads', icon: Building, category: 'Revenue' },
-    { label: 'Digital Media Library', path: '/admin/media', icon: Image, category: 'Media' },
-    { label: 'Categories Manager', path: '/admin/categories', icon: FolderOpen, category: 'Content' },
-    { label: 'Blog Authors', path: '/admin/authors', icon: User, category: 'Content' },
-    { label: 'Team & RBAC Users', path: '/admin/users', icon: Users, category: 'System' },
-    { label: 'SEO Metadata Center', path: '/admin/seo', icon: Globe, category: 'SEO & Growth' },
-    { label: 'SEO Performance Analytics', path: '/admin/seo-analytics', icon: BarChart2, category: 'SEO & Growth' },
-    { label: 'Audit & Activity Logs', path: '/admin/audit-logs', icon: Activity, category: 'System' },
-    { label: 'Notification Center', path: '/admin/notifications', icon: Bell, category: 'System' },
-    { label: 'Payment Gateways', path: '/admin/payments', icon: CreditCard, category: 'System' },
-    { label: 'Header & Navbar CMS', path: '/admin/cms/navbar', icon: Layers, category: 'CMS' },
-    { label: 'Footer Architecture CMS', path: '/admin/footer', icon: Layers, category: 'CMS' },
-    { label: 'Client Logos Manager', path: '/admin/cms/clients', icon: Building, category: 'CMS' },
-    { label: 'Career Gallery Showcase', path: '/admin/career-gallery', icon: Image, category: 'CMS' },
-    { label: 'System Settings', path: '/admin/settings', icon: Settings, category: 'System' },
-  ]
+  const isUserRole = user?.role === 'user'
+
+  const commands = isUserRole
+    ? [
+        { label: 'My Articles & Blogs', path: '/user/blogs', icon: FileText, category: 'My Content' },
+        { label: 'Create New Article', path: '/user/blogs/create', icon: FileText, category: 'Quick Action' },
+        { label: 'My Draft Articles', path: '/user/drafts', icon: FileText, category: 'My Content' },
+        { label: 'My Profile & Account', path: '/user/profile', icon: User, category: 'Account' },
+      ]
+    : [
+        { label: 'Dashboard Overview', path: '/admin/dashboard', icon: LayoutDashboard, category: 'Overview' },
+        { label: 'Blog Posts & CMS', path: '/admin/blogs', icon: FileText, category: 'Content' },
+        { label: 'Create New Blog Post', path: '/admin/blogs/create', icon: FileText, category: 'Quick Action' },
+        { label: 'Draft Articles', path: '/admin/drafts', icon: FileText, category: 'Content' },
+        { label: 'Archived Content', path: '/admin/archives', icon: FolderOpen, category: 'Content' },
+        { label: 'Job Openings', path: '/admin/jobs', icon: Briefcase, category: 'Careers' },
+        { label: 'Job Applications', path: '/admin/applications', icon: Users, category: 'Careers' },
+        { label: 'Inbound Leads & CRM', path: '/admin/leads', icon: Building, category: 'Revenue' },
+        { label: 'Digital Media Library', path: '/admin/media', icon: Image, category: 'Media' },
+        { label: 'Categories Manager', path: '/admin/categories', icon: FolderOpen, category: 'Content' },
+        { label: 'Blog Authors', path: '/admin/authors', icon: User, category: 'Content' },
+        { label: 'Team & RBAC Users', path: '/admin/users', icon: Users, category: 'System' },
+        { label: 'SEO Metadata Center', path: '/admin/seo', icon: Globe, category: 'SEO & Growth' },
+        { label: 'SEO Performance Analytics', path: '/admin/seo-analytics', icon: BarChart2, category: 'SEO & Growth' },
+        { label: 'Audit & Activity Logs', path: '/admin/audit-logs', icon: Activity, category: 'System' },
+        { label: 'Notification Center', path: '/admin/notifications', icon: Bell, category: 'System' },
+        { label: 'Payment Gateways', path: '/admin/payments', icon: CreditCard, category: 'System' },
+        { label: 'Header & Navbar CMS', path: '/admin/cms/navbar', icon: Layers, category: 'CMS' },
+        { label: 'Footer Architecture CMS', path: '/admin/footer', icon: Layers, category: 'CMS' },
+        { label: 'Client Logos Manager', path: '/admin/cms/clients', icon: Building, category: 'CMS' },
+        { label: 'Career Gallery Showcase', path: '/admin/career-gallery', icon: Image, category: 'CMS' },
+        { label: 'System Settings', path: '/admin/settings', icon: Settings, category: 'System' },
+      ]
 
   const filteredCommands = commands.filter(item => 
     item.label.toLowerCase().includes(query.toLowerCase()) ||

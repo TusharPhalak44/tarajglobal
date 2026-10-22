@@ -30,28 +30,31 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  const isUserRole = user?.role === 'user' || location.pathname.startsWith('/user')
+  const basePath = isUserRole ? '/user' : '/admin'
+
   const getPageTitle = () => {
     const path = location.pathname
-    if (path.includes('/admin/blogs/create')) return 'Create Article'
-    if (path.includes('/admin/blogs/edit')) return 'Edit Article'
-    if (path.includes('/admin/blogs')) return 'Blog Publishing'
-    if (path.includes('/admin/drafts')) return 'Drafts'
-    if (path.includes('/admin/archives')) return 'Archives'
-    if (path.includes('/admin/categories')) return 'Content Categories'
-    if (path.includes('/admin/authors')) return 'Authors'
-    if (path.includes('/admin/media')) return 'Media Vault'
-    if (path.includes('/admin/jobs')) return 'Career Positions'
-    if (path.includes('/admin/applications')) return 'Candidate Matrix'
-    if (path.includes('/admin/leads')) return 'Inbound Leads'
-    if (path.includes('/admin/seo-analytics')) return 'SEO Analytics'
-    if (path.includes('/admin/seo')) return 'SEO Engine'
-    if (path.includes('/admin/users')) return 'Team & Access'
-    if (path.includes('/admin/audit-logs')) return 'Audit Trail'
-    if (path.includes('/admin/profile')) return 'My Profile'
-    if (path.includes('/admin/settings')) return 'Settings'
-    if (path.includes('/admin/cms/clients')) return 'Client Logos CMS'
-    if (path.includes('/admin/career-gallery')) return 'Culture Gallery'
-    return 'Command Overview'
+    if (path.includes('/blogs/create')) return 'Create Article'
+    if (path.includes('/blogs/edit')) return 'Edit Article'
+    if (path.includes('/blogs')) return isUserRole ? 'My Articles' : 'Blog Publishing'
+    if (path.includes('/drafts')) return isUserRole ? 'My Drafts' : 'Drafts'
+    if (path.includes('/archives')) return 'Archives'
+    if (path.includes('/categories')) return 'Content Categories'
+    if (path.includes('/authors')) return 'Authors'
+    if (path.includes('/media')) return 'Media Vault'
+    if (path.includes('/jobs')) return 'Career Positions'
+    if (path.includes('/applications')) return 'Candidate Matrix'
+    if (path.includes('/leads')) return 'Inbound Leads'
+    if (path.includes('/seo-analytics')) return 'SEO Analytics'
+    if (path.includes('/seo')) return 'SEO Engine'
+    if (path.includes('/users')) return 'Team & Access'
+    if (path.includes('/audit-logs')) return 'Audit Trail'
+    if (path.includes('/profile')) return 'My Profile'
+    if (path.includes('/settings')) return 'Settings'
+    if (path.includes('/cms/clients')) return 'Client Logos CMS'
+    if (path.includes('/career-gallery')) return 'Culture Gallery'
+    return isUserRole ? 'User Portal' : 'Command Overview'
   }
 
   const handleLogout = async () => {
@@ -133,20 +136,20 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
           {profileDropdownOpen && (
             <div className="absolute right-0 top-full mt-2 w-60 bg-[var(--admin-bg-card)] border border-[var(--admin-border-base)] rounded-xl shadow-xl p-2 z-50 animate-fade-in text-sm admin-card-hover">
               <Link
-                to="/admin/profile"
+                to={`${basePath}/profile`}
                 onClick={() => setProfileDropdownOpen(false)}
                 className="block p-2.5 rounded-lg hover:bg-[var(--admin-bg-elevated)] transition-colors mb-1.5"
               >
                 <div className="flex items-center gap-2 mb-1">
                   <Shield className="w-4 h-4 text-[var(--admin-primary)]" />
-                  <span className="font-bold text-[var(--admin-text-primary)] truncate">{user?.name || 'Administrator'}</span>
+                  <span className="font-bold text-[var(--admin-text-primary)] truncate">{user?.name || (isUserRole ? 'User' : 'Administrator')}</span>
                 </div>
-                <p className="text-[13px] text-[var(--admin-text-muted)] truncate">{user?.email || 'admin@tarajglobal.com'}</p>
+                <p className="text-[13px] text-[var(--admin-text-muted)] truncate">{user?.email || ''}</p>
               </Link>
 
               <div className="border-t border-[var(--admin-border-subtle)] pt-1.5 space-y-1">
                 <Link
-                  to="/admin/profile"
+                  to={`${basePath}/profile`}
                   onClick={() => setProfileDropdownOpen(false)}
                   className="flex items-center gap-2.5 px-3 py-2 text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] rounded-lg transition-colors font-medium"
                 >
@@ -154,14 +157,16 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
                   <span>Profile & Security</span>
                 </Link>
 
-                <Link
-                  to="/admin/settings"
-                  onClick={() => setProfileDropdownOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] rounded-lg transition-colors font-medium"
-                >
-                  <Settings className="w-4 h-4 text-[var(--admin-text-muted)]" />
-                  <span>Settings</span>
-                </Link>
+                {!isUserRole && (
+                  <Link
+                    to="/admin/settings"
+                    onClick={() => setProfileDropdownOpen(false)}
+                    className="flex items-center gap-2.5 px-3 py-2 text-[var(--admin-text-secondary)] hover:text-[var(--admin-text-primary)] hover:bg-[var(--admin-bg-elevated)] rounded-lg transition-colors font-medium"
+                  >
+                    <Settings className="w-4 h-4 text-[var(--admin-text-muted)]" />
+                    <span>Settings</span>
+                  </Link>
+                )}
 
                 <button
                   onClick={() => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ActionDropdown from '../../components/admin/ActionDropdown'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import {
   Search,
   Trash2,
@@ -25,7 +25,9 @@ import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 
 const Blogs = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const { user } = useAuth()
+  const basePath = location.pathname.startsWith('/user') || user?.role === 'user' ? '/user' : '/admin'
   const [loading, setLoading] = useState(true)
   const [blogs, setBlogs] = useState([])
   const [pagination, setPagination] = useState({ page: 1, limit: 15, total: 0, totalPages: 0 })
@@ -68,7 +70,7 @@ const Blogs = () => {
   }
 
   const handleEdit = (blog) => {
-    navigate(`/admin/blogs/edit/${blog.id}`)
+    navigate(`${basePath}/blogs/edit/${blog.id}`)
   }
 
   const handleArchive = async (blog) => {
@@ -142,7 +144,7 @@ const Blogs = () => {
             <TrendingUp className="w-4 h-4 text-[var(--admin-text-muted)]" />
           </button>
           <button
-            onClick={() => navigate('/admin/blogs/create')}
+            onClick={() => navigate(`${basePath}/blogs/create`)}
             className="admin-btn admin-btn-primary shadow-md h-10 px-4"
           >
             <Plus className="w-4 h-4" />
@@ -182,7 +184,7 @@ const Blogs = () => {
           title="No articles found"
           description="Create your first article to publish content on the website."
           actionLabel="New Article"
-          onAction={() => navigate('/admin/blogs/create')}
+          onAction={() => navigate(`${basePath}/blogs/create`)}
         />
       ) : (
         <div className="admin-card overflow-hidden">
