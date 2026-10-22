@@ -8,7 +8,7 @@ const LEADERSHIP_MEMBERS = [
     id: 'hanmant',
     name: 'Hanmant Dhotre',
     roleTag: 'FOUNDER & CEO',
-    position: 'Vision, Leadership & Business Direction',
+    position: 'FOUNDER & CEO',
     introduction:
       'Hanmant Dhotre founded TaRaj Global to replace unverified B2B outbound marketing with engineered growth architecture. Under his leadership, the firm scaled into an ISO 9001:2015 and ISO 27001:2022 certified enterprise. He guides technical strategy across US, EMEA, and APAC markets using proprietary verification tools to deliver predictable revenue pipeline.',
     image: '/Hanmant-Dhotre.webp',
@@ -21,7 +21,7 @@ const LEADERSHIP_MEMBERS = [
     id: 'tushar',
     name: 'Tushar Phalak',
     roleTag: 'Director Of Growth And Marketing',
-    position: 'Growth, Marketing & Demand Generation',
+    position: 'Director Of Growth And Marketing',
     introduction:
       'Tushar Phalak leads growth architecture and campaign strategy at TaRaj Global, specializing in multi-touch B2B lead generation and ABM. He integrates real-time intent telemetry with custom deliverability engines, helping enterprise SaaS and technology brands scale market penetration and convert target account intent into qualified pipeline across global markets.',
     image: '/Tushar-Phalak-1.webp',
@@ -34,7 +34,7 @@ const LEADERSHIP_MEMBERS = [
     id: 'abhishek',
     name: 'Abhishek Rikibe',
     roleTag: 'Director Of Client Success & Partnerships',
-    position: 'Client Success, Relationships & Partnerships',
+    position: 'Director Of Client Success & Partnerships',
     introduction:
       'Abhishek Rikibe directs enterprise client operations and global partnerships, ensuring strict adherence to TaRaj Global’s 99.8% Data Accuracy SLA. He oversees client portal onboarding, providing revenue leaders with single-pane campaign telemetry, instant lead alerts, and automated CRM pipeline routing (Salesforce, HubSpot) to drive high retention and measurable ROI.',
     image: '/Abhishek-Rikibe.webp',
