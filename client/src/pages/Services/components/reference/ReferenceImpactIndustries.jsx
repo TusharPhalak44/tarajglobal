@@ -72,7 +72,7 @@ export default function ReferenceImpactIndustries() {
         {/* Section Header */}
         <div className="mb-12">
           <div className="inline-flex items-center mb-3">
-            <span className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
               PROVEN EXPERTISE & GLOBAL IMPACT
             </span>
           </div>
@@ -116,9 +116,9 @@ export default function ReferenceImpactIndustries() {
             </div>
 
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/25 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
-                <span className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF6D00]/10 border border-[#FF6D00]/25 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF6D00] animate-pulse" />
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#FF6D00]">
                   VERIFIED IMPACT TELEMETRY
                 </span>
               </div>
@@ -198,7 +198,7 @@ export default function ReferenceImpactIndustries() {
             <div className="relative z-10 mb-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/25 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
-                <span className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#00A6FF]">
                   INDUSTRIES WE SERVE
                 </span>
               </div>

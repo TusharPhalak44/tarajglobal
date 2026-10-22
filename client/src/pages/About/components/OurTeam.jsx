@@ -149,7 +149,7 @@ export const OurTeam = () => {
 
         {/* ── ONE FRAME 3D CAROUSEL STAGE ─────────────────────────────── */}
         <div
-          className="relative w-full max-w-5xl mx-auto h-[540px] sm:h-[500px] md:h-[480px] flex items-center justify-center overflow-visible"
+          className="relative w-full max-w-5xl mx-auto h-[580px] sm:h-[540px] md:h-[520px] flex items-center justify-center overflow-visible"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={handleTouchStart}
@@ -186,7 +186,7 @@ export const OurTeam = () => {
                     if (isLeft) handlePrev()
                     if (isRight) handleNext()
                   }}
-                  className={`pointer-events-auto relative w-[92%] sm:w-[440px] md:w-[470px] lg:w-[490px] rounded-3xl p-6 sm:p-7 border transition-all duration-300 overflow-hidden ${isCenter
+                  className={`pointer-events-auto relative w-[92%] sm:w-[450px] md:w-[480px] lg:w-[500px] rounded-3xl p-6 sm:p-7 md:p-8 border transition-all duration-300 overflow-hidden ${isCenter
                     ? 'bg-[#091122] border-[#00A6FF]/40 shadow-[0_12px_45px_rgba(0,166,255,0.2)] cursor-default'
                     : 'bg-[#080D1A] border-white/10 hover:border-white/25 hover:opacity-85 cursor-pointer shadow-lg'
                     }`}
@@ -209,7 +209,7 @@ export const OurTeam = () => {
                       />
 
                       {/* Portrait Circle */}
-                      <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-[#00A6FF]/50 shadow-xl shadow-[#00A6FF]/15">
+                      <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-[#00A6FF]/50 shadow-xl shadow-[#00A6FF]/20">
                         <img
                           src={member.image}
                           alt={member.name}
@@ -230,27 +230,20 @@ export const OurTeam = () => {
                           <span className="text-4xl">👤</span>
                         </div>
                       </div>
-
-                      {/* Small badge overlay */}
-                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                        <span className="bg-[#00A6FF] text-white text-[10px] sm:text-[11px] font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full shadow-md uppercase">
-                          {member.roleTag}
-                        </span>
-                      </div>
                     </div>
 
                     {/* Leader Name */}
-                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-1 mb-1">
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-2 mb-1">
                       {member.name}
                     </h3>
 
                     {/* Position / Strategic Responsibility */}
-                    <p className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#FF6D00] bg-clip-text text-transparent mb-3 max-w-sm">
+                    <p className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#FF6D00] bg-clip-text text-transparent mb-3.5 max-w-sm">
                       {member.position}
                     </p>
 
-                    {/* Bio Paragraph */}
-                    <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed font-normal mb-5 line-clamp-4 [text-wrap:pretty]">
+                    {/* Bio Paragraph - Full text displayed cleanly without truncation or 3-dots */}
+                    <p className="text-xs sm:text-[13.5px] text-slate-300 leading-relaxed font-normal mb-5 max-w-md [text-wrap:pretty]">
                       {member.introduction}
                     </p>
 
