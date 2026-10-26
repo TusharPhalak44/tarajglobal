@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { X, RefreshCw, CheckCircle } from 'lucide-react'
+import { getAttribution } from '@utils/attribution'
+
 
 const DEFAULT_CALENDLY_URL =
   import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/tgs-admin001/30min'
@@ -51,11 +53,25 @@ const MeetingBooking = ({ isOpen, onClose }) => {
 
     const tzParam = userTz ? `&timezone=${encodeURIComponent(userTz)}` : ''
 
+    // Attach UTM parameters from last CTA click & attribution
+    let utmParams = ''
+    try {
+      const attr = getAttribution()
+      const parts = []
+      if (attr.utm_source) parts.push(`utm_source=${encodeURIComponent(attr.utm_source)}`)
+      if (attr.utm_medium) parts.push(`utm_medium=${encodeURIComponent(attr.utm_medium)}`)
+      if (attr.utm_campaign) parts.push(`utm_campaign=${encodeURIComponent(attr.utm_campaign)}`)
+      if (attr.utm_content) parts.push(`utm_content=${encodeURIComponent(attr.utm_content)}`)
+      if (attr.cta_section) parts.push(`utm_term=${encodeURIComponent(attr.cta_section)}`)
+      if (parts.length > 0) utmParams = '&' + parts.join('&')
+    } catch (_) {}
+
     // Preserves duration dropdown and native Calendly options
     return `${eventUrl}${separator}hide_gdpr_banner=1&background_color=091122&text_color=ffffff&primary_color=00a6ff&embed_domain=${encodeURIComponent(
       domain
-    )}${tzParam}`
-  }, [])
+    )}${tzParam}${utmParams}`
+  }, [isOpen])
+
 
   // Reset state on open / lock background scroll
   useEffect(() => {

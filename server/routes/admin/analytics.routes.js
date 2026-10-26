@@ -334,4 +334,136 @@ router.get('/traffic', checkPermission('analytics.view'), async (req, res) => {
   }
 })
 
+// @route   GET /api/admin/analytics/cta-clicks
+// @desc    Get CTA button click events with UTM attribution, page, and section tracking
+// @access  Private
+router.get('/cta-clicks', checkPermission('analytics.view'), async (req, res) => {
+  try {
+    const { days = 30, page, section, limit = 50 } = req.query
+    const numDays = Math.max(1, parseInt(days) || 30)
+    const rowLimit = Math.min(200, Math.max(1, parseInt(limit) || 50))
+
+    // 1. Overview counts
+    let totalClicks = 0
+    let uniqueVisitors = 0
+    try {
+      const [overview] = await db.execute(`
+        SELECT 
+          COUNT(*) as total_clicks,
+          COUNT(DISTINCT session_id) as unique_clickers
+        FROM cta_clicks
+        WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+      `, [numDays])
+      if (overview[0]) {
+        totalClicks = overview[0].total_clicks || 0
+        uniqueVisitors = overview[0].unique_clickers || 0
+      }
+    } catch (e) {
+      console.log('cta_clicks overview query error:', e.message)
+    }
+
+    // 2. Top sections
+    let topSections = []
+    try {
+      const [sections] = await db.execute(`
+        SELECT 
+          COALESCE(section_name, section_id, 'General Page Body') as section_name,
+          section_id,
+          COUNT(*) as clicks
+        FROM cta_clicks
+        WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+        GROUP BY section_name, section_id
+        ORDER BY clicks DESC
+        LIMIT 10
+      `, [numDays])
+      topSections = sections
+    } catch (e) {
+      console.log('cta_clicks top sections query error:', e.message)
+    }
+
+    // 3. Top pages
+    let topPages = []
+    try {
+      const [pages] = await db.execute(`
+        SELECT 
+          page_url,
+          COUNT(*) as clicks
+        FROM cta_clicks
+        WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+        GROUP BY page_url
+        ORDER BY clicks DESC
+        LIMIT 10
+      `, [numDays])
+      topPages = pages
+    } catch (e) {
+      console.log('cta_clicks top pages query error:', e.message)
+    }
+
+    // 4. Top CTA buttons
+    let topButtons = []
+    try {
+      const [buttons] = await db.execute(`
+        SELECT 
+          COALESCE(cta_text, 'CTA Button') as cta_text,
+          COUNT(*) as clicks
+        FROM cta_clicks
+        WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+        GROUP BY cta_text
+        ORDER BY clicks DESC
+        LIMIT 10
+      `, [numDays])
+      topButtons = buttons
+    } catch (e) {
+      console.log('cta_clicks top buttons query error:', e.message)
+    }
+
+    // 5. Recent CTA click activity
+    let recentClicks = []
+    try {
+      let query = `
+        SELECT 
+          id, page_url, page_title, section_id, section_name, cta_text,
+          destination_url, utm_source, utm_medium, utm_campaign, utm_term, utm_content,
+          session_id, ip_address, user_agent, created_at
+        FROM cta_clicks
+        WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+      `
+      const params = [numDays]
+
+      if (page) {
+        query += ` AND page_url LIKE ?`
+        params.push(`%${page}%`)
+      }
+      if (section) {
+        query += ` AND (section_id LIKE ? OR section_name LIKE ?)`
+        params.push(`%${section}%`, `%${section}%`)
+      }
+
+      query += ` ORDER BY created_at DESC LIMIT ?`
+      params.push(rowLimit)
+
+      const [clicks] = await db.execute(query, params)
+      recentClicks = clicks
+    } catch (e) {
+      console.log('cta_clicks recent clicks query error:', e.message)
+    }
+
+    res.json({
+      success: true,
+      data: {
+        totalClicks,
+        uniqueVisitors,
+        topSections,
+        topPages,
+        topButtons,
+        recentClicks
+      }
+    })
+  } catch (error) {
+    console.error('Error fetching CTA clicks:', error)
+    res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+})
+
 export default router
+

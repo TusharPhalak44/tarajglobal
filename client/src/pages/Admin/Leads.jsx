@@ -341,7 +341,36 @@ const Leads = () => {
                     </p>
                   </div>
                 )}
+
+                {/* Attribution & Origin CTA */}
+                {(selectedLead.page_url || selectedLead.source) && (
+                  <div className="space-y-2 pt-4 border-t border-[var(--admin-border-subtle)]">
+                    <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider flex items-center justify-between">
+                      <span>CTA & SEO Origin Tracking</span>
+                      <span className="text-[11px] font-mono text-[#00A6FF] lowercase">utm verified</span>
+                    </span>
+                    <div className="p-3.5 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] space-y-2 text-xs">
+                      {selectedLead.source && (
+                        <div className="flex items-center justify-between">
+                          <span className="text-[var(--admin-text-muted)] font-medium">Channel:</span>
+                          <span className="font-mono font-bold text-[var(--admin-primary)]">
+                            {selectedLead.source}
+                          </span>
+                        </div>
+                      )}
+                      {selectedLead.page_url && (
+                        <div className="space-y-1">
+                          <span className="text-[var(--admin-text-muted)] font-medium block">Origin Telemetry:</span>
+                          <p className="font-mono text-[11.5px] text-[var(--admin-text-secondary)] bg-[var(--admin-bg-base)] p-2 rounded-lg border border-[var(--admin-border-subtle)] break-all leading-relaxed">
+                            {selectedLead.page_url}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </>
+
             ) : (
               <p className="text-sm text-[var(--admin-text-muted)] py-12 text-center">
                 Select a lead from the list to view profile dossier.

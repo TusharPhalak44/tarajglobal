@@ -49,9 +49,11 @@ const WhatIsHqlService = () => {
   return (
     <section
       id="what-is-the-service"
+      data-cta-section="What is HQL Section"
       className="relative pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden bg-background border-t border-b border-border transition-colors duration-300"
       aria-label="What is High-Quality Leads (HQL) Service"
     >
+
       {/* Background accents */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div

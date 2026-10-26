@@ -563,6 +563,8 @@ router.post('/', formLimiter, [
     const leadSource = clip(attribution.channel || 'contact_form', 100)
     const pageUrl = clip(
       [
+        attribution.cta_button && `cta: [${attribution.cta_button}]`,
+        attribution.cta_section && `section: [${attribution.cta_section}]`,
         attribution.source_page && `from: ${attribution.source_page}`,
         attribution.landing_page && `landing: ${attribution.landing_page}`,
         attribution.referrer && `referrer: ${attribution.referrer}`,
@@ -597,6 +599,28 @@ router.post('/', formLimiter, [
       leadSource,
       pageUrl
     ])
+
+    // Save CTA Attribution details as initial automated lead note
+    const ctaDetails = [
+      attribution.cta_button && `CTA Clicked: "${attribution.cta_button}"`,
+      attribution.cta_section && `Section: "${attribution.cta_section}"`,
+      attribution.source_page && `Origin Page: ${attribution.source_page}`,
+      attribution.utm_campaign && `UTM Campaign: ${attribution.utm_campaign}`,
+      attribution.utm_content && `UTM Content: ${attribution.utm_content}`,
+      attribution.utm_source && `UTM Source: ${attribution.utm_source}`,
+    ].filter(Boolean).join(' | ')
+
+    if (ctaDetails && result?.insertId) {
+      try {
+        await db.execute(
+          `INSERT INTO lead_notes (lead_id, added_by, note, created_at) VALUES (?, NULL, ?, NOW())`,
+          [result.insertId, `[Attribution Tracking] ${ctaDetails}`]
+        )
+      } catch (noteErr) {
+        // Continue silently if lead_notes is unavailable
+      }
+    }
+
     
     // Notify admins about new lead and send email
     try {

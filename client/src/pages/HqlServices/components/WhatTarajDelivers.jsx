@@ -186,9 +186,11 @@ export default function WhatTarajDelivers() {
   return (
     <section
       id="what-does-taraj-actually-deliver"
+      data-cta-section="Deliverables Section"
       className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="What Does Taraj Actually Deliver"
     >
+
       {/* ── Subtle Ambient Background Illumination ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div

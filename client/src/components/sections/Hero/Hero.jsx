@@ -150,7 +150,13 @@ export const Hero = () => {
 
             {/* Exact CTAs */}
             <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-              <Link to="/contact" className="w-full sm:w-auto">
+              <Link 
+                to="/contact" 
+                data-cta="true"
+                data-cta-section="Home Hero Section"
+                data-cta-name="Build Your Sales Pipeline"
+                className="w-full sm:w-auto"
+              >
                 <FlowButton
                   text="Build Your Sales Pipeline"
                   variant="primary"
@@ -159,12 +165,16 @@ export const Hero = () => {
               </Link>
               <Link
                 to="/services"
+                data-cta="true"
+                data-cta-section="Home Hero Section"
+                data-cta-name="Explore Tech & Services"
                 className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-[13px] font-semibold text-white hover:border-[#00A6FF] hover:bg-[#00A6FF]/10 transition-colors"
               >
                 <span>Explore Tech &amp; Services</span>
                 <ArrowRight size={13} className="text-[#00A6FF]" />
               </Link>
             </div>
+
 
             {/* Updated Tech-Metrics Ribbon (Compact & Minimized) */}
             <div className="mt-6 sm:mt-7 w-full pt-5 border-t border-white/10">

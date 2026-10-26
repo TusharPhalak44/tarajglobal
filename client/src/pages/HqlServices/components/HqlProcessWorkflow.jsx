@@ -61,8 +61,10 @@ const HqlProcessWorkflow = () => {
   return (
     <section
       id="hql-process-workflow"
+      data-cta-section="Process Workflow Section"
       ref={sectionRef}
       className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+
       aria-label="How Our HQL Lead Generation Workflow Works"
     >
       {/* ── Ambient Background Lighting (Light & Dark) ── */}

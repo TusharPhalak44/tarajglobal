@@ -462,8 +462,12 @@ export const PremiumNavbar = ({ isPreview = false }) => {
             >
               <Link
                 to="/contact"
+                data-cta="true"
+                data-cta-section="Navigation Header"
+                data-cta-name="Navbar Get Started"
                 className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF6D00] hover:bg-[#FF6D00]/90 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-accent/25 transition-all overflow-hidden group cursor-pointer"
               >
+
                 {/* Ambient Shimmer Light Bar */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700     pointer-events-none" />
                 <span>Get Started</span>

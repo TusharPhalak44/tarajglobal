@@ -4,6 +4,7 @@ import { useCookies } from '../cookies/CookieContext'
 import { useAuth } from '../../context/AuthContext'
 import api from '../../api/axios'
 import { trackAttribution } from '../../utils/attribution'
+import { initGlobalCtaTracker } from '../../utils/utmTracker'
 
 // Helper to generate or retrieve a unique session ID
 const getSessionId = () => {
@@ -20,10 +21,16 @@ const PageTracker = () => {
   const { preferences } = useCookies()
   const { user } = useAuth()
 
+  // Initialize global CTA click listener across the entire website
+  useEffect(() => {
+    initGlobalCtaTracker()
+  }, [])
+
   // Session-only lead attribution; sent to the server only when the visitor submits a form.
   useEffect(() => {
     trackAttribution(location.pathname, location.search)
   }, [location.pathname, location.search])
+
 
   // SPA route navigation tracking for Google Analytics 4 (gtag.js)
   useEffect(() => {

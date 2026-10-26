@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ChevronDown, Check, Users, Search, ShieldCheck, BarChart3, Send } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import { trackCtaClick, buildTrackedUrl } from '@utils/utmTracker'
+
 
 // ─── Pipeline Step Data ─────────────────────────────────────────────────────
 
@@ -241,9 +243,30 @@ export default function HqlHero() {
   const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef(null)
 
-  const handleStartCampaign = () => navigate('/contact')
+  const handleStartCampaign = () => {
+    trackCtaClick({
+      section_id: 'hero',
+      section_name: 'Hero Section',
+      cta_text: 'Deploy HQL Campaign',
+      destination_url: '/contact',
+      utm_campaign: 'hql_services'
+    })
+    navigate(buildTrackedUrl('/contact', {
+      sectionId: 'hero',
+      sectionName: 'Hero Section',
+      ctaText: 'Deploy HQL Campaign',
+      customCampaign: 'hql_services'
+    }))
+  }
 
   const handleSeeHowItWorks = () => {
+    trackCtaClick({
+      section_id: 'hero',
+      section_name: 'Hero Section',
+      cta_text: 'See How It Works',
+      destination_url: '#hql-process-workflow',
+      utm_campaign: 'hql_services'
+    })
     const el = document.getElementById('hql-process-workflow')
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
@@ -260,10 +283,12 @@ export default function HqlHero() {
   return (
     <section
       id="hero"
+      data-cta-section="Hero Section"
       ref={sectionRef}
       className="relative min-h-[80vh] lg:min-h-[82vh] flex items-center justify-center overflow-hidden bg-background pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-10 lg:pb-8 transition-colors duration-300"
       aria-label="High-Quality Leads (HQL) Hero"
     >
+
       {/* Background — soft radial glows, no grid/scanline */}
       <div className="absolute inset-0 bg-background" aria-hidden="true">
         <div

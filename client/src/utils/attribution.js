@@ -51,9 +51,28 @@ export function trackAttribution(pathname, search) {
 /** Payload attached to lead submissions (contact form, meeting booking). */
 export function getAttribution() {
   const first = read(FIRST_TOUCH_KEY) || {}
+  const lastCta = read('tg_last_clicked_cta') || {}
+
+  // Parse any current query parameters (e.g. if arrived at /contact with CTA UTMs)
+  let currentUtms = {}
+  try {
+    const params = new URLSearchParams(window.location.search)
+    currentUtms = Object.fromEntries(
+      [...UTM_KEYS, 'source_section'].map((k) => [k, params.get(k)]).filter(([, v]) => v)
+    )
+  } catch (_) {}
+
   return {
     ...first,
-    source_page: read(LAST_PAGE_KEY) || first.landing_page || '/',
+    source_page: lastCta.page_url || read(LAST_PAGE_KEY) || first.landing_page || '/',
     conversion_page: window.location.pathname,
+    cta_button: lastCta.cta_text || '',
+    cta_section: currentUtms.source_section || lastCta.section_name || lastCta.section_id || '',
+    utm_source: currentUtms.utm_source || lastCta.utm_source || first.utm_source || 'direct',
+    utm_medium: currentUtms.utm_medium || lastCta.utm_medium || first.utm_medium || 'website',
+    utm_campaign: currentUtms.utm_campaign || lastCta.utm_campaign || first.utm_campaign || '',
+    utm_content: currentUtms.utm_content || lastCta.utm_content || first.utm_content || '',
+    utm_term: currentUtms.utm_term || lastCta.utm_term || first.utm_term || '',
   }
 }
+

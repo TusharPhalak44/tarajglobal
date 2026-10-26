@@ -5,6 +5,7 @@ import { ArrowRight, MessageSquare, Radar, Shield, Flame } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import { useTheme } from '@context/ThemeContext'
+import { trackCtaClick, buildTrackedUrl } from '@utils/utmTracker'
 
 // 3 Core HQL Trust Pillars unified into the single animated button
 const TRUST_PILLARS = [
@@ -64,16 +65,63 @@ const HqlCTA = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [20, -20])
 
-  const handleStartCampaign = () => navigate('/contact')
-  const handleTalkToTeam = () => navigate('/contact')
+  const handleStartCampaign = () => {
+    trackCtaClick({
+      section_id: 'final_cta',
+      section_name: 'Final CTA Section',
+      cta_text: 'Start Your HQL Campaign',
+      destination_url: '/contact',
+      utm_campaign: 'hql_services'
+    })
+    navigate(buildTrackedUrl('/contact', {
+      sectionId: 'final_cta',
+      sectionName: 'Final CTA Section',
+      ctaText: 'Start Your HQL Campaign',
+      customCampaign: 'hql_services'
+    }))
+  }
+
+  const handleTalkToTeam = () => {
+    trackCtaClick({
+      section_id: 'final_cta',
+      section_name: 'Final CTA Section',
+      cta_text: 'Talk to Our Team',
+      destination_url: '/contact',
+      utm_campaign: 'hql_services'
+    })
+    navigate(buildTrackedUrl('/contact', {
+      sectionId: 'final_cta',
+      sectionName: 'Final CTA Section',
+      ctaText: 'Talk to Our Team',
+      customCampaign: 'hql_services'
+    }))
+  }
 
   const currPillar = TRUST_PILLARS[pillarIndex]
   const Icon = currPillar.icon
 
+  const handleTrustPillarClick = () => {
+    trackCtaClick({
+      section_id: 'final_cta',
+      section_name: 'Final CTA Section',
+      cta_text: currPillar.label,
+      destination_url: '/contact',
+      utm_campaign: 'hql_services'
+    })
+    navigate(buildTrackedUrl('/contact', {
+      sectionId: 'final_cta',
+      sectionName: 'Final CTA Section',
+      ctaText: currPillar.label,
+      customCampaign: 'hql_services'
+    }))
+  }
+
   return (
     <section
       id="final-cta"
+      data-cta-section="Final CTA Section"
       ref={sectionRef}
+
       className="relative py-10 sm:py-12 lg:py-16 overflow-hidden bg-slate-50 dark:bg-[#050D1A] text-slate-900 dark:text-text-primary dark:text-white border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="Ready to Turn High-Quality Leads Into Sales Conversations"
     >
@@ -232,8 +280,9 @@ const HqlCTA = () => {
           >
             <motion.button
               type="button"
-              onClick={() => navigate('/contact')}
+              onClick={handleTrustPillarClick}
               whileHover={prefersReducedMotion ? {} : { scale: 1.04, y: -2 }}
+
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-3 px-4.5 py-2 sm:px-5 sm:py-2.5 rounded-full border transition-all duration-500 cursor-pointer overflow-hidden bg-white/90 dark:bg-[#0B1527]/90 backdrop-blur-md shadow-sm hover:shadow-md dark:shadow-[0_4px_20px_rgba(0,166,255,0.15)]"
               style={{

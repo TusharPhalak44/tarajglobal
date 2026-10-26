@@ -289,10 +289,12 @@ const WhatProblemsSolved = () => {
   return (
     <section
       id="business-problems-solved"
+      data-cta-section="Problems Solved Section"
       ref={sectionRef}
       className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-[#FAFCFF] dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="What Business Problems Does HQL Service Solve"
     >
+
       {/* Soft Ambient Background Glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div

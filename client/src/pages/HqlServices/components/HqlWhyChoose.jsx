@@ -156,9 +156,11 @@ const HqlWhyChoose = () => {
   return (
     <section
       id="why-choose-taraj-global-hql"
+      data-cta-section="Why Choose Taraj Section"
       className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="Why Choose Taraj Global for HIGH-QUALITY LEADS (HQL)"
     >
+
       {/* ── Ambient Background Lighting ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div

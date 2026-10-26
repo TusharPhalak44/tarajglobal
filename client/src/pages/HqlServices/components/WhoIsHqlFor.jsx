@@ -271,9 +271,11 @@ const WhoIsHqlFor = () => {
     <section
       ref={sectionRef}
       id="is-hql-lead-generation-right-for-your-business"
+      data-cta-section="Target Audience Section"
       className="relative py-6 sm:py-8 lg:py-8 overflow-hidden bg-background"
       aria-label="Is HQL Lead Generation Right for Your Business?"
     >
+
       {/* Background accents — clean, soft, almost-white with very subtle radial light */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div

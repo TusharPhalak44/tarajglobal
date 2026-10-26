@@ -1,5 +1,5 @@
 import express from 'express'
-import { trackPageView, saveCookieConsent } from '../controllers/analytics.controller.js'
+import { trackPageView, saveCookieConsent, trackCtaClick } from '../controllers/analytics.controller.js'
 
 const router = express.Router()
 
@@ -9,4 +9,7 @@ router.post('/track', trackPageView)
 // POST /api/analytics/consent
 router.post('/consent', saveCookieConsent)
 
-export default router
+// POST /api/analytics/cta-click
+router.post('/cta-click', trackCtaClick)
+
+export default router

@@ -524,8 +524,12 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
               <Link
                 to="/contact"
                 onClick={onClose}
+                data-cta="true"
+                data-cta-section="Mobile Fullscreen Menu"
+                data-cta-name="Book Strategy Consultation"
                 className="w-full py-2.5 px-4 rounded-xl bg-surface dark:bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs hover:bg-accent dark:hover:bg-accent dark:hover:text-white transition-all flex items-center justify-center gap-1.5 shadow-2xs"
               >
+
                 <span>Book Strategy Consultation</span>
                 <ArrowUpRight size={13} strokeWidth={2.2} />
               </Link>

@@ -4,6 +4,7 @@ export const adminAPI = {
   // Dashboard
   getAnalyticsDashboard: () => api.get('/admin/analytics/dashboard'),
   getTrafficAnalytics: (params) => api.get('/admin/analytics/traffic', { params }),
+  getCtaClicks: (params) => api.get('/admin/analytics/cta-clicks', { params }),
 
   // Blogs
   getBlogs: (params) => api.get('/admin/blogs', { params }),

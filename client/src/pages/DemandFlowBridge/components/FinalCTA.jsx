@@ -84,6 +84,9 @@ const FinalCTA = () => {
         >
           <button
             onClick={scrollToTop}
+            data-cta="true"
+            data-cta-section="DemandFlow Bridge Final CTA"
+            data-cta-name="Explore DemandFlow Bridge"
             style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-text-accent dark:text-white hover: shadow-lg shadow-accent hover:shadow-accent transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
           >
             <span>Explore DemandFlow Bridge</span>
@@ -92,11 +95,15 @@ const FinalCTA = () => {
 
           <Link
             to="/contact"
+            data-cta="true"
+            data-cta-section="DemandFlow Bridge Final CTA"
+            data-cta-name="Talk to Taraj Global"
             className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/15 text-text-accent dark:text-white transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
           >
             <MessageSquare className="w-4 h-4 text-primary" />
             <span>Talk to Taraj Global</span>
           </Link>
+
         </motion.div>
 
         {/* Trust Badges Footer */}

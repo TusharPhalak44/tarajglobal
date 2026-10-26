@@ -153,6 +153,65 @@ export const ensureSchema = async () => {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
     `)
 
+    // 13. Ensure page_views table
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS page_views (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        page_url VARCHAR(500) NOT NULL,
+        referrer VARCHAR(500) NULL,
+        user_agent TEXT NULL,
+        session_id VARCHAR(100) NULL,
+        ip_address VARCHAR(45) NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_page_url (page_url(255)),
+        INDEX idx_session (session_id),
+        INDEX idx_created (created_at)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    `)
+
+    // 14. Ensure cookie_consents table
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS cookie_consents (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        session_id VARCHAR(100) UNIQUE,
+        ip_address VARCHAR(45) NULL,
+        necessary TINYINT(1) DEFAULT 1,
+        analytics TINYINT(1) DEFAULT 0,
+        functional TINYINT(1) DEFAULT 0,
+        marketing TINYINT(1) DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        INDEX idx_session_consent (session_id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    `)
+
+    // 15. Ensure cta_clicks table for UTM attribution
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS cta_clicks (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        page_url VARCHAR(255) NOT NULL,
+        page_title VARCHAR(255) NULL,
+        section_id VARCHAR(100) NULL,
+        section_name VARCHAR(150) NULL,
+        cta_text VARCHAR(150) NULL,
+        destination_url VARCHAR(500) NULL,
+        utm_source VARCHAR(100) NULL,
+        utm_medium VARCHAR(100) NULL,
+        utm_campaign VARCHAR(150) NULL,
+        utm_term VARCHAR(150) NULL,
+        utm_content VARCHAR(150) NULL,
+        session_id VARCHAR(100) NULL,
+        ip_address VARCHAR(45) NULL,
+        user_agent TEXT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_cta_page (page_url),
+        INDEX idx_cta_section (section_id),
+        INDEX idx_cta_created (created_at),
+        INDEX idx_cta_utm_campaign (utm_campaign),
+        INDEX idx_cta_utm_source (utm_source)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    `)
+
     console.log('✅ Database schema integrity verification completed successfully!')
   } catch (error) {
     console.error('❌ Schema integrity check failed:', error.message)
