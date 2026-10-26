@@ -36,8 +36,8 @@ const BlogCard = ({ blog, index, onReadMore }) => {
       {/* Top Hairline Accent */}
       <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#00A6FF]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
-      {/* Featured Cover Image Container */}
-      <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
+      {/* Featured Cover Image Container - 100% Clear & Visible */}
+      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-[#0b0f19] border-b border-slate-100 dark:border-white/5">
         <img
           src={mediaUrl(blog.featured_image || blog.image) || fallbackImg}
           alt={blog.title}
@@ -46,33 +46,28 @@ const BlogCard = ({ blog, index, onReadMore }) => {
             e.currentTarget.onerror = null
             e.currentTarget.src = fallbackImg
           }}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-        {/* Category Pill Tag */}
-        <div className="absolute top-4 left-4 z-10">
-          <span className="inline-flex items-center text-[11px] font-mono font-bold tracking-wider uppercase  text-[#00E5FF]">
-            {category}
-          </span>
-        </div>
-
-        {/* Read Time Tag */}
-        <div className="absolute bottom-3 right-4 z-10">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-medium  text-white/90 ">
-            <Clock size={11} className="text-[#00A6FF]" />
-            {estimateReadTime(blog.content)}
-          </span>
-        </div>
       </div>
 
       {/* Card Body */}
       <div className="flex flex-col flex-1 p-6 sm:p-7 justify-between">
         <div>
-          {/* Metadata Row */}
-          <div className="flex items-center gap-2 text-xs text-text-tertiary mb-3 font-mono">
-            <Calendar size={13} className="text-[#00A6FF]" />
-            <span>{formatDate(blog.published_at || blog.created_at)}</span>
+          {/* Metadata Row: Category Badge + Date + Read Time */}
+          <div className="flex items-center justify-between gap-2 text-xs mb-3.5 font-mono">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20">
+              {category}
+            </span>
+            <div className="flex items-center gap-3 text-text-tertiary">
+              <span className="flex items-center gap-1.5 text-[11px]">
+                <Calendar size={12} className="text-[#00A6FF]" />
+                <span>{formatDate(blog.published_at || blog.created_at)}</span>
+              </span>
+              <span className="flex items-center gap-1 text-[11px]">
+                <Clock size={12} className="text-[#00A6FF]" />
+                <span>{estimateReadTime(blog.content)}</span>
+              </span>
+            </div>
           </div>
 
           {/* Article Title */}

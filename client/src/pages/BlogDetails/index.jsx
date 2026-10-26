@@ -74,20 +74,161 @@ function BlogDetails() {
     }
   }
 
-  // Extract Table of Contents (TOC) from content
-  const tableOfContents = useMemo(() => {
-    if (!blog?.content) return []
-    const headings = []
-    const lines = blog.content.split('\n')
-    lines.forEach((line) => {
-      if (line.startsWith('## ')) {
-        const title = line.replace('## ', '').trim()
-        const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-        headings.push({ id, title })
+  // Process and sanitize blog content, extracting Table of Contents and ensuring headings have IDs
+  const processedArticle = useMemo(() => {
+    if (!blog?.content) return { html: '', toc: [] }
+
+    // Normalize non-breaking spaces and strip Google Docs blue colors and duplicate <u> tags
+    const rawContent = blog.content
+      .replace(/&nbsp;/g, ' ')
+      .replace(/\u00A0/g, ' ')
+      .replace(/color:\s*(rgb\(\s*17\s*,\s*85\s*,\s*204\s*\)|#1155cc)[;]?/gi, '')
+      .replace(/<u>\s*(<a\b[^>]*>.*?<\/a>)\s*<\/u>/gi, '$1')
+      .replace(/(<a\b[^>]*>)\s*<u>(.*?)<\/u>\s*(<\/a>)/gi, '$1$2$3')
+      .trim()
+    const isHtml = /<[a-z][\s\S]*>/i.test(rawContent)
+
+    let htmlToProcess = rawContent
+
+    if (!isHtml) {
+      // Content is Markdown or plain text with newlines
+      const lines = rawContent.split('\n')
+      const htmlLines = []
+      let inList = false
+      let listType = null
+
+      lines.forEach((line) => {
+        const trimmed = line.trim()
+        if (trimmed.startsWith('## ')) {
+          if (inList) { htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>'); inList = false; }
+          htmlLines.push(`<h2>${trimmed.replace('## ', '')}</h2>`)
+        } else if (trimmed.startsWith('### ')) {
+          if (inList) { htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>'); inList = false; }
+          htmlLines.push(`<h3>${trimmed.replace('### ', '')}</h3>`)
+        } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+          if (!inList || listType !== 'ul') {
+            if (inList) htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>')
+            htmlLines.push('<ul>')
+            inList = true
+            listType = 'ul'
+          }
+          const text = trimmed.replace(/^[-*]\s+/, '')
+          htmlLines.push(`<li>${text}</li>`)
+        } else if (trimmed.match(/^\d+\.\s*/)) {
+          if (!inList || listType !== 'ol') {
+            if (inList) htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>')
+            htmlLines.push('<ol>')
+            inList = true
+            listType = 'ol'
+          }
+          const text = trimmed.replace(/^\d+\.\s*/, '')
+          htmlLines.push(`<li>${text}</li>`)
+        } else if (trimmed.startsWith('> ')) {
+          if (inList) { htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>'); inList = false; }
+          htmlLines.push(`<blockquote><p>${trimmed.replace('> ', '')}</p></blockquote>`)
+        } else if (trimmed === '') {
+          if (inList) { htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>'); inList = false; }
+        } else {
+          if (inList) { htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>'); inList = false; }
+          const formattedLine = trimmed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          htmlLines.push(`<p>${formattedLine}</p>`)
+        }
+      })
+      if (inList) {
+        htmlLines.push(listType === 'ul' ? '</ul>' : '</ol>')
       }
+      htmlToProcess = htmlLines.join('\n')
+    }
+
+    // Extract Headings, wrap tables, and assign anchor IDs using DOMParser
+    const headings = []
+    let finalHtml = htmlToProcess
+
+    try {
+      const parser = new DOMParser()
+      const doc = parser.parseFromString(htmlToProcess, 'text/html')
+      const headingElements = doc.querySelectorAll('h1, h2, h3, h4')
+
+      headingElements.forEach((h, index) => {
+        const text = h.textContent.trim()
+        if (!text) return
+        let id = h.getAttribute('id')
+        if (!id) {
+          id = text
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '') || `section-${index + 1}`
+          h.setAttribute('id', id)
+        }
+        // Include h2 and h3 in Table of Contents
+        if (h.tagName.toLowerCase() === 'h2' || h.tagName.toLowerCase() === 'h3') {
+          headings.push({
+            id,
+            title: text,
+            level: h.tagName.toLowerCase()
+          })
+        }
+      })
+
+      // Ensure all anchor links have single #00A6FF underline, no redundant <u> or dark blue colors
+      const links = doc.querySelectorAll('a')
+      links.forEach((a) => {
+        const href = a.getAttribute('href') || ''
+        if (href.startsWith('http') || href.startsWith('//')) {
+          a.setAttribute('target', '_blank')
+          a.setAttribute('rel', 'noopener noreferrer')
+        }
+        // Unwrap redundant <u> parent to eliminate secondary blue underline
+        if (a.parentElement && a.parentElement.tagName.toLowerCase() === 'u') {
+          const u = a.parentElement
+          u.parentNode.insertBefore(a, u)
+          u.remove()
+        }
+        // Unwrap redundant <u> child
+        const childU = a.querySelector('u')
+        if (childU) {
+          while (childU.firstChild) {
+            childU.parentNode.insertBefore(childU.firstChild, childU)
+          }
+          childU.remove()
+        }
+        // Clean any parent style with Google Docs blue
+        if (a.parentElement) {
+          const pStyle = a.parentElement.getAttribute('style') || ''
+          if (pStyle.includes('17, 85, 204') || pStyle.includes('#1155cc')) {
+            a.parentElement.setAttribute('style', pStyle.replace(/color:\s*(rgb\(\s*17\s*,\s*85\s*,\s*204\s*\)|#1155cc)[;]?/gi, ''))
+          }
+        }
+      })
+
+      // Wrap tables in responsive wrapper so table columns never truncate or distort
+      const tables = doc.querySelectorAll('table')
+      tables.forEach((table) => {
+        if (!table.parentElement || !table.parentElement.classList.contains('blog-table-responsive')) {
+          const wrapper = doc.createElement('div')
+          wrapper.className = 'blog-table-responsive'
+          table.parentNode.insertBefore(wrapper, table)
+          wrapper.appendChild(table)
+        }
+      })
+
+      finalHtml = doc.body.innerHTML
+    } catch (e) {
+      console.warn('Error parsing article headings and tables:', e)
+    }
+
+    const sanitizedHtml = DOMPurify.sanitize(finalHtml, {
+      ADD_TAGS: ['iframe', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'div'],
+      ADD_ATTR: ['target', 'id', 'class', 'style', 'href', 'src', 'alt', 'width', 'height', 'frameborder', 'allowfullscreen', 'rel']
     })
-    return headings
-  }, [blog])
+
+    return {
+      html: sanitizedHtml,
+      toc: headings
+    }
+  }, [blog?.content])
+
+  const tableOfContents = processedArticle.toc
 
   // Estimated read time
   const estimateReadTime = (content) => {
@@ -107,95 +248,6 @@ function BlogDetails() {
     blog?.featured_image ||
     blog?.image ||
     'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=700&fit=crop&q=80'
-
-  // Formatted content parser
-  const renderFormattedContent = (content) => {
-    if (!content) return null
-
-    const lines = content.split('\n')
-    return lines.map((line, index) => {
-      const trimmed = line.trim()
-
-      if (trimmed.startsWith('## ')) {
-        const text = trimmed.replace('## ', '')
-        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-        return (
-          <h2
-            key={index}
-            id={id}
-            className="text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary dark:text-text-primary dark:text-white mt-12 mb-4 pt-6 border-t border-slate-100 dark:border-white/5 scroll-mt-28"
-          >
-            {text}
-          </h2>
-        )
-      } else if (trimmed.startsWith('### ')) {
-        const text = trimmed.replace('### ', '')
-        return (
-          <h3
-            key={index}
-            className="text-xl sm:text-2xl font-bold text-text-primary dark:text-slate-100 mt-8 mb-3"
-          >
-            {text}
-          </h3>
-        )
-      } else if (trimmed.startsWith('> ')) {
-        const quote = trimmed.replace('> ', '')
-        return (
-          <div
-            key={index}
-            className="my-6 p-5 sm:p-6 rounded-2xl bg-[#00A6FF]/[0.05] dark:bg-[#00A6FF]/[0.08] border-l-4 border-[#00A6FF] italic text-text-primary dark:text-slate-200 text-sm sm:text-base leading-relaxed flex items-start gap-3"
-          >
-            <Quote size={20} className="text-[#00A6FF] shrink-0 mt-0.5 not-italic" />
-            <span>{quote}</span>
-          </div>
-        )
-      } else if (trimmed.startsWith('- ')) {
-        const rawText = trimmed.replace('- ', '')
-        const parts = rawText.split(':')
-        return (
-          <li key={index} className="text-text-secondary dark:text-[#CBD5E1] ml-6 mb-2.5 list-disc leading-relaxed text-sm sm:text-base">
-            {parts.length > 1 ? (
-              <>
-                <strong className="text-text-primary dark:text-text-primary dark:text-white font-bold">{parts[0]}:</strong>
-                {parts.slice(1).join(':')}
-              </>
-            ) : (
-              rawText
-            )}
-          </li>
-        )
-      } else if (trimmed.match(/^\d+\.\s*/)) {
-        const rawText = trimmed.replace(/^\d+\.\s*/, '')
-        const parts = rawText.split(':')
-        return (
-          <li key={index} className="text-text-secondary dark:text-[#CBD5E1] ml-6 mb-2.5 list-decimal leading-relaxed text-sm sm:text-base">
-            {parts.length > 1 ? (
-              <>
-                <strong className="text-text-primary dark:text-text-primary dark:text-white font-bold">{parts[0]}:</strong>
-                {parts.slice(1).join(':')}
-              </>
-            ) : (
-              rawText
-            )}
-          </li>
-        )
-      } else if (trimmed === '') {
-        return <div key={index} className="h-3" />
-      } else {
-        const html = trimmed.replace(
-          /\*\*(.*?)\*\*/g,
-          '<strong class="text-text-primary dark:text-white font-bold">$1</strong>'
-        )
-        return (
-          <p
-            key={index}
-            className="text-text-secondary dark:text-[#A7ADB7] mb-5 leading-relaxed text-sm sm:text-base lg:text-[17px] font-normal"
-            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }}
-          />
-        )
-      }
-    })
-  }
 
   // Schema Markup
   const articleSchema = blog
@@ -406,8 +458,8 @@ function BlogDetails() {
                 </div>
               </div>
 
-              {/* Featured Cover Image */}
-              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 dark:border-white/10 shadow-[0_12px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.6)] my-6 sm:my-8">
+              {/* Featured Cover Image - 100% Clear & Visible */}
+              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 dark:border-white/10 shadow-[0_12px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.6)] my-6 sm:my-8 bg-slate-900">
                 <img
                   src={mediaUrl(featuredImg)}
                   alt={blog.title}
@@ -415,9 +467,8 @@ function BlogDetails() {
                     e.currentTarget.onerror = null
                     e.currentTarget.src = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=700&fit=crop&q=80'
                   }}
-                  className="w-full h-52 min-[375px]:h-64 sm:h-96 lg:h-[480px] object-cover"
+                  className="w-full h-auto max-h-[520px] aspect-[16/9] object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
             </div>
@@ -472,8 +523,268 @@ function BlogDetails() {
                   </div>
 
                   {/* Formatted Article Body */}
-                  <div className="text-text-primary dark:text-slate-200 leading-relaxed font-normal overflow-hidden break-words">
-                    {renderFormattedContent(blog.content)}
+                  <div className="blog-article-content text-text-primary dark:text-slate-200 leading-relaxed font-normal">
+                    <style>{`
+                      .blog-article-content {
+                        font-size: 1.0625rem;
+                        line-height: 1.85;
+                        color: #cbd5e1;
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content p {
+                        margin-top: 0;
+                        margin-bottom: 1.5rem;
+                        line-height: 1.85;
+                        color: #cbd5e1;
+                        text-align: justify;
+                        text-justify: inter-word;
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content .ql-align-justify,
+                      .blog-article-content p.ql-align-justify,
+                      .blog-article-content div.ql-align-justify,
+                      .blog-article-content h1.ql-align-justify,
+                      .blog-article-content h2.ql-align-justify,
+                      .blog-article-content h3.ql-align-justify {
+                        text-align: justify !important;
+                        text-justify: inter-word !important;
+                      }
+                      .blog-article-content .ql-align-center,
+                      .blog-article-content p.ql-align-center,
+                      .blog-article-content h1.ql-align-center,
+                      .blog-article-content h2.ql-align-center,
+                      .blog-article-content h3.ql-align-center {
+                        text-align: center !important;
+                      }
+                      .blog-article-content .ql-align-right,
+                      .blog-article-content p.ql-align-right,
+                      .blog-article-content h1.ql-align-right,
+                      .blog-article-content h2.ql-align-right,
+                      .blog-article-content h3.ql-align-right {
+                        text-align: right !important;
+                      }
+                      .blog-article-content .ql-align-left,
+                      .blog-article-content p.ql-align-left,
+                      .blog-article-content h1.ql-align-left,
+                      .blog-article-content h2.ql-align-left,
+                      .blog-article-content h3.ql-align-left {
+                        text-align: left !important;
+                      }
+                      .blog-article-content span,
+                      .blog-article-content a,
+                      .blog-article-content strong,
+                      .blog-article-content em,
+                      .blog-article-content b,
+                      .blog-article-content i,
+                      .blog-article-content li {
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content h1 {
+                        font-size: 2.25rem;
+                        font-weight: 800;
+                        line-height: 1.25;
+                        letter-spacing: -0.025em;
+                        margin-top: 2.75rem;
+                        margin-bottom: 1.25rem;
+                        color: #ffffff;
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content h2 {
+                        font-size: 1.75rem;
+                        font-weight: 800;
+                        line-height: 1.3;
+                        letter-spacing: -0.02em;
+                        margin-top: 2.5rem;
+                        margin-bottom: 1rem;
+                        color: #ffffff;
+                        padding-top: 1.25rem;
+                        border-top: 1px solid rgba(255, 255, 255, 0.08);
+                        scroll-margin-top: 6rem;
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content h3 {
+                        font-size: 1.35rem;
+                        font-weight: 700;
+                        line-height: 1.4;
+                        letter-spacing: -0.015em;
+                        margin-top: 2rem;
+                        margin-bottom: 0.75rem;
+                        color: #f1f5f9;
+                        scroll-margin-top: 6rem;
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content h4 {
+                        font-size: 1.15rem;
+                        font-weight: 600;
+                        line-height: 1.45;
+                        margin-top: 1.5rem;
+                        margin-bottom: 0.5rem;
+                        color: #f1f5f9;
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content strong,
+                      .blog-article-content b {
+                        font-weight: 700;
+                        color: #ffffff;
+                      }
+                      .blog-article-content em,
+                      .blog-article-content i {
+                        font-style: italic;
+                      }
+                      /* Unordered / Bullet Lists */
+                      .blog-article-content ul {
+                        list-style-type: disc !important;
+                        margin: 1rem 0 1.5rem 0 !important;
+                        padding-left: 1.75rem !important;
+                      }
+                      .blog-article-content ul li {
+                        list-style-type: disc !important;
+                        margin-bottom: 0.625rem;
+                        line-height: 1.75;
+                        color: #cbd5e1;
+                      }
+                      /* Ordered Lists */
+                      .blog-article-content ol {
+                        list-style-type: decimal !important;
+                        margin: 1rem 0 1.5rem 0 !important;
+                        padding-left: 1.75rem !important;
+                      }
+                      .blog-article-content ol li {
+                        list-style-type: decimal !important;
+                        margin-bottom: 0.625rem;
+                        line-height: 1.75;
+                        color: #cbd5e1;
+                      }
+                      /* Hyperlinks: ONLY ONE #00A6FF UNDERLINE */
+                      .blog-article-content a {
+                        color: #00A6FF !important;
+                        text-decoration: underline !important;
+                        text-decoration-color: #00A6FF !important;
+                        text-decoration-thickness: 1.5px;
+                        text-underline-offset: 3px;
+                        font-weight: 500;
+                        transition: opacity 0.2s ease, text-shadow 0.2s ease;
+                        display: inline;
+                      }
+                      .blog-article-content a:hover {
+                        opacity: 0.85;
+                        text-shadow: 0 0 10px rgba(0, 166, 255, 0.45);
+                      }
+                      /* Remove any secondary underline from nested or parent tags */
+                      .blog-article-content a *,
+                      .blog-article-content a u,
+                      .blog-article-content u:has(a),
+                      .blog-article-content em:has(a),
+                      .blog-article-content span:has(a) {
+                        text-decoration: none !important;
+                        color: #00A6FF !important;
+                      }
+                      /* Blockquotes */
+                      .blog-article-content blockquote {
+                        margin: 1.75rem 0;
+                        padding: 1.25rem 1.5rem;
+                        border-left: 4px solid #00A6FF;
+                        background: rgba(0, 166, 255, 0.05);
+                        border-radius: 0 1rem 1rem 0;
+                        color: #e2e8f0;
+                        font-style: italic;
+                      }
+                      .blog-article-content blockquote p {
+                        margin-bottom: 0;
+                      }
+                      /* Tables & Responsive Wrapper */
+                      .blog-article-content .blog-table-responsive {
+                        width: 100%;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                        margin: 2rem 0;
+                        border-radius: 0.875rem;
+                        border: 1px solid #334155;
+                        background: rgba(15, 23, 42, 0.4);
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                      }
+                      .blog-article-content table {
+                        width: 100%;
+                        min-width: 620px;
+                        border-collapse: collapse;
+                        margin: 0 !important;
+                        border: none !important;
+                      }
+                      .blog-article-content th,
+                      .blog-article-content td {
+                        border: 1px solid #334155;
+                        padding: 12px 18px;
+                        text-align: left;
+                        vertical-align: top;
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                        white-space: normal !important;
+                        line-height: 1.6;
+                      }
+                      .blog-article-content th {
+                        background-color: #1e293b;
+                        color: #ffffff;
+                        font-weight: 700;
+                        font-size: 0.95rem;
+                        letter-spacing: 0.01em;
+                        white-space: nowrap;
+                      }
+                      .blog-article-content tr:nth-child(even) td {
+                        background-color: rgba(15, 23, 42, 0.6);
+                      }
+                      .blog-article-content tr:nth-child(odd) td {
+                        background-color: rgba(30, 41, 59, 0.35);
+                      }
+                      /* Light mode adjustments */
+                      html:not(.dark) .blog-article-content {
+                        color: #334155;
+                      }
+                      html:not(.dark) .blog-article-content p {
+                        color: #334155;
+                      }
+                      html:not(.dark) .blog-article-content h1,
+                      html:not(.dark) .blog-article-content h2,
+                      html:not(.dark) .blog-article-content h3,
+                      html:not(.dark) .blog-article-content h4,
+                      html:not(.dark) .blog-article-content strong {
+                        color: #0f172a;
+                      }
+                      html:not(.dark) .blog-article-content ul li,
+                      html:not(.dark) .blog-article-content ol li {
+                        color: #334155;
+                      }
+                      html:not(.dark) .blog-article-content a {
+                        color: #007bb5 !important;
+                      }
+                      html:not(.dark) .blog-article-content blockquote {
+                        border-left-color: #00A6FF;
+                        background: rgba(0, 166, 255, 0.06);
+                        color: #1e293b;
+                      }
+                      html:not(.dark) .blog-article-content table,
+                      html:not(.dark) .blog-article-content th,
+                      html:not(.dark) .blog-article-content td {
+                        border-color: #e2e8f0;
+                      }
+                      html:not(.dark) .blog-article-content th {
+                        background-color: #f1f5f9;
+                        color: #0f172a;
+                      }
+                      html:not(.dark) .blog-article-content tr:nth-child(even) td {
+                        background-color: #ffffff;
+                      }
+                      html:not(.dark) .blog-article-content tr:nth-child(odd) td {
+                        background-color: #f8fafc;
+                      }
+                    `}</style>
+                    <div dangerouslySetInnerHTML={{ __html: processedArticle.html }} />
                   </div>
 
                   {/* Share This Article Section */}
@@ -495,7 +806,7 @@ function BlogDetails() {
                         <a
                           key={item.id || idx}
                           href={`#${item.id}`}
-                          className="block text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] dark:hover:text-[#00E5FF] transition-colors py-1 leading-snug font-medium"
+                          className="block text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] dark:hover:text-[#00A6FF] transition-colors py-1 leading-snug font-medium"
                         >
                           <span className="font-mono text-[10px] text-text-tertiary mr-2">
                             0{idx + 1}.

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useMemo } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import {
   ArrowLeft,
@@ -14,11 +14,14 @@ import {
   Image,
   Layers,
   Eye,
-  Table
+  Table,
+  Link2,
+  AlignJustify
 } from 'lucide-react'
 import { adminAPI } from '@api'
 import FeaturedMedia from '@components/admin/FeaturedMedia'
 import TableEditorModal from '@components/admin/TableEditorModal'
+import LinkEditorModal from '@components/admin/LinkEditorModal'
 import { analyzeSEO } from '@utils/seoAnalyzer'
 import { useAuth } from '@context/AuthContext'
 import PageHeader from '@components/admin/PageHeader'
@@ -27,20 +30,14 @@ import { DashboardSkeleton } from '@components/admin/LoadingSkeleton'
 import ReactQuill from 'react-quill-new'
 import 'react-quill-new/dist/quill.snow.css'
 
-const quillModules = {
-  toolbar: [
-    [{ 'header': [1, 2, 3, false] }],
-    ['bold', 'italic', 'underline', 'blockquote'],
-    [{'list': 'ordered'}, {'list': 'bullet'}],
-    ['link', 'image'],
-    ['clean']
-  ],
-  table: true
-};
-
 const cleanPastedDarkColors = (html) => {
   if (!html || typeof html !== 'string') return html
   return html
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\u00A0/g, ' ')
+    .replace(/color:\s*(rgb\(\s*17\s*,\s*85\s*,\s*204\s*\)|#1155cc)[;]?/gi, '')
+    .replace(/<u>\s*(<a\b[^>]*>.*?<\/a>)\s*<\/u>/gi, '$1')
+    .replace(/(<a\b[^>]*>)\s*<u>(.*?)<\/u>\s*(<\/a>)/gi, '$1$2$3')
     .replace(/color:\s*(rgb\(\s*(?:0|1[0-9]|2[0-9]|3[0-9]|4[0-9]|50)\s*,\s*(?:0|1[0-9]|2[0-9]|3[0-9]|4[0-9]|50)\s*,\s*(?:0|1[0-9]|2[0-9]|3[0-9]|4[0-9]|50)\s*\)|#000000|#000|black|#111111|#111|#1a1a1a|#222222|#222|#333333|#333)[;]?/gi, '')
     .replace(/background-color:\s*(rgb\(\s*(?:24[5-9]|25[0-5])\s*,\s*(?:24[5-9]|25[0-5])\s*,\s*(?:24[5-9]|25[0-5])\s*\)|#ffffff|#fff|white)[;]?/gi, '')
     .replace(/style="\s*"/gi, '')
@@ -59,6 +56,100 @@ const EditBlog = () => {
   const [error, setError] = useState('')
     const [fieldErrors, setFieldErrors] = useState({})
   const [seoAnalysis, setSeoAnalysis] = useState(null)
+  const quillRef = useRef(null)
+  const lastSelectionRef = useRef(null)
+  const [linkModalState, setLinkModalState] = useState({
+    isOpen: false,
+    initialUrl: '',
+    initialText: '',
+    range: null
+  })
+
+  const quillModules = useMemo(() => ({
+    toolbar: {
+      container: [
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'blockquote'],
+        [{ 'align': [] }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['link', 'image'],
+        ['clean']
+      ],
+      handlers: {
+        link: function(value) {
+          const quill = this.quill
+          if (value) {
+            let range = quill.getSelection()
+            if (!range || range.length === 0) {
+              if (lastSelectionRef.current && lastSelectionRef.current.length > 0) {
+                range = lastSelectionRef.current
+              }
+            }
+            let initialText = ''
+            let initialUrl = ''
+            if (range) {
+              if (range.length > 0) {
+                initialText = quill.getText(range.index, range.length)
+                const formats = quill.getFormat(range)
+                if (formats.link) {
+                  initialUrl = formats.link
+                }
+              } else {
+                const formats = quill.getFormat(range.index, 0)
+                if (formats.link) {
+                  initialUrl = formats.link
+                }
+              }
+            }
+            setLinkModalState({
+              isOpen: true,
+              initialUrl,
+              initialText,
+              range
+            })
+          } else {
+            quill.format('link', false)
+          }
+        }
+      }
+    },
+    table: true
+  }), [])
+
+  const handleApplyLink = ({ url, text }) => {
+    const quill = quillRef.current?.getEditor()
+    if (!quill) return
+
+    quill.focus()
+    let range = linkModalState.range || quill.getSelection() || lastSelectionRef.current
+
+    if (range && range.length > 0) {
+      if (text && text !== quill.getText(range.index, range.length)) {
+        quill.deleteText(range.index, range.length)
+        quill.insertText(range.index, text, 'link', url)
+        quill.setSelection(range.index + text.length, 0)
+      } else {
+        quill.formatText(range.index, range.length, 'link', url)
+        quill.setSelection(range.index + range.length, 0)
+      }
+    } else {
+      const insertText = text || url
+      const index = range ? range.index : Math.max(0, quill.getLength() - 1)
+      quill.insertText(index, insertText, 'link', url)
+      quill.setSelection(index + insertText.length, 0)
+    }
+  }
+
+  const handleRemoveLink = () => {
+    const quill = quillRef.current?.getEditor()
+    if (!quill) return
+    quill.focus()
+    let range = linkModalState.range || quill.getSelection() || lastSelectionRef.current
+    if (range) {
+      quill.formatText(range.index, Math.max(1, range.length), 'link', false)
+    }
+  }
+
   const [editForm, setEditForm] = useState({
     title: '',
     slug: '',
@@ -438,15 +529,58 @@ const EditBlog = () => {
                   <label className="block text-sm font-bold text-[var(--admin-text-primary)]">
                     Content <span className="text-red-500">*</span>
                   </label>
-                  <button
-                    type="button"
-                    onClick={() => setShowTableModal(true)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/30 hover:bg-[var(--admin-primary)] hover:text-white transition-all shadow-xs cursor-pointer"
-                    title="Insert an empty table or table with content"
-                  >
-                    <Table className="w-3.5 h-3.5" />
-                    <span>+ Table (Empty / Content)</span>
-                  </button>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const quill = quillRef.current?.getEditor()
+                        let range = quill?.getSelection() || lastSelectionRef.current
+                        let initialText = range && range.length > 0 ? quill.getText(range.index, range.length) : ''
+                        let initialUrl = range ? (quill.getFormat(range)?.link || '') : ''
+                        setLinkModalState({
+                          isOpen: true,
+                          initialUrl,
+                          initialText,
+                          range
+                        })
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/30 hover:bg-[#00A6FF] hover:text-white transition-all shadow-xs cursor-pointer"
+                      title="Insert or edit hyperlink (#00A6FF)"
+                    >
+                      <Link2 className="w-3.5 h-3.5" />
+                      <span>+ Hyperlink</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const quill = quillRef.current?.getEditor()
+                        if (!quill) return
+                        quill.focus()
+                        const range = quill.getSelection() || lastSelectionRef.current
+                        if (range && range.length > 0) {
+                          const format = quill.getFormat(range)
+                          quill.format('align', format.align === 'justify' ? false : 'justify')
+                        } else {
+                          const format = quill.getFormat(0, quill.getLength())
+                          quill.formatText(0, quill.getLength(), 'align', format.align === 'justify' ? false : 'justify')
+                        }
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/30 hover:bg-[#00A6FF] hover:text-white transition-all shadow-xs cursor-pointer"
+                      title="Justify Content: Aligns text cleanly to both left and right margins"
+                    >
+                      <AlignJustify className="w-3.5 h-3.5" />
+                      <span>Justify Content</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowTableModal(true)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-[var(--admin-primary-soft)] text-[var(--admin-primary)] border border-[var(--admin-primary)]/30 hover:bg-[var(--admin-primary)] hover:text-white transition-all shadow-xs cursor-pointer"
+                      title="Insert an empty table or table with content"
+                    >
+                      <Table className="w-3.5 h-3.5" />
+                      <span>+ Table (Empty / Content)</span>
+                    </button>
+                  </div>
                 </div>
                 <div className="bg-[var(--admin-bg-canvas)] rounded-lg">
                   <style>{`
@@ -473,7 +607,8 @@ const EditBlog = () => {
                       border: none;
                       height: 520px;
                       max-height: 520px;
-                      overflow-y: auto;
+                      overflow: hidden;
+                      position: relative;
                       font-size: 16px;
                       border-bottom-left-radius: 0.5rem;
                       border-bottom-right-radius: 0.5rem;
@@ -482,9 +617,10 @@ const EditBlog = () => {
                       color: #f1f5f9;
                     }
                     .ql-editor {
-                      min-height: 100%;
-                      height: auto;
-                      overflow-y: visible;
+                      height: 100%;
+                      max-height: 520px;
+                      overflow-y: auto;
+                      padding: 16px 20px;
                       color: #f1f5f9 !important;
                     }
 
@@ -523,22 +659,43 @@ const EditBlog = () => {
                       background-color: transparent !important;
                     }
 
+                    .ql-editor .ql-align-justify,
+                    .ql-editor p.ql-align-justify {
+                      text-align: justify !important;
+                      text-justify: inter-word !important;
+                    }
+                    .ql-editor .ql-align-center,
+                    .ql-editor p.ql-align-center {
+                      text-align: center !important;
+                    }
+                    .ql-editor .ql-align-right,
+                    .ql-editor p.ql-align-right {
+                      text-align: right !important;
+                    }
+                    .ql-editor .ql-align-left,
+                    .ql-editor p.ql-align-left {
+                      text-align: left !important;
+                    }
+
+                    /* User requested hyperlink color: #00A6FF */
                     .ql-editor a,
                     .ql-editor a * {
-                      color: #38bdf8 !important;
+                      color: #00A6FF !important;
                       text-decoration: underline !important;
+                      text-underline-offset: 3px;
+                      cursor: pointer;
                     }
 
                     .ql-editor blockquote,
                     .ql-editor blockquote * {
                       color: #cbd5e1 !important;
-                      border-left-color: #38bdf8 !important;
+                      border-left-color: #00A6FF !important;
                     }
 
                     .ql-editor pre,
                     .ql-editor code {
                       background-color: #1e293b !important;
-                      color: #38bdf8 !important;
+                      color: #00A6FF !important;
                     }
 
                     .ql-editor.ql-blank::before {
@@ -546,20 +703,61 @@ const EditBlog = () => {
                       font-style: normal;
                     }
 
-                    /* Scrollbar Styling for Content Section */
-                    .ql-container::-webkit-scrollbar {
+                    /* Tooltip styling for link editing */
+                    .ql-snow .ql-tooltip {
+                      position: absolute;
+                      z-index: 50;
+                      background-color: #1e293b !important;
+                      border: 1px solid #334155 !important;
+                      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+                      border-radius: 0.5rem !important;
+                      color: #f1f5f9 !important;
+                      padding: 8px 14px !important;
+                    }
+                    .ql-snow .ql-tooltip::before {
+                      color: #94a3b8 !important;
+                      font-weight: 500;
+                    }
+                    .ql-snow .ql-tooltip input[type=text] {
+                      background-color: #0f172a !important;
+                      border: 1px solid #475569 !important;
+                      color: #00A6FF !important;
+                      border-radius: 0.375rem !important;
+                      padding: 4px 10px !important;
+                      outline: none !important;
+                      font-size: 14px !important;
+                    }
+                    .ql-snow .ql-tooltip input[type=text]:focus {
+                      border-color: #00A6FF !important;
+                      box-shadow: 0 0 0 2px rgba(0, 166, 255, 0.2) !important;
+                    }
+                    .ql-snow .ql-tooltip a.ql-action {
+                      color: #00A6FF !important;
+                      font-weight: 600;
+                      margin-left: 8px;
+                    }
+                    .ql-snow .ql-tooltip a.ql-preview {
+                      color: #00A6FF !important;
+                    }
+                    .ql-snow .ql-tooltip a.ql-remove {
+                      color: #ef4444 !important;
+                      margin-left: 8px;
+                    }
+
+                    /* Scrollbar Styling for Editor */
+                    .ql-editor::-webkit-scrollbar {
                       width: 8px;
                     }
-                    .ql-container::-webkit-scrollbar-track {
+                    .ql-editor::-webkit-scrollbar-track {
                       background: #1e293b;
                       border-bottom-right-radius: 0.5rem;
                     }
-                    .ql-container::-webkit-scrollbar-thumb {
+                    .ql-editor::-webkit-scrollbar-thumb {
                       background: #475569;
                       border-radius: 4px;
                     }
-                    .ql-container::-webkit-scrollbar-thumb:hover {
-                      background: #00A6FF;
+                    .ql-editor::-webkit-scrollbar-thumb:hover {
+                      background: #00E5FF;
                     }
 
                     /* Table styling in content */
@@ -610,9 +808,15 @@ const EditBlog = () => {
                     .dark .ql-picker-options { background-color: #1e293b; color: #cbd5e1; }
                   `}</style>
                   <ReactQuill 
+                    ref={quillRef}
                     theme="snow"
                     value={editForm.content}
                     onChange={(val) => setEditForm(prev => ({...prev, content: val}))}
+                    onChangeSelection={(range) => {
+                      if (range) {
+                        lastSelectionRef.current = range
+                      }
+                    }}
                     modules={quillModules}
                     placeholder="Start writing your content here..."
                   />
@@ -908,6 +1112,16 @@ const EditBlog = () => {
           })
         }}
         currentContent={editForm.content}
+      />
+
+      {/* Interactive Hyperlink Modal (#00A6FF) */}
+      <LinkEditorModal
+        isOpen={linkModalState.isOpen}
+        onClose={() => setLinkModalState(prev => ({ ...prev, isOpen: false }))}
+        onApply={handleApplyLink}
+        onRemove={handleRemoveLink}
+        initialText={linkModalState.initialText}
+        initialUrl={linkModalState.initialUrl}
       />
     </div>
   )

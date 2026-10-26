@@ -22,6 +22,7 @@ import PageHeader from '@components/admin/PageHeader'
 import StatusBadge from '@components/admin/StatusBadge'
 import EmptyState from '@components/admin/EmptyState'
 import { TableSkeleton } from '@components/admin/LoadingSkeleton'
+import { mediaUrl } from '@utils/media'
 
 const Blogs = () => {
   const navigate = useNavigate()
@@ -227,7 +228,7 @@ const Blogs = () => {
                     <td className="px-4 py-4">
                       {blog.featured_image || blog.image ? (
                         <div className="w-16 h-10 rounded-md overflow-hidden bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center shrink-0">
-                          <img src={blog.featured_image || blog.image} alt={blog.title} className="w-full h-full object-cover" />
+                          <img src={mediaUrl(blog.featured_image || blog.image)} alt={blog.title} className="w-full h-full object-cover" />
                         </div>
                       ) : (
                         <div className="w-16 h-10 rounded-md bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center text-[var(--admin-text-muted)]">
