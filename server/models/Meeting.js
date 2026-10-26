@@ -76,6 +76,73 @@ class Meeting {
     return rows.length > 0
   }
 
+  /**
+   * Check if a time slot has already been booked by any client (prevents double booking).
+   * Excludes cancelled or rejected bookings.
+   * Can optionally exclude a specific bookingId (useful when rescheduling).
+   */
+  static async checkSlotConflict(date, time, excludeBookingId = null) {
+    let sql = 'SELECT id, booking_id, full_name, email, meeting_date, meeting_time, status FROM meetings WHERE meeting_date = ? AND meeting_time = ? AND status NOT IN (?, ?)'
+    const params = [date, time, 'cancelled', 'rejected']
+    if (excludeBookingId) {
+      sql += ' AND booking_id != ?'
+      params.push(excludeBookingId)
+    }
+    const [rows] = await db.execute(sql, params)
+    return rows.length > 0
+  }
+
+  /**
+   * Atomically create meeting within a database transaction after ensuring slot is not double-booked.
+   * Uses row-level locking (SELECT FOR UPDATE) to eliminate concurrency race conditions.
+   */
+  static async createWithConflictCheck(meetingData) {
+    const conn = await db.getConnection()
+    try {
+      await conn.beginTransaction()
+
+      // Lock and check for existing active bookings for this date and time
+      const [rows] = await conn.execute(
+        'SELECT id, booking_id FROM meetings WHERE meeting_date = ? AND meeting_time = ? AND status NOT IN (?, ?) FOR UPDATE',
+        [meetingData.date, meetingData.time, 'cancelled', 'rejected']
+      )
+
+      if (rows.length > 0) {
+        await conn.rollback()
+        const err = new Error('This time slot has just been booked. Please select another available time.')
+        err.code = 'SLOT_UNAVAILABLE'
+        err.statusCode = 409
+        throw err
+      }
+
+      const bookingId = crypto.randomUUID()
+      const [result] = await conn.execute(
+        `INSERT INTO meetings (booking_id, full_name, email, company, phone, meeting_date, meeting_time, time_zone, meeting_type, status) 
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          bookingId,
+          meetingData.fullName,
+          meetingData.email,
+          meetingData.company,
+          meetingData.phone || '',
+          meetingData.date,
+          meetingData.time,
+          meetingData.timeZone || 'America/New_York',
+          meetingData.meetingType || 'Strategy Call',
+          'pending'
+        ]
+      )
+
+      await conn.commit()
+      return { insertId: result.insertId, bookingId }
+    } catch (err) {
+      await conn.rollback()
+      throw err
+    } finally {
+      conn.release()
+    }
+  }
+
   static async cancelByBookingOrDetails({ bookingId, email, date, time }) {
     if (bookingId) {
       const [result] = await db.execute(

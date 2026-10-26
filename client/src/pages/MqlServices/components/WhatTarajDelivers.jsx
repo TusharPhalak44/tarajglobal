@@ -25,49 +25,49 @@ const ENGINE_LAYERS = [
     module: 'DemandFlow Bridge — Strategy',
     screen: 'Strategy & ICP Allocation Control',
     metric: '49 Live Campaigns • 84 Daily Target',
-    desc: 'Defining TAM, company revenue tiers, software installs, and ideal account qualification thresholds.',
+    desc: 'We define target ARR thresholds, industry verticals, installed technographic software stacks, and buying committee personas before launch.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      'Ideal Customer Profile (ICP) definition and account tier mapping',
-      'Stakeholder buying committee architecture across target verticals',
-      'Custom qualification screening questions and criteria formulation',
+      '✔ Ideal Customer Profile (ICP) definition and account tier mapping',
+      '✔ Stakeholder buying committee architecture across target verticals',
+      '✔ Custom qualification screening questions and criteria formulation',
     ],
   },
   {
     num: '02',
     layer: '02 — Data',
-    title: 'DemandFlow Bridge — Data',
+    title: 'DemandFlow Bridge —  Data Cleanse',
     shortTitle: 'Data',
     tag: 'Contact Intelligence',
     module: 'DemandFlow Bridge — Data',
-    screen: 'Assignment, Touch & CDQA Control Center',
-    metric: '1,055 Verified Records • CDQA Approved',
-    desc: 'Direct discovery and multi-level verification of corporate buyers matching your target personas.',
+    screen: 'Telephony & Data Verification Hub: 99.8% Data Accuracy SLA',
+    metric: '99.8% Data Accuracy Verified • Zero-Bounce Replacement SLA',
+    desc: ' Every contact dossier routes through our in-house post-research verification tool to validate corporate inboxes and direct business dials.',
     icon: FileCheck,
     image: '/demandflow-dbms.png',
     points: [
-      'Direct verified decision-maker email addresses and phone dials',
-      'Triple-layer SMTP validation eliminating bounce risks and stale records',
-      'Strict GDPR, CAN-SPAM, and data privacy compliance protocols',
+      '✔ Triple-layer SMTP validation eliminating bounce risks and stale records',
+      '✔ Direct business telephone dials and verified corporate email addresses',
+      '✔ Strict ISO 27001:2022, GDPR, CCPA, and CAN-SPAM data privacy compliance audit',
     ],
   },
   {
     num: '03',
     layer: '03 — Distribution',
-    title: 'DemandFlow Bridge — Distribution',
+    title: 'DemandFlow Bridge —  Content Distribution',
     shortTitle: 'Distribution',
     tag: 'Content Syndication',
     module: 'DemandFlow Bridge — Distribution',
-    screen: 'Campaign Operations & Pacing Board',
+    screen: 'Campaign Operations & Pacing Board: Live Allocation • 100% Pacing Tracking',
     metric: 'Live Allocation • 100% Pacing Tracking',
-    desc: 'Omnichannel delivery of whitepapers, solution briefs, and research reports to target buyers.',
+    desc: 'Omnichannel syndication of authoritative whitepapers, technical solution briefs, eBooks, and research reports to target decision-makers.',
     icon: Share2,
     image: '/demandflow-campaigns.png',
     points: [
-      'Syndication across proprietary B2B publishing networks and industry hubs',
-      'Targeted promotion and branded gated asset landing experiences',
-      'Omnichannel engagement capturing active top-of-funnel interest',
+      '✔ Syndication across proprietary B2B publishing networks and industry hubs',
+      '✔ Targeted promotion and branded gated asset landing experiences',
+      '✔ Omnichannel engagement capturing active top-of-funnel interest',
     ],
   },
   {
@@ -77,15 +77,15 @@ const ENGINE_LAYERS = [
     shortTitle: 'Telemetry',
     tag: 'Behavioral Signals',
     module: 'DemandFlow Bridge — Telemetry',
-    screen: 'Response Telemetry & Intent Analytics',
+    screen: ' Response Telemetry & Intent Analytics: 24.8K Opens • 842 Positive Replies',
     metric: '24.8K Opens • 842 Positive Replies',
-    desc: 'Capturing active content consumption, topic interest surges, and evaluation intent.',
+    desc: 'Capturing active content consumption depth, scroll velocity, reading dwell time, and category interest surge signals.',
     icon: Sparkles,
     image: '/demandflow-tracking.png',
     points: [
-      'First-party download tracking and reading engagement depth',
-      'Third-party B2B intent surge monitoring across priority categories',
-      'Account-level surge prioritization for timely sales outreach',
+      '✔ First-party download tracking and reading engagement depth',
+      '✔ Third-party B2B intent surge monitoring across priority categories',
+      '✔ Account-level surge prioritization for timely sales outreach',
     ],
   },
   {
@@ -95,51 +95,51 @@ const ENGINE_LAYERS = [
     shortTitle: 'Scoring',
     tag: 'Scoring Matrix',
     module: 'DemandFlow Bridge — Scoring',
-    screen: 'Dynamic Personalization & Scoring Matrix',
+    screen: 'Dynamic Personalization & Scoring Matrix: 95.5% Match Rate • A/B Conversion Lift',
     metric: '95.5% Match Rate • A/B Conversion Lift',
-    desc: 'Objective qualification models evaluating firmographics, authority, and engagement intensity.',
+    desc: 'Objective, AI-assisted lead scoring models evaluating firmographic fit, buying committee authority, and behavioral engagement intensity.',
     icon: Gauge,
     image: '/demandflow-personalization.png',
     points: [
-      'Weighted demographic scoring reflecting decision-maker authority',
-      'Firmographic compatibility filters ensuring strict account fit',
-      'Behavioral threshold gating distinguishing MQLs from casual readers',
+      '✔ Weighted demographic scoring reflecting decision-maker authority',
+      '✔ Firmographic compatibility filters ensuring strict account fit',
+      '✔ Behavioral threshold gating distinguishing MQLs from casual readers',
     ],
   },
   {
     num: '06',
     layer: '06 — Verification',
-    title: 'DemandFlow Bridge — Verification',
+    title: 'DemandFlow Bridge — In-House Verification',
     shortTitle: 'Verification',
     tag: 'Lead Telemetry',
     module: 'DemandFlow Bridge — Verification',
-    screen: 'Data Hygiene & Audit Queue',
-    metric: '100% Zero-Bounce Guarantee',
-    desc: 'Pre-delivery quality assurance ensuring 100% accurate, complete, and contactable records.',
+    screen: 'Data Hygiene & Audit Queue: 99.8% Data Accuracy SLA',
+    metric: 'Zero-Bounce Replacement Guarantee',
+    desc: ' Pre-delivery quality assurance using our in-house post-research verification tool to enforce our 99.8% Data Accuracy SLA.',
     icon: BarChart,
     image: '/demandflow-dbms.png',
     points: [
-      'Manual QA review verifying job title, company status, and active role',
-      'Full audit trail including timestamped consent and asset history',
-      'Zero-bounce guarantee on every delivered Marketing Qualified Lead',
+      '✔ Secondary post-research review verifying job title, company status, and active role',
+      '✔ Full audit trail including timestamped consent and asset history',
+      '✔ Zero-bounce guarantee with 1-to-1 replacement SLA on every delivered MQL',
     ],
   },
   {
     num: '07',
     layer: '07 — CRM Sync',
-    title: 'DemandFlow Bridge — CRM Sync',
+    title: 'DemandFlow Bridge — Closed-Loop CRM Sync',
     shortTitle: 'CRM Sync',
     tag: 'Opportunity Readiness',
     module: 'DemandFlow Bridge — CRM Sync',
-    screen: 'Lead Qualification & QA Control Center',
+    screen: 'Lead Qualification & QA Control Center: 765 Qualified • 100% Client Ready',
     metric: '765 Qualified • 100% Client Ready',
-    desc: 'Direct, automated dispatch into Salesforce, HubSpot, Marketo, or secure webhook streams.',
+    desc: 'Direct, automated lead ingestion into Salesforce, HubSpot, Marketo, or custom REST API webhooks.',
     icon: BadgeCheck,
     image: '/demandflow-qualification.png',
     points: [
-      'Native CRM integration mapping custom fields and engagement history',
-      'Real-time lead routing and instant SDR notification workflows',
-      'Clean, formatted handoff notes supporting accelerated sales discovery',
+      '✔ Native CRM integration mapping custom fields and engagement history',
+      '✔ Real-time lead routing and instant SDR notification workflows',
+      '✔ Clean, formatted handoff notes supporting accelerated sales discovery',
     ],
   },
 ]
@@ -201,13 +201,13 @@ const WhatTarajDelivers = () => {
       </div>
 
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
             <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Proprietary MQL Engine
+              PROPRIETARY MQL ENGINE • DEMANDFLOW BRIDGE
             </span>
           </div>
 
@@ -219,13 +219,14 @@ const WhatTarajDelivers = () => {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers verified Marketing Qualified Leads (MQLs) backed by strict ICP alignment and transparent qualification telemetry.
+            TaRaj Global delivers verified Marketing Qualified Leads (MQLs) backed by strict ICP alignment, installed technographic filtering, and transparent engagement telemetry.
+
           </p>
         </div>
 
         {/* ── UNIFIED COMMAND THEATER ── */}
         <div className="relative rounded-3xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0B1424] border border-slate-200/90 dark:border-white/10 shadow-xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl">
-          
+
           {/* Top Subtle Cyan Glow Accent Line */}
           <div className="absolute top-0 left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent shadow-[0_0_12px_#00A6FF]" />
 
@@ -247,39 +248,35 @@ const WhatTarajDelivers = () => {
                     onClick={() => setActiveIdx(idx)}
                     className={`
                       relative flex-1 flex flex-col items-center py-2 px-1.5 rounded-xl transition-all duration-300 cursor-pointer text-center group overflow-hidden
-                      ${
-                        isActive
-                          ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
-                          : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
+                      ${isActive
+                        ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
+                        : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
                       }
                     `}
                   >
                     {/* Stage Number & Icon */}
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span
-                        className={`font-mono text-[11px] font-black ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
-                        }`}
+                        className={`font-mono text-[11px] font-black ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
+                          }`}
                       >
                         {layer.num}
                       </span>
                       <Icon
-                        className={`w-3.5 h-3.5 ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-                        }`}
+                        className={`w-3.5 h-3.5 ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                          }`}
                       />
                     </div>
 
                     <span
-                      className={`text-[11.5px] font-bold tracking-tight whitespace-nowrap ${
-                        isActive
-                          ? 'text-slate-900 dark:text-white'
-                          : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
-                      }`}
+                      className={`text-[11.5px] font-bold tracking-tight whitespace-nowrap ${isActive
+                        ? 'text-slate-900 dark:text-white'
+                        : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
+                        }`}
                     >
                       {layer.shortTitle}
                     </span>
@@ -354,7 +351,7 @@ const WhatTarajDelivers = () => {
 
               {/* Right Column: High-Fidelity DEMANDFLOW Bridge Window (6 Cols) */}
               <div className="lg:col-span-6">
-                <div 
+                <div
                   onClick={() => setIsZoomed(true)}
                   className="relative rounded-2xl overflow-hidden border border-slate-300/80 dark:border-[#00A6FF]/30 bg-background dark:bg-[#060D19] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.15)] group cursor-pointer transition-all duration-300 hover:border-[#00A6FF] hover:shadow-[0_20px_50px_rgba(0,166,255,0.25)]"
                 >

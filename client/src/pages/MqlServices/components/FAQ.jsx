@@ -7,59 +7,47 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is a Marketing Qualified Lead (MQL) in B2B?',
+    question: 'What is an MQL (Marketing Qualified Lead) in B2B demand generation?',
     answer:
-      'A Marketing Qualified Lead (MQL) is a verified business prospect who matches your Ideal Customer Profile (ICP) and has actively engaged with your solutions—such as downloading whitepapers, attending webinars, or interacting with high-intent content—signaling genuine evaluation interest.',
+      'A Marketing Qualified Lead (MQL) is a verified B2B decision-maker who matches your Ideal Customer Profile (ICP) and has shown real interest in your category, usually by engaging with research, whitepapers, or other gated content. MQLs are ready for nurturing and SDR follow-up, but have not yet been qualified on budget, authority, need, and timeline.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'How do MQL services differ from SQL services?',
+    question: 'How does an MQL differ from an HQL or SQL?',
     answer:
-      'An MQL represents an engaged prospect who fits demographic/firmographic criteria and has demonstrated topical intent, whereas a Sales Qualified Lead (SQL) has advanced further to confirm explicit budget, buying authority, defined pain points, and an active procurement timeline.',
+      'An MQL shows early, content-led interest and is scored on fit and engagement. An HQL goes a step further, with verbatim answers to custom screening questions on tech stack, pain points, and timeline. An SQL is accepted by sales after BANT qualification. TaRaj Global can deliver each stage, depending on how your sales team works.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'How does Taraj Global score and qualify MQLs?',
+    question: 'How does TaRaj Global score and verify MQLs before delivery?',
     answer:
-      'We use a multi-touch scoring methodology evaluating firmographic fit (revenue, employee size, tech install base), demographic seniority (job titles, department authority), and behavioral engagement signals before delivering verified records.',
+      'TaRaj Global uses AI-assisted lead scoring that weighs firmographic fit, role seniority, content dwell time, and topic surge signals. Every record then passes through our in-house post-research verification tool, backed by a 99.8% Data Accuracy SLA, before it reaches your CRM.',
   },
   {
     id: 'faq-4',
     num: '04',
-    question: 'Can we customize criteria and screening questions for our campaigns?',
+    question: 'Which ICP filters can be applied to an MQL campaign?',
     answer:
-      'Yes. Every MQL program is tailored to your exact specifications. You can specify mandatory parameters such as minimum employee count, target geographies, software install base, and custom screening questions.',
+      'Campaigns can be filtered by annual revenue (ARR), employee count, region (US, EMEA, APAC), target verticals, installed technology stack, and buying committee job titles.',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'How do you verify prospect data and eliminate bounce rates?',
+    question: 'How are MQLs delivered into Salesforce or HubSpot?',
     answer:
-      'We run every contact record through automated syntax checking, triple-layer SMTP validation, and manual data audits to guarantee 100% active, contactable corporate inboxes with zero bounce risk.',
+      'MQLs are routed through DemandFlow Bridge, our native CRM delivery system. Each record arrives with verified contact details, engagement history, and score, and syncs into Salesforce, HubSpot, Marketo, or custom REST API webhooks.',
   },
   {
     id: 'faq-6',
     num: '06',
-    question: 'What content formats perform best for generating high-intent MQLs?',
+    question: 'What is TaRaj Global 99.8% Data Accuracy and replacement SLA?',
     answer:
-      'Analyst reports, industry benchmark whitepapers, technical implementation guides, product comparison matrixes, and live webinars generate the highest intent signals among senior B2B decision-makers.',
+      ' TaRaj Global enforces a 99.8% Data Accuracy SLA on every delivered record. If a contact bounces or fails the agreed criteria, it is replaced 1-to-1 through DemandFlow Bridge at no extra cost.',
   },
-  {
-    id: 'faq-7',
-    num: '07',
-    question: 'How are MQLs delivered to our CRM or marketing automation platform?',
-    answer:
-      'We provide direct native sync to HubSpot, Salesforce, Marketo, or Eloqua, as well as secure API webhook endpoints or structured CSV batch deliveries complete with full engagement telemetry and consent timestamps.',
-  },
-  {
-    id: 'faq-8',
-    num: '08',
-    question: 'What is the delivery timeline and pacing for an MQL campaign?',
-    answer:
-      'Following campaign kickoff and ICP alignment, initial lead flow typically begins within 5 to 7 business days. Deliveries can be throttled or batched to align with your SDR team’s capacity and follow-up cadence.',
-  },
+
+
 ]
 
 const FAQ = () => {
@@ -82,18 +70,16 @@ const FAQ = () => {
         className={`
           relative group rounded-2xl transition-all duration-300 border overflow-hidden
           hover:-translate-y-0.5
-          ${
-            isOpen
-              ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
-              : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
+          ${isOpen
+            ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
+            : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
           }
         `}
       >
         {/* Top subtle hover / active accent beam */}
         <div
-          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${
-            isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-          }`}
+          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+            }`}
         />
 
         <button
@@ -106,20 +92,18 @@ const FAQ = () => {
         >
           <div className="flex items-start gap-3">
             <span
-              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${
-                isOpen
-                  ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
-                  : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-              }`}
+              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${isOpen
+                ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
+                : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.num}
             </span>
             <span
-              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${
-                isOpen
-                  ? 'text-[#00A6FF]'
-                  : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
-              }`}
+              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${isOpen
+                ? 'text-[#00A6FF]'
+                : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.question}
             </span>
@@ -128,11 +112,10 @@ const FAQ = () => {
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.25 }}
-            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${
-              isOpen
-                ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
-                : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
-            }`}
+            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${isOpen
+              ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
+              : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
+              }`}
             aria-hidden="true"
           >
             <ChevronDown className="w-4 h-4" />

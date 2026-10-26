@@ -13,11 +13,11 @@ const AUDIENCES = [
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Connect with CTOs, VP Engineering, and software buying committees evaluated against your target ARR tiers, tech stack, and cloud environment.',
+      'Connect with CTOs, VPs of Engineering, and software buying committees matched strictly against your target ARR thresholds, installed technographic stack, and cloud infrastructure.',
     points: [
-      'Targeting by install-base technographics, ARR tiers, and cloud stack',
-      'Pre-screened buying interest validating active evaluation timelines',
-      'Sales-ready discovery handoffs ready for platform demos and trials',
+      '✔ Target by install-base technographics, ARR tiers, and cloud environments',
+      '✔ Pre-screened buying signals validating active project timelines and budgets',
+      '✔ Verified C-suite discovery handoffs optimized for high-converting demo pipelines',
     ],
     visualType: 'saas',
   },
@@ -29,11 +29,11 @@ const AUDIENCES = [
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Reach CISOs, CIOs, and IT directors actively researching infrastructure upgrades, zero-trust architectures, and managed security solutions.',
+      'Reach CISOs, CIOs, and IT directors actively evaluating zero-trust frameworks, cloud security posture, and enterprise IT infrastructure modernizations',
     points: [
-      'Targeting CISOs, CIOs, IT Ops, and infrastructure decision makers',
-      'Custom screening questions validating active modernization projects',
-      'Direct dials and verified business inboxes of economic budget holders',
+      '✔ Target CISOs, CIOs, IT Ops, and security buying committees',
+      '✔ Custom discovery screening validating active security upgrade initiatives',
+      '✔ Direct-dial and verified corporate inbox data backed by our 99.8% SLA',
     ],
     visualType: 'it',
   },
@@ -45,11 +45,11 @@ const AUDIENCES = [
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Engage senior executives and procurement heads responsible for consulting contracts, advisory vendor selection, and strategic outsourcing.',
+      'Engage senior practice heads, managing directors, and procurement leaders evaluating high-value consulting, advisory, and outsourcing engagements.',
     points: [
-      'Seniority filtering targeting C-suite, VPs, and corporate buyers',
-      'Thought-leadership asset engagement validating business pain points',
-      'High-velocity handoffs ready for consultative strategic conversations',
+      '✔ Seniority filtering targeting C-suite executives, VPs, and practice leads ',
+      '✔ Intent-driven content syndication validating active business transformation needs ',
+      '✔ High-velocity sales handoffs ready for consultative discovery calls',
     ],
     visualType: 'services',
   },
@@ -61,11 +61,11 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Engage multi-stakeholder enterprise buying committees and procurement heads navigating complex, high-ACV multi-month evaluation cycles.',
+      'Engage complex, multi-stakeholder buying committees and procurement directors navigating high-ACV evaluation and contracting cycles.',
     points: [
-      'Account-level targeting matching your Global 2000 & mid-market ICP',
-      'Pre-screened committee roles with custom discovery questionnaire answers',
-      'Guaranteed CPL delivery with zero-bounce replacement SLA guarantee',
+      '✔ Account-based mapping aligned to Global 2000 and mid-market ICPs',
+      ' ✔ Pre-screened committee members verified via custom discovery criteria',
+      '✔ Guaranteed 99.8% Data Accuracy SLA with zero-bounce contact replacement',
     ],
     visualType: 'enterprise',
   },
@@ -261,11 +261,11 @@ const WhoIsHqlFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -338,15 +338,14 @@ const WhoIsHqlFor = () => {
                       prefersReducedMotion
                         ? {}
                         : {
-                            x: 4,
-                            transition: { duration: 0.2, ease: 'easeOut' },
-                          }
+                          x: 4,
+                          transition: { duration: 0.2, ease: 'easeOut' },
+                        }
                     }
-                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${
-                      isActive
+                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
                         ? 'bg-surface shadow-md'
                         : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
-                    }`}
+                      }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
                       boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : undefined,
@@ -383,9 +382,8 @@ const WhoIsHqlFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -394,9 +392,8 @@ const WhoIsHqlFor = () => {
 
                     {/* Main Title */}
                     <div
-                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -566,11 +563,10 @@ const WhoIsHqlFor = () => {
                     tabRefs.current[idx] = el
                   }}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
+                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
                       ? 'bg-surface shadow-md border-primary'
                       : 'bg-surface/50 border-border/70'
-                  }`}
+                    }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,
                     minWidth: '220px',
@@ -588,9 +584,8 @@ const WhoIsHqlFor = () => {
                     </span>
                   </div>
                   <div
-                    className={`text-sm font-bold ${
-                      isActive ? 'text-text-primary' : 'text-text-secondary'
-                    }`}
+                    className={`text-sm font-bold ${isActive ? 'text-text-primary' : 'text-text-secondary'
+                      }`}
                   >
                     {aud.label}
                   </div>

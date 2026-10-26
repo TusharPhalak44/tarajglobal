@@ -23,15 +23,15 @@ const FLOW_ITEMS = [
     id: 0,
     num: '01',
     category: 'TARGETING',
-    engineLabel: 'ICP Filter Hub',
-    engineAction: 'Precision Scoring',
+    engineLabel: 'Technographic & ARR Stack Mapping',
+    engineAction: 'Precision ICP & Tech Stack Alignment',
     problem: {
-      title: 'Unfiltered Leads',
+      title: 'Unfiltered Contact Databases',
       sub: 'Broad Lists & Low Intent',
       icon: FilterX,
     },
     solution: {
-      title: 'ICP Precision Fit',
+      title: 'Precision ICP & Tech Stack Alignment',
       sub: 'Verified Technographic Stack',
       icon: Focus,
     },
@@ -42,8 +42,8 @@ const FLOW_ITEMS = [
     id: 1,
     num: '02',
     category: 'AUTHORITY',
-    engineLabel: 'Authority Scorer',
-    engineAction: 'Seniority Audit',
+    engineLabel: 'Seniority & Buying Committee Vetting',
+    engineAction: 'Seniority & Buying Committee Vetting',
     problem: {
       title: 'Junior Form Fills',
       sub: 'Zero Purchasing Power',
@@ -61,15 +61,15 @@ const FLOW_ITEMS = [
     id: 2,
     num: '03',
     category: 'DATA QUALITY',
-    engineLabel: 'Data Verifier',
-    engineAction: 'Triple-SMTP Cleanse',
+    engineLabel: 'In-House Verification Tool',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: 'Stale Data & Bounces',
+      title: 'Stale Data & Email Bounces',
       sub: 'Domain Reputation Risk',
       icon: ShieldAlert,
     },
     solution: {
-      title: '100% Verified Inboxes',
+      title: '100% Verified Contact Inboxes',
       sub: 'Zero Bounce SLA Guarantee',
       icon: CheckCircle2,
     },
@@ -80,15 +80,15 @@ const FLOW_ITEMS = [
     id: 3,
     num: '04',
     category: 'DISCOVERY INTEL',
-    engineLabel: 'Discovery Engine',
-    engineAction: 'Bespoke Q&A Audit',
+    engineLabel: 'First-Party Intent Dossier Generation',
+    engineAction: 'First-Party Intent Dossier Generation',
     problem: {
-      title: 'Blind Sales Calls',
+      title: 'Blind Sales Outreach',
       sub: 'No Insight on Active Pain',
       icon: FileQuestion,
     },
     solution: {
-      title: 'Custom Screening Answers',
+      title: 'Intent-Matched Discovery Dossiers',
       sub: 'Known Pain & Timelines',
       icon: ListChecks,
     },
@@ -99,16 +99,16 @@ const FLOW_ITEMS = [
     id: 4,
     num: '05',
     category: 'SALES VELOCITY',
-    engineLabel: 'Velocity Engine',
-    engineAction: 'Direct CRM Sync',
+    engineLabel: 'DemandFlow Bridge',
+    engineAction: 'Closed-Loop CRM Routing',
     problem: {
       title: 'SDR Pipeline Burnout',
       sub: '65%+ Rep Hours Wasted',
       icon: EyeOff,
     },
     solution: {
-      title: 'Sales-Ready HQLs',
-      sub: '3.8x Faster Close Rate',
+      title: 'Closed-Loop CRM & Portal Delivery',
+      sub: 'Automated Pipeline Sync',
       icon: BarChart3,
     },
     color: '#EC4899',
@@ -317,19 +317,20 @@ const WhatProblemsSolved = () => {
           <div className="inline-flex items-center gap-1.5   mb-2">
             <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
-              Automated Transformation
+              TECH-ENABLED TRANSFORMATION • CLOSED-LOOP CRM PIPELINE
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="font-black tracking-tight leading-tight uppercase" style={{ fontSize: '32px' }}>
             <span>What Business Problems Does </span>
             <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
               HQL Service Solve?
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From unverified form fills to SDR burnout, we transform core pipeline bottlenecks into sales-ready conversations.
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal" style={{ fontSize: '16px' }}>
+            From unverified contact lists to SDR burnout, we transform core pipeline bottlenecks into sales-ready conversations using our in-house verification infrastructure and automated CRM delivery.
+
           </p>
 
           {/* Micro Step Indicator */}
@@ -567,9 +568,8 @@ const WhatProblemsSolved = () => {
                     }}
                   >
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs transition-transform duration-300 ${
-                        isActive ? 'scale-110 shadow-md' : ''
-                      }`}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs transition-transform duration-300 ${isActive ? 'scale-110 shadow-md' : ''
+                        }`}
                       style={{ backgroundColor: item.color }}
                     >
                       <Icon className="w-4 h-4" />
@@ -790,11 +790,10 @@ const WhatProblemsSolved = () => {
         {/* MOBILE VERTICAL VIEW (< 768px) */}
         <div className="block md:hidden space-y-3 pt-1">
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'problem' || phase === 'toCenter'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'problem' || phase === 'toCenter'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -812,11 +811,10 @@ const WhatProblemsSolved = () => {
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
-              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${
-                phase === 'centerReact'
-                  ? 'scale-108 shadow-lg ring-2 ring-primary/50'
-                  : 'scale-100'
-              }`}
+              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${phase === 'centerReact'
+                ? 'scale-108 shadow-lg ring-2 ring-primary/50'
+                : 'scale-100'
+                }`}
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
               <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
@@ -837,11 +835,10 @@ const WhatProblemsSolved = () => {
           </div>
 
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'toSolution' || phase === 'solution'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'toSolution' || phase === 'solution'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div

@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'TARGET',
-    desc: 'Match ICP criteria & verified decision-makers',
+    desc: 'Match ICP firmographics, target ARR tiers, and installed technographics',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'ENGAGE',
-    desc: 'Measure asset consumption & intent surges',
+    desc: 'Measure whitepaper downloads, dwell time, and category intent surge',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'QUALIFY',
-    desc: 'Score fit & deliver sales-ready leads',
+    desc: 'Verify email inboxes (99.8% SLA) & route warm MQLs to CRM',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -90,7 +90,8 @@ const WhatIsService = () => {
             className="flex items-center justify-center mb-4"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+              SERVICE DEFINITION • MQL PIPELINE ENGINE
+
             </span>
           </motion.div>
 
@@ -175,7 +176,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              A Marketing Qualified Lead (MQL) is a prospective business buyer who has demonstrated meaningful interest in your solutions—through high-intent content downloads, event participation, or active product research—and strictly matches your Ideal Customer Profile (ICP).
+              A Marketing Qualified Lead (MQL) is a verified B2B decision-maker who strictly matches your Ideal Customer Profile (ICP)-filtered by annual revenue (ARR), employee headcount, target verticals, and installed technographic stack and has demonstrated active category evaluation through high-intent asset consumption.
+
             </motion.p>
 
             <motion.p
@@ -185,7 +187,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike raw, untargeted contacts or basic form fills, Taraj Global’s MQL service scores demographic authority, company fit, and behavioral engagement intensity before handoff. The result is sales-ready pipeline momentum that converts at dramatically higher velocity.
+              Unlike raw, unvetted contact lists or passive form-fills, TaRaj Global’s tech-enabled, AI-assisted MQL engine scores firmographic authority, buying committee seniority, and reading dwell time before handoff. Backed by our 99.8% Data Accuracy SLA and in-house post-research verification tool, every record routes seamlessly through DemandFlow Bridge into your CRM, delivering warm, score-qualified accounts directly to your marketing automation and SDR queues.
+
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION (Exact Email Marketing Structure) */}
@@ -218,10 +221,10 @@ const WhatIsService = () => {
                         prefersReducedMotion
                           ? {}
                           : {
-                              y: -4,
-                              scale: 1.02,
-                              transition: { duration: 0.22, ease: 'easeOut' },
-                            }
+                            y: -4,
+                            scale: 1.02,
+                            transition: { duration: 0.22, ease: 'easeOut' },
+                          }
                       }
                       className="relative flex flex-col gap-2 p-3.5 sm:p-4 bg-surface transition-all duration-300"
                       style={{

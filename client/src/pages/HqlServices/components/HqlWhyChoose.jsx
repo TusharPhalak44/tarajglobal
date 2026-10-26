@@ -14,40 +14,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Precision ICP Calibration',
-    desc: 'Every campaign is customized to your exact revenue tiers, industry verticals, install-base tech stack, and buying committee stakeholder profiles.',
+    title: ' Precision ICP & Tech Stack Calibration',
+    desc: ' Every campaign is customized to your target ARR thresholds, industry verticals, installed technographic stacks, and multi-stakeholder buying committee profiles.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Buying Committee Vetting',
-    desc: 'We screen specifically for decision-makers with direct budget and sign-off authority—completely eliminating student, intern, and casual form fills.',
+    title: 'Buying Committee Seniority Vetting',
+    desc: 'We screen specifically for C-suite, VP, and Director-level decision-makers with sign-off authority—eliminating gatekeepers and casual form fills.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Custom Discovery Intel',
-    desc: 'Every lead is delivered with verbatim responses to your 2–4 mandatory qualifying questions—revealing active pain points, renewal dates, and priorities.',
+    title: ' Verbatim Discovery Intel Dossiers',
+    desc: 'Every lead is enriched with verbatim responses to 2-4 mandatory qualifying questions - revealing installed software vendors, contract renewals, and urgent pain.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Triple-SMTP Verification',
-    desc: 'We apply multi-stage algorithmic validation and human verification audits to ensure 100% inbox deliverability with direct corporate phone dials.',
+    title: 'In-House Post-Research Data Verification',
+    desc: 'We route contact records through our proprietary verification tool to ensure 100% email deliverability, valid direct telephone dials, and zero spam traps.',
     icon: AtSign,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: 'Guaranteed Replacement SLA',
-    desc: 'Zero risk to your budget. Backed by a 14-day 1-to-1 lead replacement guarantee for any prospect that bounces or fails pre-agreed qualification criteria.',
+    title: '99.8% Data Accuracy & Zero-Bounce SLA',
+    desc: 'Zero budget risk. Backed by our 99.8% Data Accuracy SLA with automatic 1-to-1 replacement via DemandFlow Bridge for any lead failing pre-agreed criteria.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -86,9 +86,9 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         prefersReducedMotion
           ? {}
           : {
-              y: -6,
-              scale: 1.02,
-            }
+            y: -6,
+            scale: 1.02,
+          }
       }
       className="relative group rounded-xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_10px_30px_-5px_rgba(0,166,255,0.35),0_0_15px_-2px_rgba(0,166,255,0.2)] dark:hover:border-primary/50 transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
@@ -183,7 +183,8 @@ const HqlWhyChoose = () => {
             className="flex items-center justify-center mb-2.5"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+              WHY TARAJ GLOBAL • TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -207,7 +208,8 @@ const HqlWhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Delivering pre-screened, decision-maker B2B leads that convert at higher velocity and zero pipeline risk.
+            Delivering pre-screened, decision-maker B2B pipeline backed by our in-house verification infrastructure, DemandFlow Bridge CRM routing, and 99.8% Data Accuracy SLA.
+
           </motion.p>
         </div>
 

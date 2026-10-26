@@ -177,23 +177,34 @@ export default function ReferenceCoreServices() {
       className="relative py-24 lg:py-32 bg-[#F8FAFC] dark:bg-[#05070B] text-slate-900 dark:text-text-primary dark:text-white border-b border-slate-200 dark:border-white/10 overflow-hidden select-none transition-colors duration-300"
     >
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
-        {/* Section Header */}
-        <div className="mb-12">
-          <div className="inline-flex items-center mb-3">
-            <span className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+        {/* Section Header Card */}
+        <div className="relative rounded-3xl border border-slate-800/80 dark:border-white/10 bg-[#0B0F17] p-8 sm:p-10 lg:p-12 text-white shadow-2xl overflow-hidden mb-12">
+          {/* Ambient background glows */}
+          <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#00A6FF]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#00A6FF]/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Top accent glow line */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF]/60 to-transparent pointer-events-none" />
+
+          {/* Eyebrow badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A6FF]/10 border border-[#00A6FF]/25 mb-5 relative z-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
+            <span className="font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
               OUR CORE SERVICES • FULL-FUNNEL ARCHITECTURE
             </span>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-slate-900 dark:text-text-primary dark:text-white leading-[1.15]">
+          {/* Title & Description Grid */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12 relative z-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.15]">
               Solutions Built Around <br className="hidden sm:inline" />
-              Your Growth Goals
+              <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
+                Your Growth Goals
+              </span>
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-600 dark:text-white/60 leading-relaxed font-normal lg:max-w-md lg:pb-1">
+            <p className="text-sm sm:text-base text-white/70 leading-relaxed font-normal lg:max-w-md lg:pb-1">
               Structured into four strategic pillars: Lead Generation, Channels & Programs, Demand & ABM/ABX, and Data & Operations to engineer predictable pipeline velocity for enterprise B2B teams.
-
             </p>
           </div>
         </div>

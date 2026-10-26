@@ -13,13 +13,13 @@ const AUDIENCES = [
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Accelerate trial conversions, demo requests, and product-led growth with Marketing Qualified Leads matching your ideal software tier and buying stage.',
+      'Scale recurring revenue and trial-to-paid conversions with Marketing Qualified Leads filtered by software tier, cloud infrastructure, and ARR thresholds.',
     points: [
-      'Target by tech stack install base, cloud infrastructure, and ARR tiers',
-      'High-intent content distribution (whitepapers, benchmark reports, calculators)',
-      'Multi-touch scoring validating active evaluation and stakeholder interest',
+      '✔ Granular segmentation by installed cloud stack (AWS, Azure, GCP) and ARR tiers ($10M to $100M+)',
+      '✔ High-intent asset syndication covering ROI calculators, architecture frameworks, and benchmark reports',
+      '✔ Multi-touch telemetry scoring active trial intent and buying committee interest before CRM routing',
     ],
-    visualType: 'saas',
+    visualType: 'SaaS & Cloud Platforms 01',
   },
   {
     id: 'it',
@@ -29,29 +29,29 @@ const AUDIENCES = [
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Connect with CIOs, CISOs, and IT directors actively researching infrastructure upgrades, security protocols, and operational enterprise software.',
+      'Engage CISOs, CIOs, and IT infrastructure leaders actively researching Zero Trust architecture, threat intelligence, and cloud migration.',
     points: [
-      'Account-level committee mapping across IT, security, and DevOps',
-      'Engagement tracking across technical briefs, case studies, and analyst reports',
-      'Custom screening questions confirming active modernization initiatives',
+      '✔ Account-level committee mapping across CISO, VP Information Security, and DevOps budget holders',
+      '✔ Content syndication of technical whitepapers, vulnerability briefs, and analyst benchmark reports',
+      '✔ Verification of active security initiatives and upcoming software renewal windows',
     ],
     visualType: 'it',
   },
   {
     id: 'b2b-services',
     num: '03',
-    label: 'B2B Professional Services',
-    tagline: 'CONSULTING & STRATEGIC ADVISORY',
+    label: ' CONSULTING & STRATEGIC ADVISORY',
+    tagline: 'B2B Professional Services',
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Engage corporate executives, operations leaders, and procurement managers seeking specialized advisory, management consulting, and enterprise expertise.',
+      'Connect management consultancies, legal firms, and corporate advisors with C-suite executives seeking specialized transformation expertise.',
     points: [
-      'Seniority filtering targeting C-suite, VPs, and business unit heads',
-      'Thought-leadership syndication establishing subject matter authority',
-      'Qualified lead handoffs ready for consultative discovery conversations',
+      '✔ Seniority filtering targeted at Chief Strategy Officers, VPs of Transformation, and Managing Directors',
+      '✔ Syndication of executive research briefs, industry trend reports, and strategic advisory frameworks',
+      '✔ Score-qualified lead handoffs ready for high-value consultative discovery calls',
     ],
-    visualType: 'services',
+    visualType: 'B2B Professional Services 03',
   },
   {
     id: 'enterprise',
@@ -61,13 +61,13 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Reach cross-functional enterprise procurement and digital transformation leaders navigating multi-month evaluation cycles.',
+      'Reach cross-functional procurement committees and digital transformation heads navigating multi-quarter enterprise buying cycles.',
     points: [
-      'ICP account lists matching Global 2000 and mid-market enterprise criteria',
-      'Multi-stage content cadence nurturing diverse stakeholder priorities',
-      'Guaranteed CPL delivery with full engagement telemetry and verified data',
+      '✔ Global 2000 and Fortune 500 target account lists filtered by revenue and headcount thresholds',
+      '✔ Multi-stage content cadences keeping diverse business unit stakeholders aligned and engaged',
+      '✔ Closed-loop delivery via DemandFlow Bridge with 99.8% Data Accuracy SLA',
     ],
-    visualType: 'enterprise',
+    visualType: 'Enterprise Solutions 04',
   },
 ]
 
@@ -259,11 +259,11 @@ const WhoIsItFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -295,7 +295,7 @@ const WhoIsItFor = () => {
             className="flex items-center justify-center mb-2"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+              TARGET AUDIENCE • ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
@@ -303,9 +303,9 @@ const WhoIsItFor = () => {
             {...fadeUp(0.08)}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-5xl font-black tracking-tight leading-tight text-text-primary mb-1.5"
           >
-            Is MQL Lead Generation{' '}
+            Is MQL Lead Generation {' '}
             <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
-              Right for Your Business?
+              Right for Your Business
             </span>
           </motion.h2>
 
@@ -313,7 +313,8 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-xs sm:text-sm lg:text-[15px] text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            MQL services help businesses reach the right decision-makers, engage high-intent prospects, and build qualified sales pipelines.
+            TaRaj Global MQL services help revenue leaders connect with industry-specific buying committees, track content telemetry, and feed marketing automation queues.
+
           </motion.p>
         </div>
 
@@ -336,15 +337,14 @@ const WhoIsItFor = () => {
                       prefersReducedMotion
                         ? {}
                         : {
-                            x: 4,
-                            transition: { duration: 0.2, ease: 'easeOut' },
-                          }
+                          x: 4,
+                          transition: { duration: 0.2, ease: 'easeOut' },
+                        }
                     }
-                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${
-                      isActive
-                        ? 'bg-surface shadow-md'
-                        : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
-                    }`}
+                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
+                      ? 'bg-surface shadow-md'
+                      : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
+                      }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
                       boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : undefined,
@@ -381,9 +381,8 @@ const WhoIsItFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -392,9 +391,8 @@ const WhoIsItFor = () => {
 
                     {/* Main Title */}
                     <div
-                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -564,11 +562,10 @@ const WhoIsItFor = () => {
                     tabRefs.current[idx] = el
                   }}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
-                      ? 'bg-surface shadow-md border-primary'
-                      : 'bg-surface/50 border-border/70'
-                  }`}
+                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
+                    ? 'bg-surface shadow-md border-primary'
+                    : 'bg-surface/50 border-border/70'
+                    }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,
                     minWidth: '220px',
@@ -586,9 +583,8 @@ const WhoIsItFor = () => {
                     </span>
                   </div>
                   <div
-                    className={`text-sm font-bold ${
-                      isActive ? 'text-text-primary' : 'text-text-secondary'
-                    }`}
+                    className={`text-sm font-bold ${isActive ? 'text-text-primary' : 'text-text-secondary'
+                      }`}
                   >
                     {aud.label}
                   </div>

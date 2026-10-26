@@ -7,58 +7,58 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is a High-Quality Lead (HQL)?',
+    question: 'What is an HQL (High-Quality Lead) in B2B demand generation?',
     answer:
-      'A High-Quality Lead (HQL) is a verified B2B prospect who strictly matches your custom Ideal Customer Profile (ICP), holds direct purchasing or evaluation authority, has demonstrated verified engagement with relevant problem-solving assets, and has answered specific qualifying questions.',
+      'A High-Quality Lead (HQL) is a pre-screened B2B contact who holds verified decision-making authority (C-Suite, VP, Director) within a target Ideal Customer Profile (ICP) account. Unlike standard leads, an HQL is qualified through mandatory discovery screening questions—confirming active business pain points, installed software stack, and project evaluation timelines—before being routed to sales teams.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'How is an HQL different from an MQL or cold lead?',
+    question: 'How does an HQL differ from an MQL or SQL in conversion velocity',
     answer:
-      'While an MQL is often just an unverified form download or gate-click with unknown authority, an HQL is manually and algorithmically validated for seniority, current tech stack, active business pain points, and purchase timeline before sales outreach.',
+      'Marketing Qualified Leads (MQLs) rely on passive content downloads or web traffic, yielding lower conversion rates. An HQL guarantees active engagement from verified budget holders who have explicitly answered 2 to 4 custom qualification questions regarding their installed tech stack, active pain points, and buying timeline, accelerating SDR-to-opportunity pipeline velocity by up to 3.8x.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'How does Taraj Global verify decision-maker data?',
+    question: 'How does TaRaj Global verify B2B lead data and prevent email bounces?',
     answer:
-      'We execute a multi-tier validation process combining real-time SMTP handshake checks, algorithmic mailbox pinging, LinkedIn profile audits, and live telephone verification to ensure 100% accurate contact dossiers with zero email bounce rates.',
+      'TaRaj Global verifies contact records using an in-house post-research verification tool backed by a 99.8% Data Accuracy SLA. Every record undergoes real-time SMTP inbox validation, direct-dial phone checks, and human QA audits to eliminate domain bounces, spam traps, and stale contact details before delivery.',
   },
   {
     id: 'faq-4',
     num: '04',
-    question: 'What kind of custom screening questions can we include?',
+    question: 'What custom qualification screening questions can be included in HQL campaigns?',
     answer:
-      'You can specify 2 to 4 mandatory discovery questions tailored to your solution—such as current software vendor, renewal dates, team size, cloud deployment model, or immediate operational bottlenecks.',
+      'Clients can specify 2 to 4 mandatory qualifying questions aligned with their sales priorities. Examples include identifying current software vendor tools, contract renewal dates, team size, primary operational bottlenecks, allocated purchasing budget, and planned implementation timelines (e.g., within 3 to 6 months).',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'Can we define our exact Ideal Customer Profile (ICP)?',
+    question: 'Can TaRaj Global target specific installed software stacks and ARR tiers?',
     answer:
-      'Yes. You retain complete control over targeting criteria including company revenue, employee headcount, industry verticals, geographic regions, target tech stacks (technographics), and specific job titles or seniority levels.',
+      ' Campaigns are built using granular firmographic and technographic filters. You can segment accounts by annual revenue (ARR), employee count, geographic region (US, EMEA, APAC), target vertical markets, installed technology stack (e.g., Salesforce, AWS, SAP), and specific buying committee job titles.',
   },
   {
     id: 'faq-6',
     num: '06',
-    question: 'How are HQL leads delivered to our sales or SDR team?',
+    question: 'How does DemandFlow Bridge sync HQL leads into Salesforce and HubSpot?',
     answer:
-      'Leads can be pushed in real-time directly into your CRM (Salesforce, HubSpot, Marketo) via custom webhooks, or delivered in encrypted CSV/Excel batches with full prospect dossiers and engagement timestamps.',
+      'Leads route in real time via DemandFlow Bridge, our proprietary middleware that integrates directly into CRMs (Salesforce, HubSpot, Marketo) or custom REST API webhooks. Each record arrives enriched with direct dials, corporate email, LinkedIn profile, engagement telemetry, and verbatim discovery answers for immediate rep assignment.',
   },
   {
     id: 'faq-7',
     num: '07',
-    question: 'Are your HQL lead generation practices GDPR and CCPA compliant?',
+    question: 'Are TaRaj Global\'s lead generation processes GDPR and ISO 27001 compliant?',
     answer:
-      'Absolutely. All outreach and lead generation strictly adhere to global privacy frameworks including GDPR, CCPA, and CAN-SPAM, complete with documented opt-in consent and clear audit trails for every contact.',
+      'Yes. TaRaj Global operates under certified ISO 27001:2022 (Information Security) and ISO 9001:2015 (Quality Management) standards. All B2B lead generation activities comply fully with international privacy laws, including GDPR (EU/UK), CCPA/CPRA (US), and CAN-SPAM regulations.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: "What is Taraj Global's lead replacement guarantee SLA?",
+    question: "What is TaRaj Global's 99.8% Data Accuracy and lead replacement SLA?",
     answer:
-      'Every HQL campaign is backed by our 14-day 1-to-1 lead replacement guarantee. If any lead bounces, has an inaccurate job title, or does not meet your agreed qualification criteria, we replace it at zero extra cost.',
+      'We enforce a strict 99.8% Data Accuracy SLA. If any delivered contact contains an invalid/bounced email, incorrect telephone number, or fails pre-agreed qualification criteria, TaRaj Global automatically replaces the record on a 1-to-1 basis via DemandFlow Bridge at zero extra cost.',
   },
 ]
 
@@ -84,18 +84,16 @@ const HqlFAQ = () => {
         className={`
           relative group rounded-2xl transition-all duration-300 border overflow-hidden
           hover:-translate-y-0.5
-          ${
-            isOpen
-              ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
-              : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
+          ${isOpen
+            ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
+            : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
           }
         `}
       >
         {/* Top subtle hover / active accent beam */}
         <div
-          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${
-            isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-          }`}
+          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+            }`}
         />
 
         <button
@@ -108,20 +106,18 @@ const HqlFAQ = () => {
         >
           <div className="flex items-start gap-3">
             <span
-              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${
-                isOpen
-                  ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
-                  : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-              }`}
+              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${isOpen
+                ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
+                : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.num}
             </span>
             <span
-              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${
-                isOpen
-                  ? 'text-[#00A6FF]'
-                  : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
-              }`}
+              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${isOpen
+                ? 'text-[#00A6FF]'
+                : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.question}
             </span>
@@ -130,11 +126,10 @@ const HqlFAQ = () => {
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.25 }}
-            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${
-              isOpen
-                ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
-                : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
-            }`}
+            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${isOpen
+              ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
+              : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
+              }`}
             aria-hidden="true"
           >
             <ChevronDown className="w-4 h-4" />
@@ -183,7 +178,7 @@ const HqlFAQ = () => {
       </div>
 
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <motion.div
@@ -191,10 +186,11 @@ const HqlFAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="flex items-center justify-center mb-2.5"
+            className="inline-flex items-center gap-2 mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Frequently Asked Questions
+            <HelpCircle className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
+            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
+              FREQUENTLY ASKED QUESTIONS • DEMANDFLOW KNOWLEDGE BASE
             </span>
           </motion.div>
 

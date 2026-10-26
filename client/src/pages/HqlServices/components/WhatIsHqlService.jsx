@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'TARGET',
-    desc: 'Match ICP criteria & verified decision-makers',
+    desc: 'Precision ICP & Buying Committee Account Mapping',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'ENGAGE',
-    desc: 'Measure problem-focused asset consumption',
+    desc: 'Capture First-Party Buyer Intent & Research Signals',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'QUALIFY',
-    desc: 'Score intent & deliver sales-ready leads',
+    desc: '99.8% SLA In-House Verification & Closed-Loop Sync',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -90,7 +90,7 @@ const WhatIsHqlService = () => {
             className="flex items-center justify-center mb-4"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+              INTENT & QUALIFICATION
             </span>
           </motion.div>
 
@@ -175,9 +175,8 @@ const WhatIsHqlService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              A High-Quality Lead (HQL) is a prospective business buyer who has demonstrated meaningful intent in your
-              solutions—through problem-centric content engagement or category research—and strictly matches your Ideal
-              Customer Profile (ICP).
+              A High-Quality Lead (HQL) is an enterprise decision-maker within your target buying committee who demonstrates active category research signals and meets your exact Ideal Customer Profile (ICP) parameters.
+
             </motion.p>
 
             <motion.p
@@ -187,9 +186,8 @@ const WhatIsHqlService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike raw, untargeted contacts or basic form fills, Taraj Global’s HQL service scores decision-maker
-              authority, company fit, and active pain triggers before delivery. The result is sales-ready pipeline momentum
-              that converts at dramatically higher velocity.
+              Unlike raw contact lists or passive content downloaders, TaRaj Global’s HQL engine validates buyer authority, installed technology stack, active project initiatives, and direct contact data through our proprietary post-research verification tool. Backed by our 99.8% Data Accuracy SLA, every lead arrives ready for immediate SDR outreach and pipeline acceleration.
+
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION */}
@@ -222,10 +220,10 @@ const WhatIsHqlService = () => {
                         prefersReducedMotion
                           ? {}
                           : {
-                              y: -4,
-                              scale: 1.02,
-                              transition: { duration: 0.22, ease: 'easeOut' },
-                            }
+                            y: -4,
+                            scale: 1.02,
+                            transition: { duration: 0.22, ease: 'easeOut' },
+                          }
                       }
                       className="relative flex flex-col gap-2 p-3.5 sm:p-4 bg-surface transition-all duration-300"
                       style={{

@@ -69,12 +69,12 @@ const MqlServices = () => {
   return (
     <>
       <SEO
-        title="MQL Services | Marketing Qualified Lead Generation | Taraj Global"
-        description="Taraj Global provides MQL services that identify, qualify, and deliver marketing qualified leads using B2B data, buyer intent, lead scoring, AI-assisted workflows, and targeted demand generation."
+        title="B2B MQL Lead Generation Services | TaRaj Global"
+        description="Get verified Marketing Qualified Leads (MQLs) scored by AI against your ICP and routed straight into your CRM across US, EMEA, and APAC"
         keywords="MQL Services, MQL Lead Generation, Marketing Qualified Leads, B2B MQL Services, MQL Lead Generation Services, Marketing Qualified Lead Generation, B2B Lead Qualification, Qualified B2B Leads, Lead Scoring, Buyer Intent, B2B Demand Generation, DemandFlow Bridge"
         canonical="/mql-services"
-        ogTitle="MQL Services | Marketing Qualified Lead Generation | Taraj Global"
-        ogDescription="Taraj Global provides MQL services that identify, qualify, and deliver marketing qualified leads using B2B data, buyer intent, lead scoring, AI-assisted workflows, and targeted demand generation."
+        ogTitle="B2B MQL Lead Generation Services | TaRaj Global"
+        ogDescription="Get verified Marketing Qualified Leads (MQLs) scored by AI against your ICP and routed straight into your CRM across US, EMEA, and APAC"
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={mqlSchema}

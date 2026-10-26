@@ -7,20 +7,20 @@ import { useReducedMotion } from '@hooks/useReducedMotion'
 // ─── Command Center Flow Visual ───────────────────────────────────────────────
 
 const FLOW_STAGES = [
-  { id: 'target',    label: 'Target Account',       sub: 'Ideal Customer Profile',      color: '#00A6FF', icon: 'target'    },
-  { id: 'decision',  label: 'Decision Maker',        sub: 'Buying Persona Mapped',       color: '#38BDF8', icon: 'person'    },
-  { id: 'content',   label: 'Asset Engagement',      sub: 'Whitepaper · Report',         color: '#00A6FF', icon: 'mail'      },
-  { id: 'intent',    label: 'Intent Surge',          sub: 'Active Solution Research',    color: '#FFA600', icon: 'engage'    },
-  { id: 'score',     label: 'Lead Scoring',          sub: 'Authority & Criteria Match',  color: '#72D669', icon: 'reply'     },
-  { id: 'qualified', label: 'Qualified MQL',         sub: 'Sales-Ready Opportunity',     color: '#FF6D00', icon: 'qualified' },
+  { id: 'target', label: 'Target Account', sub: 'Ideal Customer Profile', color: '#00A6FF', icon: 'target' },
+  { id: 'decision', label: 'Decision Maker', sub: 'Buying Persona Mapped', color: '#38BDF8', icon: 'person' },
+  { id: 'content', label: 'Asset Engagement', sub: 'Whitepaper · Report', color: '#00A6FF', icon: 'mail' },
+  { id: 'intent', label: 'Intent Surge', sub: 'Active Solution Research', color: '#FFA600', icon: 'engage' },
+  { id: 'score', label: 'Lead Scoring', sub: 'Authority & Criteria Match', color: '#72D669', icon: 'reply' },
+  { id: 'qualified', label: 'Qualified MQL', sub: 'Sales-Ready Opportunity', color: '#FF6D00', icon: 'qualified' },
 ]
 
 const STATUS_PILLS = [
   { label: 'Discovered', dot: '#00A6FF' },
-  { label: 'Engaged',    dot: '#FFA600' },
-  { label: 'Scored',     dot: '#38BDF8' },
-  { label: 'Verified',   dot: '#72D669' },
-  { label: 'MQL Ready',  dot: '#FF6D00' },
+  { label: 'Engaged', dot: '#FFA600' },
+  { label: 'Scored', dot: '#38BDF8' },
+  { label: 'Verified', dot: '#72D669' },
+  { label: 'MQL Ready', dot: '#FF6D00' },
 ]
 
 function TargetIcon({ color }) {
@@ -78,13 +78,13 @@ function QualifiedIcon({ color }) {
 
 function StageIcon({ type, color }) {
   switch (type) {
-    case 'target':    return <TargetIcon color={color} />
-    case 'person':    return <PersonIcon color={color} />
-    case 'mail':      return <MailIcon color={color} />
-    case 'engage':    return <EngageIcon color={color} />
-    case 'reply':     return <ReplyIcon color={color} />
+    case 'target': return <TargetIcon color={color} />
+    case 'person': return <PersonIcon color={color} />
+    case 'mail': return <MailIcon color={color} />
+    case 'engage': return <EngageIcon color={color} />
+    case 'reply': return <ReplyIcon color={color} />
     case 'qualified': return <QualifiedIcon color={color} />
-    default:          return <TargetIcon color={color} />
+    default: return <TargetIcon color={color} />
   }
 }
 
@@ -192,10 +192,10 @@ function CommandCenter({ prefersReducedMotion }) {
                 prefersReducedMotion
                   ? {}
                   : isActive
-                  ? { opacity: 1, x: 0, scale: 1.01 }
-                  : isCompleted
-                  ? { opacity: 0.85, x: 0, scale: 1 }
-                  : { opacity: 0.3, x: 0, scale: 1 }
+                    ? { opacity: 1, x: 0, scale: 1.01 }
+                    : isCompleted
+                      ? { opacity: 0.85, x: 0, scale: 1 }
+                      : { opacity: 0.3, x: 0, scale: 1 }
               }
               transition={{ duration: 0.4, ease: 'easeOut' }}
               className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 relative overflow-hidden"
@@ -203,13 +203,13 @@ function CommandCenter({ prefersReducedMotion }) {
                 background: isActive
                   ? `linear-gradient(90deg, ${stage.color}18 0%, transparent 100%)`
                   : isCompleted
-                  ? 'rgba(255,255,255,0.02)'
-                  : 'transparent',
+                    ? 'rgba(255,255,255,0.02)'
+                    : 'transparent',
                 border: isActive
                   ? `1px solid ${stage.color}35`
                   : isCompleted
-                  ? '1px solid rgba(255,255,255,0.05)'
-                  : '1px solid transparent',
+                    ? '1px solid rgba(255,255,255,0.05)'
+                    : '1px solid transparent',
               }}
             >
               {/* Active left indicator bar */}
@@ -228,8 +228,8 @@ function CommandCenter({ prefersReducedMotion }) {
                   background: isActive
                     ? `${stage.color}20`
                     : isCompleted
-                    ? 'rgba(255,255,255,0.04)'
-                    : 'rgba(255,255,255,0.02)',
+                      ? 'rgba(255,255,255,0.04)'
+                      : 'rgba(255,255,255,0.02)',
                   border: `1px solid ${isActive ? stage.color + '40' : 'rgba(255,255,255,0.06)'}`,
                 }}
               >
@@ -311,10 +311,10 @@ const Hero = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -363,7 +363,8 @@ const Hero = () => {
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                MQL LEAD GENERATION
+                TECH-ENABLED DEMAND GENERATION • MQL ARCHITECTURE
+
               </span>
             </motion.div>
 
@@ -372,12 +373,12 @@ const Hero = () => {
               {...fadeUp(0.2)}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
-              <span className="block pb-1 sm:pb-1.5">Generate Marketing Qualified Leads</span>
+              <span className="block pb-1 sm:pb-1.5">SCALABLE B2B</span>
               <span
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
-                That Move Your Pipeline Forward
+                MARKETING QUALIFIED LEADS
               </span>
             </motion.h1>
 
@@ -386,8 +387,8 @@ const Hero = () => {
               {...fadeUp(0.32)}
               className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
             >
-              Taraj Global helps B2B technology companies identify, qualify, and deliver high-intent prospects that align with their ideal customer profile and sales goals.
-            </motion.p>
+              Fuel your marketing automation and nurture queues with verified B2B contacts showing active category engagement, mapped and AI-scored against your firmographic and technographic ICP parameters.
+          </motion.p>
 
             {/* CTAs */}
             <motion.div {...fadeUp(0.42)} className="flex flex-col sm:flex-row flex-wrap gap-3.5">

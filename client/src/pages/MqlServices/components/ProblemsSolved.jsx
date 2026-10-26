@@ -325,19 +325,21 @@ const ProblemsSolved = () => {
           <div className="inline-flex items-center gap-1.5   mb-2">
             <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
-              Automated MQL Transformation
+              TECH-ENABLED PIPELINE TRANSFORMATION • MQL ARCHITECTURE
+
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span>What Problems Does </span>
+            <span> WHAT PROBLEMS DOES </span>
             <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
-              MQL Lead Generation Solve?
+              MQL LEAD GENERATION
             </span>
+            <span> SOLVE?</span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From unqualified form fills to stale contact data, we transform pipeline bottlenecks into high-intent, sales-ready Marketing Qualified Leads.
+             From unvetted account lists to wasted SDR hours, we transform top-of-funnel bottlenecks into score-qualified Marketing Qualified Leads using in-house data verification and DemandFlow Bridge CRM routing.
           </p>
 
           {/* ── Micro Step Indicator ── */}

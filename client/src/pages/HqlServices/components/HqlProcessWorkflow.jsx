@@ -74,9 +74,9 @@ const HqlProcessWorkflow = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1, 1.12, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                }
+                scale: [1, 1.12, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
           }
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ background: 'radial-gradient(circle, #0284c7 0%, transparent 70%)' }}
@@ -87,9 +87,9 @@ const HqlProcessWorkflow = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1.1, 0.95, 1.1],
-                  opacity: [0.18, 0.28, 0.18],
-                }
+                scale: [1.1, 0.95, 1.1],
+                opacity: [0.18, 0.28, 0.18],
+              }
           }
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           style={{ background: 'radial-gradient(circle, #00d2ff 0%, transparent 70%)' }}
@@ -108,7 +108,8 @@ const HqlProcessWorkflow = () => {
             className="flex items-center justify-center mb-3"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+              HOW OUR PROCESS WORKS • HQL PIPELINE ARCHITECTURE
+
             </span>
           </motion.div>
 
@@ -144,7 +145,8 @@ const HqlProcessWorkflow = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto mt-3 font-normal"
           >
-            A multi-stage qualification pipeline converting verified B2B decision-makers into sales-ready, high-intent meetings.
+            A 9-stage qualification framework converting unverified account databases into sales-ready, high-intent pipeline delivered directly to your CRM.
+
           </motion.p>
         </div>
 

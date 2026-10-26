@@ -1,312 +1,231 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight, ChevronDown, Check, Users, Search, ShieldCheck, BarChart3, Send } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 
-// ─── Command Center Flow Visual for HQL ───────────────────────────────────────
+// ─── Pipeline Step Data ─────────────────────────────────────────────────────
 
-const FLOW_STAGES = [
-  { id: 'target', label: 'Target Account', sub: 'Strict ICP & Tech Install Base', color: '#00A6FF', icon: 'target' },
-  { id: 'decision', label: 'Decision Maker', sub: 'Verified VP / C-Suite Persona', color: '#38BDF8', icon: 'person' },
-  { id: 'engage', label: 'Intent Telemetry', sub: 'Topical Problem Surge & Assets', color: '#00A6FF', icon: 'engage' },
-  { id: 'screening', label: 'Custom Screening', sub: 'Pain & Project Timeline Confirmed', color: '#FFA600', icon: 'screening' },
-  { id: 'verified', label: 'Dual-Layer Audit', sub: 'Triple-SMTP & Direct Dial Vetted', color: '#72D669', icon: 'audit' },
-  { id: 'qualified', label: 'Sales-Ready HQL', sub: 'Direct CRM Push & 0% Bounce SLA', color: '#FF6D00', icon: 'qualified' },
+const PIPELINE_STEPS = [
+  {
+    id: 'target',
+    label: 'ICP Targeting',
+    desc: 'Account & tech stack match',
+    icon: Search,
+    accent: '#00A6FF',
+  },
+  {
+    id: 'decision',
+    label: 'Decision Maker ID',
+    desc: 'VP / C-Suite verification',
+    icon: Users,
+    accent: '#38BDF8',
+  },
+  {
+    id: 'intent',
+    label: 'Intent Signal',
+    desc: 'Buying surge detected',
+    icon: BarChart3,
+    accent: '#A78BFA',
+  },
+  {
+    id: 'verify',
+    label: 'Dual-Layer Audit',
+    desc: 'SMTP & direct dial vetted',
+    icon: ShieldCheck,
+    accent: '#34D399',
+  },
+  {
+    id: 'deliver',
+    label: 'Sales-Ready HQL',
+    desc: 'CRM push · 0% bounce',
+    icon: Send,
+    accent: '#FF8C42',
+  },
 ]
 
-const STATUS_PILLS = [
-  { label: 'Discovered', dot: '#00A6FF' },
-  { label: 'Engaged', dot: '#FFA600' },
-  { label: 'Screened', dot: '#38BDF8' },
-  { label: 'Verified', dot: '#72D669' },
-  { label: 'HQL Ready', dot: '#FF6D00' },
-]
+// ─── Pipeline Visual ────────────────────────────────────────────────────────
 
-function TargetIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <circle cx="9" cy="9" r="8" stroke={color} strokeWidth="1.5" />
-      <circle cx="9" cy="9" r="4.5" stroke={color} strokeWidth="1.5" />
-      <circle cx="9" cy="9" r="2" fill={color} />
-    </svg>
-  )
-}
-
-function PersonIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <circle cx="9" cy="6" r="3.5" stroke={color} strokeWidth="1.5" />
-      <path d="M3 16c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  )
-}
-
-function EngageIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M9 2v3M9 13v3M2 9h3M13 9h3" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="9" cy="9" r="3" stroke={color} strokeWidth="1.5" />
-    </svg>
-  )
-}
-
-function ScreeningIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M3 5h12M3 9h8M3 13h10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="13" cy="9" r="1.5" fill={color} />
-    </svg>
-  )
-}
-
-function AuditIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M9 2L3.5 4.5v4.5c0 3.5 2.5 6.5 5.5 7.5 3-1 5.5-4 5.5-7.5V4.5L9 2z" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M6.5 9l2 2 3.5-3.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function QualifiedIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M4 9.5L7.5 13l6.5-7" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function StageIcon({ type, color }) {
-  if (type === 'target') return <TargetIcon color={color} />
-  if (type === 'person') return <PersonIcon color={color} />
-  if (type === 'engage') return <EngageIcon color={color} />
-  if (type === 'screening') return <ScreeningIcon color={color} />
-  if (type === 'audit') return <AuditIcon color={color} />
-  if (type === 'qualified') return <QualifiedIcon color={color} />
-  return null
-}
-
-function CommandCenter({ prefersReducedMotion }) {
-  const [activeStage, setActiveStage] = useState(0)
-  const [completedStages, setCompletedStages] = useState([])
+function PipelineVisual({ prefersReducedMotion }) {
+  const [activeStep, setActiveStep] = useState(0)
 
   useEffect(() => {
     if (prefersReducedMotion) {
-      setCompletedStages([0, 1, 2, 3, 4])
-      setActiveStage(5)
+      setActiveStep(PIPELINE_STEPS.length - 1)
       return
     }
 
-    let cancelled = false
-    let timerId = null
-    const N = FLOW_STAGES.length
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % PIPELINE_STEPS.length)
+    }, 2400)
 
-    const after = (ms, fn) => {
-      timerId = setTimeout(() => {
-        if (!cancelled) fn()
-      }, ms)
-    }
-
-    const forward = (step) => {
-      setActiveStage(step)
-      setCompletedStages(Array.from({ length: step }, (_, i) => i))
-
-      if (step < N - 1) {
-        after(900, () => forward(step + 1))
-      } else {
-        // Last stage reached — brief flash (400ms), then instantly all go dark → restart
-        after(900, () => {
-          setCompletedStages(Array.from({ length: N }, (_, i) => i))
-          setActiveStage(N)
-          after(400, () => {
-            setActiveStage(-1)
-            setCompletedStages([])
-            after(200, () => forward(0))
-          })
-        })
-      }
-    }
-
-    forward(0)
-
-    return () => {
-      cancelled = true
-      clearTimeout(timerId)
-    }
+    return () => clearInterval(interval)
   }, [prefersReducedMotion])
 
   return (
     <div
       className="relative w-full rounded-2xl overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, #050D1A 0%, #080F20 60%, #060B16 100%)',
-        border: '1px solid rgba(0,166,255,0.15)',
-        boxShadow: '0 0 60px rgba(0,166,255,0.06), inset 0 0 40px rgba(0,0,0,0.4)',
+        background: 'var(--surface, #121212)',
+        border: '1px solid var(--border, rgba(255,255,255,0.08))',
       }}
       role="img"
-      aria-label="Animated B2B high quality leads campaign workflow from targeted prospects to qualified sales opportunities"
+      aria-label="B2B lead qualification pipeline — from ICP targeting to sales-ready HQL delivery"
     >
-      {/* Grid background */}
+      {/* Header */}
       <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(0,166,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,166,255,1) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
-
-      {/* Top bar */}
-      <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.06]">
-        <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
-          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
-          <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
-        </div>
-        <span className="ml-2 text-[10px] font-mono font-bold tracking-[0.2em] text-[#00A6FF]/80 uppercase">
-          HQL Campaign Command Center
+        className="flex items-center justify-between px-5 py-3.5"
+        style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))' }}
+      >
+        <span className="text-xs font-semibold tracking-wide text-text-secondary uppercase">
+          Qualification Pipeline
         </span>
-        <div className="ml-auto flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#72D669] animate-pulse" />
-          <span className="text-[9px] font-mono text-[#72D669]/70 uppercase tracking-wider">Live</span>
+        <div className="flex items-center gap-2">
+          <span
+            className="w-1.5 h-1.5 rounded-full"
+            style={{ background: '#34D399' }}
+          />
+          <span className="text-[11px] font-medium text-text-secondary">
+            Active
+          </span>
         </div>
       </div>
 
-      {/* Status pills row */}
-      <div className="flex items-center gap-2 px-5 py-3 border-b border-white/[0.04] flex-wrap">
-        {STATUS_PILLS.map((pill) => (
-          <div
-            key={pill.label}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: pill.dot }} />
-            <span className="text-[9px] font-mono text-text-secondary dark:text-white/50 uppercase tracking-wider">{pill.label}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Flow stages */}
-      <div className="p-5 space-y-1.5">
-        {FLOW_STAGES.map((stage, idx) => {
-          const isActive = activeStage === idx
-          const isCompleted = completedStages.includes(idx)
+      {/* Pipeline Steps */}
+      <div className="p-4 sm:p-5 space-y-2">
+        {PIPELINE_STEPS.map((step, idx) => {
+          const isActive = activeStep === idx
+          const isCompleted = idx < activeStep
+          const Icon = step.icon
 
           return (
             <motion.div
-              key={stage.id}
-              initial={prefersReducedMotion ? {} : { opacity: 0.3, x: -8 }}
+              key={step.id}
               animate={
                 prefersReducedMotion
                   ? {}
-                  : isActive
-                  ? { opacity: 1, x: 0, scale: 1.01 }
-                  : isCompleted
-                  ? { opacity: 0.85, x: 0, scale: 1 }
-                  : { opacity: 0.3, x: 0, scale: 1 }
+                  : {
+                    opacity: isActive || isCompleted ? 1 : 0.45,
+                  }
               }
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 relative overflow-hidden"
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="relative flex items-center gap-3.5 rounded-xl px-4 py-3"
               style={{
                 background: isActive
-                  ? `linear-gradient(90deg, ${stage.color}18 0%, transparent 100%)`
-                  : isCompleted
-                  ? 'rgba(255,255,255,0.02)'
+                  ? `linear-gradient(90deg, ${step.accent}0D 0%, transparent 100%)`
                   : 'transparent',
-                border: isActive
-                  ? `1px solid ${stage.color}35`
-                  : isCompleted
-                  ? '1px solid rgba(255,255,255,0.05)'
-                  : '1px solid transparent',
+                opacity: prefersReducedMotion ? 1 : undefined,
               }}
             >
-              {/* Index number */}
-              <span
-                className="text-[9px] font-mono font-bold w-4 shrink-0"
-                style={{ color: isActive ? stage.color : 'rgba(255,255,255,0.2)' }}
-              >
-                {String(idx + 1).padStart(2, '0')}
-              </span>
-
-              {/* Connecting line from above */}
-              {idx > 0 && (
+              {/* Step number + connector */}
+              <div className="flex flex-col items-center shrink-0">
                 <div
-                  className="absolute left-[28px] top-0 w-px h-2.5"
-                  style={{ background: isCompleted ? `${stage.color}50` : 'rgba(255,255,255,0.06)' }}
-                />
-              )}
-
-              {/* Icon node */}
-              <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-                style={{
-                  background: isActive || isCompleted ? `${stage.color}18` : 'rgba(255,255,255,0.03)',
-                  border: `1px solid ${isActive || isCompleted ? stage.color + '40' : 'rgba(255,255,255,0.07)'}`,
-                }}
-              >
-                <StageIcon type={stage.icon} color={isActive || isCompleted ? stage.color : 'rgba(255,255,255,0.2)'} />
+                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300"
+                  style={{
+                    background: isActive
+                      ? `${step.accent}1A`
+                      : isCompleted
+                        ? `${step.accent}12`
+                        : 'var(--surface-alt, rgba(255,255,255,0.04))',
+                    border: `1.5px solid ${isActive || isCompleted
+                      ? `${step.accent}55`
+                      : 'var(--border, rgba(255,255,255,0.08))'
+                      }`,
+                  }}
+                >
+                  {isCompleted ? (
+                    <Check
+                      className="w-3.5 h-3.5"
+                      style={{ color: step.accent }}
+                      strokeWidth={2.5}
+                    />
+                  ) : (
+                    <Icon
+                      className="w-3.5 h-3.5 transition-colors duration-300"
+                      style={{
+                        color: isActive ? step.accent : 'var(--text-muted, #94A3B8)',
+                      }}
+                      strokeWidth={1.8}
+                    />
+                  )}
+                </div>
               </div>
 
               {/* Label */}
               <div className="flex-1 min-w-0">
                 <div
-                  className="text-xs font-semibold leading-tight"
-                  style={{ color: isActive ? '#fff' : isCompleted ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.25)' }}
+                  className="text-[13px] font-semibold leading-tight transition-colors duration-300"
+                  style={{
+                    color: isActive
+                      ? 'var(--text-primary, #F5F5F5)'
+                      : isCompleted
+                        ? 'var(--text-primary, #F5F5F5)'
+                        : 'var(--text-muted, #94A3B8)',
+                  }}
                 >
-                  {stage.label}
+                  {step.label}
                 </div>
                 <div
-                  className="text-[9px] font-mono mt-0.5"
-                  style={{ color: isActive ? `${stage.color}` : 'rgba(255,255,255,0.2)' }}
+                  className="text-[11px] mt-0.5 transition-colors duration-300"
+                  style={{
+                    color: isActive
+                      ? step.accent
+                      : 'var(--text-muted, #64748B)',
+                  }}
                 >
-                  {stage.sub}
+                  {step.desc}
                 </div>
               </div>
 
-              {/* Completed checkmark */}
-              {isCompleted && (
-                <div
-                  className="w-4 h-4 rounded-full flex items-center justify-center shrink-0"
-                  style={{ background: `${stage.color}25`, border: `1px solid ${stage.color}50` }}
-                >
-                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <path
-                      d="M1.5 4L3 5.5 6.5 2"
-                      stroke={stage.color}
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              )}
-
-              {/* Active pulse */}
-              {isActive && !prefersReducedMotion && (
-                <motion.div
-                  className="w-5 h-5 rounded-full shrink-0"
-                  animate={{ scale: [1, 1.6, 1], opacity: [0.8, 0, 0.8] }}
-                  transition={{ duration: 1.2, repeat: Infinity }}
-                  style={{ background: `${stage.color}30` }}
-                />
-              )}
+              {/* Status indicator */}
+              <div className="shrink-0">
+                {isCompleted && (
+                  <span
+                    className="inline-block text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                    style={{
+                      color: step.accent,
+                      background: `${step.accent}14`,
+                    }}
+                  >
+                    Done
+                  </span>
+                )}
+                {isActive && !prefersReducedMotion && (
+                  <motion.span
+                    className="inline-block w-2 h-2 rounded-full"
+                    style={{ background: step.accent }}
+                    animate={{ opacity: [1, 0.3, 1] }}
+                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                )}
+              </div>
             </motion.div>
           )
         })}
       </div>
 
-      {/* Bottom metric strip */}
-      <div className="border-t border-white/[0.05] px-5 py-3 grid grid-cols-3 gap-3">
+      {/* Bottom Stats */}
+      <div
+        className="grid grid-cols-3 gap-4 px-5 py-3.5"
+        style={{ borderTop: '1px solid var(--border, rgba(255,255,255,0.08))' }}
+      >
         {[
-          { label: 'Deliverability SLA', value: '99.8% Vetted', color: '#72D669' },
-          { label: 'Pipeline Lift', value: '3.8x Faster', color: '#FFA600' },
-          { label: 'Bounce Risk', value: '0.0% Guaranteed', color: '#00A6FF' },
-        ].map((m) => (
-          <div key={m.label} className="text-center">
-            <div className="text-[9px] font-mono text-white/30 uppercase tracking-wider mb-0.5">{m.label}</div>
-            <div className="text-[10px] font-bold font-mono" style={{ color: m.color }}>
-              {m.value}
+          { label: 'Accuracy SLA', value: '99.8%', accent: '#34D399' },
+          { label: 'Pipeline Lift', value: '3.8×', accent: '#FF8C42' },
+          { label: 'Bounce Rate', value: '0.0%', accent: '#00A6FF' },
+        ].map((stat) => (
+          <div key={stat.label} className="text-center">
+            <div
+              className="text-[11px] text-text-secondary mb-0.5"
+              style={{ fontWeight: 500 }}
+            >
+              {stat.label}
+            </div>
+            <div
+              className="text-base font-bold"
+              style={{ color: stat.accent }}
+            >
+              {stat.value}
             </div>
           </div>
         ))}
@@ -325,7 +244,7 @@ export default function HqlHero() {
   const handleStartCampaign = () => navigate('/contact')
 
   const handleSeeHowItWorks = () => {
-    const el = document.getElementById('what-is-the-service')
+    const el = document.getElementById('hql-process-workflow')
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
@@ -333,10 +252,10 @@ export default function HqlHero() {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -345,93 +264,108 @@ export default function HqlHero() {
       className="relative min-h-[80vh] lg:min-h-[82vh] flex items-center justify-center overflow-hidden bg-background pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-10 lg:pb-8 transition-colors duration-300"
       aria-label="High-Quality Leads (HQL) Hero"
     >
-      {/* Background */}
+      {/* Background — soft radial glows, no grid/scanline */}
       <div className="absolute inset-0 bg-background" aria-hidden="true">
-        {/* Radial glows */}
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 60% 50% at 15% 40%, rgba(0,166,255,0.1) 0%, transparent 70%),
-              radial-gradient(ellipse 40% 40% at 85% 65%, rgba(255,109,0,0.07) 0%, transparent 70%)
+              radial-gradient(ellipse 50% 50% at 20% 50%, rgba(0,166,255,0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 45% at 80% 60%, rgba(167,139,250,0.05) 0%, transparent 70%)
             `,
           }}
         />
-        {/* Technical grid */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(0,166,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,166,255,1) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          }}
-        />
-        {/* Horizontal scan line */}
-        {!prefersReducedMotion && (
-          <motion.div
-            className="absolute left-0 right-0 h-px opacity-20"
-            style={{ background: 'linear-gradient(90deg, transparent, #00A6FF, transparent)' }}
-            animate={{ top: ['10%', '90%', '10%'] }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-          />
-        )}
       </div>
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-4 sm:pt-6 sm:pb-6 lg:pt-6 lg:pb-6">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
           {/* ── Left: Content ── */}
           <div className="flex flex-col justify-center order-1 lg:order-1">
             {/* Eyebrow */}
-            <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                High-Quality Leads (HQL)
+            <motion.div {...fadeUp(0.1)} className="flex items-center gap-2 mb-5">
+              <span
+                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.15em] px-3 py-1 rounded-full"
+                style={{
+                  color: 'var(--primary, #00A6FF)',
+                  background: 'rgba(0,166,255,0.08)',
+                  border: '1px solid rgba(0,166,255,0.15)',
+                }}
+              >
+                High-Quality Leads
               </span>
             </motion.div>
 
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl font-extrabold tracking-tight leading-[1.15] text-text-primary mb-5"
             >
-              <span className="block pb-1 sm:pb-1.5">Convert High-Intent Decision-Makers</span>
+              <span className="block">Convert High-Intent</span>
               <span
-                className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
-                style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
+                className="inline-block bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: 'linear-gradient(135deg, #00A6FF 0%, #A78BFA 100%)',
+                }}
               >
-                With Verified High-Quality Leads (HQL)
+                Decision Makers
               </span>
             </motion.h1>
 
             {/* Description */}
             <motion.p
-              {...fadeUp(0.32)}
-              className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
+              {...fadeUp(0.3)}
+              className="text-sm sm:text-[15px] text-text-secondary leading-relaxed mb-7 max-w-[540px]"
             >
-              Bridge the costly gap between casual marketing downloads and closed revenue. Taraj Global delivers
-              pre-qualified B2B buyers vetted against your exact Ideal Customer Profile, current software stack, and
-              explicit business pain points.
+              Stop wasting SDR cycles on unverified contacts. TaRaj Global delivers
+              fully vetted, high-intent B2B decision-makers matched to your ICP,
+              tech stack, and buying signals — backed by a 99.8% data accuracy SLA
+              across US, EMEA, and APAC markets.
             </motion.p>
 
+            {/* Trust indicators */}
+            <motion.div {...fadeUp(0.36)} className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-7">
+              {[
+                'ICP-Matched Contacts',
+                'Triple-SMTP Verified',
+                '0% Bounce Guarantee',
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-1.5">
+                  <Check
+                    className="w-3.5 h-3.5 shrink-0"
+                    style={{ color: '#34D399' }}
+                    strokeWidth={2.5}
+                  />
+                  <span className="text-xs font-medium text-text-secondary">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+
             {/* CTAs */}
-            <motion.div {...fadeUp(0.42)} className="flex flex-col sm:flex-row flex-wrap gap-3.5">
+            <motion.div {...fadeUp(0.42)} className="flex flex-col sm:flex-row flex-wrap gap-3">
               <button
                 onClick={handleStartCampaign}
                 id="hero-cta-primary"
-                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-text-accent dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{
-                  backgroundColor: '#FF6D00',
-                  boxShadow: '0 4px 20px rgba(255,109,0,0.3)',
+                  background: 'linear-gradient(135deg, #FF6D00 0%, #FF8C42 100%)',
+                  boxShadow: '0 2px 12px rgba(255,109,0,0.25)',
                 }}
               >
-                Start Your HQL Campaign
+                Deploy HQL Campaign
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
               <button
                 onClick={handleSeeHowItWorks}
                 id="hero-cta-secondary"
-                className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
-                style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+                style={{
+                  color: 'var(--text-primary, #F5F5F5)',
+                  background: 'var(--surface-alt, rgba(255,255,255,0.04))',
+                  border: '1px solid var(--border-light, rgba(255,255,255,0.12))',
+                }}
               >
                 See How It Works
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
@@ -439,14 +373,14 @@ export default function HqlHero() {
             </motion.div>
           </div>
 
-          {/* ── Right: Command Center ── */}
+          {/* ── Right: Pipeline Visual ── */}
           <motion.div
             className="order-2 lg:order-2"
-            initial={prefersReducedMotion ? {} : { opacity: 0, x: 40 }}
-            animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 24 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            <CommandCenter prefersReducedMotion={prefersReducedMotion} />
+            <PipelineVisual prefersReducedMotion={prefersReducedMotion} />
           </motion.div>
         </div>
       </div>

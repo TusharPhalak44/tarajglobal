@@ -1,4 +1,8 @@
 import nodemailer from 'nodemailer'
+import {
+  renderLeadConfirmationEmail,
+  renderLeadNotificationEmail,
+} from '../helpers/emailTemplates.js'
 
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 
@@ -228,24 +232,15 @@ export const sendCandidateApplicationConfirmation = async (application, job) => 
 // Send lead notification
 export const sendLeadNotification = async (lead, recipients) => {
   const adminEmail = recipients || process.env.ADMIN_EMAIL || process.env.EMAIL_USER
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #00A6FF;">New Lead Received</h2>
-      <p>A new lead has been submitted through the contact form.</p>
-      <p><strong>Lead Details:</strong></p>
-      <ul>
-        <li>Name: ${esc(lead.name)}</li>
-        <li>Email: ${esc(lead.email)}</li>
-        <li>Company: ${esc(lead.company || 'Not provided')}</li>
-        <li>Phone: ${esc(lead.phone || 'Not provided')}</li>
-        <li>Message: ${esc(lead.message || 'No message')}</li>
-        <li>Lead source: ${esc(lead.source || 'contact_form')}</li>
-        <li>Pages: ${esc(lead.page_url || 'Not captured')}</li>
-      </ul>
-      <p>Log in to the admin panel to follow up with this lead.</p>
-      <p>Best regards,<br>TaRaj Team</p>
-    </div>
-  `
+  const html = renderLeadNotificationEmail({
+    name: lead.name,
+    email: lead.email,
+    company: lead.company,
+    phone: lead.phone,
+    message: lead.message,
+    source: lead.source,
+    page_url: lead.page_url,
+  })
 
   return sendEmail({
     to: adminEmail,
@@ -257,29 +252,18 @@ export const sendLeadNotification = async (lead, recipients) => {
 
 // Send lead confirmation to user
 export const sendLeadConfirmation = async (lead) => {
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <div style="background: linear-gradient(135deg, #00A6FF, #FF6D00); padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
-        <h2 style="color: white; margin: 0;">Thank You for Contacting Us</h2>
-      </div>
-      <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px;">
-        <p>Hi ${esc(lead.name)},</p>
-        <p>Thank you for reaching out to TaRaj Global. We have received your message and our team will get back to you shortly.</p>
-        <p><strong>Your Message Details:</strong></p>
-        <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #00A6FF;">
-          <p><strong>Subject:</strong> ${esc(lead.subject || 'Contact Form Submission')}</p>
-          <p><strong>Message:</strong><br/> ${esc(lead.message)}</p>
-        </div>
-        <p>Best regards,<br>The TaRaj Global Team</p>
-      </div>
-    </div>
-  `
+  const html = renderLeadConfirmationEmail({
+    name: lead.name,
+    email: lead.email,
+    subject: lead.subject,
+    message: lead.message,
+  })
 
   return sendEmail({
     to: lead.email,
-    subject: 'We received your message - TaRaj Global',
+    subject: 'We received your message - Taraj Global',
     html,
-    text: `Hi ${lead.name}, Thank you for reaching out to TaRaj Global. We have received your message and will get back to you shortly.`
+    text: `Hi ${lead.name}, Thank you for reaching out to Taraj Global. We have received your message and will get back to you shortly.`
   })
 }
 
