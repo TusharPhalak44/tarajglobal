@@ -2,6 +2,7 @@ import 'dotenv/config'
 import app from './app.js'
 import db from './config/db.js'
 import ensureSchema from './database/migrations/ensure-schema.js'
+import { syncLiveCMS } from './scripts/syncLiveCMS.js'
 
 const PORT = process.env.PORT || 5001
 
@@ -14,6 +15,13 @@ db.getConnection()
       await ensureSchema()
     } catch (migErr) {
       console.warn('⚠️  Schema integrity check notice:', migErr.message)
+    }
+
+    // In local development, synchronize latest published posts from Live CMS
+    if (process.env.NODE_ENV !== 'production') {
+      syncLiveCMS().catch((syncErr) => {
+        console.warn('⚠️  Notice: Live CMS background sync:', syncErr.message)
+      })
     }
   })
   .catch((error) => {

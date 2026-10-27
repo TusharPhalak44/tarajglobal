@@ -67,11 +67,40 @@ export const ensureSchema = async () => {
     // 6. Ensure columns on job_applications
     await addColumnIfMissing('job_applications', 'job_id', 'INT NULL')
     await addColumnIfMissing('job_applications', 'notes', 'TEXT NULL')
+    await addColumnIfMissing('job_applications', 'cta_button', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('job_applications', 'cta_section', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('job_applications', 'source_page', 'VARCHAR(255) NULL')
+    await addColumnIfMissing('job_applications', 'utm_campaign', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('job_applications', 'utm_source', 'VARCHAR(100) NULL')
 
     // 7. Ensure columns on careers
     await addColumnIfMissing('careers', 'department', 'VARCHAR(255) NULL')
     await addColumnIfMissing('careers', 'experience', 'VARCHAR(255) NULL')
     await addColumnIfMissing('careers', 'status', "VARCHAR(50) DEFAULT 'published'")
+
+    // 7b. Ensure CTA & UTM attribution columns on contacts table
+    await addColumnIfMissing('contacts', 'cta_button', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('contacts', 'cta_section', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('contacts', 'source_page', 'VARCHAR(255) NULL')
+    await addColumnIfMissing('contacts', 'utm_campaign', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('contacts', 'utm_source', 'VARCHAR(100) NULL')
+    await addColumnIfMissing('contacts', 'utm_medium', 'VARCHAR(100) NULL')
+    await addColumnIfMissing('contacts', 'utm_content', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('contacts', 'utm_term', 'VARCHAR(150) NULL')
+
+    // 7c. Ensure CTA attribution columns on meetings table
+    await addColumnIfMissing('meetings', 'cta_button', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('meetings', 'cta_section', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('meetings', 'source_page', 'VARCHAR(255) NULL')
+    await addColumnIfMissing('meetings', 'utm_campaign', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('meetings', 'utm_source', 'VARCHAR(100) NULL')
+
+    // 7d. Ensure CTA attribution columns on chat_sessions table
+    await addColumnIfMissing('chat_sessions', 'cta_button', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('chat_sessions', 'cta_section', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('chat_sessions', 'source_page', 'VARCHAR(255) NULL')
+    await addColumnIfMissing('chat_sessions', 'utm_campaign', 'VARCHAR(150) NULL')
+    await addColumnIfMissing('chat_sessions', 'utm_source', 'VARCHAR(100) NULL')
 
     // 8. Ensure application_notes table
     await db.query(`

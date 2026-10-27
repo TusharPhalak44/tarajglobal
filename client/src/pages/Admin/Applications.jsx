@@ -350,6 +350,38 @@ const Applications = () => {
                   )}
                 </div>
 
+                {/* CTA Origin Attribution */}
+                {(selectedApplication.cta_button || selectedApplication.cta_section || selectedApplication.source_page) && (
+                  <div className="space-y-2 pt-4 border-t border-[var(--admin-border-subtle)] text-xs">
+                    <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider flex items-center justify-between">
+                      <span>🎯 Application Origin Attribution</span>
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#00A6FF]/15 text-[#00A6FF] uppercase">
+                        tracked
+                      </span>
+                    </span>
+                    <div className="p-3.5 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] space-y-2">
+                      {selectedApplication.cta_button && (
+                        <div className="flex justify-between items-center">
+                          <span className="text-[var(--admin-text-muted)]">CTA Button:</span>
+                          <span className="font-mono font-bold text-[#00A6FF]">🎯 {selectedApplication.cta_button}</span>
+                        </div>
+                      )}
+                      {selectedApplication.cta_section && (
+                        <div className="flex justify-between items-center">
+                          <span className="text-[var(--admin-text-muted)]">Section:</span>
+                          <span className="font-mono font-bold text-[#FF6D00]">📍 {selectedApplication.cta_section}</span>
+                        </div>
+                      )}
+                      {selectedApplication.source_page && (
+                        <div className="flex justify-between items-center">
+                          <span className="text-[var(--admin-text-muted)]">Origin Page:</span>
+                          <span className="font-mono text-[var(--admin-text-secondary)]">📄 {selectedApplication.source_page}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 {/* Cover Letter */}
                 {selectedApplication.cover_letter && (
                   <div className="space-y-2 pt-4 border-t border-[var(--admin-border-subtle)]">

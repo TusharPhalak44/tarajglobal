@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import Container from '@components/layout/Container'
 import BlogCard from './BlogCard'
+import BlogFAQ from './BlogFAQ'
 import { publicAPI } from '@api/public.api'
 
 const BlogListings = () => {
@@ -221,7 +222,9 @@ const BlogListings = () => {
         </Container>
       </section>
 
-      {/* ── 3. UNIFORM ARTICLES GRID SECTION ENDS ── */}
+      {/* ── 3. FREQUENTLY ASKED QUESTIONS SECTION ─────────────────────── */}
+      <BlogFAQ />
+
     </div>
   )
 }

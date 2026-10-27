@@ -214,7 +214,7 @@ const chatController = {
   // 1. Create a new Chat Session (Form Submission)
   createSession: async (req, res) => {
     try {
-      const { first_name, last_name, email, phone } = req.body
+      const { first_name, last_name, email, phone, cta_button, cta_section, source_page, utm_campaign, utm_source } = req.body
 
       if (!first_name || !last_name || !email) {
         return res.status(400).json({ success: false, message: 'First name, last name, and email are required.' })
@@ -223,11 +223,19 @@ const chatController = {
       const id = 'cs_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7)
       const session_token = 'token_' + Date.now() + '_' + Math.random().toString(36).substring(2, 10)
 
-      await db.execute(
-        `INSERT INTO chat_sessions (id, session_token, first_name, last_name, email, phone, status, created_at, updated_at)
-         VALUES (?, ?, ?, ?, ?, ?, 'active', NOW(), NOW())`,
-        [id, session_token, first_name, last_name, email, phone || '']
-      )
+      try {
+        await db.execute(
+          `INSERT INTO chat_sessions (id, session_token, first_name, last_name, email, phone, status, cta_button, cta_section, source_page, utm_campaign, utm_source, created_at, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?, 'active', ?, ?, ?, ?, ?, NOW(), NOW())`,
+          [id, session_token, first_name, last_name, email, phone || '', cta_button || null, cta_section || null, source_page || null, utm_campaign || null, utm_source || null]
+        )
+      } catch (_) {
+        await db.execute(
+          `INSERT INTO chat_sessions (id, session_token, first_name, last_name, email, phone, status, created_at, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?, 'active', NOW(), NOW())`,
+          [id, session_token, first_name, last_name, email, phone || '']
+        )
+      }
 
       // Initial Bot Welcome Message
       const welcomeText = `Hi ${first_name}! 👋 Welcome to **Taraj Global**. How can I help you today?`
@@ -237,7 +245,7 @@ const chatController = {
         [id, welcomeText]
       )
 
-      const sessionData = { id, session_token, first_name, last_name, email, phone }
+      const sessionData = { id, session_token, first_name, last_name, email, phone, cta_button, cta_section, source_page }
 
       // Asynchronously send Email Notification to tgs.admin001@gmail.com
       sendChatLeadNotification(sessionData).catch(err => {
@@ -248,7 +256,7 @@ const chatController = {
       try {
         notificationHelper.notifyAdmins({
           title: '💬 New Chatbot Lead',
-          message: `${first_name} ${last_name} (${email}) started a chat session.`,
+          message: `${first_name} ${last_name} (${email}) started chat${cta_button ? ` via "${cta_button}"` : ''} in ${cta_section || 'website'}`,
           type: 'lead',
           link: '/admin/chat'
         }).catch(() => {})

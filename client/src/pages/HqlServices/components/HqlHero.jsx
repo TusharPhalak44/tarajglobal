@@ -292,12 +292,7 @@ export default function HqlHero() {
       destination_url: '/contact',
       utm_campaign: 'hql_services'
     })
-    navigate(buildTrackedUrl('/contact', {
-      sectionId: 'hero',
-      sectionName: 'Hero Section',
-      ctaText: 'Deploy HQL Campaign',
-      customCampaign: 'hql_services'
-    }))
+    navigate('/contact')
   }
 
   const handleSeeHowItWorks = () => {

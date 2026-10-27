@@ -560,54 +560,68 @@ router.post('/', formLimiter, [
     const { name, email, phone, subject, message, company } = req.body
     const attribution = req.body.attribution && typeof req.body.attribution === 'object' ? req.body.attribution : {}
     const clip = (value, max) => String(value || '').slice(0, max)
-    const leadSource = clip(attribution.channel || 'contact_form', 100)
+
+    const ctaButton = clip(attribution.cta_button || '', 150)
+    const ctaSection = clip(attribution.cta_section || '', 150)
+    const sourcePage = clip(attribution.source_page || '', 255)
+    const utmCampaign = clip(attribution.utm_campaign || '', 150)
+    const utmSource = clip(attribution.utm_source || '', 100)
+    const utmMedium = clip(attribution.utm_medium || '', 100)
+    const utmContent = clip(attribution.utm_content || '', 150)
+    const utmTerm = clip(attribution.utm_term || '', 150)
+
+    const leadSource = clip(attribution.channel || utmSource || 'contact_form', 100)
     const pageUrl = clip(
       [
-        attribution.cta_button && `cta: [${attribution.cta_button}]`,
-        attribution.cta_section && `section: [${attribution.cta_section}]`,
-        attribution.source_page && `from: ${attribution.source_page}`,
+        ctaButton && `cta: [${ctaButton}]`,
+        ctaSection && `section: [${ctaSection}]`,
+        sourcePage && `from: ${sourcePage}`,
         attribution.landing_page && `landing: ${attribution.landing_page}`,
         attribution.referrer && `referrer: ${attribution.referrer}`,
       ].filter(Boolean).join(' | ') || req.headers.referer || '/',
       500
     )
     
-    // Save to contacts table (for leads management)
-    const insertQuery = `
-      INSERT INTO contacts (
-        name,
-        email,
-        phone,
-        company,
-        subject,
-        message,
-        status,
-        source,
-        page_url,
-        created_at,
-        updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, 'new', ?, ?, NOW(), NOW())
-    `
-    
-    const [result] = await db.execute(insertQuery, [
-      name,
-      email,
-      phone || '',
-      company || '',
-      subject || '',
-      message,
-      leadSource,
-      pageUrl
-    ])
+    // Save to contacts table with dedicated CTA and UTM columns
+    let result
+    try {
+      const insertQuery = `
+        INSERT INTO contacts (
+          name, email, phone, company, subject, message, status, source, page_url,
+          cta_button, cta_section, source_page, utm_campaign, utm_source, utm_medium, utm_content, utm_term,
+          created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, 'new', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+      `
+      const [insertRes] = await db.execute(insertQuery, [
+        name, email, phone || '', company || '', subject || '', message,
+        leadSource, pageUrl,
+        ctaButton || null, ctaSection || null, sourcePage || null, utmCampaign || null,
+        utmSource || null, utmMedium || null, utmContent || null, utmTerm || null
+      ])
+      result = insertRes
+    } catch (dbErr) {
+      // Safe fallback if some columns are pending migration
+      const fallbackQuery = `
+        INSERT INTO contacts (
+          name, email, phone, company, subject, message, status, source, page_url,
+          created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, 'new', ?, ?, NOW(), NOW())
+      `
+      const [fallbackRes] = await db.execute(fallbackQuery, [
+        name, email, phone || '', company || '', subject || '', message,
+        leadSource, pageUrl
+      ])
+      result = fallbackRes
+    }
 
     // Save CTA Attribution details as initial automated lead note
     const ctaDetails = [
-      attribution.cta_button && `CTA Clicked: "${attribution.cta_button}"`,
-      attribution.cta_section && `Section: "${attribution.cta_section}"`,
-      attribution.source_page && `Origin Page: ${attribution.source_page}`,
-      attribution.utm_campaign && `UTM Campaign: ${attribution.utm_campaign}`,
-      attribution.utm_content && `UTM Content: ${attribution.utm_content}`,
-      attribution.utm_source && `UTM Source: ${attribution.utm_source}`,
+      ctaButton && `CTA Clicked: "${ctaButton}"`,
+      ctaSection && `Section: "${ctaSection}"`,
+      sourcePage && `Origin Page: ${sourcePage}`,
+      utmCampaign && `UTM Campaign: ${utmCampaign}`,
+      utmContent && `UTM Content: ${utmContent}`,
+      utmSource && `UTM Source: ${utmSource}`,
     ].filter(Boolean).join(' | ')
 
     if (ctaDetails && result?.insertId) {
@@ -620,15 +634,33 @@ router.post('/', formLimiter, [
         // Continue silently if lead_notes is unavailable
       }
     }
-
     
     // Notify admins about new lead and send email
     try {
-      await notificationHelper.notifyAdmins(notificationHelper.notifications.newLead(name, result.insertId))
+      await notificationHelper.notifyAdmins({
+        title: '🎯 New Lead Received',
+        message: `${name} submitted form${ctaButton ? ` via "${ctaButton}"` : ''} in ${ctaSection || 'website'}${sourcePage ? ` (${sourcePage})` : ''}`,
+        type: 'lead',
+        link: '/admin/leads'
+      })
       
-      // Also send email notification to admin
+      // Also send email notification to admin with full attribution
       await emailService.sendLeadNotification(
-        { name, email, company, phone, message, source: leadSource, page_url: pageUrl },
+        {
+          name,
+          email,
+          company,
+          phone,
+          message,
+          source: leadSource,
+          page_url: pageUrl,
+          cta_button: ctaButton,
+          cta_section: ctaSection,
+          source_page: sourcePage,
+          utm_campaign: utmCampaign,
+          utm_source: utmSource,
+          utm_medium: utmMedium,
+        },
         getAdminEmail()
       )
       

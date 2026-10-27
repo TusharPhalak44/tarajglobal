@@ -577,7 +577,21 @@ export const renderLeadConfirmationEmail = ({ name, email, subject, message }) =
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. CONTACT US LEAD NOTIFICATION (To Admin)
 // ─────────────────────────────────────────────────────────────────────────────
-export const renderLeadNotificationEmail = ({ name, email, company, phone, message, source, page_url }) => {
+export const renderLeadNotificationEmail = ({
+  name,
+  email,
+  company,
+  phone,
+  message,
+  source,
+  page_url,
+  cta_button,
+  cta_section,
+  source_page,
+  utm_campaign,
+  utm_source,
+  utm_medium,
+}) => {
   const bodyContent = `
     <p style="margin: 0 0 8px 0; font-size: 16px; color: #0F172A;">
       <strong>New Lead Alert:</strong> A new contact form inquiry has been received on the website.
@@ -593,8 +607,13 @@ export const renderLeadNotificationEmail = ({ name, email, company, phone, messa
       ${renderSpecRow('Email', email)}
       ${renderSpecRow('Company', company || 'Not provided')}
       ${renderSpecRow('Phone', phone || 'Not provided')}
+      ${cta_button ? renderSpecRow('🎯 Originating CTA', `<strong style="color: #00A6FF;">${esc(cta_button)}</strong>`) : ''}
+      ${cta_section ? renderSpecRow('📍 Origin Section', `<strong style="color: #FF6D00;">${esc(cta_section)}</strong>`) : ''}
+      ${source_page ? renderSpecRow('📄 Origin Page', esc(source_page)) : ''}
+      ${utm_campaign ? renderSpecRow('🏷️ UTM Campaign', esc(utm_campaign)) : ''}
+      ${utm_source || utm_medium ? renderSpecRow('📡 Channel / Medium', esc(`${utm_source || 'direct'} / ${utm_medium || 'cta_button'}`)) : ''}
       ${renderSpecRow('Lead Source', source || 'contact_form')}
-      ${page_url ? renderSpecRow('Landing Page', page_url) : ''}
+      ${page_url && !cta_button ? renderSpecRow('Landing Page', page_url) : ''}
     </table>
 
     <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; margin: 20px 0;">
@@ -608,7 +627,7 @@ export const renderLeadNotificationEmail = ({ name, email, company, phone, messa
     badgeColor: '#FF6D00',
     badgeBg: 'rgba(255, 109, 0, 0.12)',
     title: `New Lead: ${name}`,
-    subtitle: 'A prospective client has submitted an inquiry via Taraj Global.',
+    subtitle: cta_button ? `Inquiry via CTA: "${cta_button}" in ${cta_section || 'page'}` : 'A prospective client has submitted an inquiry via Taraj Global.',
     bodyContent,
   })
 }

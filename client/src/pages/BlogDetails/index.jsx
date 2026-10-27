@@ -23,6 +23,7 @@ import Container from '@components/layout/Container'
 import ShareArticle from '@components/blog/ShareArticle'
 import SEO from '@components/common/SEO'
 import BlogCard from '@components/blog/BlogCard'
+import BlogFAQ, { DEFAULT_BLOG_FAQS } from '@components/blog/BlogFAQ'
 import { publicAPI } from '@api/public.api'
 import { mediaUrl } from '@utils/media'
 
@@ -76,7 +77,7 @@ function BlogDetails() {
 
   // Process and sanitize blog content, extracting Table of Contents and ensuring headings have IDs
   const processedArticle = useMemo(() => {
-    if (!blog?.content) return { html: '', toc: [] }
+    if (!blog?.content) return { html: '', toc: [], faqs: [], faqTitle: 'Frequently Asked Questions' }
 
     // Normalize non-breaking spaces and strip Google Docs blue colors and duplicate <u> tags
     const rawContent = blog.content
@@ -143,6 +144,8 @@ function BlogDetails() {
     // Extract Headings, wrap tables, and assign anchor IDs using DOMParser
     const headings = []
     let finalHtml = htmlToProcess
+    let extractedFaqs = []
+    let faqHeadingText = 'Frequently Asked Questions'
 
     try {
       const parser = new DOMParser()
@@ -210,9 +213,43 @@ function BlogDetails() {
         }
       })
 
-      // Wrap tables in responsive wrapper so table columns never truncate or distort
+      // Wrap tables in responsive wrapper and ensure header row has <th> and <thead>
       const tables = doc.querySelectorAll('table')
       tables.forEach((table) => {
+        table.removeAttribute('style')
+
+        // Check if table has thead; if not, promote the first row to thead with <th>
+        let thead = table.querySelector('thead')
+        if (!thead) {
+          const firstRow = table.querySelector('tr')
+          if (firstRow) {
+            thead = doc.createElement('thead')
+            firstRow.parentNode.insertBefore(thead, firstRow)
+            thead.appendChild(firstRow)
+            firstRow.querySelectorAll('td').forEach((td) => {
+              const th = doc.createElement('th')
+              th.innerHTML = td.innerHTML
+              Array.from(td.attributes).forEach((attr) => th.setAttribute(attr.name, attr.value))
+              th.classList.remove('ql-align-justify')
+              td.parentNode.replaceChild(th, td)
+            })
+          }
+        } else {
+          thead.querySelectorAll('td').forEach((td) => {
+            const th = doc.createElement('th')
+            th.innerHTML = td.innerHTML
+            Array.from(td.attributes).forEach((attr) => th.setAttribute(attr.name, attr.value))
+            th.classList.remove('ql-align-justify')
+            td.parentNode.replaceChild(th, td)
+          })
+        }
+
+        // Clean any inline styles or conflicting classes from table cells and all their child tags
+        table.querySelectorAll('th, td, tr, p, span, strong, b, div').forEach((el) => {
+          el.removeAttribute('style')
+          el.classList.remove('ql-align-justify')
+        })
+
         if (!table.parentElement || !table.parentElement.classList.contains('blog-table-responsive')) {
           const wrapper = doc.createElement('div')
           wrapper.className = 'blog-table-responsive'
@@ -231,6 +268,87 @@ function BlogDetails() {
         }
       })
 
+      // Detect and extract any FAQ section embedded in the blog content
+      extractedFaqs = []
+      faqHeadingText = 'Frequently Asked Questions'
+
+      const allHeadings = Array.from(doc.querySelectorAll('h1, h2, h3, h4'))
+      const faqHeaderEl = allHeadings.find((h) => {
+        const txt = (h.textContent || '').trim().toLowerCase()
+        return (
+          /frequently\s+asked/i.test(txt) ||
+          /^faqs?$/i.test(txt) ||
+          /^common\s+questions?$/i.test(txt) ||
+          txt === 'faq' ||
+          txt === 'faqs'
+        )
+      })
+
+      if (faqHeaderEl) {
+        faqHeadingText = faqHeaderEl.textContent.trim() || 'Frequently Asked Questions'
+        const nodesToRemove = [faqHeaderEl]
+        let curr = faqHeaderEl.nextElementSibling
+        let currQ = null
+        let currA = []
+
+        const flushFaq = () => {
+          if (currQ && currA.length > 0) {
+            extractedFaqs.push({
+              id: `blog-faq-${extractedFaqs.length + 1}`,
+              num: String(extractedFaqs.length + 1).padStart(2, '0'),
+              question: currQ,
+              answer: currA.join(' ')
+            })
+          }
+          currQ = null
+          currA = []
+        }
+
+        while (curr) {
+          const tag = curr.tagName.toLowerCase()
+          if (tag === 'h1' || (tag === 'h2' && curr !== faqHeaderEl)) {
+            break
+          }
+          nodesToRemove.push(curr)
+
+          const isH34 = ['h3', 'h4', 'h5', 'h6'].includes(tag)
+          const strongTag = tag === 'p' ? curr.querySelector('strong, b') : null
+          const isPStrongQuestion =
+            strongTag &&
+            (curr.textContent.trim().endsWith('?') ||
+              /^(?:q\d*[:.]|\d+[\.\)])/i.test(curr.textContent.trim()) ||
+              curr.textContent.trim() === strongTag.textContent.trim())
+
+          if (isH34 || isPStrongQuestion) {
+            flushFaq()
+            currQ = (isPStrongQuestion ? strongTag.textContent : curr.textContent).trim()
+            currQ = currQ.replace(/^(?:Q\d*[:.]?\s*|\d+[\.\)]\s*)/i, '').trim()
+          } else {
+            const txt = curr.textContent.trim()
+            if (txt) {
+              currA.push(txt)
+            }
+          }
+
+          curr = curr.nextElementSibling
+        }
+        flushFaq()
+
+        if (extractedFaqs.length > 0) {
+          nodesToRemove.forEach((n) => n.remove())
+        }
+      }
+
+      // Ensure Table of Contents includes an entry for the FAQ section
+      const hasFaqInToc = headings.some((h) => /faq|frequently asked/i.test(h.title))
+      if (!hasFaqInToc) {
+        headings.push({
+          id: 'faq',
+          title: faqHeadingText,
+          level: 'h2'
+        })
+      }
+
       finalHtml = doc.body.innerHTML
     } catch (e) {
       console.warn('Error parsing article headings and tables:', e)
@@ -243,7 +361,9 @@ function BlogDetails() {
 
     return {
       html: sanitizedHtml,
-      toc: headings
+      toc: headings,
+      faqs: extractedFaqs,
+      faqTitle: faqHeadingText
     }
   }, [blog?.content])
 
@@ -269,32 +389,55 @@ function BlogDetails() {
     'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=700&fit=crop&q=80'
 
   // Schema Markup
+  const faqsForSchema =
+    processedArticle?.faqs?.length > 0 ? processedArticle.faqs : DEFAULT_BLOG_FAQS
+  const faqSchema =
+    faqsForSchema?.length > 0
+      ? {
+        '@type': 'FAQPage',
+        '@id': `https://tarajglobal.com/blog/${slug}#faq`,
+        mainEntity: faqsForSchema.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.answer
+          }
+        }))
+      }
+      : null
+
   const articleSchema = blog
     ? {
       '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: blog.title,
-      description: blog.excerpt || blog.title,
-      image: featuredImg,
-      datePublished: blog.published_at || blog.created_at || new Date().toISOString(),
-      dateModified: blog.updated_at || blog.published_at || blog.created_at || new Date().toISOString(),
-      author: {
-        '@type': 'Person',
-        name: blog.author_name || 'Taraj Global Editorial Team'
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'Taraj Global',
-        url: 'https://tarajglobal.com',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://tarajglobal.com/OnlyTG-%203.png'
-        }
-      },
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `https://tarajglobal.com/blog/${slug}`
-      }
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          headline: blog.title,
+          description: blog.excerpt || blog.title,
+          image: featuredImg,
+          datePublished: blog.published_at || blog.created_at || new Date().toISOString(),
+          dateModified: blog.updated_at || blog.published_at || blog.created_at || new Date().toISOString(),
+          author: {
+            '@type': 'Person',
+            name: blog.author_name || 'Taraj Global Editorial Team'
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Taraj Global',
+            url: 'https://tarajglobal.com',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://tarajglobal.com/OnlyTG-%203.png'
+            }
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://tarajglobal.com/blog/${slug}`
+          }
+        },
+        ...(faqSchema ? [faqSchema] : [])
+      ]
     }
     : null
 
@@ -759,43 +902,97 @@ function BlogDetails() {
                         width: 100%;
                         overflow-x: auto;
                         -webkit-overflow-scrolling: touch;
-                        margin: 2rem 0;
-                        border-radius: 0.875rem;
-                        border: 1px solid #334155;
-                        background: rgba(15, 23, 42, 0.4);
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                        margin: 2.25rem 0;
+                        border-radius: 1rem;
+                        border: 1px solid rgba(0, 166, 255, 0.28);
+                        background: #080d1a;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 166, 255, 0.05);
                       }
                       .blog-article-content table {
                         width: 100%;
-                        min-width: 620px;
-                        border-collapse: collapse;
+                        min-width: 640px;
+                        border-collapse: separate;
+                        border-spacing: 0;
                         margin: 0 !important;
                         border: none !important;
                       }
-                      .blog-article-content th,
-                      .blog-article-content td {
-                        border: 1px solid #334155;
-                        padding: 12px 18px;
-                        text-align: left;
-                        vertical-align: top;
-                        word-break: normal !important;
-                        overflow-wrap: break-word !important;
-                        white-space: normal !important;
-                        line-height: 1.6;
+                      .blog-article-content thead {
+                        background: linear-gradient(180deg, #0f1d33 0%, #0a1424 100%);
+                        border-bottom: 2px solid #00A6FF;
                       }
                       .blog-article-content th {
-                        background-color: #1e293b;
-                        color: #ffffff;
-                        font-weight: 700;
-                        font-size: 0.95rem;
-                        letter-spacing: 0.01em;
+                        background: #0d182b;
+                        color: #00A6FF !important;
+                        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                        font-weight: 800 !important;
+                        font-size: 0.8125rem !important;
+                        text-transform: uppercase !important;
+                        letter-spacing: 0.1em !important;
+                        padding: 14px 18px;
+                        text-align: left;
+                        vertical-align: middle;
+                        border-bottom: 2px solid #00A6FF;
+                        border-right: 1px solid rgba(255, 255, 255, 0.08);
                         white-space: nowrap;
                       }
-                      .blog-article-content tr:nth-child(even) td {
-                        background-color: rgba(15, 23, 42, 0.6);
+                      .blog-article-content th * {
+                        color: #00A6FF !important;
+                        font-weight: 800 !important;
+                        font-size: 0.8125rem !important;
+                        text-transform: uppercase !important;
+                        letter-spacing: 0.1em !important;
                       }
-                      .blog-article-content tr:nth-child(odd) td {
-                        background-color: rgba(30, 41, 59, 0.35);
+                      .blog-article-content th:last-child {
+                        border-right: none;
+                      }
+                      .blog-article-content td {
+                        padding: 14px 18px;
+                        text-align: left;
+                        vertical-align: top;
+                        font-size: 0.875rem !important;
+                        line-height: 1.65;
+                        color: #cbd5e1;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                        border-right: 1px solid rgba(255, 255, 255, 0.06);
+                        word-break: normal !important;
+                        overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content td * {
+                        font-size: 0.875rem !important;
+                        line-height: 1.65;
+                      }
+                      .blog-article-content td:last-child {
+                        border-right: none;
+                      }
+                      /* Distinct First Column (e.g. Layer / Entity name) */
+                      .blog-article-content tbody tr td:first-child {
+                        font-weight: 700 !important;
+                        color: #ffffff !important;
+                        background: rgba(0, 166, 255, 0.05);
+                        border-right: 1px solid rgba(0, 166, 255, 0.15);
+                      }
+                      .blog-article-content tbody tr td:first-child * {
+                        font-weight: 700 !important;
+                        color: #ffffff !important;
+                      }
+                      .blog-article-content tbody tr:nth-child(even) td {
+                        background-color: rgba(11, 20, 36, 0.65);
+                      }
+                      .blog-article-content tbody tr:nth-child(even) td:first-child {
+                        background-color: rgba(13, 24, 43, 0.8);
+                      }
+                      .blog-article-content tbody tr:nth-child(odd) td {
+                        background-color: rgba(15, 23, 42, 0.35);
+                      }
+                      .blog-article-content tbody tr:nth-child(odd) td:first-child {
+                        background-color: rgba(15, 23, 42, 0.55);
+                      }
+                      .blog-article-content tbody tr:last-child td {
+                        border-bottom: none;
+                      }
+                      .blog-article-content tbody tr:hover td {
+                        background-color: rgba(0, 166, 255, 0.12) !important;
+                        color: #ffffff;
                       }
                       /* Light mode adjustments */
                       html:not(.dark) .blog-article-content {
@@ -823,23 +1020,60 @@ function BlogDetails() {
                         background: rgba(0, 166, 255, 0.06);
                         color: #1e293b;
                       }
-                      html:not(.dark) .blog-article-content table,
-                      html:not(.dark) .blog-article-content th,
+                      html:not(.dark) .blog-article-content .blog-table-responsive {
+                        background: #ffffff;
+                        border: 1px solid #cbd5e1;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+                      }
+                      html:not(.dark) .blog-article-content thead,
+                      html:not(.dark) .blog-article-content th {
+                        background: #f1f5f9;
+                        color: #0284c7 !important;
+                        border-bottom: 2px solid #00A6FF;
+                        border-right-color: #e2e8f0;
+                      }
+                      html:not(.dark) .blog-article-content th * {
+                        color: #0284c7 !important;
+                        font-weight: 800 !important;
+                        font-size: 0.8125rem !important;
+                        text-transform: uppercase !important;
+                        letter-spacing: 0.1em !important;
+                      }
                       html:not(.dark) .blog-article-content td {
                         border-color: #e2e8f0;
+                        color: #334155;
                       }
-                      html:not(.dark) .blog-article-content th {
-                        background-color: #f1f5f9;
-                        color: #0f172a;
+                      html:not(.dark) .blog-article-content tbody tr td:first-child {
+                        color: #0f172a !important;
+                        font-weight: 700 !important;
+                        background: rgba(0, 166, 255, 0.04);
                       }
-                      html:not(.dark) .blog-article-content tr:nth-child(even) td {
+                      html:not(.dark) .blog-article-content tbody tr td:first-child * {
+                        color: #0f172a !important;
+                        font-weight: 700 !important;
+                      }
+                      html:not(.dark) .blog-article-content tbody tr:nth-child(even) td {
+                        background-color: #f8fafc;
+                      }
+                      html:not(.dark) .blog-article-content tbody tr:nth-child(odd) td {
                         background-color: #ffffff;
                       }
-                      html:not(.dark) .blog-article-content tr:nth-child(odd) td {
-                        background-color: #f8fafc;
+                      html:not(.dark) .blog-article-content tbody tr:hover td {
+                        background-color: #f0f9ff !important;
                       }
                     `}</style>
                     <div dangerouslySetInnerHTML={{ __html: processedArticle.html }} />
+                  </div>
+
+                  {/* ── FREQUENTLY ASKED QUESTIONS SECTION (UNIFIED WEBSITE UI) ── */}
+                  <div className="not-prose my-10 sm:my-12" id="faq">
+                    <BlogFAQ
+                      faqs={processedArticle.faqs?.length > 0 ? processedArticle.faqs : DEFAULT_BLOG_FAQS}
+                      title={processedArticle.faqTitle?.replace(/questions?/i, '').trim() || 'Frequently Asked'}
+                      highlightTitle="Questions"
+                      isArticleInline={true}
+                      description={`Key strategic questions and answers regarding ${blog.title || 'this B2B playbook'} and enterprise demand generation execution.`}
+                    />
                   </div>
 
                   {/* Share This Article Section */}

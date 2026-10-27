@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -84,7 +84,17 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [activeAttribution, setActiveAttribution] = useState(null)
   const cardRef = useRef(null)
+
+  useEffect(() => {
+    try {
+      const attr = getAttribution()
+      if (attr && attr.cta_button && attr.cta_button !== 'Direct Contact Form') {
+        setActiveAttribution(attr)
+      }
+    } catch (_) {}
+  }, [])
 
   const handleMouseMove = (e) => {
     if (cardRef.current) {
@@ -462,6 +472,17 @@ const ContactForm = () => {
                 (Takes 7 of 12 columns on desktop)
             ═══════════════════════════════════════════════════════ */}
             <div className="lg:col-span-7 p-5 sm:p-6 lg:p-7 flex flex-col justify-center">
+              {activeAttribution && (
+                <div className="mb-3 px-3.5 py-2 rounded-xl bg-[#00A6FF]/10 border border-[#00A6FF]/25 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2 truncate text-slate-700 dark:text-slate-300">
+                    <span className="w-2 h-2 rounded-full bg-[#00A6FF] animate-pulse shrink-0" />
+                    <span className="font-semibold text-[#00A6FF]">Inquiring from:</span>
+                    <span className="font-medium truncate">{activeAttribution.cta_section}</span>
+                    <span className="text-slate-400">•</span>
+                    <span className="font-bold text-slate-900 dark:text-white truncate">"{activeAttribution.cta_button}"</span>
+                  </div>
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="space-y-3" noValidate>
                 
                 {/* Row 1: First Name & Last Name */}

@@ -103,7 +103,7 @@ router.get('/:id', async (req, res) => {
 // @access  Public
 router.post('/job-application', formLimiter, upload.single('resume'), async (req, res) => {
   try {
-    const { first_name, last_name, email, phone, job_title } = req.body
+    const { first_name, last_name, email, phone, job_title, cta_button, cta_section, source_page, utm_campaign, utm_source } = req.body
     const resume_path = req.file ? req.file.path : null
 
     if (!first_name || !last_name || !email || !job_title) {
@@ -114,22 +114,36 @@ router.post('/job-application', formLimiter, upload.single('resume'), async (req
       return res.status(400).json({ success: false, message: 'Resume file is required' })
     }
 
-    // Insert application into database
-    const [result] = await db.execute(
-      `INSERT INTO job_applications (first_name, last_name, email, phone, job_title, resume_path, status, applied_at) VALUES (?, ?, ?, ?, ?, ?, 'applied', NOW())`,
-      [first_name, last_name, email, phone, job_title, resume_path]
-    )
+    // Insert application into database with safe attribution fallback
+    let result
+    try {
+      const [insertRes] = await db.execute(
+        `INSERT INTO job_applications (first_name, last_name, email, phone, job_title, resume_path, status, cta_button, cta_section, source_page, utm_campaign, utm_source, applied_at)
+         VALUES (?, ?, ?, ?, ?, ?, 'applied', ?, ?, ?, ?, ?, NOW())`,
+        [first_name, last_name, email, phone || '', job_title, resume_path, cta_button || null, cta_section || null, source_page || null, utm_campaign || null, utm_source || null]
+      )
+      result = insertRes
+    } catch (_) {
+      const [fallbackRes] = await db.execute(
+        `INSERT INTO job_applications (first_name, last_name, email, phone, job_title, resume_path, status, applied_at) VALUES (?, ?, ?, ?, ?, ?, 'applied', NOW())`,
+        [first_name, last_name, email, phone, job_title, resume_path]
+      )
+      result = fallbackRes
+    }
 
     // Notify admins and candidate about new application
-    const application = { first_name, last_name, email, phone, resume_path }
+    const application = { first_name, last_name, email, phone, resume_path, cta_button, cta_section, source_page }
     const job = { title: job_title }
     const adminEmail = process.env.CAREER_EMAIL || process.env.HR_EMAIL || 'hr@tarajglobal.com'
     
     // 1. Send in-app notification to admins
     try {
-      await notificationHelper.notifyAdmins(
-        notificationHelper.notifications.newApplication(first_name + ' ' + last_name, job_title, result.insertId)
-      )
+      await notificationHelper.notifyAdmins({
+        title: '💼 New Job Application',
+        message: `${first_name} ${last_name} applied for "${job_title}"${cta_button ? ` via "${cta_button}"` : ''} in ${cta_section || 'Careers'}`,
+        type: 'recruitment',
+        link: '/admin/applications'
+      })
     } catch (inAppError) {
       console.error('Failed to create in-app notification:', inAppError.message)
     }

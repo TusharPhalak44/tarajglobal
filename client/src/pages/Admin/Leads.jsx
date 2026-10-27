@@ -18,6 +18,47 @@ import PageHeader from '@components/admin/PageHeader'
 import StatusBadge from '@components/admin/StatusBadge'
 import EmptyState from '@components/admin/EmptyState'
 import { TableSkeleton } from '@components/admin/LoadingSkeleton'
+// Helper to extract and format CTA and section attribution for any lead (new or legacy)
+function getLeadAttribution(lead) {
+  if (!lead) return {}
+  const rawPageUrl = lead.page_url || ''
+
+  let ctaButton = lead.cta_button || ''
+  let ctaSection = lead.cta_section || ''
+  let sourcePage = lead.source_page || ''
+  let utmCampaign = lead.utm_campaign || ''
+  let utmSource = lead.utm_source || ''
+  let utmMedium = lead.utm_medium || ''
+
+  // Parse from page_url string (e.g. cta: [Deploy HQL Campaign] | section: [Hero Section] | from: /services/hql-leads)
+  if (!ctaButton) {
+    const ctaMatch = rawPageUrl.match(/cta:\s*\[(.*?)\]/i)
+    if (ctaMatch) ctaButton = ctaMatch[1]
+  }
+  if (!ctaSection) {
+    const secMatch = rawPageUrl.match(/section:\s*\[(.*?)\]/i)
+    if (secMatch) ctaSection = secMatch[1]
+  }
+  if (!sourcePage) {
+    const pageMatch = rawPageUrl.match(/from:\s*([^\s|]+)/i)
+    if (pageMatch) sourcePage = pageMatch[1]
+  }
+  if (!utmCampaign) {
+    const campMatch = rawPageUrl.match(/Campaign:\s*([^\s|]+)/i)
+    if (campMatch) utmCampaign = campMatch[1]
+  }
+
+  return {
+    ctaButton,
+    ctaSection,
+    sourcePage: sourcePage || (ctaButton ? '/contact' : rawPageUrl),
+    utmCampaign,
+    utmSource,
+    utmMedium,
+    rawPageUrl,
+    hasAttribution: Boolean(ctaButton || ctaSection || sourcePage || lead.source),
+  }
+}
 
 const Leads = () => {
   const [loading, setLoading] = useState(true)
@@ -191,6 +232,7 @@ const Leads = () => {
             <div className="space-y-2.5">
               {leads.map((lead) => {
                 const isSelected = selectedLead?.id === lead.id
+                const leadAttr = getLeadAttribution(lead)
 
                 return (
                   <div
@@ -212,6 +254,20 @@ const Leads = () => {
                       <p className="text-sm text-[var(--admin-text-secondary)] truncate">
                         {lead.company || 'Private Entity'} • <span className="text-[var(--admin-text-muted)]">{lead.email}</span>
                       </p>
+                      {(leadAttr.ctaButton || leadAttr.ctaSection) && (
+                        <div className="flex items-center gap-1.5 pt-0.5 text-[11px] font-mono">
+                          {leadAttr.ctaSection && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#FF6D00]/15 text-[#FF6D00] font-semibold truncate max-w-[140px]">
+                              📍 {leadAttr.ctaSection}
+                            </span>
+                          )}
+                          {leadAttr.ctaButton && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#00A6FF]/15 text-[#00A6FF] font-semibold truncate max-w-[150px]">
+                              🎯 {leadAttr.ctaButton}
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     <div className="text-right shrink-0">
@@ -342,33 +398,87 @@ const Leads = () => {
                   </div>
                 )}
 
-                {/* Attribution & Origin CTA */}
-                {(selectedLead.page_url || selectedLead.source) && (
-                  <div className="space-y-2 pt-4 border-t border-[var(--admin-border-subtle)]">
-                    <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider flex items-center justify-between">
-                      <span>CTA & SEO Origin Tracking</span>
-                      <span className="text-[11px] font-mono text-[#00A6FF] lowercase">utm verified</span>
-                    </span>
-                    <div className="p-3.5 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] space-y-2 text-xs">
-                      {selectedLead.source && (
-                        <div className="flex items-center justify-between">
-                          <span className="text-[var(--admin-text-muted)] font-medium">Channel:</span>
-                          <span className="font-mono font-bold text-[var(--admin-primary)]">
-                            {selectedLead.source}
+                {/* Attribution & Origin CTA Card */}
+                {(() => {
+                  const selectedAttr = getLeadAttribution(selectedLead)
+                  if (!selectedAttr.hasAttribution) return null
+
+                  return (
+                    <div className="space-y-3 pt-4 border-t border-[var(--admin-border-subtle)]">
+                      <span className="text-[13px] font-bold text-[var(--admin-text-muted)] uppercase tracking-wider flex items-center justify-between">
+                        <span>🎯 Origin CTA & Section Tracking</span>
+                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#00A6FF]/15 text-[#00A6FF] uppercase">
+                          utm tracked
+                        </span>
+                      </span>
+
+                      <div className="p-3.5 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] space-y-2.5 text-xs">
+                        {/* CTA Button */}
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[var(--admin-text-muted)] font-medium">CTA Button:</span>
+                          <span className="font-mono font-bold px-2.5 py-0.5 rounded-md bg-[#00A6FF]/15 text-[#00A6FF] text-right truncate max-w-[240px]">
+                            🎯 {selectedAttr.ctaButton || 'Direct Contact Form'}
                           </span>
                         </div>
-                      )}
-                      {selectedLead.page_url && (
-                        <div className="space-y-1">
-                          <span className="text-[var(--admin-text-muted)] font-medium block">Origin Telemetry:</span>
-                          <p className="font-mono text-[11.5px] text-[var(--admin-text-secondary)] bg-[var(--admin-bg-base)] p-2 rounded-lg border border-[var(--admin-border-subtle)] break-all leading-relaxed">
-                            {selectedLead.page_url}
-                          </p>
+
+                        {/* Page Section */}
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[var(--admin-text-muted)] font-medium">Page Section:</span>
+                          <span className="font-mono font-bold px-2.5 py-0.5 rounded-md bg-[#FF6D00]/15 text-[#FF6D00] text-right truncate max-w-[240px]">
+                            📍 {selectedAttr.ctaSection || 'Contact Form Section'}
+                          </span>
                         </div>
-                      )}
+
+                        {/* Origin Page */}
+                        {selectedAttr.sourcePage && (
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[var(--admin-text-muted)] font-medium">Origin Page:</span>
+                            <a
+                              href={selectedAttr.sourcePage}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="font-mono text-[#00A6FF] hover:underline font-bold text-right truncate max-w-[220px]"
+                            >
+                              📄 {selectedAttr.sourcePage} ↗
+                            </a>
+                          </div>
+                        )}
+
+                        {/* UTM Campaign */}
+                        {selectedAttr.utmCampaign && (
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[var(--admin-text-muted)] font-medium">Campaign:</span>
+                            <span className="font-mono font-semibold text-[var(--admin-text-secondary)]">
+                              🏷️ {selectedAttr.utmCampaign}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Channel */}
+                        {selectedLead.source && (
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[var(--admin-text-muted)] font-medium">Channel:</span>
+                            <span className="font-mono font-semibold text-[var(--admin-primary)]">
+                              📡 {selectedLead.source}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Raw Telemetry */}
+                        {selectedAttr.rawPageUrl && (
+                          <div className="space-y-1 pt-1.5 border-t border-[var(--admin-border-subtle)]">
+                            <span className="text-[var(--admin-text-dim)] text-[10px] uppercase font-bold tracking-wider block">
+                              Raw Telemetry:
+                            </span>
+                            <p className="font-mono text-[11px] text-[var(--admin-text-dim)] bg-[var(--admin-bg-base)] p-2 rounded-lg border border-[var(--admin-border-subtle)] break-all leading-relaxed">
+                              {selectedAttr.rawPageUrl}
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )
+                })()}
               </>
 
             ) : (

@@ -135,11 +135,11 @@ function Terms() {
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-text-secondary font-medium">
               <span className="flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-cta" />
-                <strong>Effective Date:</strong> [Effective Date]
+                <strong>Effective Date:</strong> January 1, 2026
               </span>
               <span className="hidden sm:inline text-border">•</span>
               <span>
-                <strong>Last Updated:</strong> [Last Updated]
+                <strong>Last Updated:</strong> October 2026
               </span>
             </div>
           </div>
@@ -247,7 +247,7 @@ function Terms() {
                   </h2>
                 </div>
                 <p className="mb-4">
-                  These Terms of Service (&quot;Terms&quot;) govern your access to and use of the website operated by <strong>[Company Name]</strong> (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), located at <strong>[Website URL]</strong> (the &quot;Website&quot;), including all content, resources, functionality, and services offered on or through the Website.
+                  These Terms of Service (&quot;Terms&quot;) govern your access to and use of the website operated by <strong>Taraj Global Solutions Private Limited</strong> (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), located at <strong>https://tarajglobal.com</strong> (the &quot;Website&quot;), including all content, resources, functionality, and services offered on or through the Website.
                 </p>
                 <p>
                   Please read these Terms carefully before using the Website. By accessing, browsing, or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Website.
@@ -661,10 +661,10 @@ function Terms() {
                   </h2>
                 </div>
                 <p className="mb-4">
-                  These Terms and any dispute or claim arising out of or related to them, their subject matter, or their formation shall be governed by and construed in accordance with the internal laws of [Jurisdiction/State/Country], without giving effect to any choice or conflict of law provision or rule.
+                  These Terms and any dispute or claim arising out of or related to them, their subject matter, or their formation shall be governed by and construed in accordance with the internal laws of the Republic of India and the State of Maharashtra, without giving effect to any choice or conflict of law provision or rule.
                 </p>
                 <p>
-                  Any legal suit, action, or proceeding arising out of or related to these Terms or the Website shall be instituted exclusively in the competent courts located in [Jurisdiction]. You waive any and all objections to the exercise of jurisdiction over you by such courts and to venue in such courts.
+                  Any legal suit, action, or proceeding arising out of or related to these Terms or the Website shall be instituted exclusively in the competent courts located in Pune, Maharashtra, India. You waive any and all objections to the exercise of jurisdiction over you by such courts and to venue in such courts.
                 </p>
               </section>
 
@@ -722,39 +722,27 @@ function Terms() {
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start justify-between min-h-[110px]">
-                    <div>
-                      <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center text-cta mb-2">
-                        <Mail className="w-4 h-4" />
-                      </div>
-                      <span className="text-[11px] font-mono font-semibold text-text-muted tracking-wide block">Email</span>
-                    </div>
-                    <a href="mailto:info@tarajglobal.com" className="text-xs sm:text-sm font-semibold text-text-primary hover:text-primary hover:underline break-all mt-1">
-                      [Legal/Contact Email Address]
+                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
+                    <Mail className="w-5 h-5 text-cta mb-2" />
+                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Email</span>
+                    <a href="mailto:info@tarajglobal.com" className="text-sm font-semibold text-text-primary hover:text-primary hover:underline mt-1">
+                      info@tarajglobal.com
                     </a>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start justify-between min-h-[110px]">
-                    <div>
-                      <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center text-cta mb-2">
-                        <Phone className="w-4 h-4" />
-                      </div>
-                      <span className="text-[11px] font-mono font-semibold text-text-muted tracking-wide block">Direct Phone</span>
-                    </div>
-                    <a href="tel:+919665599442" className="text-xs sm:text-sm font-semibold text-text-primary hover:text-primary hover:underline mt-1">
+                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
+                    <Phone className="w-5 h-5 text-cta mb-2" />
+                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Direct Phone</span>
+                    <a href="tel:+919665599442" className="text-sm font-semibold text-text-primary hover:text-primary hover:underline mt-1">
                       +91-96655-99442
                     </a>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start justify-between min-h-[110px]">
-                    <div>
-                      <div className="w-8 h-8 rounded-lg bg-cta/30 dark:bg-cta/10 flex items-center justify-center text-cta mb-2">
-                        <MapPin className="w-4 h-4" />
-                      </div>
-                      <span className="text-[11px] font-mono font-semibold text-text-muted tracking-wide block">Headquarters</span>
-                    </div>
+                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
+                    <MapPin className="w-5 h-5 text-cta mb-2" />
+                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Headquarters</span>
                     <address className="text-xs text-text-secondary not-italic mt-1 leading-relaxed">
-                      [Company Address]
+                      The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014, India
                     </address>
                   </div>
                 </div>

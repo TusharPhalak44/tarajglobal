@@ -247,13 +247,17 @@ export const Footer = () => {
           
           {/* Copyright */}
           <div className="text-center md:text-left">
-            &copy; {currentYear}{' '}
             <span>
-              {settings.copyright_text
-                ? settings.copyright_text
-                    .replace(/^(Copyright\s*)?©?\s*\d{4}\s*/i, '')
-                    .replace(/^(Copyright\s*)?©?\s*/i, '')
-                : 'Taraj Global Solutions Private Limited. All rights reserved.'}
+              {(() => {
+                if (settings.copyright_text) {
+                  const text = settings.copyright_text.replace(/\{year\}/gi, currentYear).trim()
+                  if (!/^(Copyright|©)/i.test(text)) {
+                    return `© ${currentYear} ${text}`
+                  }
+                  return text
+                }
+                return `© ${currentYear} Taraj Global Solutions Private Limited. All rights reserved.`
+              })()}
             </span>
           </div>
 

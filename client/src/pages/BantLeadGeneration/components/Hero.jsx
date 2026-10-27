@@ -393,14 +393,7 @@ const Hero = () => {
       destination_url: '/contact',
       utm_campaign: 'bant_lead_generation',
     })
-    navigate(
-      buildTrackedUrl('/contact', {
-        sectionId: 'bant_hero',
-        sectionName: 'BANT Hero Section',
-        ctaText: 'Deploy BANT Campaign',
-        customCampaign: 'bant_lead_generation',
-      })
-    )
+    navigate('/contact')
   }
 
   const handleSeeHowItWorks = () => {

@@ -240,13 +240,19 @@ export const sendLeadNotification = async (lead, recipients) => {
     message: lead.message,
     source: lead.source,
     page_url: lead.page_url,
+    cta_button: lead.cta_button,
+    cta_section: lead.cta_section,
+    source_page: lead.source_page,
+    utm_campaign: lead.utm_campaign,
+    utm_source: lead.utm_source,
+    utm_medium: lead.utm_medium,
   })
 
   return sendEmail({
     to: adminEmail,
-    subject: `New Lead: ${lead.name}`,
+    subject: `New Lead: ${lead.name}${lead.cta_button ? ` [via ${lead.cta_button}]` : ''}`,
     html,
-    text: `New lead from ${lead.name} (${lead.email})`
+    text: `New lead from ${lead.name} (${lead.email})${lead.cta_button ? ` via CTA: "${lead.cta_button}" in ${lead.cta_section || 'section'}` : ''}`
   })
 }
 

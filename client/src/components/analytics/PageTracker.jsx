@@ -4,7 +4,7 @@ import { useCookies } from '../cookies/CookieContext'
 import { useAuth } from '../../context/AuthContext'
 import api from '../../api/axios'
 import { trackAttribution } from '../../utils/attribution'
-import { initGlobalCtaTracker } from '../../utils/utmTracker'
+import { initGlobalCtaTracker, syncUrlUtmsWithLastCta } from '../../utils/utmTracker'
 
 // Helper to generate or retrieve a unique session ID
 const getSessionId = () => {
@@ -25,6 +25,13 @@ const PageTracker = () => {
   useEffect(() => {
     initGlobalCtaTracker()
   }, [])
+
+  // Sync address bar UTMs if user arrived at /contact without params after clicking CTA
+  useEffect(() => {
+    if (location.pathname === '/contact') {
+      syncUrlUtmsWithLastCta()
+    }
+  }, [location.pathname])
 
   // Session-only lead attribution; sent to the server only when the visitor submits a form.
   useEffect(() => {

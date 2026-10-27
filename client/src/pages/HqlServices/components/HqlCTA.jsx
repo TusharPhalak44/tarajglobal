@@ -73,12 +73,7 @@ const HqlCTA = () => {
       destination_url: '/contact',
       utm_campaign: 'hql_services'
     })
-    navigate(buildTrackedUrl('/contact', {
-      sectionId: 'final_cta',
-      sectionName: 'Final CTA Section',
-      ctaText: 'Start Your HQL Campaign',
-      customCampaign: 'hql_services'
-    }))
+    navigate('/contact')
   }
 
   const handleTalkToTeam = () => {
@@ -89,12 +84,7 @@ const HqlCTA = () => {
       destination_url: '/contact',
       utm_campaign: 'hql_services'
     })
-    navigate(buildTrackedUrl('/contact', {
-      sectionId: 'final_cta',
-      sectionName: 'Final CTA Section',
-      ctaText: 'Talk to Our Team',
-      customCampaign: 'hql_services'
-    }))
+    navigate('/contact')
   }
 
   const currPillar = TRUST_PILLARS[pillarIndex]
@@ -108,12 +98,7 @@ const HqlCTA = () => {
       destination_url: '/contact',
       utm_campaign: 'hql_services'
     })
-    navigate(buildTrackedUrl('/contact', {
-      sectionId: 'final_cta',
-      sectionName: 'Final CTA Section',
-      ctaText: currPillar.label,
-      customCampaign: 'hql_services'
-    }))
+    navigate('/contact')
   }
 
   return (

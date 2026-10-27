@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import DOMPurify from 'dompurify'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Send, Bot, User, Minimize2, Maximize2, RotateCcw, ChevronDown, Sparkles, Phone, Mail, UserCheck } from 'lucide-react'
+import { getAttribution } from '../../utils/attribution'
 
 const QUICK_REPLIES = [
   'What services do you offer?',
@@ -200,6 +201,7 @@ export default function ChatBot() {
     setIsSubmittingForm(true)
 
     try {
+      const attr = getAttribution()
       const res = await fetch('/api/chat/session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -207,7 +209,12 @@ export default function ChatBot() {
           first_name: formData.firstName.trim(),
           last_name: formData.lastName.trim(),
           email: formData.email.trim(),
-          phone: formData.phone.trim()
+          phone: formData.phone.trim(),
+          attribution: attr,
+          cta_button: attr.cta_button || 'Start Chat',
+          cta_section: attr.cta_section || 'ChatBot Assistant',
+          source_page: attr.source_page || window.location.pathname,
+          utm_campaign: attr.utm_campaign || 'chat_lead'
         })
       })
 

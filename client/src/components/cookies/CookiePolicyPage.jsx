@@ -141,8 +141,8 @@ const CookiePolicyPage = () => {
                           <td className="py-3 px-4 text-text-secondary">{cookie.purpose}</td>
                           <td className="py-3 px-4">
                             <span className={`px-2 py-1 text-xs font-medium rounded-full ${cookie.required === 'Yes'
-                                ? 'bg-primary/20 text-primary'
-                                : 'bg-white/10 text-text-secondary'
+                              ? 'bg-primary/20 text-primary'
+                              : 'bg-white/10 text-text-secondary'
                               }`}>
                               {cookie.required}
                             </span>
@@ -196,7 +196,7 @@ const CookiePolicyPage = () => {
                   If you have any questions about our use of cookies or this Cookies Policy, please contact us:
                 </p>
                 <div className="space-y-2 text-text-secondary">
-                  <p><strong className="text-text-primary dark:text-white">Email:</strong> privacy@tarajglobal.com</p>
+                  <p><strong className="text-text-primary dark:text-white">Email:</strong> info@tarajglobal.com</p>
                   <p><strong className="text-text-primary dark:text-white">Address:</strong> Taraj Global, Pune, Maharashtra 411014, India</p>
                 </div>
               </section>

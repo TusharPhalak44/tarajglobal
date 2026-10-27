@@ -43,6 +43,7 @@ import SEO from '@components/common/SEO'
 import { publicAPI } from '@api/public.api'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import { FlowButton } from '@components/ui/FlowButton'
+import { getAttribution } from '@utils/attribution'
 import { gsap, ScrollTrigger } from '@animations/gsap'
 
 // Precision cubic ease-out counter for hero stats
@@ -1228,6 +1229,13 @@ function Careers() {
       formDataToSend.append('email', formData.email)
       formDataToSend.append('phone', formData.phone)
       formDataToSend.append('job_title', selectedJobTitle || formData.jobTitle || 'General Application')
+
+      const attr = getAttribution()
+      formDataToSend.append('cta_button', attr.cta_button || `Apply for ${selectedJobTitle || 'General Position'}`)
+      formDataToSend.append('cta_section', attr.cta_section || 'Careers Section')
+      formDataToSend.append('source_page', attr.source_page || '/careers')
+      formDataToSend.append('utm_campaign', attr.utm_campaign || 'careers')
+      formDataToSend.append('utm_source', attr.utm_source || 'direct')
 
       const response = await fetch('/api/jobs/job-application', {
         method: 'POST',

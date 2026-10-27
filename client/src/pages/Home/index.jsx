@@ -203,16 +203,16 @@ function NextStep() {
               className="w-full sm:w-auto min-h-[48px] px-8 justify-center text-[15px] font-bold shadow-[0_10px_25px_-8px_rgba(255,109,0,0.5)]"
             />
           </Link>
-          <a
-            href="mailto:info@tarajglobal.com"
+          <Link
+            to="/contact"
             data-cta="true"
             data-cta-section="Home Bottom CTA Section"
-            data-cta-name="Talk to Our Team (Mail)"
+            data-cta-name="Talk to Our Team"
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 text-[14px] font-semibold text-white hover:border-[#00A6FF] hover:bg-[#00A6FF]/10 transition-colors w-full sm:w-auto"
           >
             <Mail size={15} className="text-[#00A6FF]" />
             <span>Talk to Our Team</span>
-          </a>
+          </Link>
         </div>
 
 
