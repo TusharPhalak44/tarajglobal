@@ -200,10 +200,10 @@ export const Footer = () => {
         </div>
 
         {/* ── 2. MAIN HORIZONTAL COMMAND BAR (CENTERED NAVIGATION LINKS & BALANCED ISO BADGES) ─── */}
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-3 sm:gap-4 py-2 sm:py-2.5 border-t border-white/[0.08] lg:border-t-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-2.5 sm:gap-3 py-2 sm:py-2.5 border-t border-white/[0.08] lg:border-t-0">
           
-          {/* LEFT: Dual ISO Certificates Badges (Non-overlapping, Flexbox Balanced) */}
-          <div className="flex items-center shrink-0 lg:w-[240px] justify-center lg:justify-start">
+          {/* LEFT: Dual ISO Certificates Badges (Non-overlapping, Proportional Width) */}
+          <div className="flex items-center shrink-0 lg:w-[130px] justify-center lg:justify-start">
             <img
               src={settings.cert_image_url || "/footerimage.png"}
               onError={(e) => {
@@ -211,26 +211,26 @@ export const Footer = () => {
                 e.currentTarget.src = "/footerimage.png"
               }}
               alt="Taraj Global ISO 27001 & ISO 9001 Certifications"
-              className="h-16 sm:h-20 lg:h-[78px] xl:h-[86px] w-auto object-contain select-none hover:brightness-110 transition-all drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
+              className="h-12 sm:h-14 lg:h-[58px] w-auto object-contain select-none hover:brightness-110 transition-all drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
               loading="lazy"
             />
           </div>
 
-          {/* CENTER: Main Navigation Links */}
+          {/* CENTER: Main Navigation Links (Strictly Single Line, Prominent Font Size, Fully Responsive) */}
           <nav
             aria-label="Footer Navigation"
-            className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4 lg:gap-x-5 gap-y-2 text-center flex-1 max-w-4xl px-2"
+            className="flex flex-nowrap items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-x-2 sm:gap-x-2.5 md:gap-x-3 lg:gap-x-3.5 xl:gap-x-4 text-center flex-1 max-w-full px-2 py-1 scroll-smooth"
           >
             {navLinks.map((link, idx) => (
               <React.Fragment key={link.label}>
                 {idx > 0 && (
-                  <span className="text-white/20 select-none text-xs font-light">
+                  <span className="text-white/25 select-none text-xs sm:text-[13px] font-light shrink-0" aria-hidden="true">
                     |
                   </span>
                 )}
                 <Link
                   to={link.url}
-                  className="text-xs sm:text-sm lg:text-[14px] font-semibold text-slate-200 hover:text-[#FF6D00] transition-colors duration-200 tracking-wide py-0.5 whitespace-nowrap"
+                  className="text-[13px] sm:text-[13.5px] md:text-[14px] lg:text-[14.5px] xl:text-[15px] font-semibold text-slate-100 hover:text-[#FF6D00] transition-colors duration-200 tracking-wide py-0.5 whitespace-nowrap shrink-0"
                 >
                   {link.label}
                 </Link>
@@ -239,7 +239,7 @@ export const Footer = () => {
           </nav>
 
           {/* RIGHT: Invisible Balancing Spacer for Desktop (Equal width to ISO on left) */}
-          <div className="hidden lg:flex shrink-0 lg:w-[240px] justify-end" aria-hidden="true" />
+          <div className="hidden lg:flex shrink-0 lg:w-[130px] justify-end" aria-hidden="true" />
         </div>
 
         {/* ── 3. BOTTOM LEGAL BAR & COPYRIGHT ROW (COMPACT, FULL-WIDTH) ───── */}
@@ -250,11 +250,15 @@ export const Footer = () => {
             <span>
               {(() => {
                 if (settings.copyright_text) {
-                  const text = settings.copyright_text.replace(/\{year\}/gi, currentYear).trim()
-                  if (!/^(Copyright|©)/i.test(text)) {
-                    return `© ${currentYear} ${text}`
+                  const cleanedText = settings.copyright_text
+                    .replace(/[┬Â][⌐¬©]?/g, '©')
+                    .replace(/©+/g, '©')
+                    .replace(/\{year\}/gi, currentYear)
+                    .trim()
+                  if (!/^(Copyright|©)/i.test(cleanedText)) {
+                    return `© ${currentYear} ${cleanedText}`
                   }
-                  return text
+                  return cleanedText
                 }
                 return `© ${currentYear} Taraj Global Solutions Private Limited. All rights reserved.`
               })()}

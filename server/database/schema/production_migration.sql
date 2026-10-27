@@ -604,7 +604,7 @@ CREATE TABLE `footer_settings` (
   `logo_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_logo_visible` tinyint(1) DEFAULT '1',
   `is_description_visible` tinyint(1) DEFAULT '1',
-  `copyright_text` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT 'Copyright ┬⌐ {year} Taraj Global. All Rights Reserved.',
+  `copyright_text` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT 'Copyright © {year} Taraj Global. All Rights Reserved.',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cert_image_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -619,7 +619,7 @@ CREATE TABLE `footer_settings` (
 
 LOCK TABLES `footer_settings` WRITE;
 /*!40000 ALTER TABLE `footer_settings` DISABLE KEYS */;
-INSERT INTO `footer_settings` VALUES (1,'TaRaj Global','TaRaj Global is an ISO 9001:2015 (Quality) and ISO 27001:2022 (Data Security) certified B2B demand generation and technology marketing agency delivering performance-driven solutions.','ISO certified B2B demand generation and technology marketing agency.','/logo img.png',1,1,'Copyright ┬⌐ {year} Taraj Global. All Rights Reserved.','2026-10-07 13:19:31','2026-10-07 13:19:31',NULL,1);
+INSERT INTO `footer_settings` VALUES (1,'TaRaj Global','TaRaj Global is an ISO 9001:2015 (Quality) and ISO 27001:2022 (Data Security) certified B2B demand generation and technology marketing agency delivering performance-driven solutions.','ISO certified B2B demand generation and technology marketing agency.','/logo img.png',1,1,'Copyright © {year} Taraj Global. All Rights Reserved.','2026-10-07 13:19:31','2026-10-07 13:19:31',NULL,1);
 /*!40000 ALTER TABLE `footer_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 

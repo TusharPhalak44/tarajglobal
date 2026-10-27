@@ -144,7 +144,9 @@ const FooterManagement = () => {
           cert_image_url: s.cert_image_url || '/footerimage.png',
           is_cert_image_visible: s.is_cert_image_visible !== 0 && s.is_cert_image_visible !== false,
           is_description_visible: s.is_description_visible !== 0 && s.is_description_visible !== false,
-          copyright_text: s.copyright_text || 'Copyright © {year} Taraj Global Solutions Private Limited. All rights reserved.'
+          copyright_text: (s.copyright_text || 'Copyright © {year} Taraj Global Solutions Private Limited. All rights reserved.')
+            .replace(/[┬Â][⌐¬©]?/g, '©')
+            .replace(/©+/g, '©')
         })
       }
 
