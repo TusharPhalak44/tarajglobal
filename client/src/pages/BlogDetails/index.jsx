@@ -147,9 +147,18 @@ function BlogDetails() {
     try {
       const parser = new DOMParser()
       const doc = parser.parseFromString(htmlToProcess, 'text/html')
-      const headingElements = doc.querySelectorAll('h1, h2, h3, h4')
+      const headingElements = doc.querySelectorAll('h1, h2, h3, h4, h5, h6')
 
       headingElements.forEach((h, index) => {
+        h.classList.remove('ql-align-justify')
+        // Unwrap redundant strong/b tags inside headings to prevent extreme double-bolding
+        const innerStrongs = h.querySelectorAll('strong, b')
+        innerStrongs.forEach((s) => {
+          while (s.firstChild) {
+            s.parentNode.insertBefore(s.firstChild, s)
+          }
+          s.remove()
+        })
         const text = h.textContent.trim()
         if (!text) return
         let id = h.getAttribute('id')
@@ -422,7 +431,7 @@ function BlogDetails() {
               </div>
 
               {/* Article Headline */}
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary dark:text-text-primary dark:text-white leading-[1.18]">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-left text-text-primary dark:text-text-primary dark:text-white leading-[1.22]">
                 {blog.title}
               </h1>
 
@@ -558,15 +567,28 @@ function BlogDetails() {
                         padding: 0 !important;
                         height: 0 !important;
                       }
-                      .blog-article-content .ql-align-justify,
+                      /* Only body text / paragraphs justify; Headings NEVER justify */
                       .blog-article-content p.ql-align-justify,
-                      .blog-article-content div.ql-align-justify,
-                      .blog-article-content h1.ql-align-justify,
-                      .blog-article-content h2.ql-align-justify,
-                      .blog-article-content h3.ql-align-justify {
+                      .blog-article-content div.ql-align-justify {
                         text-align: justify !important;
                         text-justify: auto !important;
                         text-align-last: left !important;
+                        word-spacing: normal !important;
+                      }
+                      .blog-article-content h1,
+                      .blog-article-content h2,
+                      .blog-article-content h3,
+                      .blog-article-content h4,
+                      .blog-article-content h5,
+                      .blog-article-content h6,
+                      .blog-article-content h1.ql-align-justify,
+                      .blog-article-content h2.ql-align-justify,
+                      .blog-article-content h3.ql-align-justify,
+                      .blog-article-content h4.ql-align-justify,
+                      .blog-article-content h5.ql-align-justify,
+                      .blog-article-content h6.ql-align-justify {
+                        text-align: left !important;
+                        text-justify: none !important;
                         word-spacing: normal !important;
                       }
                       .blog-article-content .ql-align-center,
@@ -601,41 +623,56 @@ function BlogDetails() {
                         overflow-wrap: break-word !important;
                       }
                       .blog-article-content h1 {
-                        font-size: 2.25rem;
-                        font-weight: 800;
-                        line-height: 1.25;
-                        letter-spacing: -0.025em;
-                        margin-top: 2.75rem;
+                        font-size: 2.125rem;
+                        font-weight: 700 !important;
+                        line-height: 1.28;
+                        letter-spacing: -0.02em;
+                        margin-top: 2.5rem;
                         margin-bottom: 1.25rem;
                         color: #ffffff;
+                        font-synthesis: none !important;
                         word-break: normal !important;
                         overflow-wrap: break-word !important;
                       }
+                      .blog-article-content h1 strong,
+                      .blog-article-content h1 b {
+                        font-weight: 700 !important;
+                      }
                       .blog-article-content h2 {
-                        font-size: 1.75rem;
-                        font-weight: 800;
-                        line-height: 1.3;
-                        letter-spacing: -0.02em;
-                        margin-top: 2.5rem;
+                        font-size: 1.65rem;
+                        font-weight: 700 !important;
+                        line-height: 1.35;
+                        letter-spacing: -0.015em;
+                        margin-top: 2.25rem;
                         margin-bottom: 1rem;
                         color: #ffffff;
                         padding-top: 1.25rem;
                         border-top: 1px solid rgba(255, 255, 255, 0.08);
                         scroll-margin-top: 6rem;
+                        font-synthesis: none !important;
                         word-break: normal !important;
                         overflow-wrap: break-word !important;
                       }
+                      .blog-article-content h2 strong,
+                      .blog-article-content h2 b {
+                        font-weight: 700 !important;
+                      }
                       .blog-article-content h3 {
                         font-size: 1.35rem;
-                        font-weight: 700;
+                        font-weight: 600 !important;
                         line-height: 1.4;
                         letter-spacing: -0.015em;
                         margin-top: 2rem;
                         margin-bottom: 0.75rem;
                         color: #f1f5f9;
                         scroll-margin-top: 6rem;
+                        font-synthesis: none !important;
                         word-break: normal !important;
                         overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content h3 strong,
+                      .blog-article-content h3 b {
+                        font-weight: 600 !important;
                       }
                       .blog-article-content h4 {
                         font-size: 1.15rem;

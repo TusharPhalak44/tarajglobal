@@ -38,6 +38,11 @@ const cleanPastedDarkColors = (html) => {
     prev = cleaned
     cleaned = cleaned.replace(/<p[^>]*>\s*(?:<br\s*\/?>|&nbsp;|\u00A0)?\s*<\/p>/gi, '')
   } while (cleaned !== prev)
+  // Strip ql-align-justify from headings so titles are never stretched
+  cleaned = cleaned.replace(/<(h[1-6])([^>]*)class="([^"]*)\bql-align-justify\b([^"]*)"([^>]*)>/gi, (match, tag, before, c1, c2, after) => {
+    const remainingClasses = `${c1} ${c2}`.replace(/\s+/g, ' ').trim()
+    return remainingClasses ? `<${tag}${before}class="${remainingClasses}"${after}>` : `<${tag}${before}${after}>`
+  })
   return cleaned
     .replace(/&nbsp;/g, ' ')
     .replace(/\u00A0/g, ' ')
@@ -670,12 +675,36 @@ const EditBlog = () => {
                       background-color: transparent !important;
                     }
 
-                    .ql-editor .ql-align-justify,
-                    .ql-editor p.ql-align-justify {
+                    .ql-editor p.ql-align-justify,
+                    .ql-editor div.ql-align-justify {
                       text-align: justify !important;
                       text-justify: auto !important;
                       text-align-last: left !important;
                       word-spacing: normal !important;
+                    }
+                    .ql-editor h1,
+                    .ql-editor h2,
+                    .ql-editor h3,
+                    .ql-editor h4,
+                    .ql-editor h5,
+                    .ql-editor h6,
+                    .ql-editor h1.ql-align-justify,
+                    .ql-editor h2.ql-align-justify,
+                    .ql-editor h3.ql-align-justify,
+                    .ql-editor h4.ql-align-justify {
+                      text-align: left !important;
+                      text-justify: none !important;
+                      word-spacing: normal !important;
+                    }
+                    .ql-editor h1,
+                    .ql-editor h1 * {
+                      font-weight: 700 !important;
+                      font-synthesis: none !important;
+                    }
+                    .ql-editor h2,
+                    .ql-editor h2 * {
+                      font-weight: 700 !important;
+                      font-synthesis: none !important;
                     }
                     .ql-editor .ql-align-center,
                     .ql-editor p.ql-align-center {

@@ -400,16 +400,54 @@ textarea::placeholder {
   height: 0 !important;
 }
 
-.blog-article-content .ql-align-justify,
+/* Only body text / paragraphs justify; Headings NEVER justify */
 .blog-article-content p.ql-align-justify,
-.blog-article-content div.ql-align-justify,
-.blog-article-content h1.ql-align-justify,
-.blog-article-content h2.ql-align-justify,
-.blog-article-content h3.ql-align-justify {
+.blog-article-content div.ql-align-justify {
   text-align: justify !important;
   text-justify: auto !important;
   text-align-last: left !important;
   word-spacing: normal !important;
+}
+
+.blog-article-content h1,
+.blog-article-content h2,
+.blog-article-content h3,
+.blog-article-content h4,
+.blog-article-content h5,
+.blog-article-content h6,
+.blog-article-content h1.ql-align-justify,
+.blog-article-content h2.ql-align-justify,
+.blog-article-content h3.ql-align-justify,
+.blog-article-content h4.ql-align-justify,
+.blog-article-content h5.ql-align-justify,
+.blog-article-content h6.ql-align-justify {
+  text-align: left !important;
+  text-justify: none !important;
+  word-spacing: normal !important;
+}
+
+.blog-article-content h1,
+.blog-article-content h1 * {
+  font-weight: 700 !important;
+  font-synthesis: none !important;
+}
+
+.blog-article-content h2,
+.blog-article-content h2 * {
+  font-weight: 700 !important;
+  font-synthesis: none !important;
+}
+
+.blog-article-content h3,
+.blog-article-content h3 * {
+  font-weight: 600 !important;
+  font-synthesis: none !important;
+}
+
+.blog-article-content h4,
+.blog-article-content h4 * {
+  font-weight: 600 !important;
+  font-synthesis: none !important;
 }
 
 .blog-article-content .ql-align-center,
