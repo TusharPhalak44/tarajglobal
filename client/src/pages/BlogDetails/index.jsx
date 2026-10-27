@@ -212,6 +212,16 @@ function BlogDetails() {
         }
       })
 
+      // Clean up empty or whitespace-only paragraphs that create excessive gaps
+      const paragraphs = doc.querySelectorAll('p')
+      paragraphs.forEach((p) => {
+        const text = p.textContent.replace(/[\u00A0\s]/g, '').trim()
+        const hasMedia = p.querySelector('img, iframe, video, svg, table')
+        if (!text && !hasMedia) {
+          p.remove()
+        }
+      })
+
       finalHtml = doc.body.innerHTML
     } catch (e) {
       console.warn('Error parsing article headings and tables:', e)
@@ -527,20 +537,26 @@ function BlogDetails() {
                     <style>{`
                       .blog-article-content {
                         font-size: 1.0625rem;
-                        line-height: 1.85;
+                        line-height: 1.65;
                         color: #cbd5e1;
                         word-break: normal !important;
                         overflow-wrap: break-word !important;
                       }
                       .blog-article-content p {
                         margin-top: 0;
-                        margin-bottom: 1.5rem;
-                        line-height: 1.85;
+                        margin-bottom: 1.125rem;
+                        line-height: 1.65;
                         color: #cbd5e1;
-                        text-align: justify;
-                        text-justify: inter-word;
+                        text-align: left;
                         word-break: normal !important;
                         overflow-wrap: break-word !important;
+                      }
+                      .blog-article-content p:empty,
+                      .blog-article-content p:blank {
+                        display: none !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        height: 0 !important;
                       }
                       .blog-article-content .ql-align-justify,
                       .blog-article-content p.ql-align-justify,
@@ -549,7 +565,9 @@ function BlogDetails() {
                       .blog-article-content h2.ql-align-justify,
                       .blog-article-content h3.ql-align-justify {
                         text-align: justify !important;
-                        text-justify: inter-word !important;
+                        text-justify: auto !important;
+                        text-align-last: left !important;
+                        word-spacing: normal !important;
                       }
                       .blog-article-content .ql-align-center,
                       .blog-article-content p.ql-align-center,

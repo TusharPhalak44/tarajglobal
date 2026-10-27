@@ -386,8 +386,18 @@ textarea::placeholder {
 }
 
 .blog-article-content p {
-  text-align: justify;
-  text-justify: inter-word;
+  margin-top: 0;
+  margin-bottom: 1.125rem;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.blog-article-content p:empty,
+.blog-article-content p:blank {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
 }
 
 .blog-article-content .ql-align-justify,
@@ -397,7 +407,9 @@ textarea::placeholder {
 .blog-article-content h2.ql-align-justify,
 .blog-article-content h3.ql-align-justify {
   text-align: justify !important;
-  text-justify: inter-word !important;
+  text-justify: auto !important;
+  text-align-last: left !important;
+  word-spacing: normal !important;
 }
 
 .blog-article-content .ql-align-center,

@@ -32,7 +32,13 @@ import 'react-quill-new/dist/quill.snow.css'
 
 const cleanPastedDarkColors = (html) => {
   if (!html || typeof html !== 'string') return html
-  return html
+  let cleaned = html
+  let prev
+  do {
+    prev = cleaned
+    cleaned = cleaned.replace(/<p[^>]*>\s*(?:<br\s*\/?>|&nbsp;|\u00A0)?\s*<\/p>/gi, '')
+  } while (cleaned !== prev)
+  return cleaned
     .replace(/&nbsp;/g, ' ')
     .replace(/\u00A0/g, ' ')
     .replace(/color:\s*(rgb\(\s*17\s*,\s*85\s*,\s*204\s*\)|#1155cc)[;]?/gi, '')
@@ -614,6 +620,11 @@ const CreateBlog = () => {
                       font-weight: 700;
                     }
 
+                    .ql-editor p {
+                      margin-bottom: 1.125rem !important;
+                      line-height: 1.65 !important;
+                    }
+
                     .ql-editor p,
                     .ql-editor span,
                     .ql-editor div,
@@ -626,7 +637,9 @@ const CreateBlog = () => {
                     .ql-editor .ql-align-justify,
                     .ql-editor p.ql-align-justify {
                       text-align: justify !important;
-                      text-justify: inter-word !important;
+                      text-justify: auto !important;
+                      text-align-last: left !important;
+                      word-spacing: normal !important;
                     }
                     .ql-editor .ql-align-center,
                     .ql-editor p.ql-align-center {
