@@ -475,18 +475,13 @@ const Hero = () => {
           {/* ── Left Column: High-Impact Typography & Interactive BANT Selector (Col 6/12) ── */}
           <div className="lg:col-span-6 flex flex-col justify-center">
 
-            {/* Illuminated Pre-Badge */}
+            {/* Eyebrow */}
             <motion.div {...fadeUp(0.08)} className="flex items-center mb-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#00A6FF] animate-pulse" />
-                <span className="text-[11px] font-mono font-bold tracking-[0.16em] uppercase text-white/90">
-                  01 — BANT QUALIFICATION ACCELERATOR
-                </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#00A6FF]/20 text-[#00A6FF] font-bold">
-                  SLA 99.8%
-                </span>
-              </div>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#00A6FF]">
+                BANT Lead Generation
+              </span>
             </motion.div>
+
 
             {/* Main H1 Headline with High-Contrast Gradient */}
             <motion.h1
