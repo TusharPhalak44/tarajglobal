@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  ArrowRight, 
-  ChevronDown, 
-  Check, 
-  ShieldCheck, 
-  Activity, 
-  Terminal, 
+import {
+  ArrowRight,
+  ChevronDown,
+  Check,
+  ShieldCheck,
+  Activity,
+  Terminal,
   Sparkles,
   DollarSign,
   UserCheck,
@@ -196,11 +196,10 @@ function BANTCommandCenter({ activeStage, setActiveStage, prefersReducedMotion }
                 key={stage.id}
                 type="button"
                 onClick={() => setActiveStage(idx)}
-                className={`group relative flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-300 cursor-pointer overflow-hidden text-center ${
-                  isSelected
-                    ? 'bg-white/10 border shadow-lg'
-                    : 'bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.06] hover:border-white/15'
-                }`}
+                className={`group relative flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-300 cursor-pointer overflow-hidden text-center ${isSelected
+                  ? 'bg-white/10 border shadow-lg'
+                  : 'bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.06] hover:border-white/15'
+                  }`}
                 style={{
                   borderColor: isSelected ? `${stage.color}70` : undefined,
                   boxShadow: isSelected ? `0 4px 20px ${stage.color}25` : undefined,
@@ -412,10 +411,10 @@ const Hero = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 22 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 22 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   const currentStage = BANT_STAGES[activeStage] || BANT_STAGES[0]
 
@@ -464,14 +463,14 @@ const Hero = () => {
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
+
           {/* ── Left Column: High-Impact Typography & Interactive BANT Selector (Col 6/12) ── */}
           <div className="lg:col-span-6 flex flex-col justify-center">
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.08)} className="flex items-center mb-4">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#00A6FF]">
-                BANT Lead Generation
+                TECH-POWERED BANT ARCHITECTURE
               </span>
             </motion.div>
 
@@ -479,91 +478,27 @@ const Hero = () => {
             {/* Main H1 Headline with High-Contrast Gradient */}
             <motion.h1
               {...fadeUp(0.18)}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-black tracking-tight leading-[1.12] text-white mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] xl:text-[2.70rem] font-black tracking-tight leading-[1.2] text-white mb-3"
             >
-              <span className="block">Generate High-Intent</span>
+              <span className="block pb-0.5">Generate BANT Qualified Leads</span>
               <span
-                className="inline-block bg-clip-text text-transparent"
+                className="inline-block bg-clip-text text-transparent pb-2 sm:pb-2.5 pt-0.5"
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #00A6FF 0%, #38BDF8 50%, #FFA600 100%)',
                 }}
               >
-                BANT-Qualified Leads
+                Driven by In House Verification
               </span>
             </motion.h1>
 
             {/* Sub-headline description */}
             <motion.p
               {...fadeUp(0.28)}
-              className="text-sm sm:text-base text-slate-300 leading-relaxed mb-5 max-w-[560px] font-normal"
+              className="text-md sm:text-lg text-slate-300 leading-relaxed mb-5 max-w-[560px] font-normal"
             >
-              Eliminate SDR prospecting drag. TaRaj Global delivers verified enterprise buyers screened across{' '}
-              <strong className="text-white font-bold">Budget</strong>,{' '}
-              <strong className="text-white font-bold">Authority</strong>,{' '}
-              <strong className="text-white font-bold">Need</strong>, and{' '}
-              <strong className="text-white font-bold">Timeline</strong> — routed straight to your CRM with a 99.8% data accuracy SLA.
+              TaRaj Global accelerates enterprise revenue pipelines across US, EMEA, and APAC. Combining AI intent telemetry with our proprietary prospect verification engine, we validate Budget, Authority, Need, and Timeline parameters to route sales-ready opportunities directly into your CRM.
             </motion.p>
 
-            {/* ── Interactive 4-Pillar Quick-Selector (Synchronized with Command Center) ── */}
-            <motion.div {...fadeUp(0.34)} className="mb-6 space-y-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-white/50 block font-semibold">
-                Click to inspect qualification criteria:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { letter: 'B', label: 'Budget Verified', idx: 0, color: '#00A6FF' },
-                  { letter: 'A', label: 'Decision Authority', idx: 1, color: '#38BDF8' },
-                  { letter: 'N', label: 'Urgent Need', idx: 2, color: '#FFA600' },
-                  { letter: 'T', label: '30–90d Timeline', idx: 3, color: '#72D669' },
-                ].map((item) => {
-                  const isActive = activeStage === item.idx
-
-                  return (
-                    <button
-                      key={item.letter}
-                      type="button"
-                      onClick={() => setActiveStage(item.idx)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all duration-300 cursor-pointer border ${
-                        isActive
-                          ? 'bg-white/15 text-white border-white/40 shadow-sm'
-                          : 'bg-white/[0.03] text-white/70 border-white/[0.08] hover:bg-white/[0.08] hover:text-white hover:border-white/20'
-                      }`}
-                      style={{
-                        borderColor: isActive ? item.color : undefined,
-                        color: isActive ? '#FFFFFF' : undefined,
-                      }}
-                    >
-                      <span
-                        className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-black"
-                        style={{
-                          backgroundColor: `${item.color}25`,
-                          color: item.color,
-                        }}
-                      >
-                        {item.letter}
-                      </span>
-                      <span>{item.label}</span>
-                    </button>
-                  )
-                })}
-              </div>
-            </motion.div>
-
-            {/* Trust Checkmarks */}
-            <motion.div {...fadeUp(0.38)} className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-6">
-              {[
-                '100% Verified Decision Makers',
-                'Guaranteed 0% Email Bounce',
-                'Direct CRM Webhook & Push',
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-1.5">
-                  <div className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                    <Check className="w-2.5 h-2.5 text-emerald-400" strokeWidth={3} />
-                  </div>
-                  <span className="text-xs font-medium text-slate-300">{item}</span>
-                </div>
-              ))}
-            </motion.div>
 
             {/* CTAs with Dynamic Glow & UTM Tracking */}
             <motion.div {...fadeUp(0.44)} className="flex flex-col sm:flex-row flex-wrap gap-3.5 mb-8">
@@ -587,7 +522,7 @@ const Hero = () => {
                     transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
                   />
                 )}
-                <span>Deploy BANT Campaign</span>
+                <span>Deploy Custom BANT Campaign </span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -599,34 +534,11 @@ const Hero = () => {
                 data-cta-name="Explore BANT Process"
                 className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[46px] rounded-xl font-bold text-sm text-white/90 bg-white/[0.04] hover:bg-white/[0.08] border border-white/15 hover:border-white/30 transition-all duration-200 focus:outline-none cursor-pointer backdrop-blur-xs"
               >
-                <span>Explore BANT Process</span>
+                <span>Explore Qualification Architecture</span>
                 <ChevronDown className="w-4 h-4 text-[#00A6FF] transition-transform group-hover:translate-y-0.5" />
               </button>
             </motion.div>
 
-            {/* ── Modernized High-Impact Metric Strip ── */}
-            <motion.div
-              {...fadeUp(0.5)}
-              className="grid grid-cols-3 gap-3 pt-5 border-t border-white/10"
-            >
-              {[
-                { stat: '100%', label: 'BANT-Verified', sub: 'Budget & authority locked' },
-                { stat: '3.8x', label: 'Meeting Conversion', sub: 'vs unvetted leads' },
-                { stat: '99.8%', label: 'Accuracy SLA', sub: '1-to-1 lead replacement' },
-              ].map((m) => (
-                <div key={m.label} className="flex flex-col">
-                  <span className="text-xl sm:text-2xl font-black font-mono text-[#00A6FF] leading-tight">
-                    {m.stat}
-                  </span>
-                  <span className="text-xs font-bold text-white mt-0.5 leading-tight">
-                    {m.label}
-                  </span>
-                  <span className="text-[11px] text-slate-400 mt-0.5 hidden sm:block">
-                    {m.sub}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
 
           </div>
 

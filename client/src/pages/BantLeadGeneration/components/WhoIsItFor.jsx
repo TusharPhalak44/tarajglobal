@@ -315,7 +315,7 @@ const WhoIsItFor = () => {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Is BANT Lead Generation{' '}
-            <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
+            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1">
               Right for Your Business?
             </span>
           </motion.h2>

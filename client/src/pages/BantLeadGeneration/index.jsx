@@ -70,12 +70,12 @@ const BantLeadGeneration = () => {
   return (
     <>
       <SEO
-        title="BANT Lead Generation Services | Highly Qualified B2B Leads | Taraj Global"
-        description="Maximize sales conversion with BANT-qualified B2B leads. Taraj Global rigorously verifies Budget, Authority, Need, and Timeline for every prospect delivered."
+        title="BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Global"
+        description="Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA"
         keywords="BANT lead generation services, BANT qualification, BANT qualified B2B leads, budget authority need timeline, B2B lead qualification criteria, sales-ready prospects, high-converting B2B leads, B2B lead generation"
         canonical="/bant-lead-generation"
-        ogTitle="BANT Lead Generation Services | Highly Qualified B2B Leads | Taraj Global"
-        ogDescription="Qualify prospects against Budget, Authority, Need, and Timeline. Our rigorous BANT qualification process ensures your sales team engages only with opportunities ready for high-value sales conversations."
+        ogTitle="BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Globa"
+        ogDescription="Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={bantSchema}

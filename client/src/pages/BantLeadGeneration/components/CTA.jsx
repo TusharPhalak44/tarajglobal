@@ -170,7 +170,7 @@ const CTA = () => {
           >
             Ready to Accelerate Your Pipeline With{' '}
             <span
-              className="bg-clip-text text-transparent"
+              className="inline-block bg-clip-text text-transparent pb-1"
               style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #FFA600 50%, #FF6D00 100%)' }}
             >
               BANT Qualified Leads?

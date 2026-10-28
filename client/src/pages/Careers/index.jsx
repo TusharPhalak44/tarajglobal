@@ -104,110 +104,7 @@ const careersSchema = {
 }
 
 // Curated featured roles to ensure the job board is always rich and engaging
-const FEATURED_FALLBACK_JOBS = [
-  {
-    id: 'feat-sdr-01',
-    title: 'B2B Sales Development Representative (SDR)',
-    department: 'Sales & Demand Gen',
-    location: 'Kharadi, Pune (On-Site)',
-    type: 'Full-Time',
-    experience: '1 - 3 Years',
-    created_at: new Date().toISOString(),
-    description:
-      'Execute outbound multi-channel discovery across enterprise ICPs in North America and EMEA. Connect directly with C-suite and VP-level decision-makers.',
-    requirements: [
-      'Proven experience in B2B outbound prospecting (Email, LinkedIn, Phone)',
-      'Understanding of ICP qualification (BANT, MEDDPIC frameworks)',
-      'Strong written and verbal communication in English',
-      'Familiarity with CRM tools (HubSpot, Salesforce) and intent intelligence platforms'
-    ]
-  },
-  {
-    id: 'feat-abm-02',
-    title: 'Account-Based Marketing (ABM) Strategist',
-    department: 'Marketing & Content',
-    location: 'Kharadi, Pune (Hybrid)',
-    type: 'Full-Time',
-    experience: '2 - 5 Years',
-    created_at: new Date().toISOString(),
-    description:
-      'Architect 1:1 and 1:few ABM campaigns for high-value enterprise accounts. Orchestrate multi-touch content syndication and intent-driven outreach.',
-    requirements: [
-      'Experience running enterprise ABM campaigns for B2B SaaS/Tech',
-      'Ability to build bespoke account dossiers and org-chart hierarchies',
-      'Expertise in audience segmentation and personalized copywriting',
-      'Data-driven mindset with track record of pipeline acceleration'
-    ]
-  },
-  {
-    id: 'feat-dgen-03',
-    title: 'Enterprise Demand Generation Specialist',
-    department: 'Sales & Demand Gen',
-    location: 'Kharadi, Pune (On-Site)',
-    type: 'Full-Time',
-    experience: '2 - 4 Years',
-    created_at: new Date().toISOString(),
-    description:
-      'Lead full-funnel demand generation programs connecting intent signals with qualified sales meetings for global category leaders.',
-    requirements: [
-      'Track record of meeting or exceeding SQL/pipeline delivery targets',
-      'Proficiency with email deliverability, DNS warming, and sequence automation',
-      'Analytical acumen to optimize open, reply, and meeting-booked metrics',
-      'Energetic team player eager to mentor junior sales specialists'
-    ]
-  },
-  {
-    id: 'feat-data-04',
-    title: 'B2B Data Intelligence & Hygiene Analyst',
-    department: 'Data & Operations',
-    location: 'Kharadi, Pune (On-Site)',
-    type: 'Full-Time',
-    experience: '1 - 3 Years',
-    created_at: new Date().toISOString(),
-    description:
-      'Maintain Taraj Global’s strict 99.8% data precision SLA. Perform live org-chart verification, account suppression, and decision-maker mapping.',
-    requirements: [
-      'High attention to detail in verifying B2B contact records and corporate hierarchies',
-      'Proficiency in Excel, Google Sheets, and B2B enrichment databases',
-      'Familiarity with deduplication algorithms and CRM data cleansing',
-      'Curiosity for researching enterprise organizational structures'
-    ]
-  },
-  {
-    id: 'feat-email-05',
-    title: 'B2B Email Marketing Campaign Manager',
-    department: 'Marketing & Content',
-    location: 'Kharadi, Pune (Hybrid)',
-    type: 'Full-Time',
-    experience: '2 - 4 Years',
-    created_at: new Date().toISOString(),
-    description:
-      'Formulate compelling B2B email sequences, conduct split A/B copywriting experiments, and maintain premier inbox deliverability standards.',
-    requirements: [
-      'Demonstrated expertise in cold email deliverability and ESP infrastructure',
-      'Compelling persuasive copywriting tailored for tech executives',
-      'Experience analyzing cohort conversion and open-to-opportunity ratios',
-      'Knowledge of global compliance standards (GDPR, CAN-SPAM)'
-    ]
-  },
-  {
-    id: 'feat-app-06',
-    title: 'Executive Appointment Setting Specialist',
-    department: 'Sales & Demand Gen',
-    location: 'Kharadi, Pune (On-Site)',
-    type: 'Full-Time',
-    experience: '1 - 3 Years',
-    created_at: new Date().toISOString(),
-    description:
-      'Convert verified warm interest into scheduled executive sales discovery conversations directly onto client account executive calendars.',
-    requirements: [
-      'Exceptional consultative communication and professional etiquette',
-      'Ability to articulate value propositions and overcome prospect friction',
-      'Fastidious calendar management across international time zones (EST, PST, GMT)',
-      'Tenacious, goal-oriented drive rewarded with uncapped performance bonuses'
-    ]
-  }
-]
+
 
 // ── EDITORIAL ANIMATED COUNTER (00 -> 06 ON VIEWPORT ENTRY) ─────────────────
 const GalleryCounter = ({ end = 6 }) => {
@@ -547,8 +444,8 @@ const TypographicWordBlock = ({
       <div className="flex items-center mb-1.5 relative z-10">
         <span
           className={`font-mono text-xs tracking-widest transition-all duration-300 ${isActive
-              ? 'text-[#00A6FF] font-black'
-              : 'text-text-tertiary/60 font-semibold group-hover:text-text-secondary'
+            ? 'text-[#00A6FF] font-black'
+            : 'text-text-tertiary/60 font-semibold group-hover:text-text-secondary'
             }`}
         >
           {pillar.num}
@@ -667,10 +564,10 @@ const EditorialInfoPanel = ({
             <div
               key={i}
               className={`h-1.5 rounded-full transition-all duration-300 ${i === activePillar
-                  ? 'w-6 bg-[#00A6FF]'
-                  : i < activePillar
-                    ? 'w-2 bg-[#00A6FF]/40'
-                    : 'w-2 bg-border/80 dark:bg-white/15'
+                ? 'w-6 bg-[#00A6FF]'
+                : i < activePillar
+                  ? 'w-2 bg-[#00A6FF]/40'
+                  : 'w-2 bg-border/80 dark:bg-white/15'
                 }`}
             />
           ))}
@@ -809,8 +706,8 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
       transition={{ duration: 0.35, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={onHover}
       className={`group rounded-2xl transition-all duration-300 relative overflow-hidden ${isOpen
-          ? 'bg-white dark:bg-[#141928] border-2 border-[#00A6FF] shadow-[0_8px_24px_rgba(0,166,255,0.09)] dark:shadow-[0_8px_24px_rgba(0,166,255,0.12)] ring-1 ring-[#00A6FF]/20'
-          : 'bg-white dark:bg-[#12141a] border border-border/80 dark:border-white/10 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:shadow-[0_8px_20px_rgba(0,166,255,0.08)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_8px_20px_rgba(0,166,255,0.10)]'
+        ? 'bg-white dark:bg-[#141928] border-2 border-[#00A6FF] shadow-[0_8px_24px_rgba(0,166,255,0.09)] dark:shadow-[0_8px_24px_rgba(0,166,255,0.12)] ring-1 ring-[#00A6FF]/20'
+        : 'bg-white dark:bg-[#12141a] border border-border/80 dark:border-white/10 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:shadow-[0_8px_20px_rgba(0,166,255,0.08)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_8px_20px_rgba(0,166,255,0.10)]'
         }`}
     >
       {/* Animated Left Accent Indicator Bar when open */}
@@ -840,16 +737,16 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
             }}
             transition={{ duration: 0.2 }}
             className={`font-mono text-xs font-bold px-2.5 py-1 rounded-lg shrink-0 transition-all duration-200 ${isOpen
-                ? 'bg-[#00A6FF] text-white shadow-[0_0_12px_rgba(0,166,255,0.4)]'
-                : 'bg-black/[0.05] dark:bg-white/10 text-text-tertiary group-hover:bg-[#00A6FF]/15 group-hover:text-[#00A6FF]'
+              ? 'bg-[#00A6FF] text-white shadow-[0_0_12px_rgba(0,166,255,0.4)]'
+              : 'bg-black/[0.05] dark:bg-white/10 text-text-tertiary group-hover:bg-[#00A6FF]/15 group-hover:text-[#00A6FF]'
               }`}
           >
             {faq.num}
           </motion.span>
           <span
             className={`text-sm sm:text-base font-semibold transition-colors duration-200 leading-snug ${isOpen
-                ? 'text-[#00A6FF] dark:text-[#38BDF8]'
-                : 'text-text-primary dark:text-white/90 group-hover:text-[#00A6FF]'
+              ? 'text-[#00A6FF] dark:text-[#38BDF8]'
+              : 'text-text-primary dark:text-white/90 group-hover:text-[#00A6FF]'
               }`}
           >
             {faq.q}
@@ -863,8 +760,8 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
           }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${isOpen
-              ? 'bg-[#00A6FF]/15 text-[#00A6FF] shadow-xs'
-              : 'bg-black/[0.04] dark:bg-white/5 text-text-tertiary group-hover:bg-[#00A6FF]/10 group-hover:text-[#00A6FF]'
+            ? 'bg-[#00A6FF]/15 text-[#00A6FF] shadow-xs'
+            : 'bg-black/[0.04] dark:bg-white/5 text-text-tertiary group-hover:bg-[#00A6FF]/10 group-hover:text-[#00A6FF]'
             }`}
         >
           <ChevronDown size={17} />
