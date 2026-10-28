@@ -20,10 +20,10 @@ export default function WorkflowCanvas({
   const step09 = WORKFLOW_STEPS.find((s) => s.id === '09') // 09 Pipeline Acceleration
 
   return (
-    <div className="relative w-full max-w-[1300px] mx-auto">
+    <div className="relative w-full max-w-[1380px] xl:max-w-[1400px] mx-auto">
       {/* ── Flow Canvas (Seamless Background & Borderless) ── */}
       <div
-        className="relative w-full aspect-[1400/520] min-h-[440px] lg:min-h-[480px] rounded-2xl p-3 overflow-visible bg-transparent"
+        className="relative w-full aspect-[1400/540] min-h-[480px] lg:min-h-[520px] rounded-2xl p-3 overflow-visible bg-transparent"
       >
 
         {/* Ambient Subtle Pulsing Light Orbs */}

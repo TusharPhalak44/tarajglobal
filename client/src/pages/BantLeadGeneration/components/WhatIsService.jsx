@@ -6,25 +6,34 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'VERIFY',
-    desc: 'Confirm allocated budget & genuine decision-making authority',
-    color: 'var(--primary)',
+    desc: 'Confirm allocated capital tiers & direct C-suite economic decision authority.',
+    color: '#00A6FF',
+    accentColor: '#38BDF8',
     glowColor: 'rgba(0, 166, 255, 0.25)',
+    bgActive: 'rgba(0, 166, 255, 0.08)',
+    borderActive: 'rgba(0, 166, 255, 0.55)',
     type: 'target',
   },
   {
     num: '02',
     label: 'EVALUATE',
-    desc: 'Uncover acute business bottlenecks & documented pain triggers',
-    color: 'var(--cta)',
-    glowColor: 'rgba(255, 109, 0, 0.25)',
+    desc: 'Validate active 30–90 day buying windows & route zero-bounce dossiers via DemandFlow Bridge.',
+    color: '#FFA600',
+    accentColor: '#FFC048',
+    glowColor: 'rgba(255, 166, 0, 0.25)',
+    bgActive: 'rgba(255, 166, 0, 0.08)',
+    borderActive: 'rgba(255, 166, 0, 0.55)',
     type: 'engage',
   },
   {
     num: '03',
     label: 'QUALIFY',
     desc: 'Validate active 30–90 day timeline & deliver sales-ready leads',
-    color: 'var(--success)',
+    color: '#72D669',
+    accentColor: '#86EFAC',
     glowColor: 'rgba(114, 214, 105, 0.25)',
+    bgActive: 'rgba(114, 214, 105, 0.08)',
+    borderActive: 'rgba(114, 214, 105, 0.55)',
     type: 'convert',
   },
 ]
@@ -89,13 +98,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              BANT QUALIFICATION ENGINE
+
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -175,7 +185,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              BANT Lead Generation is an enterprise-grade sales qualification methodology that evaluates prospective business accounts across four indispensable dimensions: Budget, Authority, Need, and Timeline before sales handoff.
+              BANT Lead Generation is an enterprise-grade sales qualification methodology that evaluates target business accounts across four indispensable dimensions-Budget, Authority, Need, and Timeline-before sales handoff.
+
             </motion.p>
 
             <motion.p
@@ -185,89 +196,82 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike raw contact lists or passive form fills, Taraj Global’s BANT lead generation service deploys rigorous discovery conversations and telemetry signals. Your sales executives engage only with verified decision-makers possessing confirmed capital, urgent pain points, and active procurement schedules.
+              Unlike raw contact lists or passive form fills, TaRaj Global’s tech-enabled BANT engine combines AI-assisted intent telemetry with structured discovery verification. Backed by our 99.8% Data Accuracy SLA and in-house post-research verification software, your sales executives engage strictly with verified decision-makers possessing confirmed capital, documented pain points, and active procurement schedules.
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION */}
-            <div className="relative pt-5 sm:pt-6">
+            <div className="relative pt-4 sm:pt-5">
               <motion.div
                 onViewportEnter={() => setIsInView(true)}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-0 rounded-xl overflow-hidden"
-                style={{ border: '1px solid var(--border)' }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5"
               >
                 {OUTCOME_INDICATORS.map((item, idx) => {
                   const isActive = activeStep === idx
 
                   return (
-                    <motion.div
+                    <motion.button
                       key={item.num}
-                      initial={prefersReducedMotion ? {} : { opacity: 0, y: 24 }}
+                      type="button"
+                      onClick={() => setActiveStep(idx)}
+                      initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
                       whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: '-40px' }}
                       transition={{
-                        duration: 0.65,
-                        delay: 0.6 + idx * 0.15,
+                        duration: 0.5,
+                        delay: 0.5 + idx * 0.1,
                         ease: [0.22, 1, 0.36, 1],
                       }}
-                      onMouseEnter={() => {
-                        setIsHovered(true)
-                        setActiveStep(idx)
-                      }}
-                      onMouseLeave={() => setIsHovered(false)}
-                      whileHover={
-                        prefersReducedMotion
-                          ? {}
-                          : {
-                              y: -4,
-                              scale: 1.02,
-                              transition: { duration: 0.22, ease: 'easeOut' },
-                            }
-                      }
-                      className="relative flex flex-col gap-2 p-3.5 sm:p-4 bg-surface transition-all duration-300"
+                      whileHover={prefersReducedMotion ? {} : { y: -3 }}
+                      className={`relative flex flex-col justify-between text-left p-4 sm:p-4.5 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${isActive
+                        ? 'shadow-lg'
+                        : 'bg-surface/50 dark:bg-white/[0.02] border-border/80 dark:border-white/10 hover:border-white/20 hover:bg-surface/80 dark:hover:bg-white/[0.04]'
+                        }`}
                       style={{
-                        borderRight: idx < 2 ? '1px solid var(--border)' : 'none',
-                        borderTop: idx > 0 ? '1px solid var(--border)' : 'none',
-                        boxShadow: isActive ? `0 8px 24px -6px ${item.glowColor}` : 'none',
-                        borderColor: isActive ? item.color : 'var(--border)',
-                        zIndex: isActive ? 10 : 1,
+                        backgroundColor: isActive ? item.bgActive : undefined,
+                        borderColor: isActive ? item.borderActive : undefined,
+                        boxShadow: isActive ? `0 8px 24px -4px ${item.glowColor}` : undefined,
                       }}
                     >
-                      {/* CARD PROGRESS ANIMATION (Draws left to right on entrance) */}
-                      <motion.div
-                        className="absolute top-0 left-0 right-0 rounded-t-xl"
-                        style={{
-                          height: isActive ? '2.5px' : '1.5px',
-                          background: `linear-gradient(90deg, ${item.color}, transparent)`,
-                          transformOrigin: 'left',
-                          filter: isActive ? 'drop-shadow(0 0 4px currentColor)' : 'none',
-                          color: item.color,
-                        }}
-                        initial={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 0 }}
-                        whileInView={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.7,
-                          delay: 0.75 + idx * 0.15,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                      />
+                      {/* Active Progress Bar (Fills across 2.8s cycle) */}
+                      {isActive && !prefersReducedMotion && (
+                        <motion.div
+                          key={`progress-${idx}`}
+                          className="absolute top-0 left-0 right-0 h-[2.5px] origin-left"
+                          style={{
+                            background: `linear-gradient(90deg, ${item.color}, ${item.accentColor})`,
+                            boxShadow: `0 0 10px ${item.color}`,
+                          }}
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ duration: 2.8, ease: 'linear' }}
+                        />
+                      )}
+                      {isActive && prefersReducedMotion && (
+                        <div
+                          className="absolute top-0 left-0 right-0 h-[2.5px]"
+                          style={{
+                            background: `linear-gradient(90deg, ${item.color}, ${item.accentColor})`,
+                          }}
+                        />
+                      )}
 
-                      {/* Header with Number, connecting line, and micro-interaction */}
-                      <div className="flex items-center justify-between gap-2 pt-0.5">
-                        <div className="flex items-center gap-2 flex-1">
+                      {/* Header with Number, Label, and Micro-Interaction Indicator */}
+                      <div className="flex items-center justify-between gap-2 mb-2 w-full pt-0.5">
+                        <div className="flex items-center gap-2">
                           <span
                             className="text-xs font-mono font-black tracking-widest transition-colors duration-200"
                             style={{ color: item.color }}
                           >
                             {item.num}
                           </span>
-                          <div
-                            className="flex-1 h-px transition-opacity duration-200"
-                            style={{
-                              background: `${item.color}35`,
-                              opacity: isActive ? 1 : 0.4,
-                            }}
-                          />
+                          <span
+                            className="text-[11px] font-mono font-bold tracking-[0.16em] uppercase transition-colors duration-200"
+                            style={{ color: isActive ? item.color : 'inherit' }}
+                          >
+                            {item.label}
+                          </span>
                         </div>
 
                         {/* Micro-interaction indicator */}
@@ -275,18 +279,21 @@ const WhatIsService = () => {
                           {item.type === 'target' && (
                             <div className="relative w-4 h-4 flex items-center justify-center">
                               <span
-                                className="w-1.5 h-1.5 rounded-full"
-                                style={{ backgroundColor: item.color }}
+                                className="w-1.5 h-1.5 rounded-full transition-transform duration-200"
+                                style={{
+                                  backgroundColor: item.color,
+                                  transform: isActive ? 'scale(1.2)' : 'scale(1)',
+                                }}
                               />
                               <motion.span
                                 className="absolute inset-0 rounded-full border"
                                 style={{ borderColor: item.color }}
                                 animate={
                                   isActive && !prefersReducedMotion
-                                    ? { scale: [1, 1.45, 1], opacity: [0.9, 0.2, 0.9] }
+                                    ? { scale: [1, 1.45, 1], opacity: [0.9, 0.25, 0.9] }
                                     : { scale: 1, opacity: 0.3 }
                                 }
-                                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
                               />
                             </div>
                           )}
@@ -298,30 +305,30 @@ const WhatIsService = () => {
                                 style={{ backgroundColor: item.color }}
                                 animate={
                                   isActive && !prefersReducedMotion
-                                    ? { height: ['4px', '12px', '4px'], opacity: [0.5, 1, 0.5] }
-                                    : { height: '6px', opacity: 0.4 }
+                                    ? { height: ['4px', '12px', '4px'], opacity: [0.6, 1, 0.6] }
+                                    : { height: '6px', opacity: 0.35 }
                                 }
-                                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
                               />
                               <motion.span
                                 className="w-1 rounded-full"
                                 style={{ backgroundColor: item.color }}
                                 animate={
                                   isActive && !prefersReducedMotion
-                                    ? { height: ['12px', '6px', '12px'], opacity: [1, 0.5, 1] }
-                                    : { height: '10px', opacity: 0.5 }
+                                    ? { height: ['12px', '5px', '12px'], opacity: [1, 0.5, 1] }
+                                    : { height: '10px', opacity: 0.45 }
                                 }
-                                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.15 }}
                               />
                               <motion.span
                                 className="w-1 rounded-full"
                                 style={{ backgroundColor: item.color }}
                                 animate={
                                   isActive && !prefersReducedMotion
-                                    ? { height: ['6px', '10px', '6px'], opacity: [0.6, 0.9, 0.6] }
-                                    : { height: '4px', opacity: 0.4 }
+                                    ? { height: ['6px', '11px', '6px'], opacity: [0.7, 1, 0.7] }
+                                    : { height: '4px', opacity: 0.35 }
                                 }
-                                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
                               />
                             </div>
                           )}
@@ -334,10 +341,10 @@ const WhatIsService = () => {
                               style={{ color: item.color }}
                               animate={
                                 isActive && !prefersReducedMotion
-                                  ? { y: [0, -2.5, 0], opacity: [0.8, 1, 0.8] }
-                                  : { y: 0, opacity: 0.4 }
+                                  ? { y: [0, -2.5, 0], x: [0, 1.5, 0], opacity: [0.8, 1, 0.8] }
+                                  : { y: 0, x: 0, opacity: 0.4 }
                               }
-                              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                             >
                               <path
                                 d="M3 13L13 3M13 3H6M13 3V10"
@@ -351,19 +358,16 @@ const WhatIsService = () => {
                         </div>
                       </div>
 
-                      {/* Label */}
-                      <div
-                        className="text-xs font-mono font-bold tracking-[0.2em] uppercase transition-colors duration-200"
-                        style={{ color: item.color }}
+                      {/* Description with ample padding, never cut off */}
+                      <p
+                        className={`text-xs sm:text-[13px] leading-relaxed transition-colors duration-200 mt-1 ${isActive
+                          ? 'text-text-primary dark:text-slate-100 font-medium'
+                          : 'text-text-secondary/85 dark:text-slate-400 font-normal'
+                          }`}
                       >
-                        {item.label}
-                      </div>
-
-                      {/* Description */}
-                      <div className="text-xs sm:text-[13px] text-text-secondary leading-normal">
                         {item.desc}
-                      </div>
-                    </motion.div>
+                      </p>
+                    </motion.button>
                   )
                 })}
               </motion.div>

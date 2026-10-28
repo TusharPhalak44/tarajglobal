@@ -317,8 +317,7 @@ const WhatProblemsSolved = () => {
         {/* COMPACT SECTION HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5   mb-2">
-            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
               TECH-ENABLED TRANSFORMATION • CLOSED-LOOP CRM PIPELINE
             </span>
           </div>

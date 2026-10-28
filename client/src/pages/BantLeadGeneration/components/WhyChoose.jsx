@@ -14,40 +14,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Strict 4-Tier Verification',
-    desc: 'Every opportunity is rigorously vetted across all four BANT dimensions—Budget, Authority, Need, and Timeline—prior to delivery or scheduling.',
+    title: ' Strict Four-Dimension BANT Verification',
+    desc: 'Leads that clear only one or two BANT criteria stall late and waste AE capacity. Every opportunity is vetted across Budget, Authority, Need, and Timeline, then CDQA-audited before delivery or scheduling.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Economic Decision-Makers',
-    desc: 'Engage exclusively with C-Level and VP-level budget authorities who hold sign-off power, completely bypassing non-budgeted gatekeepers.',
+    title: 'Verified Economic Decision Makers',
+    desc: 'Contacts without sign-off power stall deals at procurement. We engage C-level and VP-level budget holders directly and map the full buying committee, so gatekeepers never reach your AEs.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Urgent Commercial Need',
-    desc: 'Target accounts with active pain points and immediate implementation imperatives, eliminating tyre-kickers and low-intent contacts.',
+    title: 'Documented Commercial Need & Urgency',
+    desc: 'Interest without urgency produces demos that never close. We qualify accounts with documented pain points and immediate implementation drivers, filtering out low-intent contacts using AI-assisted intent signals and live discovery.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Active Buying Horizon',
-    desc: 'Ensure prospects have validated purchasing milestones and RFP deadlines within active 90-day evaluation windows for faster conversions.',
+    title: 'Validated Active Buying Horizon',
+    desc: 'Pipeline without a purchase date inflates forecasts and slows velocity. Every opportunity carries validated purchasing milestones and RFP deadlines within active 30–90 day evaluation windows.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: '1:1 Replacement Warranty',
-    desc: 'If any lead fails to satisfy agreed-upon BANT qualification criteria upon discovery, we replace the record immediately with zero friction.',
+    title: '99.8% Accuracy & 1:1 Replacement SLA',
+    desc: 'Bounced contacts and leads that miss agreed criteria shouldn’t cost you budget. Backed by our 99.8% Data Accuracy SLA, any record failing BANT criteria on discovery is replaced 1-to-1 via DemandFlow Bridge at no extra cost.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -86,9 +86,9 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         prefersReducedMotion
           ? {}
           : {
-              y: -6,
-              scale: 1.02,
-            }
+            y: -6,
+            scale: 1.02,
+          }
       }
       className="relative group rounded-xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_10px_30px_-5px_rgba(0,166,255,0.35),0_0_15px_-2px_rgba(0,166,255,0.2)] dark:hover:border-primary/50 transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
@@ -183,7 +183,8 @@ const WhyChoose = () => {
             className="flex items-center justify-center mb-2.5"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+              TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -192,12 +193,12 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
+            <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               BANT Lead Generation?
-            </span>
+            </div>
           </motion.h2>
 
           <motion.p
@@ -207,7 +208,8 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Enterprise BANT qualification delivering verified buyer authority and urgent purchase timelines to maximize your sales velocity.
+            Enterprise BANT qualification backed by in-house verification infrastructure, delivering verified buyer authority and active purchase timelines straight into your CRM via DemandFlow Bridge.
+
           </motion.p>
         </div>
 

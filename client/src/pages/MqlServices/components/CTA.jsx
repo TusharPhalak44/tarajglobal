@@ -155,26 +155,26 @@ const CTA = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-xs font-semibold tracking-[0.22em] uppercase">
+            <span className="text-sm font-semibold tracking-[0.22em] uppercase">
               Get Started
             </span>
           </motion.div>
 
           {/* Headline */}
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 dark:text-text-primary dark:text-white mb-3"
+            className="text-1 xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-slate-900 dark:text-text-primary dark:text-white mb-3"
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 18 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             Ready to Turn High-Intent Audience Into{' '}
-            <span
+            <div
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #FFA600 50%, #FF6D00 100%)' }}
             >
               Sales-Ready Leads?
-            </span>
+            </div>
           </motion.h2>
 
           {/* Supporting copy */}

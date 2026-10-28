@@ -61,7 +61,7 @@ export default function WorkflowCard({
       style={customStyle}
       className={`
         relative group cursor-pointer select-none
-        rounded-xl p-2.5 sm:p-3 xl:p-3.5 flex flex-col justify-between
+        rounded-xl p-2 sm:p-2 xl:p-2.5 flex flex-col justify-between
         transition-all duration-300 backdrop-blur-md
         border ${
           isActive
@@ -135,9 +135,9 @@ export default function WorkflowCard({
       </div>
 
       {/* CARD BODY: Title & Description */}
-      <div className="flex-1 flex flex-col justify-start overflow-hidden pt-0.5">
+      <div className="flex-1 flex flex-col justify-start pt-0.5">
         <h3
-          className={`text-xs sm:text-[12.5px] xl:text-[13px] font-black tracking-tight leading-snug transition-colors duration-300 line-clamp-1 ${
+          className={`text-xs sm:text-[12.5px] xl:text-[13px] font-black tracking-tight leading-[1.32] transition-colors duration-300  ${
             isActive
               ? 'text-primary dark:text-[#00e5ff]'
               : 'text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#00d2ff]'
@@ -146,7 +146,7 @@ export default function WorkflowCard({
           {step.title}
         </h3>
 
-        <p className="text-[10.5px] sm:text-[11px] text-slate-600 dark:text-slate-300/90 leading-tight line-clamp-2 mt-1 font-normal">
+        <p className="text-[8px] sm:text-[8.5px] xl:text-[8.8px] text-slate-600 dark:text-slate-300/90 leading-tight  mt-1 font-normal">
           {step.description}
         </p>
       </div>

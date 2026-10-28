@@ -7,58 +7,58 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is BANT lead generation?',
+    question: 'What is BANT lead generation in B2B sales?',
     answer:
-      'BANT lead generation is an enterprise qualification framework that evaluates prospects across four critical dimensions: Budget (spend capacity), Authority (decision-making power), Need (explicit operational pain), and Timeline (active purchase horizon).',
+      'BANT lead generation is a B2B qualification method that vets every prospect on Budget, Authority, Need, and Timeline before sales handoff. Instead of passing raw contacts to reps who then discover they can’t buy, TaRaj Global delivers verified decision-makers with confirmed funding, sign-off power, documented pain, and an active buying window, routed to your CRM via DemandFlow Bridge.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'How do you verify the Budget criteria without friction?',
+    question: ' How does TaRaj Global verify Budget without slowing down prospects?',
     answer:
-      'Our senior SDRs utilize consultative, peer-level discovery to confirm existing technology expenditures, fiscal cycle budget allocations, and ACV investment feasibility before scheduling sales calls.',
+      'We confirm Budget through live conversations with decision-makers, not intrusive forms. SDRs validate allocated project funding, active fiscal-year spend, and ACV fit against your minimum deal-size threshold, then log the approved budget or range in the lead dossier. Prospects without confirmed funding are held back, so AEs don’t spend cycles on non-budgeted accounts.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'What constitutes Authority in your qualification matrix?',
+    question: 'What counts as Authority in a BANT qualification matrix?',
     answer:
-      'We require direct engagement with C-Level executives, VPs, and designated economic buyers who possess signing authority or active co-decision influence over procurement and RFP sign-offs.',
+      'Authority means the economic buyer, typically a C-level or VP-level executive who holds sign-off power over the purchase. We also map legal, procurement, and technical evaluators across the buying committee and confirm the approval path, so deals don’t stall at the final stage because the wrong person was engaged.',
   },
   {
     id: 'faq-4',
     num: '04',
     question: 'How do you validate a prospect’s commercial Need?',
     answer:
-      'We uncover and document specific operational bottlenecks, regulatory deadlines, or tech stack deficiencies that necessitate an immediate solution, avoiding superficial or casual inquiries.',
+      'We validate Need through live discovery that captures acute pain points, legacy system gaps, and the project driver, recorded in the prospect’s own words. AI-assisted intent signals help prioritize accounts actively researching your category, and contacts that show interest but no urgency are filtered out before delivery.',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'What evaluation Timeline qualifies as a BANT lead?',
+    question: 'What Timeline qualifies a prospect as a BANT lead?',
     answer:
-      'Standard BANT campaigns require prospects to have an active procurement or evaluation window within 3 to 6 months. For high-ticket enterprise deals, we calibrate custom horizon parameters.',
+      'A BANT lead must show an active evaluation window, typically within 30–90 days, backed by a project start date, RFP milestone, or procurement deadline. Accounts with no defined purchase timeline are excluded, so your pipeline reflects deals that can actually close rather than interest that may never convert.',
   },
   {
     id: 'faq-6',
     num: '06',
-    question: 'What is the CDQA Quality Assurance audit process?',
+    question: 'What is the CDQA quality assurance audit process?',
     answer:
-      'Our dedicated QA team cross-references audio recordings, call transcripts, verified contact info, and qualification notes against your campaign specifications before approving the record.',
+      'CDQA (Customer Data Quality Assurance) is our pre-delivery audit. Every lead passes through our proprietary, AI-assisted verification tool, and our QA team cross-checks call recordings, transcripts, direct-dial validity, and email deliverability against the recorded BANT answers. Only records that pass are delivered, supporting our 99.8% Data Accuracy SLA under ISO 27001:2022, GDPR, and CCPA standards.',
   },
   {
     id: 'faq-7',
     num: '07',
-    question: 'How does Taraj Global deliver BANT leads into our CRM?',
+    question: 'How does TaRaj Global deliver BANT leads into Salesforce and HubSpot?',
     answer:
-      'Leads are injected directly into your CRM (HubSpot, Salesforce, Marketo, Zoho) via DemandFlow Bridge™ or booked straight into your Account Executives calendars with detailed meeting dossiers.',
+      ' BANT leads route through DemandFlow Bridge, our native CRM delivery system, with native field mapping for Salesforce, HubSpot, and Outreach, or custom REST API webhooks. Each record arrives with verified contact details, the BANT scorecard, call notes, and the intelligence dossier, so reps can act immediately without manual data entry.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: 'What is your 1:1 Replacement Warranty policy?',
+    question: 'What is TaRaj Global’s 99.8% Data Accuracy and 1:1 replacement SLA?',
     answer:
-      'If any lead delivered fails to satisfy agreed-upon BANT qualification benchmarks upon discovery call completion, we replace the record immediately at zero additional cost.',
+      'TaRaj Global enforces a 99.8% Data Accuracy SLA on every delivered record. If a lead bounces or fails the agreed BANT criteria on discovery, we replace it 1-to-1 through DemandFlow Bridge at no extra cost, so your budget isn’t spent on unqualified pipeline.',
   },
 ]
 
@@ -84,18 +84,16 @@ const FAQ = () => {
         className={`
           relative group rounded-2xl transition-all duration-300 border overflow-hidden
           hover:-translate-y-0.5
-          ${
-            isOpen
-              ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
-              : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
+          ${isOpen
+            ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
+            : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
           }
         `}
       >
         {/* Top subtle hover / active accent beam */}
         <div
-          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${
-            isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-          }`}
+          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+            }`}
         />
 
         <button
@@ -108,20 +106,18 @@ const FAQ = () => {
         >
           <div className="flex items-start gap-3">
             <span
-              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${
-                isOpen
-                  ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
-                  : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-              }`}
+              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${isOpen
+                ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
+                : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.num}
             </span>
             <span
-              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${
-                isOpen
-                  ? 'text-[#00A6FF]'
-                  : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
-              }`}
+              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${isOpen
+                ? 'text-[#00A6FF]'
+                : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.question}
             </span>
@@ -130,11 +126,10 @@ const FAQ = () => {
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.25 }}
-            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${
-              isOpen
-                ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
-                : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
-            }`}
+            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${isOpen
+              ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
+              : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
+              }`}
             aria-hidden="true"
           >
             <ChevronDown className="w-4 h-4" />
@@ -192,8 +187,9 @@ const FAQ = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Frequently Asked Questions
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              YOUR BANT QUESTIONS, ANSWERED
+
             </span>
           </motion.div>
 
@@ -202,12 +198,12 @@ const FAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
+            <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               Questions
-            </span>
+            </div>
           </motion.h2>
 
           <motion.p

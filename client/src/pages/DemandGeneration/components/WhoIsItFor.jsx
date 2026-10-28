@@ -337,7 +337,7 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               B2B DEMAND GENERATION
             </span>
           </motion.div>
@@ -347,7 +347,7 @@ const WhoIsItFor = () => {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2 whitespace-nowrap"
           >
             Is B2B Demand Generation{' '}
-            <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
+            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
               Right for You?
             </span>
           </motion.h2>

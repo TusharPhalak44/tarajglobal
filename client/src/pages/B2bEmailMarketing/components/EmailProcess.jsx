@@ -96,7 +96,7 @@ const EmailProcess = () => {
         />
       </div>
 
-      <div className="relative max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ── COMPACT SECTION HEADER & TITLE ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5">

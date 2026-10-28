@@ -188,8 +188,8 @@ const HqlFAQ = () => {
             transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 mb-2.5"
           >
-            <HelpCircle className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
+
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
               FREQUENTLY ASKED QUESTIONS • DEMANDFLOW KNOWLEDGE BASE
             </span>
           </motion.div>
@@ -199,12 +199,12 @@ const HqlFAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
+            <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               Questions
-            </span>
+            </div>
           </motion.h2>
 
           <motion.p

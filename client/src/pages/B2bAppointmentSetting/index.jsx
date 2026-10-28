@@ -70,12 +70,12 @@ const B2bAppointmentSetting = () => {
   return (
     <>
       <SEO
-        title="B2B Appointment Setting Services | Qualified Sales Meetings | Taraj Global"
-        description="Taraj Global provides B2B appointment setting services that connect sales teams with relevant decision-makers through targeted prospecting, personalized outreach, qualification, and buyer intelligence."
+        title="B2B Appointment Setting Services | Verified Decision-Maker Meetings | TaRaj Global"
+        description="Book qualified discovery meetings with verified decision-makers across US, EMEA, and APAC. TaRaj Global combines SDR expertise, AI-assisted intent signals, and a 99.8% Data Accuracy SLA."
         keywords="B2B appointment setting, B2B appointment setting services, appointment setting services, B2B sales appointment setting, qualified sales meetings, B2B lead generation, sales appointment setting, B2B lead qualification, decision-maker appointment setting, sales qualified leads, B2B prospecting, buyer intent, B2B demand generation"
         canonical="/b2b-appointment-setting"
-        ogTitle="B2B Appointment Setting Services | Qualified Sales Meetings | Taraj Global"
-        ogDescription="Taraj Global provides B2B appointment setting services that connect sales teams with relevant decision-makers through targeted prospecting, personalized outreach, qualification, and buyer intelligence."
+        ogTitle="B2B Appointment Setting Services | Verified Decision-Maker Meetings | TaRaj Global"
+        ogDescription="Book qualified discovery meetings with verified decision-makers across US, EMEA, and APAC. TaRaj Global combines SDR expertise, AI-assisted intent signals, and a 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={appointmentSchema}

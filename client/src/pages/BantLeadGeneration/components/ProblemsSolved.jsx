@@ -23,16 +23,16 @@ const FLOW_ITEMS = [
     id: 0,
     num: '01',
     category: 'BUDGET QUALIFICATION',
-    engineLabel: 'Budget Verifier',
-    engineAction: 'Capital Allocation Vetting',
+    engineLabel: 'Budget & Funding',
+    engineAction: 'Signal Check',
     problem: {
-      title: 'Unfunded Projects',
-      sub: 'Prospects with Zero Budget',
+      title: '01. Interest With',
+      sub: 'No Budget',
       icon: FilterX,
     },
     solution: {
-      title: 'Pre-Approved Budgets',
-      sub: 'Dedicated Capital & Authority',
+      title: '01. Budget Confirmed',
+      sub: 'Upfront',
       icon: Focus,
     },
     color: '#00A6FF',
@@ -42,16 +42,16 @@ const FLOW_ITEMS = [
     id: 1,
     num: '02',
     category: 'DECISION AUTHORITY',
-    engineLabel: 'Authority Screen',
-    engineAction: 'Economic Buyer Confirmation',
+    engineLabel: 'Economic-Buyer &',
+    engineAction: 'Authority Mapping',
     problem: {
-      title: 'Powerless Contacts',
-      sub: 'Junior Staff Unable to Buy',
+      title: '02. Contacts Who',
+      sub: "Can't Sign",
       icon: MailX,
     },
     solution: {
-      title: 'Direct Signer Access',
-      sub: 'VP & C-Suite P&L Owners',
+      title: '02. Direct Access to',
+      sub: 'Decision-Makers',
       icon: MessageSquareQuote,
     },
     color: '#8B5CF6',
@@ -61,16 +61,16 @@ const FLOW_ITEMS = [
     id: 2,
     num: '03',
     category: 'PAIN POINT DEPTH',
-    engineLabel: 'Need Validator',
-    engineAction: 'Pain Implication Mapping',
+    engineLabel: 'In-House Need Verification',
+    engineAction: 'Tool (99.8% SLA)',
     problem: {
-      title: 'Superficial Interest',
-      sub: 'No Compelling Event to Act',
+      title: '03. Pain Assumed,',
+      sub: 'Not Proven',
       icon: ShieldAlert,
     },
     solution: {
-      title: 'Acute Need Documented',
-      sub: 'Urgent Commercial Imperative',
+      title: '03. Documented',
+      sub: 'Business Need',
       icon: CheckCircle2,
     },
     color: '#10B981',
@@ -80,16 +80,16 @@ const FLOW_ITEMS = [
     id: 3,
     num: '04',
     category: 'PURCHASE TIMELINE',
-    engineLabel: 'Timeline Auditor',
-    engineAction: 'Procurement Window Check',
+    engineLabel: 'Timeframe & Evaluation',
+    engineAction: 'Window Check',
     problem: {
-      title: 'Indefinite Delays',
-      sub: '"Maybe Next Year" Objections',
+      title: '04. Deals Drift',
+      sub: 'Indefinitely',
       icon: Workflow,
     },
     solution: {
-      title: 'Active 90-Day Window',
-      sub: 'Immediate Procurement Cycles',
+      title: '04. Defined Purchase',
+      sub: 'Window',
       icon: Send,
     },
     color: '#F59E0B',
@@ -99,16 +99,16 @@ const FLOW_ITEMS = [
     id: 4,
     num: '05',
     category: 'PIPELINE EFFICIENCY',
-    engineLabel: 'BANT Certified Rig',
-    engineAction: 'High-Velocity Sales Hand-off',
+    engineLabel: 'DemandFlow Bridge',
+    engineAction: 'Closed-Loop CRM Sync',
     problem: {
-      title: 'Wasted AE Hours',
-      sub: 'Disqualified Pitch Meetings',
+      title: '05. AE Hours Lost on',
+      sub: 'Unready Leads',
       icon: EyeOff,
     },
     solution: {
-      title: '3.2x Close Rate Lift',
-      sub: 'High-Converting Sales Pipeline',
+      title: '05. Sales-Ready Deals',
+      sub: 'Reach AEs Faster',
       icon: BarChart3,
     },
     color: '#EC4899',
@@ -312,21 +312,20 @@ const ProblemsSolved = () => {
       <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5   mb-2">
-            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
-              BANT Transformation Matrix
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              TECH-ENABLED BANT TRANSFORMATION
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span>What Problems Does </span>
-            <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
+            <div className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
               BANT Lead Generation Solve?
-            </span>
+            </div>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            Eliminate non-budgeted dead-ends and powerless contacts with 100% verified BANT certification.
+            Eliminate non-budgeted dead ends and powerless contacts using our in-house data verification infrastructure and DemandFlow Bridge CRM routing.
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-3">
@@ -656,7 +655,7 @@ const ProblemsSolved = () => {
                           className="w-1.5 h-1.5 rounded-full animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[155px]">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -774,11 +773,10 @@ const ProblemsSolved = () => {
         {/* Mobile View */}
         <div className="block md:hidden space-y-3 pt-1">
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'problem' || phase === 'toCenter'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'problem' || phase === 'toCenter'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -796,11 +794,10 @@ const ProblemsSolved = () => {
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
-              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${
-                phase === 'centerReact'
-                  ? 'scale-108 shadow-lg ring-2 ring-primary/50'
-                  : 'scale-100'
-              }`}
+              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${phase === 'centerReact'
+                ? 'scale-108 shadow-lg ring-2 ring-primary/50'
+                : 'scale-100'
+                }`}
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
               <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
@@ -821,11 +818,10 @@ const ProblemsSolved = () => {
           </div>
 
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'toSolution' || phase === 'solution'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'toSolution' || phase === 'solution'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div

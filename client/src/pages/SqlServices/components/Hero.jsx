@@ -7,19 +7,19 @@ import { useReducedMotion } from '@hooks/useReducedMotion'
 // ─── Command Center Flow Visual (SQL Focused) ────────────────────────────────
 
 const FLOW_STAGES = [
-  { id: 'target',    label: 'ICP Account Vetting',       sub: 'Firmographic & TAM Filter',   color: '#00A6FF', icon: 'target'    },
-  { id: 'decision',  label: 'Economic Buyer Identified', sub: 'C-Level / VP Budget Holder',   color: '#38BDF8', icon: 'person'    },
-  { id: 'outreach',  label: 'Multi-Touch Outreach',      sub: 'Omnichannel Senior SDR',      color: '#00A6FF', icon: 'mail'      },
-  { id: 'criteria',  label: 'Sales Criteria Screen',     sub: 'Fit · Need · Buying Intent',   color: '#FFA600', icon: 'engage'    },
-  { id: 'booking',   label: 'Calendar Direct Book',      sub: 'AE Schedule Confirmed',       color: '#72D669', icon: 'reply'     },
-  { id: 'qualified', label: 'Sales Qualified (SQL)',     sub: 'Sales-Ready Pipeline Deal',   color: '#FF6D00', icon: 'qualified' },
+  { id: 'target', label: 'ICP Account Vetting', sub: 'Firmographic & TAM Filter', color: '#00A6FF', icon: 'target' },
+  { id: 'decision', label: 'Economic Buyer Identified', sub: 'C-Level / VP Budget Holder', color: '#38BDF8', icon: 'person' },
+  { id: 'outreach', label: 'Multi-Touch Outreach', sub: 'Omnichannel Senior SDR', color: '#00A6FF', icon: 'mail' },
+  { id: 'criteria', label: 'Sales Criteria Screen', sub: 'Fit · Need · Buying Intent', color: '#FFA600', icon: 'engage' },
+  { id: 'booking', label: 'Calendar Direct Book', sub: 'AE Schedule Confirmed', color: '#72D669', icon: 'reply' },
+  { id: 'qualified', label: 'Sales Qualified (SQL)', sub: 'Sales-Ready Pipeline Deal', color: '#FF6D00', icon: 'qualified' },
 ]
 
 const STATUS_PILLS = [
-  { label: 'Scouted',    dot: '#00A6FF' },
-  { label: 'Engaged',    dot: '#FFA600' },
-  { label: 'Vetted',     dot: '#38BDF8' },
-  { label: 'Confirmed',  dot: '#72D669' },
+  { label: 'Scouted', dot: '#00A6FF' },
+  { label: 'Engaged', dot: '#FFA600' },
+  { label: 'Vetted', dot: '#38BDF8' },
+  { label: 'Confirmed', dot: '#72D669' },
   { label: 'SQL Booked', dot: '#FF6D00' },
 ]
 
@@ -77,11 +77,11 @@ function QualifiedIcon({ color }) {
 }
 
 function StageIcon({ type, color }) {
-  if (type === 'target')    return <TargetIcon color={color} />
-  if (type === 'person')    return <PersonIcon color={color} />
-  if (type === 'mail')      return <MailIcon color={color} />
-  if (type === 'engage')    return <EngageIcon color={color} />
-  if (type === 'reply')     return <ReplyIcon color={color} />
+  if (type === 'target') return <TargetIcon color={color} />
+  if (type === 'person') return <PersonIcon color={color} />
+  if (type === 'mail') return <MailIcon color={color} />
+  if (type === 'engage') return <EngageIcon color={color} />
+  if (type === 'reply') return <ReplyIcon color={color} />
   if (type === 'qualified') return <QualifiedIcon color={color} />
   return null
 }
@@ -160,7 +160,7 @@ function CommandCenter({ prefersReducedMotion }) {
           <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
         </div>
         <div className="ml-2 text-[11px] font-mono tracking-wider text-[#00A6FF] opacity-90 uppercase">
-          DEMANDFLOW BRIDGE™ // SQL PIPELINE COMMAND
+          DEMANDFLOW BRIDGE™ SQL PIPELINE COMMAND
         </div>
         <div className="ml-auto flex items-center gap-1.5">
           <span className="text-[10px] font-mono text-text-secondary dark:text-white/60 tracking-wider uppercase">VERIFIED PIPELINE</span>
@@ -198,13 +198,13 @@ function CommandCenter({ prefersReducedMotion }) {
                 background: isCurrent
                   ? 'rgba(0,166,255,0.08)'
                   : isDone
-                  ? 'rgba(255,255,255,0.02)'
-                  : 'rgba(255,255,255,0.01)',
+                    ? 'rgba(255,255,255,0.02)'
+                    : 'rgba(255,255,255,0.01)',
                 borderColor: isCurrent
                   ? stage.color
                   : isDone
-                  ? `${stage.color}30`
-                  : 'rgba(255,255,255,0.04)',
+                    ? `${stage.color}30`
+                    : 'rgba(255,255,255,0.04)',
               }}
             >
               {/* Step indicator */}
@@ -294,10 +294,10 @@ const Hero = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -345,22 +345,23 @@ const Hero = () => {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                SQL LEAD GENERATION
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+                TECH-ENABLED SQL ARCHITECTURE
               </span>
             </motion.div>
 
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
               <span className="block pb-1 sm:pb-1.5">Generate Sales-Qualified Leads</span>
               <span
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
-                That Move Your Pipeline Forward
+                That Accelerate Pipeline Velocity
+
               </span>
             </motion.h1>
 
@@ -369,7 +370,7 @@ const Hero = () => {
               {...fadeUp(0.32)}
               className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
             >
-              Taraj Global helps B2B technology and SaaS companies identify, qualify, and deliver sales-qualified leads aligned with their ideal customer profile, buying intent, and sales criteria.
+              Stop spending AE pitch time on contacts who were never ready to buy. TaRaj Global combines AI-assisted intent scoring with our proprietary verification engine to deliver sales-accepted opportunities across US, EMEA, and APAC, routed directly into your CRM.
             </motion.p>
 
             {/* CTAs */}
@@ -383,7 +384,7 @@ const Hero = () => {
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
                 }}
               >
-                Start a Conversation
+                Deploy Custom SQL Campaign
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -393,7 +394,7 @@ const Hero = () => {
                 className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
               >
-                Explore Our Services
+                Explore Qualification Architecture
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
               </button>
             </motion.div>

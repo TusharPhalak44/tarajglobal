@@ -86,9 +86,9 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         prefersReducedMotion
           ? {}
           : {
-              y: -6,
-              scale: 1.02,
-            }
+            y: -6,
+            scale: 1.02,
+          }
       }
       className="relative group rounded-xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_10px_30px_-5px_rgba(0,166,255,0.35),0_0_15px_-2px_rgba(0,166,255,0.2)] dark:hover:border-primary/50 transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
@@ -173,7 +173,7 @@ const WhyChoose = () => {
       </div>
 
       <div className="relative max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── COMPACT, CLEAN HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <motion.div
@@ -183,7 +183,7 @@ const WhyChoose = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Why Taraj Global
             </span>
           </motion.div>
@@ -193,12 +193,12 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
+            <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               MQL Services?
-            </span>
+            </div>
           </motion.h2>
 
           <motion.p

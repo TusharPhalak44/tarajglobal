@@ -9,8 +9,8 @@ export default function WorkflowSvgConnectors({
       id: '01-to-02',
       from: 0,
       to: 1,
-      d: 'M 580 77.5 L 736 77.52',
-      node: { x: 580, y: 77.5 },
+      d: 'M 623 86 L 728 86',
+      node: { x: 623, y: 86 },
       dur: '1.2s',
       activeOn: 0,
     },
@@ -18,8 +18,8 @@ export default function WorkflowSvgConnectors({
       id: '02-to-03',
       from: 1,
       to: 2,
-      d: 'M 840 144 L 840 155 Q 840 167.5 825 167.5 L 135 167.5 Q 120 167.5 120 180 L 120 191',
-      node: { x: 840, y: 140 },
+      d: 'M 878 159 L 878 168 Q 878 178 865 178 L 138 178 Q 123 178 123 188 L 123 197',
+      node: { x: 878, y: 159 },
       dur: '2.0s',
       activeOn: 1,
     },
@@ -27,8 +27,8 @@ export default function WorkflowSvgConnectors({
       id: '03-to-04',
       from: 2,
       to: 3,
-      d: 'M 220 260 L 256 260.02',
-      node: { x: 220, y: 260 },
+      d: 'M 230 270 L 252 270',
+      node: { x: 230, y: 270 },
       dur: '0.8s',
       activeOn: 2,
     },
@@ -36,8 +36,8 @@ export default function WorkflowSvgConnectors({
       id: '04-to-05',
       from: 3,
       to: 4,
-      d: 'M 460 260 L 496 260.02',
-      node: { x: 460, y: 260 },
+      d: 'M 465 270 L 487 270',
+      node: { x: 465, y: 270 },
       dur: '0.8s',
       activeOn: 3,
     },
@@ -45,8 +45,8 @@ export default function WorkflowSvgConnectors({
       id: '05-to-06',
       from: 4,
       to: 5,
-      d: 'M 700 260 L 736 260.02',
-      node: { x: 700, y: 260 },
+      d: 'M 700 270 L 722 270',
+      node: { x: 700, y: 270 },
       dur: '0.8s',
       activeOn: 4,
     },
@@ -54,8 +54,8 @@ export default function WorkflowSvgConnectors({
       id: '06-to-07',
       from: 5,
       to: 6,
-      d: 'M 940 260 L 976 260.02',
-      node: { x: 940, y: 260 },
+      d: 'M 935 270 L 958 270',
+      node: { x: 935, y: 270 },
       dur: '0.8s',
       activeOn: 5,
     },
@@ -63,8 +63,8 @@ export default function WorkflowSvgConnectors({
       id: '07-to-08',
       from: 6,
       to: 7,
-      d: 'M 1140 327 L 1140 338 Q 1140 350 1125 350 L 645 350 Q 630 350 630 362 L 630 371',
-      node: { x: 1140, y: 325 },
+      d: 'M 1064 343 L 1064 352 Q 1064 362 1050 362 L 654 362 Q 640 362 640 372 L 640 381',
+      node: { x: 1064, y: 343 },
       dur: '2.0s',
       activeOn: 6,
     },
@@ -72,8 +72,8 @@ export default function WorkflowSvgConnectors({
       id: '08-to-09',
       from: 7,
       to: 8,
-      d: 'M 730 440 L 976 440.02',
-      node: { x: 730, y: 440 },
+      d: 'M 791 454 L 896 454',
+      node: { x: 791, y: 454 },
       dur: '1.2s',
       activeOn: 7,
     },
@@ -81,8 +81,8 @@ export default function WorkflowSvgConnectors({
       id: '09-to-goal',
       from: 8,
       to: 9,
-      d: 'M 1184 440 C 1235 440, 1255 385, 1268 328',
-      node: { x: 1180, y: 440 },
+      d: 'M 1197 454 C 1245 454, 1288 400, 1288 350',
+      node: { x: 1197, y: 454 },
       dur: '1.4s',
       activeOn: 8,
     },
@@ -91,7 +91,7 @@ export default function WorkflowSvgConnectors({
   return (
     <svg
       className="absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible"
-      viewBox="0 0 1400 520"
+      viewBox="0 0 1400 540"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -112,7 +112,7 @@ export default function WorkflowSvgConnectors({
           x1="0"
           y1="0"
           x2="1400"
-          y2="520"
+          y2="540"
         >
           <stop offset="0%" stopColor="#0284c7" />
           <stop offset="35%" stopColor="#00d2ff" />

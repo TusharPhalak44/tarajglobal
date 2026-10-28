@@ -8,16 +8,16 @@ const AUDIENCES = [
   {
     id: 'saas',
     num: '01',
-    label: 'B2B SaaS Companies',
+    label: ' B2B SaaS Companies',
     tagline: 'TECHNOLOGY DECISION-MAKERS',
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Reach relevant technology decision-makers with pre-screened budget fit, identified software pain points, and active purchasing timelines.',
+      ' SaaS teams lose AE hours on demos with contacts who hold no budget. We book meetings with technology decision-makers who have pre-screened budget fit, identified software pain points, and active purchasing timelines.',
     points: [
-      'Reach relevant technology decision-makers',
-      'Pre-vetted ACV budget fit ($25k - $500k+ annual contract value)',
-      'Direct access to VPs of Engineering, Product, IT, and Commercial Heads',
+      '✔ Pre-vetted ACV budget fit ($25k - $500k+ annual contract value)',
+      '✔ Direct access to VPs of Engineering, Product, IT, and Commercial Heads',
+      '✔ Software pain points and purchasing timelines confirmed on live qualification calls',
     ],
     visualType: 'saas',
   },
@@ -29,11 +29,11 @@ const AUDIENCES = [
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Connect with targeted accounts and buying stakeholders across complex hardware, cloud infrastructure, and enterprise systems.',
+      'Complex buying committees and long procurement cycles make hardware, cloud infrastructure, and enterprise systems sales slow to open. We connect you with targeted accounts and the stakeholders who control the budget.',
     points: [
-      'Connect with targeted accounts and buying stakeholders',
-      'CISO, CIO, and Director of IT buying authority validation',
-      'Pre-screened RFP and enterprise procurement sign-off schedules',
+      '✔ Targeted accounts and buying stakeholders mapped across hardware, cloud, and enterprise systems',
+      '✔ CISO, CIO, and Director of IT buying authority validation',
+      '✔ Pre-screened RFP and enterprise procurement sign-off schedules',
     ],
     visualType: 'it',
   },
@@ -45,11 +45,11 @@ const AUDIENCES = [
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Extend prospecting capacity and create more conversations so quota-carrying Account Executives can focus 100% on closing deals.',
+      'Quota-carrying AEs shouldn’t be prospecting. We extend your capacity with dedicated SDR pods, so your team can focus 100% on closing deals.',
     points: [
-      'Extend prospecting capacity and create more conversations',
-      'Steady calendar flow of 10 to 40+ sales-ready discovery calls per month',
-      '85%+ meeting hold rate with proactive calendar reminder cadences',
+      '✔ Dedicated SDR pods operating as an extension of your sales organization',
+      '✔ Steady calendar flow of 10 to 40+ sales-ready discovery calls per month ',
+      '✔ 85%+ meeting hold rate with proactive calendar reminder cadences',
     ],
     visualType: 'services',
   },
@@ -61,11 +61,11 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Build conversations with relevant accounts in new segments and geographies without the risk, overhead, or time delay of hiring internal SDRs.',
+      'Entering a new segment or region without local relationships stalls growth, and hiring internal SDRs adds cost and months of delay. We build conversations with relevant accounts without that risk or overhead.',
     points: [
-      'Build conversations with relevant accounts in new segments',
-      'Multi-stakeholder buying committee consensus mapping',
-      'Accelerated market penetration with localized buyer intelligence',
+      '✔ Relevant accounts identified and engaged in new segments and geographies',
+      '✔ Multi-stakeholder buying committee consensus mapping',
+      '✔ Accelerated market penetration with localized buyer intelligence',
     ],
     visualType: 'enterprise',
   },
@@ -262,11 +262,11 @@ const WhoIsItFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -297,26 +297,28 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              ICP VERTICAL ALIGNMENT
+
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Is Appointment Setting{' '}
-            <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
-              Right for Your Sales Team?
-            </span>
+            <div className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
+              Right for Your Sales Team
+            </div>
           </motion.h2>
 
           <motion.p
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            Taraj Global connects you with the right decision-makers through targeted prospecting and appointment setting. Focus on qualified conversations, not prospecting.
+            Built for B2B SaaS and technology sales teams that need verified decision-maker conversations, extra prospecting capacity, or faster entry into new segments across US, EMEA, and APAC.
+
           </motion.p>
         </div>
 
@@ -339,15 +341,14 @@ const WhoIsItFor = () => {
                       prefersReducedMotion
                         ? {}
                         : {
-                            x: 4,
-                            transition: { duration: 0.2, ease: 'easeOut' },
-                          }
+                          x: 4,
+                          transition: { duration: 0.2, ease: 'easeOut' },
+                        }
                     }
-                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${
-                      isActive
+                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
                         ? 'bg-surface shadow-md'
                         : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
-                    }`}
+                      }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
                       boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : undefined,
@@ -384,9 +385,8 @@ const WhoIsItFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -395,9 +395,8 @@ const WhoIsItFor = () => {
 
                     {/* Main Title */}
                     <div
-                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -567,11 +566,10 @@ const WhoIsItFor = () => {
                     tabRefs.current[idx] = el
                   }}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
+                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
                       ? 'bg-surface shadow-md border-primary'
                       : 'bg-surface/50 border-border/70'
-                  }`}
+                    }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,
                     minWidth: '220px',
@@ -589,9 +587,8 @@ const WhoIsItFor = () => {
                     </span>
                   </div>
                   <div
-                    className={`text-sm font-bold ${
-                      isActive ? 'text-text-primary' : 'text-text-secondary'
-                    }`}
+                    className={`text-sm font-bold ${isActive ? 'text-text-primary' : 'text-text-secondary'
+                      }`}
                   >
                     {aud.label}
                   </div>

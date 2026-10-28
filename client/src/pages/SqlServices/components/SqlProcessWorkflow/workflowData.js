@@ -2,8 +2,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '01',
     stepNumber: '01',
-    title: 'ICP & Sales Goals',
-    description: 'Define ideal customer profiles, target industries, ACV thresholds, and qualification criteria.',
+    title: 'ICP & Sales Goal Alignment |',
+    description: ' Define target firmographics, ACV thresholds, buying committee personas, and shared SQL criteria with sales leadership, refined with AI-assisted lookalike modeling.',
     iconName: 'Users',
     row: 1,
     col: 2,
@@ -12,8 +12,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '02',
     stepNumber: '02',
-    title: 'Criteria Calibration',
-    description: 'Calibrate explicit SQL qualification rubrics, lead scoring models, and compliance checks.',
+    title: 'Criteria & Scoring Calibration ',
+    description: 'Calibrate SQL qualification rubrics, lead scoring models, and compliance guardrails (GDPR/CCPA) so SDR and AE definitions of “qualified” never drift apart.',
     iconName: 'Compass',
     row: 1,
     col: 4,
@@ -22,8 +22,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '03',
     stepNumber: '03',
-    title: 'Account Discovery',
-    description: 'Identify high-fit target accounts and map buying committees with verified executive contact data.',
+    title: 'Account & Committee Discovery',
+    description: ' Identify high-fit accounts and map full buying committees using verified executive contact data, removing duplicate and stale records before outreach begins.',
     iconName: 'Database',
     row: 2,
     col: 1,
@@ -32,8 +32,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '04',
     stepNumber: '04',
-    title: 'Prospect Research',
-    description: 'Analyze technographic fit, competitor installs, organizational challenges, and intent signals.',
+    title: 'Prospect Research & Intent Signals',
+    description: 'Analyze technographic fit, competitor installs, organizational challenges, and AI-assisted intent signals to prioritize accounts already in active evaluation.',
     iconName: 'Search',
     row: 2,
     col: 2,
@@ -42,8 +42,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '05',
     stepNumber: '05',
-    title: 'Multi-Touch Outreach',
-    description: 'Deploy personalized omnichannel outreach across executive email, direct phone, and social cadences.',
+    title: 'Multi-Touch Senior SDR Outreach',
+    description: 'Deploy personalized omnichannel outreach across executive email, direct phone, and LinkedIn, run by senior SDRs rather than automated bot forms.',
     iconName: 'Mail',
     row: 2,
     col: 3,
@@ -52,8 +52,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '06',
     stepNumber: '06',
-    title: 'Intent & Need Probing',
-    description: 'Conduct structured discovery conversations to evaluate acute operational bottlenecks and project urgency.',
+    title: 'Intent & Need Discovery',
+    description: 'Run structured discovery conversations to uncover acute operational bottlenecks and project urgency, filtering out vague, nice-to-have interest.',
     iconName: 'Zap',
     row: 2,
     col: 4,
@@ -62,8 +62,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '07',
     stepNumber: '07',
-    title: 'Sales Readiness Check',
-    description: 'Validate budget allocation, signing authority, and active purchasing milestones (<90 days).',
+    title: 'Sales Readiness Validation',
+    description: 'Validate budget allocation, signing authority, and active purchasing milestones (typically <90 days), so reps only meet accounts in live buying cycles.',
     iconName: 'LineChart',
     row: 2,
     col: 5,
@@ -72,8 +72,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '08',
     stepNumber: '08',
-    title: 'CDQA Quality Audit',
-    description: 'Cross-check call audio, transcripts, and qualification records against agreed-upon sales standards.',
+    title: ' In-House CDQA Quality Audit ',
+    description: 'Cross-check call audio, transcripts, and qualification records through our proprietary verification engine and CDQA protocols, enforcing our 99.8% Data Accuracy SLA.',
     iconName: 'CheckCircle2',
     row: 3,
     col: 5,
@@ -82,8 +82,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '09',
     stepNumber: '09',
-    title: 'CRM & Calendar Sync',
-    description: 'Inject verified SQL dossiers and booked meetings seamlessly into DemandFlow Bridge™.',
+    title: ' CRM & Calendar Sync',
+    description: 'Inject verified SQL dossiers and booked discovery meetings directly into your CRM and AE calendars via DemandFlow Bridge, with no manual data entry.',
     iconName: 'RefreshCw',
     row: 3,
     col: 3.5,
@@ -93,7 +93,7 @@ export const WORKFLOW_STEPS = [
 
 export const TARGET_GOAL = {
   id: 'goal',
-  title: 'QUALIFIED SQL LEADS',
+  title: 'QUALIFIED SQL LEADS • GOAL ACHIEVED!',
   badge: 'OUTCOME',
   description: 'Sales-ready, high-intent enterprise prospects delivered directly into your pipeline.',
 }

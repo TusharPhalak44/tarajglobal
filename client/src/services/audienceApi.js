@@ -126,37 +126,14 @@ export function getInitialAudienceData() {
 }
 
 /**
- * 3-Tier Fetch Strategy
+ * Audience API Service Fetch Strategy
+ * Routes through the Taraj backend proxy (/api/audience/stats) to eliminate CORS restrictions
+ * and provides instant baseline snapshot + LocalStorage cache fallback.
  */
 export async function fetchAudienceStats() {
-  const directUrl = 'https://tgstechinfo.net/api/audience/stats'
   const proxyUrl = '/api/audience/stats'
 
-  // Tier 1: Direct request to TGS Tech Info backend API
-  try {
-    const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 4000)
-
-    const response = await fetch(directUrl, {
-      headers: { 'Accept': 'application/json' },
-      signal: controller.signal
-    })
-    clearTimeout(timeout)
-
-    if (response.ok) {
-      const json = await response.json()
-      if (json && (json.data || json.matching_contacts)) {
-        const payload = json.data || json
-        enrichCountryData(payload)
-        saveToCache(payload)
-        return { data: payload, isLive: true, source: 'tgstechinfo-direct' }
-      }
-    }
-  } catch (err) {
-    // console.info('[AudienceApi] Direct endpoint unavailable, attempting Tier 2 proxy...', err.message)
-  }
-
-  // Tier 2: Taraj backend proxy
+  // Tier 1: Taraj backend proxy (bypasses browser CORS & caches upstream data)
   try {
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 4000)
@@ -177,10 +154,10 @@ export async function fetchAudienceStats() {
       }
     }
   } catch (err) {
-    // console.warn('[AudienceApi] Proxy endpoint unavailable, falling back to Tier 3 baseline...', err.message)
+    // Backend proxy unavailable, fall back to cached baseline
   }
 
-  // Tier 3: Instant baseline snapshot from cache or memory
+  // Tier 2: Instant baseline snapshot from cache or memory
   const cachedData = getInitialAudienceData()
   return { data: cachedData, isLive: false, source: 'baseline-cache' }
 }

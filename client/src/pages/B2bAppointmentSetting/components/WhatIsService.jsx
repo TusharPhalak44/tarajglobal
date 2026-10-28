@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'TARGET',
-    desc: 'Identify accounts & verified decision-makers matching your ICP',
+    desc: 'Map ICP accounts and verified buying-committee decision-makers. ',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'ENGAGE',
-    desc: 'Initiate personalized multi-channel conversations across touchpoints',
+    desc: 'Run personalized phone, email, and LinkedIn conversations across touchpoints.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'BOOK',
-    desc: 'Schedule pre-qualified discovery meetings directly on AE calendars',
+    desc: ' Place pre-qualified discovery meetings on AE calendars with dossiers attached.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+             APPOINTMENT SETTING ENGINE
+
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -103,7 +104,7 @@ const WhatIsService = () => {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              What Is
+             What Is
             </motion.span>
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1 sm:pb-1.5">
               <motion.span
@@ -113,17 +114,9 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                B2B Appointment
+                B2B Appointment Setting ?
               </motion.span>
-              <motion.span
-                className="inline-block"
-                initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-                whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Setting?
-              </motion.span>
+            
             </span>
           </h2>
         </div>
@@ -175,7 +168,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              B2B appointment setting connects sales teams with relevant decision-makers who fit their target market and business needs. Taraj Global combines targeted prospecting, buyer research, qualification, and personalized outreach to create meaningful sales conversations.
+               B2B appointment setting is a sales development service where specialist SDRs identify, contact, and qualify decision-makers at your target accounts, then book discovery meetings directly onto your Account Executives’ calendars, so your closers sell instead of prospect.
+
             </motion.p>
 
             <motion.p
@@ -185,7 +179,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Our qualified outreach helps sales teams reduce top-of-funnel effort, focus on active prospects, and turn more conversations into revenue opportunities.
+              Unlike generic cold calling or purchased contact lists, TaRaj Global’s tech-enabled appointment setting combines AI-assisted intent signals with live qualification conversations. Backed by our 99.8% Data Accuracy SLA and in-house post-research verification software, every meeting is booked with a verified decision-maker, a documented need, and a pre-call dossier routed via DemandFlow Bridge.
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION */}

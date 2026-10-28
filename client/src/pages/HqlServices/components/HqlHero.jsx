@@ -8,20 +8,20 @@ import { trackCtaClick, buildTrackedUrl } from '@utils/utmTracker'
 // ─── Command Center Flow Visual (HQL Focused) ────────────────────────────────
 
 const FLOW_STAGES = [
-  { id: 'target',    label: 'ICP Account Vetting',       sub: 'Firmographic & TAM Filter',       color: '#00A6FF', icon: 'target'    },
-  { id: 'decision',  label: 'Decision-Maker Identified', sub: 'VP & C-Suite Stakeholder Match',   color: '#38BDF8', icon: 'person'    },
-  { id: 'intent',    label: 'Intent Signal Surge',       sub: 'Active Pain & Topic Triggers',    color: '#00A6FF', icon: 'engage'    },
-  { id: 'verify',    label: 'Dual-Layer Data Audit',     sub: 'SMTP Validated & Direct Dial Vetted', color: '#72D669', icon: 'shield' },
-  { id: 'screen',    label: 'Custom Discovery Screen',   sub: 'Pain & Timeline Fit Screened',    color: '#FFA600', icon: 'reply'     },
-  { id: 'qualified', label: 'High-Quality Lead (HQL)',   sub: 'Sales-Ready Opportunity',         color: '#FF6D00', icon: 'qualified' },
+  { id: 'target', label: 'ICP Account Vetting', sub: 'Firmographic & TAM Filter', color: '#00A6FF', icon: 'target' },
+  { id: 'decision', label: 'Decision-Maker Identified', sub: 'VP & C-Suite Stakeholder Match', color: '#38BDF8', icon: 'person' },
+  { id: 'intent', label: 'Intent Signal Surge', sub: 'Active Pain & Topic Triggers', color: '#00A6FF', icon: 'engage' },
+  { id: 'verify', label: 'Dual-Layer Data Audit', sub: 'SMTP Validated & Direct Dial Vetted', color: '#72D669', icon: 'shield' },
+  { id: 'screen', label: 'Custom Discovery Screen', sub: 'Pain & Timeline Fit Screened', color: '#FFA600', icon: 'reply' },
+  { id: 'qualified', label: 'High-Quality Lead (HQL)', sub: 'Sales-Ready Opportunity', color: '#FF6D00', icon: 'qualified' },
 ]
 
 const STATUS_PILLS = [
-  { label: 'Scouted',      dot: '#00A6FF' },
-  { label: 'Engaged',      dot: '#FFA600' },
-  { label: 'Vetted',       dot: '#38BDF8' },
+  { label: 'Scouted', dot: '#00A6FF' },
+  { label: 'Engaged', dot: '#FFA600' },
+  { label: 'Vetted', dot: '#38BDF8' },
   { label: 'SLA Approved', dot: '#72D669' },
-  { label: 'HQL Delivered',dot: '#FF6D00' },
+  { label: 'HQL Delivered', dot: '#FF6D00' },
 ]
 
 function TargetIcon({ color }) {
@@ -78,11 +78,11 @@ function QualifiedIcon({ color }) {
 }
 
 function StageIcon({ type, color }) {
-  if (type === 'target')    return <TargetIcon color={color} />
-  if (type === 'person')    return <PersonIcon color={color} />
-  if (type === 'shield')    return <ShieldIcon color={color} />
-  if (type === 'engage')    return <EngageIcon color={color} />
-  if (type === 'reply')     return <ReplyIcon color={color} />
+  if (type === 'target') return <TargetIcon color={color} />
+  if (type === 'person') return <PersonIcon color={color} />
+  if (type === 'shield') return <ShieldIcon color={color} />
+  if (type === 'engage') return <EngageIcon color={color} />
+  if (type === 'reply') return <ReplyIcon color={color} />
   if (type === 'qualified') return <QualifiedIcon color={color} />
   return null
 }
@@ -199,13 +199,13 @@ function CommandCenter({ prefersReducedMotion }) {
                 background: isCurrent
                   ? 'rgba(0,166,255,0.08)'
                   : isDone
-                  ? 'rgba(255,255,255,0.02)'
-                  : 'rgba(255,255,255,0.01)',
+                    ? 'rgba(255,255,255,0.02)'
+                    : 'rgba(255,255,255,0.01)',
                 borderColor: isCurrent
                   ? stage.color
                   : isDone
-                  ? `${stage.color}30`
-                  : 'rgba(255,255,255,0.04)',
+                    ? `${stage.color}30`
+                    : 'rgba(255,255,255,0.04)',
               }}
             >
               {/* Step indicator */}
@@ -311,10 +311,10 @@ export default function HqlHero() {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -363,7 +363,7 @@ export default function HqlHero() {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
                 HIGH-QUALITY LEADS (HQL)
               </span>
             </motion.div>
@@ -371,15 +371,15 @@ export default function HqlHero() {
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
               <span className="block pb-1 sm:pb-1.5">Convert High-Intent</span>
-              <span
+              <div
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
                 Decision Makers
-              </span>
+              </div>
             </motion.h1>
 
             {/* Description */}
@@ -393,25 +393,7 @@ export default function HqlHero() {
               across US, EMEA, and APAC markets.
             </motion.p>
 
-            {/* Trust indicators */}
-            <motion.div {...fadeUp(0.36)} className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-6">
-              {[
-                'ICP-Matched Contacts',
-                'Triple-SMTP Verified',
-                '0% Bounce Guarantee',
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-1.5">
-                  <Check
-                    className="w-3.5 h-3.5 shrink-0"
-                    style={{ color: '#34D399' }}
-                    strokeWidth={2.5}
-                  />
-                  <span className="text-xs font-medium text-text-secondary">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
+
 
             {/* CTAs */}
             <motion.div {...fadeUp(0.42)} className="flex flex-col sm:flex-row flex-wrap gap-3.5">

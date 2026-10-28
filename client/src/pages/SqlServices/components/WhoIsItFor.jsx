@@ -13,11 +13,11 @@ const AUDIENCES = [
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'High-growth software companies requiring pre-screened sales-qualified meetings with technology executives who hold active budgets and immediate implementation readiness.',
+      'Demos with contacts who hold no budget drain AE capacity. We deliver pre-screened technology executives with active budgets and immediate implementation readiness, booked straight onto your calendars.',
     points: [
-      'Pre-vetted ACV budget fit ($25k - $500k+ annual contract value)',
-      'Verified tech stack displacement readiness and buyer intent surges',
-      'Direct access to VPs of Engineering, Product, IT, and Commercial Heads',
+      '✔ Pre vetted ACV budget fit ($25k - $500k+ annual contract value)',
+      '✔ Verified tech stack displacement readiness and AI-assisted buyer intent surge signals',
+      '✔ Direct access to VPs of Engineering, Product, IT, and Commercial Heads',
     ],
     visualType: 'saas',
   },
@@ -29,11 +29,11 @@ const AUDIENCES = [
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Managed service providers, cloud migration specialists, and cybersecurity platforms selling to complex buying committees that require formal criteria vetting.',
+      'Committee reviews and compliance gates stall infrastructure deals for months. We connect managed service providers, cloud migration specialists, and cybersecurity vendors with IT leaders who hold formal buying authority.',
     points: [
-      'CISO, CIO, and Director of IT buying authority validation',
-      'Active cybersecurity compliance or modernization mandates (< 6 months)',
-      'Pre-cleared RFP schedules and enterprise evaluation roadmaps',
+      '✔ CISO, CIO, and Director of IT buying authority validation',
+      '✔ Active cybersecurity compliance or modernization mandates (< 6 months)',
+      '✔ Pre-cleared RFP schedules and evaluation roadmaps backed by verified direct dials',
     ],
     visualType: 'it',
   },
@@ -45,11 +45,11 @@ const AUDIENCES = [
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Management consultancies, legal practices, and corporate advisory firms seeking high-level corporate introductions with confirmed discretionary budgets and acute mandates.',
+      'Cold executive outreach rarely gets past gatekeepers. We open C-suite conversations for consultancies, legal practices, and advisory firms with confirmed discretionary budgets and acute strategic mandates.',
     points: [
-      'CEO, CFO, and Board-level executive relationship initiation',
-      'Documented business pain point and solution requirement',
-      'High-converting discovery meetings without sales friction or cold resistance',
+      '✔ CEO, CFO, and Board-level executive relationship initiation',
+      '✔ CEO, CFO, and Board-level executive relationship initiation',
+      '✔ High-converting discovery meetings without sales friction or cold resistance',
     ],
     visualType: 'services',
   },
@@ -61,11 +61,11 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Capital equipment, automation, and supply chain technology vendors navigating 6–18 month evaluation cycles requiring confirmed capital expenditure funding.',
+      ' Single-threaded deals collapse inside 6–18 month, multi-stakeholder buying cycles. We connect capital equipment, automation, and supply chain technology vendors with committees holding confirmed capital expenditure funding.',
     points: [
-      'Multi-stakeholder buying committee consensus mapping',
-      'Pre-screened capital investment budgets for enterprise upgrades',
-      'Documented operational bottleneck and validated purchasing timeline',
+      '✔ Multi-stakeholder buying committee consensus mapping',
+      '✔ Pre-screened capital investment budgets for enterprise upgrades',
+      '✔ Documented operational bottleneck, validated purchasing timeline, and dossier delivery via DemandFlow Bridge',
     ],
     visualType: 'enterprise',
   },
@@ -261,11 +261,11 @@ const WhoIsItFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -296,8 +296,8 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
@@ -306,7 +306,7 @@ const WhoIsItFor = () => {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Is SQL Lead Generation{' '}
-            <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
+            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
               Right for Your Business?
             </span>
           </motion.h2>
@@ -315,7 +315,7 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            SQL lead generation serves B2B companies looking to eliminate low-intent noise and focus Account Executive pitch time strictly on verified sales-ready buyers.
+            Engineered for enterprise SaaS and technology revenue leaders who need AE pitch time focused on verified, sales-ready buyers with confirmed authority and active evaluation timelines across US, EMEA, and APAC.
           </motion.p>
         </div>
 
@@ -338,15 +338,14 @@ const WhoIsItFor = () => {
                       prefersReducedMotion
                         ? {}
                         : {
-                            x: 4,
-                            transition: { duration: 0.2, ease: 'easeOut' },
-                          }
+                          x: 4,
+                          transition: { duration: 0.2, ease: 'easeOut' },
+                        }
                     }
-                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${
-                      isActive
-                        ? 'bg-surface shadow-md'
-                        : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
-                    }`}
+                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
+                      ? 'bg-surface shadow-md'
+                      : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
+                      }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
                       boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : undefined,
@@ -380,9 +379,8 @@ const WhoIsItFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -390,9 +388,8 @@ const WhoIsItFor = () => {
                     </div>
 
                     <div
-                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -549,11 +546,10 @@ const WhoIsItFor = () => {
                     tabRefs.current[idx] = el
                   }}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
-                      ? 'bg-surface shadow-md border-primary'
-                      : 'bg-surface/50 border-border/70'
-                  }`}
+                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
+                    ? 'bg-surface shadow-md border-primary'
+                    : 'bg-surface/50 border-border/70'
+                    }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,
                     minWidth: '220px',
@@ -571,9 +567,8 @@ const WhoIsItFor = () => {
                     </span>
                   </div>
                   <div
-                    className={`text-sm font-bold ${
-                      isActive ? 'text-text-primary' : 'text-text-secondary'
-                    }`}
+                    className={`text-sm font-bold ${isActive ? 'text-text-primary' : 'text-text-secondary'
+                      }`}
                   >
                     {aud.label}
                   </div>

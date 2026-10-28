@@ -73,9 +73,9 @@ const AppointmentProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1, 1.12, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                }
+                scale: [1, 1.12, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
           }
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ background: 'radial-gradient(circle, #0284c7 0%, transparent 70%)' }}
@@ -86,16 +86,16 @@ const AppointmentProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1.1, 0.95, 1.1],
-                  opacity: [0.18, 0.28, 0.18],
-                }
+                scale: [1.1, 0.95, 1.1],
+                opacity: [0.18, 0.28, 0.18],
+              }
           }
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           style={{ background: 'radial-gradient(circle, #00d2ff 0%, transparent 70%)' }}
         />
       </div>
 
-      <div className="relative max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── COMPACT SECTION HEADER & TITLE ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5">
           {/* Eyebrow */}
@@ -119,13 +119,13 @@ const AppointmentProcess = () => {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
                 WHAT TARAJ GLOBAL{' '}
               </span>
-              <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
+              <div className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
                 DELIVERS
-              </span>
+              </div>
             </h2>
 
             {/* Subtle light bar under title */}

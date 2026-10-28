@@ -106,7 +106,7 @@ const MqlProcess = () => {
         />
       </div>
 
-      <div className="relative max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── COMPACT SECTION HEADER & TITLE ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5">
           {/* Eyebrow */}
@@ -117,7 +117,7 @@ const MqlProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               HOW OUR PROCESS WORKS • MQL PIPELINE ARCHITECTURE
 
             </span>

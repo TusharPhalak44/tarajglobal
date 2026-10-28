@@ -70,12 +70,12 @@ const SqlServices = () => {
   return (
     <>
       <SEO
-        title="Sales Qualified Leads (SQL) Services | Sales-Ready B2B Leads | Taraj Global"
-        description="Accelerate your sales pipeline with verified Sales Qualified Leads (SQLs). We deliver high-intent B2B decision-makers with confirmed budget, authority, and project timelines."
+        title="SQL Lead Generation Services | Tech-Powered Sales Qualified Leads | TaRaj Global"
+        description="Fill AE calendars with verified Sales Qualified Leads across US, EMEA, and APAC. TaRaj Global delivers sales-ready decision-makers verified via in-house tooling and a 99.8% Data Accuracy SLA."
         keywords="Sales Qualified Leads services, SQL lead generation, B2B SQL generation, high-intent B2B leads, sales-ready leads, qualified discovery meetings, SaaS SQL pipeline, enterprise B2B leads, B2B sales pipeline, lead qualification services"
         canonical="/sql-services"
-        ogTitle="Sales Qualified Leads (SQL) Services | Sales-Ready B2B Leads | Taraj Global"
-        ogDescription="Connect with high-intent decision-makers who have confirmed budget, authority, need, and project timelines. Taraj Global delivers Sales Qualified Leads that shorten sales cycles."
+        ogTitle="SQL Lead Generation Services | Tech-Powered Sales Qualified Leads | TaRaj Global"
+        ogDescription="Fill AE calendars with verified Sales Qualified Leads across US, EMEA, and APAC. TaRaj Global delivers sales-ready decision-makers verified via in-house tooling and a 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={sqlSchema}

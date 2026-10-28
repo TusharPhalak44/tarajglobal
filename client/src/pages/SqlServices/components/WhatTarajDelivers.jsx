@@ -18,127 +18,127 @@ const ENGINE_LAYERS = [
   {
     num: '01',
     layer: 'Layer 01',
-    title: 'ICP & Persona Matrix Mapping',
+    title: ' DemandFlow Bridge: ICP & Persona Matrix Targeting',
     shortTitle: 'Targeting',
     tag: 'Firmographics & TAM',
     module: 'DemandFlow Bridge™ Admin',
     screen: 'ICP Matrix & Target Account Mapping',
     metric: '49 Live Campaigns • 84 Daily Target',
-    desc: 'Defining target accounts by revenue tier, software installs, geographical boundaries, and purchasing authority levels.',
+    desc: 'Outreach to the wrong accounts burns SDR hours before a conversation starts. We map target accounts by revenue tier, installed software, geography, and purchasing authority, refined with AI-assisted lookalike modeling.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      'Identification of active C-Suite, VP, and Director economic buyers',
-      'Positive and negative firmographic screening filters',
-      'TAM saturation and white-space account discovery',
+      '✔ Active C-suite, VP, and Director economic buyers identified',
+      '✔ Positive and negative firmographic screening filters',
+      '✔ TAM saturation analysis and white-space account discovery',
     ],
   },
   {
     num: '02',
     layer: 'Layer 02',
-    title: 'Verified Decision-Maker Data',
+    title: ' DemandFlow Bridge: Verified Decision-Maker Data Hygiene',
     shortTitle: 'Data Hygiene',
     tag: 'Direct Dials & Verified Inboxes',
     module: 'DemandFlow Bridge™ DBMS',
     screen: 'Assignment, Touch & CDQA Control Center',
     metric: '1,055 Records • CDQA Approved',
-    desc: 'Direct discovery and multi-level verification of active corporate buyers matching your target personas.',
+    desc: ' Bounced emails and stale contacts waste SDR hours and inflate no-show rates. Every buyer record passes our AI-assisted, in-house verification tool, backed by our 99.8% Data Accuracy SLA.',
     icon: FileCheck,
     image: '/demandflow-dbms.png',
     points: [
-      'Direct verified decision maker email addresses and phone dials',
-      'Triple-layer SMTP validation eliminating bounce risks and stale records',
-      'Strict GDPR, CAN-SPAM, and data privacy compliance protocols',
+      '✔ Triple-layer SMTP validation eliminating bounce risk and stale records',
+      '✔ Verified direct dials and corporate emails for every target persona',
+      '✔ ISO 27001:2022, GDPR, CCPA, and CAN-SPAM compliance protocols',
     ],
   },
   {
     num: '03',
     layer: 'Layer 03',
-    title: 'Multi-Touch Outreach Cadence',
+    title: 'DemandFlow Bridge: Multi-Touch Senior SDR Outreach',
     shortTitle: 'Outreach',
     tag: 'Senior SDR Engagement',
     module: 'DemandFlow Bridge™ Sequences',
     screen: 'Email Cadence & Outreach Sprints',
-    metric: '99.4% Deliverability • 4-Step Architecture',
-    desc: 'Omnichannel outreach executed by senior sales development representatives across phone, email, and LinkedIn.',
+    metric: '99.8% Data Accuracy • 4-Step Architecture',
+    desc: 'Generic cold outreach gets ignored by senior buyers. Senior SDRs run personalized conversations by phone, email, and LinkedIn, prioritized by AI-assisted intent signals.',
     icon: Share2,
     image: '/demandflow-sequences.png',
     points: [
-      'Tailored cold messaging highlighting acute business pain points',
-      'Multi-touch persistence over 14-21 day conversational sprints',
-      'Conversational discovery uncovering internal initiatives and urgency',
+      '✔ Messaging built around each role’s acute business pain points',
+      '✔ Multi-touch persistence across 14–21 day conversational sprints',
+      '✔ Discovery conversations uncovering internal initiatives and urgency',
     ],
   },
   {
     num: '04',
     layer: 'Layer 04',
-    title: 'Strict BANT & MEDDPICC Vetting',
+    title: ' DemandFlow Bridge: BANT & MEDDPICC Qualification Vetting',
     shortTitle: 'Qualification',
     tag: 'Gatekeeper Rigor',
     module: 'DemandFlow Bridge™ Campaigns',
     screen: 'Campaign Operations & Pacing Board',
     metric: 'Live Allocation • 100% Pacing Tracking',
-    desc: 'Every prospective buyer is screened against explicit Budget, Authority, Need, and Timeline qualification gates.',
+    desc: ' Unvetted leads reach AEs with no budget, no sponsor, and no timeline. Every buyer is screened against explicit Budget, Authority, Need, and Timeline gates, reinforced with MEDDPICC criteria.',
     icon: Gauge,
     image: '/demandflow-campaigns.png',
     points: [
-      'Confirmed allocated budget and project sponsorship',
-      'Validation of active procurement timelines (< 90-180 days)',
-      'Direct confirmation of pain point severity and evaluation criteria',
+      '✔ Confirmed allocated budget and executive project sponsorship',
+      '✔ Active procurement timelines validated (typically <90 days)',
+      '✔ Pain-point severity and evaluation criteria confirmed on live calls',
     ],
   },
   {
     num: '05',
     layer: 'Layer 05',
-    title: 'Executive Prospect Dossiers',
+    title: 'DemandFlow Bridge: Executive Prospect Intelligence Dossiers',
     shortTitle: 'Dossiers',
     tag: 'Pre-Call Intelligence',
     module: 'DemandFlow Bridge™ Matrix',
     screen: 'Dynamic Personalization & Profile Matrix',
     metric: '95.5% Match Rate • A/B Conversion Lift',
-    desc: 'Complete pre-call briefing dossiers delivered before every discovery session to empower sales reps.',
+    desc: ' Reps who walk into discovery calls unprepared lose deals they should win. Every meeting is preceded by a dossier enriched with intent telemetry, tech stack, pain points, and evaluation goals.',
     icon: Cpu,
     image: '/demandflow-personalization.png',
     points: [
-      'Executive background, verified LinkedIn URL, and verified direct dials',
-      'Current tech stack, software pain points, and evaluation goals',
-      'Call recording/transcript snippets and specific qualifying notes',
+      '✔ Executive background, verified LinkedIn profile, and direct dials',
+      '✔ Current tech stack, software pain points, and evaluation goals',
+      '✔ Call recording and transcript snippets with specific qualifying notes',
     ],
   },
   {
     num: '06',
     layer: 'Layer 06',
-    title: 'Direct Calendar Scheduling',
+    title: 'DemandFlow Bridge: Direct AE Calendar Scheduling',
     shortTitle: 'Scheduling',
     tag: 'Calendar Integration',
     module: 'DemandFlow Bridge™ Telemetry',
     screen: 'Response Telemetry & Booking Analytics',
     metric: '24.8K Opens • 148 Meeting Requests',
-    desc: 'Frictionless calendar booking directly into your Account Executives calendars with automated calendar invites.',
+    desc: 'No-shows and back-and-forth scheduling drain AE capacity. Discovery calls are booked straight into your Account Executives’ calendars with automated invites and reminder touchpoints.',
     icon: BadgeCheck,
     image: '/demandflow-tracking.png',
     points: [
-      'Native sync with Google Calendar, Outlook, Calendly, and Chili Piper',
-      'Automated confirmation notifications sent to prospect and rep',
-      'Rescheduling support and reminder touchpoints minimizing no-shows',
+      '✔ Native sync with Google Calendar, Outlook, Calendly, and Chili Piper',
+      '✔ Automated confirmations sent to both prospect and rep',
+      '✔ Reminder touchpoints and no-cost rescheduling to minimize no-shows',
     ],
   },
   {
     num: '07',
     layer: 'Layer 07',
-    title: 'CRM Telemetry & Revenue Attribution',
+    title: 'DemandFlow Bridge: CRM Telemetry & Revenue Attribution',
     shortTitle: 'CRM Telemetry',
     tag: 'Pipeline Reporting',
     module: 'DemandFlow Bridge™ QA',
     screen: 'Lead Qualification & QA Control Center',
     metric: '765 Qualified • 100% Client Ready',
-    desc: 'Bi-directional CRM synchronization with pipeline velocity tracking from discovery to closed-won revenue.',
+    desc: 'Pipeline you can’t trace from first touch to closed-won can’t be trusted in a forecast. Bi-directional CRM sync tracks velocity from discovery to revenue, backed by our 99.8% Data Accuracy SLA.',
     icon: BarChart,
     image: '/demandflow-qualification.png',
     points: [
-      'Native integration with Salesforce, HubSpot, and Microsoft Dynamics',
-      'Opportunity creation and stage tracking attribution in real-time',
-      'Bi-weekly pipeline alignment reviews with your sales leadership',
+      '✔ Native integration with Salesforce, HubSpot, and Microsoft Dynamics',
+      '✔ Opportunity creation and stage-tracking attribution in real time',
+      '✔ Bi-weekly pipeline alignment reviews with your sales leadership',
     ],
   },
 ]
@@ -200,31 +200,31 @@ const WhatTarajDelivers = () => {
       </div>
 
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Turnkey Revenue Infrastructure
+
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              PROPRIETARY SQL DELIVERY ENGINE
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
+            <div className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
               Deliver in SQL?
-            </span>
+            </div>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers sales-accepted opportunities and pre-briefed discovery sessions ready for your Account Executives to close.
+            Stop booking AE time on discovery calls that never had a buyer. TaRaj Global delivers sales-accepted opportunities and pre-briefed discovery sessions, scored by AI-assisted intent signals, verified in-house, and routed via DemandFlow Bridge.
           </p>
         </div>
 
         {/* ── UNIFIED COMMAND THEATER ── */}
         <div className="relative rounded-3xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0B1424] border border-slate-200/90 dark:border-white/10 shadow-xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl">
-          
+
           {/* Top Subtle Cyan Glow Accent Line */}
           <div className="absolute top-0 left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent shadow-[0_0_12px_#00A6FF]" />
 
@@ -246,38 +246,34 @@ const WhatTarajDelivers = () => {
                     onClick={() => setActiveIdx(idx)}
                     className={`
                       relative flex-1 flex flex-col items-center py-2 px-1.5 rounded-xl transition-all duration-300 cursor-pointer text-center group overflow-hidden
-                      ${
-                        isActive
-                          ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
-                          : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
+                      ${isActive
+                        ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
+                        : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
                       }
                     `}
                   >
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span
-                        className={`font-mono text-[11px] font-black ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
-                        }`}
+                        className={`font-mono text-[11px] font-black ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
+                          }`}
                       >
                         {layer.num}
                       </span>
                       <Icon
-                        className={`w-3.5 h-3.5 ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-                        }`}
+                        className={`w-3.5 h-3.5 ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                          }`}
                       />
                     </div>
 
                     <span
-                      className={`text-[11.5px] font-bold tracking-tight whitespace-nowrap ${
-                        isActive
-                          ? 'text-slate-900 dark:text-white'
-                          : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
-                      }`}
+                      className={`text-[11.5px] font-bold tracking-tight whitespace-nowrap ${isActive
+                        ? 'text-slate-900 dark:text-white'
+                        : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
+                        }`}
                     >
                       {layer.shortTitle}
                     </span>
@@ -351,7 +347,7 @@ const WhatTarajDelivers = () => {
 
               {/* Right Column: High-Fidelity DEMANDFLOW Bridge Window (6 Cols) */}
               <div className="lg:col-span-6">
-                <div 
+                <div
                   onClick={() => setIsZoomed(true)}
                   className="relative rounded-2xl overflow-hidden border border-slate-300/80 dark:border-[#00A6FF]/30 bg-background dark:bg-[#060D19] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.15)] group cursor-pointer transition-all duration-300 hover:border-[#00A6FF] hover:shadow-[0_20px_50px_rgba(0,166,255,0.25)]"
                 >

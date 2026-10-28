@@ -73,9 +73,9 @@ const SqlProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1, 1.12, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                }
+                scale: [1, 1.12, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
           }
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ background: 'radial-gradient(circle, #0284c7 0%, transparent 70%)' }}
@@ -86,16 +86,16 @@ const SqlProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1.1, 0.95, 1.1],
-                  opacity: [0.18, 0.28, 0.18],
-                }
+                scale: [1.1, 0.95, 1.1],
+                opacity: [0.18, 0.28, 0.18],
+              }
           }
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           style={{ background: 'radial-gradient(circle, #00d2ff 0%, transparent 70%)' }}
         />
       </div>
 
-      <div className="relative max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── COMPACT SECTION HEADER & TITLE ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5">
           {/* Eyebrow */}
@@ -106,8 +106,9 @@ const SqlProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              SQL | SALES-READY OPPORTUNITIES
+
             </span>
           </motion.div>
 
@@ -143,7 +144,8 @@ const SqlProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto mt-3 font-normal"
           >
-            A multi-stage qualification pipeline converting target prospects into verified, sales-ready opportunities directly in your CRM.
+            A 9-stage qualification framework converting verified target prospects into sales-ready opportunities delivered directly to your CRM across US, EMEA, and APAC.
+
           </motion.p>
         </div>
 

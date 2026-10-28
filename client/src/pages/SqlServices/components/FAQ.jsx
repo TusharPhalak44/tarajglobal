@@ -7,58 +7,58 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is an SQL and how does it differ from an MQL?',
+    question: ' What is a Sales Qualified Lead (SQL) and how does it differ from an MQL?',
     answer:
-      'A Marketing Qualified Lead (MQL) indicates early engagement like an ebook download or webinar attendance. A Sales Qualified Lead (SQL) is significantly further along: they have been directly vetted by our team to confirm explicit budget authority, acute business need, and an active purchase timeframe (< 90-180 days).',
+      ' A Sales Qualified Lead (SQL) is a B2B decision-maker vetted by a live conversation and accepted by sales on confirmed budget authority, documented need, and an active purchase timeframe. An MQL only shows early engagement, such as an ebook download or webinar attendance, and still needs qualification. TaRaj Global delivers SQLs so your AEs skip the guesswork and go straight to discovery.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'What qualification frameworks do you use to validate SQLs?',
+    question: 'Which qualification frameworks does TaRaj Global use to validate SQLs',
     answer:
-      'We customize qualification using enterprise BANT (Budget, Authority, Need, Timeline) and MEDDPICC (Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Implicated Pain, Champion) frameworks, ensuring every lead strictly matches your Account Executives standards.',
+      'TaRaj Global validates SQLs with enterprise BANT (Budget, Authority, Need, Timeline) and MEDDPICC (Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Implicated Pain, Champion) frameworks, customized to your AE sign-off standards. Criteria are agreed before outreach starts, so SDR and AE definitions of “qualified” stay aligned.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'How do you verify decision-making authority and budget ownership?',
+    question: 'HHow do you verify decision-making authority and budget ownership?',
     answer:
-      'Our senior SDRs engage directly with VP and C-Level economic buyers holding budgetary sign-off or active committee sponsorship, eliminating junior gatekeepers and non-budgeted exploratory contacts.',
+      'Senior SDRs speak directly with VP and C-level economic buyers who hold budgetary sign-off or active committee sponsorship. We confirm allocated funding and the approval path in live conversations, then log it in the dossier, so junior gatekeepers and non-budgeted exploratory contacts are filtered out before delivery.',
   },
   {
     id: 'faq-4',
     num: '04',
     question: 'What is your meeting hold rate and how do you handle no-shows?',
     answer:
-      'Our campaigns maintain an average 85%+ meeting hold rate. In the rare event of a prospect cancellation or no-show, our team immediately manages rescheduling, or replaces the record at zero cost under our SLA.',
+      'TaRaj Global campaigns target an average 85%+ meeting hold rate through pre-meeting confirmations, automated reminders, and calendar coordination. If a prospect cancels or no-shows, our team handles the rescheduling immediately, or replaces the record at no extra cost under our SLA.',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'How are discovery calls booked onto our Account Executives calendars?',
+    question: 'How are discovery calls booked onto our Account Executives’ calendars?',
     answer:
-      'Calls are booked directly into your reps calendars via seamless calendar integrations (Calendly, Chili Piper, Google Calendar, or Microsoft Outlook) accompanied by calendar invites and automated attendee reminders.',
+      'Discovery calls are booked directly into your reps’ calendars through native integrations with Google Calendar, Microsoft Outlook, Calendly, and Chili Piper. Each booking includes a calendar invite and automated attendee reminders, with no manual coordination from your team.',
   },
   {
     id: 'faq-6',
     num: '06',
     question: 'What is included in the Pre-Call Intelligence Dossier?',
     answer:
-      'Every booked call arrives with an exhaustive briefing dossier detailing verified executive contact info, confirmed budget allocation, current tech stack & pain points, procurement timeline, and audio/transcript snippets.',
+      ' Every booked call arrives with a briefing dossier covering verified executive contact details, confirmed budget allocation, current tech stack and pain points, procurement timeline, and audio or transcript snippets. Reps open the first call knowing the buyer’s context instead of rediscovering it.',
   },
   {
     id: 'faq-7',
     num: '07',
-    question: 'How does DemandFlow Bridge™ integrate with our existing CRM?',
+    question: ' How does DemandFlow Bridge integrate with Salesforce, HubSpot, and Microsoft Dynamics?',
     answer:
-      'DemandFlow Bridge™ delivers bi-directional synchronization with Salesforce, HubSpot, and Microsoft Dynamics, automatically creating qualified opportunities and syncing real-time pipeline telemetry.',
+      'DemandFlow Bridge, TaRaj Global’s native CRM delivery system, syncs bi-directionally with Salesforce, HubSpot, and Microsoft Dynamics. It automatically creates qualified opportunities and syncs real-time pipeline telemetry, so reps see verified SQLs without manual data entry.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: 'What is Taraj Global’s 1:1 Replacement Warranty policy?',
+    question: ' What is TaRaj Global’s 99.8% Data Accuracy and 1:1 replacement SLA?',
     answer:
-      'If any lead delivered fails to satisfy agreed-upon SQL qualification benchmarks during your discovery conversation, we replace the record immediately with zero friction or additional billing.',
+      'TaRaj Global enforces a 99.8% Data Accuracy SLA on every delivered record. If a lead fails the agreed SQL qualification benchmarks in your discovery conversation, we replace it 1-to-1 through DemandFlow Bridge at no additional billing.',
   },
 ]
 
@@ -84,18 +84,16 @@ const FAQ = () => {
         className={`
           relative group rounded-2xl transition-all duration-300 border overflow-hidden
           hover:-translate-y-0.5
-          ${
-            isOpen
-              ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
-              : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
+          ${isOpen
+            ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
+            : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
           }
         `}
       >
         {/* Top subtle hover / active accent beam */}
         <div
-          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${
-            isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-          }`}
+          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+            }`}
         />
 
         <button
@@ -108,20 +106,18 @@ const FAQ = () => {
         >
           <div className="flex items-start gap-3">
             <span
-              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${
-                isOpen
-                  ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
-                  : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-              }`}
+              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${isOpen
+                ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
+                : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.num}
             </span>
             <span
-              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${
-                isOpen
-                  ? 'text-[#00A6FF]'
-                  : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
-              }`}
+              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${isOpen
+                ? 'text-[#00A6FF]'
+                : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.question}
             </span>
@@ -130,11 +126,10 @@ const FAQ = () => {
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.25 }}
-            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${
-              isOpen
-                ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
-                : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
-            }`}
+            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${isOpen
+              ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
+              : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
+              }`}
             aria-hidden="true"
           >
             <ChevronDown className="w-4 h-4" />

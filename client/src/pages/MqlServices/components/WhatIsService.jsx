@@ -89,14 +89,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               SERVICE DEFINITION • MQL PIPELINE ENGINE
 
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}

@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'FIT',
-    desc: 'Verify ICP alignment & buying authority',
+    desc: 'Match ICP firmographics, installed tech stack, and verified buying authority.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'INTENT',
-    desc: 'Evaluate buying signals & acute commercial need',
+    desc: 'Validate intent surge signals and documented commercial need.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'QUALIFY',
-    desc: 'Validate sales readiness & deliver qualified meetings',
+    desc: 'Confirm sales readiness & route meeting-ready SQLs via DemandFlow Bridge',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              SQL PIPELINE ENGINE
+
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary">
             <motion.span
               className="inline-block mr-3 align-baseline"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -103,7 +104,7 @@ const WhatIsService = () => {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              What Is
+              What Are
             </motion.span>
             <span className="inline-block align-baseline bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
               <motion.span
@@ -113,17 +114,9 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                Sales Qualified
+                Sales Qualified Leads (SQLs)
               </motion.span>
-              <motion.span
-                className="inline-block align-baseline"
-                initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-                whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Leads (SQL)?
-              </motion.span>
+
             </span>
           </h2>
         </div>
@@ -175,7 +168,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              A Sales Qualified Lead (SQL) is a prospective business buyer who has demonstrated meaningful fit, explicit commercial interest, active buying intent, and organizational readiness to engage in high-value sales conversations with your revenue team.
+              A Sales Qualified Lead (SQL) is a verified B2B decision-maker who matches your Ideal Customer Profile (ICP), has shown explicit commercial interest and active buying intent, and has been vetted against your sales criteria before an AE ever takes the meeting.
+
             </motion.p>
 
             <motion.p
@@ -185,7 +179,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike raw contact lists, passive form-fills, or basic Marketing Qualified Leads (MQLs), Taraj Global’s SQL services evaluate decision-making authority, company firmographics, current tech stacks, and active evaluation timelines before sales handoff. The result is pipeline momentum that accelerates sales velocity.
+              Unlike raw contact lists, passive form-fills, or MQLs that stall before sales acceptance, TaRaj Global’s tech-enabled SQL engine combines AI-assisted intent telemetry with live discovery vetting. Backed by our 99.8% Data Accuracy SLA and in-house post-research verification software, your AEs engage only decision-makers with confirmed authority, documented need, and an active evaluation timeline.
+
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION */}
@@ -218,10 +213,10 @@ const WhatIsService = () => {
                         prefersReducedMotion
                           ? {}
                           : {
-                              y: -4,
-                              scale: 1.02,
-                              transition: { duration: 0.22, ease: 'easeOut' },
-                            }
+                            y: -4,
+                            scale: 1.02,
+                            transition: { duration: 0.22, ease: 'easeOut' },
+                          }
                       }
                       className="relative flex flex-col gap-2 p-3.5 sm:p-4 bg-surface transition-all duration-300 cursor-pointer"
                       style={{

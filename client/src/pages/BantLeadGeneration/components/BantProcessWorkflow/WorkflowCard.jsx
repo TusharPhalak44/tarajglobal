@@ -59,7 +59,7 @@ export default function WorkflowCard({
       style={customStyle}
       className={`
         relative group cursor-pointer select-none
-        rounded-xl p-2.5 sm:p-3 xl:p-3.5 flex flex-col justify-between
+        rounded-xl p-2 sm:p-2 xl:p-2.5 flex flex-col justify-start
         transition-all duration-300 backdrop-blur-md
         border ${
           isActive
@@ -97,10 +97,10 @@ export default function WorkflowCard({
       )}
 
       {/* CARD TOP ROW: Step Number, Category & Icon */}
-      <div className="flex items-center justify-between gap-1 w-full mb-1">
+      <div className="flex items-center justify-between gap-1 w-full mb-0.5">
         <div className="flex items-center gap-1.5 min-w-0">
           <span
-            className={`font-mono text-xs sm:text-[13px] font-black tracking-wider transition-colors duration-300 shrink-0 ${
+            className={`font-mono text-xs sm:text-[12.5px] font-black tracking-wider transition-colors duration-300 shrink-0 ${
               isActive
                 ? 'text-primary dark:text-[#00f0ff] dark:drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]'
                 : 'text-slate-700 dark:text-white/90 group-hover:text-primary dark:group-hover:text-white'
@@ -108,7 +108,7 @@ export default function WorkflowCard({
           >
             {step.stepNumber}
           </span>
-          <span className="text-[7.5px] sm:text-[8px] font-mono uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-sky-100/80 dark:bg-[#0099ff]/20 text-sky-700 dark:text-[#00d2ff] border border-sky-200/80 dark:border-[#00d2ff]/30 truncate max-w-[85px] sm:max-w-[100px]">
+          <span className="text-[7px] sm:text-[7.5px] font-mono uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-sky-100/80 dark:bg-[#0099ff]/20 text-sky-700 dark:text-[#00d2ff] border border-sky-200/80 dark:border-[#00d2ff]/30 truncate max-w-[80px] sm:max-w-[95px]">
             {step.category}
           </span>
           {isCompleted && !isActive && (
@@ -133,9 +133,9 @@ export default function WorkflowCard({
       </div>
 
       {/* CARD BODY: Title & Description */}
-      <div className="flex-1 flex flex-col justify-start overflow-hidden pt-0.5">
+      <div className="flex-1 flex flex-col justify-start pt-0.5 overflow-hidden">
         <h3
-          className={`font-heading font-bold text-[11px] sm:text-[11.5px] xl:text-[12px] leading-tight mb-0.5 tracking-tight transition-colors duration-300 ${
+          className={`font-heading font-bold text-[8px] sm:text-[8.5px] xl:text-[8.8px] xl:text-[11px] leading-tight mb-1 tracking-tight transition-colors duration-300 ${
             isActive
               ? 'text-primary dark:text-white dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]'
               : 'text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#e0f7ff]'
@@ -143,7 +143,7 @@ export default function WorkflowCard({
         >
           {step.title}
         </h3>
-        <p className="text-[9px] sm:text-[9.5px] leading-snug text-slate-600 dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-[#cbd5e1] transition-colors duration-200 line-clamp-2 sm:line-clamp-3">
+        <p className="text-[7.8px] sm:text-[8.2px] xl:text-[8.6px] leading-[1.32] text-slate-600 dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-[#cbd5e1] transition-colors duration-200">
           {step.description}
         </p>
       </div>

@@ -294,18 +294,18 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               TARGET AUDIENCE • ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-5xl font-black tracking-tight leading-tight text-text-primary mb-1.5"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
-            Is MQL Lead Generation {' '}
-            <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
-              Right for Your Business
+            Is MQL Lead Generation{' '}
+            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
+              Right for Your Business?
             </span>
           </motion.h2>
 

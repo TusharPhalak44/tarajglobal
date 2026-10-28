@@ -170,7 +170,7 @@ function BANTCommandCenter({ activeStage, setActiveStage, prefersReducedMotion }
           <div className="h-3.5 w-px bg-white/10 ml-1" />
           <div className="flex items-center gap-2">
             <Terminal className="w-3.5 h-3.5 text-[#00A6FF]" />
-            <span className="text-[11px] font-mono font-bold text-white/90 uppercase tracking-wider">
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
               DEMANDFLOW • BANT ENGINE v4.2
             </span>
           </div>
@@ -469,7 +469,7 @@ const Hero = () => {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.08)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#00A6FF]">
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-[#00A6FF]">
                 TECH-POWERED BANT ARCHITECTURE
               </span>
             </motion.div>
@@ -478,17 +478,17 @@ const Hero = () => {
             {/* Main H1 Headline with High-Contrast Gradient */}
             <motion.h1
               {...fadeUp(0.18)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] xl:text-[2.70rem] font-black tracking-tight leading-[1.2] text-white mb-3"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.70rem] font-black tracking-tight leading-[1.2] text-white mb-3"
             >
               <span className="block pb-0.5">Generate BANT Qualified Leads</span>
-              <span
+              <div
                 className="inline-block bg-clip-text text-transparent pb-2 sm:pb-2.5 pt-0.5"
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #00A6FF 0%, #38BDF8 50%, #FFA600 100%)',
                 }}
               >
                 Driven by In House Verification
-              </span>
+              </div>
             </motion.h1>
 
             {/* Sub-headline description */}

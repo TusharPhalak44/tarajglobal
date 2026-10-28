@@ -9,31 +9,31 @@ const AUDIENCES = [
     id: 'saas',
     num: '01',
     label: 'Enterprise SaaS & Cloud',
-    tagline: 'PREDICTABLE ARR PIPELINE',
+    tagline: 'PREDICTABLE ARR PIPELINE | 01',
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'High-growth software companies requiring pre-screened decision-makers who possess allocated budget for software licenses, identified technical bottlenecks, and immediate implementation readiness.',
+      'High-growth software platforms requiring pre-screened decision-makers who possess allocated budget for software licenses, identified technical bottlenecks, and immediate implementation readiness.',
     points: [
-      'Pre-vetted ACV budget fit ($25k - $500k+ annual contract value)',
-      'Verified tech stack displacement readiness and buying intent surges',
-      'Direct access to VPs of Engineering, Product, IT, and Commercial Heads',
+      '✔ Pre-vetted ACV budget fit ($25k - $500k+ annual contract value)',
+      '✔ Verified tech stack displacement readiness, intent surge telemetry, and ICP alignment',
+      '✔ Direct access to VPs of Engineering, Product, IT, and Commercial Heads',
     ],
-    visualType: 'saas',
+    visualType: 'Saas',
   },
   {
     id: 'it',
     num: '02',
     label: 'IT & Cloud Infrastructure',
-    tagline: 'INFRASTRUCTURE & CYBERSECURITY',
+    tagline: 'INFRASTRUCTURE & CYBERSECURITY | 02',
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
       'IT hardware, cybersecurity, and cloud migration providers selling into complex buying committees that require formal budget sign-off and strict compliance vetting.',
     points: [
-      'CISO, CIO, and Director of IT buying authority validation',
-      'Active cybersecurity compliance or modernization mandates (< 6 months)',
-      'Pre-screened RFP and enterprise procurement sign-off schedules',
+      '✔ CISO, CIO, and Director of IT buying authority validation',
+      '✔ Active cybersecurity compliance or modernization mandates (< 6 months)',
+      '✔ Pre-screened RFP schedules backed by direct dials and our 99.8% Data Accuracy SLA',
     ],
     visualType: 'it',
   },
@@ -41,15 +41,15 @@ const AUDIENCES = [
     id: 'b2b-services',
     num: '03',
     label: 'B2B Consulting & Advisory',
-    tagline: 'STRATEGIC ENTERPRISE ENGAGEMENTS',
+    tagline: 'STRATEGIC ENTERPRISE ENGAGEMENTS | 03',
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
       'Management consultancies, legal firms, and corporate advisory practices that require high-level corporate introductions with confirmed discretionary budgets and urgent strategic mandates.',
     points: [
-      'CEO, CFO, and Board-level executive relationship initiation',
-      'Confirmed organizational pain point and advisory requirement',
-      'High-converting discovery meetings without sales friction or cold resistance',
+      '✔ CEO, CFO, and Board-level executive relationship initiation',
+      '✔ Confirmed organizational pain points, tech gaps, and advisory requirements',
+      '✔ High-converting discovery meetings without sales friction or cold resistance',
     ],
     visualType: 'services',
   },
@@ -57,19 +57,20 @@ const AUDIENCES = [
     id: 'enterprise',
     num: '04',
     label: 'Enterprise Complex Solutions',
-    tagline: 'HIGH-TICKET PROCUREMENT CYCLES',
+    tagline: 'HIGH-TICKET PROCUREMENT CYCLES | 04',
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
       'Capital equipment, automation, and supply chain technology vendors navigating 6–18 month evaluation cycles that require confirmed capital expenditure funding.',
     points: [
-      'Multi-stakeholder buying committee consensus mapping',
-      'Pre-screened capital investment budgets for enterprise upgrades',
-      'Documented operational bottleneck and validated purchasing timeline',
+      '✔ Multi-stakeholder buying committee consensus mapping',
+      '✔ Pre-screened capital investment budgets for enterprise upgrades',
+      '✔ Documented operational bottlenecks and automated CRM dossier delivery via DemandFlow Bridge',
     ],
     visualType: 'enterprise',
   },
 ]
+
 
 // Subtle, abstract B2B technology background visuals
 const AudienceVisualBackground = ({ type, color }) => {
@@ -270,11 +271,11 @@ const WhoIsItFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -305,26 +306,26 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Is BANT Lead Generation{' '}
-            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1">
+            <div className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
               Right for Your Business?
-            </span>
+            </div>
           </motion.h2>
 
           <motion.p
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            BANT lead generation helps B2B companies qualify prospects by budget, authority, need, and timeline before sales handoff.
+            Engineered for enterprise SaaS and technology growth leaders requiring validated budget availability, decision-maker sign-off, and predictable closed-loop sales velocity across US, EMEA, and APAC markets.
           </motion.p>
         </div>
 
@@ -347,15 +348,14 @@ const WhoIsItFor = () => {
                       prefersReducedMotion
                         ? {}
                         : {
-                            x: 4,
-                            transition: { duration: 0.2, ease: 'easeOut' },
-                          }
+                          x: 4,
+                          transition: { duration: 0.2, ease: 'easeOut' },
+                        }
                     }
-                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${
-                      isActive
-                        ? 'bg-surface shadow-md'
-                        : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
-                    }`}
+                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
+                      ? 'bg-surface shadow-md'
+                      : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
+                      }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
                       boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : undefined,
@@ -392,9 +392,8 @@ const WhoIsItFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -403,9 +402,8 @@ const WhoIsItFor = () => {
 
                     {/* Main Title */}
                     <div
-                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -575,11 +573,10 @@ const WhoIsItFor = () => {
                     tabRefs.current[idx] = el
                   }}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
-                      ? 'bg-surface shadow-md border-primary'
-                      : 'bg-surface/50 border-border/70'
-                  }`}
+                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
+                    ? 'bg-surface shadow-md border-primary'
+                    : 'bg-surface/50 border-border/70'
+                    }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,
                     minWidth: '220px',
@@ -597,9 +594,8 @@ const WhoIsItFor = () => {
                     </span>
                   </div>
                   <div
-                    className={`text-sm font-bold ${
-                      isActive ? 'text-text-primary' : 'text-text-secondary'
-                    }`}
+                    className={`text-sm font-bold ${isActive ? 'text-text-primary' : 'text-text-secondary'
+                      }`}
                   >
                     {aud.label}
                   </div>

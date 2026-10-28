@@ -298,19 +298,19 @@ const WhoIsHqlFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Target Audience
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Is HQL Lead Generation{' '}
-            <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
+            <div className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
               Right for Your Business?
-            </span>
+            </div>
           </motion.h2>
 
           <motion.p
@@ -345,8 +345,8 @@ const WhoIsHqlFor = () => {
                         }
                     }
                     className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
-                        ? 'bg-surface shadow-md'
-                        : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
+                      ? 'bg-surface shadow-md'
+                      : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
                       }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
@@ -566,8 +566,8 @@ const WhoIsHqlFor = () => {
                   }}
                   onClick={() => handleSelect(idx)}
                   className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
-                      ? 'bg-surface shadow-md border-primary'
-                      : 'bg-surface/50 border-border/70'
+                    ? 'bg-surface shadow-md border-primary'
+                    : 'bg-surface/50 border-border/70'
                     }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,

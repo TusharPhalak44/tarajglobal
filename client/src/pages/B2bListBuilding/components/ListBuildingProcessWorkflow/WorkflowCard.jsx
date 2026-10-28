@@ -63,7 +63,7 @@ export default function WorkflowCard({
       style={customStyle}
       className={`
         relative group cursor-pointer select-none
-        rounded-xl p-2.5 sm:p-3 xl:p-3.5 flex flex-col justify-between
+        rounded-xl p-2 sm:p-2 xl:p-2.5 flex flex-col justify-between
         transition-all duration-300 backdrop-blur-md
         border ${isActive
           ? 'border-primary dark:border-[#00d2ff] bg-gradient-to-b from-blue-50/95 via-sky-50/90 to-white/95 dark:from-[#052654]/95 dark:via-[#031b3e]/95 dark:to-[#021029]/98 shadow-[0_4px_15px_rgba(0,166,255,0.25)] dark:shadow-[0_0_30px_rgba(0,180,255,0.4)] ring-2 ring-primary/30 dark:ring-[#00d2ff]/40'
@@ -139,7 +139,7 @@ export default function WorkflowCard({
       {/* ── CARD MIDDLE: Title ── */}
       <div className="my-auto py-0.5">
         <h3
-          className={`text-[11.5px] xl:text-[12.5px] font-black tracking-tight leading-tight line-clamp-1 transition-colors ${isActive
+          className={`text-[11.5px] xl:text-[12.5px] font-black tracking-tight leading-tight  transition-colors ${isActive
             ? 'text-primary dark:text-[#00e5ff]'
             : isCompleted
               ? 'text-slate-900 dark:text-white'
@@ -148,7 +148,7 @@ export default function WorkflowCard({
         >
           {step.title}
         </h3>
-        <p className="text-[9.5px] xl:text-[10px] text-slate-500 dark:text-slate-300 line-clamp-2 leading-tight mt-0.5 font-normal">
+        <p className="text-[8px] sm:text-[8.5px] xl:text-[8.8px] text-slate-500 dark:text-slate-300  leading-tight mt-0.5 font-normal">
           {step.description}
         </p>
       </div>

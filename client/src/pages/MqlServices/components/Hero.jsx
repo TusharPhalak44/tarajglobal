@@ -362,7 +362,7 @@ const Hero = () => {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
                 TECH-ENABLED DEMAND GENERATION • MQL ARCHITECTURE
 
               </span>
@@ -371,15 +371,15 @@ const Hero = () => {
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
-              <span className="block pb-1 sm:pb-1.5">SCALABLE B2B</span>
-              <span
+              <span className="block pb-1 sm:pb-1.5">SCALABLE B2B MARKETING</span>
+              <div
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
-                MARKETING QUALIFIED LEADS
-              </span>
+                QUALIFIED LEADS
+              </div>
             </motion.h1>
 
             {/* Description */}
@@ -388,7 +388,7 @@ const Hero = () => {
               className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
             >
               Fuel your marketing automation and nurture queues with verified B2B contacts showing active category engagement, mapped and AI-scored against your firmographic and technographic ICP parameters.
-          </motion.p>
+            </motion.p>
 
             {/* CTAs */}
             <motion.div {...fadeUp(0.42)} className="flex flex-col sm:flex-row flex-wrap gap-3.5">

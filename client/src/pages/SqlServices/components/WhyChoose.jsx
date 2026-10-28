@@ -14,40 +14,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Verified Buying Authority',
-    desc: 'Engage exclusively with C-Level and VP-level budget authorities who hold sign-off power, completely bypassing non-budgeted gatekeepers.',
+    title: 'Verified Buying Authority & Sponsorship ',
+    desc: 'Junior evaluators can’t sign contracts. Our senior SDRs engage VP and C-level budget holders with sign-off power or active committee sponsorship, so non-budgeted gatekeepers never reach your AEs.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'BANT & MEDDPICC Rigor',
-    desc: 'Every prospect passes stringent qualification criteria confirming active evaluation timelines, confirmed budgets, and acute operational pain.',
+    title: 'BANT & MEDDPICC Qualification Rigor',
+    desc: ' Leads that clear only one or two gates stall late in the cycle. Every prospect is screened for confirmed budget, active evaluation timeline, and acute operational pain, then CDQA-audited before delivery.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: '85%+ Meeting Hold Rate',
-    desc: 'Pre-meeting confirmation cadences and calendar coordination ensure high attendance, with immediate no-cost rescheduling for any no-shows.',
+    title: '85%+ Meeting Hold Rate ',
+    desc: 'Meetings that never happen waste AE calendars. Pre-meeting confirmation cadences and calendar coordination drive attendance, with immediate no-cost rescheduling for any no-show.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Turnkey Calendar Integration',
-    desc: 'Discovery calls scheduled directly into your Account Executives calendars with complete pre-call intelligence dossiers and call recording snippets.',
+    title: 'Turnkey AE Calendar Integration',
+    desc: 'Manual scheduling and unbriefed reps slow every deal. Discovery calls land directly on your AEs’ calendars, each with a complete pre-call intelligence dossier and call recording snippets.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: '1:1 Replacement Warranty',
-    desc: 'If any delivered lead fails to satisfy agreed-upon qualification criteria during your discovery session, we replace it at zero cost.',
+    title: '99.8% Accuracy & 1:1 Replacement SLA',
+    desc: 'Unqualified leads shouldn’t cost you budget. Backed by our 99.8% Data Accuracy SLA, any lead failing agreed SQL criteria in your discovery session is replaced 1-to-1 via DemandFlow Bridge at no extra cost.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -86,9 +86,9 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         prefersReducedMotion
           ? {}
           : {
-              y: -6,
-              scale: 1.02,
-            }
+            y: -6,
+            scale: 1.02,
+          }
       }
       className="relative group rounded-xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_10px_30px_-5px_rgba(0,166,255,0.35),0_0_15px_-2px_rgba(0,166,255,0.2)] dark:hover:border-primary/50 transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
@@ -183,7 +183,7 @@ const WhyChoose = () => {
             className="flex items-center justify-center mb-2.5"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+              TECH-ENABLED VALUE PROPOSITION
             </span>
           </motion.div>
 
@@ -192,9 +192,9 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
+            <div className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </div>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               SQL Lead Generation?
             </span>
@@ -207,7 +207,7 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Strict Sales Qualified Lead criteria delivering verified buyer authority and urgent purchase timelines to maximize your sales velocity.
+            Strict Sales Qualified Lead criteria backed by in-house verification infrastructure, delivering verified buyer authority and active purchase timelines straight into your CRM via DemandFlow Bridge.
           </motion.p>
         </div>
 
