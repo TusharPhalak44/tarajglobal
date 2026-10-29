@@ -96,7 +96,7 @@ const ENGINE_LAYERS = [
     module: 'DemandFlow Bridge™ Matrix',
     screen: 'Dynamic ICP & Pain Matrix',
     metric: '95.5% Match Rate • A/B Conversion Lift',
-    desc: 'AEs lose deals by walking into calls blind. Each dossier arrives enriched with intent telemetry, tech stack, contract end-dates, pain points, and budget parameters, so the first call starts at discovery, not basics.',
+    desc: 'AEs lose deals by walking into calls blind. Each dossier arrives enriched with intent telemetry, tech stack, contract end-dates, pain points, and budget parameters, so the first c    all starts at discovery, not basics.',
     icon: Cpu,
     image: '/demandflow-personalization.png',
     points: [
