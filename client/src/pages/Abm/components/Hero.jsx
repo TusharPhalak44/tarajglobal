@@ -298,7 +298,7 @@ const Hero = () => {
           <div className="flex flex-col justify-center order-1 lg:order-1">
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
               <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
-                ENTERPRISE ABM • TARGETED PIPELINE ENGINE
+                TECH-ENABLED ABM ARCHITECTURE
               </span>
             </motion.div>
 
@@ -306,12 +306,12 @@ const Hero = () => {
               {...fadeUp(0.2)}
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
-              <span className="block pb-1 sm:pb-1.5">HIGH-PRECISION B2B</span>
+              <span className="block pb-1 sm:pb-1.5">Account-Based Marketing </span>
               <div
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
-                ACCOUNT-BASED MARKETING
+                That Turns Target Accounts Into Pipeline
               </div>
             </motion.h1>
 
@@ -319,7 +319,7 @@ const Hero = () => {
               {...fadeUp(0.32)}
               className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
             >
-              Penetrate must-win enterprise logos with multi-threaded buying committee mapping, bespoke 1:1 personalized value narratives, and real-time intent telemetry powered by DemandFlow Bridge across US, EMEA, and APAC.
+              Stop spreading outreach across accounts that were never going to buy. TaRaj Global pairs AI-assisted account scoring with our proprietary verification engine to engage buying committees at high-fit enterprise accounts across US, EMEA, and APAC, routed straight into your CRM. 
             </motion.p>
 
             <motion.div {...fadeUp(0.42)} className="flex flex-col sm:flex-row flex-wrap gap-3.5">
@@ -332,7 +332,7 @@ const Hero = () => {
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
                 }}
               >
-                Start an ABM Campaign
+                 Deploy Custom ABM Campaign 
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -342,7 +342,7 @@ const Hero = () => {
                 className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer hover:brightness-110"
                 style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
               >
-                Explore ABM Process
+             Explore ABM Architecture
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
               </button>
             </motion.div>

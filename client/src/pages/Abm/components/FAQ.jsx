@@ -7,58 +7,58 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is Account-Based Marketing (ABM)?',
+    question: ' What is Account-Based Marketing (ABM)?',
     answer:
-      'Account-Based Marketing (ABM) is a strategic B2B growth methodology where marketing and sales teams unite to target, engage, and close specific high-value enterprise accounts with hyper-personalized campaigns, rather than casting a broad net for generic volume.',
+      'Account-based marketing (ABM) is a B2B strategy in which sales and marketing agree on best-fit target accounts upfront, then engage every member of each buying committee with coordinated, personalized outreach. TaRaj Global runs ABM with AI-assisted account scoring, in-house verified contact data, and CRM-ready delivery through DemandFlow Bridge.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'How does ABM differ from traditional B2B lead generation?',
+    question: ' How does ABM differ from traditional B2B lead generation?',
     answer:
-      'Traditional lead generation focuses on top-of-funnel volume, often delivering single, unqualified contacts who lack buying authority. ABM flips the funnel: it identifies best-fit target accounts upfront, maps the full 6–10 member buying committee, and builds unanimous purchase consensus.',
+      'Traditional lead generation casts a broad net and passes volume to sales, much of it unqualified. ABM works in reverse: it selects high-fit accounts first and then engages the whole buying committee, so your team spends time on companies that can actually buy.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'What types of businesses benefit most from ABM services?',
+    question: ' What types of businesses benefit most from ABM?',
     answer:
-      'B2B SaaS companies, enterprise software vendors, IT service providers, and technology firms with high annual contract values (ACVs of $50k to $1M+) and complex, multi-stakeholder buying cycles benefit most from Account-Based Marketing.',
+      'ABM suits B2B companies that sell complex, high-value solutions to multi-stakeholder buying committees, such as enterprise SaaS, IT and cloud infrastructure providers, capital equipment and automation vendors, and consulting and advisory firms with long sales cycles.',
   },
   {
     id: 'faq-4',
     num: '04',
-    question: 'How do you select and tier target accounts for an ABM campaign?',
+    question: 'How do you select and tier target accounts?',
     answer:
-      'We analyze your historical closed-won patterns, define your Ideal Customer Profile (ICP), map total addressable market (TAM), and tier accounts into Tier 1 (1:1 strategic bespoke), Tier 2 (1:Few vertical clusters), and Tier 3 (1:Many intent-driven) based on revenue potential and intent signals.',
+      'We build your ICP with sales leadership, then tier accounts by firmographics, installed tech stack, revenue potential, and live intent signals, refined with AI-assisted lookalike modeling. Tier 1 accounts receive the most personalized, high-touch engagement, and lower tiers get scaled programs.',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'Which channels do you orchestrate for ABM outreach?',
+    question: 'What channels do you use for ABM outreach?',
     answer:
-      'We deploy synchronized multi-touch cadences across executive email sequences, personalized LinkedIn outreach, targeted digital content syndication, and senior SDR phone connects, ensuring consistent aircover across the entire buying committee.',
+      ' We coordinate executive email, direct-dial phone outreach, LinkedIn messaging, and targeted digital touchpoints across each buying committee, run by senior SDRs rather than automated bot forms and orchestrated through DemandFlow Bridge.',
   },
   {
     id: 'faq-6',
     num: '06',
-    question: 'How does real-time intent telemetry enhance ABM results?',
+    question: ' How does intent data enhance ABM campaigns?',
     answer:
-      'Intent data detects when target accounts are actively researching solutions in your category—both on your digital assets and across third-party B2B publishers—allowing your sales team to strike at peak purchase urgency and accelerate deal velocity.',
+      'Intent data shows which target accounts are researching your category, comparing vendors, or engaging with your content. TaRaj Global combines AI-assisted intent signals with first-party engagement tracking, so outreach is prioritized toward in-market accounts instead of cold ones.',
   },
   {
     id: 'faq-7',
     num: '07',
-    question: 'What is TaRaj Global 99.8% Data Accuracy and replacement SLA?',
+    question: 'How do you measure the success of an ABM program?',
     answer:
-      'TaRaj Global enforces a strict 99.8% Data Accuracy SLA on all contact and committee data. Every record is verified through our in-house post-research verification tool. If any contact bounces or fails criteria, it is replaced 1-to-1 at no extra cost.',
+      'We track account-level metrics rather than lead counts: target accounts engaged, buying committee coverage, opportunities created, and pipeline velocity from first touch to closed-won. CRM sync attributes every opportunity to its account, and bi-weekly reviews align results with your sales leadership.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: 'What role does DemandFlow Bridge play in ABM campaign delivery?',
+    question: 'What role does DemandFlow Bridge play in your ABM services?',
     answer:
-      'DemandFlow Bridge powers our end-to-end ABM infrastructure—from account scoring and committee org mapping to automated multi-channel sequences, real-time intent alerts, and instant 2-way CRM synchronization into Salesforce or HubSpot.',
+      'DemandFlow Bridge is TaRaj Global’s native delivery platform. It centralizes account tiering, committee data, intent signals, outreach cadences, and CRM sync in one workflow, giving you a single view of every target account from first touch to opportunity.',
   },
 ]
 
@@ -192,7 +192,8 @@ const FAQ = () => {
             className="flex items-center justify-center mb-2.5"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              YOUR ABM QUESTIONS, ANSWERED
+              SOMETHING ON YOUR MIND?
+
             </span>
           </motion.div>
 
@@ -203,9 +204,9 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">FREQUENTLY ASKED </span>
             <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Questions
+              QUESTIONS
             </div>
           </motion.h2>
 
@@ -216,7 +217,7 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Everything you need to know about our enterprise ABM orchestration, buying committee mapping, intent telemetry, and CRM handoff.
+            Everything you need to know about TaRaj Global’s account-based marketing methodology, account tiering, intent-driven engagement, and CRM-ready delivery across US, EMEA, and APAC.
           </motion.p>
         </div>
 

@@ -13,40 +13,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Surgical Account Selection',
-    desc: 'Campaigns calibrated strictly around verified high-yield enterprise logos matching your exact ICP criteria. Every outreach decision is grounded in deep firmographic and technographic fit.',
+    title: 'ICP-Matched Target Account Selection',
+    desc: 'Broad lists waste outreach on accounts that were never going to buy. Every target account is tiered on firmographic fit, tech stack, and live intent, refined with AI-assisted lookalike modeling.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Decision-Maker Intelligence',
-    desc: 'Direct access to mapped buying committees, key economic buyers, and internal champions instead of broad, untargeted contact lists that stall pipeline.',
+    title: 'Verified Buying Committee Intelligence',
+    desc: 'Single-threaded deals collapse when the champion leaves. We map and verify champions, economic buyers, and evaluators at each account, backed by our 99.8% Data Accuracy SLA.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: '1:1 Executive Personalization',
-    desc: 'Account-specific, 1-to-1 executive messaging tailored by industry context, role priorities, and real enterprise pain points to drive unanimous committee consensus.',
+    title: 'Personalized Account Engagement',
+    desc: 'Generic messaging is ignored by senior executives. Account-specific outreach reflects each committee member’s industry context, role priorities, and real enterprise initiatives.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Real-Time Intent Telemetry',
-    desc: 'Multi-channel intent monitoring and engagement telemetry across touchpoints to isolate accounts exhibiting active evaluation surges at peak buying windows.',
+    title: ' AI-Assisted Account & Intent Intelligence',
+    desc: 'Without intent visibility, teams guess which accounts are ready. AI-assisted telemetry across channels identifies accounts showing active buying surges, so reps engage at the right moment.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: 'Revenue-Driven Handoff',
-    desc: 'Structured lead handoffs with complete account dossiers, consent timestamps, and screening notes delivered directly to your CRM to accelerate SDR and AE deal closing.',
+    title: 'Revenue-Driven Pipeline Execution',
+    desc: 'ABM that can’t show pipeline loses budget. CDQA-audited opportunities route into your CRM with account-level attribution, so sales focuses on qualified accounts and marketing proves impact.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -171,32 +171,22 @@ const WhyChoose = () => {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#00A6FF]/10 rounded-full blur-[140px] pointer-events-none" />
       </div>
 
-      <div className="relative max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ── COMPACT, CLEAN HEADER ── */}
-        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
-          <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center justify-center mb-2.5"
-          >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+      <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-10 lg:mb-12">
+          <motion.div {...fadeUp(0)} className="flex items-center justify-center mb-3">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               WHY CHOOSE TARAJ GLOBAL • ENTERPRISE ADVANTAGE
             </span>
           </motion.div>
 
           <motion.h2
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
+            {...fadeUp(0.08)}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-3 uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
-            <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              ACCOUNT-BASED MARKETING (ABM)?
-            </div>
+            <span>Why Choose Taraj Global for </span>
+            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
+              Account-Based Marketing?
+            </span>
           </motion.h2>
 
           <motion.p
@@ -206,7 +196,7 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            We merge surgical account targeting, multi-stakeholder organizational mapping, and DemandFlow Bridge telemetry to deliver qualified enterprise pipeline with verified revenue attribution.
+            Enterprise ABM backed by in-house verification infrastructure, delivering mapped buying committees and in-market account engagement straight into your CRM via DemandFlow Bridge.
           </motion.p>
         </div>
 

@@ -23,15 +23,15 @@ const FLOW_ITEMS = [
     id: 0,
     num: '01',
     category: 'ACCOUNT SELECTION',
-    engineLabel: 'Tier-1 TAL Scoring Core',
-    engineAction: 'Firmographic & Technographic Gate',
+    engineLabel: 'AI-Assisted Account Scoring',
+    engineAction: 'Firmographic + Intent Fit',
     problem: {
-      title: '01. Wasted Outreach on Non-Buyers',
+      title: '01. Outreach Wasted on Non-ICP Accounts',
       sub: '',
       icon: FilterX,
     },
     solution: {
-      title: '01. High-Yield Enterprise Logos',
+      title: '01. Tiered, ICP-Fit Target Accounts',
       sub: '',
       icon: Focus,
     },
@@ -41,18 +41,18 @@ const FLOW_ITEMS = [
   {
     id: 1,
     num: '02',
-    category: 'DECISION AUTHORITY',
-    engineLabel: 'Buying Committee Org Matrix',
-    engineAction: '6–10 Multi-Persona Mapping',
+    category: 'REVOPS ALIGNMENT',
+    engineLabel: 'DemandFlow Bridge',
+    engineAction: 'Shared Account View + CRM Sync',
     problem: {
-      title: '02. Single-Threaded Deal Risk',
+      title: '02. Sales & Marketing Work in Silos',
       sub: '',
-      icon: MailX,
+      icon: Workflow,
     },
     solution: {
-      title: '02. Multi-Threaded Consensus',
+      title: '02. One Aligned Account List',
       sub: '',
-      icon: MessageSquareQuote,
+      icon: CheckCircle2,
     },
     color: '#8B5CF6',
     gradient: 'from-[#8B5CF6] to-[#6D28D9]',
@@ -61,17 +61,17 @@ const FLOW_ITEMS = [
     id: 2,
     num: '03',
     category: 'EXECUTIVE ENGAGEMENT',
-    engineLabel: '1:1 Bespoke Narrative Engine',
-    engineAction: 'Persona-Calibrated Value Briefings',
+    engineLabel: '1:1 Account Personalization',
+    engineAction: 'Role-Based Messaging',
     problem: {
-      title: '03. Generic Outreach Ignored',
+      title: '03. Generic Outreach Gets Ignored',
       sub: '',
-      icon: ShieldAlert,
+      icon: MailX,
     },
     solution: {
-      title: '03. High-Response Executive Dialogue',
+      title: '03. Executive Replies & Engagement',
       sub: '',
-      icon: CheckCircle2,
+      icon: MessageSquareQuote,
     },
     color: '#10B981',
     gradient: 'from-[#10B981] to-[#059669]',
@@ -79,18 +79,18 @@ const FLOW_ITEMS = [
   {
     id: 3,
     num: '04',
-    category: 'GTM ALIGNMENT',
-    engineLabel: 'Unified RevOps Cadence',
-    engineAction: 'DemandFlow Single Pane of Glass',
+    category: 'INTENT TELEMETRY',
+    engineLabel: 'Live Intent Telemetry',
+    engineAction: 'Surge & Engagement Signals',
     problem: {
-      title: '04. Siloed Sales & Marketing GTM',
+      title: '04. Blind to Account Intent',
       sub: '',
-      icon: Workflow,
+      icon: EyeOff,
     },
     solution: {
-      title: '04. Synchronized Outbound Aircover',
+      title: '04. Accounts Engaged When In-Market',
       sub: '',
-      icon: Send,
+      icon: BarChart3,
     },
     color: '#F59E0B',
     gradient: 'from-[#F59E0B] to-[#D97706]',
@@ -98,18 +98,18 @@ const FLOW_ITEMS = [
   {
     id: 4,
     num: '05',
-    category: 'PIPELINE VELOCITY',
-    engineLabel: 'Intent Telemetry & Enablement',
-    engineAction: 'Real-Time Surge Triggers & Collateral',
+    category: 'DEAL MOMENTUM',
+    engineLabel: 'Verified Committee Mapping',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: '05. Stalled 9-Month Enterprise Cycles',
+      title: '05. Stalled Enterprise Sales Cycles',
       sub: '',
-      icon: EyeOff,
+      icon: ShieldAlert,
     },
     solution: {
-      title: '05. Accelerated Won Enterprise ACV',
+      title: '05. Multi-Threaded Deal Momentum',
       sub: '',
-      icon: BarChart3,
+      icon: Send,
     },
     color: '#EC4899',
     gradient: 'from-[#EC4899] to-[#BE185D]',
@@ -318,14 +318,14 @@ const ProblemsSolved = () => {
           </div>
 
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
-            <span>What Problems Do </span>
+            <span> WHAT PROBLEMS DOES </span>
             <span className="inline-block bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              ABM Services Solve?
+             ACCOUNT-BASED MARKETING
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From wasted outreach on non-buyers to stalled enterprise buying cycles, we transform account bottlenecks into forecastable won ACV using multi-stakeholder mapping and DemandFlow Bridge CRM routing.
+             From wasted outreach to stalled sales cycles, we turn ABM bottlenecks into engaged buying committees using in-house data verification and DemandFlow Bridge CRM routing.
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-3">
@@ -566,14 +566,14 @@ const ProblemsSolved = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-tight truncate flex items-center justify-between">
-                        <span className="truncate">{item.problem.title}</span>
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-snug flex items-center justify-between">
+                        <span>{item.problem.title}</span>
                         {isActive && (
                           <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
                       {item.problem.sub ? (
-                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                           {item.problem.sub}
                         </div>
                       ) : null}
@@ -758,11 +758,11 @@ const ProblemsSolved = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-tight truncate">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
                       {item.solution.sub ? (
-                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                           {item.solution.sub}
                         </div>
                       ) : null}
@@ -790,12 +790,12 @@ const ProblemsSolved = () => {
             >
               <currentItem.problem.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white">
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
                 {currentItem.problem.title}
               </div>
               {currentItem.problem.sub ? (
-                <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
                   {currentItem.problem.sub}
                 </div>
               ) : null}
@@ -843,12 +843,12 @@ const ProblemsSolved = () => {
             >
               <currentItem.solution.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white">
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
                 {currentItem.solution.title}
               </div>
               {currentItem.solution.sub ? (
-                <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
                   {currentItem.solution.sub}
                 </div>
               ) : null}

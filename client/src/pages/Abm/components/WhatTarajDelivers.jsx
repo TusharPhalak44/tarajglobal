@@ -21,109 +21,114 @@ const ENGINE_LAYERS = [
   {
     num: '01',
     layer: '01 — Strategy',
-    title: 'DemandFlow Bridge — Target Account Selection',
+    title: 'DemandFlow Bridge: Tiered Target Account Matrix',
     shortTitle: 'TAL Strategy',
-    tag: 'Account Tiers & TAM Matrix',
+    tag: 'TARGET ACCOUNT SELECTION',
     module: 'DemandFlow Bridge™ Admin',
     screen: 'Target Account List (TAL) Allocation & ICP Tiering',
     metric: 'Global 2000 Mapped • High-ARR Accounts',
-    desc: 'We analyze your closed-won historical patterns, define high-fit firmographic and technographic thresholds, and tier your target account list into 1:1, 1:Few, and 1:Many campaigns.',
+    desc: 'Accounts chosen on gut feel waste an entire campaign. We tier target accounts by firmographics, tech stack, and revenue potential, refined with AI-assisted lookalike modeling.',
     icon: Target,
     image: '/demandflow-admin.png',
     points: [
-      '✔ Custom account scoring based on revenue thresholds, headcount, and installed tech stacks',
-      '✔ Tier-1 named accounts assigned dedicated executive research and bespoke narratives',
-      '✔ Continuous lookalike modeling expanding your target addressable market (TAM)',
+      '✔ Tier 1, 2, and 3 account lists scored on firmographic fit and live intent',
+      '✔ Positive and negative account screening filters tied to your ICP',
+      '✔ TAM white-space discovery and lookalike account expansion',
     ],
   },
   {
     num: '02',
     layer: '02 — Intelligence',
-    title: 'DemandFlow Bridge — Buying Committee Intelligence',
+    title: 'DemandFlow Bridge: Verified Buying Committee Data',
     shortTitle: 'Committee Map',
-    tag: 'Stakeholder Hierarchy',
+    tag: 'BUYING COMMITTEE DATA',
     module: 'DemandFlow Bridge™ DBMS',
     screen: 'Organizational Chart & Decision-Maker Matrix Hub',
     metric: '99.8% Data Accuracy SLA • 6–10 Roles per Account',
-    desc: 'Every target account buying committee is mapped across economic buyers, technical evaluators, champions, and procurement heads, backed by our 99.8% Data Accuracy SLA.',
+    desc: ' Stale contacts burn sender reputation and miss the people who actually decide. Every stakeholder in each account’s committee is validated by our AI-assisted, in-house verification tool, backed by our 99.8% Data Accuracy SLA.',
     icon: Users,
     image: '/demandflow-dbms.png',
     points: [
       '✔ Multi-persona mapping across C-suite, VPs, and budget-holding Directors',
-      '✔ Triple-layer SMTP ping and phone extension verification on every contact',
-      '✔ Zero-bounce replacement guarantee ensuring clean, active CRM pipeline records',
+      '✔ Zero-bounce SMTP validation on every email address',
+      '✔ Direct dials and compliant mobile numbers under ISO 27001:2022, GDPR, and CCPA safeguards',
+
     ],
   },
   {
     num: '03',
     layer: '03 — Content',
-    title: 'DemandFlow Bridge — Bespoke 1:1 Value Narratives',
+    title: 'DemandFlow Bridge: Account Intent Radar & Surge Signals',
     shortTitle: '1:1 Narratives',
-    tag: 'Executive Personalization',
+    tag: 'INTENT & SURGE SIGNALS',
     module: 'DemandFlow Bridge™ Sequences',
     screen: 'Multi-Persona Messaging Architecture & Collateral Engine',
     metric: 'Tailored ROI Models • Executive Briefing Kits',
-    desc: 'We produce bespoke 1:1 executive briefing collateral, customized ROI models, and role-specific case studies addressing the strategic corporate priorities of each buying persona.',
+    desc: 'Teams blind to account intent contact accounts that aren’t buying. AI-assisted intent telemetry highlights target accounts researching your category, comparing vendors, or engaging with your content.',
     icon: Layers,
     image: '/demandflow-sequences.png',
     points: [
-      '✔ Highly personalized 1:1 and 1:few messaging playbooks tailored by role',
-      '✔ Custom case studies and ROI calculators mapped to account-specific tech stacks',
-      '✔ Executive aircover collateral resolving security, procurement, and architecture doubts',
+      '✔ Topic and keyword surge detection across B2B networks',
+       '✔ First-party engagement tracking on emails, content, and web touchpoints',
+       '✔ Buying-stage classification and prioritized in-market account alerts',
+
     ],
   },
   {
     num: '04',
     layer: '04 — Orchestration',
-    title: 'DemandFlow Bridge — Omnichannel Outbound Cadence',
+    title: 'DemandFlow Bridge: 1:1 Account-Specific Personalization',
     shortTitle: 'Omnichannel',
-    tag: 'Synchronized Touches',
+    tag: 'ACCOUNT PERSONALIZATION',
     module: 'DemandFlow Bridge™ Campaigns',
     screen: 'Synchronized Multi-Touch Outbound Cadence Console',
     metric: 'Email + LinkedIn + Tele-Connect Synchronized',
-    desc: 'Deploy coordinated touches across executive email cadences, personalized LinkedIn outreach, targeted digital content syndication, and senior SDR phone discussions.',
+    desc: 'Generic outreach gets ignored by senior buyers. Messaging and assets are tailored to each account’s industry context, role priorities, and real enterprise initiatives.',
     icon: Share2,
     image: '/demandflow-campaigns.png',
     points: [
-      '✔ Multi-touch outreach cadences harmonized across all committee stakeholders',
-      '✔ High-touch executive touchpoints establishing immediate credibility and brand authority',
-      '✔ Real-time engagement alerts triggering timely sales team interventions',
+      '✔ Role-specific value propositions for each buying-committee member',
+      '✔ Account-specific assets, briefings, and executive messaging',
+      '✔ A/B testing of angles and offers by account tier',
+
     ],
   },
   {
     num: '05',
     layer: '05 — Telemetry',
-    title: 'DemandFlow Bridge — Intent Surge Telemetry',
+    title: 'DemandFlow Bridge: Multi-Channel ABM Orchestration',
     shortTitle: 'Intent Telemetry',
-    tag: 'Behavioral Signals',
+    tag: 'MULTI-CHANNEL ORCHESTRATION',
     module: 'DemandFlow Bridge™ Tracking',
     screen: 'Real-Time Intent Telemetry & Content Consumption Analytics',
     metric: 'Live Intent Surges • Dwell-Time Tracking',
-    desc: 'Track content consumption depth, repeat visits, reading dwell velocity, and third-party category surge telemetry to alert sales teams when accounts enter active purchase cycles.',
+    desc: 'Single-touch outreach never reaches a whole committee. Senior SDRs coordinate email, phone, and LinkedIn touches across stakeholders on a synchronized cadence, prioritized by intent.',
     icon: Activity,
     image: '/demandflow-tracking.png',
     points: [
-      '✔ First-party content consumption analytics tracking account-level interest spikes',
-      '✔ Third-party topic surge monitoring across thousands of B2B digital publications',
-      '✔ Automated lead scoring escalating surging accounts straight to Account Executives',
+      '✔ Synchronized multi-touch cadences across 14–21 day conversational sprints',
+       '✔ Live conversations by senior SDRs, never automated bot forms',
+       '✔ Automated follow-up logic and engagement tracking per stakeholder',
+
     ],
   },
   {
     num: '06',
     layer: '06 — CRM Sync',
-    title: 'DemandFlow Bridge — Sales Handoff & Closed-Loop Sync',
+    title: ' DemandFlow Bridge: Account Dossiers & Meeting Handoff',
     shortTitle: 'CRM Routing',
-    tag: 'Closed-Loop Pipeline',
+    tag: 'ACCOUNT INTELLIGENCE & HANDOFF',
     module: 'DemandFlow Bridge™ Delivery',
     screen: 'Real-Time Enterprise CRM Sync & SDR Handover Protocol',
     metric: 'Salesforce & HubSpot Native • Real-Time Webhooks',
-    desc: 'Complete account dossiers with verified stakeholder details, discovery notes, and full engagement history are synced straight into Salesforce or HubSpot with zero manual data entry.',
+    desc: 'Reps who engage a warmed account without context lose momentum. Each opportunity arrives with a dossier covering committee, pain points, tech stack, and intent history, with discovery meetings booked on AE calendars.',
     icon: Cpu,
     image: '/demandflow-qualification.png',
     points: [
-      '✔ Native 2-way integration with Salesforce, HubSpot, Marketo, and custom webhooks',
-      '✔ Full buying committee dossiers and discovery transcripts provided before meetings',
-      '✔ Real-time revenue attribution and pipeline velocity tracking in your CRM dashboard',
+      '✔ Stakeholder map, documented pain points, and installed tech stack',
+       '✔ Intent history and engagement trail across every touch',
+       '✔ Discovery meetings booked directly on AE calendars',
+
     ],
   },
 ]
@@ -170,19 +175,19 @@ const WhatTarajDelivers = () => {
         <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-2 mb-2">
             <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
-              PROPRIETARY ABM ENGINE • DEMANDFLOW BRIDGE
+              PROPRIETARY ABM DELIVERY ENGINE
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span>What Does Taraj Global </span>
+            <span>WHAT DOES TARAJ GLOBAL </span>
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              Deliver?
+             DELIVER IN ABM
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            TaRaj Global delivers high-precision Account-Based Marketing programs backed by multi-stakeholder committee mapping, 1:1 executive personalization, and closed-loop CRM synchronization.
+            Stop running campaigns that no one on the buying committee sees. TaRaj Global delivers tiered target accounts, mapped committees, and engaged opportunities, scored by AI-assisted intent signals, verified in-house, and routed via DemandFlow Bridge.
           </p>
         </div>
 

@@ -7,64 +7,64 @@ const AUDIENCES = [
   {
     id: 'saas',
     num: '01',
-    label: 'B2B SaaS & Cloud Platforms',
-    tagline: 'HIGH-ARR PIPELINE & EXPANSION',
+    label: 'Enterprise SaaS & Cloud',
+    tagline: 'HIGH-ARR TARGET ACCOUNTS',
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Engage CTOs, VPs of Product, and finance leaders across Tier-1 enterprise accounts with multi-threaded, persona-calibrated ABM campaigns that accelerate ARR velocity.',
+      ' Spreading outreach across thousands of accounts dilutes every message. We focus SaaS teams on high-ARR target accounts and engage CTOs, VPs of Product, and engineering leaders with multi-threaded, personalized campaigns.',
     points: [
-      '✔ Account-level targeting filtered by verified software stack and ARR growth stages ($10M to $100M+)',
-      '✔ Bespoke 1:1 narratives addressing SaaS evaluation criteria, compliance audits, and security benchmarks',
-      '✔ Multi-stakeholder touches engaging both technical evaluators and economic budget signers simultaneously',
+      '✔ Account-level targeting filtered by verified tech stack, growth stage, and ARR band',
+      '✔ Messaging aligned to evaluation criteria, security reviews, and proofs of concept',
+      '✔ Multi-stakeholder touchpoints reaching technical evaluators and finance leaders',
     ],
     visualType: 'saas',
   },
   {
     id: 'it',
     num: '02',
-    label: 'Enterprise Technology & IT Services',
-    tagline: 'INFRASTRUCTURE & ARCHITECTURE',
+    label: 'IT & Cloud Infrastructure',
+    tagline: 'COMPLEX BUYING COMMITTEES',
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Connect with engineering directors, IT executives, and enterprise architects evaluating platform modernization, cloud migration, and infrastructure upgrades.',
+      ' Managed service providers, cloud migration specialists, and cybersecurity vendors win or lose on committee consensus. We map every stakeholder and engage them with account-specific, compliance-aware messaging.',
     points: [
-      '✔ Verified buying committee mapping across CIO, VP Infrastructure, and SecOps leadership',
-      '✔ Technical aircover highlighting SLA benchmarks, deployment reliability, and architectural scalability',
-      '✔ Coordinated omnichannel cadences accelerating technical discovery and vendor POC approvals',
+      '✔ CISO, CIO, and IT director committee roles mapped and verified',
+      '✔ Compliance and modernization triggers used as account-level engagement hooks',
+      '✔ Procurement and RFP timelines tracked through live intent signals',
     ],
     visualType: 'it',
   },
   {
     id: 'enterprise',
     num: '03',
-    label: 'High-ACV Enterprise Solutions',
-    tagline: 'COMPLEX 6–12 MONTH CYCLES',
+    label: 'Enterprise Complex Solutions',
+    tagline: 'LONG SALES CYCLES',
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Navigate multi-layered corporate buying committees, procurement boards, and executive sponsors with tailored account-specific ROI briefings.',
+      'Six-to-eighteen-month cycles stall when only one champion is engaged. We keep multiple stakeholders warm across the cycle for capital equipment, automation, and supply chain technology vendors.',
     points: [
-      '✔ High-touch 1:1 and 1:few campaign orchestration customized to your named account lists (TAL)',
-      '✔ Messaging addressing executive business cases, capital expenditure payback, and risk mitigation',
-      '✔ Persistent aircover sustaining deal momentum and stakeholder alignment across 6–12 month sales cycles',
+      '✔ Multi-threaded engagement across operations, finance, and procurement',
+      '✔ High-touch nurture cadences built for high-ACV enterprise deals',
+      '✔ Deal-stage intent tracking that flags when a committee moves into evaluation',
     ],
     visualType: 'enterprise',
   },
   {
     id: 'specific-accounts',
     num: '04',
-    label: 'Named Must-Win Enterprise Logos',
-    tagline: 'SURGICAL LOGO PENETRATION',
+    label: ' B2B Consulting & Advisory',
+    tagline: 'EXECUTIVE-LEVEL ACCOUNT ACCESS ',
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Penetrate tightly defined lists of must-win Global 2000 logos with surgical account intelligence, personalized executive briefings, and coordinated sales handoffs.',
+      'Senior executives ignore broad outreach. We open relationships with named accounts through tailored executive messaging and exclusive briefings aimed at confirmed discretionary budgets and acute mandates.',
     points: [
-      '✔ Deep organizational hierarchy profiling tech stack, active initiatives, and renewal dates',
-      '✔ Direct multi-channel touches reaching key C-suite decision-makers within specific named logos',
-      '✔ Seamless closed-loop handoff with full meeting briefings delivered directly to your Account Executives',
+      '✔ CEO, CFO, and Board-level stakeholder identification',
+      '✔ Account-specific briefings built around documented strategic mandates',
+      '✔ Personalized executive touchpoints designed for multi-stakeholder committees',
     ],
     visualType: 'services',
   },
@@ -153,7 +153,7 @@ const WhoIsItFor = () => {
         <div className="max-w-4xl mx-auto text-center mb-6 lg:mb-8">
           <motion.div {...fadeUp(0)} className="flex items-center justify-center mb-2">
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              TARGET AUDIENCE • ICP VERTICAL ALIGNMENT
+             ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
@@ -171,7 +171,7 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-xs sm:text-sm lg:text-[15px] text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            TaRaj Global ABM programs empower enterprise revenue teams to connect with verified buying committees, build unanimous decision consensus, and close high-ACV pipeline.
+             Built for enterprise SaaS and technology revenue leaders who sell complex, high-value solutions to defined buying committees across US, EMEA, and APAC and need engagement concentrated on the accounts most likely to close.
           </motion.p>
         </div>
 

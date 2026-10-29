@@ -111,7 +111,7 @@ const AbmProcess = () => {
             className="flex items-center justify-center mb-3"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              HOW OUR PROCESS WORKS • ABM ORCHESTRATION ARCHITECTURE
+              HIGH-FIT ACCOUNT ENGAGEMENT
             </span>
           </motion.div>
 
@@ -124,10 +124,10 @@ const AbmProcess = () => {
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
-                ACCOUNT-BASED MARKETING{' '}
+                ABM CAMPAIGN{' '}
               </span>
               <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
-                WORKFLOW
+             WORKFLOW
               </span>
             </h2>
 
@@ -144,7 +144,7 @@ const AbmProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto mt-3 font-normal"
           >
-            A high-precision 9-stage execution framework identifying, mapping, engaging, and converting verified enterprise buying committees into sales-ready won ACV.
+           A 9-stage account-based framework converting verified target accounts and buying committees into sales-ready opportunities delivered directly to your CRM across US, EMEA, and APAC.
           </motion.p>
         </div>
 

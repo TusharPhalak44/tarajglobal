@@ -5,8 +5,8 @@ import { useReducedMotion } from '@hooks/useReducedMotion'
 const OUTCOME_INDICATORS = [
   {
     num: '01',
-    label: 'IDENTIFY',
-    desc: 'Confirm Tier-1 target account lists (TAL) mapped to firmographic & technographic ICP thresholds.',
+    label: ' SELECT',
+    desc: ' Tier ICP-fit accounts using firmographics, tech stack, and live intent.',
     color: '#00A6FF',
     accentColor: '#38BDF8',
     glowColor: 'rgba(0, 166, 255, 0.25)',
@@ -17,7 +17,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'ENGAGE',
-    desc: 'Deploy synchronized 1:1 bespoke narratives & omnichannel aircover across buying committees.',
+    desc: 'Reach every buying-committee stakeholder with personalized multi-channel outreach.',
     color: '#FFA600',
     accentColor: '#FFC048',
     glowColor: 'rgba(255, 166, 0, 0.25)',
@@ -28,7 +28,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'CONVERT',
-    desc: 'Track active intent surge windows & deliver sales-ready account dossiers straight into your CRM.',
+    desc: 'Qualify account interest and hand off sales-ready opportunities.',
     color: '#72D669',
     accentColor: '#86EFAC',
     glowColor: 'rgba(114, 214, 105, 0.25)',
@@ -86,7 +86,7 @@ const WhatIsService = () => {
             className="flex items-center justify-center mb-4"
           >
             <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
-              ACCOUNT-BASED MARKETING ENGINE
+             ABM PIPELINE ENGINE
             </span>
           </motion.div>
 
@@ -109,7 +109,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                Account-Based
+                {/* Account-Based Marketing (ABM) */}
               </motion.span>
               <motion.span
                 className="inline-block"
@@ -118,7 +118,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
-                Marketing?
+               Account-Based Marketing (ABM)?
               </motion.span>
             </span>
           </h2>
@@ -170,7 +170,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Account-Based Marketing (ABM) is an enterprise-grade go-to-market strategy that treats high-value accounts as individual markets. Rather than chasing anonymous volume, revenue teams concentrate resources on high-intent target accounts to accelerate pipeline velocity and expand annual contract value.
+               Account-based marketing (ABM) is a B2B go-to-market strategy that treats each high-value target account as a market of one. Sales and marketing agree on best-fit accounts upfront, then engage every member of the buying committee with coordinated, personalized outreach.
             </motion.p>
 
             <motion.p
@@ -180,7 +180,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike generic lead scraping or blast outreach, TaRaj Global’s tech-enabled ABM engine orchestrates hyper-personalized journeys across the entire buying committee. Backed by our 99.8% Data Accuracy SLA and proprietary intent telemetry, your sales executives engage pre-mapped economic buyers, technical evaluators, and key stakeholders with precision-crafted value propositions.
+              Unlike broad lead generation that chases volume, TaRaj Global’s tech-enabled ABM combines AI-assisted account scoring, live intent telemetry, and in-house verified contact data, backed by our 99.8% Data Accuracy SLA. Your team engages only accounts that fit your ICP and show buying signals, with opportunities routed into your CRM via DemandFlow Bridge.
             </motion.p>
 
             {/* PROCESS CARDS — HOVER ACTIVATION */}
