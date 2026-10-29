@@ -106,8 +106,8 @@ const AppointmentProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              APPOINTMENT SETTING | BOOKED SALES MEETINGS
             </span>
           </motion.div>
 
@@ -121,7 +121,7 @@ const AppointmentProcess = () => {
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
-                WHAT TARAJ GLOBAL{' '}
+               WHAT TARAJ GLOBAL{' '}
               </span>
               <div className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
                 DELIVERS
@@ -143,7 +143,7 @@ const AppointmentProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto mt-3 font-normal"
           >
-            Taraj Global delivers qualified sales appointments by combining targeted B2B data, prospect research, personalized outreach, buyer intent signals, and structured qualification.
+           TaRaj Global delivers qualified sales appointments through a 9-stage framework combining targeted B2B data, AI-assisted prospect research, personalized outreach, buyer intent signals, and structured qualification across US, EMEA, and APAC.
           </motion.p>
         </div>
 

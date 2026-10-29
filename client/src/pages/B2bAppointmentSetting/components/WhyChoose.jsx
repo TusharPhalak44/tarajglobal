@@ -14,40 +14,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Targeted Prospecting',
-    desc: 'Reach accounts that match your ideal customer profile.',
+    title: ' ICP-Matched Targeted Prospecting',
+    desc: 'Prospecting aimed at the wrong accounts burns SDR hours. Every campaign is built around your ideal customer profile, so outreach reaches only accounts that fit your market and deal size.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Decision-Maker Access',
-    desc: 'Connect with relevant business decision-makers.',
+    title: 'Verified Decision-Maker Access',
+    desc: ' Gatekeepers and stale contacts keep sellers from the people who sign. We connect you with C-suite and VP-level decision-makers using direct dials and emails verified in-house.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Qualified Conversations',
-    desc: 'Focus sales teams on relevant and qualified opportunities.',
+    title: 'Qualified, Pre-Briefed Conversations',
+    desc: 'Unqualified pitch calls drain AE time and morale. Prospects are vetted against agreed criteria and arrive with a pre-call dossier, so your team focuses on relevant, qualified opportunities.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Data & Intent Intelligence',
-    desc: 'Use buyer signals and engagement data to support better outreach.',
+    title: 'AI-Assisted Data & Intent Intelligence',
+    desc: 'Outreach without context feels generic. AI-assisted buyer signals and engagement data guide who we contact, when, and with what message, supporting more relevant first conversations.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: '1:1 Replacement Warranty',
-    desc: 'Zero-friction replacement guarantee if any booked prospect fails agreed qualification criteria.',
+    title: '99.8% Accuracy & 1:1 Replacement SLA ',
+    desc: 'Meetings that miss agreed criteria shouldn’t cost you budget. Backed by our 99.8% Data Accuracy SLA, any booked prospect who fails to attend or doesn’t meet your ICP is replaced 1-to-1 at no extra cost.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -86,9 +86,9 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         prefersReducedMotion
           ? {}
           : {
-              y: -6,
-              scale: 1.02,
-            }
+            y: -6,
+            scale: 1.02,
+          }
       }
       className="relative group rounded-xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_10px_30px_-5px_rgba(0,166,255,0.35),0_0_15px_-2px_rgba(0,166,255,0.2)] dark:hover:border-primary/50 transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
@@ -182,8 +182,9 @@ const WhyChoose = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -192,11 +193,11 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">WHY CHOOSE TARAJ GLOBAL FOR </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Taraj Global?
+             B2B APPOINTMENT SETTING
             </span>
           </motion.h2>
 
@@ -205,9 +206,9 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.12 }}
-            className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
+            className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"  
           >
-            We combine targeted B2B data, prospect intelligence, personalized outreach, and qualification to create more relevant sales conversations.
+             We combine targeted B2B data, AI-assisted prospect intelligence, personalized outreach, and strict qualification, verified in-house, to book more relevant sales conversations straight onto your calendars.
           </motion.p>
         </div>
 

@@ -2,12 +2,12 @@ export const WORKFLOW_STEPS = [
   {
     id: '01',
     stepNumber: '01',
-    title: 'Target',
-    description: 'Identify accounts and decision-makers that match your ICP.',
+    title: 'Target Account & ICP Mapping',
+    description: 'Identify accounts and decision-makers that match your ICP, refined with AI-assisted lookalike modeling, so SDR effort never lands on out-of-market accounts.',
     iconName: 'Users',
     row: 1,
     col: 2,
-    category: 'Targeting',
+    category: 'TARGETING',
   },
   {
     id: '02',

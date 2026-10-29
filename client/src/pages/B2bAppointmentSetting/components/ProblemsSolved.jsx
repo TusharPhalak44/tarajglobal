@@ -23,16 +23,16 @@ const FLOW_ITEMS = [
     id: 0,
     num: '01',
     category: 'CAPACITY',
-    engineLabel: 'SDR Capacity Pods',
-    engineAction: 'Outreach Delegation',
+    engineLabel: 'Dedicated SDR Capacity Pods',
+    engineAction: 'Outbound Fully Delegated',
     problem: {
-      title: 'Limited Prospecting Capacity',
-      sub: 'Overwhelmed Internal Sales Teams',
+      title: '01. Prospecting Eats AE Selling Time',
+      sub: '',
       icon: FilterX,
     },
     solution: {
-      title: 'Reduced Internal Pressure',
-      sub: 'More Bandwidth for Closing',
+      title: '01. AEs Focused on Closing',
+      sub: '',
       icon: Focus,
     },
     color: '#00A6FF',
@@ -42,16 +42,16 @@ const FLOW_ITEMS = [
     id: 1,
     num: '02',
     category: 'ACCESS',
-    engineLabel: 'Executive Outbound',
-    engineAction: 'Decision-Maker Access',
+    engineLabel: 'In-House Verification Tool',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: 'Difficulty Reaching Decision-Makers',
-      sub: 'Gatekeepers & Stalled Outbox',
+      title: '02. Gatekeepers Block Decision-Makers',
+      sub: '',
       icon: MailX,
     },
     solution: {
-      title: 'Connect with Stakeholders',
-      sub: 'Verified C-Suite & VP Economic Buyers',
+      title: '02. Direct Access to Economic Buyers',
+      sub: '',
       icon: MessageSquareQuote,
     },
     color: '#8B5CF6',
@@ -61,16 +61,16 @@ const FLOW_ITEMS = [
     id: 2,
     num: '03',
     category: 'CONSISTENCY',
-    engineLabel: 'Pacing & Quota Control',
-    engineAction: 'Predictable Dispatch',
+    engineLabel: 'Campaign Pacing Control',
+    engineAction: 'Live Meeting Quota Tracking',
     problem: {
-      title: 'Inconsistent Sales Conversations',
-      sub: 'Unpredictable Pipeline Lulls',
+      title: '03. Pipeline Lulls Between Quarters',
+      sub: '',
       icon: ShieldAlert,
     },
     solution: {
-      title: 'Consistent Meeting Flow',
-      sub: 'Steady In-Quarter Discovery Calendar',
+      title: '03. Steady In-Quarter Calendar',
+      sub: '',
       icon: CheckCircle2,
     },
     color: '#10B981',
@@ -80,16 +80,16 @@ const FLOW_ITEMS = [
     id: 3,
     num: '04',
     category: 'EFFICIENCY',
-    engineLabel: 'Multi-Touch Automation',
-    engineAction: 'Omnichannel Sprints',
+    engineLabel: 'AI-Assisted Intent Signals',
+    engineAction: 'Phone, Email & LinkedIn Sprints',
     problem: {
-      title: 'Time-Consuming Outreach',
-      sub: 'Manual Sourcing, Dials & Follow-ups',
+      title: '04. Manual Sourcing, Dials & Follow-ups',
+      sub: '',
       icon: Workflow,
     },
     solution: {
-      title: 'Streamlined Engagement',
-      sub: 'Coordinated Phone, Email & Social Sprints',
+      title: '04. Coordinated Multi-Channel Engagement',
+      sub: '',
       icon: Send,
     },
     color: '#F59E0B',
@@ -99,16 +99,16 @@ const FLOW_ITEMS = [
     id: 4,
     num: '05',
     category: 'QUALITY',
-    engineLabel: 'CDQA Gatekeeping',
-    engineAction: 'Strict Qualification Audit',
+    engineLabel: 'CDQA Qualification Audit',
+    engineAction: 'Agreed Criteria Before Booking',
     problem: {
-      title: 'Low-Quality Meetings',
-      sub: 'Unqualified Pitch Calls Draining Morale',
+      title: '05. Unqualified Pitch Calls Drain Morale',
+      sub: '',
       icon: EyeOff,
     },
     solution: {
-      title: 'Agreed Qualification Criteria',
-      sub: 'Prospects Aligned with Buying Criteria',
+      title: '05. Meetings Matching Buying Criteria',
+      sub: '',
       icon: BarChart3,
     },
     color: '#EC4899',
@@ -602,15 +602,17 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.problem.sub}
-                      </div>
+                      {item.problem.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.problem.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -698,7 +700,7 @@ const ProblemsSolved = () => {
                           className="w-1.5 h-1.5 rounded-full animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 text-center max-w-[155px] leading-tight line-clamp-1">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -809,12 +811,14 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.solution.sub}
-                      </div>
+                      {item.solution.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.solution.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -840,9 +844,9 @@ const ProblemsSolved = () => {
             >
               <currentItem.problem.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.problem.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.problem.sub}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">{currentItem.problem.title}</div>
+              {currentItem.problem.sub ? <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.problem.sub}</div> : null}
             </div>
           </div>
 
@@ -889,9 +893,9 @@ const ProblemsSolved = () => {
             >
               <currentItem.solution.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.solution.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.solution.sub}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">{currentItem.solution.title}</div>
+              {currentItem.solution.sub ? <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.solution.sub}</div> : null}
             </div>
           </div>
 
