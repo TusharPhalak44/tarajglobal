@@ -86,53 +86,54 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         prefersReducedMotion
           ? {}
           : {
-              y: -6,
-              scale: 1.02,
-            }
+            y: -6,
+            scale: 1.02,
+          }
       }
-      className="relative group rounded-xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_10px_30px_-5px_rgba(0,166,255,0.35),0_0_15px_-2px_rgba(0,166,255,0.2)] dark:hover:border-primary/50 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+      className="relative group rounded-2xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(0,166,255,0.35),0_10px_25px_-5px_rgba(0,166,255,0.25)] dark:hover:border-[#00A6FF]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
       {/* Dynamic Cursor Torchlight Inner Glow */}
       {isHovered && (
         <div
           className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-1"
           style={{
-            background: `radial-gradient(circle 180px at ${mousePos.x}% ${mousePos.y}%, rgba(0, 166, 255, 0.22), transparent 70%)`,
+            background: `radial-gradient(circle 200px at ${mousePos.x}% ${mousePos.y}%, rgba(0, 166, 255, 0.22), transparent 70%)`,
           }}
         />
       )}
 
-      {/* Background Image - appears on hover with enhanced circuit visibility */}
+      {/* Background Image - appears on hover with circuit visibility */}
       {currentBgImage && (
         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-0 overflow-hidden">
           <img
             src={currentBgImage}
             alt=""
-            className="w-full h-full object-cover contrast-[1.25] brightness-[0.98] dark:contrast-[1.15] dark:brightness-[1.1] transition-transform duration-700 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover contrast-[1.25] brightness-[1.02] dark:contrast-[1.2] dark:brightness-[1.1] transition-transform duration-700 ease-out group-hover:scale-105"
             style={{ objectPosition: 'center' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/65 via-white/15 to-transparent dark:from-[#0B1424]/70 dark:via-[#0B1424]/20 dark:to-transparent" />
+          {/* Gradient overlay keeping text legible */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/20 to-transparent dark:from-[#08101E]/80 dark:via-[#08101E]/30 dark:to-transparent" />
         </div>
       )}
 
-      {/* Top Subtle Hover Accent Line */}
-      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+      {/* Top Cyan Glow Line */}
+      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-[0_0_12px_#00A6FF]" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full justify-between">
         <div>
           {/* Top Bar: Number Tag & Icon */}
           <div className="flex items-center justify-between gap-1.5 mb-2">
-            <span className="font-mono text-[10.5px] sm:text-[11px] font-black text-primary dark:text-[#00A6FF] bg-primary/30 dark:bg-primary/10 dark:bg-[#00A6FF]/15 px-2 py-0.5 rounded-md border border-primary/25 dark:border-[#00A6FF]/30">
+            <span className="font-mono text-[10.5px] sm:text-[11px] font-bold text-primary dark:text-[#00A6FF] bg-primary/10 dark:bg-[#00A6FF]/15 px-2.5 py-0.5 rounded-lg border border-primary/25 dark:border-[#00A6FF]/40 tracking-wider">
               {item.num}
             </span>
-            <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-[#060D19] border border-slate-200/80 dark:border-white/10 flex items-center justify-center text-primary dark:text-[#00A6FF] group-hover:scale-110 group-hover:bg-primary group-hover:text-white dark:group-hover:bg-[#00A6FF] dark:group-hover:text-black transition-all duration-300 shadow-xs">
-              <Icon className="w-3.5 h-3.5" />
+            <div className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-[#060D19] border border-slate-200/80 dark:border-white/10 flex items-center justify-center text-primary dark:text-[#00A6FF] group-hover:scale-105 group-hover:bg-primary group-hover:text-white dark:group-hover:bg-[#00A6FF] dark:group-hover:text-black dark:group-hover:border-[#00A6FF] transition-all duration-300 shadow-xs group-hover:shadow-[0_0_15px_rgba(0,166,255,0.6)]">
+              <Icon className="w-4 h-4 stroke-[2.2]" />
             </div>
           </div>
 
           {/* Main Title */}
-          <h3 className="text-[13.5px] sm:text-[14px] font-black text-slate-900 dark:text-text-primary dark:text-white tracking-tight leading-snug mb-1.5 group-hover:text-primary dark:group-hover:text-[#00A6FF] transition-colors duration-200">
+          <h3 className="text-[13.5px] sm:text-[14px] font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-1.5 group-hover:text-primary dark:group-hover:text-[#00A6FF] transition-colors duration-200">
             {item.title}
           </h3>
 
@@ -143,7 +144,7 @@ const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
         </div>
 
         {/* Bottom Accent line expanding on hover */}
-        <div className="w-8 h-1 rounded-full bg-gradient-to-r from-primary to-orange-500 mt-2.5 group-hover:w-full transition-all duration-500" />
+        <div className="w-8 h-1 rounded-full bg-gradient-to-r from-primary to-[#FF6D00] dark:from-[#00A6FF] dark:to-[#FF6D00] mt-3 group-hover:w-full transition-all duration-500 ease-out" />
       </div>
     </motion.div>
   )

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import { useTheme } from '@context/ThemeContext'
 import {
   Crosshair,
   Briefcase,
@@ -52,92 +53,173 @@ const PILLARS = [
   },
 ]
 
+const WhyChooseCard = ({ item, index, prefersReducedMotion }) => {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
+  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setMousePos({ x, y })
+  }
+
+  const currentBgImage = isDark ? item.darkBgImage : item.bgImage
+  const Icon = item.icon
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+      whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-20px' }}
+      transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.07 }}
+      whileHover={
+        prefersReducedMotion
+          ? {}
+          : {
+            y: -6,
+            scale: 1.02,
+          }
+      }
+      className="relative group rounded-2xl p-3 sm:p-3.5 bg-white/95 dark:bg-[#0B1424]/90 border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-[0_20px_45px_-12px_rgba(0,102,204,0.18),0_0_20px_-3px_rgba(0,166,255,0.12)] hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(0,166,255,0.35),0_10px_25px_-5px_rgba(0,166,255,0.25)] dark:hover:border-[#00A6FF]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+    >
+      {/* Dynamic Cursor Torchlight Inner Glow */}
+      {isHovered && (
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-1"
+          style={{
+            background: `radial-gradient(circle 200px at ${mousePos.x}% ${mousePos.y}%, rgba(0, 166, 255, 0.22), transparent 70%)`,
+          }}
+        />
+      )}
+
+      {/* Background Image - appears on hover with circuit visibility */}
+      {currentBgImage && (
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-0 overflow-hidden">
+          <img
+            src={currentBgImage}
+            alt=""
+            className="w-full h-full object-cover contrast-[1.25] brightness-[1.02] dark:contrast-[1.2] dark:brightness-[1.1] transition-transform duration-700 ease-out group-hover:scale-105"
+            style={{ objectPosition: 'center' }}
+          />
+          {/* Gradient overlay keeping text legible without obscuring circuits */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/20 to-transparent dark:from-[#08101E]/80 dark:via-[#08101E]/30 dark:to-transparent" />
+        </div>
+      )}
+
+      {/* Top Cyan Glow Line */}
+      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-[0_0_12px_#00A6FF]" />
+
+      {/* Card Content */}
+      <div className="relative z-10 flex flex-col h-full justify-between">
+        <div>
+          {/* Top Bar: Number Tag & Icon */}
+          <div className="flex items-center justify-between gap-1.5 mb-2">
+            <span className="font-mono text-[10.5px] sm:text-[11px] font-bold text-primary dark:text-[#00A6FF] bg-primary/10 dark:bg-[#00A6FF]/15 px-2.5 py-0.5 rounded-lg border border-primary/25 dark:border-[#00A6FF]/40 tracking-wider">
+              {item.num}
+            </span>
+            <div className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-[#060D19] border border-slate-200/80 dark:border-white/10 flex items-center justify-center text-primary dark:text-[#00A6FF] group-hover:scale-105 group-hover:bg-primary group-hover:text-white dark:group-hover:bg-[#00A6FF] dark:group-hover:text-black dark:group-hover:border-[#00A6FF] transition-all duration-300 shadow-xs group-hover:shadow-[0_0_15px_rgba(0,166,255,0.6)]">
+              <Icon className="w-4 h-4 stroke-[2.2]" />
+            </div>
+          </div>
+
+          {/* Main Title */}
+          <h3 className="text-[13.5px] sm:text-[14px] font-bold text-slate-900 dark:text-white tracking-tight leading-snug mb-1.5 group-hover:text-primary dark:group-hover:text-[#00A6FF] transition-colors duration-200">
+            {item.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-xs sm:text-[12.5px] text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+            {item.desc}
+          </p>
+        </div>
+
+        {/* Bottom Accent line expanding on hover */}
+        <div className="w-8 h-1 rounded-full bg-gradient-to-r from-primary to-[#FF6D00] dark:from-[#00A6FF] dark:to-[#FF6D00] mt-3 group-hover:w-full transition-all duration-500 ease-out" />
+      </div>
+    </motion.div>
+  )
+}
+
 const WhyChoose = () => {
   const prefersReducedMotion = useReducedMotion()
 
-  const fadeUp = (delay = 0) =>
-    prefersReducedMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, margin: '-50px' },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
-
   return (
     <section
-      id="why-choose-abm"
-      className="relative py-12 sm:py-16 lg:py-20 overflow-hidden bg-background border-t border-border"
+      id="why-choose-taraj-global-abm"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="Why Choose Taraj Global for Account-Based Marketing"
     >
+      {/* ── Ambient Background Lighting ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
-          className="absolute top-1/4 right-1/4 w-[600px] h-[400px] rounded-full blur-[140px] opacity-10"
-          style={{ background: 'radial-gradient(circle, #00A6FF 0%, transparent 70%)' }}
+          className="absolute inset-0 opacity-[0.025] dark:opacity-[0.035]"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
+            backgroundSize: '28px 28px',
+          }}
         />
-        <div
-          className="absolute bottom-10 left-10 w-[500px] h-[350px] rounded-full blur-[130px] opacity-10"
-          style={{ background: 'radial-gradient(circle, #FF6D00 0%, transparent 70%)' }}
-        />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#00A6FF]/10 rounded-full blur-[140px] pointer-events-none" />
       </div>
 
-      <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-10 lg:mb-12">
-          <motion.div {...fadeUp(0)} className="flex items-center justify-center mb-3">
-            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+      <div className="relative max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ── COMPACT, CLEAN HEADER ── */}
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center justify-center mb-2.5"
+          >
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               WHY CHOOSE TARAJ GLOBAL • ENTERPRISE ADVANTAGE
             </span>
           </motion.div>
 
           <motion.h2
-            {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-3 uppercase"
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.08 }}
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span>Why Choose Taraj Global for </span>
-            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              Account-Based Marketing?
-            </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
+            <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
+              ACCOUNT-BASED MARKETING (ABM)?
+            </div>
           </motion.h2>
 
           <motion.p
-            {...fadeUp(0.12)}
-            className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl mx-auto font-normal"
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 12 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.12 }}
+            className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
             We merge surgical account targeting, multi-stakeholder organizational mapping, and DemandFlow Bridge telemetry to deliver qualified enterprise pipeline with verified revenue attribution.
           </motion.p>
         </div>
 
-        {/* 5 Pillars Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {PILLARS.map((p, idx) => {
-            const IconComponent = p.icon
-            return (
-              <motion.div
-                key={p.num}
-                {...fadeUp(0.15 + idx * 0.08)}
-                className={`relative p-6 rounded-2xl border border-border bg-surface hover:border-primary/40 shadow-sm hover:shadow-lg transition-all duration-300 group overflow-hidden ${
-                  idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
-                }`}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono font-black text-text-secondary opacity-60">
-                    {p.num}
-                  </span>
-                </div>
-
-                <h3 className="text-lg font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
-                  {p.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                  {p.desc}
-                </p>
-              </motion.div>
-            )
-          })}
+        {/* ── 5 PILLARS: 5 CARDS IN 1 LINE (lg:grid-cols-5) ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-2.5">
+          {PILLARS.map((item, idx) => (
+            <WhyChooseCard
+              key={item.num}
+              item={item}
+              index={idx}
+              prefersReducedMotion={prefersReducedMotion}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -145,4 +227,3 @@ const WhyChoose = () => {
 }
 
 export default WhyChoose
-
