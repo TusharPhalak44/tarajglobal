@@ -22,16 +22,16 @@ const FLOW_ITEMS = [
   {
     id: 0,
     num: '01',
-    category: 'FUNNEL CONTINUITY',
-    engineLabel: 'Unified RevOps Bridge',
-    engineAction: 'Stage-to-Stage Handoff Gate',
+    category: 'ICP TARGETING',
+    engineLabel: 'AI-Assisted ICP Modeling',
+    engineAction: 'Verified Buying Committees',
     problem: {
-      title: '01. Siloed Funnel & Lead Drops',
+      title: '01. Untargeted Lists Waste Spend',
       sub: '',
       icon: FilterX,
     },
     solution: {
-      title: '01. Unified RevOps Pipeline',
+      title: '01. Precision-Targeted Audiences',
       sub: '',
       icon: Focus,
     },
@@ -41,16 +41,16 @@ const FLOW_ITEMS = [
   {
     id: 1,
     num: '02',
-    category: 'INTENT SCORING',
-    engineLabel: 'Multi-Signal Intent Engine',
-    engineAction: 'First & Third-Party Telemetry',
+    category: 'INTENT SIGNALS',
+    engineLabel: 'AI-Assisted Intent Signals',
+    engineAction: 'Multi-Channel Engagement Tracking',
     problem: {
-      title: '02. Cold, Untargeted Outreach',
+      title: '02. Content Ignored, Clicks Go Cold',
       sub: '',
       icon: MailX,
     },
     solution: {
-      title: '02. In-Market Intent Triggers',
+      title: '02. Engaged In-Market Buyers',
       sub: '',
       icon: MessageSquareQuote,
     },
@@ -60,16 +60,16 @@ const FLOW_ITEMS = [
   {
     id: 2,
     num: '03',
-    category: 'MID-FUNNEL VELOCITY',
-    engineLabel: 'In-House Need Verification',
-    engineAction: 'Multi-Touch Nurture Cadence',
+    category: 'DATA ACCURACY',
+    engineLabel: 'In-House Verification Tool',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: '03. Stalled Middle Funnel',
+      title: '03. Bad Data, Unqualified Contacts',
       sub: '',
       icon: ShieldAlert,
     },
     solution: {
-      title: '03. Active Mid-Funnel Velocity',
+      title: '03. Verified Decision-Maker Records',
       sub: '',
       icon: CheckCircle2,
     },
@@ -79,16 +79,16 @@ const FLOW_ITEMS = [
   {
     id: 3,
     num: '04',
-    category: 'COMMITTEE QUORUM',
-    engineLabel: 'Buying Committee Mapping',
-    engineAction: 'Multi-Stakeholder Consensus',
+    category: 'BEHAVIORAL NURTURE',
+    engineLabel: 'Behavioral Nurture Triggers',
+    engineAction: 'Role-Based Content Journeys',
     problem: {
-      title: '04. Single-Persona Deal Risk',
+      title: '04. Single-Touch Funnels Stall',
       sub: '',
       icon: Workflow,
     },
     solution: {
-      title: '04. Multi-Threaded Consensus',
+      title: '04. Predictable Pipeline Momentum',
       sub: '',
       icon: Send,
     },
@@ -98,16 +98,16 @@ const FLOW_ITEMS = [
   {
     id: 4,
     num: '05',
-    category: 'CLOSED-LOOP ATTRIBUTION',
-    engineLabel: 'DemandFlow RevOps Bridge',
-    engineAction: 'Real-Time Bi-Directional CRM Sync',
+    category: 'ATTRIBUTION & ROI',
+    engineLabel: 'DemandFlow Bridge',
+    engineAction: 'Closed-Loop CRM Sync',
     problem: {
-      title: '05. Zero Funnel Attribution',
+      title: '05. No Attribution, Blind Spots',
       sub: '',
       icon: EyeOff,
     },
     solution: {
-      title: '05. Forecastable Revenue Growth',
+      title: '05. Real-Time Pipeline ROI',
       sub: '',
       icon: BarChart3,
     },
@@ -528,11 +528,11 @@ const ProblemsSolved = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-snug">
                         {item.problem.title}
                       </div>
                       {item.problem.sub ? (
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
                           {item.problem.sub}
                         </div>
                       ) : null}
@@ -640,11 +640,11 @@ const ProblemsSolved = () => {
                     />
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
                       {item.solution.sub ? (
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
                           {item.solution.sub}
                         </div>
                       ) : null}
@@ -678,12 +678,12 @@ const ProblemsSolved = () => {
             >
               <currentItem.problem.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white">
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
                 {currentItem.problem.title}
               </div>
               {currentItem.problem.sub ? (
-                <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
                   {currentItem.problem.sub}
                 </div>
               ) : null}
@@ -731,12 +731,12 @@ const ProblemsSolved = () => {
             >
               <currentItem.solution.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white">
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
                 {currentItem.solution.title}
               </div>
               {currentItem.solution.sub ? (
-                <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
                   {currentItem.solution.sub}
                 </div>
               ) : null}

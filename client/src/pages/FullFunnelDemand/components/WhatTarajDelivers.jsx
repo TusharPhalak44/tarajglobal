@@ -18,45 +18,47 @@ const ENGINE_LAYERS = [
   {
     num: '01',
     layer: 'Layer 01',
-    title: 'DemandFlow Bridge: Full-Funnel ICP & TAM Intent Matrix',
+    title: 'DemandFlow Bridge: Central Command & CRM Intelligence',
     shortTitle: 'ICP Matrix',
-    tag: 'Custom Rubric & TAM Mapping',
+    tag: '01 — PLATFORM • CENTRALIZED CRM & WORKFLOW INTELLIGENCE',
     module: 'DemandFlow Bridge™ Admin',
     screen: ': Full-Funnel Matrix & ICP Calibration',
     metric: '49 Live Campaigns • 84 Daily Target',
-    desc: 'When marketing and sales operate on disconnected criteria, conversion collapses at every transition. We lock your ICP firmographics, target titles, intent thresholds, and ACV parameters into a single unified rubric before outreach begins.',
+    desc: 'Campaign data scattered across tools makes pipeline impossible to trust. One integrated CRM and workflow platform powers account intelligence, engagement activity, intent signals, lead qualification, and pipeline reporting.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      '✔ Unified target account lists (TAL) mapped across all revenue tiers',
-      '✔ First and third-party intent surge scoring calibrated to your solution',
-      '✔ Full buying committee stakeholder profiles agreed upfront',
+      '✔ CRM and verified prospect database',
+       '✔ Multi-stakeholder workflow and role alignment',
+       '✔ Closed-loop revenue velocity reporting',
+       '✔ Centralized campaign command and budget pacing',
     ],
   },
   {
     num: '02',
     layer: 'Layer 02',
-    title: 'DemandFlow Bridge: Verified Buying Committee Contact Data',
+    title: 'DemandFlow Bridge: Audience & Buying Committee Intelligence',
     shortTitle: 'Verified Data',
-    tag: 'Direct Dials & Inboxes',
+    tag: ' 02 — AUDIENCE • ICP & BUYING COMMITTEE MAPPING',
     module: 'DemandFlow Bridge™ DBMS',
     screen: 'Assignment, Touch & CDQA Control Center',
     metric: '1,055 Records • CDQA Approved',
-    desc: 'Bounced emails and invalid phone lines distort reporting and waste sales cycles. Every contact in the buying committee is verified through our proprietary AI-assisted verification tool, backed by our 99.8% Data Accuracy SLA.',
+    desc: ' Campaigns aimed at the wrong accounts burn budget before the first click. We map your ideal customer profile to isolate verified accounts and senior decision-makers in your addressable market, refined with AI-assisted lookalike modeling.',
     icon: FileCheck,
     image: '/demandflow-dbms.png',
     points: [
-      '✔ Zero-bounce SMTP validation on every verified corporate inbox',
-      '✔ Direct-line phone numbers and compliant mobile dial numbers',
-      '✔ Duplicate-free committee records with live LinkedIn role tracking',
+      '✔ Firmographic, technographic, and revenue filtering',
+      '✔ Verified job title and buying committee taxonomy',
+      '✔ Target Account List (TAL) mapping and enrichment',
+      '✔ Contact data hygiene and deduplication through our in-house verification tool',
     ],
   },
   {
     num: '03',
     layer: 'Layer 03',
-    title: 'DemandFlow Bridge: Omnichannel Nurturing & Discovery Cadences',
+    title: 'DemandFlow Bridge: Multi-Channel Cadence Engine',
     shortTitle: 'Nurture Cadence',
-    tag: 'Conversational Vetting',
+    tag: '03 — CADENCE • OMNICHANNEL OUTREACH WORKFLOWS',
     module: 'DemandFlow Bridge™ Sequences',
     screen: 'Outreach Cadence & Discovery Sprints',
     metric: '99.8% Data Accuracy • 4-Step Architecture',
@@ -200,19 +202,22 @@ const WhatTarajDelivers = () => {
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2 mb-2.5">
             <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
-              PROPRIETARY FULL-FUNNEL DELIVERY ENGINE
+             PROPRIETARY DEMAND ENGINE
+
+
             </span>
           </div>
 
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">HOW DEMANDFLOW BRIDGE </span>
             <div className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-              Deliver in Full-Funnel Demand?
+            SUPPORTS DEMAND GENERATION
+
             </div>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            A synchronized top-to-bottom pipeline infrastructure connecting buyer intent, multi-touch committee education, and sales-ready meetings powered by DemandFlow Bridge.
+            Disconnected martech hides which campaigns actually create pipeline. DemandFlow Bridge centralizes prospect data, engagement, intent, qualification, and campaign performance in one workflow, from first touch to CRM.
           </p>
         </div>
 

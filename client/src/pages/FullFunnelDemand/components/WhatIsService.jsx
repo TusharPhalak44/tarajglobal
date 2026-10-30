@@ -5,8 +5,8 @@ import { useReducedMotion } from '@hooks/useReducedMotion'
 const OUTCOME_INDICATORS = [
   {
     num: '01',
-    label: 'CAPTURE',
-    desc: 'Detect high-intent accounts actively researching your category across first and third-party data.',
+    label: 'TARGET',
+    desc: 'Reach verified decision-makers across your ICP and target account list.',
     color: '#00A6FF',
     accentColor: '#38BDF8',
     glowColor: 'rgba(0, 166, 255, 0.25)',
@@ -16,8 +16,8 @@ const OUTCOME_INDICATORS = [
   },
   {
     num: '02',
-    label: 'NURTURE',
-    desc: 'Engage 6–10 buying committee stakeholders with persona-specific content and omnichannel touches.',
+    label: 'ENGAGE',
+    desc: 'Create relevant buyer interactions through content and multi-touch cadences.',
     color: '#FFA600',
     accentColor: '#FFC048',
     glowColor: 'rgba(255, 166, 0, 0.25)',
@@ -28,7 +28,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'CONVERT',
-    desc: 'Deliver BANT & SQL-qualified sales meetings directly into AE calendars with complete dossiers.',
+    desc: 'Score intent and hand qualified opportunities to sales.',
     color: '#72D669',
     accentColor: '#86EFAC',
     glowColor: 'rgba(114, 214, 105, 0.25)',
@@ -86,7 +86,7 @@ const WhatIsService = () => {
             className="flex items-center justify-center mb-4"
           >
             <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
-              FULL-FUNNEL DEMAND ARCHITECTURE
+              DEMAND GENERATION ENGINE
             </span>
           </motion.div>
 
@@ -99,7 +99,7 @@ const WhatIsService = () => {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              What Is
+               What Is 
             </motion.span>
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1 sm:pb-1.5">
               <motion.span
@@ -109,7 +109,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                Full-Funnel Demand
+                B2B Demand Generation?
               </motion.span>
               <motion.span
                 className="inline-block"
@@ -118,7 +118,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
-                Generation?
+                {/* Generation? */}
               </motion.span>
             </span>
           </h2>
@@ -170,7 +170,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Full-Funnel Demand Generation connects disjointed marketing touches into a unified, synchronized revenue pipeline. Instead of passing cold leads that sales never touches, Taraj Global aligns top-of-funnel intent discovery, mid-funnel buying committee education, and bottom-of-funnel sales qualification into one continuous conversion journey.
+              B2B demand generation is a data-driven strategy that builds awareness, engages target accounts, and creates consistent buyer interest across the entire buying journey, so your sales team receives qualified opportunities instead of cold contacts.
+
             </motion.p>
 
             <motion.p
@@ -180,7 +181,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Powered by DemandFlow Bridge and backed by our strict 99.8% Data Accuracy SLA, your revenue teams eliminate pipeline leakage. We ensure every engaged account is multi-threaded across economic buyers, technical evaluators, and key decision-makers—delivering sales-accepted opportunities directly into your CRM.
+              Unlike disconnected single-point tactics, TaRaj Global’s tech-enabled demand generation unifies audience intelligence, content syndication, multi-channel outreach, and automated lead nurturing in one conversion engine. AI-assisted intent scoring and our 99.8% Data Accuracy SLA keep campaigns focused on verified decision-makers, with sales-ready pipeline routed into your CRM via DemandFlow Bridge.
+
             </motion.p>
 
             {/* PROCESS CARDS — HOVER ACTIVATION */}

@@ -105,7 +105,9 @@ const FullFunnelProcess = () => {
             className="flex items-center justify-center mb-3"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+             DEMAND GENERATION | SALES-READY PIPELINE
+
+
             </span>
           </motion.div>
 
@@ -119,10 +121,11 @@ const FullFunnelProcess = () => {
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
               <span className="block text-slate-900 dark:text-text-primary dark:text-white whitespace-normal sm:whitespace-nowrap">
-                OUR PROVEN FULL-FUNNEL DEMAND
+                OUR PROVEN B2B DEMAND GENERATION
               </span>
               <span className="block text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)] whitespace-normal sm:whitespace-nowrap">
-                IMPLEMENTATION PROCESS
+               IMPLEMENTATION PROCESS?
+
               </span>
             </h2>
 
@@ -141,7 +144,7 @@ const FullFunnelProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto mt-3 font-normal"
           >
-            An engineered 9-stage continuum connecting intent discovery, content syndication, committee nurturing, and high-converting sales cadences into predictable pipeline.
+            A 9-phase, end-to-end demand generation engine that creates, captures, and converts in-market B2B decision-makers into sales-qualified pipeline across US, EMEA, and APAC.
           </motion.p>
         </div>
 

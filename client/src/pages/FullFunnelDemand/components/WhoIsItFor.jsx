@@ -8,64 +8,65 @@ const AUDIENCES = [
   {
     id: 'saas',
     num: '01',
-    label: 'Enterprise SaaS & Cloud',
-    tagline: 'PREDICTABLE ARR PIPELINE | 01',
+    label: 'B2B SaaS Companies',
+    tagline: 'SOFTWARE & CLOUD DECISION MAKERS',
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'High-growth software platforms converting anonymous category evaluation traffic into multi-threaded enterprise sales opportunities across US, EMEA, and APAC.',
+      ' Product awareness alone doesn’t fill the pipeline. We help SaaS companies engage engineering and commercial buyers and turn interest into trials and enterprise demo requests through targeted full-funnel demand generation.',
     points: [
-      '✔ Pre-vetted ACV budget fit ($25k - $500k+ annual contract value)',
-      '✔ Software buyer intent signals from competitive review sites and technology installs',
-      '✔ Direct multi-threaded access to VPs of Engineering, Product, IT, and CFOs',
+      '✔ Account-level targeting filtered by verified tech stack, ARR band, and software category',
+      '✔ Multi-touch demand generation across content syndication, LinkedIn, and email',
+      '✔ Automated nurture workflows converting engaged prospects into sales discovery calls',
+      
     ],
     visualType: 'saas',
   },
   {
     id: 'it',
     num: '02',
-    label: 'Enterprise Tech & Infrastructure',
-    tagline: 'COMPLEX BUYING COMMITTEES | 02',
+    label: 'Technology Companies',
+    tagline: ' TECH ARCHITECTS & IT LEADERS',
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Cloud migration, DevOps, and enterprise software vendors navigating strict security compliance, multi-stakeholder consensus, and procurement gates.',
+      'Technical evaluators ignore generic marketing. We educate enterprise architects and engineering stakeholders with deep-dive technical assets, whitepapers, and interactive product briefings that earn a place on the shortlist.',
     points: [
-      '✔ CISO, CIO, and Director of IT buying authority validation',
-      '✔ Multi-touch nurture cadences designed to navigate strict procurement hurdles',
-      '✔ Pre-screened RFP schedules backed by direct dials and our 99.8% Data Accuracy SLA',
+      '✔ Technical evaluators researching complex enterprise platforms engaged directly',
+       '✔ Architectural blueprints, benchmarks, and product comparison reports syndicated',
+       '✔ Multi-channel intent signals captured and scored opportunities routed to sales engineers',
     ],
     visualType: 'it',
   },
   {
     id: 'cybersecurity',
     num: '03',
-    label: 'Cybersecurity & Compliance',
-    tagline: 'HIGH-URGENCY COMPLIANCE | 03',
+    label: ' IT & Software Providers',
+    tagline: ' INFRASTRUCTURE & SOLUTIONS BUYERS',
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Security and risk management providers connecting with CISOs, risk officers, and compliance directors prioritizing immediate risk mitigation.',
+      'Long, committee-driven IT purchases reward vendors who build trust early. We position managed services, IT modernization, and cybersecurity solutions in front of CIOs, IT directors, and enterprise procurement leaders.',
     points: [
-      '✔ Intent surges tracking vulnerability disclosures and regulatory compliance mandates',
-      '✔ Executive peer briefings demonstrating measurable operational risk reduction',
-      '✔ High-trust qualification confirming active budget allocation and buying urgency',
+      '✔ Senior IT decision-makers targeted across mid-market and enterprise accounts',
+      '✔ Thought leadership syndication building authority and RFP consideration',
+      '✔ Account-level dossiers with verified direct dials and corporate emails',
     ],
     visualType: 'services',
   },
   {
     id: 'enterprise',
     num: '04',
-    label: 'Fast-Scaling Growth Stage Ventures',
-    tagline: 'PREDICTABLE REVENUE VELOCITY | 04',
+    label: ' B2B Marketing Teams',
+    tagline: 'BRAND AUTHORITY & FULL-FUNNEL ENGAGEMENT',
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Venture-backed scaleups building dependable outbound pipeline infrastructure to accelerate enterprise market expansion and meet board milestones.',
+      'Brand reach that never converts leaves marketing unable to prove its impact. We run integrated demand campaigns that elevate category positioning, expand target account reach, and generate measurable buyer demand.',
     points: [
-      '✔ Rapid TAM mapping and instant outbound pipeline generation without internal overhead',
-      '✔ Multi-threaded consensus mapping across both technical evaluators and finance heads',
-      '✔ Documented buyer pain points and automated CRM dossier delivery via DemandFlow Bridge',
+      '✔ Full-funnel campaign execution aligning brand awareness with lead capture',
+      '✔ Multi-channel distribution across syndication, email, and social',
+      '✔ Closed-loop marketing attribution and actionable buyer engagement analytics',
     ],
     visualType: 'enterprise',
   },
@@ -174,6 +175,7 @@ const WhoIsItFor = () => {
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               ICP VERTICAL ALIGNMENT
+
             </span>
           </motion.div>
 
@@ -181,9 +183,9 @@ const WhoIsItFor = () => {
             {...fadeUp(0.08)}
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
-            Is Full-Funnel Demand{' '}
+            Is B2B Demand Generation {' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1 sm:pb-1.5">
-              Right for Your Business?
+              Right for You?
             </span>
           </motion.h2>
 
@@ -191,7 +193,8 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            Engineered for enterprise revenue leaders requiring unified top-of-funnel intent discovery, multi-stakeholder committee education, and predictable closed-loop sales pipeline.
+           Built for B2B SaaS, technology, and IT leaders, and the marketing and demand teams behind them, who need engaged buying committees and sustainable, sales-ready pipeline across every stage of the buyer journey in US, EMEA, and APAC.
+
           </motion.p>
         </div>
 
