@@ -8,64 +8,64 @@ const AUDIENCES = [
   {
     id: 'saas',
     num: '01',
-    label: 'Enterprise SaaS Platforms',
-    tagline: 'HIGH-ARR MULTI-STAKEHOLDER PIPELINE',
+    label: 'MULTI-TOUCH EVALUATION CYCLES',
+    tagline: 'Technology Vendors',
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Engage multi-million dollar annual contract value (ACV) enterprise software accounts with tailored buying committee journeys across business, finance, and technical leaders.',
+      'Enterprise evaluations span weeks and dozens of touches, and disconnected touches cost committees’ confidence. We design one coherent journey that carries technology buyers from first interest through active evaluation.',
     points: [
-      '✔ Multi-stakeholder touchpoints engaging CTOs, CIOs, and CFOs concurrently',
-      '✔ Bespoke value propositions aligned to total cost of ownership (TCO) and rapid deployment',
-      '✔ Seamless orchestration across marketing aircover and executive sales discovery',
+      '✔ Journey stages mapped from awareness through technical evaluation',
+      '✔ Role-specific content for architects, security reviewers, and finance leaders',
+      '✔ Intent-triggered follow-ups when evaluation activity spikes',
     ],
     visualType: 'saas',
   },
   {
     id: 'cloud',
     num: '02',
-    label: 'Cloud & Infrastructure Providers',
-    tagline: 'MISSION-CRITICAL WORKLOAD BUYERS',
+    label: ' SALES-MARKETING ALIGNMENT ',
+    tagline: 'Siloed Sales & Marketing Teams',
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Navigate complex technical architectures and enterprise IT evaluations with precision account intelligence and consensus enablement.',
+      ' Marketing nurtures one story while SDRs pitch another. We put both teams on one account playbook with shared stage definitions, so prospects experience a single, consistent conversation.',
     points: [
-      '✔ Target system architects, VP Infrastructure, and SecOps directors at Tier-1 companies',
-      '✔ Technical briefings addressing workload reliability, migration safety, and multi-cloud SLAs',
-      '✔ Deep intent monitoring alerting sales to active RFP research and vendor evaluations',
+      '✔ Shared account playbook and stage definitions agreed with sales leadership',
+      '✔ Coordinated sequencing between marketing touches and SDR outreach',
+      '✔ Unified account engagement view in your CRM via DemandFlow Bridge',
     ],
     visualType: 'it',
   },
   {
     id: 'security',
     num: '03',
-    label: 'Enterprise Cybersecurity Solutions',
-    tagline: 'COMPLIANCE & RISK BUYING COMMITTEES',
+    label: 'ABM-TO-ABX MATURITY',
+    tagline: 'Teams Scaling Existing ABM',
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Connect security innovators with CISOs and risk executives seeking trusted solutions for urgent compliance mandates and threat reduction.',
+      ' Strong account targeting still stalls when engagement ends at the first reply. We extend your account program into a full journey, so engaged accounts keep moving toward an opportunity.',
     points: [
-      '✔ Executive-level threat intelligence and compliance benchmarking briefings',
-      '✔ High-trust engagement maintaining strict confidentiality and regulatory alignment',
-      '✔ Multi-touch consensus building that unites security practitioners with finance approvers',
+      '✔ Engagement gaps identified between first reply and opportunity creation',
+      '✔ Stage-based follow-up sequences for accounts that have already engaged',
+      '✔ Account-level reporting that connects experience to pipeline progress',
     ],
     visualType: 'services',
   },
   {
     id: 'services',
     num: '04',
-    label: 'Global Advisory & Consultancies',
-    tagline: 'C-SUITE TRANSFORMATION MANDATES',
+    label: 'NEW-REGION ACCOUNT JOURNEYS ',
+    tagline: 'Companies Expanding Into New Regions',
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Position consulting, engineering, and implementation firms for large-scale enterprise transformation contracts with tailored executive dossiers.',
+      'Entering a new region without local brand presence makes every first impression count. We tailor each account’s journey to regional context and buying norms across US, EMEA, and APAC.',
     points: [
-      '✔ Thought leadership and proprietary research delivered directly to executive sponsors',
-      '✔ Bespoke account dossiers outlining corporate restructuring and digital modernization goals',
-      '✔ High-touch executive introductions and peer-to-peer advisory roundtables',
+      '✔ Region-aware messaging and timing for each target market',
+      '✔ Compliance-aware outreach aligned to GDPR and CCPA',
+      '✔ Time-zone-aware scheduling of executive conversations',
     ],
     visualType: 'enterprise',
   },
@@ -245,11 +245,11 @@ const WhoIsItFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   const active = AUDIENCES[currentIndex]
 
@@ -280,18 +280,18 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              TARGET AUDIENCE • ENTERPRISE ALIGNMENT
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Is Account Based Experience{' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              Right for You?
+              Right for Your Revenue Team
             </span>
           </motion.h2>
 
@@ -299,7 +299,7 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            ABX empowers high-growth B2B organizations closing high-ACV deals that require consensus across 6 to 10 cross-functional stakeholders.
+            Built for B2B technology and enterprise revenue teams whose buying committees evaluate over many weeks and many touchpoints, and who need every interaction across US, EMEA, and APAC to feel like one connected conversation.
           </motion.p>
         </div>
 
@@ -318,11 +318,10 @@ const WhoIsItFor = () => {
                   <motion.button
                     key={aud.id}
                     onClick={() => handleSelect(idx)}
-                    className={`group relative text-left p-3 lg:p-3.5 rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
-                      isActive
-                        ? 'bg-surface shadow-md border-border scale-[1.01]'
-                        : 'bg-surface/40 hover:bg-surface/80 border-transparent hover:border-border/60 opacity-80 hover:opacity-100'
-                    }`}
+                    className={`group relative text-left p-3 lg:p-3.5 rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${isActive
+                      ? 'bg-surface shadow-md border-border scale-[1.01]'
+                      : 'bg-surface/40 hover:bg-surface/80 border-transparent hover:border-border/60 opacity-80 hover:opacity-100'
+                      }`}
                     style={{
                       borderLeft: isActive ? `4px solid ${aud.color}` : undefined,
                     }}
@@ -335,9 +334,8 @@ const WhoIsItFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -345,9 +343,8 @@ const WhoIsItFor = () => {
                     </div>
 
                     <div
-                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -486,11 +483,10 @@ const WhoIsItFor = () => {
                 key={aud.id}
                 ref={(el) => (tabRefs.current[idx] = el)}
                 onClick={() => handleSelect(idx)}
-                className={`px-4 py-2 rounded-xl border text-xs font-bold whitespace-nowrap cursor-pointer transition-all ${
-                  idx === currentIndex
-                    ? 'bg-primary text-white border-primary shadow-sm'
-                    : 'bg-surface/60 border-border text-text-secondary'
-                }`}
+                className={`px-4 py-2 rounded-xl border text-xs font-bold whitespace-nowrap cursor-pointer transition-all ${idx === currentIndex
+                  ? 'bg-primary text-white border-primary shadow-sm'
+                  : 'bg-surface/60 border-border text-text-secondary'
+                  }`}
               >
                 {aud.label}
               </button>

@@ -73,9 +73,9 @@ const AbxProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1, 1.12, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                }
+                scale: [1, 1.12, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
           }
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ background: 'radial-gradient(circle, #0284c7 0%, transparent 70%)' }}
@@ -86,9 +86,9 @@ const AbxProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1.1, 0.95, 1.1],
-                  opacity: [0.18, 0.28, 0.18],
-                }
+                scale: [1.1, 0.95, 1.1],
+                opacity: [0.18, 0.28, 0.18],
+              }
           }
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           style={{ background: 'radial-gradient(circle, #00d2ff 0%, transparent 70%)' }}
@@ -105,8 +105,9 @@ const AbxProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              ABX | UNIFIED BUYER JOURNEY
+            
             </span>
           </motion.div>
 
@@ -117,8 +118,10 @@ const AbxProcess = () => {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-              <span>Account Based Experience </span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
+              <span>ABX JOURNEY {" "}
+
+              </span>
               <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
                 Workflow
               </span>
@@ -132,7 +135,7 @@ const AbxProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            A continuous 9-step engineered orchestration connecting marketing aircover, executive touches, and sales follow-up into a unified enterprise experience.
+            A 9-stage experience framework that aligns your revenue teams, orchestrates every touchpoint across the buying journey, and hands context-rich opportunities directly to your CRM across US, EMEA, and APAC.
           </motion.p>
         </div>
 

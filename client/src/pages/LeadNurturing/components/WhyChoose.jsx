@@ -14,40 +14,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Relevant Buyer Engagement',
-    desc: 'Deliver tailored content and touchpoints aligned with each prospect\'s specific buying stage, role, and industry context to build meaningful brand trust over time.',
+    title: 'Relevant, Stage-Based Buyer Engagement',
+    desc: 'Generic drip campaigns get ignored. We align content and touchpoints with each prospect’s buying stage, role, and industry context, building meaningful brand trust over time without adding noise.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Data-Driven Qualification',
-    desc: 'Monitor intent signals, content interactions, and behavioral scoring to identify exactly when accounts demonstrate readiness for direct sales engagement.',
+    title: 'AI-Assisted, Data-Driven Qualification',
+    desc: 'Reps waste time on leads that only look interested. AI-assisted intent signals, content interactions, and behavioral scoring show exactly when an account is ready for direct sales engagement.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Consistent Multi-Touch Follow-Up',
-    desc: 'Maintain structured cadences across email, conversational touches, and content distribution without overwhelming buyers, ensuring zero lead leakage.',
+    title: 'Paced Multi-Touch Follow-Up',
+    desc: 'Follow-up gaps let leads slip away, while over-contact drives them off. Structured cadences across email, conversational touches, and content keep leads engaged without overwhelming buyers.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Sales & Marketing Alignment',
-    desc: 'Establish shared definitions of lead readiness, qualification criteria, and automated routing rules so AEs receive only high-context, primed prospects.',
+    title: 'Shared Readiness Definitions & Routing',
+    desc: 'Disagreement over what “ready” means stalls handoffs. Shared readiness definitions, qualification criteria, and automated routing rules mean AEs receive only high-context, primed prospects.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: 'Sales-Ready Opportunities',
-    desc: 'Transform slow-moving databases and long-cycle opportunities into booked discovery meetings, higher win rates, and predictable pipeline growth.',
+    title: 'Sales-Ready Opportunities From Dormant Pipeline',
+    desc: 'Slow-moving databases and long-cycle deals hold revenue you’ve already paid for. We turn them into booked discovery meetings and predictable pipeline growth, backed by our 99.8% Data Accuracy SLA.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -184,7 +184,8 @@ const WhyChoose = () => {
             className="flex items-center justify-center mb-2.5"
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+             WHY TARAJ GLOBAL • TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -208,7 +209,8 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Targeted multi-touch lead nurturing that keeps your brand top of mind, accelerates qualification, and converts dormant pipeline into active sales revenue.
+            Targeted multi-touch nurturing, backed by in-house verification infrastructure, that keeps your brand top of mind, accelerates qualification, and converts dormant pipeline into sales-ready opportunities.
+
           </motion.p>
         </div>
 

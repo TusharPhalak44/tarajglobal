@@ -23,136 +23,136 @@ const ENGINE_LAYERS = [
   {
     num: '01',
     layer: '01 — PLATFORM',
-    title: 'DemandFlow Bridge',
+    title: ' DemandFlow Bridge: Central Nurture Command',
     shortTitle: 'Platform',
     tag: 'CRM & WORKFLOW INTELLIGENCE',
     module: 'DemandFlow Bridge',
     subLabel: 'Proprietary Intelligence Platform',
     screen: 'Unified Operations & Intelligence Center',
     metric: 'CENTRALIZED PROSPECT DATA • REAL-TIME VISIBILITY',
-    desc: 'Centralize prospect data, engagement activity, intent signals, lead scoring, qualification, and campaign performance in one intelligent layer.',
+    desc: 'Nurture data scattered across tools hides which leads are warming up. One intelligent layer centralizes prospect data, engagement, intent signals, scoring, qualification, and campaign performance.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      'Centralized prospect data & activity',
-      'Coordinated lead nurturing workflows',
-      'Real-time visibility across buyer journey',
-      'Faster campaign execution cycles',
-      'Unified sales & marketing alignment',
+      '✔ Centralized prospect data and activity',
+      '✔ Coordinated lead nurturing workflows',
+      '✔ Real-time visibility across the buyer journey',
+      '✔ Faster campaign execution cycles',
+      '✔ Unified sales and marketing alignment',
     ],
   },
   {
     num: '02',
     layer: '02 — SEGMENTATION',
-    title: 'Targeted Segmentation',
+    title: ' DemandFlow Bridge: Behavioral Segmentation',
     shortTitle: 'Segmentation',
     tag: 'Audience Hygiene & Grouping',
     module: 'DemandFlow Bridge — Segmentation',
     subLabel: 'Audience Hygiene & Grouping',
     screen: 'Audience Segmentation & Stage Mapping',
     metric: '100% ICP Filtered • Persona Groups',
-    desc: 'Group prospects by industry, role, firmographics, and buying journey stage for tailored relevance.',
+    desc: 'One-size-fits-all nurture streams bore buyers and bury your message. We group prospects by industry, role, firmographics, and buying stage for tailored relevance.',
     icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
-      'Role & industry cluster segmentation',
-      'Tech stack and firmographic filters',
-      'Clean, validated contact databases',
+      '✔ Role and industry cluster segmentation',
+      '✔ Tech stack and firmographic filters',
+      '✔ Clean, validated contact data backed by our 99.8% Data Accuracy SLA',
     ],
   },
   {
     num: '03',
     layer: '03 — RESEARCH',
-    title: 'Buyer Research',
+    title: 'DemandFlow Bridge: Buyer Research & Context',
     shortTitle: 'Research',
     tag: 'Account Context & Intent',
     module: 'DemandFlow Bridge — Research',
     subLabel: 'Account Context & Intent',
     screen: 'Account Intelligence & Signal Mapping',
     metric: 'Verified Contact Intelligence • Intent Signals',
-    desc: 'Understand buyer context, organizational initiatives, and evaluated business challenges.',
+    desc: 'Messages written without context read like spam. We research buyer initiatives, challenges, and decision-makers, so every touch speaks to what the account is working on.',
     icon: Search,
     image: '/demandflow-sequences.png',
     points: [
-      'Account-level initiative mapping',
-      'Key decision-maker identification',
-      'Contextual research for tailored messaging',
+      '✔ Account-level initiative mapping',
+      '✔ Key decision-maker identification',
+      '✔ Contextual research for tailored messaging',
     ],
   },
   {
     num: '04',
     layer: '04 — OUTREACH',
-    title: 'Relevant Outreach',
+    title: 'DemandFlow Bridge: Value-First Cadence Outreach',
     shortTitle: 'Outreach',
     tag: 'Multi-Channel Cadence',
     module: 'DemandFlow Bridge — Outreach',
     subLabel: 'Multi-Channel Cadence',
     screen: 'Multi-Touch Nurture Cadence Studio',
     metric: 'Multi-Step Sequences • Timely Touchpoints',
-    desc: 'Deliver thoughtful, value-first messaging across appropriate communication channels.',
+    desc: 'Aggressive follow-up drives leads away. Value-first messaging goes out across the right channels on paced cadences that adjust to how each prospect responds.',
     icon: MailCheck,
     image: '/demandflow-personalization.png',
     points: [
-      'Multi-channel communication workflows',
-      'Automated cadence management',
-      'Stage-aligned educational collateral',
+      '✔ Multi-channel communication workflows',
+      '✔ Automated cadence management and frequency control',
+      '✔ Stage-aligned educational collateral',
     ],
   },
   {
     num: '05',
     layer: '05 — ENGAGEMENT',
-    title: 'Lead Engagement',
+    title: 'DemandFlow Bridge: Lead Engagement Tracking',
     shortTitle: 'Engagement',
     tag: 'Telemetry & Consumption',
     module: 'DemandFlow Bridge — Engagement',
     subLabel: 'Telemetry & Consumption',
     screen: 'Prospect Engagement Telemetry Board',
     metric: 'Real-Time Interaction Monitoring • Heatmaps',
-    desc: 'Track opens, clicks, content consumption, and buyer interactions across all touchpoints.',
+    desc: 'Opens and clicks alone don’t show real interest. We track interactions, content consumption, and buyer behavior across every touchpoint in real time.',
     icon: TrendingUp,
     image: '/demandflow-campaigns.png',
     points: [
-      'Real-time interaction tracking',
-      'Content asset engagement measurement',
-      'Multi-touch engagement attribution',
+      '✔ Real-time interaction tracking',
+      '✔ Content asset engagement measurement',
+      '✔ Multi-touch engagement attribution',
     ],
   },
   {
     num: '06',
     layer: '06 — SCORING',
-    title: 'Lead Scoring',
+    title: 'DemandFlow Bridge: Lead Scoring & Readiness Alerts',
     shortTitle: 'Scoring',
     tag: 'Behavioral & Fit Score',
     module: 'DemandFlow Bridge — Scoring',
     subLabel: 'Behavioral & Fit Score',
     screen: 'Behavioral Scoring & Intent Intelligence',
     metric: 'Dynamic Scoring Algorithms • Real-Time Triggers',
-    desc: 'Evaluate implicit activity and explicit fit to understand prospect sales readiness.',
+    desc: 'Reps can’t tell a curious lead from a ready one. AI-assisted scoring combines explicit ICP fit with implicit behavior to show true sales readiness.',
     icon: LineChart,
     image: '/demandflow-tracking.png',
     points: [
-      'Explicit ICP fit calculation',
-      'Implicit behavioral score tracking',
-      'Automated readiness threshold alerts',
+      '✔ Explicit ICP fit calculation',
+      '✔ Implicit behavioral score tracking',
+      '✔ Automated readiness threshold alerts',
     ],
   },
   {
     num: '07',
     layer: '07 — QUALIFICATION',
-    title: 'Qualification & Sales Handoff',
+    title: 'DemandFlow Bridge: Qualification & Sales Handoff',
     shortTitle: 'Handoff',
     tag: 'Sales-Ready Opportunities',
     module: 'DemandFlow Bridge — Qualification',
     subLabel: 'Sales-Ready Opportunities',
     screen: 'Sales Handoff & Dossier Routing',
     metric: '100% Sales-Ready • Full Account Dossier',
-    desc: 'Pass pre-qualified opportunities directly to sales teams with actionable prospect dossiers.',
+    desc: 'Leads handed over without history force AEs to restart the conversation. Pre-qualified opportunities arrive with full engagement dossiers, routed into your CRM and AE calendars.',
     icon: BadgeCheck,
     image: '/demandflow-qualification.png',
     points: [
-      'Complete engagement history dossiers',
-      'Automated CRM synchronization & routing',
-      'Seamless AE calendar scheduling',
+      '✔ Complete engagement history dossiers',
+      '✔ Automated CRM synchronization and routing',
+      '✔ Seamless AE calendar scheduling',
     ],
   },
 ]
@@ -217,21 +217,21 @@ const WhatTarajDelivers = () => {
         {/* SECTION HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Powered by DemandFlow Bridge
+
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-[#00A6FF]">
+              PROPRIETARY NURTURE ENGINE
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-              Deliver?
+              DELIVER IN LEAD NURTURING
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers targeted B2B lead nurturing powered by DemandFlow Bridge to move prospects toward sales readiness.
+            Stop letting engaged leads go cold between touches. TaRaj Global delivers behavior-driven nurturing, scored by AI-assisted intent signals, verified in-house, and routed to sales through DemandFlow Bridge.
           </p>
         </div>
 
@@ -255,19 +255,17 @@ const WhatTarajDelivers = () => {
                     key={layer.num}
                     data-tab-idx={idx}
                     onClick={() => setActiveIdx(idx)}
-                    className={`group relative flex-1 flex flex-col items-center py-2.5 px-2 rounded-xl transition-all duration-300 cursor-pointer ${
-                      isActive
-                        ? 'bg-sky-50 dark:bg-[#0A1D3A] text-[#00A6FF] shadow-xs'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
+                    className={`group relative flex-1 flex flex-col items-center py-2.5 px-2 rounded-xl transition-all duration-300 cursor-pointer ${isActive
+                      ? 'bg-sky-50 dark:bg-[#0A1D3A] text-[#00A6FF] shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
+                      }`}
                   >
                     <div className="flex items-center gap-1.5 mb-1">
                       <span
-                        className={`w-1.5 h-1.5 rounded-full transition-all ${
-                          isActive
-                            ? 'bg-[#00A6FF] shadow-[0_0_8px_#00A6FF] scale-125'
-                            : 'bg-slate-300 dark:bg-white/20 group-hover:bg-slate-400'
-                        }`}
+                        className={`w-1.5 h-1.5 rounded-full transition-all ${isActive
+                          ? 'bg-[#00A6FF] shadow-[0_0_8px_#00A6FF] scale-125'
+                          : 'bg-slate-300 dark:bg-white/20 group-hover:bg-slate-400'
+                          }`}
                       />
                       <span className="font-mono text-[10px] font-bold tracking-wider">
                         {layer.num}

@@ -2,8 +2,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '01',
     stepNumber: '01',
-    title: 'Define & Strategy',
-    description: 'Set webinar goals, target audience, ICP, industries, roles, and campaign objectives.',
+    title: 'Webinar Goals & Strategy',
+    description: 'Set session themes, ICP, industries, roles, and commercial goals aligned to executive interest.',
     iconName: 'Compass',
     row: 1,
     col: 2,
@@ -12,8 +12,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '02',
     stepNumber: '02',
-    title: 'Target Audience',
-    description: 'Identify relevant companies and decision-makers who match the campaign audience.',
+    title: 'Target Audience Selection',
+    description: 'Identify matching companies and decision-makers through firmographic filters and AI-assisted lookalike modeling.',
     iconName: 'Users',
     row: 1,
     col: 4,
@@ -22,8 +22,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '03',
     stepNumber: '03',
-    title: 'Multi-Channel Promote',
-    description: 'Promote the webinar through targeted B2B outreach, email cadences, and social channels.',
+    title: 'Multi-Channel Promotion',
+    description: 'Promote through executive email invitations, LinkedIn, and partner feeds on synchronized, paced cadences.',
     iconName: 'Mail',
     row: 2,
     col: 1,
@@ -32,8 +32,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '04',
     stepNumber: '04',
-    title: 'Generate Registrations',
-    description: 'Capture verified signups from relevant prospects and high-priority buying committees.',
+    title: 'Verified Registration Capture',
+    description: 'Capture registrants using corporate domain verification and custom screening questions on tailored landing pages.',
     iconName: 'Database',
     row: 2,
     col: 2,
@@ -42,8 +42,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '05',
     stepNumber: '05',
-    title: 'Attendee Engagement',
-    description: 'Connect prospects with high-value sessions and capture live interaction & Q&A data.',
+    title: 'Live Attendee Engagement',
+    description: 'Run high-value sessions capturing polls, Q&A, resource downloads, and attendance duration in real time.',
     iconName: 'UserCog',
     row: 2,
     col: 3,
@@ -52,8 +52,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '06',
     stepNumber: '06',
-    title: 'Track Intent Signals',
-    description: 'Monitor attendee participation time, questions asked, polls, and intent surges.',
+    title: ' Intent Signal Tracking',
+    description: 'Track participation time, questions asked, poll responses, and AI-assisted intent surges across attendees.',
     iconName: 'Rocket',
     row: 2,
     col: 4,
@@ -62,8 +62,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '07',
     stepNumber: '07',
-    title: 'Lead Qualification',
-    description: 'Evaluate attendee engagement data based on firmographic fit, interest, and buying signals.',
+    title: 'Attendee Lead Qualification',
+    description: 'Score attendees on firmographic fit, engagement depth, BANT signals, and declared project timing.',
     iconName: 'LineChart',
     row: 2,
     col: 5,
@@ -72,8 +72,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '08',
     stepNumber: '08',
-    title: 'Prospect Intelligence',
-    description: 'Package deep attendee intelligence dossiers with interaction context for sales.',
+    title: ' Attendee Intelligence Dossiers',
+    description: 'Package attendee dossiers with questions asked, tech stack, and discussion starters for reps.',
     iconName: 'UserCheck',
     row: 3,
     col: 5,
@@ -82,8 +82,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '09',
     stepNumber: '09',
-    title: 'Sales Handoff',
-    description: 'Provide sales-ready leads directly to your sales reps with instant CRM sync.',
+    title: 'CRM Sync & Sales Handoff',
+    description: 'Sync qualified leads to CRM instantly, route to reps, and trigger post-event follow-up.',
     iconName: 'RefreshCw',
     row: 3,
     col: 3.5,
@@ -92,7 +92,7 @@ export const WORKFLOW_STEPS = [
 ]
 
 export const TARGET_GOAL = {
-  id: 'goal',
+  id: 'goal ACHIEVED!',
   title: 'QUALIFIED WEBINAR PIPELINE',
   badge: 'OUTCOME',
   description: 'Verified, sales-ready decision-makers delivered directly to your pipeline.',

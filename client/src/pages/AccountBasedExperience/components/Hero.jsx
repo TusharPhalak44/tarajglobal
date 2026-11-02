@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import { trackCtaClick, buildTrackedUrl } from '@utils/utmTracker'
 
 // ─── Command Center Flow Visual (ABX Specific) ────────────────────────────────
 
@@ -63,8 +64,7 @@ function EngageIcon({ color }) {
 function ReplyIcon({ color }) {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M7 4L3 8l4 4" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M3 8h9a4 4 0 014 4v2" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M4 9H14M8 5l-4 4 4 4" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
@@ -72,23 +72,26 @@ function ReplyIcon({ color }) {
 function QualifiedIcon({ color }) {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M9 2l2.2 4.5 4.8.7-3.5 3.4.8 4.9L9 13.2 4.7 15.5l.8-4.9L2 7.2l4.8-.7L9 2z" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M4 9.5L7.5 13l6.5-7" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
-const ICON_MAP = {
-  target: TargetIcon,
-  person: PersonIcon,
-  mail: MailIcon,
-  engage: EngageIcon,
-  reply: ReplyIcon,
-  qualified: QualifiedIcon,
+function StageIcon({ type, color }) {
+  switch (type) {
+    case 'target': return <TargetIcon color={color} />
+    case 'person': return <PersonIcon color={color} />
+    case 'mail': return <MailIcon color={color} />
+    case 'engage': return <EngageIcon color={color} />
+    case 'reply': return <ReplyIcon color={color} />
+    case 'qualified': return <QualifiedIcon color={color} />
+    default: return <TargetIcon color={color} />
+  }
 }
 
-// ─── Automated Interactive Stage Pipeline ─────────────────────────────────────
+// ─── Automated Interactive Stage Pipeline / Command Center ───────────────────
 
-function InteractivePipelineVisual({ prefersReducedMotion }) {
+function CommandCenter({ prefersReducedMotion }) {
   const [activeStage, setActiveStage] = useState(0)
   const [completedStages, setCompletedStages] = useState([])
 
@@ -99,33 +102,28 @@ function InteractivePipelineVisual({ prefersReducedMotion }) {
       return
     }
 
+    let current = 0
+    let timerId
     let cancelled = false
-    let timerId = null
 
-    const forward = (current) => {
+    const advance = () => {
       if (cancelled) return
-      const N = FLOW_STAGES.length
+      current = (current + 1) % FLOW_STAGES.length
+      setActiveStage(current)
 
-      if (current < N) {
-        setActiveStage(current)
-        setCompletedStages(Array.from({ length: current }, (_, i) => i))
-        timerId = setTimeout(() => forward(current + 1), 750)
-      } else {
-        timerId = setTimeout(() => {
-          if (cancelled) return
-          setCompletedStages(Array.from({ length: N }, (_, i) => i))
-          setActiveStage(N)
-          timerId = setTimeout(() => {
-            if (cancelled) return
-            setActiveStage(-1)
-            setCompletedStages([])
-            timerId = setTimeout(() => forward(0), 200)
-          }, 400)
-        }, 900)
-      }
+      setCompletedStages(() => {
+        const completed = []
+        for (let i = 0; i < current; i++) {
+          completed.push(i)
+        }
+        return completed
+      })
+
+      const delay = current === FLOW_STAGES.length - 1 ? 3600 : 2200
+      timerId = setTimeout(advance, delay)
     }
 
-    forward(0)
+    timerId = setTimeout(advance, 2200)
 
     return () => {
       cancelled = true
@@ -144,6 +142,7 @@ function InteractivePipelineVisual({ prefersReducedMotion }) {
       role="img"
       aria-label="Animated Account Based Experience pipeline workflow from tiered accounts to enterprise pipeline"
     >
+      {/* Grid background */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
@@ -152,120 +151,126 @@ function InteractivePipelineVisual({ prefersReducedMotion }) {
         }}
       />
 
+      {/* Top bar */}
       <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.06]">
         <div className="flex gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
           <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
           <div className="w-2.5 h-2.5 rounded-full bg-surface/90 dark:bg-white/10" />
         </div>
-        <span className="ml-2 text-[10px] font-mono font-bold tracking-[0.2em] text-[#00A6FF]/80 uppercase">
-          ABX Command & Experience Center
-        </span>
+        <div className="ml-2 text-[11px] font-mono tracking-wider text-[#00A6FF] opacity-90 uppercase">
+          DEMANDFLOW BRIDGE™ ABX EXPERIENCE COMMAND
+        </div>
         <div className="ml-auto flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#72D669] animate-pulse" />
-          <span className="text-[9px] font-mono text-[#72D669]/70 uppercase tracking-wider">Live</span>
+          <span className="text-[10px] font-mono text-[#72D669]/90 uppercase tracking-wider">LIVE</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 px-5 py-2.5 border-b border-white/[0.04] overflow-x-auto scrollbar-none">
-        {STATUS_PILLS.map((pill) => (
-          <span
-            key={pill.label}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-medium text-text-secondary bg-surface/80 dark:bg-white/[0.03] border border-white/[0.06] shrink-0"
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: pill.dot }} />
-            {pill.label}
-          </span>
-        ))}
+      {/* Metrics ticker bar */}
+      <div className="grid grid-cols-3 gap-px bg-white/[0.05] border-b border-white/[0.06] text-center">
+        <div className="py-2.5 px-3 bg-background dark:bg-[#050D1A]/80">
+          <div className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider uppercase">ACCOUNT REACH</div>
+          <div className="text-sm font-black text-[#00A6FF] font-mono">100% ICP</div>
+        </div>
+        <div className="py-2.5 px-3 bg-background dark:bg-[#050D1A]/80">
+          <div className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider uppercase">COMMITTEE ROLES</div>
+          <div className="text-sm font-black text-[#72D669] font-mono">6–10 MAPPED</div>
+        </div>
+        <div className="py-2.5 px-3 bg-background dark:bg-[#050D1A]/80">
+          <div className="text-[10px] font-mono text-text-secondary dark:text-white/50 tracking-wider uppercase">DATA ACCURACY</div>
+          <div className="text-sm font-black text-[#FF6D00] font-mono">99.8% SLA</div>
+        </div>
       </div>
 
-      <div className="p-4 sm:p-5 flex flex-col gap-2 relative">
+      {/* Flow visual */}
+      <div className="p-4 sm:p-5 space-y-2">
         {FLOW_STAGES.map((stage, idx) => {
-          const isActive = activeStage === idx
-          const isCompleted = completedStages.includes(idx)
-          const IconComp = ICON_MAP[stage.icon]
+          const isDone = completedStages.includes(idx)
+          const isCurrent = activeStage === idx
+          const isPending = !isDone && !isCurrent
 
           return (
-            <motion.div
+            <div
               key={stage.id}
-              initial={false}
-              animate={
-                isActive
-                  ? { opacity: 1, x: 0, scale: 1.01 }
-                  : isCompleted
-                  ? { opacity: 0.85, x: 0, scale: 1 }
-                  : { opacity: 0.3, x: 0, scale: 1 }
-              }
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 relative overflow-hidden"
+              className="flex items-center gap-3 p-2.5 rounded-xl transition-all duration-300 border"
               style={{
-                background: isActive
-                  ? `linear-gradient(90deg, ${stage.color}18 0%, transparent 100%)`
-                  : isCompleted
-                  ? 'rgba(255,255,255,0.02)'
-                  : 'transparent',
-                border: isActive
-                  ? `1px solid ${stage.color}35`
-                  : isCompleted
-                  ? '1px solid rgba(255,255,255,0.05)'
-                  : '1px solid transparent',
+                background: isCurrent
+                  ? 'rgba(0,166,255,0.08)'
+                  : isDone
+                    ? 'rgba(255,255,255,0.02)'
+                    : 'rgba(255,255,255,0.01)',
+                borderColor: isCurrent
+                  ? stage.color
+                  : isDone
+                    ? `${stage.color}30`
+                    : 'rgba(255,255,255,0.04)',
               }}
             >
-              <span
-                className="text-[9px] font-mono font-bold w-4 shrink-0"
-                style={{ color: isActive ? stage.color : 'rgba(255,255,255,0.2)' }}
-              >
-                {String(idx + 1).padStart(2, '0')}
-              </span>
-
-              {idx > 0 && (
-                <div
-                  className="absolute left-[28px] top-0 w-px h-2.5"
-                  style={{ background: isCompleted ? `${stage.color}50` : 'rgba(255,255,255,0.06)' }}
-                />
-              )}
-
+              {/* Step indicator */}
               <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs font-mono font-bold transition-all duration-300"
                 style={{
-                  background: isActive || isCompleted ? `${stage.color}18` : 'rgba(255,255,255,0.03)',
-                  border: `1px solid ${isActive ? stage.color : isCompleted ? `${stage.color}40` : 'rgba(255,255,255,0.06)'}`,
+                  background: isCurrent ? stage.color : isDone ? `${stage.color}20` : 'rgba(255,255,255,0.05)',
+                  color: isCurrent ? '#050D1A' : isDone ? stage.color : 'rgba(255,255,255,0.3)',
                 }}
               >
-                <IconComp color={isActive ? stage.color : isCompleted ? stage.color : 'rgba(255,255,255,0.3)'} />
+                {idx + 1}
               </div>
 
+              {/* Icon badge */}
+              <div
+                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-opacity duration-300"
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  opacity: isPending ? 0.3 : 1,
+                }}
+              >
+                <StageIcon type={stage.icon} color={isPending ? '#64748b' : stage.color} />
+              </div>
+
+              {/* Label + sub */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <span
-                    className="text-xs font-bold tracking-tight truncate"
-                    style={{ color: isActive ? '#FFFFFF' : isCompleted ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.35)' }}
-                  >
-                    {stage.label}
-                  </span>
-                  {isActive && (
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded uppercase tracking-wider text-black shrink-0"
-                      style={{ backgroundColor: stage.color }}
-                    >
-                      Active
-                    </motion.span>
-                  )}
-                  {isCompleted && (
-                    <span className="text-[9px] text-[#72D669] font-mono shrink-0">✓</span>
-                  )}
+                <div
+                  className="text-xs font-bold tracking-tight truncate transition-colors duration-300"
+                  style={{ color: isPending ? 'rgba(255,255,255,0.4)' : '#ffffff' }}
+                >
+                  {stage.label}
                 </div>
-                <p className="text-[10px] text-text-secondary truncate mt-0.5">
-                  {stage.sub}
-                </p>
+                <div className="text-[10px] font-mono text-text-secondary dark:text-white/40 truncate">{stage.sub}</div>
               </div>
 
-              <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: stage.color, opacity: isActive ? 1 : 0.3 }} />
-            </motion.div>
+              {/* Stage status indicator */}
+              <div className="shrink-0 flex items-center gap-1.5">
+                {isCurrent && (
+                  <span className="text-[10px] font-mono font-bold tracking-wider animate-pulse" style={{ color: stage.color }}>
+                    PROCESSING
+                  </span>
+                )}
+                {isDone && (
+                  <span className="text-[10px] font-mono font-bold text-[#72D669] tracking-wider">
+                    VERIFIED ✓
+                  </span>
+                )}
+                {isPending && (
+                  <span className="text-[10px] font-mono text-white/20 tracking-wider">
+                    QUEUED
+                  </span>
+                )}
+              </div>
+            </div>
           )
         })}
+      </div>
+
+      {/* Bottom status pills */}
+      <div className="px-5 py-3 border-t border-white/[0.06] flex items-center justify-between flex-wrap gap-2">
+        {STATUS_PILLS.map((pill) => (
+          <div key={pill.label} className="flex items-center gap-1.5 text-[10px] font-mono text-text-secondary dark:text-white/60">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: pill.dot }} />
+            <span>{pill.label}</span>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -278,10 +283,26 @@ const Hero = () => {
   const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef(null)
 
-  const handleStartConversation = () => navigate('/contact')
+  const handleStartCampaign = () => {
+    trackCtaClick({
+      section_id: 'abx_hero',
+      section_name: 'ABX Hero Section',
+      cta_text: 'Deploy Custom ABX Campaign',
+      destination_url: '/contact',
+      utm_campaign: 'account_based_experience',
+    })
+    navigate('/contact')
+  }
 
   const handleSeeHowItWorks = () => {
-    const el = document.getElementById('abx-process')
+    trackCtaClick({
+      section_id: 'abx_hero',
+      section_name: 'ABX Hero Section',
+      cta_text: 'Explore ABX Architecture',
+      destination_url: '#what-is-abx',
+      utm_campaign: 'account_based_experience',
+    })
+    const el = document.getElementById('what-is-abx') || document.getElementById('what-problems-abx-solves')
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
@@ -289,19 +310,22 @@ const Hero = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
       id="hero"
+      data-cta-section="ABX Hero Section"
       ref={sectionRef}
       className="relative min-h-[80vh] lg:min-h-[82vh] flex items-center justify-center overflow-hidden bg-background pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-10 lg:pb-8 transition-colors duration-300"
-      aria-label="Account Based Experience Hero"
+      aria-label="Account Based Experience (ABX) Services Hero"
     >
+      {/* Background with technical grid, glows & scanline */}
       <div className="absolute inset-0 bg-background" aria-hidden="true">
+        {/* Radial glows */}
         <div
           className="absolute inset-0"
           style={{
@@ -311,6 +335,7 @@ const Hero = () => {
             `,
           }}
         />
+        {/* Technical grid */}
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
@@ -318,6 +343,7 @@ const Hero = () => {
             backgroundSize: '48px 48px',
           }}
         />
+        {/* Horizontal scan line */}
         {!prefersReducedMotion && (
           <motion.div
             className="absolute left-0 right-0 h-px opacity-20"
@@ -330,75 +356,76 @@ const Hero = () => {
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-4 sm:pt-6 sm:pb-6 lg:pt-6 lg:pb-6">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left: Content */}
+
+          {/* ── Left: Content ── */}
           <div className="flex flex-col justify-center order-1 lg:order-1">
+
+            {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                ACCOUNT BASED EXPERIENCE (ABX)
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+                TECH-ENABLED ABX ARCHITECTURE
               </span>
             </motion.div>
 
+            {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-[1.08] text-text-primary mb-4"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
-              Transform account targeting into{' '}
-              <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
-                meaningful Account Based Experiences.
+              <span className="block pb-1 sm:pb-1.5">Enterprise Account-Based Experience That Unifies</span>
+              <span
+                className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
+                style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
+              >
+                Every Buyer Touchpoint
               </span>
             </motion.h1>
 
+            {/* Description */}
             <motion.p
-              {...fadeUp(0.3)}
-              className="text-sm sm:text-base lg:text-lg text-text-secondary leading-relaxed font-normal mb-6 max-w-xl"
+              {...fadeUp(0.32)}
+              className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
             >
-              Taraj Global evolves traditional ABM into cohesive Account Based Experiences (ABX). We orchestrate hyper-personalized, multi-stakeholder buyer journeys that unite marketing, sales, and executive engagement around your most critical enterprise accounts.
+              When marketing, SDRs, and sales each reach the same account with a different message, buying committees disengage. TaRaj Global orchestrates one continuous, personalized journey, powered by AI-assisted intent signals and in-house verified data, across US, EMEA, and APAC.
             </motion.p>
 
-            <motion.div
-              {...fadeUp(0.4)}
-              className="flex flex-wrap items-center gap-3 sm:gap-4 mb-8"
-            >
+            {/* CTAs */}
+            <motion.div {...fadeUp(0.42)} className="flex flex-col sm:flex-row flex-wrap gap-3.5">
               <button
-                onClick={handleStartConversation}
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-[#0070E0] text-white font-semibold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                onClick={handleStartCampaign}
+                id="hero-cta-primary"
+                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm text-text-accent dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer shadow-md hover:shadow-lg hover:brightness-105"
+                style={{
+                  background: '#FF6D00',
+                  boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
+                }}
               >
-                <span>Launch Your ABX Program</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+                Deploy Custom ABX Campaign
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
               <button
                 onClick={handleSeeHowItWorks}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface/80 dark:bg-white/5 border border-border hover:border-primary/50 text-text-primary font-semibold text-sm hover:bg-surface transition-all duration-200 cursor-pointer"
+                id="hero-cta-secondary"
+                className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer hover:brightness-110"
+                style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
               >
-                <span>Explore 9-Step Workflow</span>
-                <ChevronDown className="w-4 h-4 text-text-secondary" />
+                Explore ABX Architecture
+                <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
               </button>
             </motion.div>
-
-            <motion.div
-              {...fadeUp(0.5)}
-              className="grid grid-cols-3 gap-4 pt-6 border-t border-border/60"
-            >
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-text-primary font-mono">100%</div>
-                <div className="text-xs text-text-secondary font-medium mt-0.5">Verified Buying Groups</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-text-primary font-mono">6–10</div>
-                <div className="text-xs text-text-secondary font-medium mt-0.5">Stakeholder Touchpoints</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-text-primary font-mono">3x</div>
-                <div className="text-xs text-text-secondary font-medium mt-0.5">Account Velocity Lift</div>
-              </div>
-            </motion.div>
           </div>
 
-          {/* Right: Command Center Visual */}
-          <div className="flex items-center justify-center order-2 lg:order-2">
-            <InteractivePipelineVisual prefersReducedMotion={prefersReducedMotion} />
-          </div>
+          {/* ── Right: Command Center ── */}
+          <motion.div
+            className="order-2 lg:order-2"
+            initial={prefersReducedMotion ? {} : { opacity: 0, x: 40 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <CommandCenter prefersReducedMotion={prefersReducedMotion} />
+          </motion.div>
+
         </div>
       </div>
     </section>
@@ -406,4 +433,3 @@ const Hero = () => {
 }
 
 export default Hero
-

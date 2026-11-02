@@ -13,6 +13,7 @@ import {
   Maximize2,
   X,
   Activity,
+  Users,
 } from 'lucide-react'
 
 const ENGINE_LAYERS = [
@@ -20,108 +21,126 @@ const ENGINE_LAYERS = [
     num: '01',
     layer: '01 — Intelligence',
     title: 'DemandFlow Bridge — Account Intelligence',
-    shortTitle: 'Intelligence',
-    tag: 'Tier-1 Account Intelligence',
-    module: 'DemandFlow Bridge — Intelligence',
-    screen: 'Enterprise Account Scoring & Buying Group Console',
-    metric: 'Tier-1 Account Dossiers • 100% Committee Coverage',
-    desc: 'We map historical closed-won patterns to segment target logos and analyze organizational hierarchy across business, technical, and financial approvers.',
+    shortTitle: 'BUYER JOURNEY ARCHITECTURE',
+    tag: 'BUYER JOURNEY ARCHITECTURE',
+    module: 'DemandFlow Bridge — Journey Architecture',
+    screen: 'Account Journey Blueprint & Stage Orchestration Console',
+    metric: 'One Shared Playbook • 100% Revenue Team Alignment',
+    desc: 'Without a shared journey, every team improvises its own next step. We map the stages each committee moves through and define the message, asset, and channel for every moment, so marketing, SDRs, and sales run one playbook.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      '✔ Multi-tiered account scoring based on ICP firmographics and installed technology',
-      '✔ Buying committee org-chart mapping across all 6 to 10 decision-makers',
-      '✔ Comprehensive account dossiers profiling organizational pain points and initiatives',
+      '✔ Buying stages mapped from awareness to active evaluation',
+      '✔ Message, asset, and channel defined for each stage and role',
+      '✔ Shared stage definitions agreed with sales leadership',
     ],
   },
   {
     num: '02',
     layer: '02 — Intent Telemetry',
-    title: 'DemandFlow Bridge — Intent Radar',
-    shortTitle: 'Intent Telemetry',
-    tag: 'Surge Signal Sensing',
-    module: 'DemandFlow Bridge — Telemetry',
-    screen: 'Real-Time Intent Telemetry & Active Buying Windows',
-    metric: 'First & Third-Party Telemetry • Instant Spike Alerts',
-    desc: 'Synthesize first-party web engagement, third-party topic surges, and tech install triggers to notify sales the minute an account enters a research window.',
-    icon: Activity,
-    image: '/demandflow-tracking.png',
+    title: ' DemandFlow Bridge: Behavioral Signals & Intent Telemetry',
+    shortTitle: 'STAKEHOLDER INTELLIGENCE',
+    tag: 'STAKEHOLDER INTELLIGENCE & VERIFICATION',
+    module: 'DemandFlow Bridge — Stakeholder Intelligence',
+    screen: 'Stakeholder Matrix & In-House Data Verification Console',
+    metric: '99.8% Data Accuracy SLA • Zero-Bounce SMTP Verification',
+    desc: 'A well-designed journey fails if it bounces or reaches the wrong person. Every stakeholder profile is validated by our AI-assisted, in-house verification tool, backed by our 99.8% Data Accuracy SLA, so each touch lands with the right role.',
+    icon: Users,
+    image: '/demandflow-dbms.png',
     points: [
-      '✔ Continuous monitoring of category and competitor research signals',
-      '✔ Role-level intent attribution connecting specific stakeholders to surge topics',
-      '✔ Trigger-based alert dispatch directly to sales and marketing Slack/CRM',
+      '✔ Champions, economic buyers, and evaluators profiled by role and priority',
+      '✔ Zero-bounce SMTP validation and verified direct dials',
+      '✔ Continuous deduplication so no stakeholder is contacted twice by different teams',
     ],
   },
   {
     num: '03',
     layer: '03 — Narrative',
-    title: 'DemandFlow Bridge — Bespoke Narratives',
-    shortTitle: 'Narrative',
-    tag: '1:1 Executive Personalization',
-    module: 'DemandFlow Bridge — Narrative',
-    screen: '1:1 Persona Value Narrative & Collateral Generator',
-    metric: 'Bespoke Account Content • Role-Calibrated Messaging',
-    desc: 'Produce customized executive pitch decks, 1:1 tailored microsites, and role-specific ROI proof points for each stakeholder persona.',
-    icon: Sparkles,
-    image: '/demandflow-personalization.png',
+    title: 'DemandFlow Bridge: Stage-Aware Content Sequencing',
+    shortTitle: 'BEHAVIORAL & INTENT SIGNALS',
+    tag: 'BEHAVIORAL SIGNALS & INTENT RADAR',
+    module: 'DemandFlow Bridge: Behavioral Signals & Intent Telemetry',
+    screen: 'Real-Time Intent Telemetry & Active Buying Windows',
+    metric: 'First & Third-Party Telemetry • Instant Surge Alerts',
+    desc: 'A fixed sequence can’t respond to a committee that suddenly turns active. AI-assisted intent and engagement signals show where each account sits in its journey, so the next touch matches what the buyer is doing.',
+    icon: Activity,
+    image: '/demandflow-tracking.png',
     points: [
-      '✔ Tailored value narratives addressing C-suite, technical, and financial criteria',
-      '✔ Account-specific executive briefings and benchmark research assets',
-      '✔ Champion enablement kits equipped to resolve internal procurement concerns',
+      '✔ Topic surge and vendor-comparison detection across B2B networks',
+      '✔ First-party engagement tracking on emails, content, and web touchpoints',
+      '✔ Journey-stage updates triggered when account behavior changes',
     ],
   },
   {
     num: '04',
     layer: '04 — Orchestration',
-    title: 'DemandFlow Bridge — Omnichannel Cadence',
-    shortTitle: 'Orchestration',
-    tag: 'Synchronized Touches',
-    module: 'DemandFlow Bridge — Orchestration',
-    screen: 'Multi-Touch Executive Engagement & Aircover Dispatch',
-    metric: 'Synchronized Email, LinkedIn & Tele-Connect Cadences',
-    desc: 'Harmonize touches across personalized 1:1 email, executive LinkedIn messages, digital aircover, and tele-discovery without siloed friction.',
-    icon: Share2,
-    image: '/demandflow-campaigns.png',
+    title: 'DemandFlow Bridge: Stage-Aware Content Sequencing',
+    shortTitle: 'STAGE-AWARE CONTENT',
+    tag: 'STAGE-AWARE CONTENT SEQUENCING',
+    module: 'DemandFlow Bridge — Content Sequencing',
+    screen: 'Stage-Aware Content Matrix & Collateral Sequencing Engine',
+    metric: 'Role-Calibrated Content Tracks • Stage-Based Offers',
+    desc: ' Sending an evaluation-stage asset to a buyer still defining the problem loses trust. Content, offers, and executive briefings are sequenced by stage and role, so every asset answers the question the committee is asking now.',
+    icon: Sparkles,
+    image: '/demandflow-personalization.png',
     points: [
-      '✔ Coordinated marketing aircover and sales development touches',
-      '✔ High-touch peer roundtable and executive briefing invitations',
-      '✔ Automated pacing controls preventing committee touchpoint fatigue',
+      '✔ Role-specific content tracks for technical, financial, and executive stakeholders',
+      '✔ Stage-based offers, from educational assets to evaluation-ready briefings',
+      '✔ A/B testing of angles and formats within each stage',
     ],
   },
   {
     num: '05',
     layer: '05 — Verification',
-    title: 'In-House Committee Verification',
-    shortTitle: 'Verification',
-    tag: 'Accuracy SLA',
-    module: 'DemandFlow Bridge — Verification',
-    screen: 'Data Verification & Inbox SLA Dashboard: 99.8% Accuracy',
-    metric: '99.8% Accuracy SLA • Triple-Layer Human & SMTP Verification',
-    desc: 'Every stakeholder contact dossier routes through our in-house verification tool to validate corporate inboxes and direct business dials.',
-    icon: FileCheck,
-    image: '/demandflow-dbms.png',
+    title: ' DemandFlow Bridge: Cross-Channel Experience Orchestration',
+    shortTitle: 'CROSS-TEAM ORCHESTRATION',
+    tag: 'CROSS-CHANNEL EXPERIENCE ORCHESTRATION',
+    module: 'DemandFlow Bridge — Omnichannel Orchestration',
+    screen: 'Multi-Touch Executive Engagement & Aircover Dispatch',
+    metric: 'Synchronized Email, LinkedIn & Tele-Connect • 14–21 Day Sprints',
+    desc: 'AEs who inherit an account with no history force buyers to repeat themselves. Every handoff carries the full touch history, documented priorities, and committee map, with discovery meetings booked on AE calendars.',
+    icon: Share2,
+    image: '/demandflow-campaigns.png',
     points: [
-      '✔ Triple-layer SMTP validation eliminating bounce risks and stale committee records',
-      '✔ Direct business dials and verified enterprise email addresses',
-      '✔ Strict ISO 27001:2022, GDPR, CCPA, and CAN-SPAM data privacy compliance',
+      '✔ One shared cadence across marketing and SDR touches',
+      '✔ Live conversations by senior SDRs across 14–21 day sprints, never automated bot forms',
+      '✔ Touch limits and sequencing rules that prevent duplicate outreach',
     ],
   },
   {
     num: '06',
     layer: '06 — CRM Handoff',
-    title: 'DemandFlow Bridge — Closed-Loop Sync',
-    shortTitle: 'CRM Sync',
-    tag: 'RevOps Routing',
-    module: 'DemandFlow Bridge — CRM Delivery',
-    screen: 'Closed-Loop Bi-Directional CRM Synchronization',
-    metric: 'Real-Time Bi-Directional Sync • Salesforce & HubSpot Native',
-    desc: 'Route qualified buying committees, engagement history, and full account dossiers directly into your CRM with zero manual data entry.',
+    title: ' DemandFlow Bridge: Experience Dossiers & Meeting Handoff',
+    shortTitle: 'EXPERIENCE HANDOFF',
+    tag: 'EXPERIENCE DOSSIERS & AE HANDOFF',
+    module: 'DemandFlow Bridge — Experience Dossiers & Delivery',
+    screen: 'Account Dossier & AE Meeting Handoff Protocol',
+    metric: 'Complete Touch History Attached • Cal-Ready AE Handoff',
+    desc: 'AEs who inherit an account with no history force buyers to repeat themselves. Every handoff carries the full touch history, documented priorities, and committee map, with discovery meetings booked on AE calendars.',
+    icon: FileCheck,
+    image: '/demandflow-sequences.png',
+    points: [
+      '✔ Complete touch history and engagement trail per stakeholder',
+      '✔ Documented pain points, priorities, and installed tech stack',
+      '✔ Discovery meetings booked directly on AE calendars',
+    ],
+  },
+  {
+    num: '07',
+    layer: '07',
+    title: ' DemandFlow Bridge: Experience Telemetry & Revenue Attribution',
+    shortTitle: 'EXPERIENCE ANALYTICS',
+    tag: 'EXPERIENCE TELEMETRY & REVENUE ATTRIBUTION',
+    module: 'DemandFlow Bridge — Experience Telemetry & Attribution',
+    screen: 'Closed-Loop Revenue Attribution & Pipeline Velocity Analytics',
+    metric: 'Account-Level Attribution • 99.8% Data Accuracy SLA',
+    desc: ' If you can’t see which touches moved an account forward, you can’t improve the journey. CRM sync links every interaction to opportunity progress and pipeline velocity, backed by our 99.8% Data Accuracy SLA.',
     icon: BadgeCheck,
     image: '/demandflow-qualification.png',
     points: [
-      '✔ Full account briefing and committee dossier synced to CRM lead/account records',
-      '✔ Instant sales rep routing with automated Slack and email discovery notifications',
-      '✔ Closed-loop attribution tracking pipeline velocity and ACV lift',
+      '✔ Native field mapping for Salesforce and HubSpot, plus custom API integrations',
+      '✔ Touch-to-opportunity attribution tracked at the account level',
+      '✔ Bi-weekly journey reviews with your sales and marketing leadership',
     ],
   },
 ]
@@ -181,21 +200,23 @@ const WhatTarajDelivers = () => {
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2 mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Powered by DemandFlow Bridge
+
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              PROPRIETARY ABX DELIVERY ENGINE
+
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-              Deliver?
-            </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">WHAT DOES TARAJ GLOBAL </span>
+            <div className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
+              DELIVER IN ABX
+            </div>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers synchronized enterprise account engagement—connecting account intelligence, bespoke value messaging, and closed-loop RevOps routing.
+            Stop making buying committees repeat themselves to every team. TaRaj Global delivers one orchestrated account journey, scored by AI-assisted intent signals, verified in-house, and handed to sales with full context via DemandFlow Bridge.
+
           </p>
         </div>
 
@@ -207,7 +228,7 @@ const WhatTarajDelivers = () => {
             ref={tabRailRef}
             className="overflow-x-auto pt-2 pb-3 mb-5 px-1 scrollbar-none border-b border-slate-200/80 dark:border-white/10"
           >
-            <div className="flex items-center justify-between min-w-[720px] gap-1.5 py-1">
+            <div className="flex items-stretch justify-between min-w-[880px] lg:min-w-full gap-1.5 py-1">
               {ENGINE_LAYERS.map((layer, idx) => {
                 const Icon = layer.icon
                 const isActive = idx === activeIdx
@@ -217,27 +238,27 @@ const WhatTarajDelivers = () => {
                     key={layer.num}
                     data-tab-idx={idx}
                     onClick={() => setActiveIdx(idx)}
-                    className={`group relative flex-1 flex flex-col items-center py-2.5 px-2 rounded-xl transition-all duration-300 cursor-pointer ${
-                      isActive
-                        ? 'bg-sky-50 dark:bg-[#0A1D3A] text-[#00A6FF] shadow-xs'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
+                    className={`group relative flex-1 min-w-[115px] sm:min-w-[125px] lg:min-w-0 flex flex-col items-center py-2.5 px-1 sm:px-1.5 rounded-xl transition-all duration-300 cursor-pointer ${isActive
+                      ? 'bg-sky-50 dark:bg-[#0A1D3A] text-[#00A6FF] shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
+                      }`}
                   >
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center mb-1.5 transition-all duration-300 ${
-                        isActive
-                          ? 'bg-[#00A6FF] text-white shadow-md shadow-[#00A6FF]/30 scale-105'
-                          : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:scale-105'
-                      }`}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center mb-1.5 transition-all duration-300 ${isActive
+                        ? 'bg-[#00A6FF] text-white shadow-md shadow-[#00A6FF]/30 scale-105'
+                        : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:scale-105'
+                        }`}
                     >
                       <Icon className="w-4 h-4" />
                     </div>
                     <span className="text-[10px] font-mono font-bold tracking-wider uppercase mb-0.5 opacity-80">
                       {layer.num}
                     </span>
-                    <span className="text-[11.5px] font-bold tracking-tight truncate max-w-[100px] text-center">
-                      {layer.shortTitle}
-                    </span>
+                    <div className="w-full min-h-[30px] flex items-center justify-center px-0.5">
+                      <span className="text-[10px] sm:text-[10.5px] md:text-[11px] font-bold tracking-tight text-center leading-tight whitespace-normal">
+                        {layer.shortTitle}
+                      </span>
+                    </div>
                     {isActive && (
                       <motion.div
                         layoutId="activeTabUnderlineAbx"
@@ -286,7 +307,7 @@ const WhatTarajDelivers = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
                     <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
                   </div>
-                  <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate max-w-[200px]">
+                  <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate max-w-[320px]">
                     {activeLayer.screen}
                   </span>
                   <button

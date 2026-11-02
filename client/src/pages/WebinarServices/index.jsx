@@ -67,12 +67,12 @@ const WebinarServices = () => {
   return (
     <>
       <SEO
-        title="B2B Webinar Services | Webinar Lead Generation | Taraj Global"
-        description="Taraj Global provides B2B webinar services that help technology and SaaS companies reach targeted audiences, generate webinar registrations, engage decision-makers, and create qualified leads."
+        title="B2B Webinar Services | Verified Registrations & Attendee-Qualified Pipeline | TaRaj Global"
+        description="Fill B2B webinars with verified decision-makers and turn live engagement into sales-ready pipeline across US, EMEA, and APAC. TaRaj Global combines targeted promotion, attendee intelligence, and a 99.8% Data Accuracy SLA."
         keywords="B2B Webinar Services, Webinar Services, B2B Webinar Marketing, Webinar Lead Generation, Webinar Lead Generation Services, B2B Webinar Campaigns, Webinar Marketing Services, B2B Demand Generation, B2B Lead Generation, Webinar Promotion, Webinar Audience Generation, Webinar Registrations, B2B Audience Targeting, Decision-Maker Engagement, Lead Qualification, Marketing Qualified Leads, MQL Generation, Buyer Intent, Sales Pipeline, DemandFlow Bridge"
         canonical="/webinar-services"
-        ogTitle="B2B Webinar Services | Webinar Lead Generation | Taraj Global"
-        ogDescription="Taraj Global provides B2B webinar services that help technology and SaaS companies reach targeted audiences, generate webinar registrations, engage decision-makers, and create qualified leads."
+        ogTitle="B2B Webinar Services | Verified Registrations & Attendee-Qualified Pipeline | TaRaj Global"
+        ogDescription="Fill B2B webinars with verified decision-makers and turn live engagement into sales-ready pipeline across US, EMEA, and APAC. TaRaj Global combines targeted promotion, attendee intelligence, and a 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={webinarSchema}

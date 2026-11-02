@@ -22,18 +22,18 @@ const FLOW_ITEMS = [
   {
     id: 0,
     num: '01',
-    category: 'PERSONALIZATION',
-    engineLabel: 'Bespoke Account Experiences',
-    engineAction: '1:1 Executive Briefings',
+    category: 'UNIFIED JOURNEY',
+    engineLabel: 'Unified Account Journey Map',
+    engineAction: 'One Playbook for Marketing + SDR',
     problem: {
-      title: '01. Cold, Robotic Outreach',
+      title: '01. Disjointed Touches Across Teams',
       sub: '',
-      icon: FilterX,
+      icon: Workflow,
     },
     solution: {
-      title: '01. Tailored C-Suite Experiences',
+      title: '01. One Consistent Buyer Experience',
       sub: '',
-      icon: Focus,
+      icon: CheckCircle2,
     },
     color: '#00A6FF',
     gradient: 'from-[#00A6FF] to-[#0070E0]',
@@ -41,18 +41,18 @@ const FLOW_ITEMS = [
   {
     id: 1,
     num: '02',
-    category: 'ALIGNMENT',
-    engineLabel: 'DemandFlow RevOps Cadence',
-    engineAction: 'Unified Account Intelligence',
+    category: 'STAGE-AWARE CONTENT',
+    engineLabel: 'Stage-Aware Content Sequencing',
+    engineAction: 'AI-Assisted Intent Signals',
     problem: {
-      title: '02. GTM Team Silos & Split Data',
+      title: '02. Content Mismatched to Buying Stage',
       sub: '',
-      icon: Workflow,
+      icon: FilterX,
     },
     solution: {
-      title: '02. Unified RevOps Orchestration',
+      title: '02. Relevant Content at Every Stage',
       sub: '',
-      icon: CheckCircle2,
+      icon: Focus,
     },
     color: '#8B5CF6',
     gradient: 'from-[#8B5CF6] to-[#6D28D9]',
@@ -61,15 +61,15 @@ const FLOW_ITEMS = [
     id: 2,
     num: '03',
     category: 'BUYING COMMITTEE',
-    engineLabel: 'Buying Group Matrix',
-    engineAction: '6–10 Persona Touchpoints',
+    engineLabel: 'Multi-Threaded Committee Engagement',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: '03. Single-Threaded Deal Stalls',
+      title: '03. Champions Go Dark Mid-Cycle',
       sub: '',
       icon: MailX,
     },
     solution: {
-      title: '03. Multi-Persona Consensus',
+      title: '03. Sustained Committee Momentum',
       sub: '',
       icon: MessageSquareQuote,
     },
@@ -79,18 +79,18 @@ const FLOW_ITEMS = [
   {
     id: 3,
     num: '04',
-    category: 'TIMING & INTENT',
-    engineLabel: 'Real-Time Intent Telemetry',
-    engineAction: 'Surge Topic Trigger Alerts',
+    category: 'SALES HANDOFF',
+    engineLabel: 'Experience Dossiers',
+    engineAction: 'Full Touch History Attached',
     problem: {
-      title: '04. Tone-Deaf Outreach Timing',
+      title: '04. AEs Inherit Accounts With No Context',
       sub: '',
       icon: EyeOff,
     },
     solution: {
-      title: '04. In-Market Window Engagement',
+      title: '04. Warm, Context-Rich Handoffs',
       sub: '',
-      icon: BarChart3,
+      icon: Send,
     },
     color: '#F59E0B',
     gradient: 'from-[#F59E0B] to-[#D97706]',
@@ -98,18 +98,18 @@ const FLOW_ITEMS = [
   {
     id: 4,
     num: '05',
-    category: 'LIFECYCLE',
-    engineLabel: 'Full-Lifecycle ABX Roadmap',
-    engineAction: 'Preemptive Enablement & NRR',
+    category: 'CRM TELEMETRY',
+    engineLabel: 'DemandFlow Bridge',
+    engineAction: 'Closed-Loop CRM Telemetry',
     problem: {
-      title: '05. Enterprise Sales Friction & Churn',
+      title: '05. No Unified View of Account Engagement',
       sub: '',
       icon: ShieldAlert,
     },
     solution: {
-      title: '05. High ACV & Lifecycle Expansion',
+      title: '05. Experience-to-Pipeline Attribution',
       sub: '',
-      icon: Send,
+      icon: BarChart3,
     },
     color: '#EC4899',
     gradient: 'from-[#EC4899] to-[#BE185D]',
@@ -313,20 +313,23 @@ const ProblemsSolved = () => {
       <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5 mb-2">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
               TECH-ENABLED ABX TRANSFORMATION
+
             </span>
           </div>
 
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span>WHAT PROBLEMS DOES </span>
             <span className="inline-block bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              ACCOUNT BASED EXPERIENCE
+              ACCOUNT BASED EXPERIENCE SOLVE?
             </span>
+
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From single-threaded sales risk to disconnected committee personas, we turn enterprise buying friction into synchronized commercial momentum.
+            From disjointed touches to context-free handoffs, we turn fragmented account engagement into one continuous buyer journey using in-house data verification and DemandFlow Bridge CRM telemetry.
+
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-3">
@@ -529,7 +532,7 @@ const ProblemsSolved = () => {
                 transition={{ duration: 0.25 }}
                 className="mb-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
               >
-                ORCHESTRATE
+                ALIGN
               </motion.div>
 
               <div
@@ -597,7 +600,7 @@ const ProblemsSolved = () => {
                         ) : phase === 'toSolution' || phase === 'solution' ? (
                           <span className="text-emerald-300 font-bold">✓ ALIGNED CONSENSUS</span>
                         ) : (
-                          <span className="text-sky-300/90">● SENSING SIGNALS</span>
+                          <span className="text-sky-300/90">● ABX ENGINE</span>
                         )}
                       </div>
                     </motion.div>
@@ -613,7 +616,7 @@ const ProblemsSolved = () => {
                 transition={{ duration: 0.25 }}
                 className="mt-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
               >
-                ACCELERATE
+                OPTIMIZE
               </motion.div>
             </div>
 
@@ -667,11 +670,10 @@ const ProblemsSolved = () => {
         {/* Mobile View */}
         <div className="block md:hidden space-y-3 pt-1">
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'problem' || phase === 'toCenter'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'problem' || phase === 'toCenter'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -695,11 +697,10 @@ const ProblemsSolved = () => {
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
-              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${
-                phase === 'centerReact'
-                  ? 'scale-108 shadow-lg ring-2 ring-primary/50'
-                  : 'scale-100'
-              }`}
+              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${phase === 'centerReact'
+                ? 'scale-108 shadow-lg ring-2 ring-primary/50'
+                : 'scale-100'
+                }`}
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
               <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
@@ -720,11 +721,10 @@ const ProblemsSolved = () => {
           </div>
 
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'toSolution' || phase === 'solution'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'toSolution' || phase === 'solution'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div

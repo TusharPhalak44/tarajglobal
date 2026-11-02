@@ -22,181 +22,181 @@ const ENGINE_LAYERS = [
   {
     num: '01',
     layer: '01 — STRATEGY',
-    title: 'DemandFlow Bridge — Webinar Strategy',
+    title: 'DemandFlow Bridge: Webinar Strategy & Goal Matrix',
     shortTitle: 'Strategy',
     tag: 'GOALS & AUDIENCE ALIGNMENT',
     module: 'DemandFlow Bridge — Webinar Strategy',
     subLabel: 'Session Architecture & Topic Engine',
     screen: 'Webinar Campaign Architecture & Goal Matrix',
     metric: 'PRECISION AUDIENCE BLUEPRINT • HIGH-CONVERTING TOPICS',
-    desc: 'Align session themes, target ICPs, and commercial goals to drive executive interest.',
+    desc: 'Topics chosen without audience insight draw registrants who never buy. We align session themes, target ICPs, and commercial goals before promotion starts, refined with AI-assisted lookalike modeling.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      'Commercial goal setting & ICP definition',
-      'Value-driven topic & agenda formulation',
-      'Multi-stakeholder messaging framework',
-      'Speaker briefing & presentation structure',
+      '✔ Commercial goal setting and ICP definition',
+      '✔ Value-driven topic and agenda formulation',
+      '✔ Multi-stakeholder messaging framework',
+      '✔ Speaker briefing and presentation structure',
     ],
   },
   {
     num: '02',
     layer: '02 — TARGETING',
-    title: 'DemandFlow Bridge — Audience Targeting',
+    title: ' DemandFlow Bridge: ICP Audience Targeting',
     shortTitle: 'Targeting',
     tag: 'ICP & FIRMOGRAPHIC FILTERING',
     module: 'DemandFlow Bridge — Audience Selector',
     subLabel: 'B2B Account & Persona Mapping',
     screen: 'Audience Segmentation & Account Match Radar',
     metric: 'VERIFIED DECISION-MAKERS • ZERO AUDIENCE WASTE',
-    desc: 'Isolate target companies and senior personas that match your precise customer profile.',
+    desc: 'Webinars promoted to broad lists fill seats with the wrong people. We isolate target companies and senior personas that match your precise customer profile, using data verified in-house and backed by our 99.8% Data Accuracy SLA.',
     icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
-      'Firmographic & revenue tier filtering',
-      'Verified job title & department taxonomy',
-      'Active buyer intent topic triggers',
-      'Clean prospect database validation',
+      '✔ Firmographic and revenue tier filtering',
+      '✔ Verified job title and department taxonomy',
+      '✔ Active buyer intent topic triggers',
+      '✔ Clean prospect database validation through our in-house verification tool',
     ],
   },
   {
     num: '03',
     layer: '03 — OUTREACH',
-    title: 'DemandFlow Bridge — Decision-Maker Outreach',
+    title: 'DemandFlow Bridge: Decision-Maker Invitation Outreach',
     shortTitle: 'Outreach',
     tag: '1:1 EXECUTIVE ENGAGEMENT',
     module: 'DemandFlow Bridge — Executive Outreach',
     subLabel: 'Personalized Invite Sequences',
     screen: 'Executive Invitation Cadence & Touchpoint Control',
     metric: '99.4% DELIVERABILITY • 1:1 INVITATION CADENCE',
-    desc: 'Reach relevant stakeholders directly using tailored invitations that cut through noise.',
+    desc: 'Generic invites get ignored by senior buyers. Tailored, multi-touch invitations reach relevant stakeholders directly and cut through inbox noise.',
     icon: MailCheck,
     image: '/demandflow-sequences.png',
     points: [
-      'Multi-touch executive invite sequences',
-      'Personalized value propositions by seniority',
-      'Strategic follow-up cadences',
-      'Deliverability & sender reputation monitoring',
+      '✔ Multi-touch executive invite sequences',
+      '✔ Personalized value propositions by seniority',
+      '✔ Strategic follow-up cadences',
+      '✔ Deliverability and sender reputation monitoring',
     ],
   },
   {
     num: '04',
     layer: '04 — PROMOTION',
-    title: 'DemandFlow Bridge — Webinar Promotion',
+    title: ' DemandFlow Bridge: Multi-Channel Webinar Promotion',
     shortTitle: 'Promotion',
     tag: 'MULTI-CHANNEL DISTRIBUTION',
     module: 'DemandFlow Bridge — Promotion Engine',
     subLabel: 'Multi-Channel Campaign Dispatch',
     screen: 'Omnichannel Campaign Promotion & Channel Pacing',
     metric: 'SYNCHRONIZED CAMPAIGNS • OMNICHANNEL VISIBILITY',
-    desc: 'Deploy synchronized multi-channel promotion across email, LinkedIn, and partner feeds.',
+    desc: ' Single-channel promotion leaves seats empty and registrations uneven. Synchronized email, LinkedIn, and partner-feed promotion keeps registrations paced toward your target.',
     icon: Sparkles,
     image: '/demandflow-personalization.png',
     points: [
-      'Cross-channel promotional synchronization',
-      'Dynamic ad and organic outreach integration',
-      'Executive social network activation',
-      'Continuous registration pacing optimization',
+      '✔ Cross-channel promotional synchronization',
+      '✔ Dynamic ad and organic outreach integration',
+      '✔ Executive social network activation',
+      '✔ Continuous registration pacing optimization',
     ],
   },
   {
     num: '05',
     layer: '05 — REGISTRATION',
-    title: 'DemandFlow Bridge — Registration Generation',
+    title: 'DemandFlow Bridge: Verified Registration Generation',
     shortTitle: 'Registration',
     tag: 'HIGH-FIT REGISTRANT CAPTURE',
     module: 'DemandFlow Bridge — Registration Hub',
     subLabel: 'Custom Screening & Opt-In Gates',
     screen: 'Live Registration Tracker & Screening Approval',
     metric: '100% ICP VALIDATED • ZERO UNQUALIFIED SIGNUPS',
-    desc: 'Drive high-volume, verified registrations backed by custom business qualification gates.',
+    desc: 'Open registration invites personal emails and competitors, and no-shows follow. Custom qualification gates verify corporate domains and screen registrants before they take a seat.',
     icon: Gauge,
     image: '/demandflow-campaigns.png',
     points: [
-      'Frictionless custom landing experiences',
-      'Mandatory corporate domain verification',
-      'Custom screening question capture',
-      'Automated confirmation & calendar holds',
+      '✔ Frictionless custom landing experiences',
+      '✔ Mandatory corporate domain verification',
+      '✔ Custom screening question capture',
+      '✔ Automated confirmation and calendar holds',
     ],
   },
   {
     num: '06',
     layer: '06 — ENGAGEMENT',
-    title: 'DemandFlow Bridge — Attendee Engagement',
+    title: 'DemandFlow Bridge: Live Attendee Engagement Telemetry',
     shortTitle: 'Engagement',
     tag: 'SESSION PARTICIPATION & SIGNALS',
     module: 'DemandFlow Bridge — Engagement Tracker',
     subLabel: 'Live Interaction & Telemetry',
     screen: 'Attendee Heatmap & Interaction Telemetry Board',
     metric: 'REAL-TIME PARTICIPATION • POLLS & CHAT ACTIVITY',
-    desc: 'Capture live interaction, poll responses, questions, and duration of attendee stay.',
+    desc: ' Attendance alone doesn’t show interest. We capture live interaction, poll responses, questions, and stay duration, surfacing in-session buying signals while the session runs.',
     icon: TrendingUp,
     image: '/demandflow-tracking.png',
     points: [
-      'Session attendance duration tracking',
-      'Interactive poll and Q&A telemetry',
-      'Content resource download logging',
-      'In-session buying signal identification',
+      '✔ Session attendance duration tracking',
+      '✔ Interactive poll and Q&A telemetry',
+      '✔ Content resource download logging',
+      '✔ In-session buying signal identification',
     ],
   },
   {
     num: '07',
     layer: '07 — QUALIFICATION',
-    title: 'DemandFlow Bridge — Lead Qualification',
+    title: 'DemandFlow Bridge: Attendee Scoring & BANT Qualification',
     shortTitle: 'Qualification',
     tag: 'SCORING & BANT EVALUATION',
     module: 'DemandFlow Bridge — Qualification Matrix',
     subLabel: 'Multi-Signal Lead Scoring',
     screen: 'Lead Qualification & Readiness Dashboard',
     metric: '94.6% BANT COMPLIANCE • SALES-READY SCORING',
-    desc: 'Score attendees by engagement depth, corporate authority, and declared project timing.',
+    desc: 'Reps can’t tell a curious attendee from a buyer. AI-assisted scoring weighs engagement depth, corporate authority, and declared project timing to flag who is sales-ready.',
     icon: BadgeCheck,
     image: '/demandflow-qualification.png',
     points: [
-      'Multi-signal engagement scoring algorithms',
-      'BANT and project timeframe validation',
-      'Attended vs no-show segment prioritization',
-      'High-intent commercial trigger alerts',
+      '✔ Multi-signal engagement scoring algorithms',
+      '✔ BANT and project timeframe validation',
+      '✔ Attended vs. no-show segment prioritization',
+      '✔ High-intent commercial trigger alerts',
     ],
   },
   {
     num: '08',
     layer: '08 — INTELLIGENCE',
-    title: 'DemandFlow Bridge — Prospect Intelligence',
+    title: 'DemandFlow Bridge: Attendee Intelligence Dossiers',
     shortTitle: 'Intelligence',
     tag: 'DEEP ACCOUNT DOSSIERS',
     module: 'DemandFlow Bridge — Dossier Generator',
     subLabel: 'Executive Briefings & Question Logs',
     screen: 'Attendee Dossier & Engagement Audit Profile',
     metric: 'DEEP DOSSIERS • QUESTION LOGS • PAIN POINT MAPPING',
-    desc: 'Deliver rich attendee dossiers that equip sales reps with specific discussion context.',
+    desc: 'Reps who call attendees without session context start from zero. Each dossier carries the activity trail, questions asked, tech stack, and discussion starters for the follow-up call.',
     icon: Cpu,
     image: '/demandflow-admin.png',
     points: [
-      'Complete attendee activity audit trails',
-      'Specific questions asked during the session',
-      'Company tech stack and organizational context',
-      'Actionable discussion starters for sales calls',
+      '✔ Complete attendee activity audit trails',
+      '✔ Specific questions asked during the session',
+      '✔ Company tech stack and organizational context',
+      '✔ Actionable discussion starters for sales calls',
     ],
   },
   {
     num: '09',
     layer: '09 — HANDOFF',
-    title: 'DemandFlow Bridge — Sales Handoff & Pipeline Integration',
+    title: ' DemandFlow Bridge: Sales Handoff & Pipeline Integration',
     shortTitle: 'Sales Handoff',
     tag: 'CRM SYNC & DISCOVERY CALLS',
     module: 'DemandFlow Bridge — Pipeline Router',
     subLabel: 'Instant CRM Integration & Cadence',
     screen: 'Direct CRM Pipeline Routing & Opportunity Sync',
     metric: 'INSTANT CRM SYNC • WARM MEETING BOOKING',
-    desc: 'Seamlessly transfer qualified leads into your CRM and initiate warm post-webinar outreach.',
+    desc: 'Webinar leads go cold within days when follow-up is slow. Qualified leads sync into your CRM, reps are notified instantly, and warm post-webinar outreach starts at once.',
     icon: Video,
     image: '/demandflow-sequences.png',
     points: [
-      'Instant bi-directional CRM integration (Salesforce, HubSpot)',
-      'Automated sales rep notification & lead routing',
-      'Pre-built post-event follow-up email sequences',
-      'Pipeline attribution & deal velocity tracking',
+      '✔ Bi-directional CRM integration with Salesforce and HubSpot',
+      '✔ Automated rep notification and lead routing',
+      '✔ Pre-built post-event follow-up email sequences',
+      '✔ Pipeline attribution and deal velocity tracking',
     ],
   },
 ]
@@ -254,31 +254,32 @@ const WhatTarajDelivers = () => {
       </div>
 
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Proprietary Campaign Engine
+
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              PROPRIETARY WEBINAR ENGINE • DEMANDFLOW BRIDGE
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-              Deliver?
+              DELIVER IN WEBINARS
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers high-impact B2B webinar campaigns powered by DemandFlow Bridge, converting verified registrations into qualified opportunities.
+            Stop treating registrations as results. TaRaj Global delivers webinar campaigns that fill sessions with verified decision-makers and convert live engagement into qualified opportunities, scored by AI-assisted signals and routed via DemandFlow Bridge.
+
           </p>
         </div>
 
         {/* ── Unified Command Theater ── */}
         <div className="relative rounded-3xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0B1424] border border-slate-200/90 dark:border-white/10 shadow-xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl">
-          
+
           <div className="absolute top-0 left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent shadow-[0_0_12px_#00A6FF]" />
 
           {/* Stepper Rail */}
@@ -299,38 +300,34 @@ const WhatTarajDelivers = () => {
                     onClick={() => setActiveIdx(idx)}
                     className={`
                       relative flex-1 flex flex-col items-center py-2 px-1.5 rounded-xl transition-all duration-300 cursor-pointer text-center group overflow-hidden
-                      ${
-                        isActive
-                          ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
-                          : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
+                      ${isActive
+                        ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
+                        : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
                       }
                     `}
                   >
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span
-                        className={`font-mono text-[11px] font-black ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
-                        }`}
+                        className={`font-mono text-[11px] font-black ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
+                          }`}
                       >
                         {layer.num}
                       </span>
                       <Icon
-                        className={`w-3.5 h-3.5 ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-                        }`}
+                        className={`w-3.5 h-3.5 ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                          }`}
                       />
                     </div>
 
                     <span
-                      className={`text-[11px] font-bold tracking-tight whitespace-nowrap ${
-                        isActive
-                          ? 'text-slate-900 dark:text-white'
-                          : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
-                      }`}
+                      className={`text-[11px] font-bold tracking-tight whitespace-nowrap ${isActive
+                        ? 'text-slate-900 dark:text-white'
+                        : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
+                        }`}
                     >
                       {layer.shortTitle}
                     </span>
@@ -412,7 +409,7 @@ const WhatTarajDelivers = () => {
 
               {/* Right Column (6 Cols) */}
               <div className="lg:col-span-6">
-                <div 
+                <div
                   onClick={() => setIsZoomed(true)}
                   className="relative rounded-2xl overflow-hidden border border-slate-300/80 dark:border-[#00A6FF]/30 bg-background dark:bg-[#060D19] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.15)] group cursor-pointer transition-all duration-300 hover:border-[#00A6FF] hover:shadow-[0_20px_50px_rgba(0,166,255,0.25)]"
                 >

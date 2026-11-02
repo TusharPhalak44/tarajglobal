@@ -9,56 +9,56 @@ export const FAQS = [
     num: '01',
     question: 'What is B2B lead nurturing?',
     answer:
-      'B2B lead nurturing is the strategic process of building relationships with potential buyers across every stage of the sales funnel through targeted, contextual multi-channel touchpoints until they are ready to purchase.',
+      'B2B lead nurturing is the process of building relationships with prospects across every stage of the buying journey through targeted, contextual, multi-channel touchpoints until they are ready to talk to sales. TaRaj Global runs it with behavioral scoring, AI-assisted intent signals, and in-house verified data.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'Why is lead nurturing important for B2B sales?',
+    question: ' Why is lead nurturing important for B2B sales?',
     answer:
-      'Most B2B buyers are not ready to purchase on the initial touchpoint. Lead nurturing keeps your brand top of mind, addresses objections, educates stakeholders, and ensures you capture demand when budget and intent align.',
+      'Most B2B buyers aren’t ready to purchase on the first touchpoint. Lead nurturing keeps your brand top of mind, addresses objections, and educates stakeholders, so you capture demand when budget and intent align instead of losing it to a competitor.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'How does lead nurturing differ from lead generation?',
+    question: ' How does lead nurturing differ from lead generation?',
     answer:
-      'Lead generation captures initial contact details and baseline interest, whereas lead nurturing develops that initial interest over time through educational content, cadenced outreach, and qualification into sales-ready pipeline.',
+      'Lead generation captures initial contact details and baseline interest. Lead nurturing develops that interest over time through educational content, paced outreach, and qualification, turning contacts that are not yet ready into sales-ready pipeline.',
   },
   {
     id: 'faq-4',
     num: '04',
     question: 'What channels are used in B2B lead nurturing?',
     answer:
-      'Effective B2B nurturing utilizes an orchestrated multi-channel mix including personalized email workflows, phone and conversational check-ins, retargeting, account-based content distribution, and social engagement touchpoints.',
+      'Effective nurturing uses an orchestrated multi-channel mix: personalized email workflows, phone and conversational check-ins, retargeting, account-based content distribution, and social engagement, all coordinated through DemandFlow Bridge.',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'How do you know when a lead is ready for sales?',
+    question: ' How do you know when a lead is ready for sales?',
     answer:
-      'We utilize data-driven qualification criteria including engagement scoring, content interaction thresholds, BANT qualification signals, and direct buyer intent actions before routing the lead to your account executives.',
+      'A lead is flagged as ready when it crosses scoring thresholds that combine ICP fit with behavior: engagement scores, content interaction depth, AI-assisted intent signals, and BANT qualification signals confirmed in live conversation. Only then is it routed to your account executives.',
   },
   {
     id: 'faq-6',
     num: '06',
     question: 'How do you prevent lead fatigue during nurturing?',
     answer:
-      'By adhering to strict cadence pacing, dynamically adjusting frequency based on prospect responsiveness, and prioritizing high-value educational content over aggressive sales pitches.',
+      'We set strict cadence pacing, adjust frequency to each prospect’s responsiveness, and lead with high-value educational content rather than aggressive sales pitches. Touch limits keep marketing and SDR outreach from overlapping.',
   },
   {
     id: 'faq-7',
     num: '07',
     question: 'Can lead nurturing re-engage cold or stalled leads?',
     answer:
-      'Yes. A major focus of our lead nurturing workflows is revitalizing dormant databases, recycling closed-lost deals, and reactivating unworked contacts with fresh, relevant value propositions.',
+      'Yes. Reactivation is a core focus. We revitalize dormant databases, recycle closed-lost deals, and re-engage unworked contacts with fresh, relevant value propositions, validating contact data first so outreach reaches live inboxes.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: 'How does Taraj Global support lead nurturing?',
+    question: 'How does TaRaj Global support lead nurturing?',
     answer:
-      'Taraj Global combines verified B2B data, strategic multi-touch cadence design, DemandFlow Bridge multi-channel orchestration, and structured qualification to deliver consistent, sales-ready opportunities to your sales team.',
+      'TaRaj Global combines verified B2B data backed by our 99.8% Data Accuracy SLA, multi-touch cadence design, DemandFlow Bridge orchestration, and structured qualification to deliver consistent, sales-ready opportunities to your sales team.',
   },
 ]
 
@@ -84,18 +84,16 @@ const FAQ = () => {
         className={`
           relative group rounded-2xl transition-all duration-300 border overflow-hidden
           hover:-translate-y-0.5
-          ${
-            isOpen
-              ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
-              : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
+          ${isOpen
+            ? 'bg-white dark:bg-[#0B1424] border-[#00A6FF] shadow-lg shadow-[#00A6FF]/15 dark:shadow-[0_10px_30px_rgba(0,166,255,0.22)] ring-1 ring-[#00A6FF]/30'
+            : 'bg-white dark:bg-[#091120] border-slate-200/90 dark:border-white/10 shadow-sm hover:border-[#00A6FF]/60 dark:hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 dark:hover:shadow-[0_8px_25px_rgba(0,166,255,0.14)]'
           }
         `}
       >
         {/* Top subtle hover / active accent beam */}
         <div
-          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${
-            isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-          }`}
+          className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+            }`}
         />
 
         <button
@@ -108,20 +106,18 @@ const FAQ = () => {
         >
           <div className="flex items-start gap-3">
             <span
-              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${
-                isOpen
-                  ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
-                  : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-              }`}
+              className={`font-mono text-xs font-black px-2 py-0.5 rounded-md mt-0.5 shrink-0 transition-all duration-200 ${isOpen
+                ? 'bg-[#00A6FF] text-white shadow-xs shadow-[#00A6FF]/40'
+                : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.num}
             </span>
             <span
-              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${
-                isOpen
-                  ? 'text-[#00A6FF]'
-                  : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
-              }`}
+              className={`text-sm sm:text-[15px] font-bold leading-snug transition-colors duration-200 ${isOpen
+                ? 'text-[#00A6FF]'
+                : 'text-slate-900 dark:text-white group-hover:text-[#00A6FF]'
+                }`}
             >
               {faq.question}
             </span>
@@ -130,11 +126,10 @@ const FAQ = () => {
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.25 }}
-            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${
-              isOpen
-                ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
-                : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
-            }`}
+            className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 ${isOpen
+              ? 'bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/40 shadow-xs'
+              : 'bg-slate-100 dark:bg-white/5 text-slate-400 border border-slate-200/60 dark:border-white/5 group-hover:border-[#00A6FF]/40 group-hover:text-[#00A6FF]'
+              }`}
             aria-hidden="true"
           >
             <ChevronDown className="w-4 h-4" />
@@ -183,7 +178,7 @@ const FAQ = () => {
       </div>
 
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <motion.div
@@ -193,8 +188,9 @@ const FAQ = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Frequently Asked Questions
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              SOMETHING ON YOUR MIND?
+
             </span>
           </motion.div>
 
@@ -203,12 +199,12 @@ const FAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
+            <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
               Questions
-            </span>
+            </div>
           </motion.h2>
 
           <motion.p
@@ -218,7 +214,8 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Common questions about B2B lead nurturing, our multi-touch workflows, behavioral scoring, and how we deliver sales-ready opportunities.
+            Common questions about TaRaj Global’s B2B lead nurturing, multi-touch workflows, behavioral scoring, and sales-ready delivery across US, EMEA, and APAC.
+
           </motion.p>
         </div>
 

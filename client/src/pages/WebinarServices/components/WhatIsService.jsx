@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'TARGET',
-    desc: 'Reach the right decision makers',
+    desc: 'Reach verified decision-makers matching your ICP and target accounts.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'ENGAGE',
-    desc: 'Drive live session participation',
+    desc: 'Drive live participation through polls, Q&A, and resource downloads.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'CONVERT',
-    desc: 'Generate qualified opportunities',
+    desc: 'Score attendee intent and hand off qualified opportunities.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              B2B WEBINAR SERVICES
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              WEBINAR PIPELINE ENGINE
+
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -154,7 +155,8 @@ const WhatIsService = () => {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#00A6FF] animate-pulse" />
                     <span className="text-xs font-mono font-bold tracking-wider text-text-primary">
-                      TARGET → ENGAGE → CONVERT
+                      TARGET ➔ ENGAGE ➔ CONVERT | Webinar Journey Telemetry
+
                     </span>
                   </div>
                   <span className="text-[11px] font-mono font-medium text-primary px-2 py-0.5 rounded-full bg-surface/80 border border-border backdrop-blur-sm">
@@ -175,7 +177,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              B2B Webinar Services help technology and SaaS companies reach targeted audiences, generate registrations, engage decision-makers, and turn webinar participation into qualified sales opportunities.
+              B2B webinar services plan, promote, and run virtual events that bring targeted decision-makers into live sessions, then convert registrations, attendance, and in-session engagement into qualified sales opportunities.
+
             </motion.p>
 
             <motion.p
@@ -185,7 +188,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike mass online seminars, effective B2B webinar marketing is built around your ideal customer profile, reaching specific roles, industries, and enterprise organizations with high-value technical sessions. The result is verified attendance that generates qualified discovery opportunities rather than low-intent registrations.
+              Unlike mass online seminars, TaRaj Global’s tech-enabled webinar campaigns are built around your ICP, reaching specific roles, industries, and enterprise accounts with high-value sessions. Registrants are verified in-house, backed by our 99.8% Data Accuracy SLA, and attendee engagement is scored and routed to your CRM via DemandFlow Bridge.
+
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION */}
@@ -218,10 +222,10 @@ const WhatIsService = () => {
                         prefersReducedMotion
                           ? {}
                           : {
-                              y: -4,
-                              scale: 1.02,
-                              transition: { duration: 0.22, ease: 'easeOut' },
-                            }
+                            y: -4,
+                            scale: 1.02,
+                            transition: { duration: 0.22, ease: 'easeOut' },
+                          }
                       }
                       className="relative flex flex-col gap-2 p-3.5 sm:p-4 bg-surface transition-all duration-300"
                       style={{

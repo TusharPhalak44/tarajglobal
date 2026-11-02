@@ -22,17 +22,17 @@ const FLOW_ITEMS = [
   {
     id: 0,
     num: '01',
-    category: 'ENGAGEMENT',
-    engineLabel: 'Intent Discovery',
-    engineAction: 'Lifecycle Cadence',
+    category: 'CADENCES',
+    engineLabel: 'Behavior-Triggered Cadences',
+    engineAction: 'Role & Stage Segmentation',
     problem: {
-      title: 'Unengaged Prospects',
-      sub: 'Cold Contacts Stalled in Pipeline',
+      title: '01. Cold Contacts Stalled in Pipeline',
+      sub: '',
       icon: FilterX,
     },
     solution: {
-      title: 'Active Buyer Engagement',
-      sub: 'Contextual Persona Touchpoints',
+      title: '01. Active Buyer Engagement',
+      sub: '',
       icon: Focus,
     },
     color: '#00A6FF',
@@ -41,17 +41,17 @@ const FLOW_ITEMS = [
   {
     id: 1,
     num: '02',
-    category: 'SALES VELOCITY',
-    engineLabel: 'Velocity Engine',
-    engineAction: 'Pipeline Acceleration',
+    category: 'NURTURE TRACKS',
+    engineLabel: 'Account-Level Nurture Tracks',
+    engineAction: 'Multi-Stakeholder Content',
     problem: {
-      title: 'Long Sales Cycles',
-      sub: 'Stalled Buying Committees & Drag',
+      title: '02. Long Cycles, Stalled Committees',
+      sub: '',
       icon: Clock,
     },
     solution: {
-      title: 'Accelerated Deal Cycles',
-      sub: 'Decision Support & Momentum',
+      title: '02. Sustained Deal Momentum',
+      sub: '',
       icon: Zap,
     },
     color: '#8B5CF6',
@@ -60,17 +60,17 @@ const FLOW_ITEMS = [
   {
     id: 2,
     num: '03',
-    category: 'LEAD RETENTION',
-    engineLabel: 'Lifecycle Reactivator',
-    engineAction: 'Dormant Lead Recovery',
+    category: 'REACTIVATION',
+    engineLabel: 'Lifecycle Reactivation Workflows',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: 'Lost Marketing Leads',
-      sub: 'Leaking Top-of-Funnel Pipeline',
+      title: '03. Marketing Leads Leaking Away',
+      sub: '',
       icon: ShieldAlert,
     },
     solution: {
-      title: 'Preserved Lead Value',
-      sub: 'Multi-Touch Pipeline Retention',
+      title: '03. Preserved Lead Value',
+      sub: '',
       icon: CheckCircle2,
     },
     color: '#10B981',
@@ -79,17 +79,17 @@ const FLOW_ITEMS = [
   {
     id: 3,
     num: '04',
-    category: 'CADENCE',
-    engineLabel: 'Automation Hub',
-    engineAction: 'Trigger-Based Cadence',
+    category: 'PACING CONTROL',
+    engineLabel: 'Cadence Pacing Control',
+    engineAction: 'Automated Follow-Through',
     problem: {
-      title: 'Inconsistent Follow-Up',
-      sub: 'Follow-up Gaps & Missed Windows',
+      title: '04. Follow-Up Gaps, Missed Windows',
+      sub: '',
       icon: Workflow,
     },
     solution: {
-      title: 'Structured Cadence',
-      sub: 'Timely Outreach & Follow-Through',
+      title: '04. Timely, Consistent Follow-Up',
+      sub: '',
       icon: Send,
     },
     color: '#F59E0B',
@@ -98,17 +98,17 @@ const FLOW_ITEMS = [
   {
     id: 4,
     num: '05',
-    category: 'CONVERSION',
-    engineLabel: 'Scoring Engine',
-    engineAction: 'Sales-Ready Validation',
+    category: 'INTENT SCORING',
+    engineLabel: 'AI-Assisted Intent + Fit Scoring',
+    engineAction: 'Readiness Threshold Alerts',
     problem: {
-      title: 'Low Conversion Rates',
-      sub: 'Unqualified Contacts Passing to Sales',
+      title: '05. Unqualified Contacts Reach Sales',
+      sub: '',
       icon: EyeOff,
     },
     solution: {
-      title: 'High-Intent Opportunities',
-      sub: 'Qualified Sales Readiness',
+      title: '05. Sales-Ready Opportunities',
+      sub: '',
       icon: BarChart3,
     },
     color: '#EC4899',
@@ -326,8 +326,8 @@ const ProblemsSolved = () => {
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5   mb-2">
             <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
-              Transformation Engine
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              TECH-ENABLED NURTURING TRANSFORMATION
             </span>
           </div>
 
@@ -339,7 +339,8 @@ const ProblemsSolved = () => {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From unengaged prospects to long sales cycles, we transform core bottlenecks into sales ready conversations.
+            From unengaged prospects to long sales cycles, we turn core pipeline bottlenecks into sales-ready conversations using in-house data verification and DemandFlow Bridge CRM routing.
+
           </p>
 
           {/* ── Micro Step Indicator ── */}
@@ -605,15 +606,17 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.problem.sub}
-                      </div>
+                      {item.problem.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                          {item.problem.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -702,7 +705,7 @@ const ProblemsSolved = () => {
                           className="w-1.5 h-1.5 rounded-full animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[155px]">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -816,12 +819,14 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.solution.sub}
-                      </div>
+                      {item.solution.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                          {item.solution.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -835,11 +840,10 @@ const ProblemsSolved = () => {
         <div className="block md:hidden space-y-3 pt-1">
           {/* Active Problem Pill */}
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'problem' || phase === 'toCenter'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'problem' || phase === 'toCenter'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -850,7 +854,9 @@ const ProblemsSolved = () => {
             </div>
             <div>
               <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.problem.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.problem.sub}</div>
+              {currentItem.problem.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.problem.sub}</div>
+              ) : null}
             </div>
           </div>
 
@@ -858,11 +864,10 @@ const ProblemsSolved = () => {
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
-              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${
-                phase === 'centerReact'
-                  ? 'scale-108 shadow-lg ring-2 ring-primary/50'
-                  : 'scale-100'
-              }`}
+              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${phase === 'centerReact'
+                ? 'scale-108 shadow-lg ring-2 ring-primary/50'
+                : 'scale-100'
+                }`}
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
               <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
@@ -884,11 +889,10 @@ const ProblemsSolved = () => {
 
           {/* Active Solution Pill */}
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'toSolution' || phase === 'solution'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'toSolution' || phase === 'solution'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -899,7 +903,9 @@ const ProblemsSolved = () => {
             </div>
             <div>
               <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.solution.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.solution.sub}</div>
+              {currentItem.solution.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.solution.sub}</div>
+              ) : null}
             </div>
           </div>
 

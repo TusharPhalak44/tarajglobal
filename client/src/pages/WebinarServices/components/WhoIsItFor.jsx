@@ -13,11 +13,11 @@ const AUDIENCES = [
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Connect with CTOs, VPs of Engineering, and software buyers evaluating platform capabilities, turning interactive webinar participation into active product trials.',
+      'Product webinars that draw the wrong crowd produce registrations, not trials. We connect you with CTOs, VPs of Engineering, and software buyers evaluating platforms, turning interactive participation into active product trials.',
     points: [
-      'Targeting by verified tech stack, ARR band, and engineering team size',
-      'Interactive platform walkthroughs and real-time product demonstrations',
-      'Post-webinar onboarding sequences converting attendees into qualified discovery calls',
+      '✔ Targeting by verified tech stack, ARR band, and engineering team size',
+      '✔ Interactive platform walkthroughs and real-time product demonstrations',
+      '✔ Post-webinar onboarding sequences converting attendees into qualified discovery calls',
     ],
     visualType: 'saas',
   },
@@ -29,11 +29,11 @@ const AUDIENCES = [
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Educate technical buyers, enterprise architects, and engineering stakeholders with deep-dive technical sessions, architecture walkthroughs, and live benchmarks.',
+      'Technical evaluators walk out of sessions that sound like sales pitches. We educate architects and engineering stakeholders with deep-dive sessions, architecture walkthroughs, and live benchmarks.',
     points: [
-      'Engage technical decision-makers evaluating complex enterprise platforms',
-      'Architectural briefs and live Q&A sessions addressing integration friction',
-      'Full intent telemetry and question tracking delivered to sales engineering teams',
+      '✔ Technical decision-makers evaluating complex enterprise platforms engaged directly',
+      '✔ Architectural briefs and live Q&A sessions addressing integration friction',
+      '✔ Full intent telemetry and question tracking delivered to sales engineering teams',
     ],
     visualType: 'it',
   },
@@ -45,11 +45,11 @@ const AUDIENCES = [
     color: '#10B981',
     image: '/enterprise-audience.jpg',
     description:
-      'Engage CIOs, IT directors, and digital transformation leaders evaluating managed services, infrastructure modernization, and enterprise cybersecurity solutions.',
+      'Complex IT purchases need credibility before a sales call. We engage CIOs, IT directors, and digital transformation leaders evaluating managed services, infrastructure modernization, and enterprise cybersecurity solutions.',
     points: [
-      'Account-level targeting across enterprise and mid-market accounts',
-      'Thought-leadership panels establishing trusted technology authority',
-      'Direct routing of attendee intent signals to solution specialists',
+      '✔ Account-level targeting across enterprise and mid-market accounts',
+      '✔ Thought-leadership panels establishing trusted technology authority',
+      '✔ Direct routing of attendee intent signals to solution specialists',
     ],
     visualType: 'services',
   },
@@ -61,11 +61,11 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/services-audience.jpg',
     description:
-      'Scale qualified registration volume, reduce cost-per-lead, and turn live event engagement and poll responses into predictable, revenue-generating sales pipeline.',
+      'Rising cost-per-lead and unpredictable turnout put demand teams under pressure. We scale qualified registration volume and turn live engagement and poll responses into predictable sales pipeline.',
     points: [
-      'Guaranteed ICP-verified registrations from named target account lists',
-      'Multi-channel promotional outreach via email, LinkedIn, and syndication',
-      'Seamless CRM integration with direct push of qualified attendee data',
+      '✔ ICP-verified registrations from named target account lists, backed by our 99.8% Data Accuracy SLA',
+      '✔ Multi-channel promotional outreach via email, LinkedIn, and syndication',
+      '✔ Seamless CRM integration with direct push of qualified attendee data',
     ],
     visualType: 'enterprise',
   },
@@ -77,11 +77,11 @@ const AUDIENCES = [
     color: '#EC4899',
     image: '/saas-audience.jpg',
     description:
-      'Execute seamless, high-production virtual events that elevate brand positioning, engage target accounts, and generate measurable buyer demand across key markets.',
+      'High-production events that attract the wrong audience don’t prove marketing impact. We run virtual events that elevate positioning, engage target accounts, and generate measurable buyer demand across key markets.',
     points: [
-      'Full-lifecycle promotional campaigns and personalized reminder sequences',
-      'High attendee show-up rates driven by multi-touch engagement cadences',
-      'Comprehensive post-event analytics, attendee scoring, and ROI reporting',
+      '✔ Full-lifecycle promotional campaigns and personalized reminder sequences',
+      '✔ Show-up rates supported by multi-touch engagement cadences',
+      '✔ Post-event analytics, attendee scoring, and ROI reporting',
     ],
     visualType: 'saas',
   },
@@ -93,11 +93,11 @@ const AUDIENCES = [
     color: '#06B6D4',
     image: '/enterprise-audience.jpg',
     description:
-      'Reach hard-to-access C-level executives, VPs, and senior directors with exclusive executive briefings, roundtables, and high-value strategic discussions.',
+      ' Senior executives skip generic webinars. We reach hard-to-access C-level leaders, VPs, and senior directors with exclusive briefings, roundtables, and high-value strategic discussions.',
     points: [
-      'Strict title-level qualification and seniority verification protocols',
-      'Private executive roundtables and peer-to-peer virtual discussion formats',
-      'Personalized pre- and post-event concierge engagement for VIP accounts',
+      '✔ Strict title-level qualification and seniority verification protocols',
+      '✔ Private executive roundtables and peer-to-peer virtual discussion formats',
+      '✔ Personalized pre- and post-event concierge engagement for VIP accounts',
     ],
     visualType: 'enterprise',
   },
@@ -302,11 +302,11 @@ const WhoIsItFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -338,13 +338,14 @@ const WhoIsItFor = () => {
             className="flex items-center justify-center mb-2"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              B2B WEBINAR SERVICES
+              ICP VERTICAL ALIGNMENT
+
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Are B2B Webinar Services{' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
@@ -379,15 +380,14 @@ const WhoIsItFor = () => {
                       prefersReducedMotion
                         ? {}
                         : {
-                            x: 4,
-                            transition: { duration: 0.2, ease: 'easeOut' },
-                          }
+                          x: 4,
+                          transition: { duration: 0.2, ease: 'easeOut' },
+                        }
                     }
-                    className={`group relative flex-1 p-3 sm:p-3.5 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${
-                      isActive
-                        ? 'bg-surface shadow-md'
-                        : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
-                    }`}
+                    className={`group relative flex-1 p-3 sm:p-3.5 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
+                      ? 'bg-surface shadow-md'
+                      : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
+                      }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
                       boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : undefined,
@@ -424,9 +424,8 @@ const WhoIsItFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -435,9 +434,8 @@ const WhoIsItFor = () => {
 
                     {/* Main Title */}
                     <div
-                      className={`text-[14px] sm:text-[15px] font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[14px] sm:text-[15px] font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -607,11 +605,10 @@ const WhoIsItFor = () => {
                     tabRefs.current[idx] = el
                   }}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
-                      ? 'bg-surface shadow-md border-primary'
-                      : 'bg-surface/50 border-border/70'
-                  }`}
+                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
+                    ? 'bg-surface shadow-md border-primary'
+                    : 'bg-surface/50 border-border/70'
+                    }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,
                     minWidth: '220px',
@@ -629,9 +626,8 @@ const WhoIsItFor = () => {
                     </span>
                   </div>
                   <div
-                    className={`text-sm font-bold ${
-                      isActive ? 'text-text-primary' : 'text-text-secondary'
-                    }`}
+                    className={`text-sm font-bold ${isActive ? 'text-text-primary' : 'text-text-secondary'
+                      }`}
                   >
                     {aud.label}
                   </div>

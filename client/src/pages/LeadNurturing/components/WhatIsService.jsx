@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'ENGAGE',
-    desc: 'Keep prospects active across buying stages',
+    desc: 'Re-engage cold and stalled leads with stage-based, behavior-triggered touches.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'EDUCATE',
-    desc: 'Deliver relevant buyer content and value',
+    desc: 'Deliver role-specific content that answers buyer questions at each stage.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'QUALIFY',
-    desc: 'Identify sales readiness and buying intent',
+    desc: 'Score fit and behavior to flag sales readiness and route to AEs.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              LEAD NURTURING ENGINE
+
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -158,7 +159,7 @@ const WhatIsService = () => {
                     </span>
                   </div>
                   <span className="text-[11px] font-mono font-medium text-primary px-2 py-0.5 rounded-full bg-surface/80 border border-border backdrop-blur-sm">
-                    Pipeline Acceleration
+                    Nurture Pipeline Telemetry
                   </span>
                 </div>
               </div>
@@ -175,7 +176,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              B2B lead nurturing keeps prospects engaged throughout the buying journey by delivering relevant communication based on their interests, needs, engagement, and buying stage. Taraj Global uses targeted outreach, buyer intelligence, and engagement signals to move relevant prospects toward sales readiness.
+              B2B lead nurturing is the process of building relationships with prospects who aren’t sales-ready yet, using relevant, stage-based communication across the buying journey until their intent and readiness align with a sales conversation.
+
             </motion.p>
 
             <motion.p
@@ -185,7 +187,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              We create personalized touchpoints that keep your brand relevant while addressing prospects’ evolving business needs. Our lead nurturing approach helps build trust, strengthen relationships, and turn engaged prospects into qualified sales opportunities.
+              Unlike one-time outreach or generic drip campaigns, TaRaj Global’s tech-enabled nurturing combines behavioral and fit scoring, AI-assisted intent signals, and in-house verified contact data, backed by our 99.8% Data Accuracy SLA. Prospects receive value-first touches matched to their role and stage, and sales-ready leads move into your CRM via DemandFlow Bridge.
+
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION */}

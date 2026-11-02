@@ -5,24 +5,24 @@ import { useReducedMotion } from '@hooks/useReducedMotion'
 const OUTCOME_INDICATORS = [
   {
     num: '01',
-    label: 'EXPERIENCE',
-    desc: 'Orchestrate tailored multi-stakeholder buyer journeys across all 6–10 committee members',
+    label: 'ALIGN',
+    desc: 'Unite marketing, SDRs, and sales behind one account playbook.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
   },
   {
     num: '02',
-    label: 'SYNCHRONIZE',
-    desc: 'Unite marketing aircover, executive outreach, and sales cadence on one RevOps plane',
+    label: 'ORCHESTRATE',
+    desc: 'Sequence content and outreach to each stage of the buying journey.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
   },
   {
     num: '03',
-    label: 'ACCELERATE',
-    desc: 'Detect intent surge signals to pre-empt objections and compress enterprise sales cycles',
+    label: 'ADAPT',
+    desc: 'Adjust the experience as signals change and hand off with full context.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -90,7 +90,7 @@ const WhatIsService = () => {
             className="flex items-center justify-center mb-4"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              SERVICE DEFINITION • ENTERPRISE ABX ENGINE
+              ABX EXPERIENCE ENGINE
             </span>
           </motion.div>
 
@@ -113,7 +113,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                Account Based
+                Account-Based
               </motion.span>
               <motion.span
                 className="inline-block"
@@ -171,11 +171,13 @@ const WhatIsService = () => {
               transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-3.5"
             >
-              <p className="text-base sm:text-lg text-text-primary leading-relaxed font-medium">
-                <span className="text-primary font-bold">Account Based Experience (ABX)</span> goes beyond conventional account marketing. It replaces robotic, transactional outbound with human-centric, synchronized buyer journeys tailored to every decision-maker on the enterprise buying committee.
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
+                <span className="text-primary font-bold">Account Based Experience (ABX)</span> is a go-to-market approach that coordinates every interaction a target account’s buying committee has with your company, across marketing, SDRs, and sales, into one consistent, personalized journey. Where ABM decides which accounts to pursue, ABX governs how those accounts experience your brand at every stage.
+
               </p>
               <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
-                By uniting first-party web engagement, third-party surge topics, and organizational tech changes, we trigger relevant executive touches at the peak of buying interest—creating genuine commercial momentum and accelerating ACV.
+                TaRaj Global’s tech-enabled ABX combines journey design, stage-aware content, and AI-assisted intent signals with in-house verified stakeholder data, backed by our 99.8% Data Accuracy SLA. Your AEs continue the conversation with the full touch history instead of restarting it, with every opportunity routed into your CRM via DemandFlow Bridge.
+
               </p>
             </motion.div>
 
@@ -192,11 +194,10 @@ const WhatIsService = () => {
                   <motion.div
                     key={indicator.num}
                     onClick={() => setActiveStep(idx)}
-                    className={`relative p-3.5 rounded-xl border transition-all duration-300 cursor-pointer select-none ${
-                      isActive
-                        ? 'bg-surface border-primary/60 shadow-md -translate-y-0.5'
-                        : 'bg-surface/50 border-border hover:border-border/80'
-                    }`}
+                    className={`relative p-3.5 rounded-xl border transition-all duration-300 cursor-pointer select-none ${isActive
+                      ? 'bg-surface border-primary/60 shadow-md -translate-y-0.5'
+                      : 'bg-surface/50 border-border hover:border-border/80'
+                      }`}
                     style={{
                       boxShadow: isActive ? `0 8px 24px -6px ${indicator.glowColor}` : undefined,
                     }}

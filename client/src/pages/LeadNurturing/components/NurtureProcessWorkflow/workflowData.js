@@ -2,8 +2,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '01',
     stepNumber: '01',
-    title: 'Identify',
-    description: 'Identify prospects based on ICP, account fit, engagement, and buyer signals.',
+    title: 'Lead & ICP Identification',
+    description: 'Identify prospects by ICP fit, engagement history, and buyer signals, including dormant database contacts.',
     iconName: 'Users',
     row: 1,
     col: 2,
@@ -12,8 +12,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '02',
     stepNumber: '02',
-    title: 'Segment',
-    description: 'Group prospects by industry, role, behavior, interests, and buying stage.',
+    title: 'Behavioral & Stage Segmentation',
+    description: 'Segment leads by industry, role, behavior, interests, and buying stage for relevant nurture tracks.',
     iconName: 'Compass',
     row: 1,
     col: 4,
@@ -22,8 +22,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '03',
     stepNumber: '03',
-    title: 'Touchpoints',
-    description: 'Map multi-channel communication channels for consistent prospect reach.',
+    title: 'Multi-Channel Touchpoint Mapping',
+    description: 'Map email, phone, LinkedIn, and retargeting touchpoints for consistent reach without overwhelming buyers.',
     iconName: 'Database',
     row: 2,
     col: 1,
@@ -32,8 +32,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '04',
     stepNumber: '04',
-    title: 'Engage',
-    description: 'Deliver relevant communication through appropriate, personalized channels.',
+    title: 'Personalized Cadence Outreach ',
+    description: 'Deliver value-first, role-personalized messaging on paced cadences that adapt to prospect responsiveness.',
     iconName: 'Mail',
     row: 2,
     col: 2,
@@ -42,8 +42,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '05',
     stepNumber: '05',
-    title: 'Educate',
-    description: "Provide useful information that supports the buyer's research and evaluation.",
+    title: 'Stage-Based Content Education',
+    description: "Educate with whitepapers, case studies, and ROI content that supports buyer research and evaluation.",
     iconName: 'UserCog',
     row: 2,
     col: 3,
@@ -52,8 +52,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '06',
     stepNumber: '06',
-    title: 'Telemetry',
-    description: 'Monitor multi-channel engagement, opens, clicks, and real-time intent telemetry.',
+    title: 'Engagement & Intent Telemetry',
+    description: 'Track opens, clicks, content consumption, and AI-assisted intent signals across every nurture touchpoint.',
     iconName: 'Rocket',
     row: 2,
     col: 4,
@@ -62,8 +62,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '07',
     stepNumber: '07',
-    title: 'Score',
-    description: 'Monitor engagement and buying signals to understand sales readiness.',
+    title: 'Behavioral & Fit Lead Scoring',
+    description: 'Combine explicit ICP fit with implicit behavior to set readiness thresholds and trigger alerts.',
     iconName: 'LineChart',
     row: 2,
     col: 5,
@@ -72,8 +72,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '08',
     stepNumber: '08',
-    title: 'Qualify',
-    description: 'Identify prospects showing relevant fit, intent, and sales readiness.',
+    title: 'Sales Readiness Qualification ',
+    description: ' Validate fit, intent, and BANT signals through live conversations before routing leads to AEs.',
     iconName: 'UserCheck',
     row: 3,
     col: 5,
@@ -82,8 +82,8 @@ export const WORKFLOW_STEPS = [
   {
     id: '09',
     stepNumber: '09',
-    title: 'Deliver',
-    description: 'Pass qualified opportunities to sales with relevant prospect intelligence.',
+    title: 'CRM Handoff & Re-Nurture',
+    description: 'Route dossiers with full engagement history into CRM; recycle unready leads back into nurture.',
     iconName: 'RefreshCw',
     row: 3,
     col: 3.5,
@@ -92,7 +92,7 @@ export const WORKFLOW_STEPS = [
 ]
 
 export const TARGET_GOAL = {
-  id: 'goal',
+  id: 'GOAL ACHIEVED!',
   title: 'SALES-READY OPPORTUNITIES',
   badge: 'OUTCOME',
   description: 'Pre-qualified, warmed decision-makers delivered directly to sales pipelines.',

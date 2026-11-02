@@ -54,11 +54,11 @@ const AccountBasedExperience = () => {
   return (
     <>
       <SEO
-        title="Account Based Experience (ABX) Services | Modern Account Growth | Taraj Global"
-        description="Evolve your ABM into synchronized Account Based Experiences. Taraj Global unifies buyer intent, multi-stakeholder personalization, and high-impact RevOps execution powered by DemandFlow Bridge."
+        title="Account-Based Experience (ABX) Services | Tech-Powered Unified Buyer Journeys | TaRaj Global"
+        description="Orchestrate one consistent, personalized journey for every enterprise buying committee across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent signals, verified stakeholder data, and a 99.8% Data Accuracy SLA."
         keywords="account based experience, ABX services, modern ABM, enterprise account engagement, buying committee orchestration, intent data ABX, B2B pipeline acceleration, DemandFlow Bridge"
         canonical="/account-based-experience"
-        ogTitle="Account Based Experience (ABX) Services | Modern Account Growth | Taraj Global"
+        ogTitle="Account-Based Experience (ABX) Services | Tech-Powered Unified Buyer Journeys | TaRaj Global"
         ogDescription="Deliver personalized, synchronized buying experiences to your most important enterprise accounts. Accelerate consensus, deal velocity, and pipeline revenue."
         ogType="website"
         twitterCard="summary_large_image"

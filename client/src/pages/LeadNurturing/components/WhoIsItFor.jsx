@@ -13,11 +13,11 @@ const AUDIENCES = [
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Nurture freemium users, product trial signups, and demo requesters into high-value enterprise subscriptions with automated stage-specific cadences.',
+      'Freemium users, trial signups, and demo requesters go cold without timely follow-up. We nurture them into enterprise subscriptions with automated, stage-specific cadences tied to product adoption.',
     points: [
-      'Cadences tailored to product adoption and trial evaluation cycles',
-      'Feature-led educational content answering technical & buyer queries',
-      'Automated intent spikes triggering timely AE demo invitations',
+      '✔ Cadences matched to product adoption and trial evaluation cycles',
+      '✔ Feature-led educational content answering technical and buyer questions',
+      '✔ Behavior-triggered intent spikes prompting timely AE demo invitations',
     ],
     visualType: 'saas',
   },
@@ -29,11 +29,11 @@ const AUDIENCES = [
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Educate CIOs, IT directors, and procurement heads across extended evaluations with technical whitepapers, case studies, and compliance insights.',
+      'Extended evaluations lose momentum between committee meetings. We keep CIOs, IT directors, and procurement heads informed with technical whitepapers, case studies, and compliance insights.',
     points: [
-      'Multi-stakeholder touchpoints addressing technical & security needs',
-      'Targeted content supporting procurement, RFP, and ROI reviews',
-      'Structured follow-ups keeping stalled pipeline opportunities warm',
+      '✔ Multi-stakeholder touchpoints addressing technical and security needs',
+      '✔ Content supporting procurement, RFP, and ROI reviews',
+      '✔ Structured follow-ups keeping stalled pipeline opportunities warm',
     ],
     visualType: 'it',
   },
@@ -45,11 +45,11 @@ const AUDIENCES = [
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Reactivate dormant leads from past webinars, events, and content downloads, turning disengaged marketing contacts into sales pipeline.',
+      'Webinar, event, and content leads often sit untouched after the first conversion. We reactivate dormant contacts and turn disengaged marketing leads into sales pipeline.',
     points: [
-      'Systematic lifecycle reactivation for stale top-of-funnel leads',
-      'Behavioral lead scoring aligning marketing touches with sales readiness',
-      'Eliminating lead leakage with consistent multi-touch follow-ups',
+      '✔ Lifecycle reactivation for stale top-of-funnel leads',
+      '✔ Behavioral lead scoring aligning marketing touches with sales readiness',
+      '✔ Consistent multi-touch follow-ups that prevent lead leakage',
     ],
     visualType: 'services',
   },
@@ -61,11 +61,11 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Maintain strategic touchpoints over 6 to 18 month deal cycles, ensuring your brand remains top-of-mind when executive budgets open.',
+      'Six-to-eighteen-month cycles go quiet when no one stays in touch. We maintain strategic touchpoints so your brand is top of mind when executive budgets open.',
     points: [
-      'Account-level nurturing designed for multi-quarter buying timelines',
-      'Executive-level thought leadership establishing trusted authority',
-      'Signal monitoring alerting sales when account intent resurfaces',
+      '✔ Account-level nurturing built for multi-quarter buying timelines',
+      '✔ Executive thought leadership establishing trusted authority',
+      '✔ Signal monitoring that alerts sales when account intent resurfaces',
     ],
     visualType: 'enterprise',
   },
@@ -249,11 +249,11 @@ const WhoIsItFor = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -285,7 +285,8 @@ const WhoIsItFor = () => {
             className="flex items-center justify-center mb-2"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+              ICP VERTICAL ALIGNMENT
+
             </span>
           </motion.div>
 
@@ -303,7 +304,7 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            B2B lead nurturing serves companies that want to turn unengaged prospects into sales-ready opportunities through structured, relevant communication.
+            Built for B2B software, technology, and demand teams with long evaluation cycles and large pools of leads that aren’t sales-ready yet, across US, EMEA, and APAC.
           </motion.p>
         </div>
 
@@ -326,15 +327,14 @@ const WhoIsItFor = () => {
                       prefersReducedMotion
                         ? {}
                         : {
-                            x: 4,
-                            transition: { duration: 0.2, ease: 'easeOut' },
-                          }
+                          x: 4,
+                          transition: { duration: 0.2, ease: 'easeOut' },
+                        }
                     }
-                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${
-                      isActive
-                        ? 'bg-surface shadow-md'
-                        : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
-                    }`}
+                    className={`group relative flex-1 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 border cursor-pointer overflow-hidden ${isActive
+                      ? 'bg-surface shadow-md'
+                      : 'bg-surface/50 hover:bg-surface border-border/80 hover:border-border'
+                      }`}
                     style={{
                       borderColor: isActive ? aud.color : undefined,
                       boxShadow: isActive ? `0 8px 22px -6px ${aud.color}25` : undefined,
@@ -371,9 +371,8 @@ const WhoIsItFor = () => {
                         {aud.tagline}
                       </span>
                       <span
-                        className={`text-xs font-mono font-black tracking-widest transition-colors ${
-                          isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
-                        }`}
+                        className={`text-xs font-mono font-black tracking-widest transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary opacity-60'
+                          }`}
                         style={{ color: isActive ? aud.color : undefined }}
                       >
                         {aud.num}
@@ -382,9 +381,8 @@ const WhoIsItFor = () => {
 
                     {/* Main Title */}
                     <div
-                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${
-                        isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
-                      }`}
+                      className={`text-[15px] sm:text-base font-bold transition-colors pl-1.5 ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
+                        }`}
                     >
                       {aud.label}
                     </div>
@@ -546,11 +544,10 @@ const WhoIsItFor = () => {
                     tabRefs.current[idx] = el
                   }}
                   onClick={() => handleSelect(idx)}
-                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${
-                    isActive
-                      ? 'bg-surface shadow-md border-primary'
-                      : 'bg-surface/50 border-border/70'
-                  }`}
+                  className={`shrink-0 p-4 rounded-xl border text-left transition-all ${isActive
+                    ? 'bg-surface shadow-md border-primary'
+                    : 'bg-surface/50 border-border/70'
+                    }`}
                   style={{
                     borderColor: isActive ? aud.color : undefined,
                     minWidth: '220px',

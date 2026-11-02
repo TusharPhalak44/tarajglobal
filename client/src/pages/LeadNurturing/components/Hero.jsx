@@ -7,18 +7,18 @@ import { useReducedMotion } from '@hooks/useReducedMotion'
 // ─── Command Center Flow Visual ───────────────────────────────────────────────
 
 const FLOW_STAGES = [
-  { id: 'target',    label: 'Target Account',          sub: 'Ideal Customer Profile',          color: '#00A6FF', icon: 'target'    },
-  { id: 'decision',  label: 'Decision Maker',           sub: 'Verified Contact & Role',         color: '#38BDF8', icon: 'person'    },
-  { id: 'content',   label: 'Tailored Content',         sub: 'Nurture Cadence & Value',        color: '#00A6FF', icon: 'mail'      },
-  { id: 'engage',    label: 'Engagement Telemetry',     sub: 'Opened · Consumed · Visited',     color: '#FFA600', icon: 'engage'    },
-  { id: 'score',     label: 'Intent Scoring',           sub: 'Behavioral & Intent Threshold',   color: '#72D669', icon: 'reply'     },
-  { id: 'qualified', label: 'Sales-Ready Opportunity',  sub: 'AE Routing & Pipeline Handoff',   color: '#FF6D00', icon: 'qualified' },
+  { id: 'target', label: 'Target Account', sub: 'Ideal Customer Profile', color: '#00A6FF', icon: 'target' },
+  { id: 'decision', label: 'Decision Maker', sub: 'Verified Contact & Role', color: '#38BDF8', icon: 'person' },
+  { id: 'content', label: 'Tailored Content', sub: 'Nurture Cadence & Value', color: '#00A6FF', icon: 'mail' },
+  { id: 'engage', label: 'Engagement Telemetry', sub: 'Opened · Consumed · Visited', color: '#FFA600', icon: 'engage' },
+  { id: 'score', label: 'Intent Scoring', sub: 'Behavioral & Intent Threshold', color: '#72D669', icon: 'reply' },
+  { id: 'qualified', label: 'Sales-Ready Opportunity', sub: 'AE Routing & Pipeline Handoff', color: '#FF6D00', icon: 'qualified' },
 ]
 
 const STATUS_PILLS = [
-  { label: 'Targeted',    dot: '#00A6FF' },
-  { label: 'Nurtured',    dot: '#FFA600' },
-  { label: 'Engaged',     dot: '#38BDF8' },
+  { label: 'Targeted', dot: '#00A6FF' },
+  { label: 'Nurtured', dot: '#FFA600' },
+  { label: 'Engaged', dot: '#38BDF8' },
   { label: 'Intent Spike', dot: '#72D669' },
   { label: 'Sales-Ready', dot: '#FF6D00' },
 ]
@@ -77,11 +77,11 @@ function QualifiedIcon({ color }) {
 }
 
 function StageIcon({ type, color }) {
-  if (type === 'target')    return <TargetIcon color={color} />
-  if (type === 'person')    return <PersonIcon color={color} />
-  if (type === 'mail')      return <ContentIcon color={color} />
-  if (type === 'engage')    return <EngageIcon color={color} />
-  if (type === 'reply')     return <ScoreIcon color={color} />
+  if (type === 'target') return <TargetIcon color={color} />
+  if (type === 'person') return <PersonIcon color={color} />
+  if (type === 'mail') return <ContentIcon color={color} />
+  if (type === 'engage') return <EngageIcon color={color} />
+  if (type === 'reply') return <ScoreIcon color={color} />
   if (type === 'qualified') return <QualifiedIcon color={color} />
   return null
 }
@@ -197,10 +197,10 @@ function CommandCenter({ prefersReducedMotion }) {
                 prefersReducedMotion
                   ? {}
                   : isActive
-                  ? { opacity: 1, x: 0, scale: 1.01 }
-                  : isCompleted
-                  ? { opacity: 0.85, x: 0, scale: 1 }
-                  : { opacity: 0.3, x: 0, scale: 1 }
+                    ? { opacity: 1, x: 0, scale: 1.01 }
+                    : isCompleted
+                      ? { opacity: 0.85, x: 0, scale: 1 }
+                      : { opacity: 0.3, x: 0, scale: 1 }
               }
               transition={{ duration: 0.4, ease: 'easeOut' }}
               className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 relative overflow-hidden"
@@ -208,13 +208,13 @@ function CommandCenter({ prefersReducedMotion }) {
                 background: isActive
                   ? `linear-gradient(90deg, ${stage.color}18 0%, transparent 100%)`
                   : isCompleted
-                  ? 'rgba(255,255,255,0.02)'
-                  : 'transparent',
+                    ? 'rgba(255,255,255,0.02)'
+                    : 'transparent',
                 border: isActive
                   ? `1px solid ${stage.color}35`
                   : isCompleted
-                  ? '1px solid rgba(255,255,255,0.05)'
-                  : '1px solid transparent',
+                    ? '1px solid rgba(255,255,255,0.05)'
+                    : '1px solid transparent',
               }}
             >
               {/* Index number */}
@@ -321,10 +321,10 @@ const Hero = () => {
     prefersReducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        }
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
@@ -372,22 +372,24 @@ const Hero = () => {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                B2B LEAD NURTURING
+              <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+                TECH-ENABLED LEAD NURTURING ARCHITECTURE
+
               </span>
             </motion.div>
 
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
-              <span className="block pb-1 sm:pb-1.5">Turn More B2B Prospects</span>
+              <span className="block pb-1 sm:pb-1.5">B2B Lead Nurturing That Turns</span>
               <span
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
-                Into Sales-Ready Opportunities
+                Stalled Leads Into Pipeline
+
               </span>
             </motion.h1>
 
@@ -396,7 +398,8 @@ const Hero = () => {
               {...fadeUp(0.32)}
               className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
             >
-              Taraj Global helps B2B technology and SaaS companies engage, qualify, and nurture prospects through relevant content, timely outreach, buyer intent signals, and data-driven lead nurturing strategies.
+              Most B2B buyers aren’t ready on the first touch, and quiet leads rarely return on their own. TaRaj Global re-engages them with behavior-triggered cadences and AI-assisted intent scoring, then routes sales-ready opportunities into your CRM across US, EMEA, and APAC.
+
             </motion.p>
 
             {/* CTAs */}
@@ -410,7 +413,7 @@ const Hero = () => {
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
                 }}
               >
-                Start a Conversation
+                Deploy Custom Nurture Campaign
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -420,7 +423,7 @@ const Hero = () => {
                 className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
               >
-                Explore Our Services
+                Explore Nurture Architecture
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
               </button>
             </motion.div>

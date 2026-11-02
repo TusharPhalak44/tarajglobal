@@ -73,9 +73,9 @@ const NurtureProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1, 1.12, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                }
+                scale: [1, 1.12, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
           }
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ background: 'radial-gradient(circle, #0284c7 0%, transparent 70%)' }}
@@ -86,9 +86,9 @@ const NurtureProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1.1, 0.95, 1.1],
-                  opacity: [0.18, 0.28, 0.18],
-                }
+                scale: [1.1, 0.95, 1.1],
+                opacity: [0.18, 0.28, 0.18],
+              }
           }
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           style={{ background: 'radial-gradient(circle, #00d2ff 0%, transparent 70%)' }}
@@ -106,8 +106,9 @@ const NurtureProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              NURTURE | SALES-READY PROGRESSION
+
             </span>
           </motion.div>
 
@@ -119,7 +120,7 @@ const NurtureProcess = () => {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
                 B2B LEAD NURTURING{' '}
               </span>
@@ -143,7 +144,8 @@ const NurtureProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto mt-3 font-normal"
           >
-            How Our B2B Lead Nurturing Process Works: A structured, data-driven approach to engaging prospects, tracking buyer intent signals, and delivering sales-ready opportunities.
+            A 9-stage nurturing framework that engages, scores, and qualifies leads over time, delivering sales-ready opportunities directly to your CRM across US, EMEA, and APAC.
+
           </motion.p>
         </div>
 

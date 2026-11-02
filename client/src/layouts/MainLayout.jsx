@@ -4,13 +4,12 @@ import Footer from '@components/layout/Footer'
 import Breadcrumb from '@components/layout/Breadcrumb'
 // import ChatBot from '@components/chatbot/ChatBot' // Temporarily disabled
 import { ScrollProgress } from '@components/animations'
-import { GrowthMeter, NextFix, RecoveryTracker } from '@components/recovery/Recovery'
-import { FIXES } from '@context/RecoveryContext'
+import { NextFix, RecoveryTracker } from '@components/recovery/Recovery'
 
 function MainLayout() {
   const { pathname } = useLocation()
-  const isAboutPage = pathname === '/about' || pathname === '/who-we-are'
-  const showNextFix = !isAboutPage && (Boolean(FIXES[pathname]) || pathname === '/services')
+  // Show NextFix section ("Your Revenue Roadmap is Fully Engineered") only on the main services page (/services)
+  const showNextFix = pathname === '/services' || pathname === '/services/'
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

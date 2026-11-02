@@ -14,32 +14,32 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Targeted Audience Generation',
-    desc: 'Reach relevant prospects based on defined audience and ICP criteria. Every outreach decision is grounded in verified buyer fit.',
+    title: ' ICP-Matched Audience Generation',
+    desc: 'Promotion aimed at broad lists fills seats with the wrong people. Every outreach decision is grounded in verified buyer fit and your ICP, refined with AI-assisted lookalike modeling.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Decision-Maker Reach',
-    desc: 'Engage relevant stakeholders within target businesses, ensuring senior leaders attend and participate in your sessions.',
+    title: ' Verified Decision-Maker Attendance ',
+    desc: 'Webinars full of junior attendees rarely convert. We engage stakeholders within target accounts and verify seniority, so senior leaders attend and participate in your sessions.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Campaign Intelligence',
-    desc: 'Track registrations, live engagement, and buyer signals across the entire webinar lifecycle with rich telemetry.',
+    title: 'AI-Assisted Campaign Intelligence',
+    desc: 'Registrations alone hide who is actually interested. We track registrations, live engagement, and AI-assisted buyer signals across the full webinar lifecycle with rich telemetry.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Qualified Lead Delivery',
-    desc: 'Help sales teams focus on verified webinar leads and sales-qualified opportunities that possess active commercial intent.',
+    title: 'Qualified Lead Delivery Backed by SLA',
+    desc: ' Unqualified registrants waste rep time. Sales teams focus on verified webinar leads with active commercial intent, backed by our 99.8% Data Accuracy SLA.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -47,7 +47,7 @@ const PILLARS = [
   {
     num: '05',
     title: 'Pipeline Acceleration',
-    desc: 'Turn virtual engagement into revenue-producing pipeline through rapid, structured post-event sales enablement.',
+    desc: 'Leads go cold within days of a session ending. Rapid, structured post-event enablement and instant CRM sync turn virtual engagement into revenue-producing pipeline.',
     icon: Zap,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -182,8 +182,9 @@ const WhyChoose = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -192,7 +193,7 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
@@ -207,7 +208,8 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Targeted webinar campaigns that generate qualified registrations and meaningful executive sales conversations.
+            Targeted webinar campaigns, backed by in-house verification infrastructure, that generate qualified registrations and meaningful executive sales conversations.
+
           </motion.p>
         </div>
 
