@@ -8,64 +8,64 @@ const AUDIENCES = [
   {
     id: 'saas',
     num: '01',
-    label: 'SaaS Companies',
-    tagline: 'TECHNOLOGY DECISION MAKERS',
+    label: 'B2B SaaS Companies',
+    tagline: 'SOFTWARE & CLOUD DECISION-MAKERS ',
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
       'Connect with CTOs, engineering leaders, and technology buyers using targeted campaigns tailored to your SaaS platform and growth cycles.',
     points: [
-      'Targeting by tech stack, company size, and growth stage',
-      'Messaging aligned to SaaS buying cycles and stakeholder concerns',
-      'Campaigns supporting demos, trials, and evaluation conversations',
+      '✔ Targeting by installed tech stack, ARR band, and software category',
+       '✔ Persona-specific messaging for technical and commercial buyers',
+       '✔ Positive replies routed to AEs for demo and trial conversations',
     ],
     visualType: 'saas',
   },
   {
     id: 'it',
     num: '02',
-    label: 'IT & Technology Providers',
-    tagline: 'INFRASTRUCTURE & SERVICES BUYERS',
+    label: 'IT & Cybersecurity Providers',
+    tagline: ' INFRASTRUCTURE & SECURITY BUYERS',
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Reach IT directors, CIOs, and infrastructure decision makers with personalized outreach focused on operational requirements and evaluated solutions.',
+      'Security and infrastructure buyers ignore generic pitches and guard their inboxes. We reach CISOs, CIOs, and IT directors with relevant, compliance-aware messaging that earns replies.',
     points: [
-      'Targeting IT Directors, CIOs, and infrastructure managers',
-      'Messaging aligned with technology evaluation and procurement',
-      'Campaigns supporting service introduction and capability conversations',
+      '✔ CISO, CIO, and IT director committee roles targeted',
+       '✔ Messaging aligned to modernization and compliance initiatives',
+       '✔ Verified corporate inboxes backed by our 99.8% Data Accuracy SLA',
     ],
     visualType: 'it',
   },
   {
     id: 'b2b-services',
     num: '03',
-    label: 'B2B Service Companies',
-    tagline: 'PROFESSIONAL SERVICES DECISION MAKERS',
+    label: 'B2B Professional Services',
+    tagline: ' EXECUTIVE-LEVEL OUTREACH',
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Engage senior executives and procurement managers responsible for vendor selection, consulting evaluation, and strategic business partnerships.',
+      'Senior executives filter out anything that reads like a mass email. We open conversations for consultancies, legal, and advisory firms with concise, relevant outreach to practice heads and the C-suite.',
     points: [
-      'Targeting by business function, seniority, and company size',
-      'Messaging focused on business outcomes and relevant value',
-      'Campaigns building awareness and initiating service conversations',
+      '✔ Seniority filtering targeting C-suite, VPs, and practice leads',
+      '✔ Executive-style messaging built around strategic business needs',
+      '✔ Qualified replies handed off for consultative discovery calls',
     ],
     visualType: 'services',
   },
   {
     id: 'enterprise',
     num: '04',
-    label: 'Enterprise Solutions',
-    tagline: 'ENTERPRISE BUYERS & PROCUREMENT',
+    label: 'Revenue Teams Scaling Outbound',
+    tagline: 'OUTBOUND SCALE & DELIVERABILITY',
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Engage enterprise buying committees and procurement heads with multi touch, account specific outreach built for complex enterprise sales cycles.',
+      ' Scaling in-house outbound strains SDR capacity and often hurts deliverability. We run verified, paced email programs that extend your pipeline reach without risking your sending domain.',
     points: [
-      'Account level targeting aligned to your enterprise customer profile',
-      'Messaging adapted to enterprise buying complexity and requirements',
-      'Multi step campaigns supporting enterprise sales cycle timelines',
+      '✔ Dedicated campaign management with weekly performance reviews',
+      '✔ Sender reputation and sending-pace controls across campaigns',
+      '✔ Reply triage by SDRs, so reps only see qualified interest',
     ],
     visualType: 'enterprise',
   },
@@ -282,17 +282,17 @@ const WhoIsItFor = () => {
             className="flex items-center justify-center mb-2"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+              ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
-            Is B2B Email Marketing{' '}
+           Is B2B Email Marketing{' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              Right for Your Business?
+             Right for Your Business?
             </span>
           </motion.h2>
 
@@ -300,8 +300,8 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            B2B email marketing serves businesses that need to reach specific decision makers with personalized outreach.
-            Select your profile to see how targeted email campaigns support your growth objectives.
+            Built for revenue leaders in B2B software, technology, and professional services who need email that reaches verified decision-makers and produces qualified replies across US, EMEA, and APAC.
+
           </motion.p>
         </div>
 

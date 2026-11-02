@@ -7,58 +7,58 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is B2B content syndication?',
+    question: ' What is B2B content syndication?',
     answer:
-      'B2B content syndication is the strategic distribution of high-value digital assets—such as whitepapers, research studies, analyst reports, and guides—across third-party platforms, publishing networks, and community portals to engage targeted decision-makers and generate sales-qualified leads.',
+      'B2B content syndication is the distribution of high-value assets, such as whitepapers, research studies, analyst reports, and guides, across third-party publisher networks and community portals to engage targeted decision-makers and generate sales-qualified leads. TaRaj Global adds ICP matching, opt-in reader verification, and in-house data verification.',
   },
   {
     id: 'faq-2',
     num: '02',
     question: 'How does content syndication generate B2B leads?',
     answer:
-      'By gating authoritative content behind customized opt-in forms on premier media publications. Prospective buyers submit verified corporate information, job role details, and qualifying screening answers to download the material.',
+      ' We gate authoritative content behind customized opt-in forms on premier media publications. Prospective buyers submit verified corporate information, job role details, and qualifying screening answers to download the material, and each lead is verified before delivery.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'What types of content work best for syndication?',
+    question: 'What types of content work best for B2B syndication?',
     answer:
-      'High-value thought leadership assets perform best, including industry benchmark reports, ROI calculation guides, architectural blueprints, enterprise whitepapers, and buyer guides that solve specific business challenges.',
+      'Thought leadership assets that solve specific business challenges perform best: industry benchmark reports, ROI calculation guides, architectural blueprints, enterprise whitepapers, and buyer guides. We match each asset to the persona and buying stage you want to reach.',
   },
   {
     id: 'faq-4',
     num: '04',
-    question: 'How does Taraj Global qualify syndication leads?',
+    question: 'How does TaRaj Global qualify syndication leads?',
     answer:
-      'Every lead record undergoes programmatic and manual verification: SMTP email pinging, corporate domain checks, seniority validation, and review of custom qualification responses before delivery.',
+      'Every lead passes programmatic and manual verification: SMTP email pinging, corporate domain checks, seniority validation, and review of custom screening responses. Our in-house tool and CDQA audit then enforce our 99.8% Data Accuracy SLA before delivery.',
   },
   {
     id: 'faq-5',
     num: '05',
     question: 'What is Cost-Per-Lead (CPL) content syndication?',
     answer:
-      'CPL syndication is a guaranteed performance model where you only pay for verified, compliant leads that strictly match your agreed Ideal Customer Profile (ICP) and custom screening criteria.',
+      'Cost-per-lead (CPL) syndication is a guaranteed performance model where you pay only for verified, compliant leads that match your agreed Ideal Customer Profile (ICP) and custom screening criteria. A lead that fails those criteria is replaced 1-to-1 at no extra cost.',
   },
   {
     id: 'faq-6',
     num: '06',
     question: 'Can we target specific accounts or industries with syndication?',
     answer:
-      'Yes. We execute Account-Based Marketing (ABM) syndication against your target account lists (TAL), specific industry verticals, company size tiers, and exact decision-maker job titles.',
+      ' Yes. We run account-based syndication against your target account lists (TAL), specific industry verticals, company size tiers, and exact decision-maker job titles, so your assets reach only the buyers you named.',
   },
   {
     id: 'faq-7',
     num: '07',
-    question: 'How are syndication leads delivered to our team?',
+    question: ' How are syndication leads delivered to our team?',
     answer:
-      'Leads are delivered via real-time API integrations directly into your CRM (HubSpot, Salesforce, Marketo, Eloqua) or via encrypted batch feeds complete with download telemetry and consent timestamps.',
+      'Leads are delivered through DemandFlow Bridge via real-time API integrations into your CRM (HubSpot, Salesforce, Marketo, Eloqua) or encrypted batch feeds, each with download telemetry and consent timestamps for audit and compliance.',
   },
   {
     id: 'faq-8',
     num: '08',
     question: 'How does content syndication differ from sponsored content or digital ads?',
     answer:
-      'Unlike pay-per-click ads or display sponsorships that charge for passive impressions or unverified clicks, content syndication delivers guaranteed, opt-in contact data and intent signals from verified decision-makers.',
+      ' Pay-per-click ads and display sponsorships charge for impressions or unverified clicks. Content syndication delivers opt-in contact data and intent signals from verified decision-makers who chose to read your asset, so you pay for qualified engagement instead of exposure.',
   },
 ]
 
@@ -190,8 +190,8 @@ const FAQ = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Frequently Asked Questions
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              SOMETHING ON YOUR MIND?
             </span>
           </motion.div>
 
@@ -200,11 +200,11 @@ const FAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">FREQUENTLY ASKED </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Questions
+              QUESTIONS
             </span>
           </motion.h2>
 
@@ -215,7 +215,7 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Common questions about B2B content syndication, our qualification methodology, and how we generate sales-ready pipeline.
+            Common questions about TaRaj Global’s B2B content syndication, qualification methodology, CPL model, and CRM-ready delivery across US, EMEA, and APAC.
           </motion.p>
         </div>
 

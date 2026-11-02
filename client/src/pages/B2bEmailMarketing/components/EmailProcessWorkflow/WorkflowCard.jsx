@@ -11,6 +11,7 @@ import {
   UserCheck,
   RefreshCw,
   CheckCircle2,
+  Target,
 } from 'lucide-react'
 
 const ICON_MAP = {
@@ -23,6 +24,9 @@ const ICON_MAP = {
   LineChart: LineChart,
   UserCheck: UserCheck,
   RefreshCw: RefreshCw,
+  CheckCircle2: CheckCircle2,
+  VERIFICATION: Database,
+  Target: Target,
 }
 
 export default function WorkflowCard({

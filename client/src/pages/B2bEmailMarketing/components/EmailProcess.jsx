@@ -109,8 +109,9 @@ const EmailProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              EMAIL MARKETING | QUALIFIED CONVERSATIONS
+
             </span>
           </motion.div>
 
@@ -122,12 +123,12 @@ const EmailProcess = () => {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
-                B2B EMAIL MARKETING{' '}
+                 B2B EMAIL MARKETING{' '}
               </span>
               <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
-                WORKFLOW
+                WORKFLOW?
               </span>
             </h2>
 
@@ -146,7 +147,8 @@ const EmailProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto mt-3 font-normal"
           >
-            A multi-stage targeted outreach pipeline converting verified B2B decision-makers into sales-qualified meetings.
+            A 9-stage email framework that verifies contacts, personalizes cadences, protects deliverability, and converts qualified replies into sales conversations delivered to your CRM across US, EMEA, and APAC.
+
           </motion.p>
         </div>
 

@@ -22,96 +22,96 @@ const FLOW_ITEMS = [
   {
     id: 0,
     num: '01',
-    category: 'DISTRIBUTION REACH',
-    engineLabel: 'Publisher Matrix',
-    engineAction: 'Multi-Channel Reach',
+    category: 'DISTRIBUTION',
+    engineLabel: 'Publisher Network Matrix',
+    engineAction: 'Multi-Channel Distribution',
     problem: {
-      title: 'Limited Content Reach',
-      sub: 'Single-Site Stagnation',
+      title: '01. Content Stuck on Your Own Site',
+      sub: '',
       icon: FilterX,
     },
     solution: {
-      title: 'Broad Targeted Distribution',
-      sub: 'Authoritative Publisher Network',
+      title: '01. Broad Targeted Distribution',
+      sub: '',
       icon: Focus,
     },
-    color: '#00A6FF', // Blue
+    color: '#00A6FF',
     gradient: 'from-[#00A6FF] to-[#0070E0]',
   },
   {
     id: 1,
     num: '02',
-    category: 'ENGAGEMENT QUALITY',
-    engineLabel: 'Asset Gate Engine',
-    engineAction: 'Opt-In Intent Scoring',
+    category: 'READER INTENT',
+    engineLabel: 'Opt-In Reader Verification',
+    engineAction: 'Consumption Telemetry',
     problem: {
-      title: 'Low Buyer Engagement',
-      sub: 'Passive Clicks & Bounces',
+      title: '02. Passive Clicks, No Real Readers',
+      sub: '',
       icon: MailX,
     },
     solution: {
-      title: 'High-Intent Reader Engagement',
-      sub: 'Verified Whitepaper Consumers',
+      title: '02. High-Intent Reader Engagement',
+      sub: '',
       icon: MessageSquareQuote,
     },
-    color: '#8B5CF6', // Purple
+    color: '#8B5CF6',
     gradient: 'from-[#8B5CF6] to-[#6D28D9]',
   },
   {
     id: 2,
     num: '03',
-    category: 'ACCOUNT TARGETING',
-    engineLabel: 'TAL Sync Engine',
-    engineAction: 'Account-Level Precision',
+    category: 'ACCOUNT MATCHING',
+    engineLabel: 'ICP + TAL Matching',
+    engineAction: 'AI-Assisted Asset-to-Persona Fit',
     problem: {
-      title: 'Missing Target Accounts',
-      sub: 'Off-Target Unmatched Traffic',
+      title: '03. Leads From Off-Target Accounts',
+      sub: '',
       icon: ShieldAlert,
     },
     solution: {
-      title: 'Precision Account Syndication',
-      sub: '100% Named TAL Penetration',
+      title: '03. Precision Account Syndication',
+      sub: '',
       icon: CheckCircle2,
     },
-    color: '#10B981', // Emerald
+    color: '#10B981',
     gradient: 'from-[#10B981] to-[#059669]',
   },
   {
     id: 3,
     num: '04',
-    category: 'PIPELINE PREDICTABILITY',
-    engineLabel: 'CPL Delivery Hub',
-    engineAction: 'Guaranteed Lead Flow',
+    category: 'DELIVERY PACING',
+    engineLabel: 'Delivery Pacing Control',
+    engineAction: 'Guaranteed CPL Model',
     problem: {
-      title: 'Inconsistent Lead Generation',
-      sub: 'Unpredictable Lead Volume',
+      title: '04. Unpredictable Lead Volume',
+      sub: '',
       icon: Workflow,
     },
     solution: {
-      title: 'Guaranteed CPL Lead Flow',
-      sub: 'Predictable Monthly Pipeline',
+      title: '04. Predictable Monthly Pipeline',
+      sub: '',
       icon: Send,
     },
-    color: '#F59E0B', // Amber
+    color: '#F59E0B',
     gradient: 'from-[#F59E0B] to-[#D97706]',
   },
   {
     id: 4,
     num: '05',
-    category: 'OPPORTUNITY CONVERSION',
-    engineLabel: 'Intent Verifier',
-    engineAction: 'Custom Screening',
+    category: 'LEAD QUALIFICATION',
+    engineLabel: 'In-House Verification + Screening Q&A',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: 'Slow Pipeline Velocity',
-      sub: 'Cold & Stalled Early Leads',
+      title: '05. Cold, Stalled Early Leads',
+      sub: '',
       icon: EyeOff,
     },
     solution: {
-      title: 'Sales-Ready Opportunities',
-      sub: 'Actionable In-Market Intent',
+      title: '05. Sales-Ready Opportunities',
+      sub: '',
       icon: BarChart3,
     },
-    color: '#EC4899', // Pink
+    color: '#EC4899',
     gradient: 'from-[#EC4899] to-[#BE185D]',
   },
 ]
@@ -322,21 +322,22 @@ const ProblemsSolved = () => {
         {/* ── COMPACT SECTION HEADER ── */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5   mb-2">
-            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
-              Automated Transformation
+            {/* <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" /> */}
+           <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              TECH-ENABLED SYNDICATION TRANSFORMATION
+
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span>What Problems Does </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
+            <span> WHAT PROBLEMS DOES  </span>
             <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
-              Content Syndication Solve?
+             CONTENT SYNDICATION SOLVE?
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From limited distribution reach to slow pipeline velocity, we turn syndication bottlenecks into predictable high-intent leads.
+           From limited distribution reach to slow pipeline velocity, we turn syndication bottlenecks into predictable, high-intent leads using in-house data verification and DemandFlow Bridge CRM routing.
           </p>
 
           {/* ── Micro Step Indicator ── */}
@@ -594,15 +595,17 @@ const ProblemsSolved = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.problem.sub}
-                      </div>
+                      {item.problem.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.problem.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -690,7 +693,7 @@ const ProblemsSolved = () => {
                           className="w-1.5 h-1.5 rounded-full animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[155px] lg:max-w-[175px]">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -799,12 +802,14 @@ const ProblemsSolved = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.solution.sub}
-                      </div>
+                      {item.solution.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.solution.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -831,9 +836,11 @@ const ProblemsSolved = () => {
             >
               <currentItem.problem.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.problem.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.problem.sub}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">{currentItem.problem.title}</div>
+              {currentItem.problem.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.problem.sub}</div>
+              ) : null}
             </div>
           </div>
 
@@ -880,9 +887,11 @@ const ProblemsSolved = () => {
             >
               <currentItem.solution.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.solution.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.solution.sub}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">{currentItem.solution.title}</div>
+              {currentItem.solution.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.solution.sub}</div>
+              ) : null}
             </div>
           </div>
 

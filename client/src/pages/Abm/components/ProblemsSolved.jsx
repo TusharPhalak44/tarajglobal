@@ -312,7 +312,7 @@ const ProblemsSolved = () => {
       <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5 mb-2">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               TECH-ENABLED ABM TRANSFORMATION
             </span>
           </div>

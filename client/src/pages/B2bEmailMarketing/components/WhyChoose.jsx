@@ -14,40 +14,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'ICP First Targeting',
-    desc: 'Campaigns built around the characteristics of your ideal customers. Every outreach decision, from audience selection and messaging to sequencing, is grounded in your specific ICP definition.',
+    title: 'ICP-Matched Audience Targeting ',
+    desc: 'Mass sends to broad lists burn domains and budget. Every campaign is built around your ICP, personas, and ARR tiers, refined with AI-assisted lookalike modeling.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Decision Maker Focus',
-    desc: "Reach relevant stakeholders instead of relying on broad, untargeted outreach. Taraj Global's approach connects with the specific roles that matter to your sales process.",
+    title: 'Custom Deliverability Engineering',
+    desc: "Great copy fails in the spam folder. Our custom deliverability engine manages sender reputation, sending pace, and inbox placement, so messages reach decision-makers instead of junk folders.",
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Personalized Outreach',
-    desc: 'Create messaging aligned with audience, role, industry, and business context. Personalized campaigns generate more meaningful engagement than generic approaches.',
+    title: 'AI-Enhanced Personalization',
+    desc: 'Generic blasts are ignored by senior buyers. AI-enhanced personalization tailors messaging to each persona’s role and pain points while keeping send volume and control with your team.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Data Driven Optimization',
-    desc: 'Use engagement signals to understand campaign performance and improve outreach. Tracking delivery, opens, clicks, and replies provides the data needed to refine each campaign.',
+    title: 'SDR-Qualified Replies & CRM Sync',
+    desc: 'Raw replies are not pipeline. SDRs triage and qualify every response, and DemandFlow Bridge routes positive replies into your CRM with full campaign attribution.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: 'Sales Focused Qualification',
-    desc: 'Focus on meaningful responses that can contribute to sales conversations and pipeline development. Qualification ensures your team engages with prospects that have genuine relevance.',
+    title: '99.8% Accuracy & 1:1 Replacement SLA ',
+    desc: 'Bounced contacts shouldn’t cost you budget. Backed by our 99.8% Data Accuracy SLA, any contact that bounces or fails agreed criteria is replaced 1-to-1 at no extra cost.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -183,8 +183,9 @@ const WhyChoose = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -193,11 +194,11 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white"> WHY CHOOSE TARAJ GLOBAL FOR </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              B2B Email Marketing?
+            B2B EMAIL MARKETING?
             </span>
           </motion.h2>
 

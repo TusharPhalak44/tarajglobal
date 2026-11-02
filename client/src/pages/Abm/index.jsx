@@ -69,12 +69,12 @@ const Abm = () => {
   return (
     <>
       <SEO
-        title="Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global"
-        description="Win high-value enterprise accounts with bespoke ABM programs. Taraj Global aligns intent data, multi-stakeholder mapping, and personalized 1:1 campaigns powered by DemandFlow Bridge."
+        title=">Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global"
+        description="Engage high-value target accounts and full buying committees across US, EMEA, and APAC. TaRaj Global combines AI-assisted account scoring, intent telemetry, and a 99.8% Data Accuracy SLA."
         keywords="account-based marketing services, account-based marketing, ABM services, enterprise lead generation, ABM agency, 1:1 ABM campaigns, target account list, buying committee engagement, intent data ABM, DemandFlow Bridge, enterprise pipeline growth"
         canonical="/abm"
-        ogTitle="Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global"
-        ogDescription="Engage, penetrate, and close your highest-value target accounts with bespoke multi-stakeholder ABM programs powered by DemandFlow Bridge."
+        ogTitle=">Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global"
+        ogDescription="Engage high-value target accounts and full buying committees across US, EMEA, and APAC. TaRaj Global combines AI-assisted account scoring, intent telemetry, and a 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={abmSchema}

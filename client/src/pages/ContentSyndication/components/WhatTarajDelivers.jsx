@@ -21,130 +21,130 @@ const ENGINE_LAYERS = [
   {
     num: '01',
     layer: '01 — PLATFORM',
-    title: 'DemandFlow Bridge',
+    title: 'DemandFlow Bridge: Central Syndication Command',
     shortTitle: 'Platform',
-    tag: 'BUSINESS OPERATIONS & INTELLIGENCE',
+    tag: 'CENTRALIZED SYNDICATION INTELLIGENCE',
     module: 'DemandFlow Bridge',
     subLabel: 'Unified Business Operations Platform',
     screen: 'Unified Business Operations Platform',
     metric: 'ONE PLATFORM • MULTIPLE OPERATIONS • REAL-TIME CONTROL',
-    desc: 'An integrated platform powering CRM, sales, client management, lead management, HRMS, operations, and payroll.',
+    desc: 'Syndication data spread across publishers hides what actually produces leads. One platform centralizes campaigns, reader engagement, intent signals, lead qualification, and CRM delivery.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      'CRM & Lead Management',
-      'Sales & Client Management',
-      'HRMS & Employee Operations',
-      'Payroll & Attendance',
-      'Centralized Business Intelligence',
+      '✔ CRM and lead management',
+       '✔ Publisher and campaign performance reporting',
+       '✔ Reader engagement and intent analytics',
+       '✔ Verified lead qualification workflow',
+       '✔ Centralized business intelligence',
     ],
   },
   {
     num: '02',
     layer: '02 — Data',
-    title: 'DemandFlow Bridge — Data',
+    title: 'DemandFlow Bridge: Data Enrichment & Validation',
     shortTitle: 'Data',
-    tag: 'Enrichment & Validation',
+    tag: 'ENRICHMENT & VALIDATION',
     module: 'DemandFlow Bridge — Data',
     screen: 'Assignment, Touch & CDQA Control Center',
     metric: '1,055 Verified Records • CDQA Approved',
-    desc: 'Turn relevant B2B data into actionable prospect intelligence for targeted content distribution.',
+    desc: 'Unverified audience data sends your assets to the wrong readers. We turn B2B data into prospect intelligence, verified by our AI-assisted, in-house tool and backed by our 99.8% Data Accuracy SLA.',
     icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
-      'Data enrichment & validation',
-      'Account and contact intelligence',
-      'Organized prospect and account lists',
+      '✔ Data enrichment and validation',
+      '✔ Account and contact intelligence',
+      '✔ Organized prospect and account lists',
     ],
   },
   {
     num: '03',
     layer: '03 — Sequences',
-    title: 'DemandFlow Bridge — Sequences',
+    title: 'DemandFlow Bridge: Syndication Sequences & Cadence',
     shortTitle: 'Sequences',
-    tag: 'Distribution Workflows',
+    tag: 'DISTRIBUTION WORKFLOWS',
     module: 'DemandFlow Bridge — Sequences',
     screen: 'Syndication Cadence & Sequence Operations',
     metric: '99.4% Deliverability • Multi-Network Architecture',
-    desc: 'Automate content syndication touchpoints across verified publishing hubs.',
+    desc: 'Manual publisher coordination slows launches and leaves gaps in delivery. Automated touchpoints run across verified publishing hubs on a managed cadence.',
     icon: MailCheck,
     image: '/demandflow-sequences.png',
     points: [
-      'Multi-touch syndication workflows',
-      'Automated nurture sequences',
-      'Smart content engagement triggers',
+      '✔ Multi-touch syndication workflows',
+     '✔ Automated nurture sequences',
+     '✔ Smart content engagement triggers',
     ],
   },
   {
     num: '04',
     layer: '04 — Personalization',
-    title: 'DemandFlow Bridge — Personalization',
+    title: 'DemandFlow Bridge: AI Asset-to-Persona Matching',
     shortTitle: 'Personalization',
-    tag: 'AI & Buyer Signals',
+    tag: ' AI & BUYER SIGNALS',
     module: 'DemandFlow Bridge — Personalization',
     screen: 'Dynamic Asset Matching & Intent Variables',
     metric: '95.5% Match Rate • High-Intent Lift',
-    desc: 'Use AI and buyer signals to match the right asset to the right decision maker.',
+    desc: 'The wrong asset in front of the wrong role wastes budget and attention. AI-assisted matching pairs the right asset with the right decision-maker using buyer and account intent signals.',
     icon: Sparkles,
     image: '/demandflow-personalization.png',
     points: [
-      'AI-assisted asset-to-persona matching',
-      'Buyer & account intent signals',
-      'Relevant industry topic alignment',
+      '✔ AI-assisted asset-to-persona matching',
+      '✔ Buyer and account intent signals',
+      '✔ Relevant industry topic alignment',
     ],
   },
   {
     num: '05',
     layer: '05 — Execution',
-    title: 'DemandFlow Bridge — Execution',
+    title: 'DemandFlow Bridge: Automated Deployment & Pacing',
     shortTitle: 'Execution',
-    tag: 'Automated Deployment',
+    tag: 'AUTOMATED DEPLOYMENT',
     module: 'DemandFlow Bridge — Execution',
     screen: 'Campaign Operations & Pacing Board',
     metric: 'Live Allocation • 100% Pacing Tracking',
-    desc: 'Automate syndication pacing and move from asset onboarding to active distribution faster.',
+    desc: 'Slow asset onboarding delays pipeline, and uneven delivery strains your SDR queue. Automated deployment and pacing move assets from onboarding to active distribution faster.',
     icon: Gauge,
     image: '/demandflow-campaigns.png',
     points: [
-      'Automated publisher deployment',
-      'Smart delivery pacing & caps',
-      'Faster execution cycles',
+      '✔ Automated publisher deployment',
+       '✔ Smart delivery pacing and caps',
+       '✔ Faster execution cycles',
     ],
   },
   {
     num: '06',
     layer: '06 — Tracking',
-    title: 'DemandFlow Bridge — Tracking',
+    title: 'DemandFlow Bridge: Reader Engagement & Intent Tracking',
     shortTitle: 'Tracking',
-    tag: 'Engagement & Intent Layer',
+    tag: ' ENGAGEMENT & INTENT LAYER',
     module: 'DemandFlow Bridge — Tracking',
     screen: 'Response Telemetry & Intent Analytics',
     metric: '24.8K Readers • 842 Qualified Downloads',
-    desc: 'Capture reader engagement and intent in one centralized intelligence layer.',
+    desc: ' Downloads alone don’t prove interest. One intelligence layer captures reader engagement and intent, so you see who actually consumed your content.',
     icon: TrendingUp,
     image: '/demandflow-tracking.png',
     points: [
-      'Real-time content consumption tracking',
-      'Intent signal detection & scoring',
-      'Centralized syndication analytics',
+      '✔ Real-time content consumption tracking',
+      '✔ Intent signal detection and scoring',
+      '✔ Centralized syndication analytics',
     ],
   },
   {
     num: '07',
     layer: '07 — Qualification',
-    title: 'DemandFlow Bridge — Qualification',
+    title: 'DemandFlow Bridge: Lead Qualification & CRM Delivery',
     shortTitle: 'Qualification',
-    tag: 'Qualified Opportunities',
+    tag: 'QUALIFIED OPPORTUNITIES',
     module: 'DemandFlow Bridge — Qualification',
     screen: 'Lead Qualification & QA Control Center',
     metric: '765 Qualified • 94.2% BANT Ready',
-    desc: 'Convert reader engagement and opt-in intent into sales-qualified opportunities.',
+    desc: ' Raw downloads aren’t pipeline. We convert reader engagement and opt-in intent into sales-qualified opportunities routed to your CRM, backed by our 99.8% Data Accuracy SLA.',
     icon: BadgeCheck,
     image: '/demandflow-qualification.png',
     points: [
-      'AI-assisted lead scoring & screening',
-      'Intent & opt-in consent verification',
-      'Sales-ready opportunities with zero bounce',
+      '✔ AI-assisted lead scoring and screening',
+       '✔ Intent and opt-in consent verification',
+       '✔ Sales-ready opportunities with zero-bounce deliverability',
     ],
   },
 ]
@@ -210,20 +210,22 @@ const WhatTarajDelivers = () => {
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
             <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Proprietary Campaign Engine
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+               PROPRIETARY SYNDICATION ENGINE • DEMANDFLOW BRIDGE
+
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">WHAT DOES TARAJ GLOBAL </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-              Deliver?
+             DELIVER IN CONTENT SYNDICATION?
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers targeted B2B content syndication that distributes authoritative assets to generate verified, sales-ready opportunities.
+            Syndication results you can’t verify aren’t worth paying for. TaRaj Global delivers opt-in, ICP-matched leads from authoritative publisher networks, scored by AI-assisted signals, verified in-house, and routed via DemandFlow Bridge.
+
           </p>
         </div>
 

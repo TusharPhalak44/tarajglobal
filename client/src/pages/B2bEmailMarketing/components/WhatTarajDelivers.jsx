@@ -22,131 +22,129 @@ import {
 const ENGINE_LAYERS = [
   {
     num: '01',
-    layer: '01 — PLATFORM',
-    title: 'DemandFlow Bridge',
+    layer: '01 — Strategy',
+    title: 'DemandFlow Bridge: Email Audience & ICP Strategy',
     shortTitle: 'Platform',
-    tag: 'BUSINESS OPERATIONS & INTELLIGENCE',
+    tag: ' AUDIENCE & ICP STRATEGY',
     module: 'DemandFlow Bridge',
     subLabel: 'Unified Business Operations Platform',
     screen: 'Unified Business Operations Platform',
     metric: 'ONE PLATFORM • MULTIPLE OPERATIONS • REAL-TIME CONTROL',
-    desc: 'An integrated platform powering CRM, sales, client management, lead management, HRMS, operations, and payroll.',
+    desc: 'Campaigns sent to the wrong audience waste every downstream effort. We define ICP, personas, and ARR tiers before launch, refined with AI-assisted lookalike modeling.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      'CRM & Lead Management',
-      'Sales & Client Management',
-      'HRMS & Employee Operations',
-      'Payroll & Attendance',
-      'Centralized Business Intelligence',
+      '✔ ICP and persona matrix across target verticals and ARR tiers',
+      '✔ Positive and negative account screening filters',
+      '✔ Campaign goals and reply-qualification criteria agreed upfront',
     ],
   },
   {
     num: '02',
-    layer: '02 — Data',
-    title: 'DemandFlow Bridge — Data',
+    layer: '02 —Data Hygiene',
+    title: 'DemandFlow Bridge: Verified Contact Data Hygiene',
     shortTitle: 'Data',
-    tag: 'Enrichment & Validation',
+    tag: ' VERIFIED INBOXES & DIRECT DIALS',
     module: 'DemandFlow Bridge — Data',
     screen: 'Assignment, Touch & CDQA Control Center',
     metric: '1,055 Verified Records • CDQA Approved',
-    desc: 'Turn relevant B2B data into actionable prospect intelligence.',
+    desc: ' High bounce rates damage sender reputation and burn a whole domain. Every address passes our AI-assisted, in-house verification tool, backed by our 99.8% Data Accuracy SLA.',
     icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
-      'Data enrichment & validation',
-      'Account and contact intelligence',
-      'Organized prospect data',
+      '✔ Triple-layer SMTP validation eliminating bounce risk',
+       '✔ Spam-trap and stale-record purge on every list',
+       '✔ ISO 27001:2022, GDPR, CCPA, and CAN-SPAM compliance audit',
     ],
   },
   {
     num: '03',
-    layer: '03 — Sequences',
-    title: 'DemandFlow Bridge — Sequences',
+    layer: '03 —   Personalization',
+    title: 'DemandFlow Bridge: AI-Enhanced Message Personalization',
     shortTitle: 'Sequences',
-    tag: 'Outreach Workflows',
+    tag: 'AI-ENHANCED PERSONALIZATION',
     module: 'DemandFlow Bridge — Sequences',
     screen: 'Email Cadence & Sequence Operations',
     metric: '99.4% Deliverability • 4-Step Architecture',
-    desc: 'Automate personalized outreach at scale.',
+    desc: 'Generic blasts are deleted in seconds by senior buyers. AI-enhanced personalization tailors subject lines, copy, and offers to each persona’s role, pain points, and installed stack.',
     icon: MailCheck,
     image: '/demandflow-sequences.png',
     points: [
-      'Multi-touch sequences',
-      'Automated follow-ups',
-      'Smart campaign workflows',
+      '✔ Role-specific messaging for C-suite, VP, and Director personas',
+       '✔ Dynamic fields from firmographic and technographic data',
+       '✔ A/B testing of subject lines, angles, and calls to action',
     ],
   },
   {
     num: '04',
-    layer: '04 — Personalization',
-    title: 'DemandFlow Bridge — Personalization',
+    layer: '04 — Deliverability',
+    title: ' DemandFlow Bridge: Custom Deliverability Engine',
     shortTitle: 'Personalization',
     tag: 'AI & Buyer Signals',
     module: 'DemandFlow Bridge — Personalization',
     screen: 'Dynamic Personalization & ICP Variables',
     metric: '95.5% Match Rate • A/B Conversion Lift',
-    desc: 'Use AI and buyer signals to make every interaction more relevant.',
+    desc: ' Emails that land in spam never get read, however good the copy. Our custom deliverability engine manages sender reputation, sending pace, and placement monitoring across every campaig.',
     icon: Sparkles,
     image: '/demandflow-personalization.png',
     points: [
-      'AI-assisted personalization',
-      'Buyer & account signals',
-      'Relevant topic intelligence',
+      '✔ Sender reputation and sending-pace controls',
+      '✔ Inbox placement monitoring with automated alerts',
+      '✔ Bounce and complaint thresholds enforced to protect your domains',
     ],
   },
   {
     num: '05',
-    layer: '05 — Execution',
-    title: 'DemandFlow Bridge — Execution',
+    layer: '05 —  Cadences',
+    title: ' DemandFlow Bridge: Validated Multi-Step Email Cadences',
     shortTitle: 'Execution',
-    tag: 'Automated Deployment',
+    tag: 'VALIDATED MULTI-TOUCH CADENCES',
     module: 'DemandFlow Bridge — Execution',
     screen: 'Campaign Operations & Pacing Board',
     metric: 'Live Allocation • 100% Pacing Tracking',
-    desc: 'Automate campaign execution and move from planning to outreach faster.',
+    desc: 'One email rarely wins a reply from a busy executive. Validated multi-step cadences follow up on a paced schedule that adjusts to each prospect’s response.',
     icon: Gauge,
     image: '/demandflow-campaigns.png',
     points: [
-      'Automated campaign deployment',
-      'Smart scheduling',
-      'Faster execution cycles',
+      '✔ Multi-touch sequences across 14–21 day conversational sprints',
+       '✔ Automated follow-up logic and unsubscribe handling',
+       '✔ Live pacing board tracking daily sends against targets',
     ],
   },
   {
     num: '06',
-    layer: '06 — Tracking',
-    title: 'DemandFlow Bridge — Tracking',
+    layer: '06 — Reply Handling',
+    title: 'DemandFlow Bridge: Reply Triage & Response Telemetry',
     shortTitle: 'Tracking',
-    tag: 'Engagement & Intent Layer',
+    tag: 'REPLY TRIAGE & QUALIFICATION',
     module: 'DemandFlow Bridge — Tracking',
     screen: 'Response Telemetry & Intent Analytics',
     metric: '24.8K Opens • 842 Positive Replies',
-    desc: 'Capture engagement and intent in one centralized intelligence layer.',
+    desc: 'Positive replies lose value when they sit unanswered. SDRs triage every response in real time, qualify interest against your criteria, and book discovery meetings.',
     icon: TrendingUp,
     image: '/demandflow-tracking.png',
     points: [
-      'Real-time engagement tracking',
-      'Intent signal detection',
-      'Centralized campaign analytics',
+      '✔ Real-time reply monitoring and SDR triage',
+      '✔ Qualification against ICP and BANT criteria before handoff',
+      '✔ Discovery meetings booked directly on AE calendars',
     ],
   },
   {
     num: '07',
-    layer: '07 — Qualification',
-    title: 'DemandFlow Bridge — Qualification',
+    layer: '07 — CRM Telemetry',
+    title: ' DemandFlow Bridge: CRM Telemetry & Reply Attribution',
     shortTitle: 'Qualification',
-    tag: 'Qualified Opportunities',
+    tag: 'PIPELINE REPORTING',
     module: 'DemandFlow Bridge — Qualification',
     screen: 'Lead Qualification & QA Control Center',
     metric: '765 Qualified • 94.2% BANT Ready',
-    desc: 'Convert engagement and intent into qualified opportunities.',
+    desc: 'Email results that stop at open rates can’t justify the program. CRM sync attributes replies and meetings to campaigns, backed by our 99.8% Data Accuracy SLA.',
     icon: BadgeCheck,
     image: '/demandflow-qualification.png',
     points: [
-      'AI-assisted lead scoring',
-      'Intent & engagement signals',
-      'Sales-ready opportunities',
+      '✔ Native field mapping for Salesforce and HubSpot, plus custom API integrations',
+      '✔ Reply-to-opportunity attribution tracked by campaign',
+      '✔ Bi-weekly performance reviews with your sales and marketing leaders',
     ],
   },
 ]
@@ -212,21 +210,22 @@ const WhatTarajDelivers = () => {
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
+            {/* <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" /> */}
             <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Proprietary Campaign Engine
+             PROPRIETARY EMAIL ENGINE • DEMANDFLOW BRIDGE
+
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">WHAT DOES TARAJ GLOBAL  </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-              Deliver?
+             DELIVER IN EMAIL MARKETING?
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers targeted B2B email marketing that generates qualified leads and sales conversations.
+            Stop sending campaigns that never reach the inbox. TaRaj Global delivers verified-data email programs with validated cadences and qualified replies, scored by AI-assisted signals and routed via DemandFlow Bridge.
           </p>
         </div>
 

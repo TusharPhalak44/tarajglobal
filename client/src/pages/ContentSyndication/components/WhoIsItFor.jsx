@@ -9,15 +9,15 @@ const AUDIENCES = [
     id: 'saas',
     num: '01',
     label: 'B2B SaaS Companies',
-    tagline: 'TECHNOLOGY DECISION MAKERS',
+    tagline: 'TECHNOLOGY DECISION MAKERS ',
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Syndicate whitepapers, product guides, and technical benchmarks directly to CTOs, VPs of Engineering, and software leaders evaluating cloud and SaaS solutions.',
+      ' Whitepapers that sit on your own site don’t reach buyers who are evaluating cloud and SaaS. We syndicate guides and technical benchmarks to CTOs, VPs of Engineering, and software leaders actively comparing solutions.',
     points: [
-      'Targeting by verified tech stack, ARR band, and engineering team size',
-      'Syndication aligned with SaaS buyer evaluation criteria and POC phases',
-      'Guaranteed CPL leads with confirmed download and engagement telemetry',
+      '✔ Targeting by verified tech stack, ARR band, and engineering team size',
+      '✔ Syndication aligned with SaaS evaluation criteria and POC phases',
+      '✔ Guaranteed CPL leads with confirmed download and engagement telemetry',
     ],
     visualType: 'saas',
   },
@@ -25,31 +25,31 @@ const AUDIENCES = [
     id: 'tech',
     num: '02',
     label: 'Technology Companies',
-    tagline: 'TECH & ENGINEERING LEADERS',
+    tagline: 'TECH & ENGINEERING LEADERS ',
     color: '#8B5CF6',
     image: '/it-audience.jpg',
     description:
-      'Distribute architectural briefs, hardware teardowns, and engineering blueprints to technical leaders researching new platform capabilities and implementations.',
+      'Technical leaders skip marketing fluff but read deep technical content. We distribute architectural briefs, hardware teardowns, and engineering blueprints to those researching new platform capabilities.',
     points: [
-      'Reaching verified engineering directors, architects, and DevOps managers',
-      'Multi-channel distribution across specialized technical publishing networks',
-      'Content consumption verification before qualified lead delivery',
+      '✔ Verified engineering directors, architects, and DevOps managers reached',
+       '✔ Multi-channel distribution across specialized technical publishing networks',
+       '✔ Content consumption verified before qualified lead delivery',
     ],
     visualType: 'it',
   },
   {
     id: 'it-software',
     num: '03',
-    label: 'IT & Software Providers',
+    label: ' IT & Software Providers',
     tagline: 'INFRASTRUCTURE & SOFTWARE BUYERS',
     color: '#10B981',
     image: '/enterprise-audience.jpg',
     description:
-      'Position IT migration guides, security manuals, and infrastructure comparison reports in front of CIOs, IT directors, and procurement leaders.',
+      'Long evaluation cycles make IT buyers hard to reach through ads. We place migration guides, security manuals, and infrastructure comparison reports in front of CIOs, IT directors, and procurement leaders.',
     points: [
-      'Account-level syndication against target enterprise account lists (TAL)',
-      'Custom qualifying questions verifying infrastructure upgrade timelines',
-      'Complete contact enrichment with corporate email and direct dial data',
+      '✔ Account-level syndication against target enterprise account lists (TAL)',
+      '✔ Custom qualifying questions verifying infrastructure upgrade timelines',
+      '✔ Complete contact enrichment with corporate email and direct dial data',
     ],
     visualType: 'services',
   },
@@ -61,11 +61,11 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/services-audience.jpg',
     description:
-      'Fuel marketing automation platforms and sales pipelines with steady streams of verified opt-in leads actively reading your high-value assets.',
+      'Inconsistent lead volume strains marketing automation and SDR queues. We deliver steady streams of verified opt-in leads who are actively reading your high-value assets.',
     points: [
-      'Predictable lead volume delivered at transparent, fixed cost-per-lead',
-      'Seamless CRM integration with direct push to HubSpot, Salesforce, and Marketo',
-      'Intent-scored prospect engagement telemetry provided with each delivery',
+      '✔ Predictable lead volume delivered at transparent, fixed cost-per-lead',
+       '✔ Seamless CRM integration with direct push to HubSpot, Salesforce, and Marketo',
+       '✔ Intent-scored prospect engagement telemetry with each delivery',
     ],
     visualType: 'enterprise',
   },
@@ -77,27 +77,27 @@ const AUDIENCES = [
     color: '#EC4899',
     image: '/saas-audience.jpg',
     description:
-      'Establish immediate category authority for new product releases by syndicating vision papers and category reports to early-adopter decision makers.',
+      ' New products launch into zero category awareness. We build authority by syndicating vision papers and category reports to early-adopter decision-makers.',
     points: [
-      'Rapid distribution across targeted B2B industry verticals and niches',
-      'Educate target accounts on new frameworks, paradigms, and solutions',
-      'Convert reading engagement into initial demo and exploratory conversations',
+      '✔ Rapid distribution across targeted B2B industry verticals and niches',
+      '✔ Target accounts educated on new frameworks, paradigms, and solutions',
+      '✔ Reading engagement converted into demo and exploratory conversations',
     ],
     visualType: 'saas',
   },
   {
     id: 'market-entry',
     num: '06',
-    label: 'Businesses Entering New Markets',
-    tagline: 'ACCOUNT EXPANSION & BUYER REACH',
+    label: ' Businesses Entering New Markets',
+    tagline: 'ACCOUNT EXPANSION & BUYER REACH ',
     color: '#06B6D4',
     image: '/enterprise-audience.jpg',
     description:
-      'Accelerate geographic and vertical expansion by placing localized content directly into the workflow of regional decision makers and enterprise buyers.',
+      'Entering a new region without brand recognition leaves your message unheard. We place localized content in front of regional decision-makers and enterprise buyers.',
     points: [
-      'Localized targeting by geographic region, industry sector, and company size',
-      'Overcome zero brand awareness by leading with authoritative educational assets',
-      'Build qualified regional pipeline ahead of local sales team deployment',
+      '✔ Localized targeting by geography, industry sector, and company size',
+      '✔ Authoritative educational assets that lead where brand awareness is zero',
+      '✔ Qualified regional pipeline built ahead of local sales team deployment',
     ],
     visualType: 'enterprise',
   },
@@ -336,18 +336,19 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+           ICP VERTICAL ALIGNMENT
+
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            Is Content Syndication{' '}
+         Is Content Syndication{' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              Right for You?
+             Right for You
             </span>
           </motion.h2>
 
@@ -355,8 +356,8 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            Content syndication serves organizations looking to expand content reach, engage specific B2B buyers,
-            and generate high-intent qualified leads from authoritative publications.
+             Built for B2B technology and demand teams that need authoritative content in front of verified, in-market buyers across US, EMEA, and APAC, and want to pay only for leads that match their ICP.
+
           </motion.p>
         </div>
 

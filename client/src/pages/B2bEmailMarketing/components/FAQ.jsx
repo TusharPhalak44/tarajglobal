@@ -7,58 +7,58 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is B2B email marketing?',
+    question: ' What is B2B email marketing?',
     answer:
-      'B2B email marketing is a targeted outreach strategy that connects businesses directly with verified decision makers using personalized messaging to initiate qualified sales conversations.',
+      'B2B email marketing is a targeted outreach channel that sends personalized, relevant messages to verified decision-makers at target accounts to start qualified sales conversations. TaRaj Global runs it with in-house verified data, AI-enhanced personalization, and custom deliverability engines.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'Who is B2B email marketing suitable for?',
+    question: 'How is B2B email marketing different from mass email blasts?',
     answer:
-      'It is ideal for SaaS platforms, IT service providers, enterprise solution vendors, and B2B agencies looking to engage senior executives and build a predictable sales pipeline.',
+      'Mass blasts send the same message to large purchased lists and accept high bounce and spam rates. B2B email marketing starts from ICP-matched, verified contacts, personalizes by role and pain point, and paces cadences to protect sender reputation, so the goal is qualified replies, not volume.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'How does Taraj Global build targeted B2B email campaigns?',
+    question: 'How do you keep emails out of spam folders?',
     answer:
-      'We define your Ideal Customer Profile (ICP), verify decision maker contacts, craft customized multi step sequences, and optimize dispatch schedules to maximize positive responses.',
+      'Our custom deliverability engine manages sender reputation, sending pace, and inbox placement monitoring across every campaign, and bounce and complaint thresholds are enforced to protect your domains. Clean, verified data matters just as much, since high bounce rates are a leading cause of spam placement.',
   },
   {
     id: 'faq-4',
     num: '04',
-    question: 'How do you identify and verify B2B prospects?',
+    question: 'How do you verify email data before sending?',
     answer:
-      'We pinpoint relevant accounts matching your ICP criteria and run multi layer SMTP and syntax validation to ensure outreach reaches active, verified corporate inboxes with zero bounce risk.',
+      'Every address passes triple-layer SMTP validation and our AI-assisted, in-house verification tool, which also purges spam traps and stale records. This supports our 99.8% Data Accuracy SLA, and any contact that bounces is replaced 1-to-1 at no extra cost.',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'Can B2B email campaigns be personalized by industry or job role?',
+    question: 'How does AI personalization work in B2B email outreach?',
     answer:
-      'Yes. We dynamically tailor subject lines, value propositions, and pain point hooks to each prospect\'s specific industry vertical, company tier, and executive role.',
+      'AI-enhanced personalization tailors subject lines, copy, and offers to each persona’s role, pain points, and installed technology stack, using firmographic and technographic data. A/B testing then refines angles and calls to action, while your team keeps control of approved messaging.',
   },
   {
     id: 'faq-6',
     num: '06',
-    question: 'How do you measure B2B email marketing performance?',
+    question: 'Are your email programs GDPR and CAN-SPAM compliant?',
     answer:
-      'We monitor end to end metrics including inbox delivery rates, opens, link engagement, direct reply sentiment, and meetings booked with qualified decision makers.',
+      'Yes. TaRaj Global operates under ISO 27001:2022 (Information Security) and ISO 9001:2015 (Quality Management) standards, and campaign data and outreach comply with GDPR (EU/UK), CCPA (US), and CAN-SPAM requirements, including unsubscribe handling.',
   },
   {
     id: 'faq-7',
     num: '07',
-    question: 'How does email marketing generate qualified B2B leads?',
+    question: 'How are email replies qualified and routed to sales?',
     answer:
-      'By reaching verified decision makers with relevant solutions, nurturing responses through structured follow ups, and validating prospect intent before handoff to your sales team.',
+      'SDRs triage replies in real time, qualify positive responses against your ICP and BANT criteria, and run a CDQA audit before handoff. Qualified replies then route into your CRM with a dossier, and discovery meetings are booked directly on AE calendars.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: 'What is the difference between B2B email marketing and cold email outreach?',
+    question: ' How does DemandFlow Bridge support email marketing?',
     answer:
-      'While cold outreach often relies on generic one off pitches, strategic B2B email marketing uses strict audience hygiene, dynamic personalization, and multi touch workflows focused on relationship building.',
+      'DemandFlow Bridge, TaRaj Global’s native delivery platform, centralizes strategy, verified data, personalization, cadences, reply handling, and CRM sync in one workflow. You see every campaign from first send to opportunity, with replies attributed to pipeline.',
   },
 ]
 
@@ -193,8 +193,9 @@ const FAQ = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Frequently Asked Questions
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              SOMETHING ON YOUR MIND?
+
             </span>
           </motion.div>
 
@@ -203,11 +204,11 @@ const FAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">FREQUENTLY ASKED </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Questions
+              QUESTIONS
             </span>
           </motion.h2>
 
@@ -218,7 +219,7 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Common questions about B2B email marketing, our process, and how we approach targeted outreach and lead qualification.
+             Everything you need to know about TaRaj Global’s B2B email marketing, deliverability, personalization, and reply qualification across US, EMEA, and APAC.
           </motion.p>
         </div>
 

@@ -53,11 +53,11 @@ const FullFunnelDemand = () => {
     <>
       <SEO
         title="B2B Demand Generation Services | Tech-Powered Sales-Ready Pipeline | TaRaj Global"
-        description="Taraj Global unifies top-of-funnel brand awareness, mid-funnel buying committee education, and bottom-of-funnel sales qualification into a high-velocity revenue engine."
+        description="Build verified, sales-ready B2B pipeline across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent scoring, multi-channel campaigns, and a 99.8% Data Accuracy SLA."
         keywords="full funnel demand, full funnel demand generation, B2B demand generation, pipeline velocity, buying committee engagement, intent data demand, sales-ready leads, B2B pipeline growth, DemandFlow Bridge"
         canonical="/full-funnel-demand"
         ogTitle="B2B Demand Generation Services | Tech-Powered Sales-Ready Pipeline | TaRaj Global"
-        ogDescription="Unify top-of-funnel brand intent, mid-funnel committee education, and bottom-of-funnel sales qualification into an unstoppable B2B revenue engine."
+        ogDescription="Build verified, sales-ready B2B pipeline across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent scoring, multi-channel campaigns, and a 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={fullFunnelSchema}

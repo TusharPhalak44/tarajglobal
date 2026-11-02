@@ -22,96 +22,96 @@ const FLOW_ITEMS = [
   {
     id: 0,
     num: '01',
-    category: 'TARGETING',
-    engineLabel: 'ICP Engine',
-    engineAction: 'Precision Filtering',
+    category: 'DELIVERABILITY',
+    engineLabel: 'In-House Verification Tool',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: 'Untargeted Lists',
-      sub: 'Broad & Low Response',
-      icon: FilterX,
+      title: '01. Bounces Damage Sender Reputation',
+      sub: '',
+      icon: ShieldAlert,
     },
     solution: {
-      title: 'ICP Focused Targeting',
-      sub: 'Verified Decision Makers',
-      icon: Focus,
+      title: '01. Zero-Bounce Deliverability',
+      sub: '',
+      icon: CheckCircle2,
     },
-    color: '#00A6FF', // Blue
+    color: '#00A6FF',
     gradient: 'from-[#00A6FF] to-[#0070E0]',
   },
   {
     id: 1,
     num: '02',
-    category: 'ENGAGEMENT',
-    engineLabel: 'AI Copy Engine',
-    engineAction: '1 to 1 Personalize',
+    category: 'INBOX PLACEMENT',
+    engineLabel: 'Custom Deliverability Engine',
+    engineAction: 'Reputation + Placement Monitoring',
     problem: {
-      title: 'Low Engagement',
-      sub: 'Generic & Ignored Outreach',
+      title: '02. Emails Land in Spam Folders',
+      sub: '',
       icon: MailX,
     },
     solution: {
-      title: 'Personalized Messaging',
-      sub: 'Role & Industry Context',
-      icon: MessageSquareQuote,
+      title: '02. Inbox Placement Protected',
+      sub: '',
+      icon: Focus,
     },
-    color: '#8B5CF6', // Purple
+    color: '#8B5CF6',
     gradient: 'from-[#8B5CF6] to-[#6D28D9]',
   },
   {
     id: 2,
     num: '03',
-    category: 'DATA QUALITY',
-    engineLabel: 'Data Verifier',
-    engineAction: 'Zero Bounce Cleanse',
+    category: 'PERSONALIZATION',
+    engineLabel: 'AI-Enhanced Personalization',
+    engineAction: 'Role & Pain-Point Messaging',
     problem: {
-      title: 'Poor Quality Leads',
-      sub: 'High Bounce & Invalid Data',
-      icon: ShieldAlert,
+      title: '03. Generic Blasts Get Ignored',
+      sub: '',
+      icon: FilterX,
     },
     solution: {
-      title: 'Verified Prospect Data',
-      sub: 'Zero Bounce Guarantee',
-      icon: CheckCircle2,
+      title: '03. Replies From Decision-Makers',
+      sub: '',
+      icon: MessageSquareQuote,
     },
-    color: '#10B981', // Emerald
+    color: '#10B981',
     gradient: 'from-[#10B981] to-[#059669]',
   },
   {
     id: 3,
     num: '04',
-    category: 'CADENCE',
-    engineLabel: 'Cadence Engine',
-    engineAction: 'Multi Touch Nurture',
+    category: 'REPLY TRIAGE',
+    engineLabel: 'SDR Reply Triage',
+    engineAction: 'Qualification Before Handoff',
     problem: {
-      title: 'Inconsistent Cadence',
-      sub: 'Single Touch Stalled Leaks',
+      title: '04. Replies Slip Through the Cracks',
+      sub: '',
       icon: Workflow,
     },
     solution: {
-      title: 'Multi Touch Sequences',
-      sub: 'Nurtured Buying Cycles',
+      title: '04. Qualified Sales Conversations',
+      sub: '',
       icon: Send,
     },
-    color: '#F59E0B', // Amber
+    color: '#F59E0B',
     gradient: 'from-[#F59E0B] to-[#D97706]',
   },
   {
     id: 4,
     num: '05',
-    category: 'TELEMETRY',
-    engineLabel: 'Telemetry Hub',
-    engineAction: 'Pipeline Attribution',
+    category: 'ATTRIBUTION',
+    engineLabel: 'DemandFlow Bridge',
+    engineAction: 'Closed-Loop CRM Telemetry',
     problem: {
-      title: 'Zero Visibility',
-      sub: 'Unclear ROI & Tracking Gaps',
+      title: '05. No Visibility Into Results',
+      sub: '',
       icon: EyeOff,
     },
     solution: {
-      title: 'Full Performance Telemetry',
-      sub: 'Real Time Pipeline ROI',
+      title: '05. Reply-to-Pipeline Attribution',
+      sub: '',
       icon: BarChart3,
     },
-    color: '#EC4899', // Pink
+    color: '#EC4899',
     gradient: 'from-[#EC4899] to-[#BE185D]',
   },
 ]
@@ -326,21 +326,22 @@ const ProblemsSolved = () => {
         {/* ── COMPACT SECTION HEADER ── */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5   mb-2">
-            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
-              Automated Transformation
+            {/* <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" /> */}
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+               TECH-ENABLED EMAIL TRANSFORMATION
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span>What Problems Does B2B </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
+            <span> WHAT PROBLEMS DOES </span>
             <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
-              Email Marketing Solve?
+              B2B EMAIL MARKETING?
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From inaccurate targeting to low engagement, we transform core bottlenecks into sales ready conversations.
+            From bounced contacts to ignored blasts, we turn email bottlenecks into qualified conversations using in-house data verification, custom deliverability engines, and DemandFlow Bridge CRM routing.
+
           </p>
 
           {/* ── Micro Step Indicator ── */}
@@ -606,15 +607,17 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.problem.sub}
-                      </div>
+                      {item.problem.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.problem.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -703,7 +706,7 @@ const ProblemsSolved = () => {
                           className="w-1.5 h-1.5 rounded-full animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[155px] lg:max-w-[170px]">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -817,12 +820,14 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.solution.sub}
-                      </div>
+                      {item.solution.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.solution.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -849,9 +854,11 @@ const ProblemsSolved = () => {
             >
               <currentItem.problem.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.problem.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.problem.sub}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">{currentItem.problem.title}</div>
+              {currentItem.problem.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.problem.sub}</div>
+              ) : null}
             </div>
           </div>
 
@@ -898,9 +905,11 @@ const ProblemsSolved = () => {
             >
               <currentItem.solution.icon className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.solution.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.solution.sub}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">{currentItem.solution.title}</div>
+              {currentItem.solution.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.solution.sub}</div>
+              ) : null}
             </div>
           </div>
 

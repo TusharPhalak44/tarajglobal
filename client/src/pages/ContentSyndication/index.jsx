@@ -72,12 +72,12 @@ const ContentSyndication = () => {
   return (
     <>
       <SEO
-        title="B2B Content Syndication Services | Taraj Global"
-        description="Expand reach, engage active decision-makers, and generate high-intent qualified leads with targeted B2B content syndication on guaranteed CPL terms."
+        title="B2B Content Syndication Services | Verified Opt-In Leads on Guaranteed CPL | TaRaj Global"
+        description="Syndicate whitepapers and research to verified decision-makers across US, EMEA, and APAC. TaRaj Global delivers opt-in, ICP-matched leads on guaranteed CPL with a 99.8% Data Accuracy SLA."
         keywords="B2B content syndication, content syndication services, B2B lead syndication, whitepaper syndication, CPL content syndication, B2B lead generation, demand generation syndication, enterprise content distribution, verified reader leads, ABM content syndication"
         canonical="/content-syndication"
-        ogTitle="B2B Content Syndication Services | Taraj Global"
-        ogDescription="Distribute high-value digital assets to verified B2B decision-makers across premier publishing networks. Guaranteed CPL qualified lead delivery."
+        ogTitle="B2B Content Syndication Services | Verified Opt-In Leads on Guaranteed CPL | TaRaj Global"
+        ogDescription="Syndicate whitepapers and research to verified decision-makers across US, EMEA, and APAC. TaRaj Global delivers opt-in, ICP-matched leads on guaranteed CPL with a 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={syndicationSchema}

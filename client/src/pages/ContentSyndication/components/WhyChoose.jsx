@@ -14,40 +14,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'Targeted B2B Audiences',
-    desc: 'Reach verified decision-makers across industries, job functions, seniority levels, and company profiles matching your ideal customer profile.',
+    title: 'ICP-Matched Targeted B2B Audiences',
+    desc: 'Syndication to broad audiences returns volume without fit. We reach verified decision-makers matched to your ICP by industry, job function, seniority, and company profile.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Data-Driven Targeting',
-    desc: 'Leverage verified B2B intelligence, account-level filtering, and intent telemetry to syndicate content directly to in-market buyers.',
+    title: 'AI-Assisted, Data-Driven Targeting',
+    desc: 'Without intent data, assets reach readers who aren’t buying. Verified B2B intelligence, account-level filtering, and AI-assisted intent telemetry steer your content to in-market buyers.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Content Engagement',
-    desc: 'Capture high-intent interest through whitepapers, research reports, guides, and webinars with verified opt-in reader confirmation.',
+    title: 'Verified Opt-In Content Engagement',
+    desc: ' Passive clicks inflate numbers, not pipeline. Whitepapers, research reports, guides, and webinars capture high-intent interest, confirmed by verified opt-in reader consumption.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Qualified Lead Delivery',
-    desc: 'Receive verified leads with confirmed corporate emails, direct contact details, and custom screening question responses at fixed CPL.',
+    title: 'Qualified Lead Delivery at Fixed CPL',
+    desc: 'Leads with bad data waste SDR time. Each lead arrives with a confirmed corporate email, direct contact details, and custom screening responses at fixed CPL, backed by our 99.8% Data Accuracy SLA.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: 'Turn Content Reach Into B2B Opportunities',
-    desc: 'Accelerate pipeline velocity and ROI by transforming passive content downloads into sales-ready conversations and closed deals.',
+    title: 'Content Reach Into Sales Opportunities ',
+    desc: 'Reach that never converts frustrates sales. CDQA-audited leads route into your CRM via DemandFlow Bridge, turning passive downloads into sales-ready conversations.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -182,8 +182,9 @@ const WhyChoose = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -192,11 +193,11 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">WHY CHOOSE TARAJ GLOBAL FOR  </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              B2B Content Syndication?
+              B2B CONTENT SYNDICATION?
             </span>
           </motion.h2>
 
@@ -207,7 +208,8 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Targeted content syndication programs that expand reach, engage decision-makers, and generate high-intent qualified leads.
+            Targeted syndication programs, backed by in-house verification infrastructure, that expand reach, engage decision-makers, and deliver high-intent, ICP-matched leads on guaranteed CPL.
+
           </motion.p>
         </div>
 

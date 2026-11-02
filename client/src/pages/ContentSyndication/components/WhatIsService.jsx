@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'TARGET',
-    desc: 'Match ICP criteria & verified decision makers',
+    desc: 'Match ICP firmographics and verified decision-makers to publisher audiences.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'ENGAGE',
-    desc: 'Syndicate content & capture asset downloads',
+    desc: 'Syndicate gated assets and capture opt-in downloads.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'QUALIFY',
-    desc: 'Validate readership, intent & sales readiness',
+    desc: 'Validate readership, intent, and screening answers before delivery.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,13 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+           <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Service Definition
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -103,7 +103,7 @@ const WhatIsService = () => {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              What Is
+             What Is
             </motion.span>
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1 sm:pb-1.5">
               <motion.span
@@ -113,7 +113,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                B2B Content
+               B2B Content Syndication
               </motion.span>
               <motion.span
                 className="inline-block"
@@ -122,7 +122,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
-                Syndication?
+                ?
               </motion.span>
             </span>
           </h2>
@@ -175,7 +175,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              B2B content syndication distributes your content across targeted channels and relevant buyer audiences to increase reach, generate engagement, and create qualified leads.
+              B2B content syndication distributes your whitepapers, research reports, and guides across third-party publisher networks and relevant buyer audiences, so verified decision-makers opt in to read them and become qualified leads.
             </motion.p>
 
             <motion.p
@@ -185,7 +185,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Taraj Global combines audience targeting, buyer intelligence, and content distribution to connect your content with relevant decision-makers.
+              Unlike display ads or sponsorships that pay for clicks, TaRaj Global’s tech-enabled syndication combines ICP-matched audience targeting, AI-assisted asset matching, and opt-in reader verification. Every lead is checked by our in-house tool, backed by our 99.8% Data Accuracy SLA, and delivered to your CRM via DemandFlow Bridge.
             </motion.p>
 
             {/* PROCESS CARDS — MAIN INTERACTION */}

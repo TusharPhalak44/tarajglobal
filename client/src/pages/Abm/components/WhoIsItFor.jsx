@@ -152,14 +152,14 @@ const WhoIsItFor = () => {
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center mb-6 lg:mb-8">
           <motion.div {...fadeUp(0)} className="flex items-center justify-center mb-2">
-            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
              ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
           <motion.h2
             {...fadeUp(0.08)}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
+            className="text-xl sm:2ext-2xl md:3ext-3xl lg:text-4xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
             Is Account-Based Marketing{' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">

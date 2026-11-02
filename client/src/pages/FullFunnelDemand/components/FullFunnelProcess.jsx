@@ -104,7 +104,7 @@ const FullFunnelProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+           <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
              DEMAND GENERATION | SALES-READY PIPELINE
 
 
@@ -119,7 +119,7 @@ const FullFunnelProcess = () => {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="relative w-full max-w-5xl mx-auto"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
               <span className="block text-slate-900 dark:text-text-primary dark:text-white whitespace-normal sm:whitespace-nowrap">
                 OUR PROVEN B2B DEMAND GENERATION
               </span>

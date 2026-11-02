@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'TARGET',
-    desc: 'Reach the right decision makers',
+    desc: 'Verify ICP accounts and decision-maker inboxes before the first send.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,15 +14,15 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'ENGAGE',
-    desc: 'Create relevant conversations',
+    desc: ' Run personalized, paced cadences with inbox placement monitored.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
   },
   {
     num: '03',
-    label: 'CONVERT',
-    desc: 'Generate qualified opportunities',
+    label: 'QUALITY',
+    desc: 'Triage replies and route positive responses to sales.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+             EMAIL OUTREACH ENGINE
+
             </span>
           </motion.div>
 
           {/* 2. HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -103,7 +104,7 @@ const WhatIsService = () => {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              What Is
+             What Is
             </motion.span>
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1 sm:pb-1.5">
               <motion.span
@@ -113,7 +114,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                B2B Email
+                B2B Email Marketing
               </motion.span>
               <motion.span
                 className="inline-block"
@@ -122,7 +123,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
-                Marketing?
+                ?
               </motion.span>
             </span>
           </h2>
@@ -175,7 +176,8 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              B2B email marketing is a targeted outreach strategy that connects businesses with relevant decision makers through personalized email campaigns. It combines audience targeting, verified business data, relevant messaging, campaign execution, and engagement tracking to create meaningful sales conversations.
+              B2B email marketing is a targeted outreach channel that delivers personalized, relevant messages to verified decision-makers at target accounts, with the goal of starting qualified sales conversations rather than maximizing send volume.
+
             </motion.p>
 
             <motion.p
@@ -185,7 +187,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike mass email blasting, effective B2B email marketing is built around your ideal customer profile, reaching specific roles, industries, and organizations with messaging that reflects their actual business context. The result is outreach that generates qualified responses rather than low-intent noise.
+              Unlike mass email blasts to purchased lists, TaRaj Global’s tech-enabled program combines AI-enhanced personalization, validated cadences, and custom deliverability engines with contact data verified in-house and backed by our 99.8% Data Accuracy SLA. Replies are qualified by our SDR team and routed into your CRM via DemandFlow Bridge.
             </motion.p>
 
             {/* 5. PROCESS CARDS — MAIN INTERACTION */}

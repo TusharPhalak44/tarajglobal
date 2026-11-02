@@ -69,12 +69,12 @@ const B2bEmailMarketing = () => {
   return (
     <>
       <SEO
-        title="B2B Email Marketing Services | Taraj Global"
-        description="Drive qualified B2B conversations with targeted email marketing campaigns. Taraj Global combines verified data, personalization, outreach, and lead qualification."
+        title="B2B Email Marketing Services | AI-Enhanced Verified-Data Email Outreach | TaRaj Global"
+        description="Reach verified decision-makers across US, EMEA, and APAC with AI-enhanced B2B email outreach, custom deliverability engines, and a 99.8% Data Accuracy SLA."
         keywords="B2B email marketing, B2B email marketing services, B2B email marketing agency, B2B email campaigns, B2B email outreach, B2B lead generation, targeted B2B email campaigns, B2B prospect outreach, email lead generation, B2B demand generation, qualified B2B leads, B2B sales outreach, personalized B2B email campaigns"
         canonical="/b2b-email-marketing"
-        ogTitle="B2B Email Marketing Services | Taraj Global"
-        ogDescription="Reach the right B2B decision makers with targeted email campaigns, personalized outreach, verified data, engagement tracking, and lead qualification."
+        ogTitle="B2B Email Marketing Services | AI-Enhanced Verified-Data Email Outreach | TaRaj Global"
+        ogDescription="Reach verified decision-makers across US, EMEA, and APAC with AI-enhanced B2B email outreach, custom deliverability engines, and a 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={emailMarketingSchema}
