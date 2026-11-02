@@ -69,11 +69,11 @@ const LeadNurturing = () => {
   return (
     <>
       <SEO
-        title="B2B Lead Nurturing Services | B2B Lead Engagement | Taraj Global"
+        title="B2B Lead Nurturing Services | B2B Lead Engagement  | Taraj Global"
         description="Taraj Global provides B2B lead nurturing services that engage, qualify, and develop prospects through targeted outreach, buyer intent signals, lead scoring, and data-driven nurturing strategies."
         keywords="B2B Lead Nurturing, B2B Lead Nurturing Services, Lead Nurturing Services, B2B Lead Nurturing Campaigns, Lead Nurturing Strategy, B2B Lead Nurturing Solutions, Lead Qualification, Lead Engagement, Marketing Qualified Leads, Sales Qualified Leads, Buyer Intent, Lead Scoring, B2B Demand Generation, B2B Lead Generation, Sales Pipeline, Prospect Engagement"
         canonical="/lead-nurturing"
-        ogTitle="B2B Lead Nurturing Services | B2B Lead Engagement | Taraj Global"
+        ogTitle="B2B Lead Nurturing Services | B2B Lead Engagement  | Taraj Global"
         ogDescription="Taraj Global provides B2B lead nurturing services that engage, qualify, and develop prospects through targeted outreach, buyer intent signals, lead scoring, and data-driven nurturing strategies."
         ogType="website"
         twitterCard="summary_large_image"

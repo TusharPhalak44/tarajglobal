@@ -7,58 +7,58 @@ export const FAQS = [
   {
     id: 'faq-1',
     num: '01',
-    question: 'What is Full Funnel Demand Generation?',
+    question: 'What is B2B demand generation?',
     answer:
-      'Full Funnel Demand Generation is a synchronized B2B revenue strategy that coordinates top-of-funnel brand awareness, middle-of-funnel lead nurturing, and bottom-of-funnel sales qualification into an unbroken, measurable pipeline engine.',
+      'B2B demand generation is a data-driven strategy that builds awareness, engages target accounts, and creates consistent buyer interest across the full buying journey to deliver sales-qualified opportunities. TaRaj Global pairs it with in-house data verification and AI-assisted intent scoring, so campaigns reach decision-makers who can buy, not just click.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'How is Full Funnel Demand different from standalone Lead Generation?',
+    question: 'How does demand generation support B2B?',
     answer:
-      'Traditional lead generation frequently produces disconnected contacts with little brand awareness or buying intent. Full Funnel Demand nurtures entire buying committees from early awareness to validated sales meetings, ensuring higher closing velocity and deal value.',
+      'Demand generation bridges marketing and sales. It educates buyers, builds trust before the first pitch, scores intent, and delivers pre-qualified leads that convert faster, so reps spend their time on accounts already in motion.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'What channels do you deploy in a Full Funnel Demand program?',
+    question: ' Who should use B2B demand generation services?',
     answer:
-      'We orchestrate synchronized multi-channel cadences across personalized email, executive LinkedIn engagement, content syndication, programmatic digital touches, and direct tele-discovery.',
+      'Technology providers, B2B SaaS platforms, IT consultancies, and high-growth enterprise firms that need multi-stakeholder buy-in use demand generation to build a predictable, scalable revenue pipeline across US, EMEA, and APAC. Marketing and demand generation teams also use it to prove pipeline impact.',
   },
   {
     id: 'faq-4',
     num: '04',
-    question: 'How do you identify active buyer intent?',
+    question: 'What channels are used for B2B demand generation?',
     answer:
-      'DemandFlow Bridge ingests both third-party intent data (topic research, competitor evaluation, content consumption) and first-party engagement telemetry to isolate target accounts actively entering evaluation windows.',
+      ' TaRaj Global runs a coordinated multi-channel program: targeted email outreach, LinkedIn account-based marketing (ABM), authoritative content syndication, virtual webinars, and intent-driven digital media, all orchestrated through DemandFlow Bridge.',
   },
   {
     id: 'faq-5',
     num: '05',
-    question: 'How does Taraj Global qualify opportunities before sales handoff?',
+    question: ' How do demand generation campaigns generate qualified leads?',
     answer:
-      'Every opportunity is rigorously screened against your Ideal Customer Profile (ICP) and qualification framework (such as BANT or custom SQL criteria) including confirmed budget, role authority, project timeline, and active pain points.',
+      'Campaigns target verified decision-makers with personalized messaging and educational assets, capture contact data through opt-in engagement, and evaluate behavioral intent signals. Engaged accounts are then scored, qualified against BANT criteria, and routed to sales as validated leads.',
   },
   {
     id: 'faq-6',
     num: '06',
-    question: 'Can this integrate with our current CRM and marketing automation tools?',
+    question: ' How do you reach B2B decision-makers?',
     answer:
-      'Yes. Our platform integrates seamlessly with Salesforce, HubSpot, Marketo, and standard enterprise CRM systems, automatically syncing enriched account dossiers and booked meetings.',
+      'We map your Ideal Customer Profile against verified firmographic and technographic data, then validate executive job roles, direct dials, and corporate emails with our in-house verification tool for zero-bounce deliverability, backed by our 99.8% Data Accuracy SLA.',
   },
   {
     id: 'faq-7',
     num: '07',
-    question: 'What metrics define the success of a Full Funnel Demand campaign?',
+    question: ' How are demand generation leads qualified?',
     answer:
-      'We report on qualified pipeline value (SQLs), pipeline velocity (days from touch to meeting), committee engagement depth, cost per qualified opportunity, and closed-won revenue attribution.',
+      'Leads are validated using multi-touch engagement metrics, BANT criteria (Budget, Authority, Need, Timeline), content consumption depth, and custom qualification filters. Our CDQA audit then reviews each record before sales handoff, so only sales-ready opportunities reach your CRM.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: 'How quickly can a Full Funnel Demand program be launched?',
+    question: 'How does DemandFlow Bridge support demand generation?',
     answer:
-      'Following ICP alignment, account list verification, and content mapping, campaigns are typically active within 10 to 14 business days.',
+      'DemandFlow Bridge is TaRaj Global’s central command layer. It automates multi-channel cadences, verifies prospect data, scores live buyer intent, and syncs sales-qualified opportunities directly to your CRM, giving you one view from first touch to pipeline.',
   },
 ]
 
@@ -187,7 +187,7 @@ const FAQ = () => {
             className="flex items-center justify-center mb-2.5"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              YOUR FULL-FUNNEL QUESTIONS, ANSWERED
+             SOMETHING ON YOUR MIND?
             </span>
           </motion.div>
 
@@ -198,9 +198,9 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">FREQUENTLY ASKED </span>
             <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Questions
+            QUESTIONS
             </div>
           </motion.h2>
 
@@ -211,7 +211,7 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Everything you need to know about our unified top-to-bottom demand engine, buying committee nurturing, and sales-ready delivery.
+            Common questions about TaRaj Global’s B2B demand generation, multi-channel methodology, buyer qualification, and DemandFlow Bridge across US, EMEA, and APAC.
           </motion.p>
         </div>
 

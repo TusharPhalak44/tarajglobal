@@ -13,40 +13,40 @@ import {
 const PILLARS = [
   {
     num: '01',
-    title: 'End-to-End Funnel Continuity',
-    desc: 'Unlike single-channel agencies, Taraj Global manages every stage from first intent surge to closed sales opportunity, eliminating funnel drop-off.',
+    title: 'ICP-Matched Targeted B2B Audiences',
+    desc: 'Broad audiences waste budget and dilute results. Every workflow, from audience selection to content syndication, is grounded in your ICP and target account list, refined with AI-assisted lookalike modeling.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '02',
-    title: 'Multi-Signal Intent Telemetry',
-    desc: 'DemandFlow Bridge tracks genuine active buying signals across first and third-party data, prioritizing accounts at peak purchase propensity.',
+    title: 'Verified Decision-Maker Reach',
+    desc: 'Reaching only junior contacts stalls deals. We engage the executives and stakeholders who hold budget authority, using contact data verified in-house and backed by our 99.8% Data Accuracy SLA.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Multi-Threaded Committee Penetration',
-    desc: 'We engage an average of 6–10 verified stakeholders per enterprise logo to build organizational buying consensus and eliminate single-point failure.',
+    title: 'AI-Assisted, Data-Driven Campaigns',
+    desc: 'Campaigns run on guesswork underperform. Real-time intent telemetry and engagement tracking, with AI-assisted scoring, monitor content consumption, clicks, and intent surges to keep sharpening campaign yield.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '04',
-    title: 'Zero-Bounce 99.8% Data Accuracy SLA',
-    desc: 'Every prospect record is verified through our proprietary AI-assisted verification tool, safeguarding domain reputation with 1:1 replacement guarantee.',
+    title: 'Multi-Touch Buyer Engagement ',
+    desc: ' Generic content creates clicks, not interest. We pair high-value educational assets with multi-touch cadences matched to each role’s context, building authentic buyer interest and category authority.',
     icon: PieChart,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: 'Closed-Loop CRM Routing & Attribution',
-    desc: 'Qualified opportunities, engagement dossiers, and booked discovery meetings sync bi-directionally into your Salesforce or HubSpot instances.',
+    title: 'Sales-Ready Pipeline Support',
+    desc: 'Top-of-funnel volume that never converts frustrates sales. BANT qualification and CDQA audits turn engagement into validated opportunities, routed into your CRM, so reps focus on high-intent accounts with active timelines.',
     icon: CheckCheck,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -183,6 +183,7 @@ const WhyChoose = () => {
           >
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               TECH-ENABLED VALUE PROPOSITION
+
             </span>
           </motion.div>
 
@@ -193,9 +194,9 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">WHY CHOOSE TARAJ GLOBAL FOR </span>
             <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Full-Funnel Demand?
+              B2B DEMAND GENERATION?
             </div>
           </motion.h2>
 
@@ -206,7 +207,7 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Unified top-to-bottom pipeline architecture backed by proprietary intent telemetry, multi-stakeholder mapping, and DemandFlow Bridge CRM routing.
+            Five structural advantages, backed by in-house verification infrastructure, that turn your demand generation campaigns into authentic buyer demand and sales-ready pipeline.
           </motion.p>
         </div>
 

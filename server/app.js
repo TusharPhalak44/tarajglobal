@@ -31,10 +31,12 @@ const app = express()
 // Without this, all requests look like they come from the proxy IP, not the real client
 app.set('trust proxy', 1)
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 // Security middleware — comprehensive HTTP security headers
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
-  contentSecurityPolicy: {
+  contentSecurityPolicy: isDev ? false : {
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com"],
@@ -54,7 +56,6 @@ app.use(helmet({
 }))
 
 // CORS configuration — allow all localhost ports in development
-const isDev = process.env.NODE_ENV !== 'production'
 const allowedOrigins = process.env.NODE_ENV === 'production'
   ? [process.env.CLIENT_URL]
   : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3003', 'http://127.0.0.1:3000', 'http://127.0.0.1:3001', 'http://127.0.0.1:3002']
@@ -85,6 +86,11 @@ if (process.env.NODE_ENV !== 'production') {
     res.redirect(`https://tarajglobal.com/uploads${req.path}`)
   })
 }
+
+// Chrome DevTools probe endpoint to avoid 404 and CSP warnings in console
+app.get('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
+  res.status(200).json({})
+})
 
 // API routes
 app.use('/api/auth', authRoutes)
