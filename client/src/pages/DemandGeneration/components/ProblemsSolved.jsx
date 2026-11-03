@@ -119,12 +119,12 @@ const FLOW_ITEMS = [
 // ─── Timing Constants (Smooth, Measured & Slower Pace) ─────────────────────
 
 const TIMING = {
-  problemHighlight: 1000, // 1.0s: problem card highlight
-  lineToCenter: 1400,     // 1.4s: smooth comet glide to center engine
-  centerReaction: 1500,   // 1.5s: center transformation & shockwave
-  lineToSolution: 1400,   // 1.4s: smooth glide to solution card
-  solutionHold: 1500,     // 1.5s: solution card celebration & readout
-  pauseBetween: 800,      // 0.8s: gentle pause before next item
+  problemHighlight: 1400,
+  lineToCenter: 1200,
+  centerReaction: 2000,
+  lineToSolution: 1200,
+  solutionHold: 2000,
+  pauseBetween: 800,
 }
 
 const ProblemsSolved = () => {
@@ -293,11 +293,11 @@ const ProblemsSolved = () => {
   }
 
   const currentItem = FLOW_ITEMS[activeStep]
-  const isProblemActive = phase === 'problem' || phase === 'toCenter'
+  const isProblemActive = phase === 'problem' || phase === 'toCenter' || phase === 'centerReact' || phase === 'toSolution' || phase === 'solution'
   const isLeftLineActive = phase === 'toCenter'
-  const isCenterActive = phase === 'centerReact'
+  const isCenterActive = phase === 'centerReact' || phase === 'toCenter' || phase === 'toSolution'
   const isRightLineActive = phase === 'toSolution'
-  const isSolutionActive = phase === 'solution' || phase === 'toSolution'
+  const isSolutionActive = phase === 'toSolution' || phase === 'solution'
 
   return (
     <section
@@ -610,13 +610,13 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
                           <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                         {item.problem.sub}
                       </div>
                     </div>
@@ -641,7 +641,7 @@ const ProblemsSolved = () => {
 
               <div
                 ref={centerCircleRef}
-                className="relative w-[175px] h-[175px] lg:w-[195px] lg:h-[195px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
+                className="relative w-[185px] h-[185px] lg:w-[210px] lg:h-[210px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
               >
                 {/* Outer Ambient Glow */}
                 <motion.div
@@ -702,12 +702,12 @@ const ProblemsSolved = () => {
                       className="relative z-10 flex flex-col items-center justify-center w-full"
                     >
                       {/* Engine Category/Label Badge */}
-                      <div className="flex items-center gap-1 mb-1">
+                      <div className="flex items-center justify-center gap-1.5 mb-1 px-1 max-w-[175px] lg:max-w-[195px]">
                         <span
-                          className="w-1.5 h-1.5 rounded-full animate-pulse"
+                          className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-normal uppercase text-sky-200 text-center leading-tight">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -757,8 +757,18 @@ const ProblemsSolved = () => {
                       </div>
 
                       {/* Action Caption */}
-                      <div className="text-[10px] lg:text-[10.5px] font-mono font-bold uppercase tracking-wider text-sky-200 text-center leading-tight mt-0.5 px-2">
+                      <div className="text-[10px] lg:text-[11px] font-black uppercase tracking-tight text-white leading-tight text-center px-1 max-w-[170px] lg:max-w-[190px]">
                         {currentItem.engineAction}
+                      </div>
+
+                      <div className="text-[8px] lg:text-[8.5px] font-mono tracking-wider mt-0.5 text-center">
+                        {phase === 'centerReact' ? (
+                          <span className="text-amber-300 font-bold animate-pulse">⚡ ORCHESTRATING</span>
+                        ) : phase === 'toSolution' || phase === 'solution' ? (
+                          <span className="text-emerald-300 font-bold">✓ PIPELINE SCALE</span>
+                        ) : (
+                          <span className="text-sky-300/90">● INGESTING</span>
+                        )}
                       </div>
                     </motion.div>
                   </AnimatePresence>
@@ -801,13 +811,13 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.solution.title}</span>
                         {isActive && (
                           <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                         {item.solution.sub}
                       </div>
                     </div>

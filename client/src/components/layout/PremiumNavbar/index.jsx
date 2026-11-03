@@ -30,43 +30,49 @@ import TGAnimatedLogo from './TGAnimatedLogo'
 // ── 2. SERVICES MEGA MENU DATA (PRESERVING 100% CONTENT) ───────────────────────
 const SERVICES_DATA = [
   {
-    title: 'Lead Generation',
-    accent: '#00A6FF',
-    items: [
-      { name: 'MQL Services', path: '/mql-services', desc: 'High-volume engaged prospects', icon: TrendingUp },
-      { name: 'HQL Services', path: '/hql-services', desc: 'Verified intent & confirmed interest', icon: ShieldCheck },
-      { name: 'BANT Services', path: '/bant-lead-generation', desc: 'Budget, authority & need qualified', icon: CheckCircle2 },
-      { name: 'SQL Services', path: '/sql-services', desc: 'Sales-ready leads matched to ICP', icon: Target },
-      { name: 'Appointment Generation', path: '/b2b-appointment-setting', desc: 'Direct confirmed calendar meetings', icon: Calendar },
+    title: 'Services & Program',
+    columns: [
+      {
+        accent: '#00A6FF',
+        items: [
+          { name: 'MQL Services', path: '/mql-services', desc: 'High-volume engaged prospects', icon: TrendingUp },
+          { name: 'HQL Services', path: '/hql-services', desc: 'Verified intent & confirmed interest', icon: ShieldCheck },
+          { name: 'BANT Services', path: '/bant-lead-generation', desc: 'Budget, authority & need qualified', icon: CheckCircle2 },
+          { name: 'SQL Services', path: '/sql-services', desc: 'Sales-ready leads matched to ICP', icon: Target },
+          { name: 'Appointment Generation', path: '/b2b-appointment-setting', desc: 'Direct confirmed calendar meetings', icon: Calendar },
+        ]
+      },
+      {
+        accent: '#FF6D00',
+        items: [
+          // { name: 'Demand Generation', path: '/demand-generation', desc: 'Full-funnel pipeline & velocity', icon: Zap },
+          { name: 'Full Funnel Demand', path: '/full-funnel-demand', desc: 'End-to-end intent & revenue capture', icon: TrendingUp },
+          { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key accounts', icon: Layers },
+          { name: 'Account Based Experience', path: '/account-based-experience', desc: 'Omnichannel buyer journey & ABX', icon: Target },
+          { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage engagement cadences', icon: RefreshCw },
+        ]
+      }
     ]
   },
   {
-    title: 'Channels & Programs',
-    accent: '#8B5CF6',
-    items: [
-      { name: 'Email Marketing', path: '/b2b-email-marketing', desc: 'Cold outbound & nurture cadences', icon: Mail },
-      { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepapers to targeted buying groups', icon: FileSpreadsheet },
-      { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive attendees', icon: Sparkles },
-    ]
-  },
-  {
-    title: 'Demand & ABM',
-    accent: '#FF6D00',
-    items: [
-      { name: 'Demand Generation', path: '/demand-generation', desc: 'Full-funnel pipeline & velocity', icon: Zap },
-      { name: 'Full Funnel Demand', path: '/full-funnel-demand', desc: 'End-to-end intent & revenue capture', icon: TrendingUp },
-      { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key accounts', icon: Layers },
-      { name: 'Account Based Experience', path: '/account-based-experience', desc: 'Omnichannel buyer journey & ABX', icon: Target },
-      { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage engagement cadences', icon: RefreshCw },
-    ]
-  },
-  {
-    title: 'Data & Operations',
-    accent: '#10B981',
-    items: [
-      { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Human-verified ICP contact lists', icon: Search },
-      { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Hygiene, enrichment & dedup', icon: Database },
-      { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'Connecting data, outreach & pipeline', icon: Layers },
+    title: 'Channels & Data',
+    columns: [
+      {
+        accent: '#8B5CF6',
+        items: [
+          { name: 'Email Marketing', path: '/b2b-email-marketing', desc: 'Cold outbound & nurture cadences', icon: Mail },
+          { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepapers to targeted buying groups', icon: FileSpreadsheet },
+          { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive attendees', icon: Sparkles },
+        ]
+      },
+      {
+        accent: '#10B981',
+        items: [
+          { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Human-verified ICP contact lists', icon: Search },
+          { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Hygiene, enrichment & dedup', icon: Database },
+          { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'Connecting data, outreach & pipeline', icon: Layers },
+        ]
+      }
     ]
   }
 ]
@@ -184,7 +190,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
           }))
         }
       })
-      .catch(() => {})
+      .catch(() => { })
 
     cmsAPI.getNavbarItems(fresh)
       .then(res => {
@@ -221,7 +227,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
           }
         }
       })
-      .catch(() => {})
+      .catch(() => { })
   }, [])
 
   // Fetch once on mount; refetch only when an admin publishes navbar changes.
@@ -243,7 +249,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
         bc.onmessage = (e) => {
           if (e.data?.type === 'NAVBAR_UPDATED') handleSync()
         }
-      } catch (_) {}
+      } catch (_) { }
     }
 
     return () => {
@@ -302,8 +308,8 @@ export const PremiumNavbar = ({ isPreview = false }) => {
 
       <header
         className={`${isPreview ? 'absolute' : 'fixed'} ${hasTopHeader ? 'top-8' : 'top-0'} left-0 right-0 z-40 transition-all duration-300 ${(isScrolled && !isPreview)
-            ? 'h-[74px] sm:h-[80px] bg-white/95 dark:bg-[#070B14]/95 backdrop-blur-2xl border-b border-slate-200/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/50'
-            : 'h-[80px] sm:h-[88px] bg-white/85 dark:bg-[#070B14]/85 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/[0.07]'
+          ? 'h-[74px] sm:h-[80px] bg-white/95 dark:bg-[#070B14]/95 backdrop-blur-2xl border-b border-slate-200/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/50'
+          : 'h-[80px] sm:h-[88px] bg-white/85 dark:bg-[#070B14]/85 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/[0.07]'
           }`}
         role="banner"
       >
@@ -337,7 +343,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                 alt={logoData.logo_alt || "Taraj Global Logo"}
                 className="w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] md:w-[52px] md:h-[52px]"
               />
-              
+
               {/* Official Brand Wordmark: TARAJ GLOBAL SOLUTIONS / BUSINESS SIMPLIFIED */}
               <img
                 src="/taraj-solutions-wordmark.png"
@@ -375,20 +381,18 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                   >
                     <NavLink
                       to={item.path || '/services'}
-                      className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-colors duration-200 cursor-pointer ${
-                        isServicesActive || isServicesOpen
-                          ? 'text-[#00A6FF]'
-                          : 'text-slate-700 dark:text-slate-200 hover:text-[#00A6FF] dark:hover:text-[#00A6FF]'
-                      }`}
+                      className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-colors duration-200 cursor-pointer ${isServicesActive || isServicesOpen
+                        ? 'text-[#00A6FF]'
+                        : 'text-slate-700 dark:text-slate-200 hover:text-[#00A6FF] dark:hover:text-[#00A6FF]'
+                        }`}
                       aria-expanded={isServicesOpen}
                       aria-haspopup="true"
                     >
                       <span className="relative z-10">{item.name}</span>
                       <ChevronDown
                         size={14}
-                        className={`transition-transform duration-300 relative z-10 ${
-                          isServicesOpen ? 'rotate-180 text-[#00A6FF]' : 'text-slate-400 group-hover:text-[#00A6FF]'
-                        }`}
+                        className={`transition-transform duration-300 relative z-10 ${isServicesOpen ? 'rotate-180 text-[#00A6FF]' : 'text-slate-400 group-hover:text-[#00A6FF]'
+                          }`}
                       />
                       {(isServicesActive || isServicesOpen) && (
                         <motion.div
@@ -420,10 +424,9 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                     to={item.path}
                     onMouseEnter={() => setHoveredNav(item.name)}
                     className={({ isActive }) =>
-                      `relative whitespace-nowrap px-2.5 xl:px-3.5 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-colors duration-200 cursor-pointer ${
-                        isActive
-                          ? 'text-[#00A6FF]'
-                          : 'text-slate-700 dark:text-slate-200 hover:text-[#00A6FF] dark:hover:text-[#00A6FF]'
+                      `relative whitespace-nowrap px-2.5 xl:px-3.5 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-colors duration-200 cursor-pointer ${isActive
+                        ? 'text-[#00A6FF]'
+                        : 'text-slate-700 dark:text-slate-200 hover:text-[#00A6FF] dark:hover:text-[#00A6FF]'
                       }`
                     }
                   >
@@ -503,76 +506,61 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                   {/* Top Ambient Glow Hairline */}
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF]/40 to-transparent" />
 
-                  {/* 4 Equal Columns Grid - Guaranteed One Frame */}
-                  <div className="grid grid-cols-4 gap-4 xl:gap-5">
-                    {SERVICES_DATA.map((col) => (
-                      <div key={col.title} className="space-y-2.5">
-                        <div className="pb-2 border-b border-slate-100 dark:border-white/5">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
-                            {col.title}
+                  {/* Strategic Pillars: Demand Generation & Operations & Data (Side by Side) */}
+                  <div className="grid grid-cols-2 gap-6 xl:gap-8">
+                    {SERVICES_DATA.map((section, sIdx) => (
+                      <div
+                        key={section.title}
+                        className={`space-y-2.5 ${sIdx > 0 ? 'pl-6 xl:pl-8 border-l border-slate-100 dark:border-white/5' : ''}`}
+                      >
+                        <div className="pb-2 border-b border-slate-100 dark:border-white/5 flex items-center justify-center text-center">
+                          <span className="text-[13px] font-bold uppercase tracking-wider text-[#0066CC] dark:text-[#00A6FF]">
+                            {section.title}
                           </span>
                         </div>
 
-                        <div className="space-y-0.5">
-                          {col.items.map((serviceItem) => {
-                            const Icon = serviceItem.icon
-                            return (
-                              <Link
-                                key={serviceItem.path}
-                                to={serviceItem.path}
-                                onClick={() => setIsServicesOpen(false)}
-                                className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100/90 dark:hover:bg-white/[0.06] transition-all group/item"
-                              >
-                                <div
-                                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover/item:scale-110 group-hover/item:shadow-sm"
-                                  style={{
-                                    backgroundColor: `${col.accent}15`,
-                                    color: col.accent,
-                                    border: `1px solid ${col.accent}30`
-                                  }}
-                                >
-                                  <Icon size={13} />
-                                </div>
+                        <div className="grid grid-cols-2 gap-3 xl:gap-4">
+                          {section.columns.map((col, cIdx) => (
+                            <div key={cIdx} className="space-y-0.5">
+                              {col.items.map((serviceItem) => {
+                                const Icon = serviceItem.icon
+                                return (
+                                  <Link
+                                    key={serviceItem.path}
+                                    to={serviceItem.path}
+                                    onClick={() => setIsServicesOpen(false)}
+                                    className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100/90 dark:hover:bg-white/[0.06] transition-all group/item"
+                                  >
+                                    <div
+                                      className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover/item:scale-110 group-hover/item:shadow-sm"
+                                      style={{
+                                        backgroundColor: `${col.accent}15`,
+                                        color: col.accent,
+                                        border: `1px solid ${col.accent}30`
+                                      }}
+                                    >
+                                      <Icon size={13} />
+                                    </div>
 
-                                <div className="flex flex-col min-w-0">
-                                  <span className="text-[12.5px] font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-[#00A6FF] dark:group-hover/item:text-[#00A6FF] transition-colors leading-tight truncate">
-                                    {serviceItem.name}
-                                  </span>
-                                  <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 leading-snug mt-0.5">
-                                    {serviceItem.desc}
-                                  </span>
-                                </div>
-                              </Link>
-                            )
-                          })}
+                                    <div className="flex flex-col min-w-0">
+                                      <span className="text-[12.5px] font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-[#00A6FF] dark:group-hover/item:text-[#00A6FF] transition-colors leading-tight truncate">
+                                        {serviceItem.name}
+                                      </span>
+                                      <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 leading-snug mt-0.5">
+                                        {serviceItem.desc}
+                                      </span>
+                                    </div>
+                                  </Link>
+                                )
+                              })}
+                            </div>
+                          ))}
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  {/* Bottom Bar: Explore All + Rapid SLA */}
-                  <div className="mt-4 pt-3 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-xs bg-slate-50/70 dark:bg-white/[0.02] -mx-5 -mb-5 px-5 py-3 xl:-mx-6 xl:-mb-6 xl:px-6">
-                    <Link
-                      to="/services"
-                      onClick={() => setIsServicesOpen(false)}
-                      className="inline-flex items-center gap-1.5 font-bold text-[#00A6FF] hover:underline"
-                    >
-                      <span>Explore All Growth Solutions</span>
-                      <ArrowRight size={13} />
-                    </Link>
 
-                    <div className="flex items-center gap-4 text-[11px] font-mono text-slate-500 dark:text-slate-400 hidden sm:flex">
-                      <span className="flex items-center gap-1.5">
-                        <ShieldCheck size={13} className="text-emerald-500" />
-                        99.8% Data Accuracy SLA
-                      </span>
-                      <span className="text-slate-300 dark:text-slate-700">|</span>
-                      <span className="text-[#FF6D00] font-semibold flex items-center gap-1">
-                        <Zap size={13} className="text-[#FF6D00]" />
-                        48–72h Rapid Outbound
-                      </span>
-                    </div>
-                  </div>
                 </div>
               </motion.div>
             )}

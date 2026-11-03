@@ -118,9 +118,9 @@ const WebinarProcess = () => {
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
                 B2B WEBINAR{' '}
               </span>
-              <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
+              <div className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
                 WORKFLOW
-              </span>
+              </div>
             </h2>
 
             <div className="relative mt-2.5 flex items-center justify-center">

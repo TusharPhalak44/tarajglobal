@@ -36,7 +36,7 @@ const menuItems = [
 
 const SERVICES_SUBGROUPS = [
   {
-    category: 'Lead Generation',
+    category: 'Services & Program',
     accent: '#00A6FF',
     items: [
       { name: 'MQL Services', path: '/mql-services' },
@@ -44,22 +44,7 @@ const SERVICES_SUBGROUPS = [
       { name: 'BANT Services', path: '/bant-lead-generation' },
       { name: 'SQL Services', path: '/sql-services' },
       { name: 'Appointment Setting', path: '/b2b-appointment-setting' },
-    ],
-  },
-  {
-    category: 'Channels & Programs',
-    accent: '#8B5CF6',
-    items: [
-      { name: 'Email Marketing', path: '/b2b-email-marketing' },
-      { name: 'Content Syndication', path: '/content-syndication' },
-      { name: 'Webinar Services', path: '/webinar-services' },
-    ],
-  },
-  {
-    category: 'Demand & ABM',
-    accent: '#FF6D00',
-    items: [
-      { name: 'Demand Generation', path: '/demand-generation' },
+      // { name: 'Demand Generation', path: '/demand-generation' },
       { name: 'Full Funnel Demand', path: '/full-funnel-demand' },
       { name: 'Account-Based Marketing', path: '/abm' },
       { name: 'Account Based Experience', path: '/account-based-experience' },
@@ -67,9 +52,12 @@ const SERVICES_SUBGROUPS = [
     ],
   },
   {
-    category: 'Data & Operations',
+    category: 'Channels & Data',
     accent: '#10B981',
     items: [
+      { name: 'Email Marketing', path: '/b2b-email-marketing' },
+      { name: 'Content Syndication', path: '/content-syndication' },
+      { name: 'Webinar Services', path: '/webinar-services' },
       { name: 'B2B List Building', path: '/b2b-list-building' },
       { name: 'Database Cleansing', path: '/database-cleansing' },
       { name: 'DemandFlow Bridge', path: '/demandflow-bridge' },
@@ -155,40 +143,40 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
 
   const effectiveMenuItems = (navLinks && navLinks.length > 0)
     ? (() => {
-        const mapped = navLinks.map((link) => {
-          let name = link.name
-          let path = link.path
-          if (path === '/about' || path === '/who-we-are' || name?.toLowerCase() === 'about us') {
-            name = 'Who We Are'
-            path = '/who-we-are'
-          }
-          const meta = knownItemsMeta[path] || knownItemsMeta[link.path] || {}
-          const isServices = path === '/services' || name?.toLowerCase() === 'services'
-          const isExternal =
-            path?.startsWith('http://') ||
-            path?.startsWith('https://') ||
-            path?.startsWith('mailto:') ||
-            path?.startsWith('tel:')
-          return {
-            name,
-            path,
-            icon: meta.icon || Sparkles,
-            desc: meta.desc || `${name} Navigation`,
-            color: meta.color || '#00A6FF',
-            isServices,
-            isExternal
-          }
-        })
-        // Ensure Who We Are is placed immediately after Blogs
-        const withoutWho = mapped.filter(item => item.path !== '/about' && item.path !== '/who-we-are' && item.name !== 'Who We Are')
-        const whoItem = mapped.find(item => item.path === '/about' || item.path === '/who-we-are' || item.name === 'Who We Are')
-        const blogIndex = withoutWho.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
-        if (whoItem && blogIndex !== -1) {
-          withoutWho.splice(blogIndex + 1, 0, whoItem)
-          return withoutWho.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
+      const mapped = navLinks.map((link) => {
+        let name = link.name
+        let path = link.path
+        if (path === '/about' || path === '/who-we-are' || name?.toLowerCase() === 'about us') {
+          name = 'Who We Are'
+          path = '/who-we-are'
         }
-        return mapped.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
-      })()
+        const meta = knownItemsMeta[path] || knownItemsMeta[link.path] || {}
+        const isServices = path === '/services' || name?.toLowerCase() === 'services'
+        const isExternal =
+          path?.startsWith('http://') ||
+          path?.startsWith('https://') ||
+          path?.startsWith('mailto:') ||
+          path?.startsWith('tel:')
+        return {
+          name,
+          path,
+          icon: meta.icon || Sparkles,
+          desc: meta.desc || `${name} Navigation`,
+          color: meta.color || '#00A6FF',
+          isServices,
+          isExternal
+        }
+      })
+      // Ensure Who We Are is placed immediately after Blogs
+      const withoutWho = mapped.filter(item => item.path !== '/about' && item.path !== '/who-we-are' && item.name !== 'Who We Are')
+      const whoItem = mapped.find(item => item.path === '/about' || item.path === '/who-we-are' || item.name === 'Who We Are')
+      const blogIndex = withoutWho.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
+      if (whoItem && blogIndex !== -1) {
+        withoutWho.splice(blogIndex + 1, 0, whoItem)
+        return withoutWho.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
+      }
+      return mapped.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
+    })()
     : menuItems
 
   // Lock body scroll and pause Lenis when mobile drawer is open
@@ -425,11 +413,10 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                           whileHover={{ x: 6, scale: 1.01 }}
                           whileTap={{ scale: 0.98 }}
                           transition={{ type: 'spring', stiffness: 450, damping: 25 }}
-                          className={`p-3 sm:p-3.5 min-h-[48px] rounded-2xl border transition-all duration-200 flex items-center justify-between cursor-pointer relative overflow-hidden ${
-                            isActive
-                              ? 'bg-gradient-to-r from-primary/15 to-primary/5 dark:from-[#00A6FF]/20 dark:to-transparent border-primary/50 dark:border-[#00E5FF]/50 shadow-sm'
-                              : 'bg-slate-50/50 dark:bg-white/[0.02] border-slate-200/70 dark:border-white/5 hover:border-primary/40 dark:hover:border-[#00E5FF]/30 hover:bg-slate-100/80 dark:hover:bg-white/[0.06] shadow-2xs'
-                          }`}
+                          className={`p-3 sm:p-3.5 min-h-[48px] rounded-2xl border transition-all duration-200 flex items-center justify-between cursor-pointer relative overflow-hidden ${isActive
+                            ? 'bg-gradient-to-r from-primary/15 to-primary/5 dark:from-[#00A6FF]/20 dark:to-transparent border-primary/50 dark:border-[#00E5FF]/50 shadow-sm'
+                            : 'bg-slate-50/50 dark:bg-white/[0.02] border-slate-200/70 dark:border-white/5 hover:border-primary/40 dark:hover:border-[#00E5FF]/30 hover:bg-slate-100/80 dark:hover:bg-white/[0.06] shadow-2xs'
+                            }`}
                         >
                           {/* Active Left Indicator Bar */}
                           {isActive && (
@@ -443,11 +430,10 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                           <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
                             {/* Monospace Index */}
                             <span
-                              className={`font-mono text-[11px] font-bold shrink-0 transition-colors duration-200 ${
-                                isActive
-                                  ? 'text-primary dark:text-[#00E5FF]'
-                                  : 'text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-[#00E5FF]'
-                              }`}
+                              className={`font-mono text-[11px] font-bold shrink-0 transition-colors duration-200 ${isActive
+                                ? 'text-primary dark:text-[#00E5FF]'
+                                : 'text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-[#00E5FF]'
+                                }`}
                             >
                               {item.index}
                             </span>
@@ -459,11 +445,10 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                                 rotate: isHovered ? 6 : 0,
                               }}
                               transition={{ duration: 0.2 }}
-                              className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border transition-colors ${
-                                isActive
-                                  ? 'bg-primary text-white border-primary shadow-xs'
-                                  : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary'
-                              }`}
+                              className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border transition-colors ${isActive
+                                ? 'bg-primary text-white border-primary shadow-xs'
+                                : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary'
+                                }`}
                             >
                               <Icon size={16} strokeWidth={2} />
                             </motion.div>
@@ -471,11 +456,10 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                             {/* Title & Description Stack */}
                             <div className="min-w-0">
                               <h4
-                                className={`text-[15px] font-bold tracking-tight leading-snug transition-colors duration-200 ${
-                                  isActive
-                                    ? 'text-primary dark:text-[#00E5FF]'
-                                    : 'text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#00E5FF]'
-                                }`}
+                                className={`text-[15px] font-bold tracking-tight leading-snug transition-colors duration-200 ${isActive
+                                  ? 'text-primary dark:text-[#00E5FF]'
+                                  : 'text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#00E5FF]'
+                                  }`}
                               >
                                 {item.name}
                               </h4>
@@ -493,11 +477,10 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                               scale: isHovered ? 1.15 : 1,
                             }}
                             transition={{ duration: 0.2 }}
-                            className={`shrink-0 pl-2 ${
-                              isActive
-                                ? 'text-primary dark:text-[#00E5FF]'
-                                : 'text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-[#00E5FF]'
-                            }`}
+                            className={`shrink-0 pl-2 ${isActive
+                              ? 'text-primary dark:text-[#00E5FF]'
+                              : 'text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-[#00E5FF]'
+                              }`}
                           >
                             <ArrowRight size={15} strokeWidth={2.2} />
                           </motion.div>

@@ -119,12 +119,12 @@ const FLOW_ITEMS = [
 // ─── Timing Constants (Smooth, Measured & Slower Pace) ─────────────────────
 
 const TIMING = {
-  problemHighlight: 1000, // 1.0s: problem card highlight
-  lineToCenter: 1400,     // 1.4s: smooth comet glide to center engine
-  centerReaction: 1500,   // 1.5s: center transformation & shockwave
-  lineToSolution: 1400,   // 1.4s: smooth glide to solution card
-  solutionHold: 1500,     // 1.5s: solution card celebration & readout
-  pauseBetween: 800,      // 0.8s: gentle pause before next item
+  problemHighlight: 1400,
+  lineToCenter: 1200,
+  centerReaction: 2000,
+  lineToSolution: 1200,
+  solutionHold: 2000,
+  pauseBetween: 800,
 }
 
 const ProblemsSolved = () => {
@@ -628,7 +628,7 @@ const ProblemsSolved = () => {
 
               <div
                 ref={centerCircleRef}
-                className="relative w-[175px] h-[175px] lg:w-[195px] lg:h-[195px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
+                className="relative w-[185px] h-[185px] lg:w-[210px] lg:h-[210px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
               >
                 {/* Outer Ambient Glow */}
                 <motion.div
@@ -688,12 +688,12 @@ const ProblemsSolved = () => {
                       className="relative z-10 flex flex-col items-center justify-center w-full"
                     >
                       {/* Engine Category/Label Badge */}
-                      <div className="flex items-center gap-1 mb-1">
+                      <div className="flex items-center justify-center gap-1.5 mb-1 px-1 max-w-[175px] lg:max-w-[195px]">
                         <span
-                          className="w-1.5 h-1.5 rounded-full animate-pulse"
+                          className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[155px] lg:max-w-[175px]">
+                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-normal uppercase text-sky-200 text-center leading-tight">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -739,7 +739,7 @@ const ProblemsSolved = () => {
                       </div>
 
                       {/* Engine Action Headline */}
-                      <div className="text-[11px] lg:text-[11.5px] font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight text-center px-1">
+                      <div className="text-[10px] lg:text-[11px] font-black uppercase tracking-tight text-white leading-tight text-center px-1 max-w-[170px] lg:max-w-[190px]">
                         {currentItem.engineAction}
                       </div>
 

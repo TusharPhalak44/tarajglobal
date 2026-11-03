@@ -41,8 +41,8 @@ export default function WorkflowCanvas({
           style={{
             left: '27.14%',
             top: '2.88%',
-            width: '14.28%',
-            height: '24.03%',
+            width: '16.8%',
+            height: '27.5%',
           }}
         >
           <WorkflowCard
@@ -62,7 +62,7 @@ export default function WorkflowCanvas({
             left: '52.85%',
             top: '2.88%',
             width: '14.28%',
-            height: '24.03%',
+            height: '25.0%',
           }}
         >
           <WorkflowCard
