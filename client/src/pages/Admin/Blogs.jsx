@@ -24,6 +24,35 @@ import EmptyState from '@components/admin/EmptyState'
 import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 import { mediaUrl } from '@utils/media'
 
+const formatAdminDate = (val) => {
+  if (!val) return '-'
+  if (typeof val === 'string') {
+    const m = val.match(/^(\d{4})-(\d{2})-(\d{2})/)
+    if (m) {
+      const d = new Date(parseInt(m[1], 10), parseInt(m[2], 10) - 1, parseInt(m[3], 10))
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    }
+  }
+  const d = new Date(val)
+  return isNaN(d.getTime()) ? '-' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+const formatAdminTime = (val) => {
+  if (!val) return ''
+  if (typeof val === 'string') {
+    const m = val.match(/[ T](\d{2}):(\d{2})/)
+    if (m) {
+      let hours = parseInt(m[1], 10)
+      const mins = m[2]
+      const ampm = hours >= 12 ? 'PM' : 'AM'
+      hours = hours % 12 || 12
+      return `${String(hours).padStart(2, '0')}:${mins} ${ampm}`
+    }
+  }
+  const d = new Date(val)
+  return isNaN(d.getTime()) ? '' : d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+}
+
 const Blogs = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -257,10 +286,17 @@ const Blogs = () => {
                       <StatusBadge status={blog.status || 'draft'} />
                     </td>
                     <td className="px-4 py-4">
-                      <div className="flex flex-col text-sm text-[var(--admin-text-secondary)]">
-                        <span>{new Date(blog.published_at || blog.created_at || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                        <span className="text-[12px] text-[var(--admin-text-muted)]">{new Date(blog.published_at || blog.created_at || Date.now()).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
-                      </div>
+                      {(() => {
+                        const targetDate = blog.status === 'scheduled'
+                          ? (blog.scheduled_at || blog.published_at || blog.created_at)
+                          : (blog.published_at || blog.created_at)
+                        return (
+                          <div className="flex flex-col text-sm text-[var(--admin-text-secondary)]">
+                            <span className="font-medium text-[var(--admin-text-primary)]">{formatAdminDate(targetDate)}</span>
+                            <span className="text-[12px] text-[var(--admin-text-muted)]">{formatAdminTime(targetDate)}</span>
+                          </div>
+                        )
+                      })()}
                     </td>
                     <td className="px-4 py-4 text-center font-medium text-[var(--admin-text-primary)]">
                       {blog.view_count >= 1000 ? (blog.view_count / 1000).toFixed(1) + 'K' : (blog.view_count || 0)}

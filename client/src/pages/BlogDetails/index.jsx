@@ -77,7 +77,7 @@ function BlogDetails() {
 
   // Process and sanitize blog content, extracting Table of Contents and ensuring headings have IDs
   const processedArticle = useMemo(() => {
-    if (!blog?.content) return { html: '', toc: [], faqs: [], faqTitle: 'Frequently Asked Questions' }
+    if (!blog?.content) return { html: '', toc: [], faqs: [], faqTitle: 'Frequently Asked Questions', faqDescription: '' }
 
     // Normalize non-breaking spaces and strip Google Docs blue colors and duplicate <u> tags
     const rawContent = blog.content
@@ -146,6 +146,7 @@ function BlogDetails() {
     let finalHtml = htmlToProcess
     let extractedFaqs = []
     let faqHeadingText = 'Frequently Asked Questions'
+    let faqIntroDescription = ''
 
     try {
       const parser = new DOMParser()
@@ -268,74 +269,291 @@ function BlogDetails() {
         }
       })
 
-      // Detect and extract any FAQ section embedded in the blog content
+      // ─────────────────────────────────────────────────────────────────
+      // SUPER-SMART FAQ DETECTION & EXTRACTION ENGINE
+      // ─────────────────────────────────────────────────────────────────
       extractedFaqs = []
       faqHeadingText = 'Frequently Asked Questions'
+      faqIntroDescription = ''
 
-      const allHeadings = Array.from(doc.querySelectorAll('h1, h2, h3, h4'))
-      const faqHeaderEl = allHeadings.find((h) => {
-        const txt = (h.textContent || '').trim().toLowerCase()
+      // Helper regexes
+      const FAQ_TITLE_REGEX = /^(?:[0-9]+[\.\)]\s*)?(?:frequently\s+asked\s*(?:questions?)?|faqs?|common\s+questions?|questions?\s*(?:&|and)\s*answers?|q\s*(?:&|and)\s*a)(?:\s+(?:about|regarding|on)\b.*|\s*\(.*?\))?[\s:.-]*$/i
+      const IS_QUESTION_WORDS = /^(?:what|how|why|when|where|who|which|can|could|is|are|do|does|will|should|would|did|has|have)\b/i
+      const QUESTION_PREFIX_REGEX = /^(?:(?:Q\d*|Question\s*\d*)[:.]\s*|\d+[\.\)]\s*|[-*•]\s*)/i
+      const ANSWER_PREFIX_REGEX = /^(?:(?:A|Ans|Answer)[:.]\s*)/i
+
+      // 1. Locate the FAQ section start element (Check headings first, then paragraphs, divs, etc.)
+      const candidateElements = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, blockquote'))
+      const faqHeaderEl = candidateElements.find((el) => {
+        const rawTxt = (el.textContent || '').trim()
+        if (!rawTxt || rawTxt.length > 120) return false
+
+        // Exact or fuzzy FAQ heading match
+        if (FAQ_TITLE_REGEX.test(rawTxt)) return true
+
+        // Check if an inner <strong> or <b> contains the FAQ heading
+        const strong = el.querySelector('strong, b')
+        if (strong) {
+          const strongTxt = strong.textContent.trim()
+          if (FAQ_TITLE_REGEX.test(strongTxt) && strongTxt.length < 100) return true
+        }
+
+        // Fuzzy fallback for "frequently asked" or standalone "faq"/"faqs"
+        const lower = rawTxt.toLowerCase()
         return (
-          /frequently\s+asked/i.test(txt) ||
-          /^faqs?$/i.test(txt) ||
-          /^common\s+questions?$/i.test(txt) ||
-          txt === 'faq' ||
-          txt === 'faqs'
+          (lower.includes('frequently asked') || lower === 'faq' || lower === 'faqs' || lower.startsWith('faqs:')) &&
+          rawTxt.length < 90
         )
       })
 
       if (faqHeaderEl) {
-        faqHeadingText = faqHeaderEl.textContent.trim() || 'Frequently Asked Questions'
+        faqHeadingText = (faqHeaderEl.textContent || '').trim() || 'Frequently Asked Questions'
         const nodesToRemove = [faqHeaderEl]
+        const removedHeadingIds = new Set()
+        if (faqHeaderEl.getAttribute('id')) {
+          removedHeadingIds.add(faqHeaderEl.getAttribute('id'))
+        }
+
         let curr = faqHeaderEl.nextElementSibling
         let currQ = null
         let currA = []
 
-        const flushFaq = () => {
-          if (currQ && currA.length > 0) {
-            extractedFaqs.push({
-              id: `blog-faq-${extractedFaqs.length + 1}`,
-              num: String(extractedFaqs.length + 1).padStart(2, '0'),
-              question: currQ,
-              answer: currA.join(' ')
-            })
+        const cleanQuestion = (qStr) => {
+          if (!qStr) return ''
+          return qStr
+            .replace(QUESTION_PREFIX_REGEX, '')
+            .replace(/\s+/g, ' ')
+            .trim()
+        }
+
+        const cleanAnswer = (aStr) => {
+          if (!aStr) return ''
+          return aStr
+            .replace(ANSWER_PREFIX_REGEX, '')
+            .trim()
+        }
+
+        const flushCurrentFaq = () => {
+          if (currQ) {
+            const finalAns = currA.filter(Boolean).join('\n\n').trim()
+            if (finalAns) {
+              extractedFaqs.push({
+                id: `blog-faq-${extractedFaqs.length + 1}`,
+                num: String(extractedFaqs.length + 1).padStart(2, '0'),
+                question: cleanQuestion(currQ),
+                answer: cleanAnswer(finalAns)
+              })
+            }
           }
           currQ = null
           currA = []
         }
 
+        // Helper to test if text looks like a question
+        const isQuestionLike = (txt) => {
+          if (!txt) return false
+          const trimmed = txt.trim()
+          if (trimmed.length > 300) return false
+          if (trimmed.endsWith('?')) return true
+          if (/^(?:Q\d*|Question\s*\d*)[:.]/i.test(trimmed)) return true
+          if (/^\d+[\.\)]\s*/.test(trimmed) && (trimmed.endsWith('?') || IS_QUESTION_WORDS.test(trimmed.replace(/^\d+[\.\)]\s*/, '')))) return true
+          return false
+        }
+
+        // Helper to check if a major heading is a section terminator (e.g. Conclusion, Summary)
+        const isMajorSectionTerminator = (el) => {
+          const tag = el.tagName.toLowerCase()
+          const txt = (el.textContent || '').trim()
+          // Empty headings or tags are NEVER terminators!
+          if (!txt) return false
+
+          if (tag === 'h1') return true
+          if (tag === 'h2') {
+            // If it's an H2 that looks like a question, it's NOT a terminator
+            if (isQuestionLike(txt)) return false
+            return true
+          }
+          return false
+        }
+
         while (curr) {
-          const tag = curr.tagName.toLowerCase()
-          if (tag === 'h1' || (tag === 'h2' && curr !== faqHeaderEl)) {
+          // Check for section termination
+          if (isMajorSectionTerminator(curr)) {
             break
           }
+
           nodesToRemove.push(curr)
+          if (curr.getAttribute('id')) {
+            removedHeadingIds.add(curr.getAttribute('id'))
+          }
 
-          const isH34 = ['h3', 'h4', 'h5', 'h6'].includes(tag)
-          const strongTag = tag === 'p' ? curr.querySelector('strong, b') : null
-          const isPStrongQuestion =
-            strongTag &&
-            (curr.textContent.trim().endsWith('?') ||
-              /^(?:q\d*[:.]|\d+[\.\)])/i.test(curr.textContent.trim()) ||
-              curr.textContent.trim() === strongTag.textContent.trim())
+          const tag = curr.tagName.toLowerCase()
+          const text = (curr.textContent || '').trim()
 
-          if (isH34 || isPStrongQuestion) {
-            flushFaq()
-            currQ = (isPStrongQuestion ? strongTag.textContent : curr.textContent).trim()
-            currQ = currQ.replace(/^(?:Q\d*[:.]?\s*|\d+[\.\)]\s*)/i, '').trim()
+          // Skip empty nodes (e.g. empty <h2></h2>, <p><br></p>)
+          if (!text && !curr.querySelector('img, iframe, svg, table')) {
+            curr = curr.nextElementSibling
+            continue
+          }
+
+          // ── Case A: List of FAQs (<ol> or <ul>) ──
+          if (tag === 'ol' || tag === 'ul') {
+            const listItems = Array.from(curr.querySelectorAll('li'))
+            listItems.forEach((li) => {
+              const strong = li.querySelector('strong, b')
+              const liText = li.textContent.trim()
+
+              // Sub-case A1: Question is inside <strong>/<b>
+              if (strong && strong.textContent.trim().length > 3) {
+                const sText = strong.textContent.trim()
+                const restText = liText.slice(liText.indexOf(sText) + sText.length).replace(/^[\s:–—-]+/, '').trim()
+                if (restText) {
+                  flushCurrentFaq()
+                  extractedFaqs.push({
+                    id: `blog-faq-${extractedFaqs.length + 1}`,
+                    num: String(extractedFaqs.length + 1).padStart(2, '0'),
+                    question: cleanQuestion(sText),
+                    answer: cleanAnswer(restText)
+                  })
+                  return
+                }
+              }
+
+              // Sub-case A2: Delimited by "?" or "A:" / "Answer:"
+              const qSplitMatch = liText.match(/^(.*?[\?])\s*(?:(?:A|Ans|Answer)[:.]\s*|\s*[-–—]\s*)?(.*)$/is)
+              if (qSplitMatch && qSplitMatch[1] && qSplitMatch[2]) {
+                flushCurrentFaq()
+                extractedFaqs.push({
+                  id: `blog-faq-${extractedFaqs.length + 1}`,
+                  num: String(extractedFaqs.length + 1).padStart(2, '0'),
+                  question: cleanQuestion(qSplitMatch[1]),
+                  answer: cleanAnswer(qSplitMatch[2])
+                })
+                return
+              }
+
+              // Sub-case A3: Regular list item text
+              if (isQuestionLike(liText)) {
+                flushCurrentFaq()
+                currQ = liText
+              } else if (currQ) {
+                currA.push(liText)
+              }
+            })
+            curr = curr.nextElementSibling
+            continue
+          }
+
+          // ── Case B: Heading Question (H2, H3, H4, H5, H6) ──
+          const isHeading = ['h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)
+          if (isHeading && (isQuestionLike(text) || currQ === null)) {
+            flushCurrentFaq()
+            currQ = text
+            curr = curr.nextElementSibling
+            continue
+          }
+
+          // ── Case C: Paragraph or Div with <strong>/<b> ──
+          const strongTag = curr.querySelector('strong, b')
+          if (strongTag) {
+            const strongText = strongTag.textContent.trim()
+            const fullText = text
+
+            const strongIsQuestion = isQuestionLike(strongText)
+            const wholeIsQuestion = isQuestionLike(fullText) && fullText.length <= strongText.length + 5
+
+            if (strongIsQuestion || wholeIsQuestion) {
+              const qPart = strongIsQuestion ? strongText : fullText
+              const aPart =
+                strongIsQuestion && fullText.length > strongText.length
+                  ? fullText.slice(fullText.indexOf(strongText) + strongText.length).replace(/^[\s:–—-]+/, '').trim()
+                  : ''
+
+              if (aPart) {
+                // Question and answer exist together in this single paragraph!
+                flushCurrentFaq()
+                extractedFaqs.push({
+                  id: `blog-faq-${extractedFaqs.length + 1}`,
+                  num: String(extractedFaqs.length + 1).padStart(2, '0'),
+                  question: cleanQuestion(qPart),
+                  answer: cleanAnswer(aPart)
+                })
+              } else {
+                // Question is in this paragraph, answer will follow
+                flushCurrentFaq()
+                currQ = qPart
+              }
+              curr = curr.nextElementSibling
+              continue
+            }
+          }
+
+          // ── Case D: Paragraph with Q: and A: pattern ──
+          const qaMatch = text.match(/^(?:(?:Q\d*|Question\s*\d*)[:.]\s*|\d+[\.\)]\s*)(.*?[\?])\s*(?:(?:A|Ans|Answer)[:.]\s*|\s*[-–—]\s*)?(.*)$/is)
+          if (qaMatch && qaMatch[1] && qaMatch[2]) {
+            flushCurrentFaq()
+            extractedFaqs.push({
+              id: `blog-faq-${extractedFaqs.length + 1}`,
+              num: String(extractedFaqs.length + 1).padStart(2, '0'),
+              question: cleanQuestion(qaMatch[1]),
+              answer: cleanAnswer(qaMatch[2])
+            })
+            curr = curr.nextElementSibling
+            continue
+          }
+
+          // ── Case E: Paragraph ending with '?' without strong tag ──
+          if (isQuestionLike(text) && text.length < 200) {
+            flushCurrentFaq()
+            currQ = text
+            curr = curr.nextElementSibling
+            continue
+          }
+
+          // ── Case F: Answer Content (text or nested list) ──
+          if (currQ) {
+            if (curr.querySelector('ul, ol')) {
+              const bullets = Array.from(curr.querySelectorAll('li'))
+                .map((li) => `• ${li.textContent.trim()}`)
+                .join('\n')
+              if (bullets) currA.push(bullets)
+            } else if (text) {
+              currA.push(text)
+            }
           } else {
-            const txt = curr.textContent.trim()
-            if (txt) {
-              currA.push(txt)
+            // Intro text between FAQ title and the first question
+            if (!faqIntroDescription && text && text.length < 300) {
+              faqIntroDescription = text
             }
           }
 
           curr = curr.nextElementSibling
         }
-        flushFaq()
 
+        // Flush any remaining question
+        flushCurrentFaq()
+
+        // If we found FAQs, remove all captured raw FAQ nodes from the article body!
         if (extractedFaqs.length > 0) {
-          nodesToRemove.forEach((n) => n.remove())
+          nodesToRemove.forEach((n) => {
+            if (n && n.parentNode) {
+              n.parentNode.removeChild(n)
+            }
+          })
+
+          // Clean Table of Contents: remove removed heading IDs and question titles
+          const cleanedHeadings = headings.filter((h) => {
+            if (removedHeadingIds.has(h.id)) return false
+            const isFaqQ = extractedFaqs.some(
+              (f) =>
+                f.question.toLowerCase().includes(h.title.toLowerCase()) ||
+                h.title.toLowerCase().includes(f.question.toLowerCase())
+            )
+            return !isFaqQ
+          })
+
+          headings.length = 0
+          headings.push(...cleanedHeadings)
         }
       }
 
@@ -363,7 +581,8 @@ function BlogDetails() {
       html: sanitizedHtml,
       toc: headings,
       faqs: extractedFaqs,
-      faqTitle: faqHeadingText
+      faqTitle: faqHeadingText,
+      faqDescription: faqIntroDescription
     }
   }, [blog?.content])
 
@@ -379,8 +598,18 @@ function BlogDetails() {
 
   const formatDate = (dateString) => {
     if (!dateString) return 'Recently Published'
+    if (typeof dateString === 'string') {
+      const match = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/)
+      if (match) {
+        const year = parseInt(match[1], 10)
+        const month = parseInt(match[2], 10) - 1
+        const day = parseInt(match[3], 10)
+        const d = new Date(year, month, day)
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+      }
+    }
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    return isNaN(date.getTime()) ? 'Recently Published' : date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
   }
 
   const featuredImg =
@@ -1072,7 +1301,7 @@ function BlogDetails() {
                       title={processedArticle.faqTitle?.replace(/questions?/i, '').trim() || 'Frequently Asked'}
                       highlightTitle="Questions"
                       isArticleInline={true}
-                      description={`Key strategic questions and answers regarding ${blog.title || 'this B2B playbook'} and enterprise demand generation execution.`}
+                      description={processedArticle.faqDescription || `Key strategic questions and answers regarding ${blog.title || 'this B2B playbook'} and enterprise demand generation execution.`}
                     />
                   </div>
 
