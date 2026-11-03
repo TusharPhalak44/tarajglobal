@@ -117,12 +117,12 @@ const FLOW_ITEMS = [
 ]
 
 const TIMING = {
-  problemHighlight: 800,
-  lineToCenter: 750,
-  centerReaction: 1100,
-  lineToSolution: 750,
-  solutionHold: 1400,
-  pauseBetween: 600,
+  problemHighlight: 1400,
+  lineToCenter: 1200,
+  centerReaction: 2000,
+  lineToSolution: 1200,
+  solutionHold: 2000,
+  pauseBetween: 800,
 }
 
 const ProblemsSolved = () => {
@@ -130,23 +130,23 @@ const ProblemsSolved = () => {
   const sectionRef = useRef(null)
   const containerRef = useRef(null)
   const centerCircleRef = useRef(null)
-
   const problemRefs = useRef([])
   const solutionRefs = useRef([])
 
   const [activeStep, setActiveStep] = useState(0)
-  const [phase, setPhase] = useState('problem')
   const [cycleKey, setCycleKey] = useState(0)
+  const [phase, setPhase] = useState('problem')
   const [isInView, setIsInView] = useState(false)
-
   const [paths, setPaths] = useState({ left: [], right: [] })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting)
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
       },
-      { threshold: 0.15 }
+      { threshold: 0.2 }
     )
 
     if (sectionRef.current) {
@@ -167,6 +167,7 @@ const ProblemsSolved = () => {
 
     const newLeftPaths = []
     const newRightPaths = []
+
     const angleOffsets = [-0.4, -0.2, 0, 0.2, 0.4]
 
     FLOW_ITEMS.forEach((_, idx) => {
@@ -218,12 +219,11 @@ const ProblemsSolved = () => {
   useEffect(() => {
     updatePaths()
     window.addEventListener('resize', updatePaths)
-    return () => window.removeEventListener('resize', updatePaths)
-  }, [updatePaths])
-
-  useEffect(() => {
     const timer = setTimeout(updatePaths, 120)
-    return () => clearTimeout(timer)
+    return () => {
+      window.removeEventListener('resize', updatePaths)
+      clearTimeout(timer)
+    }
   }, [updatePaths])
 
   useEffect(() => {
@@ -252,7 +252,7 @@ const ProblemsSolved = () => {
 
             stepTimer = setTimeout(() => {
               if (!isMounted) return
-              setPhase('idle')
+              setPhase('pause')
 
               stepTimer = setTimeout(() => {
                 if (!isMounted) return
@@ -267,7 +267,7 @@ const ProblemsSolved = () => {
 
     return () => {
       isMounted = false
-      clearTimeout(stepTimer)
+      if (stepTimer) clearTimeout(stepTimer)
     }
   }, [activeStep, cycleKey, isInView, prefersReducedMotion])
 
@@ -277,23 +277,26 @@ const ProblemsSolved = () => {
     setCycleKey((k) => k + 1)
   }
 
-  const currentItem = FLOW_ITEMS[activeStep]
-  const currentLeftPath = paths.left[activeStep]?.d
-  const currentRightPath = paths.right[activeStep]?.d
+  const currentItem = FLOW_ITEMS[activeStep] || FLOW_ITEMS[0]
+
+  const isProblemActive = phase === 'problem' || phase === 'toCenter' || phase === 'centerReact' || phase === 'toSolution' || phase === 'solution'
+  const isLeftLineActive = phase === 'toCenter'
+  const isCenterActive = phase === 'centerReact' || phase === 'toCenter' || phase === 'toSolution'
+  const isRightLineActive = phase === 'toSolution'
+  const isSolutionActive = phase === 'toSolution' || phase === 'solution'
 
   return (
     <section
-      id="problems-solved"
+      id="problems-solved-full-funnel"
       ref={sectionRef}
-      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-slate-50 dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
+      className="relative py-8 sm:py-10 lg:py-12 overflow-hidden bg-[#FAFCFF] dark:bg-[#070D18] text-slate-900 dark:text-text-primary dark:text-white border-t border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300"
       aria-label="What Problems Does Full-Funnel Demand Generation Solve"
     >
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
-          className="absolute inset-0 opacity-[0.025] dark:opacity-[0.035]"
+          className="absolute inset-0 opacity-[0.02] dark:opacity-[0.035]"
           style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
             backgroundSize: '24px 24px',
           }}
         />
@@ -309,15 +312,15 @@ const ProblemsSolved = () => {
       <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5 mb-2">
-             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
               TECH-ENABLED FULL-FUNNEL TRANSFORMATION
             </span>
           </div>
 
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
-            <span>What Problems Does </span>
+            <span>WHAT PROBLEMS DOES </span>
             <span className="inline-block bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              Full-Funnel Demand Solve?
+              FULL-FUNNEL DEMAND SOLVE?
             </span>
           </h2>
 
@@ -352,11 +355,12 @@ const ProblemsSolved = () => {
           </div>
         </div>
 
-        {/* Desktop Visualization */}
+        {/* Desktop Interactive Flow */}
         <div
           ref={containerRef}
           className="hidden md:block relative min-h-[380px] lg:min-h-[400px] w-full"
         >
+          {/* SVG Canvas for Connecting Curved Pipelines */}
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
             fill="none"
@@ -364,7 +368,7 @@ const ProblemsSolved = () => {
           >
             <defs>
               <filter id="line-glow-ff" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feGaussianBlur stdDeviation="3" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
@@ -372,14 +376,14 @@ const ProblemsSolved = () => {
               </filter>
 
               {FLOW_ITEMS.map((item) => (
-                <React.Fragment key={`arrow-${item.id}`}>
+                <React.Fragment key={`markers-${item.id}`}>
                   <marker
                     id={`arrow-head-ff-${item.id}`}
                     viewBox="0 0 10 10"
                     refX="7"
                     refY="5"
-                    markerWidth="6"
-                    markerHeight="6"
+                    markerWidth="5"
+                    markerHeight="5"
                     orient="auto"
                   >
                     <path d="M 1 2 L 8 5 L 1 8 Z" fill={item.color} />
@@ -389,32 +393,55 @@ const ProblemsSolved = () => {
                     viewBox="0 0 10 10"
                     refX="7"
                     refY="5"
-                    markerWidth="5"
-                    markerHeight="5"
+                    markerWidth="4"
+                    markerHeight="4"
                     orient="auto"
                   >
-                    <path d="M 1 2 L 8 5 L 1 8 Z" fill={item.color} fillOpacity="0.4" />
+                    <path d="M 1 2 L 8 5 L 1 8 Z" fill={item.color} fillOpacity="0.3" />
                   </marker>
                 </React.Fragment>
               ))}
             </defs>
 
-            {/* Base static connector lines */}
             {paths.left.map((p, idx) => {
               if (!p) return null
               const item = FLOW_ITEMS[idx]
+              const isCurr = activeStep === idx
+
               return (
                 <g key={`base-left-${idx}`}>
                   <path
                     d={p.d}
                     stroke={item.color}
-                    strokeWidth="1.5"
-                    strokeOpacity="0.25"
-                    strokeDasharray="4 4"
-                    fill="none"
-                    markerEnd={`url(#arrow-head-base-ff-${item.id})`}
+                    strokeWidth={isCurr && isLeftLineActive ? 2.5 : 1.5}
+                    strokeOpacity={isCurr && isLeftLineActive ? 1 : 0.25}
+                    markerEnd={`url(#${isCurr && isLeftLineActive ? `arrow-head-ff-${item.id}` : `arrow-head-base-ff-${item.id}`})`}
                   />
-                  <circle cx={p.startX} cy={p.startY} r="3" fill={item.color} fillOpacity="0.4" />
+                  {isCurr && isLeftLineActive && (
+                    <path
+                      d={p.d}
+                      stroke={item.color}
+                      strokeWidth="2.5"
+                      strokeDasharray="6 6"
+                      strokeOpacity="0.85"
+                    >
+                      <animate
+                        attributeName="stroke-dashoffset"
+                        from="24"
+                        to="0"
+                        dur="0.85s"
+                        repeatCount="indefinite"
+                      />
+                    </path>
+                  )}
+                  <circle
+                    cx={p.startX + 6}
+                    cy={p.startY}
+                    r="3.5"
+                    fill="var(--background)"
+                    stroke={item.color}
+                    strokeWidth="1.8"
+                  />
                 </g>
               )
             })}
@@ -422,81 +449,84 @@ const ProblemsSolved = () => {
             {paths.right.map((p, idx) => {
               if (!p) return null
               const item = FLOW_ITEMS[idx]
+              const isCurr = activeStep === idx
+
               return (
                 <g key={`base-right-${idx}`}>
                   <path
                     d={p.d}
                     stroke={item.color}
-                    strokeWidth="1.5"
-                    strokeOpacity="0.25"
-                    strokeDasharray="4 4"
-                    fill="none"
-                    markerEnd={`url(#arrow-head-base-ff-${item.id})`}
+                    strokeWidth={isCurr && isRightLineActive ? 2.5 : 1.5}
+                    strokeOpacity={isCurr && isRightLineActive ? 1 : 0.25}
+                    markerEnd={`url(#${isCurr && isRightLineActive ? `arrow-head-ff-${item.id}` : `arrow-head-base-ff-${item.id}`})`}
                   />
-                  <circle cx={p.endX} cy={p.endY} r="3" fill={item.color} fillOpacity="0.4" />
+                  {isCurr && isRightLineActive && (
+                    <path
+                      d={p.d}
+                      stroke={item.color}
+                      strokeWidth="2.5"
+                      strokeDasharray="6 6"
+                      strokeOpacity="0.85"
+                    >
+                      <animate
+                        attributeName="stroke-dashoffset"
+                        from="24"
+                        to="0"
+                        dur="0.85s"
+                        repeatCount="indefinite"
+                      />
+                    </path>
+                  )}
+                  <circle
+                    cx={p.endX - 6}
+                    cy={p.endY}
+                    r="3.5"
+                    fill="var(--background)"
+                    stroke={item.color}
+                    strokeWidth="1.8"
+                  />
                 </g>
               )
             })}
 
-            {/* Active animated Left Path */}
-            {currentLeftPath && (phase === 'toCenter' || phase === 'centerReact' || phase === 'toSolution' || phase === 'solution') && (
+            {paths.left[activeStep] && isLeftLineActive && !prefersReducedMotion && (
               <g>
-                <path
-                  d={currentLeftPath}
-                  stroke={currentItem.color}
-                  strokeWidth="3"
-                  fill="none"
-                  filter="url(#line-glow-ff)"
-                  strokeLinecap="round"
-                  markerEnd={`url(#arrow-head-ff-${currentItem.id})`}
+                <animateMotion
+                  key={`particle-left-ff-${activeStep}-${cycleKey}`}
+                  path={paths.left[activeStep].d}
+                  dur={`${TIMING.lineToCenter}ms`}
+                  repeatCount="1"
+                  fill="freeze"
                 />
-                {!prefersReducedMotion && (
-                  <circle r="4" fill="#ffffff" filter="url(#line-glow-ff)">
-                    <animateMotion
-                      path={currentLeftPath}
-                      dur="0.75s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                    />
-                  </circle>
-                )}
+                <circle r="8.5" fill={currentItem.color} opacity="0.35" filter="url(#line-glow-ff)" />
+                <circle r="5" fill={currentItem.color} opacity="0.9" />
+                <circle r="2.8" fill="#ffffff" />
               </g>
             )}
 
-            {/* Active animated Right Path */}
-            {currentRightPath && (phase === 'toSolution' || phase === 'solution') && (
+            {paths.right[activeStep] && isRightLineActive && !prefersReducedMotion && (
               <g>
-                <path
-                  d={currentRightPath}
-                  stroke={currentItem.color}
-                  strokeWidth="3"
-                  fill="none"
-                  filter="url(#line-glow-ff)"
-                  strokeLinecap="round"
-                  markerEnd={`url(#arrow-head-ff-${currentItem.id})`}
+                <animateMotion
+                  key={`particle-right-ff-${activeStep}-${cycleKey}`}
+                  path={paths.right[activeStep].d}
+                  dur={`${TIMING.lineToSolution}ms`}
+                  repeatCount="1"
+                  fill="freeze"
                 />
-                {!prefersReducedMotion && (
-                  <circle r="4" fill="#ffffff" filter="url(#line-glow-ff)">
-                    <animateMotion
-                      path={currentRightPath}
-                      dur="0.75s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                    />
-                  </circle>
-                )}
+                <circle r="8.5" fill={currentItem.color} opacity="0.35" filter="url(#line-glow-ff)" />
+                <circle r="5" fill={currentItem.color} opacity="0.9" />
+                <circle r="2.8" fill="#ffffff" />
               </g>
             )}
           </svg>
 
-          {/* Grid Layout: Left Problems (5) | Middle Hub (1) | Right Solutions (5) */}
-          <div className="grid grid-cols-12 gap-2 sm:gap-3 items-center relative z-10 py-1">
-            {/* Left: 5 Problems */}
-            <div className="col-span-4 space-y-1.5">
+          {/* 3 Columns */}
+          <div className="relative z-10 grid grid-cols-12 gap-2.5 lg:gap-3.5 items-center">
+            {/* Left Problem Cards */}
+            <div className="col-span-4 flex flex-col justify-between gap-2.5">
               {FLOW_ITEMS.map((item, idx) => {
-                const isCurrent = activeStep === idx
-                const isCurrentProblem = isCurrent && phase === 'problem'
-                const ProblemIcon = item.problem.icon
+                const isActive = activeStep === idx && isProblemActive
+                const Icon = item.problem.icon
 
                 return (
                   <div
@@ -504,113 +534,166 @@ const ProblemsSolved = () => {
                     ref={(el) => (problemRefs.current[idx] = el)}
                     onClick={() => handleSelectStep(idx)}
                     className={`
-                      relative p-2.5 rounded-xl border transition-all duration-300 cursor-pointer
-                      flex items-center gap-2.5 backdrop-blur-sm select-none
-                      ${isCurrent
-                        ? 'bg-white dark:bg-[#0B1527] shadow-md -translate-x-0.5'
-                        : 'bg-white/70 dark:bg-white/5 border-slate-200/80 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20'
+                      relative flex items-center gap-3 p-2.5 lg:p-3 rounded-xl transition-all duration-300 cursor-pointer select-none border
+                      ${isActive
+                        ? 'bg-white dark:bg-[#0B1527] border-primary shadow-xl shadow-primary/25 scale-[1.06] -translate-x-1 ring-2 ring-primary/50 z-30'
+                        : 'bg-white/80 dark:bg-[#0A1222]/80 border-slate-200/80 dark:border-white/10 hover:border-slate-300 shadow-xs scale-100 z-10'
                       }
-                      ${isCurrentProblem ? 'ring-2 ring-primary/40' : ''}
                     `}
                     style={{
-                      borderColor: isCurrent ? item.color : undefined,
-                      boxShadow: isCurrent ? `0 4px 18px -4px ${item.color}30` : undefined,
+                      borderColor: isActive ? item.color : undefined,
+                      boxShadow: isActive ? `0 12px 28px -4px ${item.color}40` : undefined,
                     }}
                   >
                     <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-                      style={{
-                        backgroundColor: isCurrent ? item.color : 'rgba(100,116,139,0.12)',
-                        color: isCurrent ? '#ffffff' : '#64748b',
-                      }}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs transition-transform duration-300 ${isActive ? 'scale-110 shadow-md' : ''}`}
+                      style={{ backgroundColor: item.color }}
                     >
-                      <ProblemIcon className="w-3.5 h-3.5" />
+                      <Icon className="w-4 h-4" />
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-snug">
-                        {item.problem.title}
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-snug flex items-center justify-between">
+                        <span>{item.problem.title}</span>
+                        {isActive && (
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
+                        )}
                       </div>
                       {item.problem.sub ? (
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                           {item.problem.sub}
                         </div>
                       ) : null}
                     </div>
-
-                    <div
-                      className="w-2 h-2 rounded-full shrink-0"
-                      style={{
-                        backgroundColor: item.color,
-                        opacity: isCurrent ? 1 : 0.25,
-                      }}
-                    />
                   </div>
                 )
               })}
             </div>
 
-            {/* Middle: Interactive Core Engine */}
-            <div className="col-span-4 flex items-center justify-center">
+            {/* Center Engine */}
+            <div className="col-span-4 flex flex-col items-center justify-center">
+              <motion.div
+                animate={{
+                  borderColor: isCenterActive ? currentItem.color : 'rgba(0,166,255,0.3)',
+                  scale: isCenterActive ? 1.08 : 1,
+                }}
+                transition={{ duration: 0.25 }}
+                className="mb-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
+              >
+                AUTOMATE
+              </motion.div>
+
               <div
                 ref={centerCircleRef}
-                className="relative w-44 h-44 lg:w-48 lg:h-48 rounded-full flex flex-col items-center justify-center text-center p-3 select-none"
-                style={{
-                  background: 'radial-gradient(circle at center, #0B1930 0%, #060E1D 70%, #030812 100%)',
-                  border: `2px solid ${currentItem.color}`,
-                  boxShadow: `0 0 35px ${currentItem.color}35, inset 0 0 20px ${currentItem.color}25`,
-                }}
+                className="relative w-[185px] h-[185px] lg:w-[210px] lg:h-[210px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
               >
-                {/* Rotating accent ring */}
                 <motion.div
-                  className="absolute inset-1 rounded-full border border-dashed pointer-events-none"
-                  style={{ borderColor: `${currentItem.color}50` }}
-                  animate={prefersReducedMotion ? {} : { rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-3 rounded-full blur-[26px] opacity-40 pointer-events-none"
+                  animate={{
+                    background: `radial-gradient(circle, ${currentItem.color}70 0%, transparent 70%)`,
+                    scale: isCenterActive ? [1, 1.18, 1] : 1,
+                  }}
+                  transition={{ duration: 1.2, repeat: isCenterActive ? Infinity : 0 }}
                 />
 
-                <span className="text-[9px] font-mono font-bold tracking-[0.2em] uppercase text-sky-400 mb-1">
-                  FULL-FUNNEL ENGINE
-                </span>
+                {/* Expanding Shockwave Ripple when active */}
+                {isCenterActive && !prefersReducedMotion && (
+                  <motion.div
+                    key={`shockwave-${activeStep}`}
+                    className="absolute inset-0 rounded-full border-2 pointer-events-none"
+                    style={{ borderColor: currentItem.color }}
+                    initial={{ scale: 0.9, opacity: 0.9 }}
+                    animate={{ scale: 1.35, opacity: 0 }}
+                    transition={{ duration: 1.2, repeat: Infinity, ease: 'easeOut' }}
+                  />
+                )}
 
-                <motion.div
-                  key={`hub-icon-${currentItem.id}`}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="my-1"
+                {/* Outer Dashed Orbit Ring */}
+                {!prefersReducedMotion && (
+                  <motion.div
+                    className="absolute -inset-1.5 rounded-full border border-dashed border-primary/40 dark:border-[#00d2ff]/40 pointer-events-none"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+                  />
+                )}
+
+                <div
+                  className={`
+                    relative w-full h-full rounded-full flex flex-col items-center justify-center p-2.5 text-white
+                    border-2 transition-all duration-300 shadow-xl backdrop-blur-md overflow-hidden
+                    ${isCenterActive
+                      ? 'border-white dark:border-[#00f0ff] shadow-[0_0_40px_rgba(0,166,255,0.6)] scale-[1.08] z-30'
+                      : 'border-white/80 dark:border-white/20 shadow-md scale-100'
+                    }
+                  `}
+                  style={{
+                    background: 'linear-gradient(135deg, #0d214f 0%, #0c3875 50%, #0369a1 100%)',
+                  }}
                 >
-                  <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg"
-                    style={{
-                      background: `linear-gradient(135deg, ${currentItem.color}, #0284c7)`,
-                    }}
-                  >
-                    <Wand2 className="w-4 h-4 text-white" />
-                  </div>
-                </motion.div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`center-transform-${activeStep}-${phase}`}
+                      initial={{ opacity: 0, scale: 0.85, y: 3 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.85, y: -3 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative z-10 flex flex-col items-center justify-center w-full px-1"
+                    >
+                      <div className="flex items-center justify-center gap-1.5 mb-1 px-1 max-w-[175px] lg:max-w-[195px]">
+                        <span
+                          className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse"
+                          style={{ backgroundColor: currentItem.color }}
+                        />
+                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-normal uppercase text-sky-200 text-center leading-tight">
+                          {currentItem.engineLabel}
+                        </span>
+                      </div>
 
-                <div className="text-xs font-black text-white px-2 leading-tight">
-                  {currentItem.engineLabel}
-                </div>
+                      <div className="flex items-center justify-center gap-1.5 my-1">
+                        <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white/90 border border-white/20 bg-white/10">
+                          <currentItem.problem.icon className="w-3.5 h-3.5" />
+                        </div>
+                        <ArrowRight className="w-3.5 h-3.5 text-white/80" />
+                        <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white border border-white" style={{ backgroundColor: currentItem.color }}>
+                          <currentItem.solution.icon className="w-3.5 h-3.5" />
+                        </div>
+                      </div>
 
-                <div className="text-[9.5px] font-mono text-slate-300 mt-1 px-1 leading-tight">
-                  {currentItem.engineAction}
-                </div>
+                      <div className="text-[10px] lg:text-[11px] font-black uppercase tracking-tight text-white leading-tight text-center px-1 max-w-[170px] lg:max-w-[190px]">
+                        {currentItem.engineAction}
+                      </div>
 
-                <div className="mt-1.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 text-[8.5px] font-mono text-sky-300">
-                  <span className="w-1.5 h-1.5 rounded-full animate-ping" style={{ backgroundColor: currentItem.color }} />
-                  <span>TRANSFORMING</span>
+                      <div className="text-[8px] lg:text-[8.5px] font-mono tracking-wider mt-0.5 text-center">
+                        {phase === 'centerReact' ? (
+                          <span className="text-amber-300 font-bold animate-pulse">⚡ OPTIMIZING FUNNEL</span>
+                        ) : phase === 'toSolution' || phase === 'solution' ? (
+                          <span className="text-emerald-300 font-bold">✓ FULL-FUNNEL READY</span>
+                        ) : (
+                          <span className="text-sky-300/90">● CORE ENGINE</span>
+                        )}
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
+
+              <motion.div
+                animate={{
+                  borderColor: isCenterActive ? currentItem.color : 'rgba(0,166,255,0.3)',
+                  scale: isCenterActive ? 1.08 : 1,
+                }}
+                transition={{ duration: 0.25 }}
+                className="mt-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
+              >
+                ACCELERATE
+              </motion.div>
             </div>
 
-            {/* Right: 5 Solutions */}
-            <div className="col-span-4 space-y-1.5">
+            {/* Right Solution Cards */}
+            <div className="col-span-4 flex flex-col justify-between gap-2.5">
               {FLOW_ITEMS.map((item, idx) => {
-                const isCurrent = activeStep === idx
-                const isCurrentSolution = isCurrent && (phase === 'toSolution' || phase === 'solution')
-                const SolutionIcon = item.solution.icon
+                const isActive = activeStep === idx && isSolutionActive
+                const Icon = item.solution.icon
 
                 return (
                   <div
@@ -618,46 +701,33 @@ const ProblemsSolved = () => {
                     ref={(el) => (solutionRefs.current[idx] = el)}
                     onClick={() => handleSelectStep(idx)}
                     className={`
-                      relative p-2.5 rounded-xl border transition-all duration-300 cursor-pointer
-                      flex items-center gap-2.5 backdrop-blur-sm select-none
-                      ${isCurrent
-                        ? 'bg-white dark:bg-[#0B1527] shadow-md translate-x-0.5'
-                        : 'bg-white/70 dark:bg-white/5 border-slate-200/80 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20'
+                      relative flex items-center gap-3 p-2.5 lg:p-3 rounded-xl transition-all duration-300 cursor-pointer select-none border
+                      ${isActive
+                        ? 'bg-white dark:bg-[#0B1527] border-primary shadow-xl shadow-primary/25 scale-[1.06] translate-x-1 ring-2 ring-primary/50 z-30'
+                        : 'bg-white/80 dark:bg-[#0A1222]/80 border-slate-200/80 dark:border-white/10 hover:border-slate-300 shadow-xs scale-100 z-10'
                       }
-                      ${isCurrentSolution ? 'ring-2 ring-emerald-500/50' : ''}
                     `}
                     style={{
-                      borderColor: isCurrent ? item.color : undefined,
-                      boxShadow: isCurrent ? `0 4px 18px -4px ${item.color}30` : undefined,
+                      borderColor: isActive ? item.color : undefined,
+                      boxShadow: isActive ? `0 12px 28px -4px ${item.color}40` : undefined,
                     }}
                   >
                     <div
-                      className="w-2 h-2 rounded-full shrink-0"
-                      style={{
-                        backgroundColor: item.color,
-                        opacity: isCurrent ? 1 : 0.25,
-                      }}
-                    />
+                      className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs"
+                      style={{ backgroundColor: item.color }}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </div>
 
                     <div className="min-w-0 flex-1">
                       <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
                       {item.solution.sub ? (
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                           {item.solution.sub}
                         </div>
                       ) : null}
-                    </div>
-
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-                      style={{
-                        backgroundColor: isCurrent ? item.color : 'rgba(100,116,139,0.12)',
-                        color: isCurrent ? '#ffffff' : '#64748b',
-                      }}
-                    >
-                      <SolutionIcon className="w-3.5 h-3.5" />
                     </div>
                   </div>
                 )
@@ -667,9 +737,12 @@ const ProblemsSolved = () => {
         </div>
 
         {/* Mobile View */}
-        <div className="md:hidden space-y-3 pt-2">
+        <div className="block md:hidden space-y-3 pt-1">
           <div
-            className="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm"
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'problem' || phase === 'toCenter'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -693,22 +766,21 @@ const ProblemsSolved = () => {
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
-              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${
-                phase === 'centerReact'
-                  ? 'scale-108 shadow-lg ring-2 ring-primary/50'
-                  : 'scale-100'
-              }`}
+              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${phase === 'centerReact'
+                ? 'scale-108 shadow-lg ring-2 ring-primary/50'
+                : 'scale-100'
+                }`}
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
               <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
-                <currentItem.problem.icon className="w-3 h-3 text-white" />
+                <currentItem.problem.icon className="w-3.5 h-3.5 text-white" />
               </div>
-              <ArrowRight className="w-3 h-3 text-sky-300" />
+              <ArrowRight className="w-3.5 h-3.5 text-sky-300" />
               <div
                 className="w-6 h-6 rounded-md flex items-center justify-center text-white shadow-xs"
                 style={{ backgroundColor: currentItem.color }}
               >
-                <currentItem.solution.icon className="w-3 h-3" />
+                <currentItem.solution.icon className="w-3.5 h-3.5" />
               </div>
               <div className="text-[10px] font-mono uppercase tracking-wider text-sky-200 ml-1">
                 {currentItem.engineAction}
@@ -718,11 +790,10 @@ const ProblemsSolved = () => {
           </div>
 
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'toSolution' || phase === 'solution'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'toSolution' || phase === 'solution'
+              ? 'scale-[1.04] shadow-md ring-2 ring-emerald-500/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -742,29 +813,6 @@ const ProblemsSolved = () => {
               ) : null}
             </div>
           </div>
-
-          <div className="flex items-center justify-center gap-1.5 pt-2">
-            {FLOW_ITEMS.map((item, idx) => (
-              <button
-                key={item.id}
-                onClick={() => handleSelectStep(idx)}
-                className={`
-                  flex-1 py-1.5 rounded-lg border font-mono text-xs font-bold transition-all cursor-pointer
-                  ${
-                    activeStep === idx
-                      ? 'bg-primary text-white border-primary shadow-xs'
-                      : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400'
-                  }
-                `}
-                style={{
-                  backgroundColor: activeStep === idx ? item.color : undefined,
-                  borderColor: activeStep === idx ? item.color : undefined,
-                }}
-              >
-                {item.num}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -772,4 +820,3 @@ const ProblemsSolved = () => {
 }
 
 export default ProblemsSolved
-

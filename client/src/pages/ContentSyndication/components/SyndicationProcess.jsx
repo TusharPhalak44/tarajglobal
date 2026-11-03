@@ -73,9 +73,9 @@ const SyndicationProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1, 1.12, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                }
+                scale: [1, 1.12, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
           }
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           style={{ background: 'radial-gradient(circle, #0284c7 0%, transparent 70%)' }}
@@ -86,9 +86,9 @@ const SyndicationProcess = () => {
             prefersReducedMotion
               ? {}
               : {
-                  scale: [1.1, 0.95, 1.1],
-                  opacity: [0.18, 0.28, 0.18],
-                }
+                scale: [1.1, 0.95, 1.1],
+                opacity: [0.18, 0.28, 0.18],
+              }
           }
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           style={{ background: 'radial-gradient(circle, #00d2ff 0%, transparent 70%)' }}
@@ -106,8 +106,8 @@ const SyndicationProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-             CONTENT SYNDICATION | VERIFIED OPT-IN LEADS
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              CONTENT SYNDICATION | VERIFIED OPT-IN LEADS
 
             </span>
           </motion.div>
@@ -124,9 +124,9 @@ const SyndicationProcess = () => {
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
                 B2B CONTENT SYNDICATION{' '}
               </span>
-              <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
-               WORKFLOW
-              </span>
+              <div className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
+                WORKFLOW
+              </div>
             </h2>
 
             {/* Subtle light bar under title */}
@@ -144,7 +144,7 @@ const SyndicationProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto mt-3 font-normal"
           >
-           A 9-stage syndication framework distributing high-value assets across premier publisher networks to deliver verified, opt-in, sales-qualified leads to your CRM across US, EMEA, and APAC.
+            A 9-stage syndication framework distributing high-value assets across premier publisher networks to deliver verified, opt-in, sales-qualified leads to your CRM across US, EMEA, and APAC.
 
           </motion.p>
         </div>

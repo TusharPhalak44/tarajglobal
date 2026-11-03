@@ -213,7 +213,7 @@ const WhatTarajDelivers = () => {
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Powered by </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
               DemandFlow Bridge
@@ -221,7 +221,7 @@ const WhatTarajDelivers = () => {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            DemandFlow Bridge™ unifies prospect data, engagement, intent, and qualification to power faster, smarter appointment-setting campaigns.
+            DemandFlow Bridge unifies prospect data, engagement, intent, and qualification to power faster, smarter appointment-setting campaigns.
           </p>
         </div>
 

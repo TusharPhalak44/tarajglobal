@@ -103,7 +103,157 @@ const careersSchema = {
   }
 }
 
-// Curated featured roles to ensure the job board is always rich and engaging
+// Curated featured roles fallback to ensure job board state is safe when backend is offline
+const FEATURED_FALLBACK_JOBS = []
+
+const FALLBACK_CULTURE_PHOTOS = [
+  '/pk2.jpeg',
+  '/pk.jpeg',
+  '/pk3.jpeg',
+  '/pk4.jpeg',
+  '/pk5.jpeg',
+  '/pk6.jpeg'
+]
+
+const getSafeFallbackPhoto = (idx = 0) => {
+  return FALLBACK_CULTURE_PHOTOS[Math.abs(idx) % FALLBACK_CULTURE_PHOTOS.length]
+}
+
+// Curated Culture Albums for Taraj Global ensuring gallery is always vibrant and engaging
+const DEFAULT_GALLERY_ALBUMS = [
+  {
+    id: 'rnr-gala',
+    num: '01',
+    title: 'RnR Q1 Champion Gala',
+    tag: 'Celebration',
+    category: 'RnR',
+    quarter: 'Q1 Gala',
+    desc: 'Honoring top quarterly revenue accelerators, certificate achievements, and record-setting outbound performers.',
+    stats: '25 Captured Moments',
+    photoCount: 6,
+    color: '#00A6FF',
+    cover: '/pk2.jpeg',
+    src: '/pk2.jpeg',
+    photos: [
+      { id: 'rnr-01', src: '/pk2.jpeg', title: 'Q1 Certificate of Outbound Excellence', caption: 'Our star performers proudly displaying their Q1 achievement certificates.', tag: 'Ceremony', date: 'Q1 Gala' },
+      { id: 'rnr-02', src: '/pk.jpeg', title: 'Annual High-Flier Awards Group Pose', caption: 'Celebrating our relentless outbound sales team reaching 100% quota.', tag: 'Awards', date: 'Annual Summit' },
+      { id: 'rnr-03', src: '/pk3.jpeg', title: 'The Grand Gala Celebration', caption: 'Evening gala inauguration honoring breakthrough achievements.', tag: 'Gala Night', date: 'Q1 Evening' },
+      { id: 'rnr-04', src: '/pk4.jpeg', title: 'Spring Accolades & Leadership Felicitations', caption: 'Senior leadership felicitating top SDRs for meeting qualification metrics.', tag: 'Accolades', date: 'Spring Gala' },
+      { id: 'rnr-05', src: '/pk5.jpeg', title: 'Champions Stage Lineup', caption: 'Every awardee on stage receiving heartfelt applause from the organization.', tag: 'Stage', date: 'Honors' },
+      { id: 'rnr-06', src: '/pk6.jpeg', title: 'Group Photo with Certificates & Trophies', caption: 'United for growth - Taraj Global champions squad.', tag: 'Trophy', date: 'Awards' }
+    ]
+  },
+  {
+    id: 'birthday-bash',
+    num: '02',
+    title: 'Birthday Celebrations & Joy',
+    tag: 'Culture',
+    category: 'Birthday',
+    quarter: 'Quarterly Bash',
+    desc: 'Bringing everyone together for shared laughter, birthday traditions, poppers, and sweet celebrations.',
+    stats: '25 Captured Moments',
+    photoCount: 6,
+    color: '#FF6D00',
+    cover: '/pk.jpeg',
+    src: '/pk.jpeg',
+    photos: [
+      { id: 'bday-01', src: '/pk.jpeg', title: 'Team Birthday Joy & Wide Smiles', caption: 'Celebrating birthdays together with the entire floor.', tag: 'Tradition', date: 'Monthly Bash' },
+      { id: 'bday-02', src: '/pk2.jpeg', title: 'The Great Cake Cutting Ritual', caption: 'Unfiltered joy as colleagues sing and cheer.', tag: 'Cake', date: 'Celebration' },
+      { id: 'bday-03', src: '/pk3.jpeg', title: 'Party Poppers & Confetti Rain', caption: 'Confetti and laughter filling the breakout lounge.', tag: 'Joy', date: 'Afternoon' },
+      { id: 'bday-04', src: '/pk4.jpeg', title: 'Combined Monthly Birthday Squad', caption: 'All birthday stars of the month smiling for the camera.', tag: 'Squad', date: 'Monthly' },
+      { id: 'bday-05', src: '/pk5.jpeg', title: 'Desk Smiles & Shared Slices', caption: 'Sweet treats shared across all outbound pods.', tag: 'Camaraderie', date: 'Treats' },
+      { id: 'bday-06', src: '/pk6.jpeg', title: 'Smiles That Brighten the Office', caption: 'Energizing the office culture through shared moments.', tag: 'Culture', date: 'Memories' }
+    ]
+  },
+  {
+    id: 'company-trip',
+    num: '03',
+    title: 'Annual Company Trip & Retreat',
+    tag: 'Retreat',
+    category: 'Annual Offsite',
+    quarter: 'Annual Trip',
+    desc: 'Escaping the city for mountain trails, team-building adventures, campfire stories, and lifelong memories.',
+    stats: '25 Captured Moments',
+    photoCount: 6,
+    color: '#00E5FF',
+    cover: '/pk3.jpeg',
+    src: '/pk3.jpeg',
+    photos: [
+      { id: 'trip-01', src: '/pk3.jpeg', title: 'Scenic Mountain Valley Arrival', caption: 'Arriving at the resort surrounded by peaks and fresh mountain breeze.', tag: 'Arrival', date: 'Annual Trip' },
+      { id: 'trip-02', src: '/pk4.jpeg', title: 'Team Offsite Candid Conversations', caption: 'Forming deep bonds outside the office environment.', tag: 'Bonding', date: 'Day 1' },
+      { id: 'trip-03', src: '/pk2.jpeg', title: 'Bonfire Night & Acoustic Jam', caption: 'Singing classics around the roaring fire under starlit skies.', tag: 'Bonfire', date: 'Evening' },
+      { id: 'trip-04', src: '/pk.jpeg', title: 'Celebratory Group Jump Shot', caption: 'High energy and limitless team spirit captured in the hills.', tag: 'Group Pose', date: 'Day 2' },
+      { id: 'trip-05', src: '/pk5.jpeg', title: 'Team Obstacle Course Challenge', caption: 'Cheering each other through outdoor team-building sports.', tag: 'Adventure', date: 'Morning' },
+      { id: 'trip-06', src: '/pk6.jpeg', title: 'Closing Celebration Under Lanterns', caption: 'Concluding an unforgettable annual retreat.', tag: 'Memories', date: 'Finale' }
+    ]
+  },
+  {
+    id: 'strategy-jam',
+    num: '04',
+    title: 'Revenue Pod Strategy Jam',
+    tag: 'Collaboration',
+    category: 'Strategy Jam',
+    quarter: 'Daily Energy',
+    desc: 'The engine room in action: whiteboard ICP architecture, live intent pipeline reviews, and pod standups.',
+    stats: '25 Captured Moments',
+    photoCount: 6,
+    color: '#8B5CF6',
+    cover: '/pk4.jpeg',
+    src: '/pk4.jpeg',
+    photos: [
+      { id: 'strat-01', src: '/pk4.jpeg', title: 'High-Fliers Collaborating at Desks', caption: 'Pod leads strategizing enterprise multi-channel sequences.', tag: 'Focus', date: 'Strategy Pod' },
+      { id: 'strat-02', src: '/pk2.jpeg', title: 'Whiteboard ICP Architecture Mapping', caption: 'Mapping buyer personas and decision-maker org-charts.', tag: 'Whiteboard', date: 'Morning Sprint' },
+      { id: 'strat-03', src: '/pk.jpeg', title: 'Standup Huddle & Pipeline Check', caption: 'Quick morning sync aligning qualified meetings targets.', tag: 'Huddle', date: 'Daily' },
+      { id: 'strat-04', src: '/pk3.jpeg', title: 'Dual-Monitor Deep Focus Sprints', caption: 'Precision data hygiene and contact verification in flow.', tag: 'Precision', date: 'Afternoon' },
+      { id: 'strat-05', src: '/pk5.jpeg', title: 'Live Buyer Intent Review', caption: 'Evaluating real-time buyer engagement surges with leadership.', tag: 'Intent AI', date: 'Midday' },
+      { id: 'strat-06', src: '/pk6.jpeg', title: 'High-Five for Booking Enterprise Demo', caption: 'Ringing the gong after securing an enterprise tech meeting.', tag: 'Win', date: 'Sprint Victory' }
+    ]
+  },
+  {
+    id: 'cultural-festivals',
+    num: '05',
+    title: 'Festivals & Cultural Celebrations',
+    tag: 'Festivals',
+    category: 'Cultural',
+    quarter: 'Festive Season',
+    desc: 'Embracing our rich diversity with traditional attire days, Diwali diya lighting, and holiday feasts.',
+    stats: '25 Captured Moments',
+    photoCount: 6,
+    color: '#EC4899',
+    cover: '/pk5.jpeg',
+    src: '/pk5.jpeg',
+    photos: [
+      { id: 'fest-01', src: '/pk5.jpeg', title: 'Traditional Attire Day & Festive Welcome', caption: 'Vibrant ethnic colors filling the entire office floor.', tag: 'Ethnic Day', date: 'Festive Week' },
+      { id: 'fest-02', src: '/pk2.jpeg', title: 'Diwali Diya Lighting Ceremony', caption: 'Lighting clay diyas and welcoming prosperity together.', tag: 'Ceremony', date: 'Diwali' },
+      { id: 'fest-03', src: '/pk.jpeg', title: 'Handmade Floral Rangoli at Entrance', caption: 'Spectacular floral artwork created collaboratively by team pods.', tag: 'Rangoli', date: 'Morning' },
+      { id: 'fest-04', src: '/pk3.jpeg', title: 'Festive Sweets & Mithai Distribution', caption: 'Sharing festival delicacies across every pod desk.', tag: 'Sweets', date: 'Afternoon' },
+      { id: 'fest-05', src: '/pk4.jpeg', title: 'Ethnic Fashion Candids', caption: 'Capturing unforgettable festive team moments.', tag: 'Candids', date: 'Evening' },
+      { id: 'fest-06', src: '/pk6.jpeg', title: 'The Taraj Global Festive Family Portrait', caption: 'United in joy, pride, and shared cultural celebrations.', tag: 'Family', date: 'Finale' }
+    ]
+  },
+  {
+    id: 'milestone-summit',
+    num: '06',
+    title: 'Mid-Year Milestone Summit',
+    tag: 'Summit',
+    category: 'Summits',
+    quarter: 'Mid-Year',
+    desc: 'Reflecting on monumental pipeline deliveries, unveiling ambitious company roadmaps, and honoring heroes.',
+    stats: '25 Captured Moments',
+    photoCount: 6,
+    color: '#10B981',
+    cover: '/pk6.jpeg',
+    src: '/pk6.jpeg',
+    photos: [
+      { id: 'summit-01', src: '/pk6.jpeg', title: 'Mid-Year Milestone Summit Keynote', caption: 'Leadership sharing our trajectory toward global category dominance.', tag: 'Keynote', date: 'Summit' },
+      { id: 'summit-02', src: '/pk2.jpeg', title: '100% Meritocracy Honors', caption: 'Recognizing individuals who achieved accelerated promotions.', tag: 'Meritocracy', date: 'Awards' },
+      { id: 'summit-03', src: '/pk.jpeg', title: 'Visionary Product & AI Roadmap', caption: 'Sneak peek at upcoming DemandFlow proprietary innovations.', tag: 'Innovation', date: 'Townhall' },
+      { id: 'summit-04', src: '/pk3.jpeg', title: 'Pod Breakout Discussions', caption: 'Collaborative strategy workshops between pods and executive mentors.', tag: 'Breakout', date: 'Workshop' },
+      { id: 'summit-05', src: '/pk4.jpeg', title: 'Unveiling 10M Pipeline Milestone', caption: 'Celebrating over 10 million dollars in pipeline delivered for clients.', tag: 'Milestone', date: 'Celebration' },
+      { id: 'summit-06', src: '/pk5.jpeg', title: 'Summit Victory Celebration Pose', caption: 'Ready to break more records in the coming quarter.', tag: 'Victory', date: 'Finale' }
+    ]
+  }
+]
 
 
 // ── EDITORIAL ANIMATED COUNTER (00 -> 06 ON VIEWPORT ENTRY) ─────────────────
@@ -217,12 +367,16 @@ const EditorialGalleryItem = ({
 
       {/* High-Resolution Team Photograph with Smooth Ken Burns Micro-Zoom */}
       <img
-        src={photo.cover || photo.src || (photo.photos && photo.photos[0]?.src) || '/pk2.jpeg'}
+        src={photo.cover || photo.src || (photo.photos && photo.photos[0]?.src) || getSafeFallbackPhoto(index)}
         alt={photo.title || 'Album cover'}
         loading="lazy"
         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108 pointer-events-none"
         onError={(e) => {
-          e.target.src = '/pk2.jpeg'
+          e.target.onerror = null
+          const fallback = getSafeFallbackPhoto(index)
+          if (e.target.src !== fallback) {
+            e.target.src = fallback
+          }
         }}
       />
 
@@ -931,7 +1085,7 @@ function Careers() {
           setJobs(FEATURED_FALLBACK_JOBS)
         }
       } catch (err) {
-        console.warn('Backend jobs unavailable, deploying verified featured roles:', err)
+        console.warn('Backend jobs unavailable, showing general application option:', err)
         setJobs(FEATURED_FALLBACK_JOBS)
       } finally {
         setLoading(false)
@@ -972,9 +1126,14 @@ function Careers() {
       try {
         const response = await publicAPI.getCareerGallery()
         const backendGallery = Array.isArray(response?.data?.data) ? response.data.data : []
-        setGalleryPhotos(backendGallery)
+        if (backendGallery.length > 0) {
+          setGalleryPhotos(backendGallery)
+        } else {
+          setGalleryPhotos(DEFAULT_GALLERY_ALBUMS)
+        }
       } catch (err) {
-        console.warn('Failed to fetch gallery events:', err)
+        console.warn('Failed to fetch gallery events, using curated culture albums:', err)
+        setGalleryPhotos(DEFAULT_GALLERY_ALBUMS)
       }
     }
     fetchGallery()

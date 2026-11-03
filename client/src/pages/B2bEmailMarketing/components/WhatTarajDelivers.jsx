@@ -53,8 +53,8 @@ const ENGINE_LAYERS = [
     image: '/demandflow-dbms.png',
     points: [
       '✔ Triple-layer SMTP validation eliminating bounce risk',
-       '✔ Spam-trap and stale-record purge on every list',
-       '✔ ISO 27001:2022, GDPR, CCPA, and CAN-SPAM compliance audit',
+      '✔ Spam-trap and stale-record purge on every list',
+      '✔ ISO 27001:2022, GDPR, CCPA, and CAN-SPAM compliance audit',
     ],
   },
   {
@@ -71,8 +71,8 @@ const ENGINE_LAYERS = [
     image: '/demandflow-sequences.png',
     points: [
       '✔ Role-specific messaging for C-suite, VP, and Director personas',
-       '✔ Dynamic fields from firmographic and technographic data',
-       '✔ A/B testing of subject lines, angles, and calls to action',
+      '✔ Dynamic fields from firmographic and technographic data',
+      '✔ A/B testing of subject lines, angles, and calls to action',
     ],
   },
   {
@@ -107,8 +107,8 @@ const ENGINE_LAYERS = [
     image: '/demandflow-campaigns.png',
     points: [
       '✔ Multi-touch sequences across 14–21 day conversational sprints',
-       '✔ Automated follow-up logic and unsubscribe handling',
-       '✔ Live pacing board tracking daily sends against targets',
+      '✔ Automated follow-up logic and unsubscribe handling',
+      '✔ Live pacing board tracking daily sends against targets',
     ],
   },
   {
@@ -206,21 +206,21 @@ const WhatTarajDelivers = () => {
       </div>
 
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
             {/* <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" /> */}
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-             PROPRIETARY EMAIL ENGINE • DEMANDFLOW BRIDGE
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              PROPRIETARY EMAIL ENGINE • DEMANDFLOW BRIDGE
 
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span className="text-slate-900 dark:text-text-primary dark:text-white">WHAT DOES TARAJ GLOBAL  </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-             DELIVER IN EMAIL MARKETING?
+              DELIVER IN EMAIL MARKETING?
             </span>
           </h2>
 
@@ -231,7 +231,7 @@ const WhatTarajDelivers = () => {
 
         {/* ── UNIFIED COMMAND THEATER ── */}
         <div className="relative rounded-3xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0B1424] border border-slate-200/90 dark:border-white/10 shadow-xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl">
-          
+
           {/* Top Subtle Cyan Glow Accent Line */}
           <div className="absolute top-0 left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent shadow-[0_0_12px_#00A6FF]" />
 
@@ -253,39 +253,35 @@ const WhatTarajDelivers = () => {
                     onClick={() => setActiveIdx(idx)}
                     className={`
                       relative flex-1 flex flex-col items-center py-2 px-1.5 rounded-xl transition-all duration-300 cursor-pointer text-center group overflow-hidden
-                      ${
-                        isActive
-                          ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
-                          : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
+                      ${isActive
+                        ? 'bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 border-2 border-[#00A6FF] shadow-md shadow-[#00A6FF]/15 ring-1 ring-[#00A6FF]/30'
+                        : 'bg-slate-100/80 dark:bg-[#060D19]/80 border-2 border-slate-200/70 dark:border-white/5 hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 hover:bg-slate-100 dark:hover:bg-[#081222]'
                       }
                     `}
                   >
                     {/* Stage Number & Icon */}
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span
-                        className={`font-mono text-[11px] font-black ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
-                        }`}
+                        className={`font-mono text-[11px] font-black ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
+                          }`}
                       >
                         {layer.num}
                       </span>
                       <Icon
-                        className={`w-3.5 h-3.5 ${
-                          isActive
-                            ? 'text-[#00A6FF]'
-                            : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
-                        }`}
+                        className={`w-3.5 h-3.5 ${isActive
+                          ? 'text-[#00A6FF]'
+                          : 'text-slate-500 dark:text-slate-400 group-hover:text-[#00A6FF]'
+                          }`}
                       />
                     </div>
 
                     <span
-                      className={`text-[11.5px] font-bold tracking-tight whitespace-nowrap ${
-                        isActive
-                          ? 'text-slate-900 dark:text-white'
-                          : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
-                      }`}
+                      className={`text-[11.5px] font-bold tracking-tight whitespace-nowrap ${isActive
+                        ? 'text-slate-900 dark:text-white'
+                        : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
+                        }`}
                     >
                       {layer.shortTitle}
                     </span>
@@ -318,7 +314,7 @@ const WhatTarajDelivers = () => {
             >
               {/* Left Column: Stage Details & Points (6 Cols) */}
               <div className="lg:col-span-6 space-y-3.5">
-                
+
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="px-2.5 py-0.5 rounded-md text-[10.5px] font-mono font-bold uppercase tracking-wider bg-[#00A6FF]/10 dark:bg-[#00A6FF]/15 text-[#00A6FF] border border-[#00A6FF]/30">
                     {activeLayer.layer}
@@ -379,11 +375,11 @@ const WhatTarajDelivers = () => {
 
               {/* Right Column: High-Fidelity DEMANDFLOW Bridge Window (6 Cols) */}
               <div className="lg:col-span-6">
-                <div 
+                <div
                   onClick={() => setIsZoomed(true)}
                   className="relative rounded-2xl overflow-hidden border border-slate-300/80 dark:border-[#00A6FF]/30 bg-background dark:bg-[#060D19] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.15)] group cursor-pointer transition-all duration-300 hover:border-[#00A6FF] hover:shadow-[0_20px_50px_rgba(0,166,255,0.25)]"
                 >
-                  
+
                   {/* DEMANDFLOW Application Top Chrome Bar */}
                   <div className="flex items-center justify-between px-3.5 py-2.5 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10 select-none">
                     {/* macOS Style Window Control Dots */}

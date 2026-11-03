@@ -138,11 +138,11 @@ const FLOW_ITEMS = [
 ]
 
 const TIMING = {
-  problemHighlight: 1000,
-  lineToCenter: 1400,
-  centerReaction: 1500,
-  lineToSolution: 1400,
-  solutionHold: 1500,
+  problemHighlight: 1400,
+  lineToCenter: 1200,
+  centerReaction: 2000,
+  lineToSolution: 1200,
+  solutionHold: 2000,
   pauseBetween: 800,
 }
 
@@ -599,13 +599,13 @@ const ProblemsSolved = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12px] lg:text-[12.5px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[12.5px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
                           <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[9.5px] lg:text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                      <div className="text-[9.5px] lg:text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                         {item.problem.sub}
                       </div>
                     </div>
@@ -629,7 +629,7 @@ const ProblemsSolved = () => {
 
               <div
                 ref={centerCircleRef}
-                className="relative w-[175px] h-[175px] lg:w-[195px] lg:h-[195px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
+                className="relative w-[185px] h-[185px] lg:w-[210px] lg:h-[210px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
               >
                 <motion.div
                   className="absolute -inset-3 rounded-full blur-[26px] opacity-40 pointer-events-none"
@@ -683,12 +683,12 @@ const ProblemsSolved = () => {
                       transition={{ duration: 0.3 }}
                       className="relative z-10 flex flex-col items-center justify-center w-full"
                     >
-                      <div className="flex items-center gap-1 mb-1">
+                      <div className="flex items-center justify-center gap-1.5 mb-1 px-1 max-w-[175px] lg:max-w-[195px]">
                         <span
-                          className="w-1.5 h-1.5 rounded-full animate-pulse"
+                          className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-normal uppercase text-sky-200 text-center leading-tight">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -793,10 +793,10 @@ const ProblemsSolved = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12px] lg:text-[12.5px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate">
+                      <div className="text-[12px] lg:text-[12.5px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">
                         {item.solution.title}
                       </div>
-                      <div className="text-[9.5px] lg:text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                      <div className="text-[9.5px] lg:text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                         {item.solution.sub}
                       </div>
                     </div>

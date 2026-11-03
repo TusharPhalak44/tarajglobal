@@ -6,8 +6,18 @@ import { mediaUrl } from '@utils/media'
 const BlogCard = ({ blog, index, onReadMore }) => {
   const formatDate = (dateString) => {
     if (!dateString) return 'Recently Published'
+    if (typeof dateString === 'string') {
+      const match = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/)
+      if (match) {
+        const year = parseInt(match[1], 10)
+        const month = parseInt(match[2], 10) - 1
+        const day = parseInt(match[3], 10)
+        const d = new Date(year, month, day)
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+      }
+    }
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+    return isNaN(date.getTime()) ? 'Recently Published' : date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
   }
 
   // Calculate estimated read time (assuming ~200 words/min)

@@ -131,13 +131,13 @@ const MqlProcess = () => {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
                 MQL LEAD GENERATION{' '}
               </span>
-              <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
+              <div className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
                 WORKFLOW
-              </span>
+              </div>
             </h2>
 
             {/* Subtle light bar under title */}

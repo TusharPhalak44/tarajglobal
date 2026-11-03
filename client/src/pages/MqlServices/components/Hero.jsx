@@ -401,7 +401,7 @@ const Hero = () => {
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
                 }}
               >
-                Start a Conversation
+                Deploy Custom MQL Campaign
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 

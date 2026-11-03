@@ -119,11 +119,11 @@ const FLOW_ITEMS = [
 // ─── Timing Constants ───────────────────────────────────────────────────────
 
 const TIMING = {
-  problemHighlight: 1000,
-  lineToCenter: 1400,
-  centerReaction: 1500,
-  lineToSolution: 1400,
-  solutionHold: 1500,
+  problemHighlight: 1400,
+  lineToCenter: 1200,
+  centerReaction: 2000,
+  lineToSolution: 1200,
+  solutionHold: 2000,
   pauseBetween: 800,
 }
 
@@ -329,13 +329,13 @@ const ProblemsSolved = () => {
         {/* ── COMPACT SECTION HEADER ── */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5   mb-2">
-            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
+            
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Automated Transformation
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span>What Business Problem Does </span>
             <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
               Appointment Setting Solve?
@@ -635,7 +635,7 @@ const ProblemsSolved = () => {
 
               <div
                 ref={centerCircleRef}
-                className="relative w-[175px] h-[175px] lg:w-[195px] lg:h-[195px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
+                className="relative w-[185px] h-[185px] lg:w-[210px] lg:h-[210px] rounded-full flex flex-col items-center justify-center p-3 text-center select-none"
               >
                 {/* Outer Ambient Glow */}
                 <motion.div
@@ -695,12 +695,12 @@ const ProblemsSolved = () => {
                       className="relative z-10 flex flex-col items-center justify-center w-full"
                     >
                       {/* Engine Category/Label Badge */}
-                      <div className="flex items-center gap-1 mb-1">
+                      <div className="flex items-center justify-center gap-1.5 mb-1 px-1 max-w-[175px] lg:max-w-[195px]">
                         <span
-                          className="w-1.5 h-1.5 rounded-full animate-pulse"
+                          className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 text-center max-w-[155px] leading-tight line-clamp-1">
+                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-normal uppercase text-sky-200 text-center leading-tight">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -746,7 +746,7 @@ const ProblemsSolved = () => {
                       </div>
 
                       {/* Engine Action Headline */}
-                      <div className="text-[11px] lg:text-[11.5px] font-black uppercase tracking-tight text-text-primary dark:text-white leading-tight text-center px-1">
+                      <div className="text-[10px] lg:text-[11px] font-black uppercase tracking-tight text-white leading-tight text-center px-1 max-w-[170px] lg:max-w-[190px]">
                         {currentItem.engineAction}
                       </div>
 
@@ -831,11 +831,10 @@ const ProblemsSolved = () => {
         <div className="block md:hidden space-y-3 pt-1">
           {/* Active Problem Pill */}
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'problem' || phase === 'toCenter'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'problem' || phase === 'toCenter'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div
@@ -854,11 +853,10 @@ const ProblemsSolved = () => {
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
-              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${
-                phase === 'centerReact'
-                  ? 'scale-108 shadow-lg ring-2 ring-primary/50'
-                  : 'scale-100'
-              }`}
+              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${phase === 'centerReact'
+                ? 'scale-108 shadow-lg ring-2 ring-primary/50'
+                : 'scale-100'
+                }`}
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
               <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
@@ -880,11 +878,10 @@ const ProblemsSolved = () => {
 
           {/* Active Solution Pill */}
           <div
-            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
-              phase === 'toSolution' || phase === 'solution'
-                ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
-                : 'scale-100'
-            }`}
+            className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${phase === 'toSolution' || phase === 'solution'
+              ? 'scale-[1.04] shadow-md ring-2 ring-primary/40'
+              : 'scale-100'
+              }`}
             style={{ borderColor: currentItem.color }}
           >
             <div

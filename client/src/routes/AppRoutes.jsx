@@ -77,59 +77,223 @@ function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-      {/* Public Routes */}
+            {/* Public Routes */}
       <Route path="/" element={<MainLayout />}>
+        {/* Core Pages */}
         <Route index element={<Home />} />
-        <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="who-we-are" element={<About />} />
-        <Route path="about" element={<Navigate to="/who-we-are" replace />} />
-        <Route path="about-us" element={<Navigate to="/who-we-are" replace />} />
-        <Route path="aboutus" element={<Navigate to="/who-we-are" replace />} />
-        <Route path="about_us" element={<Navigate to="/who-we-are" replace />} />
         <Route path="services" element={<Services />} />
         <Route path="services/:id" element={<ServiceDetails />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogDetails />} />
         <Route path="careers" element={<Careers />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="content-syndication" element={<ContentSyndication />} />
-        <Route path="bant-lead-generation" element={<BantLeadGeneration />} />
+
+        {/* 16 Core Service Pages */}
+        <Route path="sql-services" element={<SqlServices />} />
         <Route path="mql-services" element={<MqlServices />} />
         <Route path="hql-services" element={<HqlServices />} />
-        <Route path="hql" element={<Navigate to="/hql-services" replace />} />
-        <Route path="hql-service" element={<Navigate to="/hql-services" replace />} />
-        <Route path="services/hql-services" element={<Navigate to="/hql-services" replace />} />
-        <Route path="services/hql" element={<Navigate to="/hql-services" replace />} />
-        <Route path="services/hql-service" element={<Navigate to="/hql-services" replace />} />
-        <Route path="sql-services" element={<SqlServices />} />
+        <Route path="bant-lead-generation" element={<BantLeadGeneration />} />
         <Route path="b2b-appointment-setting" element={<B2bAppointmentSetting />} />
         <Route path="b2b-email-marketing" element={<B2bEmailMarketing />} />
-        <Route path="b2b-email-marketinig" element={<Navigate to="/b2b-email-marketing" replace />} />
-        <Route path="lead-qualification" element={<Navigate to="/sql-services" replace />} />
-        <Route path="prospect-data-enrichment" element={<Navigate to="/b2b-list-building" replace />} />
-        <Route path="industries" element={<Navigate to="/services" replace />} />
-        <Route path="demandflow-bridge" element={<DemandFlowBridge />} />
         <Route path="abm" element={<Abm />} />
-        <Route path="content-syndication-new" element={<Navigate to="/content-syndication" replace />} />
-        <Route path="webinar-services" element={<WebinarServices />} />
-        <Route path="lead-nurturing" element={<LeadNurturing />} />
+        <Route path="content-syndication" element={<ContentSyndication />} />
         <Route path="demand-generation" element={<DemandGeneration />} />
         <Route path="full-funnel-demand" element={<FullFunnelDemand />} />
         <Route path="account-based-experience" element={<AccountBasedExperience />} />
-        <Route path="abx" element={<Navigate to="/account-based-experience" replace />} />
+        <Route path="webinar-services" element={<WebinarServices />} />
+        <Route path="lead-nurturing" element={<LeadNurturing />} />
         <Route path="b2b-list-building" element={<B2bListBuilding />} />
         <Route path="database-cleansing" element={<DatabaseCleansing />} />
+        <Route path="demandflow-bridge" element={<DemandFlowBridge />} />
+
+        {/* Legal & System Pages */}
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="cookies" element={<CookiePolicy />} />
         <Route path="sitemap" element={<Sitemap />} />
+
+        {/* --- LEGACY & ALIAS URL REDIRECTS (301 Permanent Navigation) --- */}
+
+        {/* Home Aliases */}
+        <Route path="home" element={<Navigate to="/" replace />} />
+        <Route path="index" element={<Navigate to="/" replace />} />
+        <Route path="index.html" element={<Navigate to="/" replace />} />
+
+        {/* Company / About Us Aliases */}
+        <Route path="about" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="about-us" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="aboutus" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="about_us" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="who_we_are" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="whoweare" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="company" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="our-team" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="team" element={<Navigate to="/who-we-are" replace />} />
+        <Route path="leadership" element={<Navigate to="/who-we-are" replace />} />
+
+        {/* Careers & Job Aliases */}
+        <Route path="career" element={<Navigate to="/careers" replace />} />
+        <Route path="jobs" element={<Navigate to="/careers" replace />} />
+        <Route path="job" element={<Navigate to="/careers" replace />} />
+        <Route path="work-with-us" element={<Navigate to="/careers" replace />} />
+        <Route path="hiring" element={<Navigate to="/careers" replace />} />
+        <Route path="openings" element={<Navigate to="/careers" replace />} />
+
+        {/* Blog & Editorial Aliases */}
+        <Route path="blogs" element={<Navigate to="/blog" replace />} />
+        <Route path="articles" element={<Navigate to="/blog" replace />} />
+        <Route path="insights" element={<Navigate to="/blog" replace />} />
+        <Route path="news" element={<Navigate to="/blog" replace />} />
+
+        {/* Contact, Inquiries & Auth Form Aliases */}
+        <Route path="contact-us" element={<Navigate to="/contact" replace />} />
+        <Route path="contactus" element={<Navigate to="/contact" replace />} />
+        <Route path="contact_us" element={<Navigate to="/contact" replace />} />
+        <Route path="get-in-touch" element={<Navigate to="/contact" replace />} />
+        <Route path="schedule-call" element={<Navigate to="/contact" replace />} />
+        <Route path="register" element={<Navigate to="/contact" replace />} />
+        <Route path="signup" element={<Navigate to="/contact" replace />} />
+        <Route path="sign-up" element={<Navigate to="/contact" replace />} />
+        <Route path="forgot-password" element={<Navigate to="/contact" replace />} />
+
+        {/* Legal & Policy Aliases */}
+        <Route path="privacy-policy" element={<Navigate to="/privacy" replace />} />
+        <Route path="privacypolicy" element={<Navigate to="/privacy" replace />} />
+        <Route path="privacy_policy" element={<Navigate to="/privacy" replace />} />
+        <Route path="terms-and-conditions" element={<Navigate to="/terms" replace />} />
+        <Route path="terms-of-service" element={<Navigate to="/terms" replace />} />
+        <Route path="termsofservice" element={<Navigate to="/terms" replace />} />
+        <Route path="terms-conditions" element={<Navigate to="/terms" replace />} />
+        <Route path="terms-condition" element={<Navigate to="/terms" replace />} />
+        <Route path="terms_and_conditions" element={<Navigate to="/terms" replace />} />
+        <Route path="cookie-policy" element={<Navigate to="/cookies" replace />} />
+        <Route path="cookie-settings" element={<Navigate to="/cookies" replace />} />
+        <Route path="cookie-preference" element={<Navigate to="/cookies" replace />} />
+        <Route path="cookie_policy" element={<Navigate to="/cookies" replace />} />
+
+        {/* Services Directory & General Solution Aliases */}
+        <Route path="industries" element={<Navigate to="/services" replace />} />
+        <Route path="industry" element={<Navigate to="/services" replace />} />
+        <Route path="solutions" element={<Navigate to="/services" replace />} />
+        <Route path="our-services" element={<Navigate to="/services" replace />} />
+        <Route path="all-services" element={<Navigate to="/services" replace />} />
+        <Route path="b2b-lead-generation" element={<Navigate to="/services" replace />} />
+        <Route path="lead-generation" element={<Navigate to="/services" replace />} />
+
+        {/* 1. SQL Service Aliases */}
+        <Route path="sql" element={<Navigate to="/sql-services" replace />} />
+        <Route path="sales-qualified" element={<Navigate to="/sql-services" replace />} />
+        <Route path="sales-qualified-leads" element={<Navigate to="/sql-services" replace />} />
+        <Route path="lead-qualification" element={<Navigate to="/sql-services" replace />} />
+
+        {/* 2. MQL Service Aliases */}
+        <Route path="mql" element={<Navigate to="/mql-services" replace />} />
+        <Route path="marketing-qualified" element={<Navigate to="/mql-services" replace />} />
+        <Route path="marketing-qualified-leads" element={<Navigate to="/mql-services" replace />} />
+
+        {/* 3. HQL Service Aliases */}
+        <Route path="hql" element={<Navigate to="/hql-services" replace />} />
+        <Route path="hql-service" element={<Navigate to="/hql-services" replace />} />
+        <Route path="high-quality-leads" element={<Navigate to="/hql-services" replace />} />
+        <Route path="high-quality-lead" element={<Navigate to="/hql-services" replace />} />
+
+        {/* 4. BANT Lead Generation Aliases */}
+        <Route path="bant" element={<Navigate to="/bant-lead-generation" replace />} />
+        <Route path="bant-services" element={<Navigate to="/bant-lead-generation" replace />} />
+        <Route path="bant-leads" element={<Navigate to="/bant-lead-generation" replace />} />
+        <Route path="bant-lead-gen" element={<Navigate to="/bant-lead-generation" replace />} />
+
+        {/* 5. B2B Appointment Setting Aliases */}
+        <Route path="appointment-setting" element={<Navigate to="/b2b-appointment-setting" replace />} />
+        <Route path="appointment-generation" element={<Navigate to="/b2b-appointment-setting" replace />} />
+        <Route path="b2b-appointment" element={<Navigate to="/b2b-appointment-setting" replace />} />
+        <Route path="appointment" element={<Navigate to="/b2b-appointment-setting" replace />} />
+
+        {/* 6. B2B Email Marketing Aliases */}
+        <Route path="email-marketing" element={<Navigate to="/b2b-email-marketing" replace />} />
+        <Route path="b2b-email" element={<Navigate to="/b2b-email-marketing" replace />} />
+        <Route path="b2b-email-marketinig" element={<Navigate to="/b2b-email-marketing" replace />} />
+
+        {/* 7. ABM Aliases */}
+        <Route path="account-based-marketing" element={<Navigate to="/abm" replace />} />
+        <Route path="account-based" element={<Navigate to="/abm" replace />} />
+
+        {/* 8. Content Syndication Aliases */}
+        <Route path="content-syndication-new" element={<Navigate to="/content-syndication" replace />} />
+        <Route path="syndication" element={<Navigate to="/content-syndication" replace />} />
+        <Route path="b2b-content-syndication" element={<Navigate to="/content-syndication" replace />} />
+
+        {/* 9. Demand Generation Aliases */}
+        <Route path="demand-gen" element={<Navigate to="/demand-generation" replace />} />
+        <Route path="b2b-demand-generation" element={<Navigate to="/demand-generation" replace />} />
+
+        {/* 10. Full-Funnel Demand Aliases */}
+        <Route path="fullfunnel" element={<Navigate to="/full-funnel-demand" replace />} />
+        <Route path="full-funnel" element={<Navigate to="/full-funnel-demand" replace />} />
+        <Route path="ffd" element={<Navigate to="/full-funnel-demand" replace />} />
+
+        {/* 11. Account-Based Experience Aliases */}
+        <Route path="abx" element={<Navigate to="/account-based-experience" replace />} />
+        <Route path="account-experience" element={<Navigate to="/account-based-experience" replace />} />
+
+        {/* 12. Webinar Services Aliases */}
+        <Route path="webinar" element={<Navigate to="/webinar-services" replace />} />
+        <Route path="webinars" element={<Navigate to="/webinar-services" replace />} />
+        <Route path="webinar-registration" element={<Navigate to="/webinar-services" replace />} />
+
+        {/* 13. Lead Nurturing Aliases */}
+        <Route path="nurturing" element={<Navigate to="/lead-nurturing" replace />} />
+        <Route path="lead-nurture" element={<Navigate to="/lead-nurturing" replace />} />
+        <Route path="b2b-lead-nurturing" element={<Navigate to="/lead-nurturing" replace />} />
+
+        {/* 14. B2B List Building Aliases */}
+        <Route path="prospect-data-enrichment" element={<Navigate to="/b2b-list-building" replace />} />
+        <Route path="list-building" element={<Navigate to="/b2b-list-building" replace />} />
+        <Route path="data-enrichment" element={<Navigate to="/b2b-list-building" replace />} />
+        <Route path="database" element={<Navigate to="/b2b-list-building" replace />} />
+
+        {/* 15. Database Cleansing Aliases */}
+        <Route path="cleansing" element={<Navigate to="/database-cleansing" replace />} />
+        <Route path="data-cleansing" element={<Navigate to="/database-cleansing" replace />} />
+        <Route path="database-cleanse" element={<Navigate to="/database-cleansing" replace />} />
+
+        {/* 16. DemandFlow Bridge Aliases */}
+        <Route path="demandflow" element={<Navigate to="/demandflow-bridge" replace />} />
+        <Route path="demand-flow" element={<Navigate to="/demandflow-bridge" replace />} />
+        <Route path="demand-flow-bridge" element={<Navigate to="/demandflow-bridge" replace />} />
+
+        {/* Nested Legacy /services/* direct routes */}
+        <Route path="services/sql-services" element={<Navigate to="/sql-services" replace />} />
+        <Route path="services/mql-services" element={<Navigate to="/mql-services" replace />} />
+        <Route path="services/hql-services" element={<Navigate to="/hql-services" replace />} />
+        <Route path="services/hql" element={<Navigate to="/hql-services" replace />} />
+        <Route path="services/hql-service" element={<Navigate to="/hql-services" replace />} />
+        <Route path="services/bant-lead-generation" element={<Navigate to="/bant-lead-generation" replace />} />
+        <Route path="services/b2b-appointment-setting" element={<Navigate to="/b2b-appointment-setting" replace />} />
+        <Route path="services/b2b-email-marketing" element={<Navigate to="/b2b-email-marketing" replace />} />
+        <Route path="services/abm" element={<Navigate to="/abm" replace />} />
+        <Route path="services/content-syndication" element={<Navigate to="/content-syndication" replace />} />
+        <Route path="services/demand-generation" element={<Navigate to="/demand-generation" replace />} />
+        <Route path="services/full-funnel-demand" element={<Navigate to="/full-funnel-demand" replace />} />
+        <Route path="services/account-based-experience" element={<Navigate to="/account-based-experience" replace />} />
+        <Route path="services/webinar-services" element={<Navigate to="/webinar-services" replace />} />
+        <Route path="services/lead-nurturing" element={<Navigate to="/lead-nurturing" replace />} />
+        <Route path="services/b2b-list-building" element={<Navigate to="/b2b-list-building" replace />} />
+        <Route path="services/database-cleansing" element={<Navigate to="/database-cleansing" replace />} />
+        <Route path="services/demandflow-bridge" element={<Navigate to="/demandflow-bridge" replace />} />
+
+        {/* Catch-all 404 */}
         <Route path="*" element={<NotFound />} />
       </Route>
 
-      {/* Auth / Admin Login Route */}
+            {/* Auth / Admin Login Route */}
       <Route element={<AuthLayout />}>
         <Route path="/loginadmin" element={<Login />} />
         <Route path="/login" element={<Navigate to="/loginadmin" replace />} />
+        <Route path="/signin" element={<Navigate to="/loginadmin" replace />} />
+        <Route path="/sign-in" element={<Navigate to="/loginadmin" replace />} />
+        <Route path="/admin/login" element={<Navigate to="/loginadmin" replace />} />
       </Route>
 
       {/* Admin Routes */}

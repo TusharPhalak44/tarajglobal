@@ -10,6 +10,20 @@ import {
   Camera
 } from 'lucide-react'
 
+// Resilient fallback culture images to ensure photographs are always crisp and available
+const FALLBACK_CULTURE_PHOTOS = [
+  '/pk2.jpeg',
+  '/pk.jpeg',
+  '/pk3.jpeg',
+  '/pk4.jpeg',
+  '/pk5.jpeg',
+  '/pk6.jpeg'
+]
+
+const getSafeFallbackPhoto = (idx = 0) => {
+  return FALLBACK_CULTURE_PHOTOS[Math.abs(idx) % FALLBACK_CULTURE_PHOTOS.length]
+}
+
 export const AlbumModal = ({ album, onClose }) => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null)
   const scrollContainerRef = useRef(null)
@@ -29,8 +43,31 @@ export const AlbumModal = ({ album, onClose }) => {
 
   if (!album) return null
 
-  const photos = album.photos || []
+  // Ensure album always has at least one valid displayable photo
+  const rawPhotos = Array.isArray(album.photos) && album.photos.length > 0
+    ? album.photos
+    : [
+        {
+          id: `${album.id || 'album'}-cover`,
+          src: album.cover || album.src || '/pk2.jpeg',
+          title: album.title || 'Life at Taraj Global',
+          caption: album.desc || album.description || 'Moments and memories at Taraj Global',
+          tag: album.category || album.tag || 'Culture',
+          date: album.quarter || ''
+        }
+      ]
+
+  const photos = rawPhotos
   const filteredPhotos = photos
+
+  // Safe image error handler to prevent infinite loops, blank screen flickering, and freeze
+  const handleImageError = (e, index = 0) => {
+    e.target.onerror = null // Stop further error triggering immediately
+    const fallbackSrc = getSafeFallbackPhoto(index)
+    if (e.target.src !== fallbackSrc) {
+      e.target.src = fallbackSrc
+    }
+  }
 
   // Mouse wheel scrolling anywhere in the modal
   const handleModalWheel = (e) => {
@@ -243,14 +280,12 @@ export const AlbumModal = ({ album, onClose }) => {
                 >
                   {/* Photo Image */}
                   <img
-                    src={photo.src}
+                    src={photo.src || getSafeFallbackPhoto(idx)}
                     alt={photo.title || 'Album photo'}
                     loading="lazy"
                     draggable={false}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-108 pointer-events-none select-none"
-                    onError={(e) => {
-                      e.target.src = album.cover || '/pk2.jpeg'
-                    }}
+                    onError={(e) => handleImageError(e, idx)}
                   />
 
                   {/* Base Gradient Overlay */}
@@ -381,13 +416,11 @@ export const AlbumModal = ({ album, onClose }) => {
                   className="max-h-[66vh] max-w-full flex items-center justify-center"
                 >
                   <img
-                    src={currentPhoto.src}
+                    src={currentPhoto.src || getSafeFallbackPhoto(selectedPhotoIndex)}
                     alt={currentPhoto.title || 'Album photo'}
                     draggable={false}
                     className="max-h-[66vh] max-w-full w-auto object-contain rounded-xl shadow-2xl select-none"
-                    onError={(e) => {
-                      e.target.src = album.cover || '/pk2.jpeg'
-                    }}
+                    onError={(e) => handleImageError(e, selectedPhotoIndex)}
                   />
                 </motion.div>
 
@@ -451,13 +484,11 @@ export const AlbumModal = ({ album, onClose }) => {
                         }}
                       >
                         <img
-                          src={thumb.src}
+                          src={thumb.src || getSafeFallbackPhoto(tIdx)}
                           alt={thumb.title || 'Thumbnail'}
                           draggable={false}
                           className="w-full h-full object-cover select-none"
-                          onError={(e) => {
-                            e.target.src = album.cover || '/pk2.jpeg'
-                          }}
+                          onError={(e) => handleImageError(e, tIdx)}
                         />
                       </button>
                     )

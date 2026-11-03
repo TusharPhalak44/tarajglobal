@@ -346,7 +346,7 @@ const Hero = () => {
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
               <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
-               TECH-ENABLED DEMAND GENERATION ARCHITECTURE
+                TECH-ENABLED DEMAND GENERATION ARCHITECTURE
 
               </span>
             </motion.div>
@@ -356,12 +356,12 @@ const Hero = () => {
               {...fadeUp(0.2)}
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
-              <span className="block pb-1 sm:pb-1.5">Demand Generation That Builds Verified</span>
+              <span className="block pb-1 sm:pb-1.5">Demand Generation That Builds </span>
               <span
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
-               Sales-Ready B2B Pipeline
+                Verified Sales-Ready B2B Pipeline
               </span>
             </motion.h1>
 

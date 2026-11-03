@@ -202,12 +202,34 @@ const EditBlog = () => {
       const response = await adminAPI.getBlogById(id)
       const blogData = response.data.data || response.data
       
-        const rawPub = blogData.published_at || blogData.created_at
-        const pDate = rawPub ? new Date(new Date(rawPub).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[0] : ''
-        const pTime = rawPub ? new Date(new Date(rawPub).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[1].substring(0, 5) : ''
+        const extractInputDate = (val) => {
+          if (!val) return ''
+          if (typeof val === 'string') {
+            const m = val.match(/^(\d{4}-\d{2}-\d{2})/)
+            if (m) return m[1]
+          }
+          const d = new Date(val)
+          if (isNaN(d.getTime())) return ''
+          return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+        }
 
-        const sDate = blogData.scheduled_at ? new Date(new Date(blogData.scheduled_at).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[0] : ''
-        const sTime = blogData.scheduled_at ? new Date(new Date(blogData.scheduled_at).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().split('T')[1].substring(0, 5) : ''
+        const extractInputTime = (val) => {
+          if (!val) return ''
+          if (typeof val === 'string') {
+            const m = val.match(/[ T](\d{2}:\d{2})/)
+            if (m) return m[1]
+          }
+          const d = new Date(val)
+          if (isNaN(d.getTime())) return ''
+          return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
+        }
+
+        const rawPub = blogData.published_at || blogData.created_at
+        const pDate = extractInputDate(rawPub)
+        const pTime = extractInputTime(rawPub)
+
+        const sDate = extractInputDate(blogData.scheduled_at)
+        const sTime = extractInputTime(blogData.scheduled_at)
         const initialForm = {
           title: blogData.title || '',
           slug: blogData.slug || '',

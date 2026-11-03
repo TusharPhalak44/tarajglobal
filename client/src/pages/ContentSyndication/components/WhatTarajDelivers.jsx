@@ -209,7 +209,7 @@ const WhatTarajDelivers = () => {
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
+           
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
                PROPRIETARY SYNDICATION ENGINE • DEMANDFLOW BRIDGE
 

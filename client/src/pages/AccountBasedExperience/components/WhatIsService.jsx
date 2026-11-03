@@ -181,45 +181,185 @@ const WhatIsService = () => {
               </p>
             </motion.div>
 
-            {/* 3 Outcome Interactive Indicators */}
-            <div
-              className="grid sm:grid-cols-3 gap-3 pt-2"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              {OUTCOME_INDICATORS.map((indicator, idx) => {
-                const isActive = activeStep === idx
+            {/* PROCESS CARDS — MAIN INTERACTION */}
+            <div className="relative pt-5 sm:pt-6">
+              <motion.div
+                onViewportEnter={() => setIsInView(true)}
+                className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-0 rounded-xl overflow-hidden"
+                style={{ border: '1px solid var(--border)' }}
+              >
+                {OUTCOME_INDICATORS.map((item, idx) => {
+                  const isActive = activeStep === idx
 
-                return (
-                  <motion.div
-                    key={indicator.num}
-                    onClick={() => setActiveStep(idx)}
-                    className={`relative p-3.5 rounded-xl border transition-all duration-300 cursor-pointer select-none ${isActive
-                      ? 'bg-surface border-primary/60 shadow-md -translate-y-0.5'
-                      : 'bg-surface/50 border-border hover:border-border/80'
-                      }`}
-                    style={{
-                      boxShadow: isActive ? `0 8px 24px -6px ${indicator.glowColor}` : undefined,
-                    }}
-                  >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[11px] font-mono font-bold" style={{ color: indicator.color }}>
-                        {indicator.num}
-                      </span>
-                      <span
-                        className="w-1.5 h-1.5 rounded-full"
-                        style={{ backgroundColor: indicator.color, opacity: isActive ? 1 : 0.4 }}
+                  return (
+                    <motion.div
+                      key={item.num}
+                      initial={prefersReducedMotion ? {} : { opacity: 0, y: 24 }}
+                      whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{
+                        duration: 0.65,
+                        delay: 0.6 + idx * 0.15,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      onMouseEnter={() => {
+                        setIsHovered(true)
+                        setActiveStep(idx)
+                      }}
+                      onMouseLeave={() => setIsHovered(false)}
+                      whileHover={
+                        prefersReducedMotion
+                          ? {}
+                          : {
+                            y: -4,
+                            scale: 1.02,
+                            transition: { duration: 0.22, ease: 'easeOut' },
+                          }
+                      }
+                      className="relative flex flex-col gap-2 p-3.5 sm:p-4 bg-surface transition-all duration-300 cursor-pointer"
+                      style={{
+                        borderRight: idx < 2 ? '1px solid var(--border)' : 'none',
+                        borderTop: idx > 0 ? '1px solid var(--border)' : 'none',
+                        boxShadow: isActive ? `0 8px 24px -6px ${item.glowColor}` : 'none',
+                        borderColor: isActive ? item.color : 'var(--border)',
+                        zIndex: isActive ? 10 : 1,
+                      }}
+                    >
+                      {/* CARD PROGRESS ANIMATION (Draws left to right on entrance) */}
+                      <motion.div
+                        className="absolute top-0 left-0 right-0 rounded-t-xl"
+                        style={{
+                          height: isActive ? '2.5px' : '1.5px',
+                          background: `linear-gradient(90deg, ${item.color}, transparent)`,
+                          transformOrigin: 'left',
+                          filter: isActive ? 'drop-shadow(0 0 4px currentColor)' : 'none',
+                          color: item.color,
+                        }}
+                        initial={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 0 }}
+                        whileInView={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.7,
+                          delay: 0.75 + idx * 0.15,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
                       />
-                    </div>
-                    <div className="text-xs font-bold text-text-primary mb-1 uppercase tracking-wider">
-                      {indicator.label}
-                    </div>
-                    <p className="text-[11px] text-text-secondary leading-snug">
-                      {indicator.desc}
-                    </p>
-                  </motion.div>
-                )
-              })}
+
+                      {/* Header with Number, connecting line, and micro-interaction */}
+                      <div className="flex items-center justify-between gap-2 pt-0.5">
+                        <div className="flex items-center gap-2 flex-1">
+                          <span
+                            className="text-xs font-mono font-black tracking-widest transition-colors duration-200"
+                            style={{ color: item.color }}
+                          >
+                            {item.num}
+                          </span>
+                          <div
+                            className="flex-1 h-px transition-opacity duration-200"
+                            style={{
+                              background: `${item.color}35`,
+                              opacity: isActive ? 1 : 0.4,
+                            }}
+                          />
+                        </div>
+
+                        {/* Micro-interaction indicator */}
+                        <div className="shrink-0 flex items-center justify-center w-5 h-5">
+                          {item.type === 'target' && (
+                            <div className="relative w-4 h-4 flex items-center justify-center">
+                              <span
+                                className="w-1.5 h-1.5 rounded-full"
+                                style={{ backgroundColor: item.color }}
+                              />
+                              <motion.span
+                                className="absolute inset-0 rounded-full border"
+                                style={{ borderColor: item.color }}
+                                animate={
+                                  isActive && !prefersReducedMotion
+                                    ? { scale: [1, 1.45, 1], opacity: [0.9, 0.2, 0.9] }
+                                    : { scale: 1, opacity: 0.3 }
+                                }
+                                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                              />
+                            </div>
+                          )}
+
+                          {item.type === 'engage' && (
+                            <div className="flex items-end justify-center gap-0.5 h-3.5">
+                              <motion.span
+                                className="w-1 rounded-full"
+                                style={{ backgroundColor: item.color }}
+                                animate={
+                                  isActive && !prefersReducedMotion
+                                    ? { height: ['4px', '12px', '4px'], opacity: [0.5, 1, 0.5] }
+                                    : { height: '6px', opacity: 0.4 }
+                                }
+                                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                              />
+                              <motion.span
+                                className="w-1 rounded-full"
+                                style={{ backgroundColor: item.color }}
+                                animate={
+                                  isActive && !prefersReducedMotion
+                                    ? { height: ['12px', '6px', '12px'], opacity: [1, 0.5, 1] }
+                                    : { height: '10px', opacity: 0.5 }
+                                }
+                                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                              />
+                              <motion.span
+                                className="w-1 rounded-full"
+                                style={{ backgroundColor: item.color }}
+                                animate={
+                                  isActive && !prefersReducedMotion
+                                    ? { height: ['6px', '10px', '6px'], opacity: [0.6, 0.9, 0.6] }
+                                    : { height: '4px', opacity: 0.4 }
+                                }
+                                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                              />
+                            </div>
+                          )}
+
+                          {item.type === 'convert' && (
+                            <motion.svg
+                              className="w-3.5 h-3.5"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              style={{ color: item.color }}
+                              animate={
+                                isActive && !prefersReducedMotion
+                                  ? { y: [0, -2.5, 0], opacity: [0.8, 1, 0.8] }
+                                  : { y: 0, opacity: 0.4 }
+                              }
+                              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                            >
+                              <path
+                                d="M3 13L13 3M13 3H6M13 3V10"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </motion.svg>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Label with underline highlight */}
+                      <span
+                        className="text-xs font-mono font-bold tracking-wider transition-colors duration-200"
+                        style={{ color: isActive ? item.color : 'var(--text-primary)' }}
+                      >
+                        {item.label}
+                      </span>
+
+                      {/* Description */}
+                      <p className="text-xs text-text-secondary leading-snug">
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  )
+                })}
+              </motion.div>
             </div>
           </div>
         </div>

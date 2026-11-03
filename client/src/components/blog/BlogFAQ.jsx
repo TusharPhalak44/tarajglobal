@@ -141,7 +141,7 @@ export const BlogFAQ = ({
               transition={{ duration: 0.25 }}
               className="overflow-hidden"
             >
-              <div className="px-4 sm:px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-white/5 font-normal pl-[44px] sm:pl-[48px]">
+              <div className="px-4 sm:px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-white/5 font-normal pl-[44px] sm:pl-[48px] whitespace-pre-line">
                 {faq.answer}
               </div>
             </motion.div>
