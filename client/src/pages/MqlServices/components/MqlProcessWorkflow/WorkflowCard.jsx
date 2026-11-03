@@ -61,8 +61,8 @@ export default function WorkflowCard({
       style={customStyle}
       className={`
         relative group cursor-pointer select-none
-        rounded-xl p-2 sm:p-2 xl:p-2.5 flex flex-col justify-between
-        transition-all duration-300 backdrop-blur-md
+        rounded-xl p-2 sm:p-2 xl:px-2.5 xl:py-2 flex flex-col justify-between
+        transition-all duration-300 backdrop-blur-md overflow-hidden
         border ${isActive
           ? 'border-primary dark:border-[#00d2ff] bg-gradient-to-b from-blue-50/95 via-sky-50/90 to-white/95 dark:from-[#052654]/95 dark:via-[#031b3e]/95 dark:to-[#021029]/98 shadow-[0_4px_15px_rgba(0,166,255,0.25)] dark:shadow-[0_0_30px_rgba(0,180,255,0.4)] ring-2 ring-primary/30 dark:ring-[#00d2ff]/40'
           : isCompleted
@@ -97,7 +97,7 @@ export default function WorkflowCard({
       )}
 
       {/* ── CARD TOP ROW: Step Number, Category & Icon ── */}
-      <div className="flex items-center justify-between gap-1 w-full mb-1">
+      <div className="flex items-center justify-between gap-1 w-full mb-0.5">
         {/* Step Number & Category */}
         <div className="flex items-center gap-1.5 min-w-0">
           <span
@@ -132,16 +132,16 @@ export default function WorkflowCard({
       </div>
 
       {/* ── CARD BODY: Title & Description ── */}
-      <div className="flex-1 flex flex-col justify-start pt-0.5">
+      <div className="flex-1 flex flex-col justify-start">
         <h3
-          className={`font-heading font-bold text-[11px] sm:text-[11.5px] xl:text-[12px] leading-tight mb-1 tracking-tight transition-colors duration-300 ${isActive
+          className={`font-heading font-bold text-[11px] sm:text-[11.5px] xl:text-[12px] leading-tight mb-0.5 tracking-tight transition-colors duration-300 ${isActive
             ? 'text-primary dark:text-white dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]'
             : 'text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#e0f7ff]'
             }`}
         >
           {step.title}
         </h3>
-        <p className="text-[8px] sm:text-[8.5px] xl:text-[8.8px] leading-[1.32] text-slate-600 dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-[#cbd5e1] transition-colors duration-200 ">
+        <p className="text-[7.8px] sm:text-[8.2px] xl:text-[8.5px] leading-[1.28] text-slate-600 dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-[#cbd5e1] transition-colors duration-200">
           {step.description}
         </p>
       </div>
