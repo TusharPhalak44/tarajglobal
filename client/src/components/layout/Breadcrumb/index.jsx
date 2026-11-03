@@ -27,12 +27,15 @@ const breadcrumbMap = {
   'b2b-list-building': 'B2B List Building',
   'database-cleansing': 'Database Cleansing',
   'demandflow-bridge': 'DemandFlow Bridge',
+  'full-funnel-demand': 'Full-Funnel Demand',
+  'account-based-experience': 'Account-Based Experience (ABX)',
 }
 
 const serviceSlugs = new Set([
   'sql-services', 'hql-services', 'bant-lead-generation', 'mql-services', 'b2b-appointment-setting',
   'b2b-email-marketing', 'abm', 'content-syndication', 'demand-generation', 'webinar-services',
   'lead-nurturing', 'b2b-list-building', 'database-cleansing', 'demandflow-bridge',
+  'full-funnel-demand', 'account-based-experience',
 ])
 
 const titleCase = (slug) =>
