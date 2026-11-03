@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'DEFINE',
-    desc: 'Set ICP, roles, and audience criteria',
+    desc: 'Lock ICP, roles, and committee criteria.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'IDENTIFY',
-    desc: 'Find verified accounts & decision makers',
+    desc: 'Research and verify accounts and decision-makers.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'DELIVER',
-    desc: 'Provide campaign-ready prospect lists',
+    desc: ' Hand over CRM-mapped, campaign-ready lists.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,14 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Service Definition
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+               LIST BUILDING ENGINE
+
             </span>
           </motion.div>
 
           {/* Heading Animation — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -175,7 +176,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              B2B List Building is the systematic process of researching, verifying, and compiling targeted databases of companies and decision-makers that precisely match your Ideal Customer Profile — ready for immediate outbound sales and marketing campaigns.
+               B2B list building is the research-led process of compiling verified companies and decision-makers that match your Ideal Customer Profile (ICP), delivered ready for outbound campaigns.
             </motion.p>
 
             <motion.p
@@ -185,7 +186,7 @@ const WhatIsService = () => {
               transition={{ duration: 0.7, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-text-secondary leading-relaxed"
             >
-              Unlike generic scraped databases that deliver outdated, unverified contacts, Taraj Global's list building combines human-led research, real-time data verification, and compliance-certified hygiene to ensure every prospect record is accurate, deliverable, and sales-ready.
+              Where resold or scraped databases age quietly and bounce, TaRaj Global builds each list to your criteria. Human-led research and our AI-assisted, in-house verification tool, backed by a 99.8% Data Accuracy SLA, keep every record accurate, deliverable, and compliant.\
             </motion.p>
 
             {/* Process Cards */}

@@ -9,56 +9,56 @@ export const FAQS = [
     num: '01',
     question: 'What is B2B list building?',
     answer:
-      'B2B list building is the process of researching, verifying, and compiling targeted databases of companies and decision-makers that match your Ideal Customer Profile (ICP), ready for outbound sales and marketing outreach.',
+      'B2B list building is the research-led process of compiling verified companies and decision-makers that match your ICP for outbound outreach. TaRaj Global builds each list to your criteria instead of reselling generic databases.',
   },
   {
     id: 'faq-2',
     num: '02',
-    question: 'Who is B2B list building suitable for?',
+    question: ' Who is B2B list building suitable for?',
     answer:
-      'It is ideal for SaaS companies, IT service providers, enterprise solution vendors, B2B agencies, and sales teams that need a reliable pipeline of verified decision-makers to fuel outbound campaigns.',
+      'SaaS companies, IT service providers, enterprise solution vendors, B2B agencies, and sales teams that need a steady supply of verified decision-makers for outbound across US, EMEA, and APAC.',
   },
   {
     id: 'faq-3',
     num: '03',
-    question: 'How does Taraj Global build targeted B2B prospect lists?',
+    question: ' How does TaRaj Global build targeted B2B prospect lists?',
     answer:
-      'We align on your ICP and buying committee criteria, then use human-led research across corporate directories and professional networks to identify, enrich, and triple-layer verify each contact before delivery.',
+      'We align on your ICP and buying committee criteria, research contacts across corporate directories and professional networks, then enrich and verify each record through our AI-assisted, triple-layer process before delivery.',
   },
   {
     id: 'faq-4',
     num: '04',
     question: 'How do you verify B2B contact data?',
     answer:
-      'Every record undergoes real-time SMTP handshake verification, MX record health checks, spam-trap suppression, syntax validation, and manual phone-line confirmation — delivering a 98%+ deliverability guarantee.',
+      'Each record gets SMTP handshake checks, MX health checks, spam-trap suppression, syntax validation, and manual phone-line confirmation. This supports our 99.8% Data Accuracy SLA, with 1-to-1 replacement for bounced contacts.',
   },
   {
     id: 'faq-5',
     num: '05',
     question: 'Can lists be segmented by industry, title, or geography?',
     answer:
-      'Yes. We segment verified lists by industry vertical, job title, seniority level, company revenue bracket, headcount tier, geographic region, and technology stack — creating precision-targeted segments for each campaign.',
+      'Yes. We segment by industry vertical, job title, seniority, revenue bracket, headcount tier, region, and technology stack for each campaign.',
   },
   {
     id: 'faq-6',
     num: '06',
     question: 'How do you ensure GDPR and CCPA compliance?',
     answer:
-      'We follow strict opt-out suppression protocols and comply fully with GDPR, CCPA, CAN-SPAM, and PECR legislation. Every delivered list includes a compliance certification and a 30-day replacement guarantee.',
+      'We apply opt-out suppression and comply with GDPR, CCPA, CAN-SPAM, and PECR under ISO 27001:2022 controls. Every list ships with a compliance certification.',
   },
   {
     id: 'faq-7',
     num: '07',
     question: 'In what format are B2B lists delivered?',
     answer:
-      'Lists are delivered as clean CSV or XLSX files pre-mapped to your CRM field schema — Salesforce, HubSpot, Apollo, or Outreach — for seamless 1-click import and immediate campaign launch.',
+      ' As clean CSV or XLSX files pre-mapped to your CRM schema (Salesforce, HubSpot, Apollo, Outreach) for 1-click import, or by direct API push through DemandFlow Bridge.',
   },
   {
     id: 'faq-8',
     num: '08',
-    question: 'What is the difference between B2B list building and data scraping?',
+    question: ' What is the difference between B2B list building and data scraping?',
     answer:
-      'Unlike scraped databases, our B2B lists are built through human-led research, real-time verification, and compliance-certified processes — ensuring accuracy, freshness, and deliverability that scraped data cannot match.',
+      ' Scraped data is outdated, unverified, and unaccountable. TaRaj Global lists come from human-led research, in-house verification, and compliance-certified processes, with accuracy backed by an SLA.',
   },
 ]
 
@@ -193,8 +193,9 @@ const FAQ = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Frequently Asked Questions
+              <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+             SOMETHING ON YOUR MIND?
+
             </span>
           </motion.div>
 
@@ -203,11 +204,11 @@ const FAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Questions
+              Questions ON B2B LIST BUILDING
             </span>
           </motion.h2>
 
@@ -218,7 +219,7 @@ const FAQ = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Common questions about B2B list building, our research and verification process, and how we deliver campaign-ready prospect data.
+            Common questions about TaRaj Global’s B2B list building, research and verification process, compliance, and CRM-ready delivery across US, EMEA, and APAC.
           </motion.p>
         </div>
 

@@ -69,12 +69,12 @@ const B2bListBuilding = () => {
   return (
     <>
       <SEO
-        title="B2B List Building Services | Taraj Global"
-        description="Build verified, campaign-ready B2B prospect lists. Taraj Global delivers ICP-matched, triple-layer verified contact data — direct emails, phone numbers, and LinkedIn profiles — ready for outbound sales."
+        title="Custom B2B List Building Services | Verified Prospect Data, Built to Your ICP | TaRaj Global"
+        description="Get custom-built B2B prospect lists matched to your ICP across US, EMEA, and APAC. Human-led research, AI-assisted verification, and a 99.8% Data Accuracy SLA, delivered CRM-ready."
         keywords="B2B list building, B2B list building services, B2B prospect lists, B2B contact database, B2B lead list, verified B2B data, B2B email lists, B2B contact list building, B2B prospect data, targeted B2B lists, B2B data services, outbound prospect lists, ICP-matched lists, verified contact data"
         canonical="/b2b-list-building"
-        ogTitle="B2B List Building Services | Taraj Global"
-        ogDescription="Reach the right B2B decision makers with ICP-matched, triple-layer verified prospect lists. Human-researched, compliance-certified, and CRM-ready for immediate outbound campaigns."
+        ogTitle="Custom B2B List Building Services | Verified Prospect Data, Built to Your ICP | TaRaj Global"
+        ogDescription="Get custom-built B2B prospect lists matched to your ICP across US, EMEA, and APAC. Human-led research, AI-assisted verification, and a 99.8% Data Accuracy SLA, delivered CRM-ready."
         ogType="website"
         twitterCard="summary_large_image"
         schemaJson={listBuildingSchema}

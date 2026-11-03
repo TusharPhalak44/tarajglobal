@@ -23,130 +23,130 @@ const ENGINE_LAYERS = [
   {
     num: '01',
     layer: '01 — PLATFORM',
-    title: 'DemandFlow Bridge',
+    title: 'DemandFlow Bridge: Central List Building Command',
     shortTitle: 'Platform',
-    tag: 'BUSINESS OPERATIONS & INTELLIGENCE',
+    tag: 'CENTRALIZED LIST INTELLIGENCE',
     module: 'DemandFlow Bridge',
     subLabel: 'Unified Business Operations Platform',
     screen: 'Unified Business Operations Platform',
     metric: 'ONE PLATFORM • MULTIPLE OPERATIONS • REAL-TIME CONTROL',
-    desc: 'An integrated platform powering CRM, sales, client management, lead management, HRMS, operations, and payroll.',
+    desc: 'Data spread across vendors and spreadsheets goes stale unseen. One platform centralizes account universes, contacts, verification, segmentation, and delivery.',
     icon: Layers,
     image: '/demandflow-admin.png',
     points: [
-      'CRM & Lead Management',
-      'Sales & Client Management',
-      'HRMS & Employee Operations',
-      'Payroll & Attendance',
-      'Centralized Business Intelligence',
+      '✔ CRM and lead management',
+      '✔ Account and contact database',
+      '✔ Verification and compliance tracking',
+      '✔ Segmentation and delivery workflows',
+      '✔ Centralized business intelligence',
     ],
   },
   {
     num: '02',
     layer: '02 — Data',
-    title: 'DemandFlow Bridge — Data',
+    title: ' DemandFlow Bridge: ICP & Account Universe Mapping',
     shortTitle: 'Data',
-    tag: 'Enrichment & Validation',
+    tag: 'ENRICHMENT & VALIDATION',
     module: 'DemandFlow Bridge — Data',
     screen: 'ICP Criteria & Account Universe Control Center',
     metric: '1,200+ Validated Accounts • CDQA Approved',
-    desc: 'Build precise target account universes matched to your ICP with enriched, verified contact intelligence.',
+    desc: ' Loose criteria bring accounts you’ll never close. We build target account universes matched to your ICP and enriched with in-house.',
     icon: ShieldCheck,
     image: '/demandflow-dbms.png',
     points: [
-      'ICP & account universe mapping',
-      'Verified contact enrichment',
-      'Organized prospect intelligence',
-    ],
+      '✔ ICP and account universe mapping',
+     ' ✔ Verified contact enrichment',
+     ' ✔ Organized prospect intelligence',
+          ],
   },
   {
     num: '03',
     layer: '03 — Discovery',
-    title: 'DemandFlow Bridge — Discovery',
+    title: 'DemandFlow Bridge: Human-Led Prospect Discovery',
     shortTitle: 'Discovery',
-    tag: 'Contact Research Workflows',
+    tag: 'CONTACT RESEARCH WORKFLOWS',
     module: 'DemandFlow Bridge — Discovery',
     screen: 'Human-Led Prospect Discovery Operations',
     metric: '99.2% Accuracy • Multi-Source Verified',
-    desc: 'Human analysts locate current decision-makers across corporate directories, professional networks, and company records.',
+    desc: 'Scraped contacts point to people who have moved on. Analysts locate current decision-makers across directories, professional networks, and company records.',
     icon: Search,
     image: '/demandflow-sequences.png',
     points: [
-      'Multi-source human research',
-      'Decision-maker identification',
-      'Real-time employment verification',
+      '✔ Multi-source human research',
+      '✔ Decision-maker identification',
+      '✔ Real-time employment verification',
     ],
   },
   {
     num: '04',
     layer: '04 — Verification',
-    title: 'DemandFlow Bridge — Verification',
+    title: 'DemandFlow Bridge: Triple-Layer Contact Verification',
     shortTitle: 'Verification',
-    tag: 'Multi-Layer Validation',
+    tag: 'MULTI-LAYER VALIDATION',
     module: 'DemandFlow Bridge — Verification',
     screen: 'Triple-Layer Verification & Deliverability Board',
     metric: '98%+ Deliverability • Zero Hard Bounce',
-    desc: 'Every contact record passes real-time SMTP handshakes, syntax validation, spam-trap suppression, and phone checks.',
+    desc: 'Bounces hurt sender reputation and waste dials. Every record clears SMTP handshakes, syntax checks, spam-trap suppression, and phone checks in our AI-assisted tool.',
     icon: Sparkles,
     image: '/demandflow-personalization.png',
     points: [
-      'Real-time SMTP live ping verification',
-      'Spam-trap & honeypot avoidance',
-      '98%+ deliverability guarantee',
+      '✔ Real-time SMTP live ping verification',
+      '✔ Spam-trap and honeypot avoidance',
+      '✔ 1-to-1 replacement SLA for bounced contacts',
     ],
   },
   {
     num: '05',
     layer: '05 — Segmentation',
-    title: 'DemandFlow Bridge — Segmentation',
+    title: 'DemandFlow Bridge: Micro-Segmentation & Filtering',
     shortTitle: 'Segmentation',
-    tag: 'List Filtering & Categorization',
+    tag: ' LIST FILTERING & CATEGORIZATION',
     module: 'DemandFlow Bridge — Segmentation',
     screen: 'Segment & Filter Operations Board',
     metric: 'Micro-Segment Precision • 100% ICP Match',
-    desc: 'Slice verified lists into campaign-ready segments by industry, title, revenue tier, geography, and tech stack.',
+    desc: 'A flat list makes reps sort their own targets. We slice verified data into campaign-ready segments by industry, title, revenue tier, geography, and tech stack.',
     icon: Gauge,
     image: '/demandflow-campaigns.png',
     points: [
-      'Micro-segmentation by persona & verticals',
-      'Geographic & firmographic filtering',
-      'Intent-ranked contact prioritization',
+      '✔ Persona and vertical micro-segmentation',
+        '✔ Geographic and firmographic filtering',
+        '✔ AI-assisted intent ranking',
     ],
   },
   {
     num: '06',
     layer: '06 — Quality',
-    title: 'DemandFlow Bridge — Quality',
+    title: ' DemandFlow Bridge: Quality Assurance & Compliance',
     shortTitle: 'Quality',
-    tag: 'QA & Accuracy Layer',
+    tag: 'QA & ACCURACY LAYER',
     module: 'DemandFlow Bridge — Quality',
     screen: 'Quality Assurance & Compliance Center',
     metric: '4-Stage QA Pass • Compliance Certified',
-    desc: 'Four-layer quality assurance process ensuring every delivered list meets GDPR, CCPA, and CAN-SPAM compliance.',
+    desc: 'Duplicate or non-compliant data creates legal and deliverability risk. Four-layer QA meets GDPR, CCPA, and CAN-SPAM requirements under ISO 27001:2022 controls.',
     icon: TrendingUp,
     image: '/demandflow-tracking.png',
     points: [
-      'GDPR, CCPA & CAN-SPAM compliance',
-      'Deduplication & formatting audit',
-      'Final human QA review & sign-off',
+      '✔ GDPR, CCPA, and CAN-SPAM compliance',
+      '✔ Deduplication and formatting audit',
+      '✔ Final human QA review and sign-off',
     ],
   },
   {
     num: '07',
     layer: '07 — Delivery',
-    title: 'DemandFlow Bridge — Delivery',
+    title: 'DemandFlow Bridge: CRM-Ready List Delivery',
     shortTitle: 'Delivery',
-    tag: 'CRM-Ready List Delivery',
+    tag: 'CRM-READY LIST DELIVERY',
     module: 'DemandFlow Bridge — Delivery',
     screen: 'Custom CRM Delivery & Integration Hub',
     metric: '765 Lists Delivered • 94.2% Same-Week',
-    desc: 'Campaign-ready lists formatted to your exact CRM schema (Salesforce, HubSpot, Apollo) for instant import.',
+    desc: 'Reformatting delays launch. Lists arrive mapped to your CRM schema (Salesforce, HubSpot, Apollo) for import or direct push through DemandFlow Bridge.',
     icon: BadgeCheck,
     image: '/demandflow-qualification.png',
     points: [
-      'CRM-mapped CSV / XLSX export',
-      'Direct API & CRM push options',
-      '30-day replacement guarantee',
+      '✔ CRM-mapped CSV and XLSX export',
+      '✔ Direct API and CRM push options',
+      '✔ 1-to-1 replacement SLA on disputed records',
     ],
   },
 ]
@@ -212,21 +212,22 @@ const WhatTarajDelivers = () => {
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              Proprietary List Building Engine
+            {/* <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" /> */}
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              PROPRIETARY LIST BUILDING ENGINE • DEMANDFLOW BRIDGE
+
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">WHAT DOES TARAJ GLOBAL </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
-              Deliver?
+              DELIVER IN LIST BUILDING?
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal">
-            Taraj Global delivers verified, campaign-ready B2B prospect lists that fuel accurate outreach, qualified pipeline, and predictable sales outcomes.
+             Lists that decay before your first send waste budget. TaRaj Global delivers custom-built, verified prospect data backed by human research, AI-assisted verification, and CRM-ready delivery via DemandFlow Bridge.
           </p>
         </div>
 

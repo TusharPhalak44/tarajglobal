@@ -15,7 +15,7 @@ const PILLARS = [
   {
     num: '01',
     title: 'ICP-Driven List Scoping',
-    desc: 'Every list built around your exact ICP criteria. From company size and industry taxonomy to buying committee titles, every parameter is defined before a single record is sourced.',
+    desc: 'Guesswork lists waste outreach. Company size, industry taxonomy, and buying committee titles are defined against your ICP before a single record is sourced.',
     icon: Crosshair,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -23,15 +23,15 @@ const PILLARS = [
   {
     num: '02',
     title: 'Decision Maker Precision',
-    desc: 'Identify and verify the specific senior executives, department heads, and purchasing authorities that are relevant to your solution and your target accounts.',
+    desc: 'Junior contacts and generic inboxes stall campaigns. We verify the executives, department heads, and purchasing authorities relevant to your solution.',
     icon: Briefcase,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '03',
-    title: 'Triple-Layer Verification',
-    desc: 'Every contact passes real-time SMTP ping verification, spam-trap suppression, MX record validation, and manual phone-line checks, guaranteeing 98%+ deliverability.',
+    title: 'Triple-Layer In-House Verification',
+    desc: 'Bounces burn sender reputation. Every contact clears SMTP checks, spam-trap suppression, MX validation, and phone-line checks under our 99.8% Data Accuracy SLA.',
     icon: SlidersHorizontal,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -39,15 +39,15 @@ const PILLARS = [
   {
     num: '04',
     title: 'Compliance Certified Data',
-    desc: 'Full adherence to GDPR, CCPA, CAN-SPAM, and PECR opt-out legislation. Every list is delivered with a compliance certification and a 30-day data replacement guarantee.',
+    desc: 'Non-compliant data puts your brand at risk. Lists follow GDPR, CCPA, CAN-SPAM, and PECR opt-out rules, with a compliance certification and 1-to-1 replacement SLA.',
     icon: FileCheck2,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
   },
   {
     num: '05',
-    title: 'CRM-Ready Delivery',
-    desc: 'Lists are formatted and pre-mapped to your exact CRM schema — Salesforce, HubSpot, Apollo, or Outreach — for instant 1-click import and immediate campaign launch.',
+    title: 'CRM-Ready List Delivery',
+    desc: ' Manual formatting delays launch. Lists arrive pre-mapped to Salesforce, HubSpot, Apollo, or Outreach schemas for instant import.',
     icon: FolderSync,
     bgImage: '/light 3.png',
     darkBgImage: '/dark 3.png',
@@ -183,8 +183,8 @@ const WhyChoose = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Why Taraj Global
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              WHY TARAJ GLOBAL • TECH-ENABLED VALUE PROPOSITION
             </span>
           </motion.div>
 
@@ -193,11 +193,11 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white"> WHY CHOOSE TARAJ GLOBAL FOR </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              B2B List Building?
+              B2B LIST BUILDING?
             </span>
           </motion.h2>
 
@@ -208,7 +208,7 @@ const WhyChoose = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
           >
-            Verified, ICP-matched B2B lists that fuel accurate outreach, qualified pipeline, and measurable sales outcomes.
+            Custom-built, ICP-matched lists backed by in-house verification, built to fuel accurate outreach and qualified pipeline.
           </motion.p>
         </div>
 

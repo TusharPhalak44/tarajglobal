@@ -13,6 +13,9 @@ import {
   EyeOff,
   BarChart3,
   ArrowRight,
+  Database,
+  Sparkles,
+  UserCheck,
 } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 
@@ -22,17 +25,17 @@ const FLOW_ITEMS = [
   {
     id: 0,
     num: '01',
-    category: 'TARGETING',
-    engineLabel: 'ICP Engine',
-    engineAction: 'Precision Filtering',
+    category: 'ICP TARGETING',
+    engineLabel: 'ICP & Account Universe Mapping',
+    engineAction: 'AI-Assisted Lookalike Modeling',
     problem: {
-      title: 'Poor Audience Targeting',
-      sub: 'Broad & Irrelevant Lists',
+      title: "01. Lists That Don't Match Your ICP",
+      sub: '',
       icon: FilterX,
     },
     solution: {
-      title: 'ICP Focused Targeting',
-      sub: 'Verified Decision Makers',
+      title: '01. Right Accounts Only',
+      sub: '',
       icon: Focus,
     },
     color: '#00A6FF', // Blue
@@ -42,17 +45,17 @@ const FLOW_ITEMS = [
     id: 1,
     num: '02',
     category: 'DATA ACCURACY',
-    engineLabel: 'Validation Engine',
-    engineAction: 'Zero Bounce Cleanse',
+    engineLabel: 'In-House Verification Tool',
+    engineAction: '99.8% Data Accuracy SLA',
     problem: {
-      title: 'Outdated Prospect Data',
-      sub: 'Stale Records & High Bounce',
+      title: '02. Stale Records, Rising Bounces',
+      sub: '',
       icon: MailX,
     },
     solution: {
-      title: 'Fresh Verified Contacts',
-      sub: '100% Validated Inboxes',
-      icon: MessageSquareQuote,
+      title: '02. Fresh, Deliverable Contacts',
+      sub: '',
+      icon: CheckCircle2,
     },
     color: '#8B5CF6', // Purple
     gradient: 'from-[#8B5CF6] to-[#6D28D9]',
@@ -61,17 +64,17 @@ const FLOW_ITEMS = [
     id: 2,
     num: '03',
     category: 'DECISION MAKERS',
-    engineLabel: 'Executive Verifier',
-    engineAction: 'Senior Role Taxonomy',
+    engineLabel: 'Human-Led Stakeholder Research',
+    engineAction: 'Committee Mapping',
     problem: {
-      title: 'Missing Decision-Makers',
-      sub: 'Gatekeepers & Generic Inboxes',
+      title: '03. Generic Inboxes, No Decision-Makers',
+      sub: '',
       icon: ShieldAlert,
     },
     solution: {
-      title: 'Direct Executive Access',
-      sub: 'Verified C-Level & VPs',
-      icon: CheckCircle2,
+      title: '03. Direct Executive Access',
+      sub: '',
+      icon: UserCheck,
     },
     color: '#10B981', // Emerald
     gradient: 'from-[#10B981] to-[#059669]',
@@ -79,18 +82,18 @@ const FLOW_ITEMS = [
   {
     id: 3,
     num: '04',
-    category: 'ENRICHMENT',
-    engineLabel: 'Enrichment Hub',
-    engineAction: 'Deep Account Profiling',
+    category: 'DATA ENRICHMENT',
+    engineLabel: 'Contact + Technographic Enrichment',
+    engineAction: 'Firmographic Append',
     problem: {
-      title: 'Incomplete Contact Info',
-      sub: 'Missing Direct Dials & Tech Data',
-      icon: Workflow,
+      title: '04. Missing Dials and Tech Data',
+      sub: '',
+      icon: Database,
     },
     solution: {
-      title: 'Enriched Contact Profiles',
-      sub: 'Technographics & Direct Dials',
-      icon: Send,
+      title: '04. Enriched Contact Profiles',
+      sub: '',
+      icon: Sparkles,
     },
     color: '#F59E0B', // Amber
     gradient: 'from-[#F59E0B] to-[#D97706]',
@@ -98,17 +101,17 @@ const FLOW_ITEMS = [
   {
     id: 4,
     num: '05',
-    category: 'EFFICIENCY',
-    engineLabel: 'Delivery Engine',
-    engineAction: 'Campaign-Ready Lists',
+    category: 'CAMPAIGN READY',
+    engineLabel: 'CRM-Mapped Delivery',
+    engineAction: 'DemandFlow Bridge API',
     problem: {
-      title: 'Manual Research Drag',
-      sub: 'Hours Lost on Prospecting',
+      title: '05. Reps Lost in Manual Research',
+      sub: '',
       icon: EyeOff,
     },
     solution: {
-      title: 'Campaign-Ready Delivery',
-      sub: 'Instant Outreach Velocity',
+      title: '05. Campaign-Ready Lists',
+      sub: '',
       icon: BarChart3,
     },
     color: '#EC4899', // Pink
@@ -328,22 +331,21 @@ const ProblemsSolved = () => {
 
         {/* ── COMPACT SECTION HEADER ── */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
-          <div className="inline-flex items-center gap-1.5   mb-2">
-            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.15em] text-primary dark:text-[#00d2ff] uppercase">
-              Automated Transformation
+          <div className="inline-flex items-center gap-1.5 mb-2">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              TECH-ENABLED LIST BUILDING TRANSFORMATION
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
-            <span>What Problems Does B2B </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
+            <span>WHAT PROBLEMS DOES </span>
             <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
-              List Building Solve?
+              B2B LIST BUILDING SOLVE?
             </span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto mt-1.5 font-normal">
-            From outdated records to missing decision-makers, we transform static contact bottlenecks into high-converting sales pipelines.
+            From stale records to missing decision-makers, we turn contact data bottlenecks into verified, campaign-ready lists, delivered into your CRM.
           </p>
 
           {/* ── Micro Step Indicator ── */}
@@ -375,6 +377,27 @@ const ProblemsSolved = () => {
           </div>
         </div>
 
+        {/* ── 3 Column Headers: PAIN | HUB STATE | OUTCOME (Specification Alignment) ── */}
+        <div className="hidden md:grid grid-cols-12 gap-2.5 lg:gap-3.5 items-center mb-2 px-1">
+          <div className="col-span-4 flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-rose-500/80" />
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              LEFT CARD (PAIN)
+            </span>
+          </div>
+          <div className="col-span-4 flex items-center justify-center gap-1.5 text-center">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-primary dark:text-[#00d2ff]">
+              MIDDLE ENGINE (HUB STATE)
+            </span>
+          </div>
+          <div className="col-span-4 flex items-center justify-end gap-1.5 text-right">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-500/90 dark:text-emerald-400">
+              RIGHT CARD (OUTCOME)
+            </span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500/80" />
+          </div>
+        </div>
+
         {/* ── DESKTOP & TABLET VISUALIZATION (Screen >= 768px) ── */}
         <div
           ref={containerRef}
@@ -397,7 +420,7 @@ const ProblemsSolved = () => {
 
               {/* Dynamic Arrowhead Markers */}
               {FLOW_ITEMS.map((item) => (
-                <React.Fragment key={`arrow-lb-${item.id}`}>
+                <React.Fragment key={`arrow-head-lb-${item.id}`}>
                   <marker
                     id={`arrow-head-lb-${item.id}`}
                     viewBox="0 0 10 10"
@@ -610,15 +633,17 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.problem.title}</span>
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.problem.sub}
-                      </div>
+                      {item.problem.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.problem.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -636,7 +661,7 @@ const ProblemsSolved = () => {
                 transition={{ duration: 0.25 }}
                 className="mb-2 px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/30 dark:bg-primary/10 text-primary dark:text-[#00d2ff] font-mono text-[9.5px] font-bold uppercase tracking-wider shadow-xs"
               >
-                AUTOMATE
+                MIDDLE ENGINE (HUB STATE)
               </motion.div>
 
               <div
@@ -699,15 +724,15 @@ const ProblemsSolved = () => {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.85, y: -3 }}
                       transition={{ duration: 0.3 }}
-                      className="relative z-10 flex flex-col items-center justify-center w-full"
+                      className="relative z-10 flex flex-col items-center justify-center w-full px-1"
                     >
-                      {/* Engine Category/Label Badge */}
-                      <div className="flex items-center gap-1 mb-1">
+                      {/* Engine Label Badge (Line 1) */}
+                      <div className="flex items-center justify-center gap-1 mb-1">
                         <span
-                          className="w-1.5 h-1.5 rounded-full animate-pulse"
+                          className="w-1.5 h-1.5 rounded-full animate-pulse shrink-0"
                           style={{ backgroundColor: currentItem.color }}
                         />
-                        <span className="text-[9px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 truncate max-w-[130px]">
+                        <span className="text-[8.5px] lg:text-[9.5px] font-mono font-bold tracking-wider uppercase text-sky-200 text-center leading-tight line-clamp-2 max-w-[155px]">
                           {currentItem.engineLabel}
                         </span>
                       </div>
@@ -756,9 +781,20 @@ const ProblemsSolved = () => {
                         </div>
                       </div>
 
-                      {/* Action Caption */}
-                      <div className="text-[10px] lg:text-[10.5px] font-mono font-bold uppercase tracking-wider text-sky-200 text-center leading-tight mt-0.5 px-2">
+                      {/* Action Caption (Line 2) */}
+                      <div className="text-[9.5px] lg:text-[10.5px] font-mono font-bold uppercase tracking-wider text-sky-200 text-center leading-tight mt-0.5 px-1 max-w-[155px]">
                         {currentItem.engineAction}
+                      </div>
+
+                      {/* Status indicator */}
+                      <div className="text-[8px] lg:text-[8.5px] font-mono tracking-wider mt-0.5 text-center">
+                        {phase === 'centerReact' ? (
+                          <span className="text-amber-300 font-bold animate-pulse">⚡ TRANSFORMING</span>
+                        ) : phase === 'toSolution' || phase === 'solution' ? (
+                          <span className="text-emerald-300 font-bold">✓ SOLVED</span>
+                        ) : (
+                          <span className="text-sky-300/90">● HUB STATE</span>
+                        )}
                       </div>
                     </motion.div>
                   </AnimatePresence>
@@ -801,15 +837,17 @@ const ProblemsSolved = () => {
 
                     {/* Text block */}
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-tight truncate flex items-center justify-between">
+                      <div className="text-[12px] lg:text-[13px] font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug flex items-center justify-between">
                         <span>{item.solution.title}</span>
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1" style={{ backgroundColor: item.color }} />
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0 ml-1.5" style={{ backgroundColor: item.color }} />
                         )}
                       </div>
-                      <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
-                        {item.solution.sub}
-                      </div>
+                      {item.solution.sub ? (
+                        <div className="text-[10px] lg:text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.solution.sub}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
@@ -821,6 +859,13 @@ const ProblemsSolved = () => {
 
         {/* ── MOBILE & COMPACT VISUALIZATION (Screen < 768px) ── */}
         <div className="md:hidden space-y-3 pt-2">
+          {/* Column Headers for mobile */}
+          <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 px-1">
+            <span className="text-rose-500">PAIN</span>
+            <span className="text-primary dark:text-[#00d2ff]">HUB STATE</span>
+            <span className="text-emerald-500">OUTCOME</span>
+          </div>
+
           {/* Active Problem Pill */}
           <div
             className={`flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0B1527] border shadow-sm transition-all duration-300 ${
@@ -831,14 +876,18 @@ const ProblemsSolved = () => {
             style={{ borderColor: currentItem.color }}
           >
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-text-primary dark:text-white shrink-0"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0"
               style={{ backgroundColor: currentItem.color }}
             >
               <currentItem.problem.icon className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.problem.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.problem.sub}</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">
+                {currentItem.problem.title}
+              </div>
+              {currentItem.problem.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.problem.sub}</div>
+              ) : null}
             </div>
           </div>
 
@@ -846,24 +895,29 @@ const ProblemsSolved = () => {
           <div className="flex flex-col items-center justify-center py-1">
             <div className="w-0.5 h-3 bg-gradient-to-b from-slate-300 to-primary dark:from-white/20 dark:to-primary" />
             <div
-              className={`my-1 px-4 py-2 rounded-2xl text-white font-bold text-xs flex items-center gap-2.5 shadow-md border border-white/20 transition-all duration-300 ${
+              className={`my-1 px-4 py-2.5 rounded-2xl text-white font-bold text-xs flex flex-col items-center gap-1 shadow-md border border-white/20 transition-all duration-300 ${
                 phase === 'centerReact'
                   ? 'scale-108 shadow-lg ring-2 ring-primary/50'
                   : 'scale-100'
               }`}
               style={{ background: 'linear-gradient(135deg, #0d214f 0%, #0369a1 100%)' }}
             >
-              <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
-                <currentItem.problem.icon className="w-3 h-3 text-text-primary dark:text-white" />
+              <div className="text-[9px] font-mono uppercase tracking-wider text-sky-200 text-center">
+                {currentItem.engineLabel}
               </div>
-              <ArrowRight className="w-3 h-3 text-sky-300" />
-              <div
-                className="w-6 h-6 rounded-md flex items-center justify-center text-text-primary dark:text-white shadow-xs"
-                style={{ backgroundColor: currentItem.color }}
-              >
-                <currentItem.solution.icon className="w-3 h-3" />
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center">
+                  <currentItem.problem.icon className="w-3 h-3 text-white" />
+                </div>
+                <ArrowRight className="w-3 h-3 text-sky-300" />
+                <div
+                  className="w-6 h-6 rounded-md flex items-center justify-center text-white shadow-xs"
+                  style={{ backgroundColor: currentItem.color }}
+                >
+                  <currentItem.solution.icon className="w-3 h-3" />
+                </div>
               </div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-sky-200 ml-1">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-sky-200 font-bold text-center">
                 {currentItem.engineAction}
               </div>
             </div>
@@ -880,14 +934,18 @@ const ProblemsSolved = () => {
             style={{ borderColor: currentItem.color }}
           >
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-text-primary dark:text-white shrink-0"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0"
               style={{ backgroundColor: currentItem.color }}
             >
               <currentItem.solution.icon className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white">{currentItem.solution.title}</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">{currentItem.solution.sub}</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-text-primary dark:text-white leading-snug">
+                {currentItem.solution.title}
+              </div>
+              {currentItem.solution.sub ? (
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{currentItem.solution.sub}</div>
+              ) : null}
             </div>
           </div>
 

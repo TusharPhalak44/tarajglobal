@@ -13,11 +13,11 @@ const AUDIENCES = [
     color: '#00A6FF',
     image: '/saas-audience.jpg',
     description:
-      'Connect with CTOs, VPs of Engineering, and software buyers using hyper-targeted prospect lists tailored to your SaaS platform and growth cycles.',
+      ' Generic lists aim SaaS reps at the wrong accounts. We build targeted lists of CTOs, engineering VPs, and software buyers around your platform and growth stage.',
     points: [
-      'Targeting by tech stack, ARR tier, company size, and growth stage',
-      'Verified decision-maker contact intelligence for product and technical leaders',
-      'Campaign-ready lists supporting demos, trials, and evaluation conversations',
+      '✔ Tech stack, ARR tier, company size, and growth-stage targeting',
+      '✔ Verified contacts for product and technical leaders',
+      '✔ Lists ready for demo, trial, and evaluation outreach',
     ],
     visualType: 'saas',
   },
@@ -29,11 +29,12 @@ const AUDIENCES = [
     color: '#7C3AED',
     image: '/it-audience.jpg',
     description:
-      'Reach IT Directors, CIOs, and infrastructure stakeholders with validated prospect data focused on operational requirements and evaluated technology solutions.',
+      ' Infrastructure buyers sit behind generic inboxes and stale org charts. We reach IT directors, CIOs, and infrastructure leads with validated, enriched data.',
     points: [
-      'Targeting IT Directors, CIOs, and technology infrastructure managers',
-      'Enriched company firmographics including headcount, revenue, and locations',
-      'Zero-bounce contact data formatted for immediate outbound sales execution',
+        '✔ IT directors, CIOs, and infrastructure managers targeted',
+        '✔ Firmographics including headcount, revenue, and locations',
+        '✔ Zero-bounce contacts formatted for outbound',
+      
     ],
     visualType: 'it',
   },
@@ -45,11 +46,11 @@ const AUDIENCES = [
     color: '#72D669',
     image: '/services-audience.jpg',
     description:
-      'Fuel your outbound sales reps with accurate, fresh prospect lists to eliminate manual research time and accelerate pipeline generation.',
+      ' SDRs lose hours on research before the first dial. We supply fresh, verified lists so reps start on conversations, not spreadsheets.',
     points: [
-      'Pre-verified prospect lists segmented by territory, industry vertical, and role',
-      'Dramatically reduced prospecting time and elevated sales conversation velocity',
-      'Comprehensive contact profiles with verified direct dials and corporate emails',
+      '✔ Lists segmented by territory, vertical, and role',
+      '✔ Less prospecting time, more conversations',
+      '✔ Direct dials and corporate emails verified',
     ],
     visualType: 'services',
   },
@@ -61,11 +62,11 @@ const AUDIENCES = [
     color: '#FF6D00',
     image: '/enterprise-audience.jpg',
     description:
-      'Engage complex enterprise buying committees and procurement heads with multi-threaded account intelligence built for enterprise sales cycles.',
+      ' Enterprise deals stall when only one contact is known. We map buying committees and procurement leads for long, multi-stakeholder cycles.',
     points: [
-      'Account-level mapping aligned to your enterprise ideal customer profile',
-      'Multi-stakeholder contact identification across global buying departments',
-      'Multi-tiered prospect data supporting strategic account-based marketing',
+      '✔ Account mapping aligned to your enterprise ICP',
+      '✔ Contacts across global buying departments',
+      '✔ Multi-tiered data supporting account-based marketing',
     ],
     visualType: 'enterprise',
   },
@@ -299,8 +300,8 @@ const WhoIsItFor = () => {
             {...fadeUp(0)}
             className="flex items-center justify-center mb-2"
           >
-            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              Target Audience
+           <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+             ICP VERTICAL ALIGNMENT
             </span>
           </motion.div>
 
@@ -308,9 +309,9 @@ const WhoIsItFor = () => {
             {...fadeUp(0.08)}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-2"
           >
-            Who Is B2B List Building{' '}
+            Who Is {' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              For?
+              B2B List Building For?
             </span>
           </motion.h2>
 
@@ -318,7 +319,8 @@ const WhoIsItFor = () => {
             {...fadeUp(0.12)}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl mx-auto font-normal"
           >
-            B2B list building helps high-growth companies reach the right decision-makers with clean, verified prospect data.
+          Built for B2B software and technology revenue teams that need verified decision-maker data to run outbound across US, EMEA, and APAC.
+
           </motion.p>
         </div>
 

@@ -373,22 +373,24 @@ const Hero = () => {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                B2B List Building
+               <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+                TECH-ENABLED LIST BUILDING ARCHITECTURE
+
               </span>
             </motion.div>
 
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
-              <span className="block pb-1 sm:pb-1.5">Build Accurate B2B Lists That Connect You</span>
+              <span className="block pb-1 sm:pb-1.5">Custom B2B List Building </span>
               <span
                 className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
               >
-                With the Right Buyers
+               Verified Before Your First Send
+
               </span>
             </motion.h1>
 
@@ -397,7 +399,7 @@ const Hero = () => {
               {...fadeUp(0.32)}
               className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 max-w-[540px]"
             >
-              Taraj Global helps B2B technology and SaaS companies build targeted prospect lists with relevant company and decision-maker data to support effective sales and marketing campaigns.
+               Bought and scraped lists bounce, age quickly, and send reps back to manual research. TaRaj Global builds each list around your ICP through human-led research, verifies every contact in-house, and delivers CRM-ready data across US, EMEA, and APAC.
             </motion.p>
 
             {/* CTAs */}
@@ -411,7 +413,7 @@ const Hero = () => {
                   boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
                 }}
               >
-                Start a Conversation
+                Build Your Custom B2B List
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -421,7 +423,7 @@ const Hero = () => {
                 className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-xl font-semibold text-sm  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
                 style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
               >
-                Explore Our Services
+                Explore List Building Architecture
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
               </button>
             </motion.div>

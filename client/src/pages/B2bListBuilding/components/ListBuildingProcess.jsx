@@ -106,8 +106,9 @@ const ListBuildingProcess = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              How Our Process Works
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+
+             LIST BUILDING | VERIFIED PROSPECT DATA
             </span>
           </motion.div>
 
@@ -119,7 +120,7 @@ const ListBuildingProcess = () => {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
               <span className="text-slate-900 dark:text-text-primary dark:text-white">
                 B2B LIST BUILDING{' '}
               </span>
@@ -143,7 +144,7 @@ const ListBuildingProcess = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto mt-3 font-normal"
           >
-            A rigorous multi-tier research and validation pipeline delivering verified, campaign-ready B2B prospect intelligence.
+            A 9-stage research and validation framework delivering verified, campaign-ready B2B prospect lists mapped to your CRM across US, EMEA, and APAC.
           </motion.p>
         </div>
 
