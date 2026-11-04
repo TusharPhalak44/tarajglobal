@@ -1,70 +1,72 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, HelpCircle } from 'lucide-react'
+import { ChevronDown, CheckCircle2 } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import {
+  CATEGORIES_DATA,
+  CATEGORY_FAQS,
+  normalizeCategory,
+  getCategoryFaq,
+  DEFAULT_BLOG_FAQS
+} from './categoryFaqs'
 
-export const DEFAULT_BLOG_FAQS = [
-  {
-    id: 'blog-faq-1',
-    num: '01',
-    question: 'What core topics does the Taraj Global Knowledge Hub cover?',
-    answer:
-      'Our knowledge hub provides field-tested B2B demand generation architectures, account-based marketing (ABM) playbooks, BANT/MQL/SQL qualification standards, multi-channel outbound cadences, CRM integration benchmarks, and sales development representative (SDR) conversion strategies.'
-  },
-  {
-    id: 'blog-faq-2',
-    num: '02',
-    question: 'How often are new B2B playbooks and industry research published?',
-    answer:
-      'Our research and revenue operations team releases fresh playbooks, conversion benchmarks, and tactical market intelligence on a bi-weekly cadence, reflecting verified performance metrics from live client campaigns across US, EMEA, and APAC regions.'
-  },
-  {
-    id: 'blog-faq-3',
-    num: '03',
-    question: 'Are these demand generation frameworks applicable to both SaaS and Enterprise tech?',
-    answer:
-      'Yes. While our primary focus is high-growth B2B SaaS, cloud infrastructure, and enterprise IT companies with deal values from $10,000 to over $1,000,000 ACV, the foundational multi-touch pipeline mechanics apply to any company seeking predictable, repeatable revenue.'
-  },
-  {
-    id: 'blog-faq-4',
-    num: '04',
-    question: 'Can our revenue leadership request custom research or specific playbook topics?',
-    answer:
-      'Yes. If your marketing, sales, or RevOps team is tackling specific pipeline hurdles, CRM deliverability bottlenecks, or account qualification challenges, you can contact our editorial and research desk at info@tarajglobal.com to request dedicated deep-dive playbooks.'
-  },
-  {
-    id: 'blog-faq-5',
-    num: '05',
-    question: 'How do the strategies discussed connect with Taraj Global’s execution services?',
-    answer:
-      'Every framework published is derived from active operational workflows executed by our team across B2B Appointment Setting, Content Syndication, HQL/SQL Lead Generation, and Database Cleansing services backed by our 99.8% Data Accuracy SLA.'
-  },
-  {
-    id: 'blog-faq-6',
-    num: '06',
-    question: 'How can our team implement these frameworks into Salesforce, HubSpot, or Outreach?',
-    answer:
-      'Each playbook includes practical execution checklists, tech-stack integration blueprints (Salesforce, HubSpot, Apollo, Outreach), and SLA benchmarks that your SDR, marketing operations, and sales engineering teams can immediately adopt.'
-  }
-]
+export { DEFAULT_BLOG_FAQS, CATEGORY_FAQS, CATEGORIES_DATA, normalizeCategory, getCategoryFaq }
 
 export const BlogFAQ = ({
-  faqs = DEFAULT_BLOG_FAQS,
-  eyebrow = 'FREQUENTLY ASKED QUESTIONS • DEMANDFLOW KNOWLEDGE BASE',
-  title = 'Frequently Asked',
-  highlightTitle = 'Questions',
-  description = 'Explore answers to common questions about our B2B demand generation playbooks, methodology, and revenue growth frameworks.',
+  faqs = null,
+  categoryKey = null,
+  selectedCategory = null,
+  onCategoryChange = null,
+  showCategoryTabs = true,
+  eyebrow = null,
+  title = null,
+  highlightTitle = null,
+  description = null,
   id = 'faq',
   className = '',
   isArticleInline = false
 }) => {
+  // Determine active category key
+  const initialCatKey = normalizeCategory(categoryKey || selectedCategory) || 'thought-leadership'
+  const [internalCategory, setInternalCategory] = useState(initialCatKey)
   const [openId, setOpenId] = useState(null)
   const prefersReducedMotion = useReducedMotion()
 
-  const activeFaqs = Array.isArray(faqs) && faqs.length > 0 ? faqs : DEFAULT_BLOG_FAQS
+  // Sync with incoming category prop if provided
+  useEffect(() => {
+    const nextKey = normalizeCategory(categoryKey || selectedCategory)
+    if (nextKey && nextKey !== internalCategory) {
+      setInternalCategory(nextKey)
+      setOpenId(null) // reset open accordion item on category switch
+    }
+  }, [categoryKey, selectedCategory])
+
+  const activeCategoryKey = normalizeCategory(categoryKey || selectedCategory) || internalCategory
+  const categoryConfig = CATEGORY_FAQS[activeCategoryKey] || CATEGORY_FAQS['thought-leadership']
+
+  // If custom FAQs are passed (e.g. parsed directly from an article), use them;
+  // otherwise use the category-specific FAQs.
+  const activeFaqs = Array.isArray(faqs) && faqs.length > 0
+    ? faqs
+    : (categoryConfig?.faqs || DEFAULT_BLOG_FAQS)
+
+  const resolvedEyebrow = eyebrow || categoryConfig?.eyebrow || 'SOMETHING ON YOUR MIND?'
+  const resolvedTitle = title || categoryConfig?.title || 'FREQUENTLY ASKED'
+  const resolvedHighlight = highlightTitle || categoryConfig?.highlightTitle || 'QUESTIONS'
+  const resolvedDesc = description !== null && description !== undefined
+    ? description
+    : (categoryConfig?.subtext || 'Answers about our executive perspectives on B2B revenue strategy and growth.')
 
   const toggle = (itemId) => {
     setOpenId((prev) => (prev === itemId ? null : itemId))
+  }
+
+  const handleTabClick = (key) => {
+    setInternalCategory(key)
+    setOpenId(null)
+    if (onCategoryChange) {
+      onCategoryChange(key)
+    }
   }
 
   const renderFaqItem = (faq, index) => {
@@ -184,9 +186,8 @@ export const BlogFAQ = ({
             transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 mb-2.5"
           >
-            <HelpCircle className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
             <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
-              {eyebrow}
+              {resolvedEyebrow}
             </span>
           </motion.div>
 
@@ -197,13 +198,13 @@ export const BlogFAQ = ({
             transition={{ duration: 0.45, delay: 0.08 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">{title} </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">{resolvedTitle} </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              {highlightTitle}
+              {resolvedHighlight}
             </span>
           </motion.h2>
 
-          {description && (
+          {resolvedDesc && (
             <motion.p
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 12 }}
               whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -211,12 +212,35 @@ export const BlogFAQ = ({
               transition={{ duration: 0.45, delay: 0.12 }}
               className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-2 font-normal"
             >
-              {description}
+              {resolvedDesc}
             </motion.p>
+          )}
+
+          {/* ── CATEGORY TABS SELECTOR (WHEN BROWSING ON BLOG HUB) ── */}
+          {!isArticleInline && showCategoryTabs && (
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+              {CATEGORIES_DATA.map((cat) => {
+                const isSelected = activeCategoryKey === cat.key
+                return (
+                  <button
+                    key={cat.key}
+                    type="button"
+                    onClick={() => handleTabClick(cat.key)}
+                    className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${isSelected
+                      ? 'bg-[#00A6FF] text-white shadow-md shadow-[#00A6FF]/25 scale-105'
+                      : 'bg-white dark:bg-[#11141e] text-slate-700 dark:text-slate-300 border border-slate-200/90 dark:border-white/10 hover:border-[#00A6FF]/50 hover:text-[#00A6FF]'
+                      }`}
+                  >
+                    <span>{cat.name}</span>
+                    {isSelected && <CheckCircle2 size={13} className="shrink-0" />}
+                  </button>
+                )
+              })}
+            </div>
           )}
         </div>
 
-        {/* ── SINGLE COLUMN ACCORDION STACK (ONE ROW PER ITEM) ── */}
+        {/* ── SINGLE COLUMN ACCORDION STACK ── */}
         <div className={`space-y-3.5 w-full mx-auto ${isArticleInline ? 'max-w-full' : 'max-w-4xl'}`}>
           {activeFaqs.map((faq, i) => renderFaqItem(faq, i))}
         </div>

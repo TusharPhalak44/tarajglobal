@@ -187,7 +187,7 @@ const FAQ = () => {
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
             <div className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Questions
+              Questions ON MARKETING QUALIFIED LEADS 
             </div>
           </motion.h2>
 

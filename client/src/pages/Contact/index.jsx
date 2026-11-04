@@ -42,12 +42,12 @@ function Contact() {
   return (
     <>
       <SEO
-        title="Contact Us | Book a Discovery Call | Taraj Global"
-        description="Ready to scale your B2B sales pipeline? Contact Taraj Global today to discuss your lead generation, ABM, and demand generation requirements. Schedule a strategy meeting."
+        title="Contact TaRaj Global | Book a B2B Strategy Call"
+        description="Talk to TaRaj Global about B2B appointment setting, lead generation, content syndication, and ABM. Book a strategy call or send us a message."
         keywords="contact Taraj Global, B2B lead generation consultation, demand generation agency contact, Pune B2B marketing agency, book B2B sales meeting"
         canonical="/contact"
-        ogTitle="Contact Taraj Global | Let's Build Your Revenue Engine"
-        ogDescription="Connect with our B2B growth strategists to discuss qualified lead generation and pipeline acceleration."
+        ogTitle="Contact TaRaj Global | Book a B2B Strategy Call"
+        ogDescription="Talk to TaRaj Global about B2B appointment setting, lead generation, content syndication, and ABM. Book a strategy call or send us a message."
         schemaJson={contactSchema}
       />
       <div className="min-h-screen bg-background">

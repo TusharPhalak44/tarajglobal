@@ -85,7 +85,9 @@ export default function ContactHero({ onBookMeeting }) {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-wide text-text-primary dark:text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] uppercase mb-3 sm:mb-4"
         >
           CONTACT US
+
         </motion.h1>
+        
  
         {/* Spaced Subtitle: CONNECT WITH TARAJ GLOBAL */}
         <motion.div
@@ -94,7 +96,7 @@ export default function ContactHero({ onBookMeeting }) {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="text-sm sm:text-sm md:text-base font-light tracking-[0.35em] sm:tracking-[0.45em] text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] uppercase mb-8 sm:mb-10 pl-1"
         >
-          C O N N E C T &nbsp; W I T H &nbsp; T A R A J &nbsp; G L O B A L
+          C O N N E C T &nbsp; B 2 B  &nbsp; P I P E L I N E  &nbsp; S T R A T E G Y
         </motion.div>
  
         {/* Primary CTA Button: BOOK A STRATEGY CALL */}
@@ -122,7 +124,7 @@ export default function ContactHero({ onBookMeeting }) {
  
             <span className="relative z-10 flex items-center gap-2.5">
               <Calendar className="w-4 h-4 text-black" />
-              <span>BOOK A STRATEGY CALL</span>
+              <span>Book a Strategy Call</span>
             </span>
           </motion.button>
         </motion.div>
@@ -139,9 +141,12 @@ export default function ContactHero({ onBookMeeting }) {
           }}
           className="mt-6 inline-flex items-center gap-1.5 text-sm text-text-secondary dark:text-text-accent dark:text-white/60 hover:text-text-accent dark:text-white transition-colors cursor-pointer"
         >
-          <span>Or send us a message below</span>
+          <span> Prefer to write? Send us a message below</span>
+          
           <ArrowDown className="w-3.5 h-3.5" />
-        </motion.button>
+        </motion.button> <br /><br />
+        <p>Tell us your target accounts, regions, and pipeline goals. A TaRaj Global specialist will recommend the right program.
+</p>
  
       </div>
     </section>

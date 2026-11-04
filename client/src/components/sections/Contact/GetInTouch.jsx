@@ -136,7 +136,7 @@ const GetInTouch = ({ onBookMeeting }) => {
                 }}
               >
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                We are online
+               WE’RE ONLINE
               </motion.div>
 
             </div>
@@ -195,8 +195,8 @@ const GetInTouch = ({ onBookMeeting }) => {
 
                 {/* Heading */}
                 <div className="text-center">
-                  <h3 className="text-text-primary dark:text-white font-bold text-xl mb-1">Accelerate your growth</h3>
-                  <p className="text-text-secondary text-sm">Our team typically responds within a few hours.</p>
+                  <h3 className="text-text-primary dark:text-white font-bold text-xl mb-1"> Let’s Accelerate Your Pipeline</h3>
+                  <p className="text-text-secondary text-sm">Our team typically replies within 2 hours during business hours.</p>
                 </div>
 
                 {/* Channel pills */}
@@ -233,7 +233,7 @@ const GetInTouch = ({ onBookMeeting }) => {
                 {/* CTA button */}
                 <FlowButton 
                   onClick={handleBookMeeting} 
-                  text="Book a Meeting" 
+                  text="Book a Strategy Call" 
                   variant="primary" 
                   className="w-full justify-center"
                 />

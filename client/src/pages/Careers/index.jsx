@@ -1163,54 +1163,60 @@ function Careers() {
   const growthPillars = [
     {
       num: '01',
-      blockLines: ['ACCELERATED', 'PROMOTION'],
-      title: 'Accelerated Promotion Path',
-      desc: 'Transparent meritocracy where high performance directly dictates advancement. SDRs regularly transition to Account Executive & Pod Lead within 12–18 months.',
+      blockLines: [
+  <>
+    FAST-TRACK
+    <br />
+    PROMOTION
+  </>
+],
+      title: ' Promotion Based on Performance, Not Tenure',
+      desc: 'Advancement follows results. SDRs regularly move into Account Executive and Pod Lead roles within 12–18 months.',
       tag: 'MERITOCRACY',
       sizeClass: 'text-lg sm:text-xl xl:text-[25px]',
       colSpan: 'col-span-12 sm:col-span-7'
     },
     {
-      num: '02',
-      blockLines: ['UNCAPPED', 'INCENTIVE'],
-      title: 'Uncapped Incentive Upside',
-      desc: 'Tier-one commission benchmarks with zero earnings caps. High performers are rewarded immediately for qualified meeting generation and pipeline velocity.',
-      tag: 'UNLIMITED EARNINGS',
-      sizeClass: 'text-base sm:text-lg xl:text-[22px]',
-      colSpan: 'col-span-12 sm:col-span-5'
-    },
-    {
-      num: '03',
-      blockLines: ['REVENUE', 'TECH'],
-      title: 'Cutting-Edge Revenue Tech',
-      desc: 'Hands-on experience with world-class demand gen infrastructure: live buyer intent signals, AI email orchestration, and org-chart hierarchy engines.',
-      tag: 'AI STACK',
-      sizeClass: 'text-base sm:text-lg xl:text-[22px]',
-      colSpan: 'col-span-12 sm:col-span-5'
-    },
-    {
-      num: '04',
-      blockLines: ['GLOBAL', 'ENTERPRISE'],
-      title: 'Global Enterprise Reach',
-      desc: 'Direct interaction with high-growth SaaS, FinTech, and Cybersecurity category leaders across North America, EMEA, and Asia-Pacific markets.',
-      tag: 'GLOBAL PODS',
-      sizeClass: 'text-lg sm:text-xl xl:text-[25px]',
-      colSpan: 'col-span-12 sm:col-span-7'
-    },
+  num: '02',
+  blockLines: ['UNCAPPED', 'INCENTIVES'],
+  title: 'Competitive Commission With No Earnings Cap',
+  desc: 'Earn more as you deliver more. Qualified meetings and pipeline velocity are rewarded as you generate them.',
+  tag: 'UNLIMITED EARNINGS',
+  sizeClass: 'text-base sm:text-lg xl:text-[22px]',
+  colSpan: 'col-span-12 sm:col-span-5'
+},
+{
+  num: '03',
+  blockLines: ['MODERN REVENUE', 'TECH'],
+  title: 'Hands-On Experience With the Demand Gen Stack',
+  desc: 'Work with live buyer intent signals, AI-assisted email orchestration, and org-chart mapping tools used on real enterprise campaigns.',
+  tag: 'AI STACK',
+  sizeClass: 'text-base sm:text-lg xl:text-[22px]',
+  colSpan: 'col-span-12 sm:col-span-5'
+},
+{
+  num: '04',
+  blockLines: ['GLOBAL ENTERPRISE', 'EXPOSURE'],
+  title: 'Engage Senior Buyers Across Three Regions',
+  desc: 'Direct interaction with high-growth SaaS, FinTech, and Cybersecurity category leaders across North America, EMEA, and Asia-Pacific markets.',
+  tag: 'GLOBAL PODS',
+  sizeClass: 'text-base sm:text-lg xl:text-[22px]',
+  colSpan: 'col-span-12 sm:col-span-7'
+},
     {
       num: '05',
-      blockLines: ['HIGH-TRUST', 'CULTURE'],
-      title: 'High-Trust, Zero Politics',
-      desc: 'A supportive, collaborative work culture grounded in mutual accountability, active knowledge sharing, and executive mentorship from day one.',
+      blockLines: ['HIGH-TRUST CULTURE'],
+      title: 'A Supportive Team With No Office Politics',
+      desc: 'Share knowledge openly, hold each other accountable, and get mentorship from senior leaders from day one.',
       tag: 'COLLABORATIVE',
       sizeClass: 'text-base sm:text-lg xl:text-[22px]',
       colSpan: 'col-span-12 sm:col-span-6'
     },
     {
       num: '06',
-      blockLines: ['KHARADI', 'TECH HUB'],
-      title: 'Modern Kharadi Tech Hub',
-      desc: 'Ergonomically designed headquarters at The Space Business Complex in Kharadi, Pune, equipped with break lounges and regular team outings.',
+      blockLines: ['KHARADI TECH HUB'],
+      title: 'A Modern Office in Pune’s Tech Corridor',
+      desc: 'Work from The Space Business Complex in Kharadi, with break lounges and regular team outings.',
       tag: 'PUNE HQ',
       sizeClass: 'text-lg sm:text-xl xl:text-[24px]',
       colSpan: 'col-span-12 sm:col-span-6'
@@ -1222,29 +1228,29 @@ function Careers() {
     {
       num: '01',
       tag: 'CAMPUS & LOCATION',
-      q: 'Where is the Taraj Global office located?',
-      a: 'Our primary delivery headquarters is located at The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014. We are situated in one of Pune\'s most vibrant commercial and technology corridors.',
+      q: 'Where is the TaRaj Global office located?',
+      a: 'TaRaj Global’s office is at The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014, in one of Pune’s busiest technology and business corridors.',
       highlight: 'The Space Business Complex, Kharadi, Pune (Tech Hub)'
     },
     {
       num: '02',
       tag: 'ACADEMY & TRAINING',
-      q: 'What does the training & ramp-up process look like for new joiners?',
-      a: 'Every new team member undergoes our structured 2-week Revenue Academy, covering B2B buyer psychology, account mapping, intent signals, CRM tools, and live campaign shadow sessions with senior pod leads.',
+      q: ' What training do new joiners receive?',
+      a: 'Every new joiner completes a structured 2-week Revenue Academy. It covers B2B buyer psychology, account mapping, intent signals, CRM tools, and live campaign shadowing with senior pod leads.',
       highlight: '2-Week Structured Revenue Academy with Senior Pod Mentors'
     },
     {
       num: '03',
       tag: 'SHIFTS & WORKING HOURS',
-      q: 'What shifts or working hours do team members follow?',
-      a: 'Because we serve international clients across North America, Europe, and APAC, working hours correspond to target market timezones (primarily US/UK business hours) with complete cab/transport allowances where applicable.',
+      q: ' What are the working hours and shifts?',
+      a: 'Working hours follow our clients’ target-market time zones, mainly US and UK business hours. Cab and transport allowances apply where applicable.',
       highlight: 'Aligned with US/UK Market Hours • Transport Allowance Provided'
     },
     {
       num: '04',
       tag: 'MERITOCRACY & APPRAISALS',
-      q: 'How frequently are promotions and performance appraisals conducted?',
-      a: 'We operate on biannual formal reviews paired with monthly 1-on-1 development check-ins. Promotion at Taraj Global is strictly merit-based, allowing rapid progression without arbitrary tenure restrictions.',
+      q: 'How often are performance reviews and promotions?',
+      a: 'Performance is formally reviewed twice a year, with monthly 1-on-1 development check-ins. Promotions are merit-based, with no fixed tenure requirement..',
       highlight: 'Biannual Appraisals + Monthly 1-on-1 Development Reviews'
     }
   ]
@@ -1338,12 +1344,12 @@ function Careers() {
   return (
     <>
       <SEO
-        title="Careers at Taraj Global | B2B Marketing & Sales Jobs in Pune"
-        description="Join our rapidly growing revenue team at Taraj Global. Explore open roles in B2B sales development, demand generation, and marketing technology in Kharadi, Pune."
+        title="TaRaj Global Careers | B2B Sales & Marketing Jobs in Pune"
+        description="Join TaRaj Global in Kharadi, Pune. Explore B2B sales development, demand generation and MarTech roles with fast promotion and uncapped incentives."
         keywords="Taraj Global careers, B2B marketing jobs Pune, SDR jobs Pune, demand generation careers, lead generation specialist jobs, tech marketing jobs, B2B sales jobs Kharadi"
         canonical="/careers"
-        ogTitle="Careers at Taraj Global | Build Your Future in Enterprise B2B"
-        ogDescription="Accelerate your career in B2B demand generation, org-chart intelligence, and enterprise revenue systems."
+        ogTitle="TaRaj Global Careers | B2B Sales & Marketing Jobs in Pune"
+        ogDescription="Join TaRaj Global in Kharadi, Pune. Explore B2B sales development, demand generation and MarTech roles with fast promotion and uncapped incentives."
         schemaJson={careersSchema}
       />
 
@@ -1384,9 +1390,9 @@ function Careers() {
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
               className="flex items-center gap-2.5 text-[#1A1A2E] dark:text-white text-xs font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 transition-colors duration-300"
             >
-              <span className="text-primary font-semibold">CAREERS AT TARAJ GLOBAL</span>
+              <span className="text-primary font-semibold">CAREERS</span>
               <span className="text-slate-400 dark:text-white/40">&bull;</span>
-              <span className="text-text-primary dark:text-white font-bold">WE ARE HIRING IN PUNE</span>
+              <span className="text-text-primary dark:text-white font-bold">B2B SALES & DEMAND GEN JOBS IN PUNE</span>
             </motion.div>
 
             {/* Huge Bold Heading (Matching "THE FUTURE IS BRIGHT" in reference image) */}
@@ -1402,7 +1408,7 @@ function Careers() {
                   }}
                   className="block text-[#1A1A2E] dark:text-text-primary dark:text-white"
                 >
-                  BUILD THE FUTURE
+                  BUILD YOUR
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-1 sm:mt-2">
@@ -1416,7 +1422,8 @@ function Careers() {
                   }}
                   className="block text-[#1A1A2E] dark:text-text-primary dark:text-white"
                 >
-                  OF B2B REVENUE
+                  B2B REVENUE
+
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-1 sm:mt-2">
@@ -1430,7 +1437,7 @@ function Careers() {
                   }}
                   className="block text-[#0066CC] dark:text-[#00A6FF]"
                 >
-                  ARCHITECTURE.
+                  CAREER IN PUNE.
                 </motion.div>
               </div>
             </h1>
@@ -1448,7 +1455,8 @@ function Careers() {
             >
               <div className="w-8 sm:w-12 h-[2px] bg-[#0066CC] dark:bg-[#00A6FF] mt-3 shrink-0 rounded-full" />
               <p className="text-sm sm:text-base text-[#4A5568] dark:text-white/85 leading-relaxed font-normal text-left transition-colors duration-300">
-                Join an elite revenue engineering team in Kharadi, Pune powering qualified demand for North American, European, and APAC technology enterprises. Accelerate your career in a high-trust culture that rewards verified precision and outbound velocity.
+                Join the revenue team at TaRaj Global in Kharadi, Pune, generating qualified demand for technology enterprises across North America, EMEA, and APAC. Grow fast in a high-trust culture that rewards verified quality, outreach discipline, and results.
+
               </p>
             </motion.div>
 
@@ -1465,13 +1473,13 @@ function Careers() {
             >
               {/* FlowButton Components */}
               <FlowButton
-                text="Explore More Roles"
+                text="View Open Roles"
                 variant="primary"
                 onClick={scrollToJobs}
               />
 
               <FlowButton
-                text="Drop Your Resume"
+                text="Submit Your Resume"
                 variant="dark"
                 onClick={() => openModal()}
               />
@@ -1492,17 +1500,17 @@ function Careers() {
 
             <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
               <div className="inline-flex items-center gap-2 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2.5">
-                <Briefcase size={12} />
-                <span>Open Positions</span>
+                {/* <Briefcase size={12} /> */}
+                <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">OPEN POSITIONS</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-text-primary leading-tight mb-3">
-                Find Your Role in{' '}
+                Open Roles in {' '}
                 <span className="bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#38BDF8] bg-clip-text text-transparent">
-                  High-Impact Revenue Growth
+                  B2B Sales, Demand Generation & MarTech
                 </span>
               </h2>
               <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
-                Explore our active openings in Kharadi, Pune. Don’t see your exact role? Submit a general application and we’ll reach out when a match opens.
+                Browse current openings at our Kharadi, Pune office. Don’t see your role? Send a general application and our recruiting team will contact you when a match opens.
               </p>
             </div>
 
@@ -1660,25 +1668,25 @@ function Careers() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 bg-[#00A6FF]/10 border border-[#00A6FF]/25 text-[#00A6FF] text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase mb-4 backdrop-blur-md"
+                className="className=text-sm font-semibold tracking-[0.2em] text-primary uppercase"
               >
-                <Sparkles size={13} className="text-[#00A6FF]" />
-                <span>Life at Taraj Global</span>
+                {/* <Sparkles size={13} className="text-[#00A6FF]" /> */}
+                <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">LIFE AT TARAJ GLOBAL</span>
                 <span className="w-1 h-1 rounded-full bg-[#00A6FF]/60" />
-                <span className="text-text-primary/75 dark:text-white/75 font-mono">
+                <span className="text-text dark:text-white/75">
                   <GalleryCounter end={filteredPhotos.length || 6} /> Moments
                 </span>
               </motion.div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary leading-[1.15] mb-4">
-                The People Behind{' '}
+                Meet the{' '}
                 <span className="bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#38BDF8] bg-clip-text text-transparent">
-                  The Progress
+                  People Behind the Results
                 </span>
               </h2>
 
               <p className="text-sm sm:text-base lg:text-lg text-text-secondary leading-relaxed font-normal max-w-2xl mx-auto">
-                From celebrations and milestones to everyday collaboration, discover the moments that define life at{' '}
+                From monthly awards to team outings and everyday collaboration, see what working at TaRaj Global looks like.  {' '}
                 <span className="text-text-primary font-semibold">Taraj Global</span>.
               </p>
             </div>
@@ -1828,18 +1836,20 @@ function Careers() {
             <div className="max-w-3xl mb-4 xl:mb-5">
               <div className="inline-flex items-center gap-2 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2">
                 <Target size={12} />
-                <span>PILLARS OF GROWTH</span>
+                <span>WHY JOIN TARAJ GLOBAL</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary dark:text-[#F5F7FA] uppercase leading-tight mb-1">
-                Why Top B2B Talent{' '}
+                Why B2B Sales & Marketing Talent{' '}
                 <span className="bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#38BDF8] bg-clip-text text-transparent">
-                  Thrives At Taraj Global
+                  Grows Here
                 </span>
               </h2>
 
               <p className="text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] leading-relaxed font-normal max-w-2xl">
-                We provide the blueprint, modern technology, and leadership mentorship so you can do the most meaningful work of your career.
+                Why B2B Sales & Marketing Talent <span class="highlight">Grows Here</span>
+                Clear promotion paths, uncapped earnings, modern revenue tech, and leaders who mentor you from day one.
+
               </p>
             </div>
 
@@ -1851,10 +1861,10 @@ function Careers() {
                 {/* Header Annotation */}
                 <div className="flex items-center justify-between pb-3 mb-6 sm:mb-8 border-b border-border/60 dark:border-white/10 font-mono text-[11px]">
                   <span className="text-text-tertiary uppercase tracking-[0.25em] font-semibold">
-                    CAREER ARCHITECTURE // 06 PRINCIPLES
+                    WHAT YOU GET
                   </span>
                   <div className="flex items-center gap-2">
-                    <span className="text-text-tertiary tracking-wider text-[10px]">SCROLL TO EXPLORE</span>
+                    <span className="text-text-tertiary tracking-wider text-[10px]">TARAJ GLOBAL REVENUE TEAM</span>
                     <span className="text-[#00A6FF] font-bold tracking-widest">
                       [0{activePillar + 1} / 06]
                     </span>
@@ -1972,14 +1982,14 @@ function Careers() {
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="space-y-2.5"
                 >
-                  <span className="font-mono text-xs font-bold tracking-wider uppercase text-[#00A6FF]">
-                    FREQUENTLY ASKED QUESTIONS
+                   <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+                    SOMETHING ON YOUR MIND?
                   </span>
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight">
-                    Got Questions About Joining Taraj Global?
+                   FREQUENTLY ASKED QUESTIONS ON CAREER AT TARAJ GLOBAL
                   </h2>
                   <p className="text-sm text-text-secondary dark:text-[#A7ADB7] leading-relaxed max-w-xl">
-                    Find answers to some of the most common questions about careers, training and working at Taraj Global.
+                   Answers to common questions about roles, training, working hours, and growth at TaRaj Global.
                   </p>
                 </motion.div>
 
@@ -2017,14 +2027,14 @@ function Careers() {
                     <div className="inline-flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">
-                        TALENT ACQUISITION POD
+                        TALENT ACQUISITION 
                       </span>
                     </div>
 
                     <div className="flex items-center gap-1.5 text-text-tertiary">
                       <MapPin size={12} className="text-[#00A6FF]" />
                       <span className="font-mono text-[10px] tracking-wider uppercase font-semibold">
-                        Kharadi, Pune
+                        KHARADI, PUNE
                       </span>
                     </div>
                   </div>
@@ -2032,10 +2042,11 @@ function Careers() {
                   {/* Heading & Subtitle */}
                   <div className="relative z-10 mb-6">
                     <h3 className="text-xl sm:text-2xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight leading-snug mb-2">
-                      Ready to Connect Directly?
+                      Talk to Our Recruiting Team
                     </h3>
                     <p className="text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] leading-relaxed">
-                      Have questions about specific roles, relocation, or our demand generation architecture? Our recruiting team is here to assist.
+                       Questions about a role, relocation, or how our demand generation team works? Reach out and we’ll help.
+
                     </p>
                   </div>
 
@@ -2283,7 +2294,7 @@ function Careers() {
                         onChange={handleInputChange}
                         readOnly={!!selectedJobTitle}
                         className="w-full px-3.5 py-2.5 bg-background border border-border/80 dark:border-white/10 rounded-xl text-text-primary text-xs sm:text-sm focus:outline-none focus:border-[#00A6FF] transition-colors disabled:opacity-80"
-                        placeholder="e.g. Sales Development Representative"
+                        placeholder="e.g. SDR, demand generation"
                       />
                     </div>
 

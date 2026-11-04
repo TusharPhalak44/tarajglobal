@@ -182,27 +182,27 @@ const FAQ = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="flex items-center justify-center mb-2.5"
-          >
-            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              SOMETHING ON YOUR MIND?
-            </span>
-          </motion.div>
+              className="flex items-center justify-center mb-2.5"
+            >
+              <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+                SOMETHING ON YOUR MIND?
+              </span>
+            </motion.div>
 
-          <motion.h2
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
-          >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Questions
-            </span>
-          </motion.h2>
+            <motion.h2
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
+              whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.08 }}
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
+            >
+              <span className="text-slate-900 dark:text-text-primary dark:text-white">Frequently Asked </span>
+              <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
+                Questions ON WEBINAR REGISTRATION
+              </span>
+            </motion.h2>
 
-          <motion.p
+            <motion.p
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 12 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}

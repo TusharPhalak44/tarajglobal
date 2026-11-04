@@ -11,7 +11,7 @@ const OfficeLocation = () => {
     <section className="office-location-section relative overflow-hidden">
       {/* Main gradient background */}
       <div className="absolute inset-0 bg-hero" />
-      
+
       {/* Animated orange gradient glow */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -27,7 +27,7 @@ const OfficeLocation = () => {
           `
         }}
       />
-      
+
       {/* Decorative blur circles with brand colors */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -36,7 +36,7 @@ const OfficeLocation = () => {
         transition={{ duration: 1, delay: 0.2 }}
         className="absolute top-20 right-20 w-96 h-96 bg-cta/30 dark:bg-cta/10 rounded-full blur-3xl"
       />
-      
+
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -44,13 +44,13 @@ const OfficeLocation = () => {
         transition={{ duration: 1, delay: 0.4 }}
         className="absolute bottom-20 left-0 w-80 h-80 bg-accent/8 rounded-full blur-3xl"
       />
-      
+
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: `linear-gradient(#00A6FF 1px, transparent 1px), linear-gradient(90deg, #00A6FF 1px, transparent 1px)`,
         backgroundSize: '50px 50px'
       }} />
-      
+
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -59,9 +59,10 @@ const OfficeLocation = () => {
           transition={{ duration: 0.6 }}
           className="location-wrapper"
         >
-          <h2 className="section-title">Our Office</h2>
-          <p className="section-subtitle">Visit us at our headquarters or get in touch online.</p>
-          
+          <h2 className="section-title">OUR OFFICES</h2>
+          <h3 className="section-subtitle !mb-3">Visit Us in Pune or Reach Us Online</h3>
+          <p className="text-center text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">Meet our team at our Pune headquarters, or connect with us from anywhere in North America, EMEA, and APAC.</p>
+
           <div className="location-content">
             {/* Map Container - Left Card (Slides in from Left on scroll) */}
             <motion.div

@@ -1297,11 +1297,12 @@ function BlogDetails() {
                   {/* ── FREQUENTLY ASKED QUESTIONS SECTION (UNIFIED WEBSITE UI) ── */}
                   <div className="not-prose my-10 sm:my-12" id="faq">
                     <BlogFAQ
-                      faqs={processedArticle.faqs?.length > 0 ? processedArticle.faqs : DEFAULT_BLOG_FAQS}
+                      categoryKey={blog.category_name}
+                      faqs={processedArticle.faqs?.length > 0 ? processedArticle.faqs : null}
                       title={processedArticle.faqTitle?.replace(/questions?/i, '').trim() || 'Frequently Asked'}
                       highlightTitle="Questions"
                       isArticleInline={true}
-                      description={processedArticle.faqDescription || `Key strategic questions and answers regarding ${blog.title || 'this B2B playbook'} and enterprise demand generation execution.`}
+                      description={processedArticle.faqDescription || undefined}
                     />
                   </div>
 

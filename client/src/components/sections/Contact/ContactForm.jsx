@@ -27,10 +27,14 @@ import FlowButton from '../../ui/FlowButton'
 import './Contact.css'
 
 const SERVICE_TAGS = [
+  'B2B Appointment Setting',
+  'B2B Lead Generation',
   'B2B Email Marketing',
-  'Appointment Setting',
-  'Lead Generation',
   'Content Syndication',
+  'Account-Based Marketing (ABM)',
+  'Webinar Services',
+  'Database Cleansing',
+  'DemandFlow Bridge CRM',
 ]
 
 const COUNTRIES = [
@@ -50,19 +54,19 @@ const TRUST_METRICS = [
   {
     icon: Clock,
     title: 'Fast Response',
-    desc: 'Average response under 2 hours',
+    desc: 'Typical reply within 2 hours',
     color: '#00A6FF',
   },
   {
     icon: ShieldCheck,
     title: 'Enterprise NDA',
-    desc: '100% confidential data governance',
+    desc: 'Confidential data handling under NDA',
     color: '#FF6D00',
   },
   {
     icon: TrendingUp,
     title: 'Custom Audit',
-    desc: 'Tailored B2B pipeline growth blueprint',
+    desc: 'A tailored plan for your ICP and targets',
     color: '#72D669',
   },
 ]
@@ -321,11 +325,11 @@ const ContactForm = () => {
           className="text-center max-w-3xl mx-auto mb-4 sm:mb-5"
         >
           <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.16] uppercase !mb-4">
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Send Us a </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">Message</span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white">SEND US A </span>
+            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">MESSAGE</span>
           </h2>
           <p className="section-subtitle text-sm sm:text-sm md:text-base text-slate-600 dark:text-slate-400 !mb-0 font-normal">
-            Fill out the form below and we'll get back to you shortly.
+            Share your target audience, volume, and timeline. A TaRaj Global specialist will reply with next steps.
           </p>
         </motion.div>
 
@@ -375,31 +379,31 @@ const ContactForm = () => {
                 {/* Direct Inquiry Title */}
                 <div className="flex items-center gap-2 text-primary dark:text-[#00d2ff] mb-2.5">
                   <span className="text-xs font-semibold tracking-[0.18em] uppercase">
-                    Direct Inquiry
+                   DIRECT LINE 
                   </span>
                   <span className="text-text-secondary dark:text-slate-300 dark:text-white/20">|</span>
                   <span className="text-xs font-medium text-slate-600 dark:text-slate-300">
-                    &lt; 2h Response
+                    &lt;  2-HOUR RESPONSE
                   </span>
                 </div>
 
                 {/* Left Panel Heading */}
                 <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight leading-snug text-slate-900 dark:text-text-primary dark:text-white">
-                  <span>Accelerate Your </span>
+                  <span>What Do You Need </span>
                   <span className="bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00] bg-clip-text text-transparent">
-                    Pipeline
+                   Help With?
                   </span>
                 </h3>
 
                 {/* Context Description */}
                 <p className="text-sm sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed font-normal">
-                  Select your objective below. Our growth architects will tailor a dedicated outreach strategy for your team.
+                  Choose your goal and our team will tailor a B2B outreach strategy for your accounts, regions, and buying committee.
                 </p>
 
                 {/* ── Quick Requirement Selector ── */}
                 <div className="mt-3.5 pt-3 border-t border-slate-200/70 dark:border-white/10">
                   <span className="text-sm font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 block mb-1.5">
-                    Select Requirement:
+                     SELECT A SERVICE:
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {SERVICE_TAGS.map((tag) => {
@@ -456,12 +460,12 @@ const ContactForm = () => {
 
               {/* Direct Help Footnote */}
               <div className="mt-4 pt-3 border-t border-slate-200/70 dark:border-white/10 text-sm text-slate-600 dark:text-slate-400">
-                Prefer direct email?{' '}
+                Prefer email? Write to{' '}
                 <a
                   href="mailto:info@tarajglobal.com"
                   className="font-semibold text-primary dark:text-[#00d2ff] hover:underline"
                 >
-                  info@tarajglobal.com
+                 info@tarajglobal.com
                 </a>
               </div>
 
