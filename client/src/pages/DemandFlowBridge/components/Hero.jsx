@@ -1,202 +1,277 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, Layers, Sparkles, ShieldCheck } from 'lucide-react'
 import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  Shield,
-  Zap,
-  Activity,
-  Maximize2,
-  Layers,
-  Cpu,
-  Database,
-  Users,
-} from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import ImageCarousel from './ImageCarousel'
+
+// ─── Value Points Configuration (Clean Font-Sans, Attractive Flying Cards) ──
+const FLYING_POINTS = [
+  {
+    num: 'Point 01',
+    icon: Layers,
+    title: 'One CRM, Every Function',
+    desc: 'Leads, accounts, cadences, clients, and reports in one synchronized platform.',
+    floatDelay: 0,
+  },
+  {
+    num: 'Point 02',
+    icon: Sparkles,
+    title: 'AI-Assisted Intent Scoring',
+    desc: 'Fit and behavior signals show which accounts are ready for a conversation.',
+    floatDelay: 1.2,
+  },
+  {
+    num: 'Point 03',
+    icon: ShieldCheck,
+    title: 'Built in Real Delivery Operations',
+    desc: 'Developed and used by TaRaj Global to run B2B demand programs across US, EMEA, and APAC.',
+    floatDelay: 0.6,
+  },
+]
+
+// ─── Glimmer Wrap Particle Background (Styled with Brand Blue) ───────────────
+const GlimmerWrap = () => {
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let animationFrameId
+    let width = (canvas.width = window.innerWidth)
+    let height = (canvas.height = window.innerHeight)
+
+    const handleResize = () => {
+      if (!canvas) return
+      width = canvas.width = window.innerWidth
+      height = canvas.height = window.innerHeight
+    }
+    window.addEventListener('resize', handleResize)
+
+    // Generate brand glimmer particles
+    const particleCount = 75
+    const particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 1.8 + 0.6,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      alpha: Math.random() * 0.7 + 0.1,
+      flashSpeed: Math.random() * 0.02 + 0.008,
+      growing: Math.random() > 0.5,
+    }))
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height)
+
+      particles.forEach((p) => {
+        p.x += p.vx
+        p.y += p.vy
+
+        if (p.x < 0) p.x = width
+        if (p.x > width) p.x = 0
+        if (p.y < 0) p.y = height
+        if (p.y > height) p.y = 0
+
+        // Glimmer / twinkle flash
+        if (p.growing) {
+          p.alpha += p.flashSpeed
+          if (p.alpha >= 0.85) p.growing = false
+        } else {
+          p.alpha -= p.flashSpeed
+          if (p.alpha <= 0.1) p.growing = true
+        }
+
+        // Strictly using Taraj Global brand primary blue (#00A6FF)
+        ctx.fillStyle = `rgba(0, 166, 255, ${p.alpha * 0.7})`
+        ctx.shadowBlur = 8
+        ctx.shadowColor = 'rgba(0, 166, 255, 0.6)'
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      animationFrameId = requestAnimationFrame(render)
+    }
+
+    render()
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-none select-none z-0"
+    />
+  )
+}
 
 const Hero = () => {
   const prefersReducedMotion = useReducedMotion()
 
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
+  const fadeUp = (delay = 0) =>
+    prefersReducedMotion
+      ? {}
+      : {
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
   return (
     <section
       id="hero"
-      className="relative pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden bg-background text-text-primary"
-      aria-label="Meet DemandFlow Bridge"
+      className="relative w-full min-h-screen bg-background text-text-primary font-sans overflow-x-clip overflow-y-visible flex flex-col justify-start pt-24 sm:pt-24 lg:pt-22 xl:pt-24 pb-8 sm:pb-12 mt-[-80px]"
+      aria-label="DemandFlow Bridge Hero"
     >
-      {/* Background Ambience & Cyber Grid */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute -top-40 left-1/2 -translate-x-1/2 w-[850px] h-[450px] rounded-full blur-[140px] opacity-25"
-          style={{ background: 'radial-gradient(circle, rgba(0,166,255,0.3) 0%, rgba(255,109,0,0.08) 60%, transparent 80%)' }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-          style={{
-            backgroundImage:
-              'linear-gradient(var(--primary) 1px, transparent 1px), linear-gradient(90deg, var(--primary) 1px, transparent 1px)',
-            backgroundSize: '54px 54px',
-          }}
-        />
-      </div>
+      {/* ─── Glimmer Wrap Animated Background (Brand Blue) ─────────────────── */}
+      <GlimmerWrap />
 
-      <div className="relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Header Block */}
-        <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-14">
-          
-          {/* Eyebrow Badge */}
-          <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center justify-center text-primary mb-5"
-          >
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase">
-              Powering Business Operations
+      {/* ─── TOP 2-COLUMN SECTION: LEFT (PITCH & CTAs) + RIGHT (3 VALUE CARDS) ─── */}
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center shrink-0">
+
+        {/* LEFT COLUMN: Eyebrow, Headline, Subtitle, CTA buttons (Aligned Left) */}
+        <div className="lg:col-span-7 flex flex-col items-start text-left shrink-0">
+
+          {/* Eyebrow Tag */}
+          <div className="mb-1.5 sm:mb-2">
+            <span className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.2em] text-primary">
+              B2B CRM PLATFORM
             </span>
-          </motion.div>
+          </div>
 
-          {/* Headline */}
+          {/* Main Headline */}
           <motion.h1
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3.5xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-4"
+            {...fadeUp(0.2)}
+            className="text-xl sm:text-2xl md:text-3xl lg:text-[30px] xl:text-[34px] font-heading font-bold tracking-tight text-text-primary mb-2 sm:mb-2.5 leading-[1.15]"
           >
-            <span>Meet </span>
-            <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
-              DemandFlow Bridge
+            <span className="block pb-0.5 sm:pb-1">DemandFlow Bridge:  The AI-Assisted</span>
+            <span
+              className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
+              style={{ backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)' }}
+            >
+              CRM for B2B Demand Operations
             </span>
           </motion.h1>
 
-          {/* Highlighted Line */}
+          {/* Subtitle Paragraph */}
           <motion.p
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-text-primary mb-5 tracking-tight"
+            {...fadeUp(0.32)}
+            className="text-xs sm:text-sm font-sans text-text-secondary leading-relaxed mb-3 sm:mb-3.5 max-w-[560px]"
           >
-            One Platform. Every Operation.
+            Leads that live in spreadsheets, intent signals nobody sees, and reports that arrive too late slow every B2B campaign. DemandFlow Bridge, TaRaj Global’s CRM product, unifies leads, accounts, outreach, client SLAs, and AI-assisted intent scoring in one platform.
           </motion.p>
 
-          {/* Description */}
-          <motion.p
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-base sm:text-lg text-text-secondary max-w-3xl mx-auto leading-relaxed font-normal mb-8"
-          >
-            DemandFlow Bridge is Taraj Global&apos;s unified business operations platform, connecting CRM, lead management, sales, client management, HRMS, payroll, and operational workflows in one centralized ecosystem.
-          </motion.p>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center justify-start gap-3 sm:gap-4">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 min-h-[40px] sm:min-h-[42px] rounded-3xl font-sans font-semibold text-xs sm:text-sm text-text-accent dark:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+              style={{
+                background: '#FF6D00',
+                boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
+              }}
+            >
+              <span>Talk To TarajGlobal</span>
+              <ArrowRight className="w-3.5 h-3.5 text-primary transition-transform group-hover:translate-x-1" />
+            </Link>
 
-          {/* CTAs */}
-          <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-4"
-          >
-            <button
-              onClick={() => scrollToSection('capabilities')}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
+            <a
+              href="#overview"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="text-text-accent dark:text-white group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 min-h-[40px] sm:min-h-[42px] rounded-3xl font-sans font-semibold text-xs sm:text-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6D00] focus-visible:ring-offset-2 w-full sm:w-auto cursor-pointer"
+              style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }}
             >
               <span>Explore the Platform</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
+            </a>
+          </div>
 
-            <button
-              onClick={() => scrollToSection('ecosystem')}
-              style={{ background: 'transparent', color: 'inherit', boxShadow: 'none', border: '1.5px solid currentColor' }} className="text-text-primary dark:text-white inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm  border border-border  hover:border-primary/40 hover: transition-all duration-300 cursor-pointer hover:-translate-y-0.5 shadow-xs"
-            >
-              <span>See How It Works</span>
-            </button>
-          </motion.div>
         </div>
 
-        {/* Hero Visual: Premium Application Showcase Frame */}
-        <motion.div
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 30, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="relative max-w-5xl mx-auto"
-        >
-          {/* Ambient Glow behind frame */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-cta/20 to-primary/30 rounded-3xl blur-xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
+        {/* RIGHT COLUMN: Strip Badge + 3 Attractive Glassmorphism Cards */}
+        <div className="lg:col-span-5 flex flex-col gap-1.5 sm:gap-2 w-full">
 
-          {/* Browser / Application Frame */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-surface dark:bg-[#0B1424] shadow-2xl shadow-black/40 dark:shadow-[0_25px_60px_rgba(0,166,255,0.15)]">
-            
-            {/* Top Chrome / Address Bar */}
-            <div className="flex items-center justify-between px-4 py-3 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10 select-none">
-              {/* Window Dots */}
-              <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-              </div>
-
-              {/* Secure App URL */}
-              <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-md bg-background dark:bg-slate-950/80 border border-border dark:border-white/10 text-xs font-mono text-text-secondary dark:text-slate-300">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="font-semibold text-text-primary dark:text-white">demandflow.tarajglobal.com</span>
-                <span className="text-slate-500">/bridge/overview</span>
-              </div>
-
-              {/* Status Badge */}
-              <div className="flex items-center gap-2">
-                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/5 border border-border dark:border-white/10 text-[11px] font-mono text-text-secondary dark:text-slate-300 font-semibold">
-                  <Activity className="w-3 h-3 text-primary" />
-                  <span>PLATFORM CONSOLE</span>
-                </div>
-              </div>
+          {/* Strip Badge */}
+          <div className="flex items-center justify-start lg:justify-end mb-1">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-primary/10 via-[#0E172A] to-primary/5 border border-primary/30 text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.16em] uppercase text-primary shadow-[0_0_16px_rgba(0,166,255,0.18)] backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              <span>WHY TEAMS USE DEMANDFLOW BRIDGE</span>
             </div>
-
-            {/* Application Screenshot Viewport */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-background dark:bg-slate-950">
-              <img
-                src="/demandflow-admin.png"
-                alt="DemandFlow Bridge Unified Business Operations Platform Dashboard"
-                className="w-full h-full object-cover object-top"
-                priority="true"
-              />
-
-              {/* Subtle Gradient Shadow for bottom overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none" />
-
-              {/* Top Floating Badge */}
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background dark:bg-slate-950/90 backdrop-blur-md border border-border dark:border-white/15 text-xs font-bold text-text-primary dark:text-white shadow-lg">
-                <span className="text-primary font-bold">DemandFlow Bridge™</span>
-                <span className="text-text-secondary dark:text-slate-300 hidden sm:inline">• Unified Business Operations Platform</span>
-              </div>
-
-              {/* Bottom Live Control Overlay */}
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 flex flex-wrap items-center justify-between gap-2 p-2.5 sm:p-3 rounded-xl bg-surface dark:bg-slate-900/80 backdrop-blur-md border border-border dark:border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary/40 dark:bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
-                    <Layers className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-mono font-bold text-text-primary dark:text-white">Central Operations Hub</div>
-                    <div className="text-[11px] text-text-secondary dark:text-slate-400">8 Connected Core Business Modules Active</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-surface/90 dark:bg-white/10 text-slate-200 border border-border dark:border-white/10">
-                    ONE PLATFORM • REAL-TIME CONTROL
-                  </span>
-                </div>
-              </div>
-            </div>
-
           </div>
-        </motion.div>
 
+          {/* 3 Attractive Floating Glass Cards */}
+          <div className="flex flex-col gap-2 sm:gap-2.5">
+            {FLYING_POINTS.map((pt) => {
+              const Icon = pt.icon
+              return (
+                <motion.div
+                  key={pt.num}
+                  animate={
+                    prefersReducedMotion
+                      ? {}
+                      : {
+                        y: [0, -3, 0],
+                      }
+                  }
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: pt.floatDelay,
+                  }}
+                  className="group relative rounded-xl sm:rounded-2xl p-2.5 sm:p-3 bg-gradient-to-r from-[#0C1322]/90 via-[#0A0F1D]/85 to-[#070B16]/90 border border-white/[0.08] hover:border-primary/50 transition-all duration-300 shadow-[0_6px_20px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] hover:shadow-[0_10px_28px_rgba(0,166,255,0.18)] flex flex-col gap-1 backdrop-blur-xl overflow-hidden cursor-default"
+                >
+                  {/* Subtle hover gradient sweep */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.07] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                  {/* Left Edge Accent Bar */}
+                  <div className="absolute left-0 top-2 bottom-2 w-[2px] rounded-r bg-primary/40 group-hover:bg-primary group-hover:shadow-[0_0_8px_var(--primary)] transition-all duration-300" />
+
+                  {/* Top Row: Icon Dock + Point Tag + Title */}
+                  <div className="flex items-center gap-2 pl-1.5">
+                    {/* Glowing Icon Dock */}
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center text-primary shadow-[0_0_10px_rgba(0,166,255,0.2)] group-hover:shadow-[0_0_16px_rgba(0,166,255,0.35)] group-hover:border-primary/60 group-hover:scale-105 transition-all duration-300 shrink-0">
+                      <Icon className="w-3.5 h-3.5 text-primary" />
+                    </div>
+
+                    {/* Point Tag */}
+                    <span className="text-[10px] font-sans font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-primary/10 text-primary-light border border-primary/25 shrink-0">
+                      {pt.num}
+                    </span>
+
+                    {/* Title: <h3> 18px */}
+                    <h3 className="text-[16px] sm:text-[17px] lg:text-[18px] font-heading font-bold text-text-primary tracking-tight leading-snug group-hover:text-primary transition-colors truncate">
+                      {pt.title}
+                    </h3>
+                  </div>
+
+                  {/* Description: <p> 14px */}
+                  <p className="text-[13px] sm:text-[14px] font-sans text-text-secondary leading-snug font-normal pl-10.5 pr-2">
+                    {pt.desc}
+                  </p>
+                </motion.div>
+              )
+            })}
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* ─── 3D CONCAVE CYLINDER IMAGE CAROUSEL SECTION ─────────────────── */}
+      <div className="relative w-full z-10 flex flex-col items-center justify-center pt-2 sm:pt-4 overflow-visible">
+        <ImageCarousel />
       </div>
     </section>
   )

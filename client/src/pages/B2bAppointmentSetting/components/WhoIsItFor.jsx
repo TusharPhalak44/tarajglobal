@@ -161,18 +161,18 @@ const AudienceVisualBackground = ({ type, color }) => {
       {/* Enterprise Multi-Stakeholder Matrix */}
       <circle cx="150" cy="70" r="30" stroke={color} strokeWidth="1.5" />
       <circle cx="150" cy="70" r="10" fill={color} />
-      <text x="150" y="115" textAnchor="middle" fill={color} fontSize="9" fontFamily="monospace">STEERING</text>
+      <text x="150" y="115" textAnchor="middle" fill={color} fontSize="9" fontFamily="Poppins, sans-serif">STEERING</text>
 
       <path d="M150 100 V150 M150 150 H90 M150 150 H210" stroke={color} strokeWidth="1.5" />
 
       <rect x="35" y="150" width="70" height="30" rx="5" stroke={color} strokeWidth="1.2" />
-      <text x="70" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="monospace">FINANCE</text>
+      <text x="70" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="Poppins, sans-serif">FINANCE</text>
 
       <rect x="115" y="150" width="70" height="30" rx="5" stroke={color} strokeWidth="1.2" />
-      <text x="150" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="monospace">OPERATIONS</text>
+      <text x="150" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="Poppins, sans-serif">OPERATIONS</text>
 
       <rect x="195" y="150" width="70" height="30" rx="5" stroke={color} strokeWidth="1.2" />
-      <text x="230" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="monospace">TECHNOLOGY</text>
+      <text x="230" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="Poppins, sans-serif">TECHNOLOGY</text>
 
       <circle cx="150" cy="230" r="28" stroke={color} strokeWidth="1.5" strokeDasharray="4 4" />
       <circle cx="150" cy="230" r="10" fill={color} />

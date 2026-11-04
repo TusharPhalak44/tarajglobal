@@ -86,9 +86,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['var(--font-family-primary)', 'Inter', 'system-ui', 'sans-serif'],
-        heading: ['var(--font-family-primary)', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-family-mono)', 'Fira Code', 'Courier New', 'monospace'],
+        sans: ['var(--font-family-primary)', 'Poppins', 'Inter', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-family-heading)', 'Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+        mono: ['var(--font-family-mono)', 'Poppins', 'sans-serif'],
       },
       fontSize: {
         'h1': ['var(--font-size-h1)', { lineHeight: 'var(--line-height-h1)', letterSpacing: 'var(--letter-spacing-tighter)', fontWeight: '700' }],

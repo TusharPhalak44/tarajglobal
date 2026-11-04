@@ -373,7 +373,7 @@ const Hero = () => {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
                 B2B DEMAND GENERATION
               </span>
             </motion.div>

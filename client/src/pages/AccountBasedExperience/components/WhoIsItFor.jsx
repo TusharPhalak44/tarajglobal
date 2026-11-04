@@ -154,14 +154,14 @@ const AudienceVisualBackground = ({ type, color }) => {
       fill="none"
     >
       <rect x="110" y="40" width="80" height="34" rx="6" stroke={color} strokeWidth="1.5" />
-      <text x="150" y="62" textAnchor="middle" fill={color} fontSize="11" fontFamily="monospace" fontWeight="bold">C-SUITE</text>
+      <text x="150" y="62" textAnchor="middle" fill={color} fontSize="11" fontFamily="Poppins, sans-serif" fontWeight="bold">C-SUITE</text>
       <path d="M150 74 V120 M70 120 H230 M70 120 V150 M230 120 V150 M150 120 V150" stroke={color} strokeWidth="1.2" />
       <rect x="35" y="150" width="70" height="30" rx="5" stroke={color} strokeWidth="1.2" />
-      <text x="70" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="monospace">TECHNICAL</text>
+      <text x="70" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="Poppins, sans-serif">TECHNICAL</text>
       <rect x="115" y="150" width="70" height="30" rx="5" stroke={color} strokeWidth="1.2" />
-      <text x="150" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="monospace">FINANCE</text>
+      <text x="150" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="Poppins, sans-serif">FINANCE</text>
       <rect x="195" y="150" width="70" height="30" rx="5" stroke={color} strokeWidth="1.2" />
-      <text x="230" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="monospace">CHAMPION</text>
+      <text x="230" y="170" textAnchor="middle" fill={color} fontSize="9" fontFamily="Poppins, sans-serif">CHAMPION</text>
     </svg>
   )
 }

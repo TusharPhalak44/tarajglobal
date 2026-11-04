@@ -102,7 +102,7 @@ const WhatIsPlatform = () => {
             className="inline-flex items-center gap-2  text-primary mb-3.5"
           >
             <Layers className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
+            <span className="text-sm font-mono font-bold tracking-[0.2em] uppercase">
               Unified Architecture
             </span>
           </motion.div>

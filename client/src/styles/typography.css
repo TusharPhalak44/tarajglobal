@@ -21,9 +21,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+
+/* Overarching Heading Font Rule */
+h1, h2, h3, h4, h5, h6,
+.font-heading,
+h1.font-sans, h2.font-sans, h3.font-sans, h4.font-sans, h5.font-sans, h6.font-sans {
+  font-family: var(--font-family-heading);
+}
+
 /* Headings Base Rules */
 h1, .text-page-title, .h1, .text-h1 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-h1);
   line-height: var(--line-height-h1);
   font-weight: var(--font-weight-bold);
@@ -32,7 +40,7 @@ h1, .text-page-title, .h1, .text-h1 {
 }
 
 h2, .text-section-title, .h2, .text-h2 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-h2);
   line-height: var(--line-height-h2);
   font-weight: var(--font-weight-bold);
@@ -41,7 +49,7 @@ h2, .text-section-title, .h2, .text-h2 {
 }
 
 h3, .text-subsection-title, .h3, .text-h3 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-h3);
   line-height: var(--line-height-h3);
   font-weight: var(--font-weight-semibold);
@@ -50,7 +58,7 @@ h3, .text-subsection-title, .h3, .text-h3 {
 }
 
 h4, .text-component-title, .h4, .text-h4 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-h4);
   line-height: var(--line-height-h4);
   font-weight: var(--font-weight-semibold);
@@ -59,7 +67,7 @@ h4, .text-component-title, .h4, .text-h4 {
 }
 
 h5, .h5, .text-h5 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-h5);
   line-height: var(--line-height-h5);
   font-weight: var(--font-weight-semibold);
@@ -68,7 +76,7 @@ h5, .h5, .text-h5 {
 }
 
 h6, .h6, .text-h6 {
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-h6);
   line-height: var(--line-height-h6);
   font-weight: var(--font-weight-semibold);
