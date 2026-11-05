@@ -59,7 +59,7 @@ export default function WorkflowCard({
       style={customStyle}
       className={`
         relative group cursor-pointer select-none
-        rounded-xl p-2 sm:p-2.5 xl:p-3 flex flex-col justify-between overflow-hidden
+        rounded-xl p-2 sm:p-2 xl:p-2.5 flex flex-col justify-between
         transition-all duration-300 backdrop-blur-md
         border ${
           isActive
@@ -97,10 +97,10 @@ export default function WorkflowCard({
       )}
 
       {/* CARD TOP ROW: Step Number, Category & Icon */}
-      <div className="flex items-center justify-between gap-1 w-full mb-1">
+      <div className="flex items-center justify-between gap-1 w-full mb-1 shrink-0">
         <div className="flex items-center gap-1.5 min-w-0">
           <span
-            className={`font-mono text-xs sm:text-[12.5px] xl:text-[13.5px] font-black tracking-wider transition-colors duration-300 shrink-0 ${
+            className={`font-mono text-xs sm:text-[12px] xl:text-[13px] font-black tracking-wider transition-colors duration-300 shrink-0 ${
               isActive
                 ? 'text-primary dark:text-[#00f0ff] dark:drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]'
                 : 'text-slate-700 dark:text-white/90 group-hover:text-primary dark:group-hover:text-white'
@@ -108,7 +108,7 @@ export default function WorkflowCard({
           >
             {step.stepNumber}
           </span>
-          <span className="text-[7.5px] sm:text-[8px] xl:text-[8.5px] font-mono uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-sky-100/80 dark:bg-[#0099ff]/20 text-sky-700 dark:text-[#00d2ff] border border-sky-200/80 dark:border-[#00d2ff]/30 truncate max-w-[90px] sm:max-w-[105px]">
+          <span className="text-[7.5px] sm:text-[8px] xl:text-[8.5px] font-mono uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-sky-100/80 dark:bg-[#0099ff]/20 text-sky-700 dark:text-[#00d2ff] border border-sky-200/80 dark:border-[#00d2ff]/30 truncate max-w-[110px] sm:max-w-[125px]">
             {step.category}
           </span>
           {isCompleted && !isActive && (
@@ -117,14 +117,14 @@ export default function WorkflowCard({
         </div>
 
         <div
-          className={`relative p-1 rounded-lg transition-all duration-300 shrink-0 ${
+          className={`relative p-0.5 sm:p-1 rounded-lg transition-all duration-300 shrink-0 ${
             isActive
               ? 'bg-primary/15 dark:bg-[#0099ff]/20 text-primary dark:text-[#00f0ff] shadow-[0_0_10px_rgba(0,180,255,0.3)]'
               : 'text-slate-600 dark:text-white/80 group-hover:text-primary dark:group-hover:text-white group-hover:bg-primary/10 dark:group-hover:bg-[#0099ff]/10'
           }`}
         >
           <IconComponent
-            className={`w-3.5 h-3.5 sm:w-4 sm:h-4 xl:w-4.5 xl:h-4.5 transition-transform duration-300 ${
+            className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 ${
               isActive ? 'scale-110' : 'group-hover:scale-105'
             }`}
             strokeWidth={1.8}
@@ -133,9 +133,9 @@ export default function WorkflowCard({
       </div>
 
       {/* CARD BODY: Title & Description */}
-      <div className="flex-1 flex flex-col justify-center py-0.5 overflow-hidden">
+      <div className="flex-1 flex flex-col justify-start pt-0.5 min-h-0">
         <h3
-          className={`font-heading font-bold text-[9.5px] sm:text-[10px] lg:text-[10.5px] xl:text-[11.5px] 2xl:text-[12.5px] leading-snug mb-1 tracking-tight transition-colors duration-300 ${
+          className={`font-heading font-bold text-[9.2px] sm:text-[9.8px] lg:text-[10px] xl:text-[10.5px] 2xl:text-[11.5px] leading-snug mb-1 tracking-tight transition-colors duration-300 ${
             isActive
               ? 'text-primary dark:text-white dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]'
               : 'text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#e0f7ff]'
@@ -143,7 +143,7 @@ export default function WorkflowCard({
         >
           {step.title}
         </h3>
-        <p className="text-[8.2px] sm:text-[8.8px] lg:text-[9.2px] xl:text-[10px] 2xl:text-[10.5px] leading-[1.38] text-slate-600 dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-[#cbd5e1] transition-colors duration-200">
+        <p className="text-[7.8px] sm:text-[8.2px] lg:text-[8.5px] xl:text-[9px] 2xl:text-[9.5px] leading-[1.34] text-slate-600 dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-[#cbd5e1] transition-colors duration-200">
           {step.description}
         </p>
       </div>

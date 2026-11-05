@@ -22,7 +22,7 @@ export default function WorkflowCanvas({
   return (
     <div className="relative w-full max-w-[1380px] xl:max-w-[1400px] mx-auto">
       {/* Flow Canvas (Seamless Background & Borderless) */}
-      <div className="relative w-full aspect-[1400/540] min-h-[440px] xl:min-h-[500px] rounded-2xl p-2 sm:p-3 overflow-visible bg-transparent">
+      <div className="relative w-full aspect-[1400/540] min-h-[470px] xl:min-h-[520px] rounded-2xl p-2 sm:p-3 overflow-visible bg-transparent">
         {/* Ambient Pulsing Light Orbs */}
         <div className="absolute top-1/4 left-1/3 w-64 h-64 rounded-full blur-[100px] bg-primary/30 dark:bg-primary/10 dark:bg-[#0099ff]/15 pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full blur-[120px] bg-sky-400/10 dark:bg-[#00e5ff]/15 pointer-events-none" />
@@ -78,9 +78,9 @@ export default function WorkflowCanvas({
           className="absolute z-10"
           style={{
             left: '1.2%',
-            top: '38.0%',
+            top: '36.5%',
             width: '15.2%',
-            height: '24.0%',
+            height: '27.0%',
           }}
         >
           <WorkflowCard
@@ -98,9 +98,9 @@ export default function WorkflowCanvas({
           className="absolute z-10"
           style={{
             left: '18.0%',
-            top: '38.0%',
+            top: '36.5%',
             width: '15.2%',
-            height: '24.0%',
+            height: '27.0%',
           }}
         >
           <WorkflowCard
@@ -118,9 +118,9 @@ export default function WorkflowCanvas({
           className="absolute z-10"
           style={{
             left: '34.8%',
-            top: '38.0%',
+            top: '36.5%',
             width: '15.2%',
-            height: '24.0%',
+            height: '27.0%',
           }}
         >
           <WorkflowCard
@@ -138,9 +138,9 @@ export default function WorkflowCanvas({
           className="absolute z-10"
           style={{
             left: '51.6%',
-            top: '38.0%',
+            top: '36.5%',
             width: '15.2%',
-            height: '24.0%',
+            height: '27.0%',
           }}
         >
           <WorkflowCard
@@ -158,9 +158,9 @@ export default function WorkflowCanvas({
           className="absolute z-10"
           style={{
             left: '68.4%',
-            top: '38.0%',
+            top: '36.5%',
             width: '15.2%',
-            height: '24.0%',
+            height: '27.0%',
           }}
         >
           <WorkflowCard
