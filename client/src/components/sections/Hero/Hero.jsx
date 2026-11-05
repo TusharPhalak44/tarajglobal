@@ -137,7 +137,7 @@ export const Hero = () => {
               id="hero-heading"
               className="text-[26px] sm:text-[34px] xl:text-[40px] font-black leading-[1.12] tracking-[-0.025em] text-white"
             >
-              Demand Generation Driven by First-Party {''}
+              Demand Generation Driven by First Party {''}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#38BDF8] to-[#FF6D00]">
                 Data Infrastructure Solution
               </span>
@@ -150,8 +150,8 @@ export const Hero = () => {
 
             {/* Exact CTAs */}
             <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 data-cta="true"
                 data-cta-section="Home Hero Section"
                 data-cta-name="Build Your Sales Pipeline"

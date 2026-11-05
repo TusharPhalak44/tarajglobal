@@ -197,21 +197,21 @@ const Hero = () => {
         </div>
 
         {/* RIGHT COLUMN: Strip Badge + 3 Attractive Glassmorphism Cards */}
-        <div className="lg:col-span-5 flex flex-col gap-1.5 sm:gap-2 w-full">
+        <div className="lg:col-span-5 flex flex-col gap-1 sm:gap-1.5 w-full">
 
           {/* Strip Badge */}
-          <div className="flex items-center justify-start lg:justify-end mb-1">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-primary/10 via-[#0E172A] to-primary/5 border border-primary/30 text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.16em] uppercase text-primary shadow-[0_0_16px_rgba(0,166,255,0.18)] backdrop-blur-md">
-              <span className="relative flex h-2 w-2">
+          <div className="flex items-center justify-start lg:justify-end mb-0.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gradient-to-r from-primary/10 via-[#0E172A] to-primary/5 border border-primary/30 text-[9px] sm:text-[10px] font-sans font-bold tracking-[0.14em] uppercase text-primary shadow-[0_0_12px_rgba(0,166,255,0.15)] backdrop-blur-md">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
               </span>
               <span>WHY TEAMS USE DEMANDFLOW BRIDGE</span>
             </div>
           </div>
 
-          {/* 3 Attractive Floating Glass Cards */}
-          <div className="flex flex-col gap-2 sm:gap-2.5">
+          {/* 3 Attractive Floating Glass Cards (Minimized Font Sizes) */}
+          <div className="flex flex-col gap-1.5 sm:gap-2">
             {FLYING_POINTS.map((pt) => {
               const Icon = pt.icon
               return (
@@ -230,34 +230,34 @@ const Hero = () => {
                     ease: 'easeInOut',
                     delay: pt.floatDelay,
                   }}
-                  className="group relative rounded-xl sm:rounded-2xl p-2.5 sm:p-3 bg-gradient-to-r from-[#0C1322]/90 via-[#0A0F1D]/85 to-[#070B16]/90 border border-white/[0.08] hover:border-primary/50 transition-all duration-300 shadow-[0_6px_20px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] hover:shadow-[0_10px_28px_rgba(0,166,255,0.18)] flex flex-col gap-1 backdrop-blur-xl overflow-hidden cursor-default"
+                  className="group relative rounded-xl sm:rounded-2xl p-2 sm:p-2.5 bg-gradient-to-r from-[#0C1322]/90 via-[#0A0F1D]/85 to-[#070B16]/90 border border-white/[0.08] hover:border-primary/50 transition-all duration-300 shadow-[0_4px_16px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] hover:shadow-[0_8px_24px_rgba(0,166,255,0.18)] flex flex-col gap-0.5 backdrop-blur-xl overflow-hidden cursor-default"
                 >
                   {/* Subtle hover gradient sweep */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.07] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                   {/* Left Edge Accent Bar */}
-                  <div className="absolute left-0 top-2 bottom-2 w-[2px] rounded-r bg-primary/40 group-hover:bg-primary group-hover:shadow-[0_0_8px_var(--primary)] transition-all duration-300" />
+                  <div className="absolute left-0 top-1.5 bottom-1.5 w-[2px] rounded-r bg-primary/40 group-hover:bg-primary group-hover:shadow-[0_0_8px_var(--primary)] transition-all duration-300" />
 
                   {/* Top Row: Icon Dock + Point Tag + Title */}
-                  <div className="flex items-center gap-2 pl-1.5">
+                  <div className="flex items-center gap-1.5 pl-1">
                     {/* Glowing Icon Dock */}
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center text-primary shadow-[0_0_10px_rgba(0,166,255,0.2)] group-hover:shadow-[0_0_16px_rgba(0,166,255,0.35)] group-hover:border-primary/60 group-hover:scale-105 transition-all duration-300 shrink-0">
-                      <Icon className="w-3.5 h-3.5 text-primary" />
+                    <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center text-primary shadow-[0_0_8px_rgba(0,166,255,0.2)] group-hover:shadow-[0_0_14px_rgba(0,166,255,0.35)] group-hover:border-primary/60 group-hover:scale-105 transition-all duration-300 shrink-0">
+                      <Icon className="w-3 h-3 text-primary" />
                     </div>
 
                     {/* Point Tag */}
-                    <span className="text-[10px] font-sans font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-primary/10 text-primary-light border border-primary/25 shrink-0">
+                    <span className="text-[9px] font-sans font-bold tracking-wider uppercase px-1.5 py-0.5 rounded-full bg-primary/10 text-primary-light border border-primary/25 shrink-0">
                       {pt.num}
                     </span>
 
-                    {/* Title: <h3> 18px */}
-                    <h3 className="text-[16px] sm:text-[17px] lg:text-[18px] font-heading font-bold text-text-primary tracking-tight leading-snug group-hover:text-primary transition-colors truncate">
+                    {/* Title */}
+                    <h3 className="text-[13px] sm:text-[14px] font-heading font-semibold text-text-primary tracking-tight leading-snug group-hover:text-primary transition-colors truncate">
                       {pt.title}
                     </h3>
                   </div>
 
-                  {/* Description: <p> 14px */}
-                  <p className="text-[13px] sm:text-[14px] font-sans text-text-secondary leading-snug font-normal pl-10.5 pr-2">
+                  {/* Description */}
+                  <p className="text-[11px] sm:text-[12px] font-sans text-text-secondary leading-snug font-normal pl-8.5 pr-2">
                     {pt.desc}
                   </p>
                 </motion.div>

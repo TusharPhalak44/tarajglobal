@@ -32,7 +32,6 @@ const easeInOutCubic = (t) =>
  */
 const ImageCarousel = ({ images = defaultProductImages }) => {
   const prefersReducedMotion = useReducedMotion()
-  const [rotationAngle, setRotationAngle] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [isInView, setIsInView] = useState(true)
@@ -41,6 +40,7 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
   // Whole-screen center enlargement state (scoped to #hero)
   const [isCenterFocused, setIsCenterFocused] = useState(false)
   const [activeCenterItem, setActiveCenterItem] = useState(null)
+  const [isPinned, setIsPinned] = useState(false) // When true (opened via click), stays open until dismissed
 
   // Responsive dimensions for 3D stage and cards (tuned to 16:9 native aspect ratio)
   const [stageConfig, setStageConfig] = useState({
@@ -51,29 +51,47 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
     cardHeight: 214,
   })
 
-  // State machine for stepped circulation with center pause
-  const timelineRef = useRef({
-    status: 'PAUSED', // 'PAUSED' | 'MOVING' | 'DRAGGING'
-    pauseStartTime: performance.now(),
-    moveStartTime: 0,
-    startAngle: 0,
-    targetAngle: 0,
-    currentAngle: 0,
-  })
-
+  const trackRef = useRef(null)
+  const currentAngleRef = useRef(0)
   const requestRef = useRef(null)
   const dragStartX = useRef(0)
   const dragStartAngle = useRef(0)
   const isPointerDown = useRef(false)
   const hasMovedRef = useRef(false)
+  const closeTimeoutRef = useRef(null)
+  const cardPointerDownPos = useRef({ x: 0, y: 0 })
+  const isCarouselStoppedRef = useRef(false) // Immediately halts RAF loop on click
+  const modalOpenedAt = useRef(0) // Timestamp guard against ghost backdrop clicks
 
-  // Pause duration when card is centered & big (exact 1.6s — unchanged)
-  const PAUSE_DURATION = 1600
-  // Transition glide duration to next card (950ms)
-  const MOVE_DURATION = 950
+  // Preload all dashboard images so modal displays instantaneously on first paint
+  useEffect(() => {
+    images.forEach((img) => {
+      if (img.path) {
+        const preloadImg = new Image()
+        preloadImg.src = img.path
+      }
+    })
+  }, [images])
+
+  // Keyboard Escape listener to cleanly close preview modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        handleCloseModal()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  // Calm, elegant 3D carousel scroll speed (minimized pace as requested: ~3.5 deg/sec)
+  const ROTATION_SPEED = 0.0035
 
   useEffect(() => {
     setMounted(true)
+    return () => {
+      clearTimeout(closeTimeoutRef.current)
+    }
   }, [])
 
   // Scope to Hero Section: Detect when Hero is in viewport so it NEVER runs over other sections
@@ -111,6 +129,8 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
 
   const totalCards = items.length // 16
   const stepAngle = 360 / totalCards // 22.5 deg
+
+  const displayItem = activeCenterItem || items[0]
 
   // Handle window resizing to keep exact responsive proportions without image cutting
   useEffect(() => {
@@ -156,45 +176,26 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Auto-advance loop: runs strictly when Hero is active and in view
+  // Continuous silky-smooth 3D loop animation running directly on GPU via ref
   useEffect(() => {
-    if (prefersReducedMotion || isHovered || isDragging || !isInView) return
+    if (prefersReducedMotion || !isInView) return
+
+    let lastTime = performance.now()
 
     const animate = (time) => {
-      const state = timelineRef.current
+      const dt = Math.min(time - lastTime, 64)
+      lastTime = time
 
-      if (state.status === 'PAUSED') {
-        const elapsed = time - state.pauseStartTime
-        if (elapsed >= PAUSE_DURATION) {
-          // Duration completed: dismiss center overlay, start moving to next card
-          setIsCenterFocused(false)
-          state.status = 'MOVING'
-          state.moveStartTime = time
-          state.startAngle = state.currentAngle
-          state.targetAngle = state.currentAngle - stepAngle
-        }
-      } else if (state.status === 'MOVING') {
-        const elapsed = time - state.moveStartTime
-        const progress = Math.min(1, elapsed / MOVE_DURATION)
-        const ease = easeInOutCubic(progress)
-        const newAngle = state.startAngle + (state.targetAngle - state.startAngle) * ease
-
-        state.currentAngle = newAngle
-        setRotationAngle(newAngle)
-
-        if (progress >= 1) {
-          // Reached the center: show big in center of Hero with background blur
-          state.currentAngle = state.targetAngle
-          setRotationAngle(state.targetAngle)
-          state.status = 'PAUSED'
-          state.pauseStartTime = time
-
-          // Trigger center hero enlargement
-          const centeredIdx =
-            ((Math.round(-state.targetAngle / stepAngle) % totalCards) + totalCards) %
-            totalCards
-          setActiveCenterItem(items[centeredIdx])
-          setIsCenterFocused(true)
+      // Auto-rotation runs directly on trackRef without React state re-renders
+      if (
+        !isCarouselStoppedRef.current &&
+        !isHovered &&
+        !isDragging &&
+        !isCenterFocused
+      ) {
+        currentAngleRef.current -= ROTATION_SPEED * dt
+        if (trackRef.current) {
+          trackRef.current.style.transform = `translateZ(${stageConfig.stageZ}px) rotateY(${currentAngleRef.current}deg)`
         }
       }
 
@@ -206,60 +207,124 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
     return () => {
       if (requestRef.current) cancelAnimationFrame(requestRef.current)
     }
-  }, [prefersReducedMotion, isHovered, isDragging, isInView, stepAngle, totalCards, items])
+  }, [prefersReducedMotion, isHovered, isDragging, isCenterFocused, isInView, stageConfig.stageZ])
 
-  // Drag / swipe controls with Pointer Events
+  // Drag / swipe controls with Pointer Events directly on DOM
   const handlePointerDown = (e) => {
     isPointerDown.current = true
     hasMovedRef.current = false
-    setIsDragging(true)
-    setIsCenterFocused(false)
-    timelineRef.current.status = 'DRAGGING'
     dragStartX.current = e.clientX || (e.touches && e.touches[0]?.clientX) || 0
-    dragStartAngle.current = timelineRef.current.currentAngle
+    dragStartAngle.current = currentAngleRef.current
   }
 
   const handlePointerMove = (e) => {
     if (!isPointerDown.current) return
     const currentX = e.clientX || (e.touches && e.touches[0]?.clientX) || 0
     const deltaX = currentX - dragStartX.current
-    if (Math.abs(deltaX) > 4) {
+    if (Math.abs(deltaX) > 10) {
       hasMovedRef.current = true
+      setIsDragging(true)
+      setIsCenterFocused(false)
+      setIsPinned(false)
     }
-    // Drag sensitivity (0.16 deg/px)
-    const newAngle = dragStartAngle.current + deltaX * 0.16
-    timelineRef.current.currentAngle = newAngle
-    setRotationAngle(newAngle)
+    if (hasMovedRef.current) {
+      const newAngle = dragStartAngle.current + deltaX * 0.16
+      currentAngleRef.current = newAngle
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translateZ(${stageConfig.stageZ}px) rotateY(${newAngle}deg)`
+      }
+    }
   }
 
   const handlePointerUp = () => {
     if (!isPointerDown.current) return
     isPointerDown.current = false
     setIsDragging(false)
-
-    // Snap to the nearest card center slot
-    const state = timelineRef.current
-    const nearestIndex = Math.round(-state.currentAngle / stepAngle)
-    const snapTarget = -nearestIndex * stepAngle
-
-    state.status = 'MOVING'
-    state.moveStartTime = performance.now()
-    state.startAngle = state.currentAngle
-    state.targetAngle = snapTarget
   }
 
-  // Click on any card to rotate it directly into the center
-  const handleCardClick = (baseAngle) => {
-    if (hasMovedRef.current) return // Skip if dragging
-    setIsCenterFocused(false)
-    const state = timelineRef.current
-    const diff = ((-baseAngle - state.currentAngle) % 360 + 540) % 360 - 180
-    const snapTarget = state.currentAngle + diff
+  // Hover on any card pauses rotation
+  const handleCardMouseEnter = (item) => {
+    if (isPointerDown.current && hasMovedRef.current) return
+    if (isPinned) return
+    clearTimeout(closeTimeoutRef.current)
+    isCarouselStoppedRef.current = true
+    setIsHovered(true)
+  }
 
-    state.status = 'MOVING'
-    state.moveStartTime = performance.now()
-    state.startAngle = state.currentAngle
-    state.targetAngle = snapTarget
+  const handleCardMouseLeave = () => {
+    if (isPinned) return
+    clearTimeout(closeTimeoutRef.current)
+    closeTimeoutRef.current = setTimeout(() => {
+      isCarouselStoppedRef.current = false
+      setIsHovered(false)
+    }, 200)
+  }
+
+  const handleModalMouseEnter = () => {
+    clearTimeout(closeTimeoutRef.current)
+    isCarouselStoppedRef.current = true
+    setIsHovered(true)
+    setIsCenterFocused(true)
+  }
+
+  const handleModalMouseLeave = () => {
+    if (isPinned) return
+    clearTimeout(closeTimeoutRef.current)
+    closeTimeoutRef.current = setTimeout(() => {
+      isCarouselStoppedRef.current = false
+      setIsHovered(false)
+    }, 200)
+  }
+
+  const handleCloseModal = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    clearTimeout(closeTimeoutRef.current)
+    isCarouselStoppedRef.current = false
+    setIsPinned(false)
+    setIsCenterFocused(false)
+    setIsHovered(false)
+  }
+
+  // Guard backdrop from ghost click from the same click that opened the modal
+  const handleBackdropClick = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    if (performance.now() - modalOpenedAt.current < 350) return
+    handleCloseModal(e)
+  }
+
+  // Click on any card immediately stops carousel and shows big preview with ZERO latency
+  const handleCardClick = (e, item, baseAngle) => {
+    if (e) {
+      if (e.stopPropagation) e.stopPropagation()
+      if (e.preventDefault) e.preventDefault()
+    }
+    clearTimeout(closeTimeoutRef.current)
+
+    // 1. Immediately HALT carousel rotation on frame 0
+    isCarouselStoppedRef.current = true
+    isPointerDown.current = false
+    setIsDragging(false)
+    hasMovedRef.current = false
+
+    // 2. Instantly align 3D cylinder track so this card is front & center
+    if (baseAngle !== undefined) {
+      const current = currentAngleRef.current
+      const diff = ((-baseAngle - current) % 360 + 540) % 360 - 180
+      const snapTarget = current + diff
+      currentAngleRef.current = snapTarget
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translateZ(${stageConfig.stageZ}px) rotateY(${snapTarget}deg)`
+      }
+    }
+
+    // 3. Record timestamp to guard backdrop from ghost clicks
+    modalOpenedAt.current = performance.now()
+
+    // 4. Immediately display this card enlarged
+    setActiveCenterItem(item)
+    setIsPinned(true)
+    setIsCenterFocused(true)
+    setIsHovered(true)
   }
 
   const heroContainer = typeof document !== 'undefined' ? document.getElementById('hero') : null
@@ -280,13 +345,6 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => {
-          if (!isPointerDown.current) {
-            setIsHovered(false)
-            timelineRef.current.pauseStartTime = performance.now()
-          }
-        }}
       >
         {/* ─── CENTER VERTICAL LASER LIGHT BEAM (GLOBAL BRAND BLUE) ────────── */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[260px] sm:h-[300px] md:h-[330px] lg:h-[360px] w-[2px] pointer-events-none z-20 flex flex-col items-center">
@@ -320,56 +378,40 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
 
         {/* ─── ROTATING 3D CYLINDER TRACK ──────────────────────────────────── */}
         <div
+          ref={trackRef}
           className="relative w-full h-full flex items-center justify-center"
           style={{
             transformStyle: 'preserve-3d',
-            transform: `translateZ(${stageConfig.stageZ}px) rotateY(${rotationAngle}deg)`,
-            transition: isDragging ? 'none' : 'none',
+            transform: `translateZ(${stageConfig.stageZ}px) rotateY(0deg)`,
           }}
         >
           {items.map((item, idx) => {
             const baseAngle = idx * stepAngle
-            // Effective angle relative to viewer camera (0 deg is exact center)
-            const relAngle = ((baseAngle + rotationAngle) % 360 + 540) % 360 - 180
-            const absRelAngle = Math.abs(relAngle)
-
-            // Visible arc: render front cards (|relAngle| <= 80 deg)
-            const isVisible = absRelAngle <= 80
-            if (!isVisible) return null
-
-            // Smooth cosine bell-curve weight for center prominence (1.0 at center, 0 at sides)
-            const centerRange = 40 // degrees
-            const normalized = Math.min(1, absRelAngle / centerRange)
-            const centerWeight = 0.5 * (1 + Math.cos(normalized * Math.PI)) // 0.0 to 1.0
-
-            // Dynamic scale & depth in carousel
-            const dynamicScale = 0.88 + centerWeight * 0.37
-            const dynamicZPush = centerWeight * 180
-            const dynamicZIndex = Math.round(10 + centerWeight * 40)
-            const cardOpacity = Math.max(0.2, Math.min(1, (82 - absRelAngle) / 14))
-            const isCenterFocus = centerWeight > 0.55
 
             return (
               <div
                 key={`${item.id}-${idx}`}
-                className="absolute flex items-center justify-center cursor-pointer"
+                className="absolute flex items-center justify-center cursor-pointer select-none"
                 style={{
                   transformStyle: 'preserve-3d',
-                  transform: `rotateY(${baseAngle}deg) translateZ(-${stageConfig.radius - dynamicZPush}px) scale(${dynamicScale})`,
-                  zIndex: dynamicZIndex,
-                  opacity: cardOpacity,
+                  transform: `rotateY(${baseAngle}deg) translateZ(-${stageConfig.radius}px)`,
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
-                  transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
                 }}
-                onClick={() => handleCardClick(baseAngle)}
+                onPointerDown={(e) => {
+                  e.stopPropagation()
+                  cardPointerDownPos.current = { x: e.clientX, y: e.clientY }
+                }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleCardClick(e, item, baseAngle)
+                }}
+                onMouseEnter={() => handleCardMouseEnter(item)}
+                onMouseLeave={handleCardMouseLeave}
               >
                 {/* 100% Complete Image Visibility: object-contain with crisp rendering */}
                 <div
-                  className={`relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#070B14] transition-all duration-300 group flex items-center justify-center p-1.5 sm:p-2 ${isCenterFocus
-                    ? 'border-2 border-primary shadow-[0_22px_60px_rgba(0,166,255,0.4)]'
-                    : 'border border-border shadow-[0_16px_40px_rgba(0,0,0,0.85)]'
-                    } hover:border-primary hover:shadow-[0_24px_65px_rgba(0,166,255,0.45)]`}
+                  className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#070B14] transition-all duration-300 group flex items-center justify-center p-1.5 sm:p-2 border border-border shadow-[0_16px_40px_rgba(0,0,0,0.85)] hover:border-primary hover:scale-[1.04] hover:shadow-[0_24px_65px_rgba(0,166,255,0.45)]"
                   style={{
                     width: `${stageConfig.cardWidth}px`,
                     height: `${stageConfig.cardHeight}px`,
@@ -378,7 +420,7 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
                   <img
                     src={item.path}
                     alt={item.alt}
-                    className="w-full h-full object-contain select-none pointer-events-none group-hover:scale-102 transition-transform duration-500 opacity-100"
+                    className="w-full h-full object-contain select-none pointer-events-none group-hover:scale-102 transition-transform duration-300 opacity-100"
                     style={{
                       imageRendering: '-webkit-optimize-contrast',
                       transform: 'translateZ(0)',
@@ -387,13 +429,12 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
                     draggable={false}
                   />
 
-                  {/* Brand Blue Ambient Glow when centered or hovered */}
+                  {/* Brand Blue Ambient Glow when hovered */}
                   <div
-                    className={`absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-xl sm:rounded-2xl ${isCenterFocus ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                      }`}
+                    className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100"
                     style={{
                       background:
-                        'radial-gradient(circle at 50% 0%, rgba(0,166,255,0.14) 0%, transparent 70%)',
+                        'radial-gradient(circle at 50% 0%, rgba(0,166,255,0.18) 0%, transparent 70%)',
                     }}
                   />
                 </div>
@@ -403,33 +444,32 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
         </div>
       </div>
 
-      {/* ─── HERO-SECTION ONLY OVERLAY WITH BLUR (STRICTLY CONFINED TO #HERO) ─── */}
+      {/* ─── ENLARGED CRM PREVIEW LIGHTBOX MODAL ─────────────────────────── */}
       {mounted &&
-        heroContainer &&
         createPortal(
           <div
-            className={`absolute inset-0 z-40 flex items-center justify-center p-3 sm:p-5 md:p-8 transition-opacity duration-300 ${isCenterFocused && isInView
+            className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-8 transition-opacity duration-150 ease-out ${isCenterFocused
               ? 'opacity-100 pointer-events-auto'
               : 'opacity-0 pointer-events-none'
               }`}
-            aria-hidden={!isCenterFocused || !isInView}
+            aria-hidden={!isCenterFocused}
           >
-            {/* 1. Backdrop blur: STRICTLY covers the Hero section only */}
+            {/* 1. Backdrop blur: Gentle click-to-dismiss with ghost click guard */}
             <div
-              className={`absolute inset-0 bg-black/80 transition-all duration-300 ${isCenterFocused && isInView ? 'backdrop-blur-md' : 'backdrop-blur-none'
+              className={`absolute inset-0 bg-black/85 transition-opacity duration-150 ease-out cursor-pointer ${isCenterFocused ? 'backdrop-blur-md opacity-100' : 'backdrop-blur-none opacity-0'
                 }`}
-              onClick={() => setIsCenterFocused(false)}
+              onClick={handleBackdropClick}
             />
 
-            {/* 2. Focused Preview Window: Matches exact macOS Enterprise SaaS design with high clarity */}
-            {activeCenterItem && (
+            {/* 2. Focused Preview Window: Snappy, instantaneous opening */}
+            {displayItem && (
               <div
-                className={`relative z-10 w-full max-w-5xl xl:max-w-6xl rounded-2xl sm:rounded-3xl overflow-hidden bg-[#070B14] border-2 border-primary/50 shadow-[0_0_60px_rgba(0,166,255,0.35),0_25px_60px_rgba(0,0,0,0.95)] transition-all duration-300 ease-out flex flex-col ${isCenterFocused && isInView
+                className={`relative z-10 w-full max-w-5xl xl:max-w-6xl rounded-2xl sm:rounded-3xl overflow-hidden bg-[#070B14] border-2 border-primary/50 shadow-[0_0_60px_rgba(0,166,255,0.35),0_25px_60px_rgba(0,0,0,0.95)] transition-all duration-150 ease-out flex flex-col ${isCenterFocused
                   ? 'scale-100 opacity-100 translate-y-0'
-                  : 'scale-95 opacity-0 translate-y-3'
+                  : 'scale-95 opacity-0 translate-y-2 pointer-events-none'
                   }`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={handleModalMouseEnter}
+                onMouseLeave={handleModalMouseLeave}
               >
                 {/* Clean Enterprise Window Header Bar (Matches Image 1 mockup) */}
                 <div className="w-full h-11 sm:h-12 px-4 sm:px-6 bg-[#0B101D] border-b border-primary/20 flex items-center justify-between shrink-0 select-none">
@@ -439,7 +479,7 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
                     <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         type="button"
-                        onClick={() => setIsCenterFocused(false)}
+                        onClick={handleCloseModal}
                         className="w-3 h-3 rounded-full bg-[#FF5F56] shadow-[0_0_6px_rgba(255,95,86,0.6)] cursor-pointer hover:opacity-80 transition-opacity"
                         title="Close preview"
                         aria-label="Close preview"
@@ -450,7 +490,7 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
 
                     {/* Title */}
                     <span className="text-xs sm:text-sm font-sans font-medium text-text-primary tracking-wide truncate ml-1 sm:ml-2">
-                      {activeCenterItem.alt}
+                      {displayItem.alt}
                     </span>
                   </div>
 
@@ -465,7 +505,7 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
 
                     <button
                       type="button"
-                      onClick={() => setIsCenterFocused(false)}
+                      onClick={handleCloseModal}
                       className="p-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.12] text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
                       aria-label="Close preview"
                     >
@@ -477,8 +517,8 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
                 {/* Dashboard Image Viewport: Crisp, High-Resolution, 100% Uncropped Visibility */}
                 <div className="relative w-full bg-[#050811] flex items-center justify-center p-2.5 sm:p-4 overflow-hidden">
                   <img
-                    src={activeCenterItem.path}
-                    alt={activeCenterItem.alt}
+                    src={displayItem.path}
+                    alt={displayItem.alt}
                     className="w-full h-auto max-h-[64vh] sm:max-h-[68vh] md:max-h-[72vh] object-contain block mx-auto rounded-xl select-none pointer-events-none"
                     style={{
                       imageRendering: '-webkit-optimize-contrast',
@@ -489,22 +529,12 @@ const ImageCarousel = ({ images = defaultProductImages }) => {
                   />
                 </div>
 
-                {/* Exact Duration Timer Line (Smoothly sweeps across 1600ms) */}
-                <div className="w-full h-[2px] bg-white/5 overflow-hidden shrink-0">
-                  <div
-                    className="h-full bg-primary"
-                    style={{
-                      width: isCenterFocused && isInView ? '100%' : '0%',
-                      transition: isCenterFocused && isInView
-                        ? `width ${PAUSE_DURATION}ms linear`
-                        : 'none',
-                    }}
-                  />
-                </div>
+                {/* Subtle bottom ambient glow accent line */}
+                <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent shrink-0" />
               </div>
             )}
           </div>,
-          heroContainer
+          typeof document !== 'undefined' ? document.body : null
         )}
     </div>
   )
