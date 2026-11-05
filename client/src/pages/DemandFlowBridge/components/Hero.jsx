@@ -201,10 +201,9 @@ const Hero = () => {
 
           {/* Strip Badge */}
           <div className="flex items-center justify-start lg:justify-end mb-0.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gradient-to-r from-primary/10 via-[#0E172A] to-primary/5 border border-primary/30 text-[9px] sm:text-[10px] font-sans font-bold tracking-[0.14em] uppercase text-primary shadow-[0_0_12px_rgba(0,166,255,0.15)] backdrop-blur-md">
+            <div className="inline-flex items-center  font-sans font-bold tracking-[0.14em] uppercase text-primary">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
+
               </span>
               <span>WHY TEAMS USE DEMANDFLOW BRIDGE</span>
             </div>

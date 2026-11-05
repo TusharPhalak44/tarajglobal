@@ -109,7 +109,7 @@ const TechnologyBehindOperations = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2  text-primary mb-3.5"
+            className="inline-flex items-center gap-2 text-primary mb-3.5"
           >
             <Cpu className="w-3.5 h-3.5 text-primary" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">

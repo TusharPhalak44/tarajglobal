@@ -248,8 +248,8 @@ const WhatIsPlatform = () => {
 
       {/* ─── TOP SECTION HEADER ─────────────────────────────────────────── */}
       <div className="relative z-20 max-w-3xl mx-auto px-4 text-center mb-3 sm:mb-5 pointer-events-auto">
-        <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-[9.5px] sm:text-[10.5px] font-sans font-bold tracking-[0.16em] uppercase text-primary shadow-[0_0_12px_rgba(0,166,255,0.2)] backdrop-blur-md mb-2">
-          <Layers className="w-3.5 h-3.5 text-primary" />
+        <div className="inline-flex items-center font-sans font-bold tracking-[0.16em] uppercase text-primary">
+
           <span> UNIFIED CRM ARCHITECTURE </span>
         </div>
 

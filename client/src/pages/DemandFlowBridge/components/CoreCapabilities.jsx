@@ -1,5 +1,7 @@
+
+
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   Users,
   Target,
@@ -9,14 +11,14 @@ import {
   Cog,
   BarChart3,
   Check,
-  ShieldCheck,
-  Zap,
   Activity,
-  CalendarCheck,
-  Clock,
   Layers,
 } from 'lucide-react'
-import { useReducedMotion } from '@hooks/useReducedMotion'
+
+import RibbonTrail from './RibbonTrail'
+
+
+const ACCENT = '#397F91'
 
 const CAPABILITIES = [
   {
@@ -33,8 +35,6 @@ const CAPABILITIES = [
     image: '/demandflow-dbms.png',
     screenTitle: 'Accounts, Client Portals & Contact DBMS',
     icon: Users,
-    color: '#00A6FF',
-    reverse: false,
   },
   {
     id: 'lead-mgmt',
@@ -50,8 +50,6 @@ const CAPABILITIES = [
     image: '/demandflow-qualification.png',
     screenTitle: 'Lead QA & Qualification Control Center',
     icon: Target,
-    color: '#00D2FF',
-    reverse: true,
   },
   {
     id: 'sales-ops',
@@ -67,8 +65,6 @@ const CAPABILITIES = [
     image: '/demandflow-sequences.png',
     screenTitle: 'Email Cadence & Outreach Operations',
     icon: TrendingUp,
-    color: '#FF6D00',
-    reverse: false,
   },
   {
     id: 'hrms',
@@ -81,11 +77,8 @@ const CAPABILITIES = [
       'Digital leave requests, document records, and internal onboarding',
     ],
     metric: 'Centralized Workforce Governance',
-    isTelemetryCard: true,
-    telemetryType: 'hrms',
     icon: UserCheck,
-    color: '#9333EA',
-    reverse: true,
+    telemetryType: 'hrms',
   },
   {
     id: 'payroll',
@@ -98,11 +91,8 @@ const CAPABILITIES = [
       'Comprehensive payslip generation and tax compliance records',
     ],
     metric: 'Accurate, Automated Pay Cycles',
-    isTelemetryCard: true,
-    telemetryType: 'payroll',
     icon: CreditCard,
-    color: '#EAB308',
-    reverse: false,
+    telemetryType: 'payroll',
   },
   {
     id: 'business-ops',
@@ -118,8 +108,6 @@ const CAPABILITIES = [
     image: '/demandflow-campaigns.png',
     screenTitle: 'Campaign Operations & Pacing Board',
     icon: Cog,
-    color: '#3B82F6',
-    reverse: true,
   },
   {
     id: 'reports-analytics',
@@ -135,10 +123,125 @@ const CAPABILITIES = [
     image: '/demandflow-tracking.png',
     screenTitle: 'Response Telemetry & Analytics Hub',
     icon: BarChart3,
-    color: '#10B981',
-    reverse: false,
   },
 ]
+
+// Small section connector
+const SectionMarker = ({ number }) => (
+  <div className="flex items-center gap-2 mb-4">
+    <span
+      data-capability-marker
+      className="flex items-center justify-center w-8 h-8 rounded-full border border-primary/30 bg-surface text-primary text-xs font-bold transition-all duration-300 shadow-[0_0_12px_rgba(0,166,255,0.15)] relative z-20"
+    >
+      {number}
+    </span>
+    <span className="h-px w-8 bg-primary/40" />
+    <span className="text-[10px] uppercase tracking-[0.16em] font-semibold text-text-secondary">
+      Module
+    </span>
+  </div>
+)
+
+// Dashboard preview
+const DashboardPreview = ({ item, index }) => {
+  const Icon = item.icon
+
+  return (
+    <div className="relative w-full max-w-[460px] mx-auto">
+      <div className="rounded-2xl overflow-hidden border border-border bg-surface shadow-[0_12px_35px_rgba(30,70,90,0.09)] transition-all duration-500 hover:shadow-[0_18px_45px_rgba(30,70,90,0.13)] hover:-translate-y-1">
+
+        {/* Minimal top bar */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+              <Icon size={15} />
+            </div>
+            <span className="text-xs font-semibold text-text-primary">
+              DemandFlow Bridge™
+            </span>
+          </div>
+
+          <span className="flex items-center gap-1.5 text-[10px] text-text-secondary">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+            {item.title}
+          </span>
+        </div>
+
+        {/* Dashboard content */}
+        {item.telemetryType ? (
+          <div className="p-5 sm:p-6 bg-background min-h-[210px]">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <Icon size={20} />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-text-primary">
+                  {item.telemetryType === 'hrms'
+                    ? 'Workforce Governance Console'
+                    : 'Automated Compensation Engine'}
+                </h4>
+                <p className="text-[10px] text-text-secondary mt-1">
+                  {item.telemetryType === 'hrms'
+                    ? '148 Active Team Members Synchronized'
+                    : 'Synced with Attendance & Performance'}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {(item.telemetryType === 'hrms'
+                ? [
+                  ['Daily Attendance', '98.6%', 'Shift verified'],
+                  ['Departments', '6 Units', 'Direct hierarchy'],
+                  ['Leave Workflows', 'Automated', '1-click approvals'],
+                ]
+                : [
+                  ['Cycle Status', 'Reconciled', 'Zero discrepancies'],
+                  ['Incentive Sync', 'Direct MQL/SQL', 'Quota verified'],
+                  ['Compliance', 'Automated', 'Tax & deductions'],
+                ]
+              ).map(([label, value, description]) => (
+                <div
+                  key={label}
+                  className="rounded-xl border border-border bg-surface p-3"
+                >
+                  <p className="text-[10px] text-text-secondary">
+                    {label}
+                  </p>
+                  <p className="text-sm sm:text-base font-bold text-primary mt-2">
+                    {value}
+                  </p>
+                  <p className="text-[9px] text-text-secondary mt-1">
+                    {description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="relative aspect-[16/10] bg-background overflow-hidden">
+            <img
+              src={item.image}
+              alt={`${item.title} dashboard`}
+              loading="lazy"
+              className="w-full h-full object-contain object-center p-2 transition-transform duration-700 hover:scale-[1.025]"
+            />
+          </div>
+        )}
+
+        {/* Bottom caption */}
+        <div className="px-4 py-3 border-t border-border flex items-center justify-between gap-3">
+          <span className="text-[10px] sm:text-xs text-text-secondary truncate">
+            {item.screenTitle || item.title}
+          </span>
+          <span className="text-[10px] font-semibold text-primary whitespace-nowrap">
+            Module 0{index + 1}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const CoreCapabilities = () => {
   const prefersReducedMotion = useReducedMotion()
@@ -146,275 +249,162 @@ const CoreCapabilities = () => {
   return (
     <section
       id="capabilities"
-      className="relative py-16 sm:py-20 lg:py-24 bg-surface border-t border-b border-border transition-colors duration-300"
+      className="relative py-14 sm:py-20 lg:py-24 bg-surface border-y border-border overflow-hidden"
       aria-label="DemandFlow Bridge Core Capabilities"
     >
-      <div className="relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+      {/* 3D High-Velocity Silk Ribbon Trail connecting all 7 modules down to section border */}
+      <RibbonTrail
+        reducedMotion={prefersReducedMotion}
+        ribbonWidth={14}
+        segmentCount={640}
+        animationSpeed={0.7}
+      // colorStart="#00A6FF"
+      // colorMid="#00D2FF"
+      // colorEnd="#00D2FF"
+      />
+
+      <div className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
+        <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-20">
           <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2  text-primary mb-3.5"
+            className="inline-flex items-center gap-2 text-primary mb-4"
           >
-            <Layers className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase">
+            <Layers size={15} />
+            <span className="text-xs font-semibold tracking-[0.16em] uppercase">
               Deep-Dive Modules
             </span>
           </motion.div>
 
           <motion.h2
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 18 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2.5xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-text-primary mb-4"
+            transition={{ duration: 0.6 }}
+            className="text-2xl sm:text-4xl lg:text-[42px] font-bold tracking-tight leading-tight text-text-primary mb-4"
           >
             Core Capabilities Built for{' '}
-            <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
+            <span className="text-primary">
               High-Velocity Business
             </span>
           </motion.h2>
 
           <motion.p
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
-            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl mx-auto font-normal"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl mx-auto"
           >
-            Explore each specialized module inside DemandFlow Bridge, engineered to connect every operational layer into one cohesive command experience.
+            Explore each specialized module inside DemandFlow Bridge,
+            engineered to connect every operational layer into one
+            cohesive command experience.
           </motion.p>
         </div>
 
-        {/* Alternating Feature Rows */}
-        <div className="space-y-16 sm:space-y-24">
-          {CAPABILITIES.map((item, idx) => {
-            const Icon = item.icon
+        {/* Connected Modules */}
+        <div className="relative isolate">
+          <div className="relative z-10 space-y-16 sm:space-y-24 lg:space-y-28">
+            {CAPABILITIES.map((item, index) => {
+              const Icon = item.icon
+              const reverse = index % 2 !== 0
 
-            return (
-              <div
-                key={item.id}
-                className={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
-                  item.reverse ? 'lg:grid-flow-dense' : ''
-                }`}
-              >
-                {/* Text Description Column (5 cols) */}
-                <motion.div
-                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 24 }}
-                  whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className={`lg:col-span-5 space-y-4 ${
-                    item.reverse ? 'lg:col-start-8' : ''
-                  }`}
+              return (
+                <div
+                  key={item.id}
+                  data-capability-row={index}
+                  className={`relative grid lg:grid-cols-2 gap-8 lg:gap-16 items-center ${reverse ? 'lg:[&>*:first-child]:order-2' : ''
+                    }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold tracking-wider"
-                      style={{
-                        backgroundColor: `${item.color}15`,
-                        color: item.color,
-                        border: `1px solid ${item.color}35`,
-                      }}
-                    >
-                      {item.eyebrow}
-                    </span>
-                  </div>
+                  {/* Content */}
+                  <motion.div
+                    data-capability-content={index}
+                    initial={
+                      prefersReducedMotion
+                        ? false
+                        : { opacity: 0, x: reverse ? 25 : -25 }
+                    }
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-70px' }}
+                    transition={{
+                      duration: 0.65,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="relative z-10"
+                  >
+                    <SectionMarker number={`0${index + 1}`} />
 
-                  <h3 className="text-2xl sm:text-3xl font-black text-text-primary tracking-tight">
-                    {item.title}
-                  </h3>
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mb-3">
+                      {item.title}
+                    </h3>
 
-                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
-                    {item.desc}
-                  </p>
+                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-lg">
+                      {item.desc}
+                    </p>
 
-                  {/* Bullet Checklist */}
-                  <div className="space-y-2.5 pt-2">
-                    {item.points.map((pt, pIdx) => (
-                      <div key={pIdx} className="flex items-start gap-3">
+                    {/* Features */}
+                    <div className="mt-6 space-y-3">
+                      {item.points.map((point, pointIndex) => (
                         <div
-                          className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{
-                            backgroundColor: `${item.color}15`,
-                            color: item.color,
-                            border: `1px solid ${item.color}35`,
-                          }}
+                          key={pointIndex}
+                          className="flex items-start gap-3"
                         >
-                          <Check className="w-3 h-3" strokeWidth={3} />
+                          <div className="w-5 h-5 mt-0.5 rounded-full shrink-0 bg-primary/10 flex items-center justify-center text-primary">
+                            <Check size={12} strokeWidth={2.5} />
+                          </div>
+
+                          <p className="text-xs sm:text-sm text-text-primary leading-relaxed">
+                            {point}
+                          </p>
                         </div>
-                        <span className="text-xs sm:text-sm text-text-primary font-medium leading-snug">
-                          {pt}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Operational Metric Tag */}
-                  <div className="pt-2 flex items-center gap-2 text-xs font-mono text-text-secondary">
-                    <Activity className="w-4 h-4 text-emerald-500 animate-pulse" />
-                    <span>Impact: </span>
-                    <strong className="text-text-primary font-bold">{item.metric}</strong>
-                  </div>
-                </motion.div>
-
-                {/* Visual Viewport Column (7 cols) */}
-                <motion.div
-                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 24, scale: 0.98 }}
-                  whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                  className={`lg:col-span-7 ${
-                    item.reverse ? 'lg:col-start-1' : ''
-                  }`}
-                >
-                  {/* Browser/Application Frame */}
-                  <div className="rounded-2xl overflow-hidden border border-border bg-surface dark:bg-[#0B1424] shadow-xl dark:shadow-[0_16px_40px_rgba(0,166,255,0.12)] group transition-all duration-300 hover:border-primary/50">
-                    
-                    {/* Frame Top Header */}
-                    <div className="flex items-center justify-between px-3.5 py-2.5 bg-surface dark:bg-slate-900 border-b border-border dark:border-white/10 select-none">
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                      </div>
-
-                      <div className="flex items-center gap-2 text-[11px] font-mono text-text-secondary dark:text-slate-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>DemandFlow Bridge™</span>
-                        <span className="text-slate-500 hidden sm:inline">• {item.title}</span>
-                      </div>
-
-                      <span className="text-[10px] font-mono text-text-secondary dark:text-slate-400 px-2 py-0.5 rounded bg-surface/80 dark:bg-white/5 border border-border dark:border-white/10">
-                        LIVE
-                      </span>
+                      ))}
                     </div>
 
-                    {/* Content Viewport */}
-                    {item.isTelemetryCard ? (
-                      /* Dedicated Rich Telemetry Visual for HRMS or Payroll */
-                      <div className="p-6 sm:p-8 bg-background dark:bg-slate-950 text-text-primary dark:text-white min-h-[280px] sm:min-h-[320px] flex flex-col justify-between">
-                        {item.telemetryType === 'hrms' ? (
-                          <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400">
-                                  <UserCheck className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <div className="text-sm font-bold text-text-primary dark:text-white">Workforce Governance Console</div>
-                                  <div className="text-xs text-text-secondary dark:text-slate-400 font-mono">148 Active Team Members Synchronized</div>
-                                </div>
-                              </div>
-                              <span className="text-xs font-mono px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40">
-                                HRMS LIVE
-                              </span>
-                            </div>
+                    {/* Impact */}
+                    <div className="mt-6 pt-4 border-t border-border flex items-center gap-2">
+                      <Activity
+                        size={15}
+                        className="text-primary shrink-0"
+                      />
+                      <span className="text-xs text-text-secondary">
+                        Impact:
+                      </span>
+                      <span className="text-xs font-semibold text-text-primary">
+                        {item.metric}
+                      </span>
+                    </div>
+                  </motion.div>
 
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
-                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Daily Attendance</div>
-                                <div className="text-lg font-black text-emerald-400 mt-1">98.6%</div>
-                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Shift verified</div>
-                              </div>
-                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
-                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Departments</div>
-                                <div className="text-lg font-black text-text-primary dark:text-white mt-1">6 Units</div>
-                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Direct hierarchy</div>
-                              </div>
-                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10 col-span-2 sm:col-span-1">
-                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Leave Workflows</div>
-                                <div className="text-lg font-black text-primary mt-1">Automated</div>
-                                <div className="text-[10px] text-text-secondary dark:text-slate-400">1-click approvals</div>
-                              </div>
-                            </div>
-
-                            <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/50 border border-border dark:border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary dark:text-slate-300">
-                              <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                                <span>Role-Based Access Control</span>
-                              </div>
-                              <span className="text-slate-500">Enterprise Encrypted</span>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
-                                  <CreditCard className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <div className="text-sm font-bold text-text-primary dark:text-white">Automated Compensation Engine</div>
-                                  <div className="text-xs text-text-secondary dark:text-slate-400 font-mono">Synced with Attendance & Performance</div>
-                                </div>
-                              </div>
-                              <span className="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                                PAYROLL ENGINE
-                              </span>
-                            </div>
-
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
-                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Cycle Status</div>
-                                <div className="text-lg font-black text-emerald-400 mt-1">Reconciled</div>
-                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Zero discrepancies</div>
-                              </div>
-                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10">
-                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Incentive Sync</div>
-                                <div className="text-lg font-black text-amber-400 mt-1">Direct MQL/SQL</div>
-                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Quota verified</div>
-                              </div>
-                              <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/80 border border-border dark:border-white/10 col-span-2 sm:col-span-1">
-                                <div className="text-[10.5px] font-mono text-text-secondary dark:text-slate-400">Compliance</div>
-                                <div className="text-lg font-black text-primary mt-1">Automated</div>
-                                <div className="text-[10px] text-text-secondary dark:text-slate-400">Tax & deductions</div>
-                              </div>
-                            </div>
-
-                            <div className="p-3 rounded-xl bg-surface dark:bg-slate-900/50 border border-border dark:border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary dark:text-slate-300">
-                              <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                                <span>Bank Batch File Export</span>
-                              </div>
-                              <span className="text-slate-500">100% Audit Ready</span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      /* High-Resolution Application Screenshot */
-                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-background dark:bg-slate-950">
-                        <img
-                          src={item.image}
-                          alt={`${item.title} Dashboard Screen in DemandFlow Bridge`}
-                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-102"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-                        
-                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-text-secondary dark:text-slate-300">
-                          <span className="bg-surface dark:bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-border dark:border-white/15">
-                            {item.screenTitle}
-                          </span>
-                          <span className="text-primary font-bold">
-                            DemandFlow Bridge™
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                  </div>
-                </motion.div>
-              </div>
-            )
-          })}
+                  {/* Image */}
+                  <motion.div
+                    initial={
+                      prefersReducedMotion
+                        ? false
+                        : { opacity: 0, y: 22, scale: 0.98 }
+                    }
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: '-70px' }}
+                    transition={{
+                      duration: 0.7,
+                      delay: 0.12,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="relative z-10"
+                  >
+                    <DashboardPreview
+                      item={item}
+                      index={index}
+                    />
+                  </motion.div>
+                </div>
+              )
+            })}
+          </div>
         </div>
-
       </div>
     </section>
   )

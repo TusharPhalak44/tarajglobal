@@ -43,7 +43,7 @@ const FinalCTA = () => {
           whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 border border-border dark:border-white/15 bg-surface/80 dark:bg-white/5 backdrop-blur-md text-text-secondary dark:text-slate-300 text-xs font-mono font-bold uppercase mb-6"
+          className="inline-flex items-center gap-2 border border-border dark:border-white/15 bg-surface/80 dark:bg-white/5 backdrop-blur-md text-text-secondary dark:text-slate-300 text-xs font-mono font-bold uppercase mb-6 px-3.5 py-1 rounded-full"
         >
           <Cpu className="w-3.5 h-3.5 text-primary animate-pulse" />
           <span>Unified Operations Ecosystem</span>
@@ -74,37 +74,42 @@ const FinalCTA = () => {
           Discover how one integrated platform can connect your business operations.
         </motion.p>
 
-        {/* Action Buttons */}
-        <motion.div
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
-          whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-4"
-        >
-          <button
-            onClick={scrollToTop}
-            data-cta="true"
-            data-cta-section="DemandFlow Bridge Final CTA"
-            data-cta-name="Explore DemandFlow Bridge"
-            style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-text-accent dark:text-white hover: shadow-lg shadow-accent hover:shadow-accent transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
-          >
-            <span>Explore DemandFlow Bridge</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
+        {/* Action Buttons with Doodle Landing Target */}
+        <div className="relative inline-block max-w-full">
+          {/* Subtle Doodle Energy Ring around CTA Target */}
+          <div className="absolute -inset-3 sm:-inset-5 rounded-3xl border border-primary/30 border-dashed pointer-events-none animate-[spin_30s_linear_infinite]" />
 
-          <Link
-            to="/contact"
-            data-cta="true"
-            data-cta-section="DemandFlow Bridge Final CTA"
-            data-cta-name="Talk to Taraj Global"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/15 text-text-accent dark:text-white transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative flex flex-wrap items-center justify-center gap-4 z-10"
           >
-            <MessageSquare className="w-4 h-4 text-primary" />
-            <span>Talk to Taraj Global</span>
-          </Link>
+            <button
+              onClick={scrollToTop}
+              data-cta="true"
+              data-cta-section="DemandFlow Bridge Final CTA"
+              data-cta-name="Explore DemandFlow Bridge"
+              style={{ backgroundColor: '#FF6D00', color: '#FFFFFF', boxShadow: '0 4px 20px rgba(255,109,0,0.3)', border: 'none' }} className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm  text-text-accent dark:text-white hover: shadow-lg shadow-accent hover:shadow-accent transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
+            >
+              <span>Explore DemandFlow Bridge</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </button>
 
-        </motion.div>
+            <Link
+              to="/contact"
+              data-cta="true"
+              data-cta-section="DemandFlow Bridge Final CTA"
+              data-cta-name="Talk to Taraj Global"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm bg-surface/90 dark:bg-white/10 hover:bg-white/20 border border-border dark:border-white/15 text-text-accent dark:text-white transition-all duration-300 hover:-translate-y-0.5 shadow-xs"
+            >
+              <MessageSquare className="w-4 h-4 text-primary" />
+              <span>Talk to Taraj Global</span>
+            </Link>
+
+          </motion.div>
+        </div>
 
         {/* Trust Badges Footer */}
         <div className="mt-12 pt-8 border-t border-border dark:border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-text-secondary dark:text-slate-400">

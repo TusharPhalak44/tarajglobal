@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import SEO from '@components/common/SEO'
 import Hero from './components/Hero'
 import WhatIsPlatform from './components/WhatIsPlatform'
@@ -8,8 +8,10 @@ import TechnologyBehindOperations from './components/TechnologyBehindOperations'
 import ProductShowcase from './components/ProductShowcase'
 import WhyOnePlatform from './components/WhyOnePlatform'
 import FinalCTA from './components/FinalCTA'
+import DoodleScrollAnimation from './components/DoodleScrollAnimation'
 
 const DemandFlowBridge = () => {
+  const pageRef = useRef(null)
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -48,7 +50,10 @@ const DemandFlowBridge = () => {
   }
 
   return (
-    <div className="relative w-full bg-background min-h-screen selection:bg-primary/40 dark:bg-primary/20 selection:text-primary">
+    <div
+      ref={pageRef}
+      className="relative w-full bg-background min-h-screen selection:bg-primary/40 dark:bg-primary/20 selection:text-primary overflow-x-clip"
+    >
       <SEO
         title="DemandFlow Bridge | Unified Business Operations Platform | Taraj Global"
         description="Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
@@ -81,6 +86,9 @@ const DemandFlowBridge = () => {
 
       {/* 8. FINAL CTA */}
       <FinalCTA />
+
+      {/* CONTINUOUS DOODLE SCROLL RIVER (RENDERED LAST SO IT SITS VISIBLY ON TOP OF ALL BACKGROUNDS) */}
+      <DoodleScrollAnimation containerRef={pageRef} />
     </div>
   )
 }
