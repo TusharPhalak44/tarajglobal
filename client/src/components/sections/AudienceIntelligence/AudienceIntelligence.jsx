@@ -152,9 +152,11 @@ export const AudienceIntelligence = () => {
         
         {/* Pre-header Eyebrow (Clean, Editorial, Global Font - Same as Other Sections) */}
         <div className="mb-2.5 sm:mb-3">
-          <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+         <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+
+
             GLOBAL AUDIENCE INTELLIGENCE
-          </p>
+          </span>
         </div>
 
         {/* ── HEADLINE & INTRO ─────────────────────────────────────────── */}

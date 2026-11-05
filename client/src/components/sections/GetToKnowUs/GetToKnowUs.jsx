@@ -42,9 +42,11 @@ export const GetToKnowUs = () => {
             transition={{ duration: 0.45 }}
             className="inline-flex items-center justify-center mb-3.5"
           >
-            <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+
+
               ENGINEERED FOR PRECISION
-            </p>
+            </span>
           </motion.div>
 
           {/* Headline */}
@@ -56,7 +58,7 @@ export const GetToKnowUs = () => {
             className="text-2xl sm:text-3xl lg:text-[44px] font-black tracking-normal leading-[1.25] mb-5 text-white uppercase"
           >
             <span className="inline-block [word-spacing:0.1em] sm:[word-spacing:0.1em]">
-              POWERING SMARTER <span className="text-[#00A6FF] inline-block ml-1">&</span>
+              POWERING SMARTER &<span className="text-[#00A6FF] inline-block ml-1"></span>
             </span>
             <span className="block text-[#00A6FF] mt-2 sm:mt-2.5 [word-spacing:0.1em] sm:[word-spacing:0.1em]">
               CRM Pipeline Delivery

@@ -163,9 +163,9 @@ export const Services = ({
           <div className="max-w-2xl">
             {/* Pre-header Eyebrow */}
             <div className="mb-1.5">
-              <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#FF6D00]">
+              <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
                 CORE B2B CAPABILITIES
-              </p>
+              </span>
             </div>
 
             <h2
@@ -173,7 +173,7 @@ export const Services = ({
               className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 dark:text-white"
             >
               {heading}{' '}
-              <span className="text-[#FF6D00]">Predictable Revenue</span>.
+              <span className="text-[#00A6FF]">Predictable Revenue</span>.
             </h2>
 
             <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-[#94A3B8] leading-relaxed">
