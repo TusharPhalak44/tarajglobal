@@ -379,6 +379,10 @@ const Media = () => {
                 src={previewItem.file_url?.startsWith('http') ? previewItem.file_url : mediaUrl(previewItem.file_url)}
                 alt=""
                 className="max-h-[45vh] object-contain rounded-lg"
+                onError={(e) => {
+                  e.currentTarget.onerror = null
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80'
+                }}
               />
             </div>
 

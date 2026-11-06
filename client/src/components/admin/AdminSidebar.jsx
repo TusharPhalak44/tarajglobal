@@ -235,6 +235,7 @@ export const AdminSidebar = ({
                       src={user.avatar.startsWith('http') ? user.avatar : mediaUrl(user.avatar)}
                       alt={user.name || 'Admin'}
                       className="w-full h-full object-cover rounded-[7px]"
+                      onError={(e) => { e.currentTarget.style.display = 'none' }}
                     />
                   ) : (
                     <div className="w-full h-full rounded-[7px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-sm text-[#00A6FF]">
@@ -272,6 +273,7 @@ export const AdminSidebar = ({
                     src={user.avatar.startsWith('http') ? user.avatar : mediaUrl(user.avatar)}
                     alt={user.name || 'Admin'}
                     className="w-full h-full object-cover rounded-[9px]"
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
                   />
                 ) : (
                   <div className="w-full h-full rounded-[9px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-sm text-[#00A6FF]">

@@ -1,6 +1,7 @@
 import express from 'express'
 import { checkPermission } from '../../middleware/permission.middleware.js'
 import db from '../../config/db.js'
+import { publishScheduledBlogs } from '../../controllers/admin/blog.controller.js'
 
 const router = express.Router()
 
@@ -9,6 +10,8 @@ const router = express.Router()
 // @access  Private
 router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => {
   try {
+    await publishScheduledBlogs()
+
     // Blog stats
     let blogStats = { total_blogs: 0, published_blogs: 0, draft_blogs: 0, scheduled_blogs: 0, total_views: 0 }
     try {
@@ -17,7 +20,7 @@ router.get('/dashboard', checkPermission('analytics.view'), async (req, res) => 
           COUNT(*) as total_blogs,
           SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) as published_blogs,
           SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END) as draft_blogs,
-          0 as scheduled_blogs,
+          SUM(CASE WHEN status = 'scheduled' THEN 1 ELSE 0 END) as scheduled_blogs,
           0 as total_views
         FROM blogs
       `)

@@ -3,12 +3,13 @@ import SEO from '@components/common/SEO'
 import Hero from './components/Hero'
 import WhatIsPlatform from './components/WhatIsPlatform'
 import ConnectedEcosystem from './components/ConnectedEcosystem'
+import AiIntentEngine from './components/AiIntentEngine'
 import CoreCapabilities from './components/CoreCapabilities'
 import TechnologyBehindOperations from './components/TechnologyBehindOperations'
 import ProductShowcase from './components/ProductShowcase'
 import WhyOnePlatform from './components/WhyOnePlatform'
 import FinalCTA from './components/FinalCTA'
-import DoodleScrollAnimation from './components/DoodleScrollAnimation'
+// import DoodleScrollAnimation from './components/DoodleScrollAnimation'
 
 const DemandFlowBridge = () => {
   const pageRef = useRef(null)
@@ -72,7 +73,10 @@ const DemandFlowBridge = () => {
       {/* 3. CONNECTED BUSINESS ECOSYSTEM */}
       <ConnectedEcosystem />
 
-      {/* 4. CORE CAPABILITIES */}
+      {/* 4. AI & INTENT ENGINE */}
+      <AiIntentEngine />
+
+      {/* 5. CORE CAPABILITIES */}
       <CoreCapabilities />
 
       {/* 5. THE TECHNOLOGY BEHIND TARAJ GLOBAL */}
@@ -88,7 +92,7 @@ const DemandFlowBridge = () => {
       <FinalCTA />
 
       {/* CONTINUOUS DOODLE SCROLL RIVER (RENDERED LAST SO IT SITS VISIBLY ON TOP OF ALL BACKGROUNDS) */}
-      <DoodleScrollAnimation containerRef={pageRef} />
+      {/* <DoodleScrollAnimation containerRef={pageRef} /> */}
     </div>
   )
 }

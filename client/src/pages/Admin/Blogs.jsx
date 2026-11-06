@@ -22,7 +22,7 @@ import PageHeader from '@components/admin/PageHeader'
 import StatusBadge from '@components/admin/StatusBadge'
 import EmptyState from '@components/admin/EmptyState'
 import { TableSkeleton } from '@components/admin/LoadingSkeleton'
-import { mediaUrl } from '@utils/media'
+import { mediaUrl, handleImageFallback } from '@utils/media'
 
 const formatAdminDate = (val) => {
   if (!val) return '-'
@@ -75,9 +75,17 @@ const Blogs = () => {
     return () => clearTimeout(timer)
   }, [filters.search])
 
-  const fetchBlogs = async () => {
+  // Periodic background check to reflect scheduled blog publishing in real-time
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchBlogs(true)
+    }, 10000)
+    return () => clearInterval(interval)
+  }, [filters, pagination.page, pagination.limit])
+
+  const fetchBlogs = async (silent = false) => {
     try {
-      setLoading(true)
+      if (!silent) setLoading(true)
       const response = await adminAPI.getBlogs({
         ...filters,
         page: pagination.page,
@@ -89,9 +97,9 @@ const Blogs = () => {
       setPagination(paginationData)
     } catch (error) {
       console.error('Failed to fetch blogs:', error)
-      setBlogs([])
+      if (!silent) setBlogs([])
     } finally {
-      setLoading(false)
+      if (!silent) setLoading(false)
     }
   }
 
@@ -257,7 +265,12 @@ const Blogs = () => {
                     <td className="px-4 py-4">
                       {blog.featured_image || blog.image ? (
                         <div className="w-16 h-10 rounded-md overflow-hidden bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center shrink-0">
-                          <img src={mediaUrl(blog.featured_image || blog.image)} alt={blog.title} className="w-full h-full object-cover" />
+                          <img 
+                            src={mediaUrl(blog.featured_image || blog.image)} 
+                            alt={blog.title} 
+                            className="w-full h-full object-cover" 
+                            onError={handleImageFallback}
+                          />
                         </div>
                       ) : (
                         <div className="w-16 h-10 rounded-md bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-center text-[var(--admin-text-muted)]">

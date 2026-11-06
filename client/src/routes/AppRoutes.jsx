@@ -73,6 +73,14 @@ const PageLoader = () => (
   </div>
 )
 
+// External Redirect Helper
+const ExternalRedirect = ({ url }) => {
+  React.useEffect(() => {
+    window.location.replace(url)
+  }, [url])
+  return null
+}
+
 function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
@@ -106,6 +114,8 @@ function AppRoutes() {
         <Route path="b2b-list-building" element={<B2bListBuilding />} />
         <Route path="database-cleansing" element={<DatabaseCleansing />} />
         <Route path="demandflow-bridge" element={<DemandFlowBridge />} />
+        <Route path="tgstechinfo" element={<ExternalRedirect url="https://tgstechinfo.com/" />} />
+        <Route path="tgs-tech-info" element={<ExternalRedirect url="https://tgstechinfo.com/" />} />
 
         {/* Legal & System Pages */}
         <Route path="privacy" element={<Privacy />} />

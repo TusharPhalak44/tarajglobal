@@ -59,6 +59,12 @@ function BlogDetails() {
       const currentBlog = response?.data?.data
       setBlog(currentBlog)
 
+      // Ensure the browser URL reflects the exact blog slug
+      if (currentBlog?.slug && slug !== currentBlog.slug) {
+        const previewQuery = isPreview ? '?preview=true' : ''
+        navigate(`/blog/${currentBlog.slug}${previewQuery}`, { replace: true })
+      }
+
       // Fetch related blogs (latest 3 excluding current)
       try {
         const relatedRes = await publicAPI.getBlogs({ limit: 4 })

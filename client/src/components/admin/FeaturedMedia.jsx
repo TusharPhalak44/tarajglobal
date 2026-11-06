@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Upload, X, FileText, Image as ImageIcon, Video, File, Link, ChevronDown } from 'lucide-react'
 import { adminAPI } from '@api'
+import { mediaUrl, handleImageFallback, FALLBACK_IMAGE } from '@utils/media'
 
 const FeaturedMedia = ({ value, onChange, disabled = false }) => {
   const [activeTab, setActiveTab] = useState('upload')
@@ -11,6 +12,17 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
   const [fileName, setFileName] = useState('')
   const [fileSize, setFileSize] = useState('')
   const fileInputRef = useRef(null)
+
+  useEffect(() => {
+    setPreviewUrl(value || '')
+    if (value) {
+      setMediaType(getMediaTypeFromUrl(value))
+      if (!fileName && typeof value === 'string') {
+        const parts = value.split('/')
+        setFileName(parts[parts.length - 1] || 'Featured Media')
+      }
+    }
+  }, [value])
 
   const getMediaTypeFromUrl = (url) => {
     if (!url) return 'image'
@@ -144,19 +156,22 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
     if (!previewUrl) return null
 
     if (mediaType === 'image') {
+      const srcUrl = /^(data:|blob:)/i.test(previewUrl) ? previewUrl : mediaUrl(previewUrl)
       return (
         <img
-          src={previewUrl}
+          src={srcUrl}
           alt="Preview"
           className="w-full h-48 object-contain rounded-lg bg-background"
+          onError={(e) => handleImageFallback(e, FALLBACK_IMAGE)}
         />
       )
     }
 
     if (mediaType === 'video') {
+      const srcUrl = /^(data:|blob:)/i.test(previewUrl) ? previewUrl : mediaUrl(previewUrl)
       return (
         <video
-          src={previewUrl}
+          src={srcUrl}
           controls
           className="w-full h-48 rounded-lg bg-background"
         />
@@ -164,12 +179,13 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
     }
 
     if (mediaType === 'pdf') {
+      const srcUrl = /^(data:|blob:)/i.test(previewUrl) ? previewUrl : mediaUrl(previewUrl)
       return (
         <div className="w-full h-48 flex items-center justify-center rounded-lg bg-background border border-border">
           <div className="text-center">
             <File className="w-12 h-12 text-text-muted mx-auto mb-2" />
             <p className="text-base text-text-secondary">PDF Document</p>
-            <a href={previewUrl} target="_blank" rel="noopener noreferrer" className="text-primary text-base hover:underline">
+            <a href={srcUrl} target="_blank" rel="noopener noreferrer" className="text-primary text-base hover:underline">
               Open PDF
             </a>
           </div>
