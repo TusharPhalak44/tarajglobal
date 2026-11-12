@@ -177,7 +177,7 @@ const Hero = () => {
                 boxShadow: '0 4px 20px rgba(0,166,255,0.3)',
               }}
             >
-              <span>Talk To TarajGlobal</span>
+              <span>Talk To Taraj Global</span>
               <ArrowRight className="w-3.5 h-3.5 text-primary transition-transform group-hover:translate-x-1" />
             </Link>
 

@@ -20,7 +20,7 @@ const TECH_METRICS = [
   {
     value: '99.8%',
     label: 'Verification SLA',
-    sub: 'Custom Tooling',
+    sub: null,
     color: '#00A6FF'
   },
   {

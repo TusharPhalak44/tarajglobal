@@ -28,9 +28,9 @@ import TGAnimatedLogo from './TGAnimatedLogo'
 const menuItems = [
   { index: '01', name: 'Home', path: '/', icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
   { index: '02', name: 'Services', path: '/services', icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
-  { index: '03', name: 'Careers', path: '/careers', icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
-  { index: '04', name: 'Blogs', path: '/blog', icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
-  { index: '05', name: 'Who We Are', path: '/who-we-are', icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
+  { index: '03', name: 'Blogs', path: '/blog', icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
+  { index: '04', name: 'Who We Are', path: '/who-we-are', icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
+  { index: '05', name: 'Careers', path: '/careers', icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
   { index: '06', name: 'Contact Us', path: '/contact', icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },
 ]
 
@@ -147,10 +147,11 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
   const knownItemsMeta = {
     '/': { icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
     '/services': { icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
-    '/careers': { icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
+
     '/blog': { icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
     '/who-we-are': { icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
     '/about': { icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
+    '/careers': { icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
     '/contact': { icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },
   }
 
@@ -180,13 +181,22 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
           isExternal
         }
       })
-      // Ensure Who We Are is placed immediately after Blogs
-      const withoutWho = mapped.filter(item => item.path !== '/about' && item.path !== '/who-we-are' && item.name !== 'Who We Are')
+      // Ensure Who We Are is placed immediately after Blogs, and Careers appears after Who We Are (before Contact Us)
       const whoItem = mapped.find(item => item.path === '/about' || item.path === '/who-we-are' || item.name === 'Who We Are')
-      const blogIndex = withoutWho.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
-      if (whoItem && blogIndex !== -1) {
-        withoutWho.splice(blogIndex + 1, 0, whoItem)
-        return withoutWho.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
+      const careerItem = mapped.find(item => item.path === '/careers' || item.path === '/career' || item.name?.toLowerCase().includes('career'))
+      const remaining = mapped.filter(item =>
+        item.path !== '/about' &&
+        item.path !== '/who-we-are' &&
+        item.name !== 'Who We Are' &&
+        item.path !== '/careers' &&
+        item.path !== '/career' &&
+        !item.name?.toLowerCase().includes('career')
+      )
+      const blogIndex = remaining.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
+      if (blogIndex !== -1) {
+        const toInsert = [whoItem, careerItem].filter(Boolean)
+        remaining.splice(blogIndex + 1, 0, ...toInsert)
+        return remaining.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
       }
       return mapped.map((item, idx) => ({ ...item, index: String(idx + 1).padStart(2, '0') }))
     })()

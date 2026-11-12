@@ -166,9 +166,9 @@ export const PremiumNavbar = ({ isPreview = false }) => {
   const [navLinks, setNavLinks] = useState([
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
-    { name: 'Careers', path: '/careers' },
     { name: 'Blogs', path: '/blog' },
     { name: 'Who We Are', path: '/who-we-are' },
+    { name: 'Careers', path: '/careers' },
     { name: 'Contact Us', path: '/contact' },
   ])
 
@@ -210,16 +210,36 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                 id: item.id
               }
             })
-            // Ensure Who We Are appears immediately after Blogs
-            const withoutWho = mapped.filter(item => item.path !== '/who-we-are' && item.path !== '/about' && item.name !== 'Who We Are')
+            // Ensure Who We Are appears immediately after Blogs, and Careers appears after Who We Are (before Contact Us)
             const whoItem = mapped.find(item => item.path === '/who-we-are' || item.path === '/about' || item.name === 'Who We Are') || { name: 'Who We Are', path: '/who-we-are' }
+            whoItem.name = 'Who We Are'
             whoItem.path = '/who-we-are'
-            const blogIndex = withoutWho.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
+
+            const careerItem = mapped.find(item => item.path === '/careers' || item.path === '/career' || item.name?.toLowerCase().includes('career')) || { name: 'Careers', path: '/careers' }
+            careerItem.name = 'Careers'
+            careerItem.path = '/careers'
+
+            const remaining = mapped.filter(item =>
+              item.path !== '/who-we-are' &&
+              item.path !== '/about' &&
+              item.name !== 'Who We Are' &&
+              item.path !== '/careers' &&
+              item.path !== '/career' &&
+              !item.name?.toLowerCase().includes('career')
+            )
+
+            const blogIndex = remaining.findIndex(item => item.path === '/blog' || item.name?.toLowerCase().includes('blog'))
             if (blogIndex !== -1) {
-              withoutWho.splice(blogIndex + 1, 0, whoItem)
-              setNavLinks(withoutWho)
+              remaining.splice(blogIndex + 1, 0, whoItem, careerItem)
+              setNavLinks(remaining)
             } else {
-              setNavLinks(mapped)
+              const contactIndex = remaining.findIndex(item => item.path === '/contact' || item.name?.toLowerCase().includes('contact'))
+              if (contactIndex !== -1) {
+                remaining.splice(contactIndex, 0, whoItem, careerItem)
+              } else {
+                remaining.push(whoItem, careerItem)
+              }
+              setNavLinks(remaining)
             }
           }
         }
