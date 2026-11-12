@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'QUALIFY',
-    desc: 'Confirm sales readiness & route meeting-ready SQLs via DemandFlow Bridge',
+    desc: 'Confirm sales readiness & route meeting-ready SQLs via DemandFlow Bridge.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -114,7 +114,7 @@ const WhatIsService = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                Sales Qualified Leads (SQLs)
+                Sales Qualified Leads (SQLs)?
               </motion.span>
 
             </span>

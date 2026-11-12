@@ -325,13 +325,13 @@ const ProblemsSolved = () => {
         {/* ── COMPACT SECTION HEADER ── */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
           <div className="inline-flex items-center gap-1.5   mb-2">
-            <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" />
-            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+            {/* <Wand2 className="w-3.5 h-3.5 text-primary animate-pulse" /> */}
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               TECH-ENABLED NURTURING TRANSFORMATION
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span>What Problems Does </span>
             <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
               Lead Nurturing Solve?

@@ -189,7 +189,7 @@ const HqlFAQ = () => {
             className="inline-flex items-center gap-2 mb-2.5"
           >
 
-            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               FREQUENTLY ASKED QUESTIONS • DEMANDFLOW KNOWLEDGE BASE
             </span>
           </motion.div>

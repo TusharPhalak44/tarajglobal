@@ -357,7 +357,7 @@ const WhatIsService = () => {
                       </span>
 
                       {/* Description */}
-                      <p className="text-xs text-text-secondary leading-snug line-clamp-2">
+                      <p className="text-xs text-text-secondary leading-relaxed">
                         {item.desc}
                       </p>
                     </motion.div>

@@ -28,7 +28,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'QUALIFY',
-    desc: 'Validate active 30–90 day timeline & deliver sales-ready leads',
+    desc: 'Validate active 30–90 day timeline & deliver sales-ready leads.',
     color: '#72D669',
     accentColor: '#86EFAC',
     glowColor: 'rgba(114, 214, 105, 0.25)',

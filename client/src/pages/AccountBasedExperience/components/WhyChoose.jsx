@@ -194,7 +194,7 @@ const WhyChoose = () => {
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
             <span className="bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent">
-              ACCOUNT-BASED EXPERIENCE
+              ACCOUNT-BASED EXPERIENCE?
             </span>
           </motion.h2>
 

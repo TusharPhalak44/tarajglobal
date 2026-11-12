@@ -1250,7 +1250,7 @@ function Careers() {
       num: '04',
       tag: 'MERITOCRACY & APPRAISALS',
       q: 'How often are performance reviews and promotions?',
-      a: 'Performance is formally reviewed twice a year, with monthly 1-on-1 development check-ins. Promotions are merit-based, with no fixed tenure requirement..',
+      a: 'Performance is formally reviewed twice a year, with monthly 1-on-1 development check-ins. Promotions are merit-based, with no fixed tenure requirement.',
       highlight: 'Biannual Appraisals + Monthly 1-on-1 Development Reviews'
     }
   ]
@@ -1835,8 +1835,8 @@ function Careers() {
             {/* Section Header */}
             <div className="max-w-3xl mb-4 xl:mb-5">
               <div className="inline-flex items-center gap-2 text-[#00A6FF] text-[11px] font-mono font-bold tracking-wider uppercase mb-2">
-                <Target size={12} />
-                <span>WHY JOIN TARAJ GLOBAL</span>
+                {/* <Target size={12} /> */}
+               <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">WHY JOIN TARAJ GLOBAL</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary dark:text-[#F5F7FA] uppercase leading-tight mb-1">
@@ -1985,7 +1985,7 @@ function Careers() {
                    <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
                     SOMETHING ON YOUR MIND?
                   </span>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight">
                    FREQUENTLY ASKED QUESTIONS ON CAREER AT TARAJ GLOBAL
                   </h2>
                   <p className="text-sm text-text-secondary dark:text-[#A7ADB7] leading-relaxed max-w-xl">

@@ -51,6 +51,7 @@ export const BlogFAQ = ({
     : (categoryConfig?.faqs || DEFAULT_BLOG_FAQS)
 
   const resolvedEyebrow = eyebrow || categoryConfig?.eyebrow || 'SOMETHING ON YOUR MIND?'
+  
   const resolvedTitle = title || categoryConfig?.title || 'FREQUENTLY ASKED'
   const resolvedHighlight = highlightTitle || categoryConfig?.highlightTitle || 'QUESTIONS'
   const resolvedDesc = description !== null && description !== undefined

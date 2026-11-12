@@ -130,12 +130,13 @@ export const OurTeam = () => {
         <div className="relative text-center mb-8 sm:mb-10 lg:mb-12">
           {/* Pre-header Eyebrow (Matching Homepage Section Style) */}
           <div className="inline-flex items-center justify-center mb-2.5 sm:mb-3">
-            <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+
               EXECUTIVE LEADERSHIP
-            </p>
+            </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
             MEET OUR{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6FF] via-[#00E5FF] to-[#FF6D00]">
               LEADERS

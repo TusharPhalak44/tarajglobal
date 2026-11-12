@@ -8,7 +8,10 @@ import {
   CheckCircle2,
   X,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Users,
+  Cpu,
+  ArrowRight
 } from 'lucide-react'
 import Container from '@components/layout/Container'
 import BlogCard from './BlogCard'
@@ -20,6 +23,49 @@ import {
 import { publicAPI } from '@api/public.api'
 
 const POSTS_PER_PAGE = 6
+
+const CARD_THEMES = {
+  'thought-leadership': {
+    border: 'border-[#00A6FF]/40 hover:border-[#00A6FF]/80',
+    activeBorder: 'border-2 border-[#00A6FF] shadow-[0_12px_40px_rgba(0,166,255,0.30)] ring-1 ring-[#00A6FF]/40',
+    bg: 'bg-[#070D1B]',
+    iconGradient: 'from-[#00A6FF] to-[#0066EE]',
+    iconShadow: 'shadow-[0_4px_20px_rgba(0,166,255,0.45)]',
+    pillColor: 'bg-[#00A6FF] shadow-[0_0_12px_#00A6FF]',
+    cornerGlow: 'from-[#00A6FF]/30 to-transparent',
+    orbOuter: 'border-[#00A6FF]/25 bg-[#00A6FF]/15',
+    orbInner: 'border-[#00A6FF]/40 bg-[#00A6FF]/25',
+    arrowHover: 'group-hover:bg-[#00A6FF] group-hover:text-white group-hover:border-[#00A6FF]',
+    icon: Users,
+  },
+  'sales-marketing': {
+    border: 'border-[#10B981]/40 hover:border-[#10B981]/80',
+    activeBorder: 'border-2 border-[#10B981] shadow-[0_12px_40px_rgba(16,185,129,0.30)] ring-1 ring-[#10B981]/40',
+    bg: 'bg-[#06120E]',
+    iconGradient: 'from-[#10B981] to-[#059669]',
+    iconShadow: 'shadow-[0_4px_20px_rgba(16,185,129,0.45)]',
+    pillColor: 'bg-[#10B981] shadow-[0_0_12px_#10B981]',
+    cornerGlow: 'from-[#10B981]/30 to-transparent',
+    orbOuter: 'border-[#10B981]/25 bg-[#10B981]/15',
+    orbInner: 'border-[#10B981]/40 bg-[#10B981]/25',
+    arrowHover: 'group-hover:bg-[#10B981] group-hover:text-white group-hover:border-[#10B981]',
+    icon: TrendingUp,
+  },
+  'tech-ai': {
+    border: 'border-[#FF6D00]/40 hover:border-[#FF6D00]/80',
+    activeBorder: 'border-2 border-[#FF6D00] shadow-[0_12px_40px_rgba(255,109,0,0.30)] ring-1 ring-[#FF6D00]/40',
+    bg: 'bg-[#140C06]',
+    iconGradient: 'from-[#FF6D00] to-[#E65100]',
+    iconShadow: 'shadow-[0_4px_20px_rgba(255,109,0,0.45)]',
+    pillColor: 'bg-[#FF6D00] shadow-[0_0_12px_#FF6D00]',
+    cornerGlow: 'from-[#FF6D00]/30 to-transparent',
+    orbOuter: 'border-[#FF6D00]/25 bg-[#FF6D00]/15',
+    orbInner: 'border-[#FF6D00]/40 bg-[#FF6D00]/25',
+    arrowHover: 'group-hover:bg-[#FF6D00] group-hover:text-white group-hover:border-[#FF6D00]',
+    icon: Cpu,
+  },
+}
+
 
 const BlogListings = () => {
   const navigate = useNavigate()
@@ -161,15 +207,17 @@ const BlogListings = () => {
               Expert B2B demand generation insights from TaRaj Global’s leadership, sales, marketing, and technology teams, covering ICP, intent data, lead qualification, and CRM strategy to help revenue leaders build predictable, sales-ready pipeline.
             </motion.p>
 
-            {/* Interactive Value Proposition Category Cards */}
+            {/* Interactive Value Proposition Category Cards - Compact Height & Full Width */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto"
+              className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 max-w-5xl xl:max-w-6xl mx-auto"
             >
               {CATEGORIES_DATA.map((cat) => {
                 const isActive = selectedCategory === cat.key
+                const theme = CARD_THEMES[cat.key] || CARD_THEMES['thought-leadership']
+                const IconComponent = theme.icon
 
                 return (
                   <button
@@ -178,37 +226,57 @@ const BlogListings = () => {
                     onClick={() => handleCategoryClick(cat.key)}
                     aria-pressed={isActive}
                     title={isActive ? `Active filter: ${cat.name} (Click to show all)` : `Click to filter: ${cat.name}`}
-                    className={`relative p-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 flex items-center gap-3.5 group outline-none ${isActive
-                      ? `bg-white dark:bg-[#131929] ${cat.accentBorder} shadow-lg ${cat.accentGlow} ring-2 ring-offset-2 ring-offset-background ${cat.accentBorder} scale-[1.02]`
-                      : 'bg-white dark:bg-[#11141e] border-slate-200/90 dark:border-white/10 shadow-xs hover:border-[#00A6FF]/60 hover:shadow-md hover:shadow-[#00A6FF]/10 hover:-translate-y-0.5'
-                      }`}
+                    className={`group relative p-4 sm:p-5 rounded-2xl sm:rounded-[22px] border text-left cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden outline-none min-h-[168px] sm:min-h-[178px] ${
+                      isActive ? theme.activeBorder : theme.border
+                    } ${theme.bg} shadow-lg hover:-translate-y-1`}
                   >
-                    {/* Active Accent Top Indicator */}
+                    {/* Top-Left Ambient Subtle Glow */}
                     <div
-                      className={`absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl transition-opacity duration-300 ${isActive
-                        ? 'opacity-100 bg-[#00A6FF]'
-                        : 'opacity-0 group-hover:opacity-100 bg-gradient-to-r from-transparent via-[#00A6FF] to-transparent'
-                        }`}
+                      className={`absolute -top-8 -left-8 w-28 h-28 rounded-full bg-gradient-to-br ${theme.cornerGlow} blur-xl pointer-events-none`}
                     />
 
-                    {/* Icon Box */}
-                    <div className={`w-10 h-10 rounded-xl ${cat.iconBg} flex items-center justify-center shrink-0 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-105'}`}>
-                      {categoryIcons[cat.key] || <BookOpen size={18} />}
+                    {/* Bottom-Right Translucent Overlapping Glowing Curved Arcs */}
+                    <div className="absolute -bottom-8 -right-8 w-32 h-32 pointer-events-none select-none">
+                      <div className={`absolute inset-0 rounded-full border ${theme.orbOuter}`} />
+                      <div className={`absolute bottom-2.5 right-2.5 w-24 h-24 rounded-full border ${theme.orbInner}`} />
+                      <div className={`absolute bottom-4 right-4 w-14 h-14 rounded-full bg-gradient-to-tl ${theme.cornerGlow} blur-sm`} />
                     </div>
 
-                    {/* Text Details */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <div className={`text-sm font-bold truncate transition-colors duration-200 ${isActive ? 'text-[#00A6FF]' : 'text-text-primary dark:text-text-primary dark:text-white group-hover:text-[#00A6FF]'}`}>
-                          {cat.name}
+                    {/* Top Row: Squircle Gradient Icon + FILTER VIEW + Arrow Circle */}
+                    <div className="relative z-10 flex items-center justify-between w-full mb-2.5">
+                      {/* Gradient Squircle Icon */}
+                      <div
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br ${theme.iconGradient} flex items-center justify-center text-white ${theme.iconShadow} transition-transform duration-300 group-hover:scale-105`}
+                      >
+                        <IconComponent size={18} className="text-white" strokeWidth={2.2} />
+                      </div>
+
+                      {/* Right Action: FILTER VIEW + Circle Arrow */}
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <span className="text-[10px] font-mono tracking-widest text-slate-300/80 uppercase font-bold group-hover:text-white transition-colors">
+                          FILTER VIEW
+                        </span>
+                        <div
+                          className={`w-7 h-7 rounded-full bg-white/[0.08] border border-white/15 flex items-center justify-center text-slate-200 transition-all duration-300 group-hover:scale-110 ${theme.arrowHover}`}
+                        >
+                          <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
                         </div>
-                        {isActive && (
-                          <CheckCircle2 size={14} className="text-[#00A6FF] shrink-0" />
-                        )}
                       </div>
-                      <div className="text-xs text-text-tertiary line-clamp-1 mt-0.5">
+                    </div>
+
+                    {/* Middle Content: Title + Subtitle (Completely Visible, No Truncation) */}
+                    <div className="relative z-10 flex-1 flex flex-col justify-center my-auto">
+                      <h3 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug group-hover:text-white transition-colors">
+                        {cat.name}
+                      </h3>
+                      <p className="text-xs text-slate-300/85 leading-relaxed font-normal mt-1">
                         {cat.subtitle}
-                      </div>
+                      </p>
+                    </div>
+
+                    {/* Bottom Row: Accent Color Pill Dash */}
+                    <div className="relative z-10 pt-3 mt-auto flex items-center justify-between">
+                      <div className={`w-8 h-1 rounded-full ${theme.pillColor}`} />
                     </div>
                   </button>
                 )

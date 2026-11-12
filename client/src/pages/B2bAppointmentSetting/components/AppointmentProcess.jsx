@@ -124,7 +124,7 @@ const AppointmentProcess = () => {
                WHAT TARAJ GLOBAL{' '}
               </span>
               <div className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
-                DELIVERS
+                DELIVERS?
               </div>
             </h2>
 

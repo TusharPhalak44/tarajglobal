@@ -747,7 +747,9 @@ export const AboutCompany = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-text-muted">
+                  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+
+
                     OUR HERITAGE <span className="text-text-muted/40">•</span> <span className="text-[#00A6FF]">PRECISION SCALE</span>
                   </span>
                 </motion.div>
@@ -757,7 +759,7 @@ export const AboutCompany = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: prefersReducedMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18] text-text-primary"
+                  className="text-xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-[1.18] text-text-primary"
                 >
                   Why We Built Our Own B2B{' '}
                   <span className="bg-gradient-to-r from-[#00A6FF] via-[#33B8FF] to-[#00E5FF] bg-clip-text text-transparent">
@@ -1040,8 +1042,8 @@ export const AboutCompany = () => {
               transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex items-center gap-2  text-primary text-sm font-mono font-bold tracking-wider uppercase mb-3"
             >
-              <Zap size={12} className="text-[#00A6FF] animate-pulse" />
-              <span>OUR REVENUE ENGINEERING CAPABILITIES</span>
+              {/* <Zap size={12} className="text-[#00A6FF] animate-pulse" /> */}
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">OUR REVENUE ENGINEERING CAPABILITIES</span>
             </motion.div>
 
             {/* Step 03: Heading (+25px upward reveal) */}
@@ -1049,7 +1051,7 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
               animate={isCapabilitiesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
               transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary mb-4 leading-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-text-primary mb-4 leading-tight"
             >
               Full-Funnel Tech-Enabled{' '}
               <span className="bg-gradient-to-r from-primary via-[#00E5FF] to-cta bg-clip-text text-transparent">

@@ -309,7 +309,7 @@ const WhoIsItFor = () => {
           >
             Is Appointment Setting{' '}
             <div className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-              Right for Your Sales Team
+              Right for Your Sales Team?
             </div>
           </motion.h2>
 

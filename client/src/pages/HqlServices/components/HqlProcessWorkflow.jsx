@@ -109,7 +109,7 @@ const HqlProcessWorkflow = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-3"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               HOW OUR PROCESS WORKS • HQL PIPELINE ARCHITECTURE
 
             </span>
