@@ -46,12 +46,22 @@ export const ensureSchema = async () => {
     // 3. Ensure columns on blogs
     await addColumnIfMissing('blogs', 'created_by', 'INT NULL')
     await addColumnIfMissing('blogs', 'updated_by', 'INT NULL')
+    await addColumnIfMissing('blogs', 'scheduled_at', 'DATETIME NULL')
     await addColumnIfMissing('blogs', 'published_at', 'TIMESTAMP NULL')
     await addColumnIfMissing('blogs', 'published_by', 'INT NULL')
     await addColumnIfMissing('blogs', 'view_count', 'INT DEFAULT 0')
     await addColumnIfMissing('blogs', 'reading_time', 'INT DEFAULT 1')
     await addColumnIfMissing('blogs', 'seo_score', 'INT DEFAULT 0')
     await addColumnIfMissing('blogs', 'seo_analysis', 'LONGTEXT')
+
+    try {
+      await db.execute(`
+        ALTER TABLE blogs 
+        MODIFY COLUMN status ENUM('draft', 'published', 'archived', 'scheduled') DEFAULT 'draft'
+      `)
+    } catch (e) {
+      // column already modified
+    }
 
     // 4. Ensure columns on authors
     await addColumnIfMissing('authors', 'user_id', 'INT NULL')

@@ -19,6 +19,7 @@ import StatusBadge from '@components/admin/StatusBadge'
 import EmptyState from '@components/admin/EmptyState'
 import ConfirmModal from '@components/admin/ConfirmModal'
 import { TableSkeleton } from '@components/admin/LoadingSkeleton'
+import { mediaUrl } from '@utils/media'
 
 const Authors = () => {
   const [loading, setLoading] = useState(true)
@@ -241,9 +242,10 @@ const Authors = () => {
                       <div className="flex items-center gap-3">
                         {author.profile_photo ? (
                           <img
-                            src={author.profile_photo}
+                            src={mediaUrl(author.profile_photo)}
                             alt=""
                             className="w-5 h-5 rounded-xl object-cover bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] shrink-0"
+                            onError={(e) => { e.currentTarget.style.display = 'none' }}
                           />
                         ) : (
                           <div className="w-5 h-5 rounded-xl bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-base text-[#00A6FF] shrink-0">

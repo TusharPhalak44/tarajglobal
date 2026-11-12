@@ -3,6 +3,7 @@ import app from './app.js'
 import db from './config/db.js'
 import ensureSchema from './database/migrations/ensure-schema.js'
 import { syncLiveCMS } from './scripts/syncLiveCMS.js'
+import { publishScheduledBlogs } from './controllers/admin/blog.controller.js'
 
 const PORT = process.env.PORT || 5001
 
@@ -16,6 +17,14 @@ db.getConnection()
     } catch (migErr) {
       console.warn('⚠️  Schema integrity check notice:', migErr.message)
     }
+
+    // Run scheduled blog publisher immediately and every 10 seconds
+    publishScheduledBlogs().catch((err) => {
+      console.warn('⚠️  Scheduled blogs publisher check notice:', err.message)
+    })
+    setInterval(() => {
+      publishScheduledBlogs().catch(() => {})
+    }, 10000)
 
     // In local development, synchronize latest published posts from Live CMS
     if (process.env.NODE_ENV !== 'production') {

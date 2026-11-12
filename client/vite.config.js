@@ -28,39 +28,12 @@ export default defineConfig({
     port: 3001,
     strictPort: false,   // allow fallback if 3001 is taken
     proxy: {
-      // 1. Live CMS proxy for blogs, jobs, authors, categories & media uploads
-      // Enables localhost to reflect any post created or updated on the live CMS in real-time
-      '/api/blog': {
-        target: 'https://tarajglobal.com',
-        changeOrigin: true,
-        secure: true,
-      },
-      '/api/jobs': {
-        target: 'https://tarajglobal.com',
-        changeOrigin: true,
-        secure: true,
-      },
-      '/api/categories': {
-        target: 'https://tarajglobal.com',
-        changeOrigin: true,
-        secure: true,
-      },
-      '/api/authors': {
-        target: 'https://tarajglobal.com',
-        changeOrigin: true,
-        secure: true,
-      },
-      '/api/career-gallery': {
-        target: 'https://tarajglobal.com',
-        changeOrigin: true,
-        secure: true,
-      },
       '/uploads': {
-        target: 'https://tarajglobal.com',
+        target: 'http://localhost:5001',
         changeOrigin: true,
-        secure: true,
+        secure: false,
       },
-      // 2. Local backend proxy for contact forms, meeting scheduler, auth, admin & chat
+      // Local backend proxy for all API endpoints (blogs, auth, admin, contact, etc.)
       '/api': {
         target: 'http://localhost:5001',
         changeOrigin: true,

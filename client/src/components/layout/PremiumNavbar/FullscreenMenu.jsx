@@ -36,14 +36,20 @@ const menuItems = [
 
 const SERVICES_SUBGROUPS = [
   {
-    category: 'Services & Program',
+    category: 'Services',
     accent: '#00A6FF',
     items: [
       { name: 'MQL Services', path: '/mql-services' },
       { name: 'HQL Services', path: '/hql-services' },
       { name: 'BANT Services', path: '/bant-lead-generation' },
       { name: 'SQL Services', path: '/sql-services' },
-      { name: 'Appointment Setting', path: '/b2b-appointment-setting' },
+      { name: 'Appointment Generation', path: '/b2b-appointment-setting' },
+    ],
+  },
+  {
+    category: 'Program',
+    accent: '#FF6D00',
+    items: [
       // { name: 'Demand Generation', path: '/demand-generation' },
       { name: 'Full Funnel Demand', path: '/full-funnel-demand' },
       { name: 'Account-Based Marketing', path: '/abm' },
@@ -52,15 +58,22 @@ const SERVICES_SUBGROUPS = [
     ],
   },
   {
-    category: 'Channels & Data',
-    accent: '#10B981',
+    category: 'Channels & Data Solution',
+    accent: '#8B5CF6',
     items: [
       { name: 'Email Marketing', path: '/b2b-email-marketing' },
       { name: 'Content Syndication', path: '/content-syndication' },
       { name: 'Webinar Services', path: '/webinar-services' },
       { name: 'B2B List Building', path: '/b2b-list-building' },
       { name: 'Database Cleansing', path: '/database-cleansing' },
+    ],
+  },
+  {
+    category: 'Products & Publications',
+    accent: '#10B981',
+    items: [
       { name: 'DemandFlow Bridge', path: '/demandflow-bridge' },
+      { name: 'TGS Tech Info', path: 'https://tgstechinfo.com/', isExternal: true },
     ],
   },
 ]
@@ -333,21 +346,37 @@ export const FullscreenMenu = ({ isOpen, onClose, logoUrl, logoText, navLinks = 
                           >
                             {SERVICES_SUBGROUPS.map((group) => (
                               <div key={group.category} className="space-y-1">
-                                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-text-secondary dark:text-slate-400">
+                                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5" style={{ color: group.accent }}>
+                                  <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: group.accent }} />
                                   <span>{group.category}</span>
                                 </div>
                                 <div className="grid grid-cols-1 gap-1">
-                                  {group.items.map((service) => (
-                                    <Link
-                                      key={service.path}
-                                      to={service.path}
-                                      onClick={onClose}
-                                      className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-accent hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 transition-colors min-h-[40px]"
-                                    >
-                                      <span>{service.name}</span>
-                                      <ArrowRight size={12} className="opacity-40" />
-                                    </Link>
-                                  ))}
+                                  {group.items.map((service) => {
+                                    const isExternal = service.isExternal || service.path?.startsWith('http')
+                                    return isExternal ? (
+                                      <a
+                                        key={service.path}
+                                        href={service.path}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={onClose}
+                                        className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-accent hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 transition-colors min-h-[40px]"
+                                      >
+                                        <span>{service.name}</span>
+                                        <ArrowUpRight size={12} className="opacity-60" />
+                                      </a>
+                                    ) : (
+                                      <Link
+                                        key={service.path}
+                                        to={service.path}
+                                        onClick={onClose}
+                                        className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-accent hover:bg-slate-100 dark:hover:bg-surface/80 dark:bg-white/5 transition-colors min-h-[40px]"
+                                      >
+                                        <span>{service.name}</span>
+                                        <ArrowRight size={12} className="opacity-40" />
+                                      </Link>
+                                    )
+                                  })}
                                 </div>
                               </div>
                             ))}

@@ -280,9 +280,10 @@ const CreateBlog = () => {
       newErrors.title = 'Title is required.'
     }
 
-    if (!createForm.slug || !createForm.slug.trim()) {
+    const cleanSlug = generateSlug(createForm.slug || createForm.title || '')
+    if (!cleanSlug) {
       newErrors.slug = 'Slug is required.'
-    } else if (!/^[a-z0-9-]+$/.test(createForm.slug)) {
+    } else if (!/^[a-z0-9-]+$/.test(cleanSlug)) {
       newErrors.slug = 'Slug can only contain lowercase letters, numbers, and hyphens.'
     }
 
@@ -322,7 +323,7 @@ const CreateBlog = () => {
     try {
       const currentSeo = analyzeSEO({
         title: createForm.title,
-        slug: createForm.slug,
+        slug: cleanSlug,
         content: createForm.content,
         excerpt: createForm.excerpt,
         featured_image: createForm.featured_image
@@ -332,28 +333,39 @@ const CreateBlog = () => {
       let finalScheduledAt = null
       let finalPublishedAt = null
 
+      const formatTimeWithSeconds = (t) => {
+        if (!t) return '00:00:00'
+        const parts = t.trim().split(':')
+        const hh = (parts[0] || '0').padStart(2, '0')
+        const mm = (parts[1] || '0').padStart(2, '0')
+        const ss = (parts[2] || '00').slice(0, 2).padStart(2, '0')
+        return `${hh}:${mm}:${ss}`
+      }
+
       if (targetStatus === 'scheduled' && createForm.scheduled_date && createForm.scheduled_time) {
-        const scheduledDateTime = new Date(`${createForm.scheduled_date}T${createForm.scheduled_time}`)
-        if (scheduledDateTime <= new Date()) {
+        const timeWithSec = formatTimeWithSeconds(createForm.scheduled_time)
+        const scheduledDateTime = new Date(`${createForm.scheduled_date}T${timeWithSec}`)
+        const scheduleFormatted = `${createForm.scheduled_date} ${timeWithSec}`
+        if (!isNaN(scheduledDateTime.getTime()) && scheduledDateTime <= new Date()) {
           // Date is in past -> Publish immediately with this backdate!
           finalStatus = 'published'
-          finalPublishedAt = `${createForm.scheduled_date} ${createForm.scheduled_time}:00`
+          finalPublishedAt = scheduleFormatted
           finalScheduledAt = null
         } else {
           finalStatus = 'scheduled'
-          finalScheduledAt = `${createForm.scheduled_date} ${createForm.scheduled_time}:00`
-          finalPublishedAt = null
+          finalScheduledAt = scheduleFormatted
+          finalPublishedAt = scheduleFormatted // Set publication timestamp to the scheduling time!
         }
       } else if (targetStatus === 'published') {
         if (createForm.publish_date) {
-          const timeVal = createForm.publish_time ? `${createForm.publish_time}:00` : '00:00:00'
+          const timeVal = formatTimeWithSeconds(createForm.publish_time)
           finalPublishedAt = `${createForm.publish_date} ${timeVal}`
         }
       }
 
       const blogData = {
         title: createForm.title.trim(),
-        slug: createForm.slug?.trim() || undefined,
+        slug: cleanSlug,
         content: cleanPastedDarkColors(createForm.content),
         excerpt: createForm.excerpt || createForm.content.substring(0, 150),
         category_id: createForm.category_id ? parseInt(createForm.category_id, 10) : null,
@@ -362,7 +374,7 @@ const CreateBlog = () => {
         scheduled_at: finalScheduledAt,
         published_at: finalPublishedAt,
         publish_date: finalPublishedAt,
-        created_at: finalPublishedAt,
+        created_at: finalStatus === 'published' && finalPublishedAt ? finalPublishedAt : undefined,
         tags: createForm.tags || [],
         featured_image: createForm.featured_image || null,
         seo_score: currentSeo?.score || 0,

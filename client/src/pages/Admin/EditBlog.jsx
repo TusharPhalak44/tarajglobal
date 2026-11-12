@@ -317,9 +317,25 @@ const EditBlog = () => {
     setEditForm(prev => ({ ...prev, tags: (prev.tags || []).filter(t => t !== tagToRemove) }));
   }
 
+  const generateSlug = (text) => {
+    if (!text) return ''
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setEditForm(prev => ({ ...prev, [name]: value }))
+    setEditForm(prev => {
+      const updated = { ...prev, [name]: value }
+      if (name === 'slug' && fieldErrors.slug) {
+        setFieldErrors(prevErrors => ({ ...prevErrors, slug: undefined }))
+      }
+      return updated
+    })
   }
 
   const handleUpdateBlog = async (e, overrideStatus = null) => {
@@ -331,9 +347,10 @@ const EditBlog = () => {
         newErrors.title = 'Title is required.'
       }
       
-      if (!editForm.slug || !editForm.slug.trim()) {
+      const cleanSlug = generateSlug(editForm.slug || editForm.title || '')
+      if (!cleanSlug) {
         newErrors.slug = 'Slug is required.'
-      } else if (!/^[a-z0-9-]+$/.test(editForm.slug)) {
+      } else if (!/^[a-z0-9-]+$/.test(cleanSlug)) {
         newErrors.slug = 'Slug can only contain lowercase letters, numbers, and hyphens.'
       }
       
@@ -380,34 +397,48 @@ const EditBlog = () => {
     setSaving(true)
 
     try {
-      const currentSeo = analyzeSEO(editForm)
+      const currentSeo = analyzeSEO({
+        ...editForm,
+        slug: cleanSlug
+      })
 
       let finalStatus = targetStatus
       let finalScheduledAt = null
       let finalPublishedAt = null
 
+      const formatTimeWithSeconds = (t) => {
+        if (!t) return '00:00:00'
+        const parts = t.trim().split(':')
+        const hh = (parts[0] || '0').padStart(2, '0')
+        const mm = (parts[1] || '0').padStart(2, '0')
+        const ss = (parts[2] || '00').slice(0, 2).padStart(2, '0')
+        return `${hh}:${mm}:${ss}`
+      }
+
       if (targetStatus === 'scheduled' && editForm.scheduled_date && editForm.scheduled_time) {
-        const scheduledDateTime = new Date(`${editForm.scheduled_date}T${editForm.scheduled_time}`)
-        if (scheduledDateTime <= new Date()) {
+        const timeWithSec = formatTimeWithSeconds(editForm.scheduled_time)
+        const scheduledDateTime = new Date(`${editForm.scheduled_date}T${timeWithSec}`)
+        const scheduleFormatted = `${editForm.scheduled_date} ${timeWithSec}`
+        if (!isNaN(scheduledDateTime.getTime()) && scheduledDateTime <= new Date()) {
           // Backdated post: user picked a past date in schedule!
           finalStatus = 'published'
-          finalPublishedAt = `${editForm.scheduled_date} ${editForm.scheduled_time}:00`
+          finalPublishedAt = scheduleFormatted
           finalScheduledAt = null
         } else {
           finalStatus = 'scheduled'
-          finalScheduledAt = `${editForm.scheduled_date} ${editForm.scheduled_time}:00`
-          finalPublishedAt = null
+          finalScheduledAt = scheduleFormatted
+          finalPublishedAt = scheduleFormatted // Set publication timestamp to the scheduling time!
         }
       } else if (targetStatus === 'published') {
         if (editForm.publish_date) {
-          const timeStr = editForm.publish_time ? `${editForm.publish_time}:00` : '00:00:00'
+          const timeStr = formatTimeWithSeconds(editForm.publish_time)
           finalPublishedAt = `${editForm.publish_date} ${timeStr}`
         }
       }
 
       const updateData = {
         title: editForm.title.trim(),
-        slug: editForm.slug?.trim() || undefined,
+        slug: cleanSlug,
         content: cleanPastedDarkColors(editForm.content),
         excerpt: editForm.excerpt || editForm.content.substring(0, 150),
         category_id: editForm.category_id ? parseInt(editForm.category_id, 10) : null,
@@ -416,7 +447,7 @@ const EditBlog = () => {
         scheduled_at: finalScheduledAt,
         published_at: finalPublishedAt,
         publish_date: finalPublishedAt,
-        created_at: finalPublishedAt,
+        created_at: finalStatus === 'published' && finalPublishedAt ? finalPublishedAt : undefined,
         tags: editForm.tags || [],
         featured_image: editForm.featured_image || null,
         seo_score: currentSeo?.score || 0,

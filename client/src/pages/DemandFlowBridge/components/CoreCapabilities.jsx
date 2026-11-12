@@ -25,13 +25,13 @@ const CAPABILITIES = [
     id: 'crm-client',
     eyebrow: '01 — RELATIONSHIP MANAGEMENT',
     title: 'CRM & Client Management',
-    desc: 'Manage relationships, accounts, interactions and client information from one centralized workspace.',
+    desc: 'Disconnected account records hide relationship history. Manage accounts, interactions, and client information from one workspace. ',
     points: [
-      'Centralized account intelligence and verified decision-maker directories',
-      'Unified client workspaces with transparent SLA monitoring and milestones',
-      'Cross-functional communication logs and interaction history',
+      '✔ Account intelligence and verified decision-maker directories',
+      '✔ Client workspaces with transparent SLA monitoring and milestones',
+      '✔ Cross-team communication logs and interaction history ',
     ],
-    metric: '100% Relationship Transparency',
+    metric: 'Full Relationship Visibility',
     image: '/demandflow-dbms.png',
     screenTitle: 'Accounts, Client Portals & Contact DBMS',
     icon: Users,
@@ -40,13 +40,13 @@ const CAPABILITIES = [
     id: 'lead-mgmt',
     eyebrow: '02 — PROSPECT LIFECYCLE',
     title: 'Lead Management',
-    desc: 'Track leads from acquisition and qualification through follow-up and conversion.',
+    desc: 'Leads slip when intake and handoff run on spreadsheets. Track leads from acquisition and qualification through follow-up and conversion. ',
     points: [
-      'Automated intake with multi-tier demographic & firmographic validation',
-      'Rigorous BANT and ICP qualification criteria scoring before handoff',
-      'Real-time lead status telemetry and conversion-ready distribution',
+      '✔ Automated intake with firmographic and demographic validation ',
+      ' ✔ BANT, ICP, and AI-assisted intent scoring before handoff ',
+      '✔ Real-time lead status telemetry and conversion-ready distribution ',
     ],
-    metric: 'Zero Lead Leakage Across Funnel',
+    metric: ' Leads Tracked End to End',
     image: '/demandflow-qualification.png',
     screenTitle: 'Lead QA & Qualification Control Center',
     icon: Target,
@@ -55,13 +55,13 @@ const CAPABILITIES = [
     id: 'sales-ops',
     eyebrow: '03 — PIPELINE VELOCITY',
     title: 'Sales Operations',
-    desc: 'Monitor opportunities, sales activities, pipelines and performance.',
+    desc: 'Outreach without pacing wastes capacity. Monitor opportunities, sales activity, pipelines, and performance.',
     points: [
-      'Multi-channel outreach sequences with cadence pacing control',
-      'Live SDR pod allocation and meeting quota pacing analytics',
-      'Comprehensive conversion telemetry and pipeline forecasting',
+      '✔ Multi-channel sequences with AI personalization and cadence pacing control ',
+      '✔ Live SDR pod allocation and meeting quota pacing ',
+      '✔ Conversion telemetry and pipeline forecasting',
     ],
-    metric: 'Real-Time Pipeline Visibility',
+    metric: 'Real-Time Pipeline Visibility ',
     image: '/demandflow-sequences.png',
     screenTitle: 'Email Cadence & Outreach Operations',
     icon: TrendingUp,
@@ -70,13 +70,14 @@ const CAPABILITIES = [
     id: 'hrms',
     eyebrow: '04 — WORKFORCE COORDINATION',
     title: 'HRMS',
-    desc: 'Centralize employee information, attendance and HR workflows.',
+    desc: 'Keep team records, attendance, and HR workflows alongside campaign operations.',
     points: [
-      'Centralized employee profiles, roles, and organizational hierarchy',
-      'Automated daily attendance logging and shift schedule reconciliation',
-      'Digital leave requests, document records, and internal onboarding',
+      ' ✔ Employee profiles, roles, and organizational hierarchy ',
+      '✔ Daily attendance logging and shift reconciliation ',
+      '✔ Digital leave requests, records, and onboardingg',
     ],
     metric: 'Centralized Workforce Governance',
+    screenTitle: 'Workforce Governance Console',
     icon: UserCheck,
     telemetryType: 'hrms',
   },
@@ -84,13 +85,13 @@ const CAPABILITIES = [
     id: 'payroll',
     eyebrow: '05 — COMPENSATION ENGINE',
     title: 'Payroll',
-    desc: 'Manage payroll-related processes and employee compensation workflows.',
+    desc: 'Connect compensation to delivery performance.',
     points: [
-      'Automated salary computation based on verified attendance records',
-      'Performance incentive reconciliation linked to pipeline milestones',
-      'Comprehensive payslip generation and tax compliance records',
+      '✔ Salary computation from verified attendance',
+      '✔ Incentive reconciliation linked to pipeline milestones',
+      '✔ Payslips and tax compliance records',
     ],
-    metric: 'Accurate, Automated Pay Cycles',
+    metric: 'Automated, Reconciled Pay Cycles',
     icon: CreditCard,
     telemetryType: 'payroll',
   },
@@ -98,13 +99,13 @@ const CAPABILITIES = [
     id: 'business-ops',
     eyebrow: '06 — EXECUTION ENGINE',
     title: 'Business Operations',
-    desc: 'Bring day-to-day operational activities into a connected digital workspace.',
+    desc: 'Bring daily operational work into a connected workspace.',
     points: [
-      'Cross-departmental task routing, handoffs, and resource capacity planning',
-      'Live campaign execution tracking and asset inventory management',
-      'Operational bottleneck detection with automated escalation protocols',
+      '✔ Cross-team task routing, handoffs, and capacity planning',
+      '✔ Live campaign execution tracking and asset inventory',
+      '✔ Bottleneck detection with automated escalation',
     ],
-    metric: 'Synchronized Operational Execution',
+    metric: 'Synchronized Execution',
     image: '/demandflow-campaigns.png',
     screenTitle: 'Campaign Operations & Pacing Board',
     icon: Cog,
@@ -113,13 +114,13 @@ const CAPABILITIES = [
     id: 'reports-analytics',
     eyebrow: '07 — STRATEGIC VISIBILITY',
     title: 'Reports & Analytics',
-    desc: 'Turn operational data into centralized visibility and actionable insights.',
+    desc: 'Late reports hide problems until they’re expensive. Turn operational data into centralized visibility and actionable insights.',
     points: [
-      'Unified executive dashboards spanning sales, operations, and workforce metrics',
-      'Real-time telemetry on campaign conversion rates and SLA delivery speed',
-      'Customizable exportable reports for stakeholders and department leads',
+      '✔ Executive dashboards spanning sales, operations, and workforce metrics',
+      '✔ Real-time telemetry on campaign conversion and SLA delivery speed',
+      '✔ Customizable exportable reports',
     ],
-    metric: 'Actionable Intelligence in 1 Click',
+    metric: 'Centralized, Actionable Reporting',
     image: '/demandflow-tracking.png',
     screenTitle: 'Response Telemetry & Analytics Hub',
     icon: BarChart3,
@@ -274,9 +275,10 @@ const CoreCapabilities = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 text-primary mb-4"
           >
-            <Layers size={15} />
-            <span className="text-xs font-semibold tracking-[0.16em] uppercase">
-              Deep-Dive Modules
+
+            <span className="text-sm font-semibold tracking-[0.16em] uppercase">
+              CORE CAPABILITIES
+
             </span>
           </motion.div>
 
@@ -287,9 +289,9 @@ const CoreCapabilities = () => {
             transition={{ duration: 0.6 }}
             className="text-2xl sm:text-4xl lg:text-[42px] font-bold tracking-tight leading-tight text-text-primary mb-4"
           >
-            Core Capabilities Built for{' '}
+            Capabilities Built for  {' '}
             <span className="text-primary">
-              High-Velocity Business
+              High-Velocity Demand Teams
             </span>
           </motion.h2>
 
@@ -300,9 +302,8 @@ const CoreCapabilities = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl mx-auto"
           >
-            Explore each specialized module inside DemandFlow Bridge,
-            engineered to connect every operational layer into one
-            cohesive command experience.
+            Explore each module inside DemandFlow Bridge, engineered to connect every operational layer into one command experience.
+
           </motion.p>
         </div>
 

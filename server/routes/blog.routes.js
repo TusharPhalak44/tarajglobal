@@ -1,6 +1,7 @@
 import express from 'express'
 import { optionalAuthenticate } from '../middleware/auth.middleware.js'
 import db from '../config/db.js'
+import { publishScheduledBlogs } from '../controllers/admin/blog.controller.js'
 
 const router = express.Router()
 
@@ -9,6 +10,9 @@ const router = express.Router()
 // @access  Public
 router.get('/', async (req, res) => {
   try {
+    // Promote any scheduled blogs whose scheduled_at has arrived
+    await publishScheduledBlogs()
+
     const { limit = 10, category, author } = req.query
     
     let query = `
@@ -20,7 +24,7 @@ router.get('/', async (req, res) => {
       FROM blogs b
       LEFT JOIN categories c ON b.category_id = c.id
       LEFT JOIN authors a ON b.author_id = a.id
-      WHERE b.status = 'published'
+      WHERE (b.status = 'published' OR (b.status = 'scheduled' AND b.scheduled_at IS NOT NULL AND b.scheduled_at <= NOW()))
     `
     const params = []
     
@@ -34,7 +38,7 @@ router.get('/', async (req, res) => {
       params.push(author)
     }
     
-    query += ' ORDER BY COALESCE(b.published_at, b.created_at) DESC, b.created_at DESC'
+    query += ' ORDER BY COALESCE(b.published_at, b.scheduled_at, b.created_at) DESC, b.created_at DESC'
     
     const safeLimit = Math.min(Math.max(parseInt(limit, 10) || 10, 1), 100)
     query += ` LIMIT ${safeLimit}`
@@ -58,13 +62,15 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.get('/:slug', optionalAuthenticate, async (req, res) => {
   try {
+    await publishScheduledBlogs()
+
     const { slug } = req.params
     const { preview } = req.query
 
     const isPreview = (preview === 'true' || preview === true) && Boolean(req.user?.id)
     const whereCondition = isPreview
       ? 'WHERE (b.slug = ? OR b.id = ?)'
-      : "WHERE (b.slug = ? OR b.id = ?) AND b.status = 'published'"
+      : "WHERE (b.slug = ? OR b.id = ?) AND (b.status = 'published' OR (b.status = 'scheduled' AND b.scheduled_at IS NOT NULL AND b.scheduled_at <= NOW()))"
     
     const idVal = isNaN(slug) ? 0 : parseInt(slug)
     const [blogs] = await db.execute(`

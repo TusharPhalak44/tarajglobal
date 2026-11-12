@@ -16,8 +16,8 @@ import {
 } from 'lucide-react'
 
 /**
- * 8 Operations Pipeline Milestones
- * Spans seamlessly from Section 1 (Hero) to Section 8 (Final CTA)
+ * 9 Operations Pipeline Milestones
+ * Spans seamlessly from Section 1 (Hero) to Section 9 (Final CTA)
  */
 const SECTIONS_CONFIG = [
   {
@@ -51,18 +51,28 @@ const SECTIONS_CONFIG = [
     accentColor: '#FFA600',
   },
   {
-    id: 'capabilities',
+    id: 'ai-intent-engine',
     num: '04',
+    name: 'AI Engine',
+    label: 'AI & Intent Signals',
+    desc: 'Intent scoring & telemetry',
+    icon: Cpu,
+    color: '#00D2FF',
+    accentColor: '#38BDF8',
+  },
+  {
+    id: 'capabilities',
+    num: '05',
     name: 'Capabilities',
     label: '7 Deep Modules',
     desc: 'Full-spectrum execution',
-    icon: Cpu,
+    icon: Layers,
     color: '#10B981',
     accentColor: '#34D399',
   },
   {
     id: 'technology-workflow',
-    num: '05',
+    num: '06',
     name: 'Lifecycle',
     label: '5-Step Workflow',
     desc: 'Intake to SLA delivery',
@@ -72,7 +82,7 @@ const SECTIONS_CONFIG = [
   },
   {
     id: 'showcase',
-    num: '06',
+    num: '07',
     name: 'Console',
     label: 'Product Views',
     desc: 'Production application telemetry',
@@ -82,7 +92,7 @@ const SECTIONS_CONFIG = [
   },
   {
     id: 'why-one-platform',
-    num: '07',
+    num: '08',
     name: 'Advantage',
     label: 'Zero Redundancy',
     desc: 'Less switching, more control',
@@ -92,7 +102,7 @@ const SECTIONS_CONFIG = [
   },
   {
     id: 'cta',
-    num: '08',
+    num: '09',
     name: 'Launch',
     label: 'Operations Ready',
     desc: 'Deploy in minutes',

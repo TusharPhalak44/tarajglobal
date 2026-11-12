@@ -17,7 +17,9 @@ import {
   Zap,
   Database,
   ShieldCheck,
-  RefreshCw
+  RefreshCw,
+  Globe,
+  ArrowUpRight
 } from 'lucide-react'
 import { cmsAPI } from '@api'
 import ThemeToggle from './ThemeToggle'
@@ -30,49 +32,44 @@ import TGAnimatedLogo from './TGAnimatedLogo'
 // ── 2. SERVICES MEGA MENU DATA (PRESERVING 100% CONTENT) ───────────────────────
 const SERVICES_DATA = [
   {
-    title: 'Services & Program',
-    columns: [
-      {
-        accent: '#00A6FF',
-        items: [
-          { name: 'MQL Services', path: '/mql-services', desc: 'High-volume engaged prospects', icon: TrendingUp },
-          { name: 'HQL Services', path: '/hql-services', desc: 'Verified intent & confirmed interest', icon: ShieldCheck },
-          { name: 'BANT Services', path: '/bant-lead-generation', desc: 'Budget, authority & need qualified', icon: CheckCircle2 },
-          { name: 'SQL Services', path: '/sql-services', desc: 'Sales-ready leads matched to ICP', icon: Target },
-          { name: 'Appointment Generation', path: '/b2b-appointment-setting', desc: 'Direct confirmed calendar meetings', icon: Calendar },
-        ]
-      },
-      {
-        accent: '#FF6D00',
-        items: [
-          // { name: 'Demand Generation', path: '/demand-generation', desc: 'Full-funnel pipeline & velocity', icon: Zap },
-          { name: 'Full Funnel Demand', path: '/full-funnel-demand', desc: 'End-to-end intent & revenue capture', icon: TrendingUp },
-          { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key accounts', icon: Layers },
-          { name: 'Account Based Experience', path: '/account-based-experience', desc: 'Omnichannel buyer journey & ABX', icon: Target },
-          { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage engagement cadences', icon: RefreshCw },
-        ]
-      }
+    title: 'Services',
+    accent: '#00A6FF',
+    items: [
+      { name: 'MQL Services', path: '/mql-services', desc: 'High-volume engaged prospects', icon: TrendingUp },
+      { name: 'HQL Services', path: '/hql-services', desc: 'Verified intent & confirmed interest', icon: ShieldCheck },
+      { name: 'BANT Services', path: '/bant-lead-generation', desc: 'Budget, authority & need qualified', icon: CheckCircle2 },
+      { name: 'SQL Services', path: '/sql-services', desc: 'Sales-ready leads matched to ICP', icon: Target },
+      { name: 'Appointment Generation', path: '/b2b-appointment-setting', desc: 'Direct confirmed calendar meetings', icon: Calendar },
     ]
   },
   {
-    title: 'Channels & Data',
-    columns: [
-      {
-        accent: '#8B5CF6',
-        items: [
-          { name: 'Email Marketing', path: '/b2b-email-marketing', desc: 'Cold outbound & nurture cadences', icon: Mail },
-          { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepapers to targeted buying groups', icon: FileSpreadsheet },
-          { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive attendees', icon: Sparkles },
-        ]
-      },
-      {
-        accent: '#10B981',
-        items: [
-          { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Human-verified ICP contact lists', icon: Search },
-          { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Hygiene, enrichment & dedup', icon: Database },
-          { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'Connecting data, outreach & pipeline', icon: Layers },
-        ]
-      }
+    title: 'Program',
+    accent: '#FF6D00',
+    items: [
+      // { name: 'Demand Generation', path: '/demand-generation', desc: 'Full-funnel pipeline & velocity', icon: Zap },
+      { name: 'Full Funnel Demand', path: '/full-funnel-demand', desc: 'End-to-end intent & revenue capture', icon: TrendingUp },
+      { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key accounts', icon: Layers },
+      { name: 'Account Based Experience', path: '/account-based-experience', desc: 'Omnichannel buyer journey & ABX', icon: Target },
+      { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage engagement cadences', icon: RefreshCw },
+    ]
+  },
+  {
+    title: 'Channels & Data Solution',
+    accent: '#8B5CF6',
+    items: [
+      { name: 'Email Marketing', path: '/b2b-email-marketing', desc: 'Cold outbound & nurture cadences', icon: Mail },
+      { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepapers to targeted buying groups', icon: FileSpreadsheet },
+      { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive attendees', icon: Sparkles },
+      { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Human-verified ICP contact lists', icon: Search },
+      { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Hygiene, enrichment & dedup', icon: Database },
+    ]
+  },
+  {
+    title: 'Products & Publications',
+    accent: '#10B981',
+    items: [
+      { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'Connecting data, outreach & pipeline', icon: Layers },
+      { name: 'TGS Tech Info', path: 'https://tgstechinfo.com/', desc: 'Technology publishing & media hub', icon: Globe, isExternal: true },
     ]
   }
 ]
@@ -495,7 +492,7 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                 transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
                 onMouseEnter={handleDropdownEnter}
                 onMouseLeave={handleDropdownLeave}
-                className="absolute top-full left-1/2 pt-2.5 w-[1040px] xl:w-[1080px] max-w-[calc(100vw-32px)] z-50 pointer-events-auto"
+                className="absolute top-full left-1/2 pt-2.5 w-[1060px] xl:w-[1140px] max-w-[calc(100vw-32px)] z-50 pointer-events-auto"
                 role="menu"
                 aria-label="Services Menu"
               >
@@ -506,55 +503,93 @@ export const PremiumNavbar = ({ isPreview = false }) => {
                   {/* Top Ambient Glow Hairline */}
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A6FF]/40 to-transparent" />
 
-                  {/* Strategic Pillars: Demand Generation & Operations & Data (Side by Side) */}
-                  <div className="grid grid-cols-2 gap-6 xl:gap-8">
-                    {SERVICES_DATA.map((section, sIdx) => (
+                  {/* 4 Dedicated Strategic Columns: Services | Program | Channels & Data Solution | Products & Publications */}
+                  <div className="grid grid-cols-4 gap-4 xl:gap-5">
+                    {SERVICES_DATA.map((col, cIdx) => (
                       <div
-                        key={section.title}
-                        className={`space-y-2.5 ${sIdx > 0 ? 'pl-6 xl:pl-8 border-l border-slate-100 dark:border-white/5' : ''}`}
+                        key={col.title}
+                        className={`space-y-2.5 ${cIdx > 0 ? 'pl-4 xl:pl-5 border-l border-slate-100 dark:border-white/5' : ''}`}
                       >
-                        <div className="pb-2 border-b border-slate-100 dark:border-white/5 flex items-center justify-center text-center">
-                          <span className="text-[13px] font-bold uppercase tracking-wider text-[#0066CC] dark:text-[#00A6FF]">
-                            {section.title}
+                        <div className="pb-2 border-b border-slate-100 dark:border-white/5 flex items-center gap-1.5 min-h-[32px]">
+                          <span
+                            className="w-1.5 h-1.5 rounded-full shrink-0"
+                            style={{ backgroundColor: col.accent }}
+                          />
+                          <span className="text-[11px] xl:text-[12px] font-bold uppercase tracking-wider text-[#0066CC] dark:text-[#00A6FF] leading-tight">
+                            {col.title}
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-3 xl:gap-4">
-                          {section.columns.map((col, cIdx) => (
-                            <div key={cIdx} className="space-y-0.5">
-                              {col.items.map((serviceItem) => {
-                                const Icon = serviceItem.icon
-                                return (
-                                  <Link
-                                    key={serviceItem.path}
-                                    to={serviceItem.path}
-                                    onClick={() => setIsServicesOpen(false)}
-                                    className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100/90 dark:hover:bg-white/[0.06] transition-all group/item"
-                                  >
-                                    <div
-                                      className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover/item:scale-110 group-hover/item:shadow-sm"
-                                      style={{
-                                        backgroundColor: `${col.accent}15`,
-                                        color: col.accent,
-                                        border: `1px solid ${col.accent}30`
-                                      }}
-                                    >
-                                      <Icon size={13} />
-                                    </div>
+                        <div className="space-y-0.5">
+                          {col.items.map((serviceItem) => {
+                            const Icon = serviceItem.icon
+                            const isExternal = serviceItem.isExternal || serviceItem.path?.startsWith('http')
 
-                                    <div className="flex flex-col min-w-0">
-                                      <span className="text-[12.5px] font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-[#00A6FF] dark:group-hover/item:text-[#00A6FF] transition-colors leading-tight truncate">
+                            if (isExternal) {
+                              return (
+                                <a
+                                  key={serviceItem.path}
+                                  href={serviceItem.path}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() => setIsServicesOpen(false)}
+                                  className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100/90 dark:hover:bg-white/[0.06] transition-all group/item"
+                                >
+                                  <div
+                                    className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover/item:scale-110 group-hover/item:shadow-sm"
+                                    style={{
+                                      backgroundColor: `${col.accent}15`,
+                                      color: col.accent,
+                                      border: `1px solid ${col.accent}30`
+                                    }}
+                                  >
+                                    <Icon size={13} />
+                                  </div>
+
+                                  <div className="flex flex-col min-w-0 flex-1">
+                                    <div className="flex items-center justify-between gap-1">
+                                      <span className="text-[12px] xl:text-[12.5px] font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-[#00A6FF] dark:group-hover/item:text-[#00A6FF] transition-colors leading-tight truncate">
                                         {serviceItem.name}
                                       </span>
-                                      <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 leading-snug mt-0.5">
-                                        {serviceItem.desc}
-                                      </span>
+                                      <ArrowUpRight size={11} className="text-slate-400 group-hover/item:text-[#00A6FF] transition-transform group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5 shrink-0 opacity-70" />
                                     </div>
-                                  </Link>
-                                )
-                              })}
-                            </div>
-                          ))}
+                                    <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 leading-snug mt-0.5">
+                                      {serviceItem.desc}
+                                    </span>
+                                  </div>
+                                </a>
+                              )
+                            }
+
+                            return (
+                              <Link
+                                key={serviceItem.path}
+                                to={serviceItem.path}
+                                onClick={() => setIsServicesOpen(false)}
+                                className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100/90 dark:hover:bg-white/[0.06] transition-all group/item"
+                              >
+                                <div
+                                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover/item:scale-110 group-hover/item:shadow-sm"
+                                  style={{
+                                    backgroundColor: `${col.accent}15`,
+                                    color: col.accent,
+                                    border: `1px solid ${col.accent}30`
+                                  }}
+                                >
+                                  <Icon size={13} />
+                                </div>
+
+                                <div className="flex flex-col min-w-0">
+                                  <span className="text-[12px] xl:text-[12.5px] font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-[#00A6FF] dark:group-hover/item:text-[#00A6FF] transition-colors leading-tight truncate">
+                                    {serviceItem.name}
+                                  </span>
+                                  <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 leading-snug mt-0.5">
+                                    {serviceItem.desc}
+                                  </span>
+                                </div>
+                              </Link>
+                            )
+                          })}
                         </div>
                       </div>
                     ))}

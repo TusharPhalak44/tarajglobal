@@ -85,10 +85,35 @@ const createRevision = async (blogId, blogData, userId, notes = null) => {
   ])
 }
 
+// Helper function to publish any scheduled blogs whose scheduled_at has arrived
+export const publishScheduledBlogs = async () => {
+  try {
+    const [result] = await db.execute(`
+      UPDATE blogs 
+      SET status = 'published', 
+          published_at = COALESCE(scheduled_at, published_at, NOW()),
+          updated_at = NOW()
+      WHERE status = 'scheduled' 
+        AND scheduled_at IS NOT NULL 
+        AND scheduled_at <= NOW()
+    `)
+    if (result.affectedRows > 0) {
+      console.log(`⏰ [Scheduler] Published ${result.affectedRows} scheduled blog post(s) whose scheduled time arrived.`)
+    }
+    return result.affectedRows
+  } catch (err) {
+    console.error('❌ [Scheduler] Error publishing scheduled blogs:', err.message)
+    return 0
+  }
+}
+
 // @desc    Get all blogs with filtering and pagination
 // @route   GET /api/admin/blogs
 export const getAllBlogs = async (req, res) => {
   try {
+    // Auto-publish any scheduled blogs whose scheduled_at has arrived
+    await publishScheduledBlogs()
+
     const { page = 1, limit = 10, status, category, author, search } = req.query
     const offset = (page - 1) * limit
 
@@ -184,6 +209,7 @@ export const getAllBlogs = async (req, res) => {
 // @route   GET /api/admin/blogs/:id
 export const getBlogById = async (req, res) => {
   try {
+    await publishScheduledBlogs()
     const { id } = req.params
 
     const [blogs] = await db.execute(`
@@ -270,8 +296,16 @@ export const createBlog = async (req, res) => {
     let slug = null
     if (columnNames.includes('slug')) {
       const [existingBlogs] = await db.execute('SELECT slug FROM blogs WHERE slug IS NOT NULL')
-      const existingSlugs = existingBlogs.map(b => b.slug)
-      slug = customSlug ? generateSlug(customSlug, existingSlugs) : generateSlug(title, existingSlugs)
+      const existingSlugs = existingBlogs.map(b => b.slug).filter(Boolean)
+      if (customSlug) {
+        const cleanedSlug = slugify(customSlug, { lower: true, strict: true })
+        if (existingSlugs.includes(cleanedSlug)) {
+          return res.status(409).json({ success: false, message: 'This slug already exists. Please choose another unique slug.' })
+        }
+        slug = cleanedSlug
+      } else {
+        slug = generateSlug(title, existingSlugs)
+      }
     }
 
     // Calculate reading time if column exists
@@ -285,12 +319,15 @@ export const createBlog = async (req, res) => {
     const valuePlaceholders = ['?', '?', '?']
 
     // Determine back date / publish date
-    const effectivePublishDate = published_at || publish_date || null
+    let effectivePublishDate = published_at || publish_date || null
+    if (status === 'scheduled' && scheduled_at && !effectivePublishDate) {
+      effectivePublishDate = scheduled_at
+    }
 
     // Add timestamp columns (support backdating created_at and published_at)
     if (columnNames.includes('created_at')) {
       insertColumns.push('created_at')
-      if (effectivePublishDate) {
+      if (status === 'published' && effectivePublishDate) {
         insertValues.push(effectivePublishDate)
         valuePlaceholders.push('?')
       } else if (created_at) {
@@ -305,7 +342,7 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('NOW()')
     }
     if (columnNames.includes('published_at')) {
-      if (status === 'published' || effectivePublishDate) {
+      if (status === 'published' || status === 'scheduled' || effectivePublishDate) {
         insertColumns.push('published_at')
         if (effectivePublishDate) {
           insertValues.push(effectivePublishDate)
@@ -401,38 +438,14 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('?')
     }
 
-    // Always try to add status column, if it doesn't exist, add it to the table
+    // Ensure status column is present
     if (!columnNames.includes('status')) {
       try {
-        await db.execute(`ALTER TABLE blogs ADD COLUMN status ENUM('draft', 'published', 'archived', 'scheduled') DEFAULT 'draft'`)        columnNames.push('status')
-      } catch (alterError) {      }
-    } else {
-      // If status column exists but has old enum values, update it
-      try {
-        // Check if the column has the old enum values
-        const [columnInfo] = await db.execute(`
-          SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS 
-          WHERE TABLE_NAME = 'blogs' AND COLUMN_NAME = 'status'
-        `)
-        
-        if (columnInfo.length > 0 && (columnInfo[0].COLUMN_TYPE.includes('in_review') || !columnInfo[0].COLUMN_TYPE.includes('scheduled'))) {
-          // Update existing rows to use new status values
-          await db.execute(`
-            UPDATE blogs 
-            SET status = CASE 
-              WHEN status IN ('in_review', 'approved', 'scheduled') THEN 'draft'
-              ELSE status
-            END
-          `)
-          
-          // Modify the column to use new enum
-          await db.execute(`
-            ALTER TABLE blogs 
-            MODIFY COLUMN status ENUM('draft', 'published', 'archived', 'scheduled') DEFAULT 'draft'
-          `)        }
-      } catch (alterError) {      }
+        await db.execute("ALTER TABLE blogs ADD COLUMN status ENUM('draft', 'published', 'archived', 'scheduled') DEFAULT 'draft'")
+        columnNames.push('status')
+      } catch (alterError) {}
     }
-    
+
     if (columnNames.includes('status')) {
       insertColumns.push('status')
       insertValues.push(status || 'draft')
@@ -579,14 +592,19 @@ export const updateBlog = async (req, res) => {
 
     // Handle slug generation/update
     let slug = currentBlog.slug
-    if (customSlug && customSlug !== currentBlog.slug) {
-      const [existingBlogs] = await db.execute('SELECT slug FROM blogs WHERE id != ?', [id])
-      const existingSlugs = existingBlogs.map(b => b.slug)
-      slug = generateSlug(customSlug, existingSlugs)
-    } else if (title && title !== currentBlog.title && !customSlug) {
-      const [existingBlogs] = await db.execute('SELECT slug FROM blogs WHERE id != ?', [id])
-      const existingSlugs = existingBlogs.map(b => b.slug)
-      slug = customSlug ? generateSlug(customSlug, existingSlugs) : generateSlug(title, existingSlugs)
+    const [existingBlogs] = await db.execute('SELECT slug FROM blogs WHERE id != ? AND slug IS NOT NULL', [id])
+    const existingSlugs = existingBlogs.map(b => b.slug).filter(Boolean)
+
+    if (customSlug) {
+      const cleanedSlug = slugify(customSlug, { lower: true, strict: true })
+      if (cleanedSlug !== currentBlog.slug) {
+        if (existingSlugs.includes(cleanedSlug)) {
+          return res.status(409).json({ success: false, message: 'This slug already exists. Please choose another unique slug.' })
+        }
+        slug = cleanedSlug
+      }
+    } else if (title && title !== currentBlog.title && !currentBlog.slug) {
+      slug = generateSlug(title, existingSlugs)
     }
 
     // Build update query dynamically
@@ -614,14 +632,23 @@ export const updateBlog = async (req, res) => {
       values.push(status)
     }
 
-    // Support updating back dates for published_at and created_at
-    const effectivePublishDate = published_at !== undefined ? published_at : publish_date
+    if (scheduled_at !== undefined && 'scheduled_at' in currentBlog) {
+      updates.push('scheduled_at = ?')
+      values.push(scheduled_at || null)
+    }
+
+    // Support updating back dates and scheduling dates
+    let effectivePublishDate = published_at !== undefined ? published_at : publish_date
+    if (status === 'scheduled' && scheduled_at && !effectivePublishDate) {
+      effectivePublishDate = scheduled_at
+    }
+
     if (effectivePublishDate !== undefined) {
       if ('published_at' in currentBlog) {
         updates.push('published_at = ?')
         values.push(effectivePublishDate || null)
       }
-      if (effectivePublishDate && 'created_at' in currentBlog) {
+      if (status === 'published' && effectivePublishDate && 'created_at' in currentBlog && created_at !== undefined) {
         updates.push('created_at = ?')
         values.push(effectivePublishDate)
       }
@@ -629,12 +656,7 @@ export const updateBlog = async (req, res) => {
       updates.push('published_at = NOW()')
     }
 
-    if (scheduled_at !== undefined && 'scheduled_at' in currentBlog) {
-      updates.push('scheduled_at = ?')
-      values.push(scheduled_at || null)
-    }
-
-    if (created_at !== undefined && effectivePublishDate === undefined && 'created_at' in currentBlog) {
+    if (created_at !== undefined && status === 'published' && effectivePublishDate === undefined && 'created_at' in currentBlog) {
       updates.push('created_at = ?')
       values.push(created_at)
     }
@@ -872,6 +894,8 @@ export const updateBlogStatus = async (req, res) => {
     let pubUpdate = ''
     if (status === 'published') {
       pubUpdate = ', published_at = COALESCE(published_at, NOW())'
+    } else if (status === 'scheduled') {
+      pubUpdate = ', published_at = COALESCE(scheduled_at, published_at, NOW())'
     }
 
     await db.execute(

@@ -124,6 +124,7 @@ export const AdminHeader = ({ onToggleSidebar, onOpenCommandPalette, sidebarColl
                   src={user.avatar.startsWith('http') ? user.avatar : mediaUrl(user.avatar)}
                   alt={user.name || 'User'}
                   className="w-full h-full object-cover rounded-[7px]"
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
                 />
               ) : (
                 <div className="w-full h-full rounded-[7px] bg-[var(--admin-bg-surface)] flex items-center justify-center font-bold text-sm text-[var(--admin-primary)]">
