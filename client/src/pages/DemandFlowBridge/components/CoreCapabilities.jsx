@@ -282,18 +282,18 @@ const CoreCapabilities = () => {
             </span>
           </motion.div>
 
-          <motion.h2
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-4xl lg:text-[42px] font-bold tracking-tight leading-tight text-text-primary mb-4"
-          >
-            Capabilities Built for  {' '}
-            <span className="text-primary">
-              High-Velocity Demand Teams
-            </span>
-          </motion.h2>
+       <motion.h2
+  initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+  whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.1 }}
+  className="text-2.5xl sm:text-4xl lg:text-[36px] font-black tracking-tight leading-[1.22] text-white mb-4"
+>
+  Capabilities Built for{' '}
+  <span className="highlight">
+    High-Velocity Demand Teams
+  </span>
+</motion.h2>
 
           <motion.p
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}

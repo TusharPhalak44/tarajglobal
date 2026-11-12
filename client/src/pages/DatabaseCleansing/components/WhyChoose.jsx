@@ -183,7 +183,7 @@ const WhyChoose = () => {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-2.5"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Why Taraj Global
             </span>
           </motion.div>
@@ -193,7 +193,7 @@ const WhyChoose = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Why Choose Taraj Global for </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">

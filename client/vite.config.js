@@ -5,7 +5,21 @@ import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteCompression({ algorithm: 'gzip' })],
+  plugins: [
+    react(),
+    viteCompression({ algorithm: 'gzip' }),
+    {
+      name: 'mitel-asset-case-fallback',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url && req.url.startsWith('/Mitel.png')) {
+            req.url = req.url.replace('/Mitel.png', '/mitel.png')
+          }
+          next()
+        })
+      },
+    },
+  ],
   resolve: ({
     alias: {
       '@': path.resolve(__dirname, './src'),

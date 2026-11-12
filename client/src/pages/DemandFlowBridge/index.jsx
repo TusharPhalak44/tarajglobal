@@ -79,13 +79,10 @@ const DemandFlowBridge = () => {
       {/* 5. CORE CAPABILITIES */}
       <CoreCapabilities />
 
-      {/* 5. THE TECHNOLOGY BEHIND TARAJ GLOBAL */}
+      {/* 5. PRODUCT VIEWS & WHO USES DEMANDFLOW BRIDGE */}
       <TechnologyBehindOperations />
 
-      {/* 6. PRODUCT SHOWCASE */}
-      <ProductShowcase />
-
-      {/* 7. WHY ONE PLATFORM? */}
+      {/* 6. WHY ONE PLATFORM? */}
       <WhyOnePlatform />
 
       {/* 8. FINAL CTA */}

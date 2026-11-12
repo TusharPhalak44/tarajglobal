@@ -183,8 +183,9 @@ const FAQ = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-7">
           <div className="flex items-center justify-center mb-2.5">
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-              Frequently Asked Questions
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+            SOMETHING ON YOUR MIND?
+
             </span>
           </div>
 

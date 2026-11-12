@@ -373,7 +373,7 @@ const Hero = () => {
 
             {/* Eyebrow */}
             <motion.div {...fadeUp(0.1)} className="flex items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
                 Database Cleansing Services
               </span>
             </motion.div>
@@ -381,7 +381,7 @@ const Hero = () => {
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.2] text-text-primary mb-4"
             >
               <span className="block pb-1 sm:pb-1.5">Turn Stale Databases</span>
               <span

@@ -84,7 +84,7 @@ export const AudienceIntelligence = () => {
   // Filter pills
   const filterPills = [
     { key: 'GLOBAL', label: '🌍 Global', count: regionCounts.GLOBAL },
-    { key: 'NORTH_AMERICA', label: 'NA', count: regionCounts.NORTH_AMERICA },
+    { key: 'NORTH_AMERICA', label: 'North America', count: regionCounts.NORTH_AMERICA },
     { key: 'LATAM', label: 'LATAM', count: regionCounts.LATAM },
     { key: 'EMEA', label: 'EMEA', count: regionCounts.EMEA },
     { key: 'APAC', label: 'APAC', count: regionCounts.APAC },

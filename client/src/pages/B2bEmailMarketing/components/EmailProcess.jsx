@@ -128,7 +128,7 @@ const EmailProcess = () => {
                  B2B EMAIL MARKETING{' '}
               </span>
               <span className="text-primary dark:text-[#00A6FF] dark:drop-shadow-[0_0_15px_rgba(0,166,255,0.6)]">
-                WORKFLOW?
+                WORKFLOW
               </span>
             </h2>
 

@@ -162,11 +162,11 @@ const POWERED_SERVICES = [
 
 const SectionLabel = ({ number, children }) => (
   <div className="flex items-center gap-2 mb-2">
-    <span className="text-xs font-mono font-bold tracking-wider text-primary">
+    <span className="text-xs sm:text-sm font-mono font-bold tracking-wider text-primary">
       {number}
     </span>
     <span className="w-5 h-px bg-primary/40" />
-    <span className="text-[11px] uppercase tracking-[0.16em] font-sans font-semibold text-text-secondary">
+    <span className="text-xs sm:text-[13px] uppercase tracking-[0.18em] font-sans font-bold text-primary">
       {children}
     </span>
   </div>
@@ -269,26 +269,27 @@ const AiIntentEngine = () => {
           className="relative max-w-4xl lg:max-w-5xl mx-auto text-center mb-8 sm:mb-10"
         >
           {/* Eyebrow Badge (Modern Beveled Pill) */}
-          <div className="mb-2.5">
+          {/* <div className="mb-2.5">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-sans font-bold tracking-[0.16em] uppercase bg-primary/[0.08] border border-primary/25 text-primary shadow-[inset_0_1px_0_0_rgba(0,166,255,0.15)]">
               <Cpu className="w-3.5 h-3.5 text-primary" />
-              <span>AI-Assisted CRM Intelligence</span>
+              <span></span>
             </span>
-          </div>
+          </div> */}
+          <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">AI-Assisted CRM Intelligence</span>
 
           {/* Main Title (<h2> - 36px) */}
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] xl:text-[36px] font-heading font-extrabold tracking-tight leading-tight text-white mb-2.5 antialiased lg:whitespace-nowrap">
-            How DemandFlow Bridge Uses{' '}
-            <span
-              className="highlight inline bg-gradient-to-r from-primary to-[#67E8F9] bg-clip-text text-transparent"
-              style={{
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              AI and Intent Signals
-            </span>
-          </h2>
+      <motion.h2
+  initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+  whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.1 }}
+  className="text-2.5xl sm:text-4xl lg:text-[36px] font-black tracking-tight leading-[1.22] text-text-primary mb-4"
+>
+  How DemandFlow Bridge Uses{' '}
+  <span className="highlight">
+    AI and Intent Signals
+  </span>
+</motion.h2>
 
           {/* Subtext (<p> - 16px) */}
           <p className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed max-w-2xl mx-auto font-normal">
@@ -366,7 +367,7 @@ const AiIntentEngine = () => {
 
               {/* Meta Status Indicator */}
               <div className="flex items-center gap-2 pt-1 text-xs text-text-secondary">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/[0.08] border border-primary/30 text-primary text-[11px] font-semibold shadow-[inset_0_1px_0_0_rgba(0,166,255,0.15)]">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/[0.08] text-primary text-[11px] font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                   06 Autonomous Modules
                 </span>
@@ -577,8 +578,8 @@ const AiIntentEngine = () => {
               </p>
             </div>
 
-            {/* Right Standard Website Button / Pill with Inset Reflection */}
-            <div className="shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/[0.08] border border-primary/30 text-primary text-[11px] font-sans font-semibold tracking-wide shadow-[inset_0_1px_0_0_rgba(0,166,255,0.18)]">
+            {/* Right Standard Website Button / Pill without Border */}
+            <div className="shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/[0.08] text-primary text-[11px] font-sans font-semibold tracking-wide">
               <CheckCircle2 size={13} className="text-primary" />
               <span>Human-in-the-Loop</span>
             </div>
@@ -608,7 +609,7 @@ const AiIntentEngine = () => {
               </p>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/[0.08] border border-primary/30 text-primary text-[11px] font-semibold shrink-0 shadow-[inset_0_1px_0_0_rgba(0,166,255,0.15)]">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/[0.08] text-primary text-[11px] font-semibold shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               <span>07 Service Integrations</span>
             </div>

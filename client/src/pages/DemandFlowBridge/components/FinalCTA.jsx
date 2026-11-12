@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MessageSquare, Cpu, Sparkles, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, MessageSquare, Cpu, Sparkles } from 'lucide-react'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 
 const FinalCTA = () => {
@@ -14,7 +14,7 @@ const FinalCTA = () => {
   return (
     <section
       id="cta"
-      className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-background dark:bg-slate-950 text-text-primary dark:text-white"
+      className="relative py-12 sm:py-16 lg:py-20 overflow-hidden bg-background dark:bg-slate-950 text-text-primary dark:text-white"
       aria-label="Ready to Explore DemandFlow Bridge"
     >
       {/* Background Animated Connection Grid & Nebula */}
@@ -39,29 +39,31 @@ const FinalCTA = () => {
         
         {/* Badge */}
         <motion.div
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
-          whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 border border-border dark:border-white/15 bg-surface/80 dark:bg-white/5 backdrop-blur-md text-text-secondary dark:text-slate-300 text-xs font-mono font-bold uppercase mb-6 px-3.5 py-1 rounded-full"
-        >
-          <Cpu className="w-3.5 h-3.5 text-primary animate-pulse" />
-          <span>Unified Operations Ecosystem</span>
-        </motion.div>
+  initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
+  whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.1 }}
+  className="inline-flex items-center gap-2 mb-6"
+>
+  {/* <Cpu className="w-3.5 h-3.5 text-primary animate-pulse" /> */}
+  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+    Unified Operations Ecosystem
+  </span>
+</motion.div>
 
         {/* Heading */}
         <motion.h2
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 18 }}
-          whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4"
-        >
-          Ready to Explore{' '}
-          <span className="bg-gradient-to-r from-primary via-[#00c8ff] to-cta bg-clip-text text-transparent">
-            DemandFlow Bridge?
-          </span>
-        </motion.h2>
+  initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+  whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.1 }}
+  className="text-2.5xl sm:text-4xl lg:text-[36px] font-black tracking-tight leading-[1.22] text-text-primary mb-4"
+>
+  Ready to Explore{' '}
+  <span className="highlight">
+    DemandFlow Bridge?
+  </span>
+</motion.h2>
 
         {/* Description */}
         <motion.p
@@ -69,16 +71,13 @@ const FinalCTA = () => {
           whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base sm:text-lg text-text-secondary dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal mb-8"
+          className="text-sm sm:text-base text-text-secondary dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal mb-6 sm:mb-8"
         >
           Discover how one integrated platform can connect your business operations.
         </motion.p>
 
-        {/* Action Buttons with Doodle Landing Target */}
+        {/* Action Buttons */}
         <div className="relative inline-block max-w-full">
-          {/* Subtle Doodle Energy Ring around CTA Target */}
-          <div className="absolute -inset-3 sm:-inset-5 rounded-3xl border border-primary/30 border-dashed pointer-events-none animate-[spin_30s_linear_infinite]" />
-
           <motion.div
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -109,22 +108,6 @@ const FinalCTA = () => {
             </Link>
 
           </motion.div>
-        </div>
-
-        {/* Trust Badges Footer */}
-        <div className="mt-12 pt-8 border-t border-border dark:border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-text-secondary dark:text-slate-400">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Proprietary Internal Architecture</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Multi-Department Synchronization</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Enterprise-Grade Security & RBAC</span>
-          </div>
         </div>
 
       </div>

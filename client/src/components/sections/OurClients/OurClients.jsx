@@ -5,7 +5,7 @@ import { LogoMarquee } from '@components/animations/LogoMarquee'
 
 const FALLBACK_LOGOS = [
   { id: 'avaya', client_name: 'AVAYA', logo_path: '/Avaya.webp', category: 'Unified Communications', metric: '+42% Sales Pipeline' },
-  { id: 'mitel', client_name: 'Mitel', logo_path: '/Mitel.png', category: 'Enterprise Telecom', metric: '3.8x C-Suite Reach' },
+  { id: 'mitel', client_name: 'Mitel', logo_path: '/mitel.png', category: 'Enterprise Telecom', metric: '3.8x C-Suite Reach' },
   { id: 'ringcentral', client_name: 'RingCentral', logo_path: '/ringcentral.png', category: 'Cloud Communications', metric: '99.8% Data Accuracy' },
   { id: 'vonage', client_name: 'Vonage', logo_path: '/Vonage.png', category: 'Communications APIs', metric: '+48% Meeting Conversion' },
   { id: 'microsoft', client_name: 'Microsoft Partner', logo_path: '/Microsoft.png', category: 'Cloud & Enterprise', metric: '14-Day Cadence Ramp' },
@@ -131,6 +131,13 @@ export const OurClients = () => {
                   className={`${getLogoClasses(logo)} object-contain select-none transition-transform duration-300 group-hover:scale-105`}
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    if (e.currentTarget.src.includes('Mitel.png')) {
+                      e.currentTarget.src = '/mitel.png'
+                    } else if (e.currentTarget.src.includes('mitel.png')) {
+                      e.currentTarget.src = '/Mitel.png'
+                    }
+                  }}
                 />
                 {logo.metric && (
                   <span className="absolute -bottom-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-mono font-bold bg-[#070B14] text-[#38BDF8] border border-[#00A6FF]/40 px-2.5 py-0.5 rounded-full shadow-lg whitespace-nowrap z-10">

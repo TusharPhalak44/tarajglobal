@@ -6,7 +6,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '01',
     label: 'AUDIT & DEDUP',
-    desc: 'Eliminate duplicates, bad syntax & CRM decay',
+    desc: 'Eliminate duplicates, bad syntax & CRM decay.',
     color: 'var(--primary)',
     glowColor: 'rgba(0, 166, 255, 0.25)',
     type: 'target',
@@ -14,7 +14,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '02',
     label: 'SMTP VERIFY',
-    desc: 'Purge dead inboxes, honeypots & spam traps',
+    desc: 'Purge dead inboxes, honeypots & spam traps.',
     color: 'var(--cta)',
     glowColor: 'rgba(255, 109, 0, 0.25)',
     type: 'engage',
@@ -22,7 +22,7 @@ const OUTCOME_INDICATORS = [
   {
     num: '03',
     label: 'ENRICH & RESTORE',
-    desc: 'Append direct dials & restore 99%+ CRM health',
+    desc: 'Append direct dials & restore 99%+ CRM health.',
     color: 'var(--success)',
     glowColor: 'rgba(114, 214, 105, 0.25)',
     type: 'convert',
@@ -89,13 +89,13 @@ const WhatIsService = () => {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-4"
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Service Definition
             </span>
           </motion.div>
 
           {/* HEADING ANIMATION — line by line reveal */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary whitespace-normal lg:whitespace-nowrap">
             <motion.span
               className="inline-block mr-3"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}

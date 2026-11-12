@@ -552,21 +552,6 @@ export const AudienceMap = ({
                 </Marker>
               ))}
 
-            {/* 3. Curved Dashed Cyan Flight Arcs (Dynamic Stroke & Dash Proportional to Zoom) */}
-            {FLIGHT_NETWORK_ARCS.map((arc) => (
-              <Line
-                key={arc.id}
-                from={arc.from}
-                to={arc.to}
-                stroke="#00A6FF"
-                strokeWidth={Math.max(0.65, 1.25 / position.zoom)}
-                strokeOpacity={0.65}
-                strokeDasharray={`${4 / position.zoom} ${6 / position.zoom}`}
-                strokeLinecap="round"
-                className="pointer-events-none"
-              />
-            ))}
-
             {/* 4. Strategic Global Hubs with Zoom-Responsive Scaling */}
             {visibleHubs.map((hub) => {
               const countryData = countryMap.get(hub.iso_code) || {

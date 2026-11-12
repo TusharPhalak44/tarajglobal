@@ -206,13 +206,13 @@ const WhatTarajDelivers = () => {
         {/* ── SECTION HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-2   mb-2.5">
-            <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
+            {/* <Cpu className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" /> */}
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Database Hygiene Engine
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase">
             <span className="text-slate-900 dark:text-text-primary dark:text-white">What Does Taraj Global </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_25px_rgba(0,166,255,0.4)]">
               Deliver in Data Cleansing?

@@ -328,8 +328,8 @@ const ProblemsSolved = () => {
             transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2   mb-2.5"
           >
-            <Wand2 className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" />
-            <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
+            {/* <Wand2 className="w-3.5 h-3.5 text-[#00A6FF] animate-pulse" /> */}
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               Hygiene Engine
             </span>
           </motion.div>
@@ -339,7 +339,7 @@ const ProblemsSolved = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
             <span className="text-slate-900 dark:text-text-primary dark:text-white">Problems We Solve in </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">

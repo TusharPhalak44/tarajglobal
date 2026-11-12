@@ -348,7 +348,7 @@ const WhoIsItFor = () => {
           >
          Is Content Syndication{' '}
             <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent py-1 sm:py-1.5">
-             Right for You
+             Right for You?
             </span>
           </motion.h2>
 

@@ -188,7 +188,8 @@ const FAQ = () => {
             className="flex items-center justify-center mb-2.5"
           >
             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              YOUR BANT QUESTIONS, ANSWERED
+              SOMETHING ON YOUR MIND?
+
 
             </span>
           </motion.div>

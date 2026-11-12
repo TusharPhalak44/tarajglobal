@@ -22,7 +22,7 @@ export const TESTIMONIALS_DATA = [
   {
     id: 'mitel',
     company: 'Mitel Networks',
-    companyLogo: '/Mitel.png',
+    companyLogo: '/mitel.png',
     category: 'Appointment Setting & Syndication',
     rating: 4.3,
     quote: "Their tech-backed content syndication and appointment setting generated a measurable surge in executive engagement. Having live client portal access made tracking campaign SLAs and pipeline velocity effortless.",
@@ -171,6 +171,13 @@ export const Testimonials = () => {
                           : "max-h-8.5 max-w-[92%] object-contain"
                       }
                       loading="lazy"
+                      onError={(e) => {
+                        if (e.currentTarget.src.includes('Mitel.png')) {
+                          e.currentTarget.src = '/mitel.png'
+                        } else if (e.currentTarget.src.includes('mitel.png')) {
+                          e.currentTarget.src = '/Mitel.png'
+                        }
+                      }}
                     />
                   </div>
 

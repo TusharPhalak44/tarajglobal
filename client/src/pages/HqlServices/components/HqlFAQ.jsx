@@ -190,7 +190,8 @@ const HqlFAQ = () => {
           >
 
              <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-              FREQUENTLY ASKED QUESTIONS • DEMANDFLOW KNOWLEDGE BASE
+             SOMETHING ON YOUR MIND?
+
             </span>
           </motion.div>
 

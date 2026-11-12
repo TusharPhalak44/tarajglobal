@@ -105,8 +105,8 @@ const CleansingProcess = () => {
             transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2   mb-2.5"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" />
-            <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#00A6FF] uppercase">
+            {/* <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] animate-pulse" /> */}
+             <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
               End-to-End Methodology
             </span>
           </motion.div>
@@ -116,13 +116,13 @@ const CleansingProcess = () => {
             whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight uppercase"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase"
           >
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">How Our </span>
+            <span className="text-slate-900 dark:text-text-primary dark:text-white"> DATABASE CLEANSING </span>
             <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">
-              Cleansing Process
+            WORKFLOW
             </span>{' '}
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">Works</span>
+            {/* <span className="text-slate-900 dark:text-text-primary dark:text-white">Works</span> */}
           </motion.h2>
 
           <motion.p
