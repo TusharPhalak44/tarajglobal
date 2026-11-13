@@ -1,52 +1,41 @@
+import { SERVICES_MENU_DATA } from '../src/constants/siteNavigation.js'
+
 // Static head metadata per public route. Keep in sync with the <SEO> props on each page;
 // this is what crawlers and link previews see before JavaScript runs.
 export const SITE_URL = 'https://tarajglobal.com'
 export const DEFAULT_IMAGE = `${SITE_URL}/OnlyTG-%203.png`
 
-export const SERVICES = [
-  { path: '/sql-services', name: 'Sales Qualified Leads (SQL)' },
-  { path: '/mql-services', name: 'Marketing Qualified Leads (MQL)' },
-  { path: '/hql-services', name: 'High-Quality Leads (HQL)' },
-  { path: '/bant-lead-generation', name: 'BANT Lead Generation' },
-  { path: '/b2b-appointment-setting', name: 'B2B Appointment Setting' },
-  { path: '/b2b-email-marketing', name: 'B2B Email Marketing' },
-  { path: '/abm', name: 'Account-Based Marketing (ABM)' },
-  { path: '/content-syndication', name: 'Content Syndication' },
-  { path: '/demand-generation', name: 'Demand Generation' },
-  { path: '/full-funnel-demand', name: 'Full Funnel Demand' },
-  { path: '/account-based-experience', name: 'Account Based Experience (ABX)' },
-  { path: '/webinar-services', name: 'Webinar Services' },
-  { path: '/lead-nurturing', name: 'Lead Nurturing' },
-  { path: '/b2b-list-building', name: 'B2B List Building' },
-  { path: '/database-cleansing', name: 'Database Cleansing' },
-  { path: '/demandflow-bridge', name: 'DemandFlow Bridge' },
-]
+export const SERVICES = SERVICES_MENU_DATA.flatMap((cat) =>
+  cat.items
+    .filter((item) => !item.isExternal)
+    .map((item) => ({ path: item.path, name: item.name }))
+)
 
 export const ROUTES = {
   '/': {
-    title: 'B2B Lead Generation & Demand Generation Agency | Taraj Global',
-    description: 'Scale your sales pipeline with Taraj Global. We deliver high-impact B2B lead generation, account-based marketing (ABM), appointment setting, and verified B2B data for SaaS and technology companies.',
-    h1: 'B2B Lead Generation & Demand Generation Agency',
+    title: 'Tech-Powered B2B Demand Generation & AI Lead Gen | TaRaj Global',
+    description: 'Accelerate enterprise sales pipeline across US, EMEA, and APAC. TaRaj Global combines demand generation services with proprietary verification tools and unified CRM pipeline delivery.',
+    h1: 'Tech-Powered B2B Demand Generation & AI Lead Gen',
   },
   '/who-we-are': {
-    title: 'Who We Are | Taraj Global B2B Demand Generation & Growth Partner',
-    description: 'Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven demand generation and lead qualification.',
-    h1: 'Who We Are - Taraj Global',
+    title: 'About TaRaj Global | Tech-Powered B2B Demand Generation Engine',
+    description: "Learn about TaRaj Global's company heritage, leadership team, and mission. We combine in-house verification tools, custom CRM pipeline delivery, and account outreach across US, EMEA & APAC.",
+    h1: 'About TaRaj Global',
   },
   '/about': {
-    title: 'Who We Are | Taraj Global B2B Demand Generation & Growth Partner',
-    description: 'Learn about Taraj Global, our leadership team, and our mission to help B2B SaaS and technology companies accelerate sales pipeline through data-driven demand generation and lead qualification.',
-    h1: 'Who We Are - Taraj Global',
+    title: 'About TaRaj Global | Tech-Powered B2B Demand Generation Engine',
+    description: "Learn about TaRaj Global's company heritage, leadership team, and mission. We combine in-house verification tools, custom CRM pipeline delivery, and account outreach across US, EMEA & APAC.",
+    h1: 'About TaRaj Global',
   },
   '/services': {
-    title: 'Strategic B2B Services for Sustainable Growth | Taraj Global',
-    description: 'We help businesses find the right accounts, engage the right people and create real opportunities. Our data-driven B2B services are designed to build a stronger pipeline and fuel long-term growth.',
-    h1: 'B2B Lead Generation & Demand Generation Services',
+    title: 'Strategic Data-Driven B2B Services | TaRaj Global',
+    description: "Discover TaRaj Global's data-driven B2B services: Lead Generation, Channels & Programs, Demand & ABM/ABX, and Data Operations across US, EMEA, and APAC markets.",
+    h1: 'Strategic Data-Driven B2B Services',
   },
   '/contact': {
-    title: 'Contact Us | Book a Discovery Call | Taraj Global',
-    description: 'Ready to scale your B2B sales pipeline? Contact Taraj Global today to discuss your lead generation, ABM, and demand generation requirements. Schedule a strategy meeting.',
-    h1: 'Contact Taraj Global',
+    title: 'Contact TaRaj Global | Book a B2B Strategy Call',
+    description: 'Talk to TaRaj Global about B2B appointment setting, lead generation, content syndication, and ABM. Book a strategy call or send us a message.',
+    h1: 'Contact TaRaj Global',
   },
   '/blog': {
     title: 'B2B Marketing & Demand Generation Blog | Insights & Strategies | Taraj Global',
@@ -54,18 +43,18 @@ export const ROUTES = {
     h1: 'B2B Marketing & Demand Generation Blog',
   },
   '/careers': {
-    title: 'Careers at Taraj Global | B2B Marketing & Sales Jobs in Pune',
-    description: 'Join our rapidly growing revenue team at Taraj Global. Explore open roles in B2B sales development, demand generation, and marketing technology in Kharadi, Pune.',
-    h1: 'Careers at Taraj Global',
+    title: 'TaRaj Global Careers | B2B Sales & Marketing Jobs in Pune',
+    description: 'Join TaRaj Global in Kharadi, Pune. Explore B2B sales development, demand generation and MarTech roles with fast promotion and uncapped incentives.',
+    h1: 'Careers at TaRaj Global',
   },
   '/sql-services': {
-    title: 'Sales Qualified Leads (SQL) Services | Sales-Ready B2B Leads | Taraj Global',
-    description: 'Accelerate your sales pipeline with verified Sales Qualified Leads (SQLs). We deliver high-intent B2B decision-makers with confirmed budget, authority, and project timelines.',
+    title: 'SQL Lead Generation Services | Tech-Powered Sales Qualified Leads | TaRaj Global',
+    description: 'Fill AE calendars with verified Sales Qualified Leads across US, EMEA, and APAC. TaRaj Global delivers sales-ready decision-makers verified via in-house tooling and a 99.8% Data Accuracy SLA.',
     h1: 'Sales Qualified Leads (SQL) Services',
   },
   '/mql-services': {
-    title: 'MQL Services | Marketing Qualified Lead Generation | Taraj Global',
-    description: 'Taraj Global provides MQL services that identify, qualify, and deliver marketing qualified leads using B2B data, buyer intent, lead scoring, AI-assisted workflows, and targeted demand generation.',
+    title: 'B2B MQL Lead Generation Services | TaRaj Global',
+    description: 'Get verified Marketing Qualified Leads (MQLs) scored by AI against your ICP and routed straight into your CRM across US, EMEA, and APAC',
     h1: 'Marketing Qualified Leads (MQL) Services',
   },
   '/hql-services': {
@@ -74,28 +63,28 @@ export const ROUTES = {
     h1: 'High-Quality Leads (HQL) Services',
   },
   '/bant-lead-generation': {
-    title: 'BANT Lead Generation Services | Highly Qualified B2B Leads | Taraj Global',
-    description: 'Maximize sales conversion with BANT-qualified B2B leads. Taraj Global rigorously verifies Budget, Authority, Need, and Timeline for every prospect delivered.',
+    title: 'BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Global',
+    description: 'Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA',
     h1: 'BANT Lead Generation Services',
   },
   '/b2b-appointment-setting': {
-    title: 'B2B Appointment Setting Services | Qualified Sales Meetings | Taraj Global',
-    description: 'Taraj Global provides B2B appointment setting services that connect sales teams with relevant decision-makers through targeted prospecting, personalized outreach, qualification, and buyer intelligence.',
+    title: 'B2B Appointment Setting Services | Verified Decision-Maker Meetings | TaRaj Global',
+    description: 'Book qualified discovery meetings with verified decision-makers across US, EMEA, and APAC. TaRaj Global combines SDR expertise, AI-assisted intent signals, and a 99.8% Data Accuracy SLA.',
     h1: 'B2B Appointment Setting Services',
   },
   '/b2b-email-marketing': {
-    title: 'B2B Email Marketing Services | Taraj Global',
-    description: 'Drive qualified B2B conversations with targeted email marketing campaigns. Taraj Global combines verified data, personalization, outreach, and lead qualification.',
+    title: 'B2B Email Marketing Services | AI-Enhanced Verified-Data Email Outreach | TaRaj Global',
+    description: 'Reach verified decision-makers across US, EMEA, and APAC with AI-enhanced B2B email outreach, custom deliverability engines, and a 99.8% Data Accuracy SLA.',
     h1: 'B2B Email Marketing Services',
   },
   '/abm': {
-    title: 'Account-Based Marketing (ABM) Services | Enterprise B2B Growth | Taraj Global',
-    description: 'Win high-value enterprise accounts with bespoke ABM programs. Taraj Global aligns intent data, multi-stakeholder mapping, and personalized 1:1 campaigns powered by DemandFlow Bridge.',
+    title: 'Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global',
+    description: 'Engage high-value target accounts and full buying committees across US, EMEA, and APAC. TaRaj Global combines AI-assisted account scoring, intent telemetry, and a 99.8% Data Accuracy SLA.',
     h1: 'Account-Based Marketing (ABM) Services',
   },
   '/content-syndication': {
-    title: 'B2B Content Syndication Services | Taraj Global',
-    description: 'Expand reach, engage active decision-makers, and generate high-intent qualified leads with targeted B2B content syndication on guaranteed CPL terms.',
+    title: 'B2B Content Syndication Services | Verified Opt-In Leads on Guaranteed CPL | TaRaj Global',
+    description: 'Syndicate whitepapers and research to verified decision-makers across US, EMEA, and APAC. TaRaj Global delivers opt-in, ICP-matched leads on guaranteed CPL with a 99.8% Data Accuracy SLA.',
     h1: 'B2B Content Syndication Services',
   },
   '/demand-generation': {
@@ -104,28 +93,28 @@ export const ROUTES = {
     h1: 'B2B Demand Generation Services',
   },
   '/full-funnel-demand': {
-    title: 'Full Funnel Demand Generation Services | Pipeline Acceleration | Taraj Global',
-    description: 'Taraj Global unifies top-of-funnel brand awareness, mid-funnel buying committee education, and bottom-of-funnel sales qualification into a high-velocity revenue engine.',
+    title: 'B2B Demand Generation Services | Tech-Powered Sales-Ready Pipeline | TaRaj Global',
+    description: 'Build verified, sales-ready B2B pipeline across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent scoring, multi-channel campaigns, and a 99.8% Data Accuracy SLA.',
     h1: 'Full Funnel Demand Generation Services',
   },
   '/account-based-experience': {
-    title: 'Account Based Experience (ABX) Services | Modern Account Growth | Taraj Global',
-    description: 'Evolve your ABM into synchronized Account Based Experiences. Taraj Global unifies buyer intent, multi-stakeholder personalization, and high-impact RevOps execution powered by DemandFlow Bridge.',
+    title: 'Account-Based Experience (ABX) Services | Tech-Powered Unified Buyer Journeys | TaRaj Global',
+    description: 'Orchestrate one consistent, personalized journey for every enterprise buying committee across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent signals, verified stakeholder data, and a 99.8% Data Accuracy SLA.',
     h1: 'Account Based Experience (ABX) Services',
   },
   '/webinar-services': {
-    title: 'B2B Webinar Services | Webinar Lead Generation | Taraj Global',
-    description: 'Taraj Global provides B2B webinar services that help technology and SaaS companies reach targeted audiences, generate webinar registrations, engage decision-makers, and create qualified leads.',
+    title: 'B2B Webinar Services | Verified Registrations & Attendee-Qualified Pipeline | TaRaj Global',
+    description: 'Fill B2B webinars with verified decision-makers and turn live engagement into sales-ready pipeline across US, EMEA, and APAC. TaRaj Global combines targeted promotion, attendee intelligence, and a 99.8% Data Accuracy SLA.',
     h1: 'B2B Webinar Services',
   },
   '/lead-nurturing': {
-    title: 'B2B Lead Nurturing Services | B2B Lead Engagement | Taraj Global',
-    description: 'Taraj Global provides B2B lead nurturing services that engage, qualify, and develop prospects through targeted outreach, buyer intent signals, lead scoring, and data-driven nurturing strategies.',
+    title: 'B2B Lead Nurturing Services | Tech-Powered Lead Engagement & Reactivation | TaRaj Global',
+    description: 'Re-engage and develop B2B leads into sales-ready opportunities across US, EMEA, and APAC. TaRaj Global combines behavioral scoring, AI-assisted intent signals, and a 99.8% Data Accuracy SLA.',
     h1: 'B2B Lead Nurturing Services',
   },
   '/b2b-list-building': {
-    title: 'B2B List Building Services | Taraj Global',
-    description: 'Build verified, campaign-ready B2B prospect lists. Taraj Global delivers ICP-matched, triple-layer verified contact data — direct emails, phone numbers, and LinkedIn profiles — ready for outbound sales.',
+    title: 'Custom B2B List Building Services | Verified Prospect Data, Built to Your ICP | TaRaj Global',
+    description: 'Get custom-built B2B prospect lists matched to your ICP across US, EMEA, and APAC. Human-led research, AI-assisted verification, and a 99.8% Data Accuracy SLA, delivered CRM-ready.',
     h1: 'B2B List Building Services',
   },
   '/database-cleansing': {
@@ -153,5 +142,10 @@ export const ROUTES = {
     title: 'Cookie Policy | Tracking Technologies & Consent | Taraj Global',
     description: "Learn about the cookies and tracking technologies used on Taraj Global's website. Manage your cookie consent preferences and privacy settings.",
     h1: 'Cookie Policy',
+  },
+  '/sitemap': {
+    title: 'HTML Sitemap | Complete Site Directory & Services | Taraj Global',
+    description: 'Explore the complete Taraj Global website directory. Access all B2B demand generation services, lead qualification solutions, company pages, and XML sitemap.',
+    h1: 'HTML Sitemap - Taraj Global',
   },
 }

@@ -109,7 +109,7 @@ export const getRobotsTxt = async (req, res) => {
  * Get Sitemap.xml
  * GET /api/seo/sitemap.xml
  */
-const SERVICE_ROUTES = ['sql-services', 'hql-services', 'mql-services', 'bant-lead-generation', 'b2b-appointment-setting', 'b2b-email-marketing', 'abm', 'content-syndication', 'demand-generation', 'webinar-services', 'lead-nurturing', 'b2b-list-building', 'database-cleansing', 'demandflow-bridge']
+const SERVICE_ROUTES = ['sql-services', 'hql-services', 'mql-services', 'bant-lead-generation', 'b2b-appointment-setting', 'b2b-email-marketing', 'abm', 'content-syndication', 'full-funnel-demand', 'account-based-experience', 'webinar-services', 'lead-nurturing', 'b2b-list-building', 'database-cleansing', 'demandflow-bridge']
 const CORE_ROUTES = ['home', 'services', 'contact', 'who-we-are', 'blog', 'careers', 'sitemap']
 const LEGAL_ROUTES = ['privacy', 'terms', 'cookies']
 

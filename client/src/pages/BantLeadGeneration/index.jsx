@@ -74,7 +74,7 @@ const BantLeadGeneration = () => {
         description="Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA"
         keywords="BANT lead generation services, BANT qualification, BANT qualified B2B leads, budget authority need timeline, B2B lead qualification criteria, sales-ready prospects, high-converting B2B leads, B2B lead generation"
         canonical="/bant-lead-generation"
-        ogTitle="BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Globa"
+        ogTitle="BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Global"
         ogDescription="Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA."
         ogType="website"
         twitterCard="summary_large_image"

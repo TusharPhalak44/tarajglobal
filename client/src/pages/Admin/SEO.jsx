@@ -39,8 +39,11 @@ const STATIC_PAGES = [
   { id: 'webinar-services', title: 'Webinar Services' },
   { id: 'lead-nurturing', title: 'Lead Nurturing' },
   { id: 'demand-generation', title: 'Demand Generation' },
+  { id: 'full-funnel-demand', title: 'Full Funnel Demand' },
+  { id: 'account-based-experience', title: 'Account Based Experience (ABX)' },
   { id: 'b2b-list-building', title: 'B2B List Building' },
   { id: 'database-cleansing', title: 'Database Cleansing' },
+  { id: 'sitemap', title: 'HTML Sitemap' },
   { id: 'privacy', title: 'Privacy Policy' },
   { id: 'terms', title: 'Terms & Conditions' },
   { id: 'cookies', title: 'Cookie Policy' }

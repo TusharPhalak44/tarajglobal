@@ -24,59 +24,32 @@ import {
 } from 'lucide-react'
 import { useTheme } from '@context/ThemeContext'
 import TGAnimatedLogo from './TGAnimatedLogo'
+import { PRIMARY_PAGES, SERVICES_MENU_DATA } from '@/constants/siteNavigation'
 
-const menuItems = [
-  { index: '01', name: 'Home', path: '/', icon: Home, desc: 'Enterprise overview & revenue pipeline', color: '#00A6FF' },
-  { index: '02', name: 'Services', path: '/services', icon: Briefcase, desc: '13 Specialized B2B growth solutions', color: '#00E5FF', isServices: true },
-  { index: '03', name: 'Blogs', path: '/blog', icon: BookOpen, desc: 'Market intelligence & B2B growth insights', color: '#EAB308' },
-  { index: '04', name: 'Who We Are', path: '/who-we-are', icon: Info, desc: 'Company mission, leadership & pedigree', color: '#FF6D00' },
-  { index: '05', name: 'Careers', path: '/careers', icon: Users, desc: 'Join our revenue engineering team', color: '#A855F7' },
-  { index: '06', name: 'Contact Us', path: '/contact', icon: Mail, desc: 'Direct strategy consultation & RFPs', color: '#00A6FF' },
-]
+const PRIMARY_ICONS = {
+  '/': Home,
+  '/services': Briefcase,
+  '/blog': BookOpen,
+  '/who-we-are': Info,
+  '/careers': Users,
+  '/contact': Mail,
+}
 
-const SERVICES_SUBGROUPS = [
-  {
-    category: 'Services',
-    accent: '#00A6FF',
-    items: [
-      { name: 'MQL Services', path: '/mql-services' },
-      { name: 'HQL Services', path: '/hql-services' },
-      { name: 'BANT Services', path: '/bant-lead-generation' },
-      { name: 'SQL Services', path: '/sql-services' },
-      { name: 'Appointment Generation', path: '/b2b-appointment-setting' },
-    ],
-  },
-  {
-    category: 'Program',
-    accent: '#FF6D00',
-    items: [
-      // { name: 'Demand Generation', path: '/demand-generation' },
-      { name: 'Full Funnel Demand', path: '/full-funnel-demand' },
-      { name: 'Account-Based Marketing', path: '/abm' },
-      { name: 'Account Based Experience', path: '/account-based-experience' },
-      { name: 'Lead Nurturing', path: '/lead-nurturing' },
-    ],
-  },
-  {
-    category: 'Channels & Data Solution',
-    accent: '#8B5CF6',
-    items: [
-      { name: 'Email Marketing', path: '/b2b-email-marketing' },
-      { name: 'Content Syndication', path: '/content-syndication' },
-      { name: 'Webinar Services', path: '/webinar-services' },
-      { name: 'B2B List Building', path: '/b2b-list-building' },
-      { name: 'Database Cleansing', path: '/database-cleansing' },
-    ],
-  },
-  {
-    category: 'Products & Publications',
-    accent: '#10B981',
-    items: [
-      { name: 'DemandFlow Bridge', path: '/demandflow-bridge' },
-      { name: 'TGS Tech Info', path: 'https://tgstechinfo.com/', isExternal: true },
-    ],
-  },
-]
+const menuItems = PRIMARY_PAGES.map((p, idx) => ({
+  index: `0${idx + 1}`,
+  name: p.name,
+  path: p.path,
+  icon: PRIMARY_ICONS[p.path] || Home,
+  desc: p.desc,
+  color: p.color,
+  isServices: p.path === '/services',
+}))
+
+const SERVICES_SUBGROUPS = SERVICES_MENU_DATA.map((cat) => ({
+  category: cat.title,
+  accent: cat.accent,
+  items: cat.items,
+}))
 
 const backdropVariants = {
   hidden: { opacity: 0 },

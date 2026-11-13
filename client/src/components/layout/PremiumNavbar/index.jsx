@@ -28,51 +28,36 @@ import FullscreenMenu from './FullscreenMenu'
 import SearchModal from './SearchModal'
 import { SectionLaserDivider } from '@components/animations'
 import TGAnimatedLogo from './TGAnimatedLogo'
+import { SERVICES_MENU_DATA } from '@/constants/siteNavigation'
 
-// ── 2. SERVICES MEGA MENU DATA (PRESERVING 100% CONTENT) ───────────────────────
-const SERVICES_DATA = [
-  {
-    title: 'Services',
-    accent: '#00A6FF',
-    items: [
-      { name: 'MQL Services', path: '/mql-services', desc: 'High-volume engaged prospects', icon: TrendingUp },
-      { name: 'HQL Services', path: '/hql-services', desc: 'Verified intent & confirmed interest', icon: ShieldCheck },
-      { name: 'BANT Services', path: '/bant-lead-generation', desc: 'Budget, authority & need qualified', icon: CheckCircle2 },
-      { name: 'SQL Services', path: '/sql-services', desc: 'Sales-ready leads matched to ICP', icon: Target },
-      { name: 'Appointment Generation', path: '/b2b-appointment-setting', desc: 'Direct confirmed calendar meetings', icon: Calendar },
-    ]
-  },
-  {
-    title: 'Program',
-    accent: '#FF6D00',
-    items: [
-      // { name: 'Demand Generation', path: '/demand-generation', desc: 'Full-funnel pipeline & velocity', icon: Zap },
-      { name: 'Full Funnel Demand', path: '/full-funnel-demand', desc: 'End-to-end intent & revenue capture', icon: TrendingUp },
-      { name: 'Account-Based Marketing', path: '/abm', desc: 'Targeted multi-tier key accounts', icon: Layers },
-      { name: 'Account Based Experience', path: '/account-based-experience', desc: 'Omnichannel buyer journey & ABX', icon: Target },
-      { name: 'Lead Nurturing', path: '/lead-nurturing', desc: 'Multi-stage engagement cadences', icon: RefreshCw },
-    ]
-  },
-  {
-    title: 'Channels & Data Solution',
-    accent: '#8B5CF6',
-    items: [
-      { name: 'Email Marketing', path: '/b2b-email-marketing', desc: 'Cold outbound & nurture cadences', icon: Mail },
-      { name: 'Content Syndication', path: '/content-syndication', desc: 'Whitepapers to targeted buying groups', icon: FileSpreadsheet },
-      { name: 'Webinar Services', path: '/webinar-services', desc: 'Qualified executive attendees', icon: Sparkles },
-      { name: 'B2B List Building', path: '/b2b-list-building', desc: 'Human-verified ICP contact lists', icon: Search },
-      { name: 'Database Cleansing', path: '/database-cleansing', desc: 'Hygiene, enrichment & dedup', icon: Database },
-    ]
-  },
-  {
-    title: 'Products & Publications',
-    accent: '#10B981',
-    items: [
-      { name: 'DemandFlow Bridge', path: '/demandflow-bridge', desc: 'Connecting data, outreach & pipeline', icon: Layers },
-      { name: 'TGS Tech Info', path: 'https://tgstechinfo.com/', desc: 'Technology publishing & media hub', icon: Globe, isExternal: true },
-    ]
-  }
-]
+// ── 2. SERVICES MEGA MENU DATA (DERIVED FROM SINGLE SOURCE OF TRUTH) ────────────
+const ICON_LOOKUP = {
+  '/mql-services': TrendingUp,
+  '/hql-services': ShieldCheck,
+  '/bant-lead-generation': CheckCircle2,
+  '/sql-services': Target,
+  '/b2b-appointment-setting': Calendar,
+  '/full-funnel-demand': TrendingUp,
+  '/abm': Layers,
+  '/account-based-experience': Target,
+  '/lead-nurturing': RefreshCw,
+  '/b2b-email-marketing': Mail,
+  '/content-syndication': FileSpreadsheet,
+  '/webinar-services': Sparkles,
+  '/b2b-list-building': Search,
+  '/database-cleansing': Database,
+  '/demandflow-bridge': Layers,
+  'https://tgstechinfo.com/': Globe,
+}
+
+const SERVICES_DATA = SERVICES_MENU_DATA.map((cat) => ({
+  title: cat.title,
+  accent: cat.accent,
+  items: cat.items.map((item) => ({
+    ...item,
+    icon: ICON_LOOKUP[item.path] || Target,
+  })),
+}))
 
 export const PremiumNavbar = ({ isPreview = false }) => {
   const [isScrolled, setIsScrolled] = useState(false)

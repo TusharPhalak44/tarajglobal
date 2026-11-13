@@ -136,17 +136,15 @@ function ChapterRail() {
             className="group flex items-center justify-end gap-3 pointer-events-auto self-end max-w-fit"
           >
             <span
-              className={`pointer-events-none rounded-md bg-[#07090E]/95 border border-white/10 px-2.5 py-1 text-[11.5px] font-semibold opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 shadow-xl ${
-                isActive ? 'text-white' : 'text-text-secondary'
-              }`}
+              className={`pointer-events-none rounded-md bg-[#07090E]/95 border border-white/10 px-2.5 py-1 text-[11.5px] font-semibold opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 shadow-xl ${isActive ? 'text-white' : 'text-text-secondary'
+                }`}
             >
               <span className="font-mono text-[#00A6FF] mr-1.5">0{i + 1}</span>
               {label}
             </span>
             <span
-              className={`block rounded-full transition-all duration-300 shrink-0 ${
-                isActive ? 'h-6 w-1.5 bg-[#00A6FF]' : 'h-1.5 w-1.5 bg-slate-500/40 group-hover:bg-white'
-              }`}
+              className={`block rounded-full transition-all duration-300 shrink-0 ${isActive ? 'h-6 w-1.5 bg-[#00A6FF]' : 'h-1.5 w-1.5 bg-slate-500/40 group-hover:bg-white'
+                }`}
             />
           </a>
         )
@@ -163,7 +161,7 @@ function NextStep() {
       aria-labelledby="cta-heading"
     >
       <div className="relative mx-auto max-w-[850px] px-5 sm:px-8 text-center">
-        
+
         {/* Eyebrow (Clean Pre-header matching Hero) */}
         <div className="inline-flex items-center justify-center mb-2.5 sm:mb-3">
           <p className="font-sans text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#00A6FF]">
@@ -190,8 +188,8 @@ function NextStep() {
 
         {/* CTAs */}
         <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-          <Link 
-            to="/contact" 
+          <Link
+            to="/contact"
             data-cta="true"
             data-cta-section="Home Bottom CTA Section"
             data-cta-name="Schedule Your Pipeline Strategy Call"
@@ -223,21 +221,21 @@ function NextStep() {
 
 function Home() {
   const { seoData } = useSEOData('page', 'home', {
-    title: "B2B Lead Generation & Demand Generation Agency | Taraj Global",
-    description: "Scale your sales pipeline with Taraj Global. We deliver high-impact B2B lead generation, account-based marketing (ABM), appointment setting, and verified B2B data for SaaS and technology companies.",
+    title: "Tech-Powered B2B Demand Generation & AI Lead Gen | TaRaj Global",
+    description: "Accelerate enterprise sales pipeline across US, EMEA, and APAC. TaRaj Global combines demand generation services with proprietary verification tools and unified CRM pipeline delivery",
     keywords: "B2B lead generation, demand generation agency, B2B sales pipeline, SaaS lead generation, qualified B2B leads, account-based marketing agency, B2B appointment setting, intent-based marketing, sales qualified leads, verified B2B intelligence",
     canonical: "/",
-    ogTitle: "Taraj Global | Powering Smarter B2B Pipeline Growth",
-    ogDescription: "Accelerate pipeline velocity with verified B2B data, demand generation campaigns, and targeted decision-maker outreach.",
+    ogTitle: "Tech-Powered B2B Demand Generation & AI Lead Gen | TaRaj Global",
+    ogDescription: "Accelerate enterprise sales pipeline across US, EMEA, and APAC. TaRaj Global combines demand generation services with proprietary verification tools and unified CRM pipeline delivery",
     schemaJson: homeSchema
   })
 
   return (
     <>
       <SEO {...seoData} schemaJson={homeSchema} />
-      
+
       <ChapterRail />
-      
+
       {/* 01. Hero Section: The Growth Engine */}
       <Hero />
 
