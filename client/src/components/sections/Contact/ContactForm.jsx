@@ -324,10 +324,28 @@ const ContactForm = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-4 sm:mb-5"
         >
-          <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.16] uppercase !mb-4">
-            <span className="text-slate-900 dark:text-text-primary dark:text-white">SEND US A </span>
-            <span className="text-[#00A6FF] drop-shadow-[0_0_20px_rgba(0,166,255,0.4)]">MESSAGE</span>
-          </h2>
+         <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.16] uppercase !mb-4">
+  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+    SEND US A
+  </span>
+  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+    MESSAGE
+  </span>
+</h2>
+<h2 className="section-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase !mb-4">
+  <span className="block pb-1 sm:pb-1.5">
+    Tell Us About Your
+  </span>
+
+  <span
+    className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
+    style={{
+      backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)'
+    }}
+  >
+    Pipeline Goals
+  </span>
+</h2>
           <p className="section-subtitle text-sm sm:text-sm md:text-base text-slate-600 dark:text-slate-400 !mb-0 font-normal">
             Share your target audience, volume, and timeline. A TaRaj Global specialist will reply with next steps.
           </p>

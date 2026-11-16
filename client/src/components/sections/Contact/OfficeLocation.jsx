@@ -59,8 +59,25 @@ const OfficeLocation = () => {
           transition={{ duration: 0.6 }}
           className="location-wrapper"
         >
-          <h2 className="section-title">OUR OFFICES</h2>
-          <h3 className="section-subtitle !mb-3">Visit Us in Pune or Reach Us Online</h3>
+          <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.16] uppercase !mb-4">
+  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+    OUR OFFICES
+  </span>
+</h2>
+          <h2 className="section-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase !mb-4">
+  <span className="block pb-1 sm:pb-1.5">
+    Visit Us in Pune or
+  </span>
+
+  <span
+    className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
+    style={{
+      backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)'
+    }}
+  >
+    Reach Us Online
+  </span>
+</h2>
           <p className="text-center text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">Meet our team at our Pune headquarters, or connect with us from anywhere in North America, EMEA, and APAC.</p>
 
           <div className="location-content">
