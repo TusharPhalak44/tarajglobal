@@ -190,12 +190,11 @@ export const CATEGORY_FAQS = {
 }
 
 /**
- * Normalizes any category string into one of the 3 category keys.
- * Handles variations from database, URL query params, or admin input.
+ * Normalizes any category string or blog object into one of the 3 category keys.
+ * Handles variations from database, URL query params, admin input, or auto-categorization.
  */
-export const normalizeCategory = (categoryName = '') => {
-  if (!categoryName) return null
-  const norm = String(categoryName).toLowerCase().trim()
+export const normalizeCategory = (categoryName = '', blog = null) => {
+  const norm = String(categoryName || '').toLowerCase().trim()
 
   if (norm === 'thought-leadership' || norm.includes('thought leadership') || norm.includes('leadership')) {
     return 'thought-leadership'
@@ -206,6 +205,51 @@ export const normalizeCategory = (categoryName = '') => {
   if (norm === 'tech-ai' || norm.includes('tech') || norm.includes('ai') || norm.includes('ai-enabled')) {
     return 'tech-ai'
   }
+
+  // If category is generic (e.g. 'B2B Lead Generation', 'B2B Strategy') or blog metadata is present:
+  if (blog || norm) {
+    const text = [
+      norm,
+      blog?.title,
+      blog?.slug,
+      blog?.author,
+      blog?.author_name,
+      blog?.excerpt
+    ].filter(Boolean).join(' ').toLowerCase()
+
+    // 1. Tech & AI-Enabled Insights
+    if (
+      text.includes('ai') ||
+      text.includes('tech') ||
+      text.includes('data') ||
+      text.includes('enrichment') ||
+      text.includes('intent') ||
+      text.includes('automation') ||
+      text.includes('crm') ||
+      text.includes('tushar')
+    ) {
+      return 'tech-ai'
+    }
+
+    // 2. Thought Leadership Insights (CEO / Executive strategy / Growth / Predictable)
+    if (
+      text.includes('founder') ||
+      text.includes('ceo') ||
+      text.includes('dhotre') ||
+      text.includes('growth') ||
+      text.includes('2027') ||
+      text.includes('predictable') ||
+      text.includes('funding') ||
+      text.includes('executive') ||
+      text.includes('strategy')
+    ) {
+      return 'thought-leadership'
+    }
+
+    // 3. Sales & Marketing Insights
+    return 'sales-marketing'
+  }
+
   return null
 }
 

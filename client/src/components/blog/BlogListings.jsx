@@ -124,9 +124,9 @@ const BlogListings = () => {
     }
   }
 
-  // Filter blogs based on selected category (matches category_name or category)
+  // Filter blogs based on selected category (matches category_name or category, or smart metadata)
   const filteredBlogs = selectedCategory
-    ? blogs.filter((blog) => normalizeCategory(blog.category_name || blog.category) === selectedCategory)
+    ? blogs.filter((blog) => normalizeCategory(blog.category_name || blog.category, blog) === selectedCategory)
     : blogs
 
   const activeCategoryObj = CATEGORIES_DATA.find((c) => c.key === selectedCategory)
