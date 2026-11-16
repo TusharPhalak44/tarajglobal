@@ -28,7 +28,9 @@ import {
   Trash2,
   Camera,
   Upload,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Linkedin,
+  Twitter
 } from 'lucide-react'
 import { authAPI, adminAPI } from '@api'
 import { useAuth } from '@context/AuthContext'
@@ -57,7 +59,10 @@ const Profile = () => {
     name: user?.name || '',
     email: user?.email || '',
     phone: user?.phone || '',
-    department: user?.department || 'Revenue Operations'
+    department: user?.department || 'Revenue Operations',
+    bio: user?.bio || '',
+    linkedin_url: user?.linkedin_url || '',
+    twitter_url: user?.twitter_url || ''
   })
 
   // Change Password State
@@ -77,8 +82,13 @@ const Profile = () => {
     name: '',
     email: '',
     password: '',
-    role: 'admin'
+    role: 'admin',
+    avatar: '',
+    bio: '',
+    linkedin_url: '',
+    twitter_url: ''
   })
+  const [newAdminAvatarPreview, setNewAdminAvatarPreview] = useState('')
 
   // Team Administrators list (fetched if super_admin / admin)
   const [teamUsers, setTeamUsers] = useState([])
@@ -102,7 +112,10 @@ const Profile = () => {
           name: userData.name || '',
           email: userData.email || '',
           phone: userData.phone || '',
-          department: userData.department || 'Revenue Operations'
+          department: userData.department || 'Revenue Operations',
+          bio: userData.bio || '',
+          linkedin_url: userData.linkedin_url || '',
+          twitter_url: userData.twitter_url || ''
         })
         if (updateUser) {
           updateUser(userData)
@@ -231,7 +244,10 @@ const Profile = () => {
         name: formData.name.trim(),
         email: formData.email.trim(),
         phone: formData.phone?.trim() || '',
-        department: formData.department?.trim() || ''
+        department: formData.department?.trim() || '',
+        bio: formData.bio?.trim() || '',
+        linkedin_url: formData.linkedin_url?.trim() || '',
+        twitter_url: formData.twitter_url?.trim() || ''
       })
       const updated = response.data?.user || response.data
       if (updated && updateUser) {
@@ -289,10 +305,23 @@ const Profile = () => {
 
     try {
       setAddingUser(true)
-      await adminAPI.createUser(newUserData)
+      await adminAPI.createUser({
+        ...newUserData,
+        avatar: newAdminAvatarPreview || newUserData.avatar || null
+      })
       showMessage('success', `Administrator "${newUserData.name}" registered successfully with ${newUserData.role} role!`)
       setShowAddUserModal(false)
-      setNewUserData({ name: '', email: '', password: '', role: 'admin' })
+      setNewUserData({
+        name: '',
+        email: '',
+        password: '',
+        role: 'admin',
+        avatar: '',
+        bio: '',
+        linkedin_url: '',
+        twitter_url: ''
+      })
+      setNewAdminAvatarPreview('')
       fetchTeamUsers()
     } catch (error) {
       console.error('Failed to create user:', error)
@@ -563,6 +592,77 @@ const Profile = () => {
               </div>
             </div>
 
+            {/* Author Bio Display */}
+            <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] space-y-2">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold uppercase tracking-wider text-[var(--admin-text-muted)]">
+                  Author Bio (Shown Below Published Blogs)
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('edit')
+                    setEditing(true)
+                  }}
+                  className="text-xs font-semibold text-[var(--admin-primary)] hover:underline flex items-center gap-1"
+                >
+                  <Edit3 className="w-3.5 h-3.5" />
+                  {user?.bio ? 'Edit Bio' : 'Add Bio'}
+                </button>
+              </div>
+              <p className="text-sm text-[var(--admin-text-primary)] leading-relaxed">
+                {user?.bio || (
+                  <span className="italic text-[var(--admin-text-muted)]">
+                    No bio added yet. Click &quot;Add Bio&quot; to write a professional summary that will appear under all your published blogs.
+                  </span>
+                )}
+              </p>
+            </div>
+
+            {/* Social Links Display */}
+            <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-wider text-[var(--admin-text-muted)]">
+                Author Social Profiles
+              </p>
+              <div className="flex items-center gap-3 flex-wrap">
+                {user?.linkedin_url ? (
+                  <a
+                    href={user.linkedin_url.startsWith('http') ? user.linkedin_url : `https://${user.linkedin_url}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0077B5]/15 text-[#0077B5] dark:text-[#38BDF8] border border-[#0077B5]/30 hover:bg-[#0077B5] hover:text-white transition-colors"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    <span>LinkedIn Profile</span>
+                    <ExternalLink className="w-3 h-3 opacity-60" />
+                  </a>
+                ) : (
+                  <span className="text-xs text-[var(--admin-text-muted)] flex items-center gap-1.5">
+                    <Linkedin className="w-4 h-4 opacity-40" />
+                    <span>LinkedIn not linked</span>
+                  </span>
+                )}
+
+                {user?.twitter_url ? (
+                  <a
+                    href={user.twitter_url.startsWith('http') ? user.twitter_url : `https://${user.twitter_url}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--admin-bg-surface)] text-[var(--admin-text-primary)] border border-[var(--admin-border-base)] hover:border-[var(--admin-primary)] transition-colors"
+                  >
+                    <Twitter className="w-4 h-4" />
+                    <span>Twitter / X Profile</span>
+                    <ExternalLink className="w-3 h-3 opacity-60" />
+                  </a>
+                ) : (
+                  <span className="text-xs text-[var(--admin-text-muted)] flex items-center gap-1.5">
+                    <Twitter className="w-4 h-4 opacity-40" />
+                    <span>Twitter / X not linked</span>
+                  </span>
+                )}
+              </div>
+            </div>
+
             <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-xl bg-[var(--admin-primary-soft)] flex items-center justify-center text-[var(--admin-primary)]">
@@ -737,6 +837,63 @@ const Profile = () => {
                   />
                 </div>
                 <p className="text-[13px] text-[var(--admin-text-muted)] mt-1">Role assignments can only be modified through the RBAC Team registry.</p>
+              </div>
+
+              {/* Author Biography */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)]">
+                    Author Biography / Bio
+                  </label>
+                  <span className="text-[11px] font-mono text-[var(--admin-primary)]">
+                    Appears under your published blogs
+                  </span>
+                </div>
+                <textarea
+                  rows={4}
+                  value={formData.bio}
+                  onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                  placeholder="Write a concise professional summary, your industry experience, and expertise (e.g. B2B Growth Strategist with 8+ years leading outbound demand generation)..."
+                  className="admin-input p-3 w-full text-sm leading-relaxed"
+                  disabled={saving}
+                />
+              </div>
+
+              {/* Social Links Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                    LinkedIn Profile URL
+                  </label>
+                  <div className="relative">
+                    <Linkedin className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#0077B5]" />
+                    <input
+                      type="url"
+                      value={formData.linkedin_url}
+                      onChange={(e) => setFormData({ ...formData, linkedin_url: e.target.value })}
+                      placeholder="https://www.linkedin.com/in/username"
+                      className="admin-input pl-10 text-sm w-full font-mono"
+                      disabled={saving}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                    Twitter / X Profile URL
+                  </label>
+                  <div className="relative">
+                    <Twitter className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="url"
+                      value={formData.twitter_url}
+                      onChange={(e) => setFormData({ ...formData, twitter_url: e.target.value })}
+                      placeholder="https://x.com/username"
+                      className="admin-input pl-10 text-sm w-full font-mono"
+                      disabled={saving}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
@@ -1001,15 +1158,71 @@ const Profile = () => {
       {showAddUserModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-xs animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowAddUserModal(false)} />
-          <div className="relative max-w-md w-full bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
+          <div className="relative max-w-lg w-full max-h-[90vh] overflow-y-auto bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl p-6 z-10 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--admin-border-subtle)]">
-              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Register Administrator</h3>
+              <div>
+                <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Register Administrator</h3>
+                <p className="text-xs text-[var(--admin-text-muted)]">Set up credentials, author bio & social profiles</p>
+              </div>
               <button onClick={() => setShowAddUserModal(false)} className="p-1 rounded-lg text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             <form onSubmit={handleCreateUser} className="space-y-4">
+              {/* Profile Image Upload Preview */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                  Profile Photo (Optional)
+                </label>
+                <div className="flex items-center gap-3.5">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] flex items-center justify-center overflow-hidden shrink-0">
+                    {newAdminAvatarPreview ? (
+                      <img src={newAdminAvatarPreview} alt="Avatar Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <Camera className="w-5 h-5 text-[var(--admin-text-muted)]" />
+                    )}
+                  </div>
+                  <div className="space-y-1 flex-1">
+                    <input
+                      type="file"
+                      id="newAdminAvatarInput"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) {
+                          const reader = new FileReader()
+                          reader.onloadend = () => {
+                            setNewAdminAvatarPreview(reader.result)
+                          }
+                          reader.readAsDataURL(file)
+                        }
+                      }}
+                    />
+                    <div className="flex items-center gap-2">
+                      <label
+                        htmlFor="newAdminAvatarInput"
+                        className="admin-btn admin-btn-secondary h-7 px-2.5 text-xs cursor-pointer inline-flex items-center gap-1.5"
+                      >
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>{newAdminAvatarPreview ? 'Change' : 'Choose Photo'}</span>
+                      </label>
+                      {newAdminAvatarPreview && (
+                        <button
+                          type="button"
+                          onClick={() => setNewAdminAvatarPreview('')}
+                          className="text-xs text-[var(--admin-danger)] hover:underline"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-[var(--admin-text-muted)]">PNG, JPG, WebP up to 5MB</p>
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-bold text-[var(--admin-text-secondary)] mb-1.5">Full Name *</label>
                 <input
@@ -1057,7 +1270,57 @@ const Profile = () => {
                   <option value="editor">Content Editor</option>
                   <option value="hr_recruiter">HR Recruiter</option>
                   <option value="super_admin">Super Administrator</option>
+                  <option value="user">User / Contributor</option>
                 </select>
+              </div>
+
+              {/* Bio */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                  Author Bio (Optional)
+                </label>
+                <textarea
+                  rows={3}
+                  value={newUserData.bio}
+                  onChange={(e) => setNewUserData({ ...newUserData, bio: e.target.value })}
+                  placeholder="Short professional summary displayed under their blogs..."
+                  className="admin-input p-2.5 w-full text-xs"
+                />
+              </div>
+
+              {/* LinkedIn & Twitter */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">
+                    LinkedIn URL
+                  </label>
+                  <div className="relative">
+                    <Linkedin className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#0077B5]" />
+                    <input
+                      type="url"
+                      value={newUserData.linkedin_url}
+                      onChange={(e) => setNewUserData({ ...newUserData, linkedin_url: e.target.value })}
+                      placeholder="https://linkedin.com/in/..."
+                      className="admin-input pl-8 text-xs w-full font-mono"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">
+                    Twitter / X URL
+                  </label>
+                  <div className="relative">
+                    <Twitter className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="url"
+                      value={newUserData.twitter_url}
+                      onChange={(e) => setNewUserData({ ...newUserData, twitter_url: e.target.value })}
+                      placeholder="https://x.com/..."
+                      className="admin-input pl-8 text-xs w-full font-mono"
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-[var(--admin-border-subtle)]">

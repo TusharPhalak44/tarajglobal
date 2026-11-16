@@ -3,6 +3,7 @@ import slugify from 'slugify'
 import { analyzeSEO } from '../../helpers/seoAnalyzer.js'
 import fs from 'fs'
 import path from 'path'
+import { formatAuthorName } from '../../utils/authorFormatter.js'
 
 // Helper function to calculate reading time
 export const calculateReadingTime = (content) => {
@@ -151,10 +152,16 @@ export const getAllBlogs = async (req, res) => {
       SELECT 
         b.*,
         c.name as category_name,
-        a.name as author_name
+        CASE
+          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
+          WHEN a.name IS NOT NULL AND a.name != '' AND a.name NOT LIKE '%@%' THEN a.name
+          WHEN b.author IS NOT NULL AND b.author != '' AND b.author NOT LIKE '%@%' THEN b.author
+          ELSE COALESCE(u.name, a.name, b.author)
+        END as author_name
       FROM blogs b
       LEFT JOIN categories c ON b.category_id = c.id
       LEFT JOIN authors a ON b.author_id = a.id
+      LEFT JOIN users u ON u.id = IFNULL(b.created_by, a.user_id)
       ${whereClause}
       ORDER BY b.updated_at DESC, b.created_at DESC 
       LIMIT ${parseInt(limit) || 10} OFFSET ${parseInt(offset) || 0}
@@ -173,6 +180,7 @@ export const getAllBlogs = async (req, res) => {
           }
           return {
             ...blog,
+            author_name: formatAuthorName(blog.author_name || blog.author),
             tags: [],
             status: blog.status || 'draft',
             featured_image: blog.featured_image || blog.image,
@@ -216,14 +224,23 @@ export const getBlogById = async (req, res) => {
       SELECT 
         b.*,
         c.name as category_name,
-        a.name as author_name,
-        a.profile_photo as author_photo,
-        a.designation as author_designation,
-        a.bio as author_bio
+        CASE
+          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
+          WHEN a.name IS NOT NULL AND a.name != '' AND a.name NOT LIKE '%@%' THEN a.name
+          WHEN b.author IS NOT NULL AND b.author != '' AND b.author NOT LIKE '%@%' THEN b.author
+          ELSE COALESCE(u.name, a.name, b.author)
+        END as author_name,
+        COALESCE(u.avatar, a.profile_photo) as author_photo,
+        COALESCE(a.designation, u.department) as author_designation,
+        COALESCE(u.bio, a.bio) as author_bio,
+        COALESCE(u.linkedin_url, a.linkedin_url) as author_linkedin,
+        COALESCE(u.linkedin_url, a.linkedin_url) as author_linkedin_url,
+        COALESCE(u.twitter_url, a.twitter_url) as author_twitter,
+        COALESCE(u.twitter_url, a.twitter_url) as author_twitter_url
       FROM blogs b
       LEFT JOIN categories c ON b.category_id = c.id
       LEFT JOIN authors a ON b.author_id = a.id
-      
+      LEFT JOIN users u ON u.id = IFNULL(b.created_by, a.user_id)
       WHERE b.id = ?
     `, [id])
 
@@ -243,6 +260,7 @@ export const getBlogById = async (req, res) => {
         message: 'Access denied. You can only access your own blogs.'
       })
     }
+    blog.author_name = formatAuthorName(blog.author_name || blog.author)
     blog.featured_image = blog.featured_image || blog.image
     blog.image = blog.image || blog.featured_image
     try { blog.tags = blog.tags ? (typeof blog.tags === 'string' ? JSON.parse(blog.tags) : blog.tags) : [] } catch(e) { blog.tags = [] }
@@ -382,23 +400,31 @@ export const createBlog = async (req, res) => {
     const resolveAuthorForUser = async (userId, userEmail, userName) => {
       try {
         const [existing] = await db.execute('SELECT id, name FROM authors WHERE user_id = ? OR email = ?', [userId, userEmail || ''])
+        const [uRows] = await db.execute('SELECT * FROM users WHERE id = ?', [userId])
+        const u = uRows[0] || {}
+        const rawName = userName || u.name || userEmail || 'User'
+        const cleanName = formatAuthorName(rawName)
+
         if (existing.length > 0) {
+          if (existing[0].name && (existing[0].name.includes('@') || existing[0].name !== cleanName)) {
+            await db.execute('UPDATE authors SET name = ? WHERE id = ?', [cleanName, existing[0].id])
+            existing[0].name = cleanName
+          }
           return existing[0]
         }
-        const aName = userName || userEmail || 'User'
-        let aSlug = slugify(aName, { lower: true, strict: true })
+        let aSlug = slugify(cleanName, { lower: true, strict: true }) || 'author'
         const [slugCheck] = await db.execute('SELECT id FROM authors WHERE slug = ?', [aSlug])
         if (slugCheck.length > 0) {
           aSlug = `${aSlug}-${Date.now().toString().slice(-4)}`
         }
         const [ins] = await db.execute(
-          'INSERT INTO authors (user_id, name, email, slug, status) VALUES (?, ?, ?, ?, ?)',
-          [userId, aName, userEmail || null, aSlug, 'active']
+          'INSERT INTO authors (user_id, name, email, slug, profile_photo, bio, linkedin_url, twitter_url, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+          [userId, cleanName, userEmail || null, aSlug, u.avatar || null, u.bio || null, u.linkedin_url || null, u.twitter_url || null, 'active']
         )
-        return { id: ins.insertId, name: aName }
+        return { id: ins.insertId, name: cleanName }
       } catch (e) {
         console.error('Error resolving author for user:', e)
-        return { id: null, name: userName || 'Author' }
+        return { id: null, name: formatAuthorName(userName || 'Author') }
       }
     }
 
@@ -409,12 +435,15 @@ export const createBlog = async (req, res) => {
     } else {
       if (effectiveAuthorId) {
         const [aRows] = await db.execute('SELECT name FROM authors WHERE id = ?', [effectiveAuthorId])
-        if (aRows.length > 0) effectiveAuthorName = aRows[0].name
+        if (aRows.length > 0) effectiveAuthorName = formatAuthorName(aRows[0].name)
       } else if (req.user) {
         const adminAuthor = await resolveAuthorForUser(req.user.id, req.user.email, req.user.name)
         effectiveAuthorId = adminAuthor.id
-        effectiveAuthorName = adminAuthor.name
+        effectiveAuthorName = formatAuthorName(adminAuthor.name)
       }
+    }
+    if (effectiveAuthorName) {
+      effectiveAuthorName = formatAuthorName(effectiveAuthorName)
     }
 
     if (columnNames.includes('author_id') && effectiveAuthorId) {
@@ -619,7 +648,17 @@ export const updateBlog = async (req, res) => {
     // Only admins can change author_id on update
     if (author_id !== undefined && req.user?.role !== 'user') { 
       updates.push('author_id = ?')
-      values.push(author_id || null) 
+      values.push(author_id || null)
+      if (author_id) {
+        const [aRows] = await db.execute('SELECT name FROM authors WHERE id = ?', [author_id])
+        if (aRows.length > 0) {
+          updates.push('author = ?')
+          values.push(formatAuthorName(aRows[0].name))
+        }
+      }
+    } else if (req.body.author !== undefined) {
+      updates.push('author = ?')
+      values.push(formatAuthorName(req.body.author))
     }
     if (req.user?.id) {
       updates.push('updated_by = ?')

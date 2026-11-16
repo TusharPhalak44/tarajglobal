@@ -168,6 +168,15 @@ function Login() {
                 )}
               </button>
             </form>
+
+            <div className="pt-3 border-t border-[#262626] text-center">
+              <p className="text-xs text-[#71717A]">
+                New user or administrator?{' '}
+                <Link to="/register" className="text-[#00A6FF] font-semibold hover:underline">
+                  Register account here
+                </Link>
+              </p>
+            </div>
           </div>
 
           <div className="text-center">

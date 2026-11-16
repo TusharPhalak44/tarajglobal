@@ -23,6 +23,7 @@ import StatusBadge from '@components/admin/StatusBadge'
 import EmptyState from '@components/admin/EmptyState'
 import { TableSkeleton } from '@components/admin/LoadingSkeleton'
 import { mediaUrl, handleImageFallback } from '@utils/media'
+import { formatAuthorName } from '@utils/formatAuthor'
 
 const formatAdminDate = (val) => {
   if (!val) return '-'
@@ -284,16 +285,21 @@ const Blogs = () => {
                       </span>
                     </td>
                     <td className="px-4 py-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0 overflow-hidden">
-                          <span className="text-[12px] font-bold text-slate-500 dark:text-slate-400">
-                            {(blog.author_name || 'E')[0].toUpperCase()}
-                          </span>
-                        </div>
-                        <span className="text-sm font-medium text-[var(--admin-text-secondary)]">
-                          {blog.author_name || 'Editorial Team'}
-                        </span>
-                      </div>
+                      {(() => {
+                        const authorDisplay = formatAuthorName(blog.author_name || blog.author)
+                        return (
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0 overflow-hidden">
+                              <span className="text-[12px] font-bold text-slate-500 dark:text-slate-400">
+                                {(authorDisplay || 'E')[0].toUpperCase()}
+                              </span>
+                            </div>
+                            <span className="text-sm font-medium text-[var(--admin-text-secondary)]">
+                              {authorDisplay}
+                            </span>
+                          </div>
+                        )
+                      })()}
                     </td>
                     <td className="px-4 py-4">
                       <StatusBadge status={blog.status || 'draft'} />

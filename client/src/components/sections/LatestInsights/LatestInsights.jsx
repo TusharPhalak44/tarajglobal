@@ -42,7 +42,7 @@ export default function LatestInsights() {
 
   const handleReadMore = (blog) => {
     if (blog?.slug) {
-      navigate(`/blog/${blog.slug}`)
+      window.open(`/blog/${blog.slug}`, '_blank', 'noopener,noreferrer')
     }
   }
 

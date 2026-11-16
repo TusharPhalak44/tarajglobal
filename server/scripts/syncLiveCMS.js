@@ -1,5 +1,6 @@
 import https from 'https'
 import db from '../config/db.js'
+import { formatAuthorName } from '../utils/authorFormatter.js'
 
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
@@ -39,15 +40,46 @@ export async function syncLiveCMS() {
 
     // 2. Fetch live authors
     try {
+      const [userRows] = await db.execute('SELECT id FROM users')
+      const validUserIds = new Set(userRows.map(u => u.id))
+
       const authRes = await fetchJson('https://tarajglobal.com/api/authors')
       const liveAuthors = authRes?.data || []
       for (const a of liveAuthors) {
         if (!a.id || !a.name) continue
+        const cleanName = formatAuthorName(a.name)
+        const effectiveUserId = validUserIds.has(a.user_id) ? a.user_id : null
+        let designation = a.designation || null
+        let bio = a.bio || null
+
+        if (cleanName === 'Hanmant Dhotre') {
+          designation = designation || 'FOUNDER & CEO'
+          bio = bio || 'Hanmant Dhotre founded TaRaj Global to replace unverified B2B outbound marketing with engineered growth architecture.'
+        } else if (cleanName === 'Tushar') {
+          designation = designation || 'Technology & AI Strategist'
+          bio = bio || 'Contributor at TaRaj Global writing on modern sales technology stacks, AI agents, and B2B revenue infrastructure.'
+        }
+
         await db.execute(
-          `INSERT INTO authors (id, user_id, name, slug, bio, profile_photo, designation) 
-           VALUES (?, ?, ?, ?, ?, ?, ?) 
-           ON DUPLICATE KEY UPDATE name = VALUES(name), slug = VALUES(slug), profile_photo = VALUES(profile_photo), designation = VALUES(designation)`,
-          [a.id, a.user_id || 1, a.name, a.slug, a.bio || null, a.profile_photo || null, a.designation || null]
+          `INSERT INTO authors (id, user_id, name, slug, bio, profile_photo, designation, email) 
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?) 
+           ON DUPLICATE KEY UPDATE 
+             name = VALUES(name), 
+             slug = VALUES(slug), 
+             profile_photo = COALESCE(VALUES(profile_photo), profile_photo), 
+             designation = COALESCE(VALUES(designation), designation),
+             bio = COALESCE(VALUES(bio), bio),
+             email = VALUES(email)`,
+          [
+            a.id, 
+            effectiveUserId, 
+            cleanName, 
+            a.slug && !a.slug.includes('@') ? a.slug : cleanName.toLowerCase().replace(/[^a-z0-9]+/g, '-'), 
+            bio, 
+            a.profile_photo || null, 
+            designation,
+            a.email || null
+          ]
         )
       }
     } catch (authErr) {
@@ -66,20 +98,22 @@ export async function syncLiveCMS() {
       const publishedAt = b.published_at ? new Date(b.published_at) : (b.created_at ? new Date(b.created_at) : new Date())
       const createdAt = b.created_at ? new Date(b.created_at) : publishedAt
       const updatedAt = b.updated_at ? new Date(b.updated_at) : publishedAt
+      const cleanAuthor = formatAuthorName(b.author || b.author_name)
 
       await db.execute(
         `INSERT INTO blogs (
           id, title, slug, content, excerpt, image, featured_image,
-          author_id, category_id, status, reading_time, published_at,
+          author, author_id, category_id, status, reading_time, published_at,
           created_at, updated_at, seo_title, seo_description, seo_keywords,
           canonical_url, view_count
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE
           title = VALUES(title),
           content = VALUES(content),
           excerpt = VALUES(excerpt),
           image = VALUES(image),
           featured_image = VALUES(featured_image),
+          author = VALUES(author),
           author_id = VALUES(author_id),
           category_id = VALUES(category_id),
           status = VALUES(status),
@@ -100,6 +134,7 @@ export async function syncLiveCMS() {
           b.excerpt || '',
           b.image || b.featured_image || null,
           b.featured_image || b.image || null,
+          cleanAuthor,
           b.author_id || null,
           b.category_id || null,
           b.status || 'published',

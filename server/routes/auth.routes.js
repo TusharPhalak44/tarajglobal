@@ -1,69 +1,12 @@
 import express from 'express'
 import { body } from 'express-validator'
 import rateLimit from 'express-rate-limit'
-import { validate } from '../middleware/validation.middleware.js'
-import { authenticate } from '../middleware/auth.middleware.js'
-import * as authController from '../controllers/auth.controller.js'
-
-// Brute-force protection: max 10 login attempts per 15 minutes per IP
-const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 10,
-  skipSuccessfulRequests: true,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { success: false, message: 'Too many login attempts. Please try again in 15 minutes.' }
-})
-
-const sensitiveLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 20,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { success: false, message: 'Too many requests. Please try again in 15 minutes.' }
-})
-
-const router = express.Router()
-
-// @route   POST /api/auth/register
-// @desc    Register a new user
-// @access  Public
-router.post('/register', sensitiveLimiter, [
-  body('name').trim().notEmpty().withMessage('Name is required'),
-  body('email').isEmail().withMessage('Valid email is required'),
-  body('password')
-    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
-    .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
-    .matches(/[0-9]/).withMessage('Password must contain at least one number')
-    .matches(/[^A-Za-z0-9]/).withMessage('Password must contain at least one special character')
-], validate, authController.register)
-
-// @route   POST /api/auth/login
-// @desc    Login user
-// @access  Public
-router.post('/login', loginLimiter, [
-  body('email').isEmail().withMessage('Valid email is required'),
-  body('password').notEmpty().withMessage('Password is required')
-], validate, authController.login)
-
-// @route   POST /api/auth/logout
-// @desc    Logout user
-// @access  Private
-router.post('/logout', authenticate, authController.logout)
-
-// @route   POST /api/auth/refresh
-// @desc    Refresh access token
-// @access  Public
-router.post('/refresh', sensitiveLimiter, authController.refreshToken)
-
-// @route   GET /api/auth/me
-// @desc    Get current user
-// @access  Private
-router.get('/me', authenticate, authController.getMe)
-
 import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
+import { validate } from '../middleware/validation.middleware.js'
+import { authenticate } from '../middleware/auth.middleware.js'
+import * as authController from '../controllers/auth.controller.js'
 
 // Multer storage for avatars
 const avatarStorage = multer.diskStorage({
@@ -91,6 +34,74 @@ const avatarUpload = multer({
   }
 })
 
+// Brute-force protection: max 10 login attempts per 15 minutes per IP
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  skipSuccessfulRequests: true,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many login attempts. Please try again in 15 minutes.' }
+})
+
+const sensitiveLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many requests. Please try again in 15 minutes.' }
+})
+
+const router = express.Router()
+
+// @route   POST /api/auth/register
+// @desc    Register a new user / admin
+// @access  Public
+router.post('/register', sensitiveLimiter, (req, res, next) => {
+  avatarUpload.fields([{ name: 'file', maxCount: 1 }, { name: 'avatar', maxCount: 1 }])(req, res, (err) => {
+    if (err) {
+      return res.status(400).json({ success: false, message: err.message })
+    }
+    if (req.files) {
+      req.file = req.files['file']?.[0] || req.files['avatar']?.[0]
+    }
+    next()
+  })
+}, [
+  body('name').trim().notEmpty().withMessage('Name is required'),
+  body('email').isEmail().withMessage('Valid email is required'),
+  body('password')
+    .isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  body('role').optional().isIn(['admin', 'user', 'super_admin', 'editor', 'hr_recruiter']).withMessage('Invalid role'),
+  body('avatar').optional(),
+  body('bio').optional(),
+  body('linkedin_url').optional(),
+  body('twitter_url').optional()
+], validate, authController.register)
+
+// @route   POST /api/auth/login
+// @desc    Login user
+// @access  Public
+router.post('/login', loginLimiter, [
+  body('email').isEmail().withMessage('Valid email is required'),
+  body('password').notEmpty().withMessage('Password is required')
+], validate, authController.login)
+
+// @route   POST /api/auth/logout
+// @desc    Logout user
+// @access  Private
+router.post('/logout', authenticate, authController.logout)
+
+// @route   POST /api/auth/refresh
+// @desc    Refresh access token
+// @access  Public
+router.post('/refresh', sensitiveLimiter, authController.refreshToken)
+
+// @route   GET /api/auth/me
+// @desc    Get current user
+// @access  Private
+router.get('/me', authenticate, authController.getMe)
+
 // @route   POST /api/auth/me/avatar
 // @desc    Upload profile avatar for current user
 // @access  Private
@@ -114,6 +125,9 @@ router.put('/me', [
   body('name').optional().trim().notEmpty().withMessage('Name is required'),
   body('email').optional().isEmail().withMessage('Valid email is required'),
   body('avatar').optional(),
+  body('bio').optional(),
+  body('linkedin_url').optional(),
+  body('twitter_url').optional(),
   body('phone').optional().trim(),
   body('department').optional().trim()
 ], validate, authController.updateProfile)

@@ -17,7 +17,9 @@ import {
   Quote,
   Target,
   ExternalLink,
-  Eye
+  Eye,
+  Linkedin,
+  Twitter
 } from 'lucide-react'
 import Container from '@components/layout/Container'
 import ShareArticle from '@components/blog/ShareArticle'
@@ -26,6 +28,7 @@ import BlogCard from '@components/blog/BlogCard'
 import BlogFAQ, { DEFAULT_BLOG_FAQS } from '@components/blog/BlogFAQ'
 import { publicAPI } from '@api/public.api'
 import { mediaUrl } from '@utils/media'
+import { formatAuthorName } from '@utils/formatAuthor'
 
 function BlogDetails() {
   const { slug } = useParams()
@@ -57,6 +60,9 @@ function BlogDetails() {
       const isPreview = searchParams.get('preview') === 'true'
       const response = await publicAPI.getBlogBySlug(slug, isPreview ? { preview: 'true' } : undefined)
       const currentBlog = response?.data?.data
+      if (currentBlog) {
+        currentBlog.author_name = formatAuthorName(currentBlog.author_name || currentBlog.author)
+      }
       setBlog(currentBlog)
 
       // Ensure the browser URL reflects the exact blog slug
@@ -655,7 +661,7 @@ function BlogDetails() {
           dateModified: blog.updated_at || blog.published_at || blog.created_at || new Date().toISOString(),
           author: {
             '@type': 'Person',
-            name: blog.author_name || 'Taraj Global Editorial Team'
+            name: formatAuthorName(blog.author_name || blog.author)
           },
           publisher: {
             '@type': 'Organization',
@@ -753,23 +759,12 @@ function BlogDetails() {
           </div>
         )}
 
-        {/* ── TOP BREADCRUMB & BACK ACTION ─────────────────────────── */}
+        {/* ── TOP BREADCRUMB ─────────────────────────── */}
         <section className="pt-8 pb-6 lg:pt-10 border-b border-slate-200/80 dark:border-white/5 bg-slate-50/50 dark:bg-black/20">
           <Container>
-            <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
-
-              {/* Back to Blog */}
-              <button
-                type="button"
-                onClick={() => navigate('/blog')}
-                className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#00A6FF] hover:underline cursor-pointer group"
-              >
-                <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-                <span>ALL PLAYBOOKS & INSIGHTS</span>
-              </button>
-
+            <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
               {/* Breadcrumbs */}
-              <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-text-tertiary">
+              <div className="flex items-center gap-2 text-xs font-mono text-text-tertiary">
                 <Link to="/" className="hover:text-text-accent transition-colors">
                   Home
                 </Link>
@@ -778,11 +773,10 @@ function BlogDetails() {
                   Blog
                 </Link>
                 <ChevronRight size={12} />
-                <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold truncate max-w-[200px]">
+                <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold truncate max-w-[250px]">
                   {blog.category_name || 'Playbook'}
                 </span>
               </div>
-
             </div>
           </Container>
         </section>
@@ -821,25 +815,56 @@ function BlogDetails() {
               )}
 
               {/* Author Strip */}
-              <div className="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-white/5">
+              <div className="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-white/5 flex-wrap gap-3">
                 <div className="flex items-center gap-3">
                   {blog.author_photo ? (
                     <img
-                      src={blog.author_photo}
-                      alt={blog.author_name || 'Author'}
+                      src={mediaUrl(blog.author_photo)}
+                      alt={formatAuthorName(blog.author_name || blog.author)}
                       onError={(e) => {
                         e.currentTarget.style.display = 'none'
+                        if (e.currentTarget.nextSibling) e.currentTarget.nextSibling.style.display = 'flex'
                       }}
                       className="w-10 h-10 rounded-full object-cover border border-[#00A6FF]/40 shadow-xs"
                     />
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#007AC0] text-text-primary dark:text-white flex items-center justify-center font-bold text-sm shadow-xs">
-                      {(blog.author_name || 'T').charAt(0)}
-                    </div>
-                  )}
+                  ) : null}
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br from-[#00A6FF] to-[#007AC0] text-text-primary dark:text-white flex items-center justify-center font-bold text-sm shadow-xs ${blog.author_photo ? 'hidden' : 'flex'}`}>
+                    {(formatAuthorName(blog.author_name || blog.author) || 'T').charAt(0).toUpperCase()}
+                  </div>
                   <div>
-                    <div className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white">
-                      {blog.author_name || 'Taraj Global Editorial Team'}
+                    <div className="text-sm font-bold text-text-primary dark:text-text-primary dark:text-white flex items-center gap-2">
+                      <span>{formatAuthorName(blog.author_name || blog.author)}</span>
+                      {/* Quick social links next to author name */}
+                      {(blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url) && (
+                        <a
+                          href={
+                            (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url).startsWith('http')
+                              ? (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url)
+                              : `https://${blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url}`
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#0077B5] hover:opacity-80 transition-opacity p-0.5"
+                          title="LinkedIn Profile"
+                        >
+                          <Linkedin size={13} />
+                        </a>
+                      )}
+                      {(blog.author_twitter || blog.author_twitter_url || blog.twitter_url) && (
+                        <a
+                          href={
+                            (blog.author_twitter || blog.author_twitter_url || blog.twitter_url).startsWith('http')
+                              ? (blog.author_twitter || blog.author_twitter_url || blog.twitter_url)
+                              : `https://${blog.author_twitter || blog.author_twitter_url || blog.twitter_url}`
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-slate-600 dark:text-slate-300 hover:opacity-80 transition-opacity p-0.5"
+                          title="Twitter / X Profile"
+                        >
+                          <Twitter size={13} />
+                        </a>
+                      )}
                     </div>
                     <div className="text-xs text-text-tertiary font-mono">
                       {blog.author_designation || 'B2B Revenue Architecture'}
@@ -1300,6 +1325,96 @@ function BlogDetails() {
                     <div dangerouslySetInnerHTML={{ __html: processedArticle.html }} />
                   </div>
 
+                  {/* ── AUTHOR PROFILE & SOCIAL CARD (Directly Below Blog Content) ── */}
+                  <div className="not-prose my-10 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-50/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/10 shadow-xs">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+                      {/* Author Avatar */}
+                      <div className="relative shrink-0">
+                        {blog.author_photo ? (
+                          <img
+                            src={mediaUrl(blog.author_photo)}
+                            alt={formatAuthorName(blog.author_name || blog.author)}
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none'
+                              if (e.currentTarget.nextSibling) e.currentTarget.nextSibling.style.display = 'flex'
+                            }}
+                            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#00A6FF]/40 shadow-md"
+                          />
+                        ) : null}
+                        <div
+                          className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-[#00A6FF] via-[#0077CC] to-[#FF6D00] text-white font-bold text-2xl sm:text-3xl flex items-center justify-center shadow-md ${blog.author_photo ? 'hidden' : 'flex'}`}
+                        >
+                          {(formatAuthorName(blog.author_name || blog.author) || 'T').charAt(0).toUpperCase()}
+                        </div>
+                      </div>
+
+                      {/* Author Details */}
+                      <div className="space-y-2 flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#00A6FF] bg-[#00A6FF]/10 px-2.5 py-0.5 rounded-full border border-[#00A6FF]/20">
+                            About the Author
+                          </span>
+                        </div>
+
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                            {formatAuthorName(blog.author_name || blog.author)}
+                          </h4>
+                          {blog.author_designation && (
+                            <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">
+                              {blog.author_designation}
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Author Bio */}
+                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-1">
+                          {blog.author_bio || 'Specialist contributor at Taraj Global sharing actionable B2B revenue architectures, qualification frameworks, and outbound growth playbooks.'}
+                        </p>
+
+                        {/* Author Social Links */}
+                        {((blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url) ||
+                          (blog.author_twitter || blog.author_twitter_url || blog.twitter_url)) && (
+                          <div className="flex items-center gap-2.5 pt-2 flex-wrap">
+                            {(blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url) && (
+                              <a
+                                href={
+                                  (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url).startsWith('http')
+                                    ? (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url)
+                                    : `https://${blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url}`
+                                }
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0077B5]/10 text-[#0077B5] dark:text-[#38BDF8] border border-[#0077B5]/30 hover:bg-[#0077B5] hover:text-white transition-all shadow-2xs group"
+                                title="Connect on LinkedIn"
+                              >
+                                <Linkedin size={13} className="shrink-0 group-hover:scale-110 transition-transform" />
+                                <span>LinkedIn</span>
+                              </a>
+                            )}
+
+                            {(blog.author_twitter || blog.author_twitter_url || blog.twitter_url) && (
+                              <a
+                                href={
+                                  (blog.author_twitter || blog.author_twitter_url || blog.twitter_url).startsWith('http')
+                                    ? (blog.author_twitter || blog.author_twitter_url || blog.twitter_url)
+                                    : `https://${blog.author_twitter || blog.author_twitter_url || blog.twitter_url}`
+                                }
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/10 dark:bg-white/10 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-white/20 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all shadow-2xs group"
+                                title="Follow on Twitter / X"
+                              >
+                                <Twitter size={13} className="shrink-0 group-hover:scale-110 transition-transform" />
+                                <span>Twitter / X</span>
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
                   {/* ── FREQUENTLY ASKED QUESTIONS SECTION (UNIFIED WEBSITE UI) ── */}
                   <div className="not-prose my-10 sm:my-12" id="faq">
                     <BlogFAQ
@@ -1378,7 +1493,7 @@ function BlogDetails() {
                       key={item.id || item.slug || idx}
                       blog={item}
                       index={idx}
-                      onReadMore={(b) => navigate(`/blog/${b.slug}`)}
+                      onReadMore={(b) => window.open(`/blog/${b.slug}`, '_blank', 'noopener,noreferrer')}
                     />
                   ))}
                 </div>

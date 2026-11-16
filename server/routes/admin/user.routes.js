@@ -4,6 +4,7 @@ import { validate } from '../../middleware/validation.middleware.js'
 import { checkPermission } from '../../middleware/permission.middleware.js'
 import bcrypt from 'bcrypt'
 import db from '../../config/db.js'
+import { saveAvatarIfBase64, syncAuthorForUser } from '../../controllers/auth.controller.js'
 
 const router = express.Router()
 
@@ -47,7 +48,7 @@ router.get('/', async (req, res) => {
     }
     
     const [users] = await db.query(`
-      SELECT id, name, email, role, avatar, status, last_login_at, created_at
+      SELECT id, name, email, role, avatar, bio, linkedin_url, twitter_url, status, last_login_at, created_at
       FROM users
       ${whereClause}
       ORDER BY created_at DESC
@@ -80,12 +81,16 @@ router.get('/', async (req, res) => {
 router.post('/', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
-  body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
-  body('role').optional().isIn(['admin', 'user']).withMessage('Role must be either admin or user.'),
-  body('status').optional().isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status')
+  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  body('role').optional().isIn(['admin', 'user', 'super_admin', 'editor', 'hr_recruiter']).withMessage('Role must be valid.'),
+  body('status').optional().isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status'),
+  body('avatar').optional(),
+  body('bio').optional(),
+  body('linkedin_url').optional(),
+  body('twitter_url').optional()
 ], validate, async (req, res) => {
   try {
-    const { name, email, password, role = 'user', status = 'active' } = req.body
+    const { name, email, password, role = 'user', status = 'active', avatar, bio, linkedin_url, twitter_url } = req.body
     
     // Check if user exists
     const [existing] = await db.execute('SELECT id FROM users WHERE email = ?', [email])
@@ -96,12 +101,25 @@ router.post('/', [
     // Hash password
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
+
+    const processedAvatar = avatar ? saveAvatarIfBase64(avatar) : null
     
     // Create user
     const [result] = await db.execute(
-      'INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, ?, ?)',
-      [name, email, hashedPassword, role, status]
+      'INSERT INTO users (name, email, password, role, status, avatar, bio, linkedin_url, twitter_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [name, email, hashedPassword, role, status, processedAvatar || null, bio || null, linkedin_url || null, twitter_url || null]
     )
+
+    // Sync with author record
+    await syncAuthorForUser({
+      userId: result.insertId,
+      name,
+      email,
+      avatar: processedAvatar,
+      bio,
+      linkedin_url,
+      twitter_url
+    })
     
     res.status(201).json({ success: true, message: 'User created successfully', data: { id: result.insertId } })
   } catch (error) {
@@ -116,12 +134,16 @@ router.post('/', [
 router.put('/:id', [
   body('name').optional().trim().notEmpty().withMessage('Name cannot be empty'),
   body('email').optional().isEmail().withMessage('Valid email is required'),
-  body('role').optional().isIn(['admin', 'user']).withMessage('Role must be either admin or user.'),
-  body('status').optional().isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status')
+  body('role').optional().isIn(['admin', 'user', 'super_admin', 'editor', 'hr_recruiter']).withMessage('Role must be valid.'),
+  body('status').optional().isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status'),
+  body('avatar').optional(),
+  body('bio').optional(),
+  body('linkedin_url').optional(),
+  body('twitter_url').optional()
 ], validate, async (req, res) => {
   try {
     const { id } = req.params
-    const { name, email, role, status } = req.body
+    const { name, email, role, status, avatar, bio, linkedin_url, twitter_url } = req.body
     
     // Check if user exists
     const [userCheck] = await db.execute('SELECT id, role FROM users WHERE id = ?', [id])
@@ -144,10 +166,32 @@ router.put('/:id', [
     if (email !== undefined) { updates.push('email = ?'); values.push(email) }
     if (role !== undefined) { updates.push('role = ?'); values.push(role) }
     if (status !== undefined) { updates.push('status = ?'); values.push(status) }
+    if (avatar !== undefined) {
+      const processed = avatar ? saveAvatarIfBase64(avatar) : null
+      updates.push('avatar = ?')
+      values.push(processed)
+    }
+    if (bio !== undefined) { updates.push('bio = ?'); values.push(bio) }
+    if (linkedin_url !== undefined) { updates.push('linkedin_url = ?'); values.push(linkedin_url) }
+    if (twitter_url !== undefined) { updates.push('twitter_url = ?'); values.push(twitter_url) }
 
     if (updates.length > 0) {
       values.push(id)
       await db.execute(`UPDATE users SET ${updates.join(', ')} WHERE id = ?`, values)
+
+      const [updatedRows] = await db.execute('SELECT * FROM users WHERE id = ?', [id])
+      if (updatedRows.length > 0) {
+        const u = updatedRows[0]
+        await syncAuthorForUser({
+          userId: u.id,
+          name: u.name,
+          email: u.email,
+          avatar: u.avatar,
+          bio: u.bio,
+          linkedin_url: u.linkedin_url,
+          twitter_url: u.twitter_url
+        })
+      }
     }
     
     res.json({ success: true, message: 'User updated successfully' })

@@ -59,7 +59,16 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       const response = await authAPI.register(userData)
-      return { success: true, data: response.data }
+      const { token, refreshToken, user: registeredUser } = response.data || {}
+      if (token && registeredUser) {
+        localStorage.setItem('token', token)
+        if (refreshToken) localStorage.setItem('refreshToken', refreshToken)
+        localStorage.setItem('user', JSON.stringify(registeredUser))
+        setUser(registeredUser)
+        setIsAuthenticated(true)
+        setIsAdmin(registeredUser.role === 'admin' || registeredUser.role === 'super_admin')
+      }
+      return { success: true, data: response.data, user: registeredUser }
     } catch (error) {
       return { 
         success: false, 

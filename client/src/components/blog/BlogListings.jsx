@@ -22,7 +22,7 @@ import {
 } from './categoryFaqs'
 import { publicAPI } from '@api/public.api'
 
-const POSTS_PER_PAGE = 6
+const POSTS_PER_PAGE = 9
 
 const CARD_THEMES = {
   'thought-leadership': {
@@ -96,7 +96,7 @@ const BlogListings = () => {
 
   const handleReadMore = (blog) => {
     if (blog?.slug) {
-      navigate(`/blog/${blog.slug}`)
+      window.open(`/blog/${blog.slug}`, '_blank', 'noopener,noreferrer')
     }
   }
 

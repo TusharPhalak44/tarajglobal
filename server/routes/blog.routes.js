@@ -2,6 +2,7 @@ import express from 'express'
 import { optionalAuthenticate } from '../middleware/auth.middleware.js'
 import db from '../config/db.js'
 import { publishScheduledBlogs } from '../controllers/admin/blog.controller.js'
+import { formatAuthorName } from '../utils/authorFormatter.js'
 
 const router = express.Router()
 
@@ -19,11 +20,22 @@ router.get('/', async (req, res) => {
       SELECT 
         b.*,
         c.name as category_name,
-        a.name as author_name,
-        a.profile_photo as author_photo
+        CASE
+          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
+          WHEN a.name IS NOT NULL AND a.name != '' AND a.name NOT LIKE '%@%' THEN a.name
+          WHEN b.author IS NOT NULL AND b.author != '' AND b.author NOT LIKE '%@%' THEN b.author
+          ELSE COALESCE(u.name, a.name, b.author)
+        END as author_name,
+        COALESCE(u.avatar, a.profile_photo) as author_photo,
+        COALESCE(u.bio, a.bio) as author_bio,
+        COALESCE(u.linkedin_url, a.linkedin_url) as author_linkedin,
+        COALESCE(u.linkedin_url, a.linkedin_url) as author_linkedin_url,
+        COALESCE(u.twitter_url, a.twitter_url) as author_twitter,
+        COALESCE(u.twitter_url, a.twitter_url) as author_twitter_url
       FROM blogs b
       LEFT JOIN categories c ON b.category_id = c.id
       LEFT JOIN authors a ON b.author_id = a.id
+      LEFT JOIN users u ON u.id = IFNULL(b.created_by, a.user_id)
       WHERE (b.status = 'published' OR (b.status = 'scheduled' AND b.scheduled_at IS NOT NULL AND b.scheduled_at <= NOW()))
     `
     const params = []
@@ -46,6 +58,7 @@ router.get('/', async (req, res) => {
     const [blogs] = await db.execute(query, params)
     const formatted = blogs.map(b => ({
       ...b,
+      author_name: formatAuthorName(b.author_name || b.author),
       featured_image: b.featured_image || b.image,
       image: b.image || b.featured_image
     }))
@@ -78,14 +91,24 @@ router.get('/:slug', optionalAuthenticate, async (req, res) => {
         b.*,
         c.name as category_name,
         c.slug as category_slug,
-        a.name as author_name,
-        a.slug as author_slug,
-        a.profile_photo as author_photo,
-        a.designation as author_designation,
-        a.bio as author_bio
+        CASE
+          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
+          WHEN a.name IS NOT NULL AND a.name != '' AND a.name NOT LIKE '%@%' THEN a.name
+          WHEN b.author IS NOT NULL AND b.author != '' AND b.author NOT LIKE '%@%' THEN b.author
+          ELSE COALESCE(u.name, a.name, b.author)
+        END as author_name,
+        COALESCE(a.slug, '') as author_slug,
+        COALESCE(u.avatar, a.profile_photo) as author_photo,
+        COALESCE(a.designation, u.department, 'Author & Contributor') as author_designation,
+        COALESCE(u.bio, a.bio) as author_bio,
+        COALESCE(u.linkedin_url, a.linkedin_url) as author_linkedin,
+        COALESCE(u.linkedin_url, a.linkedin_url) as author_linkedin_url,
+        COALESCE(u.twitter_url, a.twitter_url) as author_twitter,
+        COALESCE(u.twitter_url, a.twitter_url) as author_twitter_url
       FROM blogs b
       LEFT JOIN categories c ON b.category_id = c.id
       LEFT JOIN authors a ON b.author_id = a.id
+      LEFT JOIN users u ON u.id = IFNULL(b.created_by, a.user_id)
       ${whereCondition}
     `, [slug, idVal])
     
@@ -95,6 +118,7 @@ router.get('/:slug', optionalAuthenticate, async (req, res) => {
 
     const blog = {
       ...blogs[0],
+      author_name: formatAuthorName(blogs[0].author_name || blogs[0].author),
       featured_image: blogs[0].featured_image || blogs[0].image,
       image: blogs[0].image || blogs[0].featured_image
     }

@@ -1,30 +1,26 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import ActionDropdown from '../../components/admin/ActionDropdown'
-import { 
-  Plus, 
-  Search, 
-  MoreVertical, 
-  Edit, 
-  Trash2, 
-  Shield, 
-  UserCheck, 
-  UserX, 
-  X, 
-  Save, 
-  Clock, 
+import {
+  Plus,
+  Search,
+  Edit,
+  Trash2,
+  X,
+  Save,
   Power,
   Key,
   Eye,
   EyeOff,
   CheckCircle2,
-  RefreshCw,
-  AlertTriangle,
   Mail,
-  User as UserIcon,
   ShieldCheck,
-  Lock
+  Camera,
+  Upload,
+  Linkedin,
+  Twitter
 } from 'lucide-react'
 import { adminAPI } from '@api'
+import { mediaUrl } from '@utils/media'
 import PageHeader from '@components/admin/PageHeader'
 import StatusBadge from '@components/admin/StatusBadge'
 import EmptyState from '@components/admin/EmptyState'
@@ -37,16 +33,16 @@ const Users = () => {
   const [users, setUsers] = useState([])
   const [pagination, setPagination] = useState({ page: 1, limit: 20, total: 0, totalPages: 0 })
   const [filters, setFilters] = useState({ role: '', status: '', search: '' })
-  
+
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [showResetPasswordModal, setShowResetPasswordModal] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
-  
+
   const [editingUser, setEditingUser] = useState(null)
   const [resettingUser, setResettingUser] = useState(null)
   const [activeDropdown, setActiveDropdown] = useState(null)
-  
+
   const [saving, setSaving] = useState(false)
   const [modalError, setModalError] = useState('')
   const [toastMessage, setToastMessage] = useState({ text: '', type: 'success' })
@@ -58,15 +54,25 @@ const Users = () => {
     email: '',
     password: '',
     role: 'admin',
-    status: 'active'
+    status: 'active',
+    avatar: '',
+    bio: '',
+    linkedin_url: '',
+    twitter_url: ''
   })
+  const [createAvatarPreview, setCreateAvatarPreview] = useState('')
 
   const [editForm, setEditForm] = useState({
     name: '',
     email: '',
     role: 'user',
-    status: 'active'
+    status: 'active',
+    avatar: '',
+    bio: '',
+    linkedin_url: '',
+    twitter_url: ''
   })
+  const [editAvatarPreview, setEditAvatarPreview] = useState('')
 
   const [resetPasswordForm, setResetPasswordForm] = useState({
     new_password: '',
@@ -105,9 +111,9 @@ const Users = () => {
       const usersData = Array.isArray(response.data?.data?.users)
         ? response.data.data.users
         : Array.isArray(response.data?.users)
-        ? response.data.users
-        : []
-      
+          ? response.data.users
+          : []
+
       const paginationData = response.data?.data?.pagination || response.data?.pagination || { page: 1, limit: 20, total: usersData.length, totalPages: 1 }
 
       setUsers(usersData)
@@ -124,7 +130,7 @@ const Users = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault()
     setModalError('')
-    
+
     if (!createForm.name.trim() || !createForm.email.trim() || !createForm.password.trim()) {
       setModalError('All fields are required.')
       return
@@ -132,9 +138,23 @@ const Users = () => {
 
     try {
       setSaving(true)
-      await adminAPI.createUser(createForm)
+      await adminAPI.createUser({
+        ...createForm,
+        avatar: createAvatarPreview || createForm.avatar || null
+      })
       setShowCreateModal(false)
-      setCreateForm({ name: '', email: '', password: '', role: 'admin', status: 'active' })
+      setCreateForm({
+        name: '',
+        email: '',
+        password: '',
+        role: 'admin',
+        status: 'active',
+        avatar: '',
+        bio: '',
+        linkedin_url: '',
+        twitter_url: ''
+      })
+      setCreateAvatarPreview('')
       fetchUsers()
       showToast('Team member account created successfully!')
     } catch (err) {
@@ -150,8 +170,13 @@ const Users = () => {
       name: user.name || '',
       email: user.email || '',
       role: user.role || 'user',
-      status: user.status || 'active'
+      status: user.status || 'active',
+      avatar: user.avatar || '',
+      bio: user.bio || '',
+      linkedin_url: user.linkedin_url || '',
+      twitter_url: user.twitter_url || ''
     })
+    setEditAvatarPreview(user.avatar ? (user.avatar.startsWith('http') ? user.avatar : mediaUrl(user.avatar)) : '')
     setShowEditModal(true)
     setActiveDropdown(null)
   }
@@ -162,9 +187,13 @@ const Users = () => {
 
     try {
       setSaving(true)
-      await adminAPI.updateUser(editingUser.id, editForm)
+      await adminAPI.updateUser(editingUser.id, {
+        ...editForm,
+        avatar: editAvatarPreview || editForm.avatar || null
+      })
       setShowEditModal(false)
       setEditingUser(null)
+      setEditAvatarPreview('')
       fetchUsers(true)
       showToast('User credentials updated successfully!')
     } catch (err) {
@@ -346,15 +375,18 @@ const Users = () => {
                       <div className="flex items-center gap-3 min-w-[200px]">
                         {u.avatar ? (
                           <img
-                            src={u.avatar}
+                            src={mediaUrl(u.avatar)}
                             alt={u.name}
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none'
+                              if (e.currentTarget.nextSibling) e.currentTarget.nextSibling.style.display = 'flex'
+                            }}
                             className="w-8 h-8 rounded-full object-cover border border-[var(--admin-border-subtle)] shrink-0"
                           />
-                        ) : (
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-sm text-[#00A6FF] shrink-0">
-                            {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
-                          </div>
-                        )}
+                        ) : null}
+                        <div className={`w-8 h-8 rounded-full bg-gradient-to-br from-[#00A6FF]/20 to-[#0077CC]/20 border border-[#00A6FF]/30 flex items-center justify-center font-bold text-sm text-[#00A6FF] shrink-0 ${u.avatar ? 'hidden' : 'flex'}`}>
+                          {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
+                        </div>
                         <div className="min-w-0">
                           <p className="font-bold text-sm sm:text-base text-[var(--admin-text-primary)] group-hover:text-[var(--admin-primary)] transition-colors truncate">
                             {u.name}
@@ -458,9 +490,12 @@ const Users = () => {
       {showCreateModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-sm animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowCreateModal(false)} />
-          <div className="relative w-full max-w-md bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up">
+          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up">
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
-              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Add Team Member</h3>
+              <div>
+                <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Add Team Member</h3>
+                <p className="text-xs text-[var(--admin-text-muted)]">Set up credentials, author bio & social links</p>
+              </div>
               <button onClick={() => setShowCreateModal(false)} className="text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
                 <X className="w-5 h-5" />
               </button>
@@ -473,6 +508,57 @@ const Users = () => {
             )}
 
             <form onSubmit={handleCreateUser} className="space-y-4">
+              {/* Profile Photo */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                  Profile Photo (Optional)
+                </label>
+                <div className="flex items-center gap-3.5">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] flex items-center justify-center overflow-hidden shrink-0">
+                    {createAvatarPreview ? (
+                      <img src={createAvatarPreview} alt="Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <Camera className="w-5 h-5 text-[var(--admin-text-muted)]" />
+                    )}
+                  </div>
+                  <div className="space-y-1 flex-1">
+                    <input
+                      type="file"
+                      id="createUserAvatarInput"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) {
+                          const reader = new FileReader()
+                          reader.onloadend = () => setCreateAvatarPreview(reader.result)
+                          reader.readAsDataURL(file)
+                        }
+                      }}
+                    />
+                    <div className="flex items-center gap-2">
+                      <label
+                        htmlFor="createUserAvatarInput"
+                        className="admin-btn admin-btn-secondary h-7 px-2.5 text-xs cursor-pointer inline-flex items-center gap-1.5"
+                      >
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>{createAvatarPreview ? 'Change' : 'Choose Photo'}</span>
+                      </label>
+                      {createAvatarPreview && (
+                        <button
+                          type="button"
+                          onClick={() => setCreateAvatarPreview('')}
+                          className="text-xs text-[var(--admin-danger)] hover:underline"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-[var(--admin-text-muted)]">PNG, JPG, WebP up to 5MB</p>
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Full Name *
@@ -554,6 +640,55 @@ const Users = () => {
                 </div>
               </div>
 
+              {/* Author Bio */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                  Author Bio (Shown Below Published Blogs)
+                </label>
+                <textarea
+                  rows={3}
+                  value={createForm.bio}
+                  onChange={(e) => setCreateForm({ ...createForm, bio: e.target.value })}
+                  placeholder="Short professional summary of author expertise..."
+                  className="admin-input p-2.5 w-full text-xs"
+                />
+              </div>
+
+              {/* Social URLs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">
+                    LinkedIn URL
+                  </label>
+                  <div className="relative">
+                    <Linkedin className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#0077B5]" />
+                    <input
+                      type="url"
+                      value={createForm.linkedin_url}
+                      onChange={(e) => setCreateForm({ ...createForm, linkedin_url: e.target.value })}
+                      placeholder="https://linkedin.com/in/..."
+                      className="admin-input pl-8 text-xs w-full font-mono"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">
+                    Twitter / X URL
+                  </label>
+                  <div className="relative">
+                    <Twitter className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="url"
+                      value={createForm.twitter_url}
+                      onChange={(e) => setCreateForm({ ...createForm, twitter_url: e.target.value })}
+                      placeholder="https://x.com/..."
+                      className="admin-input pl-8 text-xs w-full font-mono"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
                 <button type="button" onClick={() => setShowCreateModal(false)} className="admin-btn admin-btn-secondary">
                   Cancel
@@ -571,9 +706,12 @@ const Users = () => {
       {showEditModal && editingUser && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-sm animate-fade-in">
           <div className="fixed inset-0" onClick={() => setShowEditModal(false)} />
-          <div className="relative w-full max-w-md bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up">
+          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up">
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
-              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Edit User Account</h3>
+              <div>
+                <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Edit User Account</h3>
+                <p className="text-xs text-[var(--admin-text-muted)]">Update personal details, author bio & social profiles</p>
+              </div>
               <button onClick={() => setShowEditModal(false)} className="text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
                 <X className="w-5 h-5" />
               </button>
@@ -586,6 +724,57 @@ const Users = () => {
             )}
 
             <form onSubmit={handleUpdateUser} className="space-y-4">
+              {/* Profile Photo */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                  Profile Photo
+                </label>
+                <div className="flex items-center gap-3.5">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-base)] flex items-center justify-center overflow-hidden shrink-0">
+                    {editAvatarPreview ? (
+                      <img src={editAvatarPreview} alt="Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <Camera className="w-5 h-5 text-[var(--admin-text-muted)]" />
+                    )}
+                  </div>
+                  <div className="space-y-1 flex-1">
+                    <input
+                      type="file"
+                      id="editUserAvatarInput"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) {
+                          const reader = new FileReader()
+                          reader.onloadend = () => setEditAvatarPreview(reader.result)
+                          reader.readAsDataURL(file)
+                        }
+                      }}
+                    />
+                    <div className="flex items-center gap-2">
+                      <label
+                        htmlFor="editUserAvatarInput"
+                        className="admin-btn admin-btn-secondary h-7 px-2.5 text-xs cursor-pointer inline-flex items-center gap-1.5"
+                      >
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>{editAvatarPreview ? 'Change Photo' : 'Upload Photo'}</span>
+                      </label>
+                      {editAvatarPreview && (
+                        <button
+                          type="button"
+                          onClick={() => setEditAvatarPreview('')}
+                          className="text-xs text-[var(--admin-danger)] hover:underline"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-[var(--admin-text-muted)]">PNG, JPG, WebP up to 5MB</p>
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
                   Full Name *
@@ -642,6 +831,55 @@ const Users = () => {
                 </div>
               </div>
 
+              {/* Author Bio */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1.5">
+                  Author Bio (Shown Below Published Blogs)
+                </label>
+                <textarea
+                  rows={3}
+                  value={editForm.bio}
+                  onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
+                  placeholder="Short professional summary of author expertise..."
+                  className="admin-input p-2.5 w-full text-xs"
+                />
+              </div>
+
+              {/* Social URLs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">
+                    LinkedIn URL
+                  </label>
+                  <div className="relative">
+                    <Linkedin className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#0077B5]" />
+                    <input
+                      type="url"
+                      value={editForm.linkedin_url}
+                      onChange={(e) => setEditForm({ ...editForm, linkedin_url: e.target.value })}
+                      placeholder="https://linkedin.com/in/..."
+                      className="admin-input pl-8 text-xs w-full font-mono"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--admin-text-muted)] mb-1">
+                    Twitter / X URL
+                  </label>
+                  <div className="relative">
+                    <Twitter className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="url"
+                      value={editForm.twitter_url}
+                      onChange={(e) => setEditForm({ ...editForm, twitter_url: e.target.value })}
+                      placeholder="https://x.com/..."
+                      className="admin-input pl-8 text-xs w-full font-mono"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
                 <button type="button" onClick={() => setShowEditModal(false)} className="admin-btn admin-btn-secondary">
                   Cancel
@@ -656,89 +894,91 @@ const Users = () => {
       )}
 
       {/* Reset Password Modal */}
-      {showResetPasswordModal && resettingUser && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-sm animate-fade-in">
-          <div className="fixed inset-0" onClick={() => setShowResetPasswordModal(false)} />
-          <div className="relative w-full max-w-md bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up">
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
-              <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Reset Operator Password</h3>
-              <button onClick={() => setShowResetPasswordModal(false)} className="text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
-                <X className="w-5 h-5" />
+{
+  showResetPasswordModal && resettingUser && (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background dark:bg-black/70 backdrop-blur-sm animate-fade-in">
+      <div className="fixed inset-0" onClick={() => setShowResetPasswordModal(false)} />
+      <div className="relative w-full max-w-md bg-[var(--admin-bg-surface)] border border-[var(--admin-border-base)] rounded-2xl shadow-2xl p-6 z-10 animate-slide-up">
+        <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--admin-border-subtle)]">
+          <h3 className="text-base font-bold text-[var(--admin-text-primary)]">Reset Operator Password</h3>
+          <button onClick={() => setShowResetPasswordModal(false)} className="text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {modalError && (
+          <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
+            {modalError}
+          </div>
+        )}
+
+        <form onSubmit={handleResetPassword} className="space-y-4">
+          <p className="text-sm text-[var(--admin-text-secondary)]">
+            Setting new authentication credentials for <strong className="text-[var(--admin-text-primary)]">{resettingUser.name}</strong> ({resettingUser.email})
+          </p>
+
+          <div>
+            <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              New Password *
+            </label>
+            <div className="relative">
+              <input
+                type={showNewPassword ? 'text' : 'password'}
+                value={resetPasswordForm.new_password}
+                onChange={(e) => setResetPasswordForm({ ...resetPasswordForm, new_password: e.target.value })}
+                placeholder="••••••••"
+                className="admin-input pr-10"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowNewPassword(!showNewPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
+              >
+                {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-5 h-5" />}
               </button>
             </div>
-
-            {modalError && (
-              <div className="mb-4 p-3 rounded-lg bg-[var(--admin-danger-soft)] text-[#F43F5E] text-sm font-semibold">
-                {modalError}
-              </div>
-            )}
-
-            <form onSubmit={handleResetPassword} className="space-y-4">
-              <p className="text-sm text-[var(--admin-text-secondary)]">
-                Setting new authentication credentials for <strong className="text-[var(--admin-text-primary)]">{resettingUser.name}</strong> ({resettingUser.email})
-              </p>
-
-              <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
-                  New Password *
-                </label>
-                <div className="relative">
-                  <input
-                    type={showNewPassword ? 'text' : 'password'}
-                    value={resetPasswordForm.new_password}
-                    onChange={(e) => setResetPasswordForm({ ...resetPasswordForm, new_password: e.target.value })}
-                    placeholder="••••••••"
-                    className="admin-input pr-10"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowNewPassword(!showNewPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--admin-text-muted)] hover:text-[var(--admin-text-primary)]"
-                  >
-                    {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-5 h-5" />}
-                  </button>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
-                  Confirm Password *
-                </label>
-                <input
-                  type={showNewPassword ? 'text' : 'password'}
-                  value={resetPasswordForm.confirm_password}
-                  onChange={(e) => setResetPasswordForm({ ...resetPasswordForm, confirm_password: e.target.value })}
-                  placeholder="••••••••"
-                  className="admin-input"
-                  required
-                />
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
-                <button type="button" onClick={() => setShowResetPasswordModal(false)} className="admin-btn admin-btn-secondary">
-                  Cancel
-                </button>
-                <button type="submit" disabled={saving} className="admin-btn admin-btn-primary">
-                  {saving ? 'Resetting...' : 'Update Password'}
-                </button>
-              </div>
-            </form>
           </div>
-        </div>
-      )}
 
-      {/* Delete User Modal */}
-      <ConfirmModal
-        isOpen={Boolean(deleteConfirm)}
-        onClose={() => setDeleteConfirm(null)}
-        onConfirm={handleDeleteUser}
-        title="Revoke User Access"
-        message={`Permanently delete user account for "${deleteConfirm?.name}" (${deleteConfirm?.email})?`}
-        confirmText="Revoke Access & Delete"
-        isLoading={saving}
-      />
+          <div>
+            <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+              Confirm Password *
+            </label>
+            <input
+              type={showNewPassword ? 'text' : 'password'}
+              value={resetPasswordForm.confirm_password}
+              onChange={(e) => setResetPasswordForm({ ...resetPasswordForm, confirm_password: e.target.value })}
+              placeholder="••••••••"
+              className="admin-input"
+              required
+            />
+          </div>
+
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--admin-border-subtle)]">
+            <button type="button" onClick={() => setShowResetPasswordModal(false)} className="admin-btn admin-btn-secondary">
+              Cancel
+            </button>
+            <button type="submit" disabled={saving} className="admin-btn admin-btn-primary">
+              {saving ? 'Resetting...' : 'Update Password'}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  )
+}
+
+{/* Delete User Modal */ }
+<ConfirmModal
+  isOpen={Boolean(deleteConfirm)}
+  onClose={() => setDeleteConfirm(null)}
+  onConfirm={handleDeleteUser}
+  title="Revoke User Access"
+  message={`Permanently delete user account for "${deleteConfirm?.name}" (${deleteConfirm?.email})?`}
+  confirmText="Revoke Access & Delete"
+  isLoading={saving}
+/>
+    </div >
   )
 }
 

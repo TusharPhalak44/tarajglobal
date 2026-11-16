@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Clock, ArrowRight, User } from 'lucide-react'
 import { mediaUrl } from '@utils/media'
+import { formatAuthorName } from '@utils/formatAuthor'
 
 const BlogCard = ({ blog, index, onReadMore }) => {
   const formatDate = (dateString) => {
@@ -29,9 +30,17 @@ const BlogCard = ({ blog, index, onReadMore }) => {
   }
 
   const category = blog.category_name || 'B2B Strategy'
-  const authorName = blog.author_name || 'Taraj Global Editorial'
+  const authorName = formatAuthorName(blog.author_name || blog.author)
   const authorPhoto = blog.author_photo || null
   const fallbackImg = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80'
+
+  const handleCardClick = () => {
+    if (onReadMore) {
+      onReadMore(blog)
+    } else if (blog?.slug) {
+      window.open(`/blog/${blog.slug}`, '_blank', 'noopener,noreferrer')
+    }
+  }
 
   return (
     <motion.article
@@ -40,7 +49,7 @@ const BlogCard = ({ blog, index, onReadMore }) => {
       viewport={{ once: true, margin: '-40px' }}
       transition={{ delay: 0.05 * (index % 6), duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ translateY: -4 }}
-      onClick={() => onReadMore(blog)}
+      onClick={handleCardClick}
       className="group relative flex flex-col rounded-3xl bg-white dark:bg-[#11141e] border border-slate-200/90 dark:border-white/10 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_16px_36px_rgba(0,166,255,0.12)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.5)] dark:hover:shadow-[0_16px_36px_rgba(0,166,255,0.15)] hover:border-[#00A6FF]/40 dark:hover:border-[#00A6FF]/40 overflow-hidden cursor-pointer transition-all duration-300"
     >
       {/* Top Hairline Accent */}
@@ -117,10 +126,12 @@ const BlogCard = ({ blog, index, onReadMore }) => {
           {/* Custom Animated Read Blog Button */}
           <a
             href={blog.slug ? `/blog/${blog.slug}` : '#'}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              onReadMore(blog)
+              handleCardClick()
             }}
             className="btn-read-article shrink-0"
           >

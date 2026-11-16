@@ -35,6 +35,7 @@ const Terms = lazy(() => import('@pages/Terms'))
 const CookiePolicy = lazy(() => import('@components/cookies/CookiePolicyPage'))
 const Sitemap = lazy(() => import('@pages/Sitemap'))
 const Login = lazy(() => import('@pages/Login'))
+const Register = lazy(() => import('@pages/Register'))
 const NotFound = lazy(() => import('@pages/NotFound'))
 
 // Admin Pages - Lazy Loaded
@@ -162,9 +163,6 @@ function AppRoutes() {
         <Route path="contact_us" element={<Navigate to="/contact" replace />} />
         <Route path="get-in-touch" element={<Navigate to="/contact" replace />} />
         <Route path="schedule-call" element={<Navigate to="/contact" replace />} />
-        <Route path="register" element={<Navigate to="/contact" replace />} />
-        <Route path="signup" element={<Navigate to="/contact" replace />} />
-        <Route path="sign-up" element={<Navigate to="/contact" replace />} />
         <Route path="forgot-password" element={<Navigate to="/contact" replace />} />
 
         {/* Legal & Policy Aliases */}
@@ -297,13 +295,16 @@ function AppRoutes() {
         <Route path="*" element={<NotFound />} />
       </Route>
 
-            {/* Auth / Admin Login Route */}
+            {/* Auth / Admin Login & Register Routes */}
       <Route element={<AuthLayout />}>
         <Route path="/loginadmin" element={<Login />} />
         <Route path="/login" element={<Navigate to="/loginadmin" replace />} />
         <Route path="/signin" element={<Navigate to="/loginadmin" replace />} />
         <Route path="/sign-in" element={<Navigate to="/loginadmin" replace />} />
         <Route path="/admin/login" element={<Navigate to="/loginadmin" replace />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/sign-up" element={<Register />} />
       </Route>
 
       {/* Admin Routes */}

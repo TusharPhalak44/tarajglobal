@@ -32,7 +32,7 @@ export const ensureSchema = async () => {
       try {
         const [rows] = await db.execute(`
           SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
-          WHERE TABLE_NAME = ? AND COLUMN_NAME = ?
+          WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?
         `, [table, column])
         if (rows.length === 0) {
           await db.execute(`ALTER TABLE \`${table}\` ADD COLUMN \`${column}\` ${definition}`)
@@ -42,6 +42,12 @@ export const ensureSchema = async () => {
         console.warn(`  ⚠️ Could not check/add ${column} to ${table}:`, err.message)
       }
     }
+
+    // 2b. Ensure columns on users
+    await addColumnIfMissing('users', 'avatar', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('users', 'bio', 'TEXT NULL')
+    await addColumnIfMissing('users', 'linkedin_url', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('users', 'twitter_url', 'VARCHAR(500) NULL')
 
     // 3. Ensure columns on blogs
     await addColumnIfMissing('blogs', 'created_by', 'INT NULL')

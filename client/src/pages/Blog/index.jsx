@@ -28,9 +28,7 @@ function Blog() {
         ogDescription="Actionable playbooks and research for B2B marketers, SDR leaders, and sales executives."
         schemaJson={blogSchema}
       />
-      <div className="min-h-screen bg-ba+
-      
-      ckground">
+      <div className="min-h-screen bg-background">
         <BlogListings />
       </div>
     </>
