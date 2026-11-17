@@ -123,11 +123,11 @@ function Terms() {
         <Container>
           {/* ══ Header / Hero Area ══════════════════════════════════════════ */}
           <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide mb-4">
-              <Scale className="w-3.5 h-3.5 text-primary" />
-              <span>Legal Service Agreement</span>
-            </div>
-
+            <div className="mb-4">
+  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+    Legal Service Agreement
+  </span>
+</div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight mb-4">
               Terms of Service
             </h1>
@@ -243,15 +243,43 @@ function Terms() {
                     <Globe className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    1. About Our Website
+                    1. About these Terms
                   </h2>
                 </div>
                 <p className="mb-4">
-                  These Terms of Service (&quot;Terms&quot;) govern your access to and use of the website operated by <strong>Taraj Global Solutions Private Limited</strong> (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), located at <strong>https://tarajglobal.com</strong> (the &quot;Website&quot;), including all content, resources, functionality, and services offered on or through the Website.
+               <strong>Taraj Global Solutions Private Limited</strong> (“Taraj Global”, “we”, “us”) is a B2B demand generation and lead generation agency based in Pune, India. These Terms of Service (“Terms”) govern your access to and use of <strong>https://tarajglobal.com</strong> and its related pages (the “Website”), including its content, downloadable resources, webinars, forms and tools.
+
                 </p>
                 <p>
-                  Please read these Terms carefully before using the Website. By accessing, browsing, or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Website.
-                </p>
+                 By accessing or using the Website, you agree to these Terms. If you do not agree, please do not use the Website. Where you submit a form, register for content or book a meeting, we may also ask you to confirm your agreement by ticking a box or clicking a button.
+
+                </p><br />
+                 <h2 className="text-base sm:text-lg font-bold text-text-primary tracking-tight">
+                  What these Terms do not cover           
+                  </h2>
+                  <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-text-secondary leading-relaxed marker:text-primary">
+          <li>
+            <strong className="font-bold text-text-primary">Paid services:</strong>{" "}
+            Our campaign and agency services are governed by a signed master services
+            agreement (MSA) and statement of work (SOW). If these Terms conflict with an
+            MSA or SOW, the MSA or SOW prevails for those services (see Section 6).
+          </li>
+        
+          <li>
+            <strong className="font-bold text-text-primary">Personal data and cookies:</strong>{" "}
+            We handle personal data under our [Privacy Policy link] and use cookies as
+            described in our{" "}
+            <a href="/cookies" className="text-primary font-medium hover:underline">
+              Cookie Policy
+            </a>.
+          </li>
+        
+          <li>
+            <strong className="font-bold text-text-primary">Client pages and campaigns:</strong>{" "}
+            If you register on a client’s page or receive a message we send on a
+            client’s behalf, the client’s own terms and privacy notice may also apply.
+          </li>
+       </ul>
               </section>
 
               {/* 2. Eligibility */}
@@ -264,16 +292,20 @@ function Terms() {
                     <Users className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    2. Eligibility
+                    2.  Who may use the Website
+
                   </h2>
                 </div>
                 <p className="mb-4">
-                  The Website is intended solely for business professionals, enterprise entities, and individuals who are at least 18 years of age or the age of majority in their jurisdiction. By using this Website, you represent and warrant that:
+                  The Website is for business use by adults. By using it, you confirm that:
+
                 </p>
                 <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base marker:text-primary">
-                  <li>You are at least 18 years of age.</li>
-                  <li>You possess the legal capacity to enter into these binding Terms.</li>
-                  <li>If you are accessing the Website on behalf of a company, organization, or other legal entity, you have the full power and authority to bind that entity to these Terms.</li>
+                  <li>You are at least 18 years old, or the age of majority where you live if that is higher.</li>
+                  <li>You have the legal capacity to enter into these Terms.</li>
+                  <li>If you use the Website for a company or other organisation, you have the authority to bind it, and “you” includes that organisation.</li>
+                  <li>You are using the Website for business purposes and not as a consumer.
+</li>
                 </ul>
               </section>
 
@@ -291,15 +323,22 @@ function Terms() {
                   </h2>
                 </div>
                 <p className="mb-4">
-                  You agree to use the Website only for lawful business purposes and in accordance with these Terms. You agree not to:
+                  You agree to use the Website lawfully and in line with these Terms. You must not:
+
                 </p>
                 <ul className="list-disc pl-5 space-y-2.5 text-sm sm:text-base marker:text-primary">
-                  <li>Use the Website in any manner that violates applicable federal, state, local, or international laws or regulations.</li>
-                  <li>Transmit, distribute, or upload any computer viruses, worms, Trojan horses, or other malicious, destructive, or technologically harmful material.</li>
-                  <li>Attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Website, the server on which the Website is hosted, or any server, computer, or database connected to the Website.</li>
-                  <li>Use automated systems, robots, spiders, scrapers, or data-mining tools to extract content or data from the Website without our prior express written permission.</li>
-                  <li>Engage in any conduct that restricts, inhibits, or impairs anyone&apos;s use or enjoyment of the Website, or which may expose the Company or its users to harm or liability.</li>
-                  <li>Impersonate or attempt to impersonate the Company, a Company employee, another user, or any other person or entity.</li>
+                  <li>Break any applicable law, including data protection, anti-spam and telemarketing laws.</li>
+                  <li>Upload or transmit viruses, malware or any other harmful or destructive material.</li>
+                  <li>Try to gain unauthorised access to the Website, our servers or connected systems, or probe, scan or test their security without our written permission.</li>
+                  <li>Use bots, spiders, scrapers or data-mining tools to extract content or contact details from the Website, or use our content to build, enrich or sell a contact database or a competing product.</li>
+                  <li>Submit false, misleading or spam enquiries, or use our contact details or forms to send unsolicited messages.</li>
+                  <li>Submit personal data about another person unless you are entitled to share it.</li>
+                  <li>Impersonate us, our staff, another user or any other person or organisation.</li>
+                  <li>Interfere with, overload or impair anyone’s use of the Website.</li>
+                  <li>Bypass access controls on gated content, or share your access links or credentials with others.</li>
+                  <p className="mb-4">
+                 We may investigate suspected breaches, remove content, and suspend or block access without notice.
+                </p>
                 </ul>
               </section>
 
@@ -316,16 +355,23 @@ function Terms() {
                     4. Intellectual Property
                   </h2>
                 </div>
+                <h2>Our content</h2><br />
                 <p className="mb-4">
-                  The Website and its entire contents, features, and functionality (including but not limited to all information, software, code, text, displays, images, illustrations, video, audio, logos, trademarks, and design elements) are owned by the Company, its licensors, or other providers of such material and are protected by copyright, trademark, trade secret, and other intellectual property or proprietary rights laws.
+                 The Website and everything on it, including text, graphics, images, video, audio, software, code, logos, trademarks and design, is owned by Taraj Global, our licensors or other providers, and is protected by copyright, trademark, trade secret and other laws.
+
                 </p>
                 <p className="mb-4">
-                  You are granted a limited, revocable, non-exclusive, non-transferable license to access and view the Website solely for internal business evaluation purposes. You must not:
+               We grant you a limited, revocable, non-exclusive, non-transferable licence to access and view the Website for your internal business evaluation of our services. You must not:
                 </p>
                 <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base marker:text-primary">
-                  <li>Modify, copy, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer, or sell any information or software obtained from the Website without prior written authorization.</li>
-                  <li>Remove or alter any copyright, trademark, or other proprietary rights notices contained in the materials.</li>
-                </ul>
+                  <li>Copy, modify, distribute, display, perform, publish, license, sell or create derivative works from anything on the Website without our prior written permission.</li>
+                  <li>Remove or change any copyright, trademark or other ownership notice.</li>
+                  <li>Use the “Taraj Global” name, logo or other marks without our written permission.</li>
+                </ul><br />
+                <h2>Infringement notices</h2><br />
+                <p className= "mb4">
+                  If you believe content on the Website infringes your intellectual property rights, email <strong>info@tarajglobal.com</strong> with: a description of your work; where the material appears on the Website; your contact details; a statement that you believe in good faith that the use is not authorised; and a statement that your notice is accurate and that you are the rights holder or authorised to act for them. We will review it and respond promptly.
+                </p>
               </section>
 
               {/* 5. Third-Party Content */}
@@ -338,12 +384,34 @@ function Terms() {
                     <FileText className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    5. Third-Party Content
+                    5. Your submissions and feedback
                   </h2>
                 </div>
-                <p>
-                  The Website may display, include, or make available content, data, statistics, articles, case studies, or opinions supplied by third parties. All statements, opinions, and materials expressed by third parties are solely the opinions and responsibility of the person or entity authoring them and do not necessarily reflect the position of the Company. We do not warrant the accuracy, completeness, or usefulness of third-party content.
-                </p>
+              <ul className=" pl-5 space-y-3 text-sm sm:text-base text-text-secondary leading-relaxed marker:text-primary">
+  <li>
+    <strong className="font-bold text-text-primary">Forms and messages:</strong>{" "}
+    We handle personal data you submit through forms, chat or email under our
+    Privacy Policy. The licence below does not apply to that personal data.
+  </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">Feedback:</strong>{" "}
+    Suggestions, ideas and comments about the Website or our services (“Feedback”)
+    are not confidential or proprietary, unless we agree otherwise in writing.
+    You keep ownership of your Feedback, and you grant us a worldwide, perpetual,
+    irrevocable, royalty-free, non-exclusive licence to use, copy, modify,
+    publish and otherwise exploit it for any purpose, without payment. We will
+    not name you publicly as its source without your permission.
+  </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">What you submit:</strong>{" "}
+    You confirm that the information you give us is accurate, current and
+    complete, and that you are authorised to give it. Please do not submit
+    sensitive data such as health information, government ID numbers or
+    payment card details.
+  </li>
+</ul>
               </section>
 
               {/* 6. User-Submitted Information */}
@@ -356,15 +424,41 @@ function Terms() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    6. User-Submitted Information
+                    6. Enquiries, meetings and our services
                   </h2>
                 </div>
-                <p className="mb-4">
-                  Any information, suggestions, feedback, materials, or communications you transmit or submit to the Website (excluding personal data processed in accordance with our Privacy Policy) will be considered non-confidential and non-proprietary.
-                </p>
-                <p>
-                  By submitting information to the Website, you grant the Company a perpetual, worldwide, irrevocable, royalty-free license to use, reproduce, modify, adapt, publish, translate, and distribute such feedback or suggestions for any commercial or non-commercial purpose without compensation or attribution to you.
-                </p>
+               <ul className="pl-5 space-y-3 text-sm sm:text-base text-text-secondary leading-relaxed marker:text-primary">
+                <li>
+                  <strong className="font-bold text-text-primary">An enquiry is not a contract:</strong>{" "}
+                  Submitting an enquiry, booking a strategy call or asking for a proposal does
+                  not create a binding agreement, guarantee that we will accept the work, or
+                  commit either party to buy or supply anything. A binding engagement exists
+                  only when authorised representatives of both parties sign an MSA, SOW or
+                  order form.
+                </li>
+              
+                <li>
+                  <strong className="font-bold text-text-primary">Proposals and estimates:</strong>{" "}
+                  Pricing, volumes, timelines and projections we share before signing are
+                  estimates. They are valid for the period stated and are subject to contract.
+                </li>
+              
+                <li>
+                  <strong className="font-bold text-text-primary">Campaign terms:</strong>{" "}
+                  The meaning of each lead type (such as MQL, HQL, BANT or SQL), delivery
+                  volumes, quality criteria, acceptance and replacement, compliance
+                  responsibilities and data ownership are set in the MSA or SOW, not on the
+                  Website.
+                </li>
+              
+                <li>
+                  <strong className="font-bold text-text-primary">Information you share with us:</strong>{" "}
+                  We use commercially sensitive information you share in an enquiry only to
+                  assess and respond to your request, and we protect it with the same care we
+                  give our own. If you need stricter terms, ask us for a non-disclosure
+                  agreement before you share it.
+                </li>
+              </ul>
               </section>
 
               {/* 7. Lead Generation and Business Inquiries */}
@@ -377,15 +471,40 @@ function Terms() {
                     <Briefcase className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    7. Lead Generation and Business Inquiries
+                    7. Results and Website content
                   </h2>
                 </div>
-                <p className="mb-4">
-                  When you submit inquiries, book strategy meetings, or request consultation regarding our B2B lead generation, demand generation, or marketing services through the Website, you represent that all information provided is accurate, current, and complete.
-                </p>
-                <p>
-                  Submission of an inquiry or strategy call request does not constitute a binding commercial agreement or guarantee of business engagement until a formal master services agreement (MSA) or statement of work (SOW) is mutually executed by authorized representatives of both parties.
-                </p>
+               <p>
+                <strong className="font-bold text-text-primary">No guarantee of results:</strong>{" "}
+                Case studies, metrics, benchmarks, testimonials and performance figures on the
+                Website show results achieved for particular clients in particular circumstances.
+                They are examples, not promises. Results depend on factors such as the target
+                market, offer, data, creative and the client’s follow-up. Any commitment must
+                be in a signed MSA or SOW.
+              </p>
+              
+              <p>
+                <strong className="font-bold text-text-primary">Third-party content:</strong>{" "}
+                The Website may include content, data, statistics, articles, case studies or
+                opinions from third parties. Those statements are the responsibility of the
+                people who made them and do not necessarily reflect our views. We do not
+                warrant that third-party content is accurate, complete or useful.
+              </p>
+              
+              <p>
+                <strong className="font-bold text-text-primary">Accuracy:</strong>{" "}
+                We work to keep the Website accurate and up to date, but it may contain errors,
+                omissions or outdated information. We may correct or update it at any time
+                without notice.
+              </p>
+              
+              <p>
+                <strong className="font-bold text-text-primary">No professional advice:</strong>{" "}
+                Content on the Website is general information for business and marketing
+                purposes. It is not legal, financial, tax, investment or compliance advice,
+                including any information about GDPR, CCPA, CAN-SPAM, TCPA or similar laws.
+                Please take advice from a qualified professional before you act on it.
+              </p>
               </section>
 
               {/* 8. Downloadable Resources */}
@@ -401,12 +520,34 @@ function Terms() {
                     8. Downloadable Resources
                   </h2>
                 </div>
-                <p className="mb-4">
-                  We may offer downloadable materials, whitepapers, e-books, research reports, templates, or guides through the Website. All downloadable resources are provided under a limited, non-transferable license for your internal business reference only.
-                </p>
                 <p>
-                  You may not resell, redistribute, sub-license, repackage, or publicly republish any downloadable resources without express written consent from the Company.
-                </p>
+                   <strong className="font-bold text-text-primary">Licence:</strong>{" "}
+                   We may offer whitepapers, e-books, research reports, templates, guides and
+                   similar resources. We grant you a limited, revocable, non-exclusive,
+                   non-transferable licence to download and use them for your own internal
+                   business reference.
+                 </p>
+                 
+                 <p>
+                   <strong className="font-bold text-text-primary">Restrictions:</strong>{" "}
+                   You must not resell, redistribute, sub-license, repackage or publicly
+                   republish any resource, or remove its ownership notices, without our
+                   written consent.
+                 </p>
+                 
+                 <p>
+                   <strong className="font-bold text-text-primary">Registration details:</strong>{" "}
+                   A resource may require your business contact details. We use them under
+                   our Privacy Policy. If a resource is sponsored or co-branded, we tell you
+                   at registration that your details will be shared with the sponsor or
+                   partner, and the sponsor’s privacy notice applies to its own use.
+                 </p>
+                 
+                 <p>
+                   <strong className="font-bold text-text-primary">Templates and tools:</strong>{" "}
+                   Templates and tools are provided as they are. You are responsible for
+                   checking that they suit your legal and business requirements.
+                 </p>
               </section>
 
               {/* 9. Webinars and Events */}
@@ -422,12 +563,34 @@ function Terms() {
                     9. Webinars and Events
                   </h2>
                 </div>
-                <p className="mb-4">
-                  From time to time, the Company may host or co-host online webinars, virtual summits, or industry events. Registration for webinars is subject to availability and our acceptance.
-                </p>
                 <p>
-                  We reserve the right to modify schedules, cancel events, substitute speakers, or revoke registrations at our discretion. Event recordings and presentation materials remain the intellectual property of the Company or designated co-hosts.
-                </p>
+                    <strong className="font-bold text-text-primary">Registration:</strong>{" "}
+                    We may host or co-host webinars, virtual summits and industry events.
+                    Registration is subject to availability and our acceptance. If an event
+                    is paid, the refund terms are shown at registration.
+                  </p>
+                  
+                  <p>
+                    <strong className="font-bold text-text-primary">Changes:</strong>{" "}
+                    We may change schedules, cancel events, replace speakers or cancel a
+                    registration. If we cancel an event, we will offer a new date or a place
+                    at a comparable session where we can.
+                  </p>
+                  
+                  <p>
+                    <strong className="font-bold text-text-primary">Recordings and materials:</strong>{" "}
+                    Event recordings and presentation materials belong to Taraj Global or
+                    the co-host. We may record events, and we tell you at the start if we do.
+                    Recordings may include your name, voice, image, questions and chat
+                    messages, and we may use them to promote our services and offer on-demand
+                    access. You must not record or redistribute an event without our permission.
+                  </p>
+                  
+                  <p>
+                    <strong className="font-bold text-text-primary">Co-hosts and sponsors:</strong>{" "}
+                    We may share registration details with co-hosts or sponsors as disclosed
+                    at registration and in our Privacy Policy.
+                  </p>
               </section>
 
               {/* 10. Newsletters and Marketing Communications */}
@@ -440,15 +603,34 @@ function Terms() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    10. Newsletters and Marketing Communications
+                    10.  Marketing communications
                   </h2>
                 </div>
-                <p className="mb-4">
-                  By subscribing to our newsletter or providing your business email address on our Website, you consent to receive periodic marketing emails, industry insights, and updates from the Company.
-                </p>
                 <p>
-                  You may opt out of receiving promotional emails at any time by clicking the &quot;Unsubscribe&quot; link included at the bottom of each email communication or by emailing us directly at <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>.
-                </p>
+                    <strong className="font-bold text-text-primary">Newsletters and updates:</strong>{" "}
+                    If you subscribe to our newsletter or give us your business email address
+                    for marketing, we may send you emails about our services, industry insights
+                    and events. Where the law requires consent, such as under the GDPR, UK PECR
+                    or Canada’s CASL, we rely on the consent you give. Where the law allows us
+                    to contact business professionals about relevant offers without prior
+                    consent, we may do so. Every marketing message identifies us and includes
+                    an unsubscribe option.
+                  </p>
+                  
+                  <p>
+                    <strong className="font-bold text-text-primary">Opting out:</strong>{" "}
+                    You can opt out at any time by clicking “Unsubscribe” in any email or by
+                    writing to{" "}
+                    <a
+                      href="mailto:privacy@tarajglobal.com"
+                      className="text-primary font-medium hover:underline"
+                    >
+                      info@tarajglobal.com
+                    </a>
+                    . We act on opt-outs promptly and keep a suppression record so we do not
+                    contact you again. We may still send service messages about your enquiry
+                    or contract.
+                  </p>
               </section>
 
               {/* 11. Accuracy of Information */}
@@ -461,11 +643,12 @@ function Terms() {
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    11. Accuracy of Information
+                    11.  Third-party services and links
+
                   </h2>
                 </div>
                 <p>
-                  While we strive to ensure that all information on the Website is accurate and up-to-date, the materials and descriptions may occasionally contain typographical errors, inaccuracies, or outdated information. We reserve the right to correct any errors, inaccuracies, or omissions, and to change or update information at any time without prior notice.
+                 The Website may link to or use third-party websites, platforms and services, such as meeting schedulers, webinar platforms, analytics tools and client pages. We do not own or control them and are not responsible for their content, terms, privacy practices or availability. A link is not an endorsement or an affiliation. Your use of any third-party service is at your own risk and is subject to that service’s terms.
                 </p>
               </section>
 
@@ -479,11 +662,12 @@ function Terms() {
                     <AlertTriangle className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    12. No Professional Advice
+                    12. Availability of the Website
                   </h2>
                 </div>
                 <p>
-                  The content, metrics, case studies, and insights provided on the Website are for general informational and marketing purposes only and should not be construed as legal, financial, tax, or investment advice. You should consult qualified professional advisors before making strategic or financial decisions based on website content.
+                  We aim to keep the Website available, but we do not guarantee that it will be uninterrupted, secure or error-free. We may suspend, change, restrict or withdraw all or part of the Website at any time for business, technical, security or operational reasons, with or without notice. We may also suspend or end your access if you breach these Terms or we reasonably suspect misuse.
+
                 </p>
               </section>
 
@@ -497,14 +681,16 @@ function Terms() {
                     <ExternalLink className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    13. Third-Party Services and Links
+                    13.  Disclaimer of warranties
+
                   </h2>
                 </div>
                 <p className="mb-4">
-                  The Website may contain links to external third-party websites, applications, or services that are not owned or controlled by the Company. We have no control over, and assume no responsibility for, the content, privacy policies, terms, or practices of any third-party websites.
+                  The Website and all content, resources and services on it are provided “as is” and “as available”, without warranties of any kind, express or implied. To the fullest extent the law allows, we disclaim all warranties, including implied warranties of merchantability, fitness for a particular purpose, title, non-infringement and accuracy, and any warranty that the Website is free of viruses or malware.
                 </p>
                 <p>
-                  Inclusion of any third-party link does not imply endorsement or affiliation by the Company. You access external websites entirely at your own risk.
+                   This section applies to the Website only. The only warranties for paid services are those in the signed MSA or SOW.
+              
                 </p>
               </section>
 
@@ -518,12 +704,16 @@ function Terms() {
                     <Globe className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    14. Website Availability
+                    14.  Limitation of liability
+
                   </h2>
                 </div>
-                <p>
-                  We strive to maintain continuous website availability; however, we do not guarantee uninterrupted, secure, or error-free access to the Website. We may suspend, withdraw, or restrict the availability of all or any part of the Website for business, technical, security, or operational reasons without prior notice.
+                <p className="mb-4">
+                  To the maximum extent the law allows, Taraj Global, its affiliates, directors, officers, employees, agents, suppliers and licensors are not liable for any indirect, incidental, special, exemplary or consequential loss. This includes loss of profits, revenue, data, goodwill or business, and applies even if we were told the loss was possible. It covers loss arising from your use of, or inability to use, the Website.
                 </p>
+                <p className="mb-4">Our total liability for all claims relating to these Terms or the Website is limited to one hundred United States dollars (US$100) or the equivalent in your local currency.</p>
+                <p className="mb-4">Nothing in these Terms limits or excludes liability that cannot be limited or excluded by law, including liability for fraud or fraudulent misrepresentation, death or personal injury caused by negligence, or wilful misconduct.</p>
+                <p className="mb-4">Liability for paid services is governed by the MSA or SOW and not by this section.</p>
               </section>
 
               {/* 15. Disclaimer of Warranties */}
@@ -536,17 +726,28 @@ function Terms() {
                     <AlertTriangle className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    15. Disclaimer of Warranties
+                    15.Indemnification
                   </h2>
                 </div>
-                <div className="p-4 rounded-xl bg-surface-elevated/70 border border-border/80 mb-4">
-                  <p className="text-xs sm:text-sm font-semibold tracking-wide text-text-primary">
-                    The Website and all content, materials, and services are provided on an &quot;as is&quot; and &quot;as available&quot; basis, without warranties of any kind, either express or implied.
-                  </p>
-                </div>
+                
                 <p>
-                  To the fullest extent permissible under applicable law, the Company disclaims all warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, title, non-infringement, accuracy, and freedom from computer viruses or malware.
+                You agree to defend, indemnify and hold harmless Taraj Global, its affiliates, licensors and service providers, and their officers, directors, employees, contractors, agents and successors, from any third-party claim, and any resulting loss, liability, damages, costs and expenses (including reasonable legal fees), arising from:
+                <ul className="list-disc pl-6 space-y-2 marker:text-primary">
+                   <li>
+                     Your breach of these Terms.
+                   </li>
+                   <li>
+                     Your misuse of the Website.
+                   </li>
+                   <li>
+                     Content or personal data you submitted without the right to do so.
+                   </li>
+                   <li>
+                     Your infringement of a third party’s intellectual property or other rights.
+                   </li>
+                 </ul>
                 </p>
+                <p>We will tell you promptly about any claim and give you reasonable help at your cost. You may not settle a claim in a way that admits fault for us or imposes obligations on us without our written consent.</p>
               </section>
 
               {/* 16. Limitation of Liability */}
@@ -559,17 +760,33 @@ function Terms() {
                     <Lock className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    16. Limitation of Liability
+                    16. Privacy and cookies
                   </h2>
                 </div>
                 <p className="mb-4">
-                  To the maximum extent permitted by applicable law, in no event shall the Company, its affiliates, directors, officers, employees, agents, suppliers, or licensors be liable for any indirect, incidental, special, exemplary, or consequential damages (including damages for loss of profits, revenue, data, goodwill, or business interruption) arising out of or in connection with your access to or inability to access or use the Website.
-                </p>
-                <div className="p-4 rounded-xl bg-surface-elevated/70 border border-border/80">
-                  <p className="text-text-primary font-medium text-xs sm:text-sm">
-                    Our total aggregate liability for all claims arising out of or relating to these Terms or the Website shall be limited to one hundred United States dollars ($100.00 USD) or the equivalent local currency amount.
-                  </p>
-                </div>
+                      Our{" "}
+                      <a
+                        href="https://tarajglobal.com/privacy"
+                        className="text-primary font-medium hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Privacy Policy
+                      </a>{" "}
+                      explains how we collect, use, share and protect personal data, including
+                      the data of business contacts, and how you can use your rights to access,
+                      correct, delete or opt out. Our{" "}
+                      <a
+                        href="/cookies"
+                        className="text-primary font-medium hover:underline"
+                      >
+                        Cookie Policy
+                      </a>{" "}
+                      explains how we use cookies and tracking technologies and how you can
+                      manage your choices. Please read both alongside these Terms.
+                    </p>
+                  <p>If you give us personal data about other people, for example a contact list for a campaign, you must have the right to do so, and the MSA or SOW and any data processing terms with us apply.</p>
+                
               </section>
 
               {/* 17. Indemnification */}
@@ -582,12 +799,16 @@ function Terms() {
                     <Shield className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    17. Indemnification
+                    17. Changes to these Terms
+
                   </h2>
                 </div>
-                <p>
-                  You agree to defend, indemnify, and hold harmless the Company, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, and successors from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys&apos; fees) arising out of or relating to your violation of these Terms, your misuse of the Website, or your infringement of any intellectual property or other rights of any third party.
+                <p className="mb-4">
+                 We may update these Terms from time to time. We will post the new version on this page with a new “Last updated” date. For material changes, we will also give notice before they take effect where practical, such as by a banner on the Website or an email to registered users. If you keep using the Website after the changes take effect, you accept them. If you do not agree, please stop using the Website. Earlier versions are available on request.
+
                 </p>
+                <p>Changes to these Terms do not change any signed MSA or SOW. Those can be changed only as they provide.
+</p>
               </section>
 
               {/* 18. Privacy */}
@@ -600,12 +821,36 @@ function Terms() {
                     <Lock className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    18. Privacy
+                    18. Governing law and disputes
                   </h2>
                 </div>
-                <p>
-                  Your privacy is important to us. All personal data collected through the Website or in connection with our services is processed in accordance with our <Link to="/privacy" className="text-accent font-bold hover:underline">Privacy Policy</Link>. Please review our <Link to="/privacy" className="text-accent font-bold hover:underline">Privacy Policy</Link> to understand our data collection, usage, security, and disclosure practices.
-                </p>
+                <ul className=" pl-6 space-y-3 marker:text-primary">
+                   <li >
+                     <strong className="font-bold text-text-primary">Governing law:</strong>{" "}
+                     These Terms, and any dispute arising from them or the Website, are
+                     governed by the laws of India, without regard to conflict-of-law rules.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">Talk first:</strong>{" "}
+                     Before starting formal proceedings, a party will send the other a
+                     written notice describing the dispute, and both will try in good faith
+                     to settle it within 30 days.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">Courts:</strong>{" "}
+                     Subject to that step, the courts at Pune, Maharashtra, India have
+                     exclusive jurisdiction, and each party submits to them. Either party
+                     may seek urgent interim relief from any competent court to protect
+                     its intellectual property or confidential information.
+                   </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">Paid services:</strong>{" "}
+    For paid services, the dispute terms in the MSA or SOW apply.
+  </li>
+</ul>
               </section>
 
               {/* 19. Cookies */}
@@ -618,93 +863,78 @@ function Terms() {
                     <Eye className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    19. Cookies
+                    19. General terms
                   </h2>
                 </div>
-                <p>
-                  Our Website utilizes cookies and tracking technologies to enhance user experience, remember preferences, and analyze website traffic. For comprehensive information regarding our cookie usage and instructions on how to manage your consent preferences, please consult our <Link to="/cookies" className="text-accent font-bold hover:underline">Cookie Policy</Link>.
-                </p>
+                <ul className=" pl-6 space-y-3 marker:text-primary">
+                  <li>
+                    <strong className="font-bold text-text-primary">Entire agreement:</strong>{" "}
+                    These Terms, with our Privacy Policy and Cookie Policy, are the entire
+                    agreement between you and us about the Website. They replace earlier
+                    understandings about the Website and do not affect any signed MSA or SOW.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">Order of precedence:</strong>{" "}
+                    For paid services, the MSA or SOW prevails over these Terms.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">Severability:</strong>{" "}
+                    If a court or tribunal finds a provision invalid or unenforceable, it is
+                    limited or removed to the minimum extent needed, and the rest of the
+                    Terms stay in force.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">No waiver:</strong>{" "}
+                    A failure or delay in enforcing a right is not a waiver. A waiver must
+                    be in writing.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">Assignment:</strong>{" "}
+                    You may not assign these Terms without our written consent. We may
+                    assign them to an affiliate or to a successor to our business.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">No third-party rights or partnership:</strong>{" "}
+                    These Terms give no rights to anyone else, and they do not create a
+                    partnership, agency or employment relationship.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">Events beyond our control:</strong>{" "}
+                    We are not liable for a delay or failure caused by events beyond our
+                    reasonable control.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">Notices:</strong>{" "}
+                    We may give you notice by posting it on the Website or emailing the
+                    address you gave us. You may give us notice at the contact details in
+                    Section 20. Electronic communications satisfy any requirement for writing.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">Survival:</strong>{" "}
+                    Sections that by their nature should continue after your use ends,
+                    including those on intellectual property, Feedback, disclaimers,
+                    liability, indemnification and governing law, continue.
+                  </li>
+                
+                  <li >
+                    <strong className="font-bold text-text-primary">Language:</strong>{" "}
+                    These Terms are in English. If they are translated, the English
+                    version prevails.
+                  </li>
+                </ul>
               </section>
 
-              {/* 20. Changes to These Terms */}
-              <section
-                id="changes-to-terms"
-                className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
-              >
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    20. Changes to These Terms
-                  </h2>
-                </div>
-                <p className="mb-4">
-                  We reserve the right, at our sole discretion, to modify, update, or replace these Terms at any time. When updates occur, we will revise the &quot;Last Updated&quot; date at the top of this document.
-                </p>
-                <p>
-                  Your continued access to or use of the Website following the posting of revised Terms constitutes your binding acceptance of the changes. If you do not agree to the amended Terms, you must discontinue your use of the Website.
-                </p>
-              </section>
+             
 
-              {/* 21. Governing Law */}
-              <section
-                id="governing-law"
-                className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
-              >
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-                    <Scale className="w-4 h-4" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    21. Governing Law
-                  </h2>
-                </div>
-                <p className="mb-4">
-                  These Terms and any dispute or claim arising out of or related to them, their subject matter, or their formation shall be governed by and construed in accordance with the internal laws of the Republic of India and the State of Maharashtra, without giving effect to any choice or conflict of law provision or rule.
-                </p>
-                <p>
-                  Any legal suit, action, or proceeding arising out of or related to these Terms or the Website shall be instituted exclusively in the competent courts located in Pune, Maharashtra, India. You waive any and all objections to the exercise of jurisdiction over you by such courts and to venue in such courts.
-                </p>
-              </section>
-
-              {/* 22. Severability */}
-              <section
-                id="severability"
-                className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
-              >
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-                    <FileText className="w-4 h-4" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    22. Severability
-                  </h2>
-                </div>
-                <p>
-                  If any provision of these Terms is held by a court or other tribunal of competent jurisdiction to be invalid, illegal, or unenforceable for any reason, such provision shall be eliminated or limited to the minimum extent necessary such that the remaining provisions of the Terms will continue in full force and effect.
-                </p>
-              </section>
-
-              {/* 23. Entire Agreement */}
-              <section
-                id="entire-agreement"
-                className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
-              >
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
-                  <div className="w-8 h-8 rounded-lg bg-primary/30 dark:bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-                    <Scale className="w-4 h-4" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    23. Entire Agreement
-                  </h2>
-                </div>
-                <p>
-                  These Terms, together with our Privacy Policy and Cookie Policy, constitute the sole and entire agreement between you and the Company with respect to the Website and supersede all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, regarding the Website.
-                </p>
-              </section>
-
-              {/* 24. Contact Us */}
+              {/* 20. Contact Us */}
               <section
                 id="contact-us"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
@@ -714,51 +944,87 @@ function Terms() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
-                    24. Contact Us
+                    20. Contact Us
                   </h2>
                 </div>
                 <p className="mb-6">
-                  If you have any questions, feedback, or legal inquiries regarding these Terms of Service, please contact us:
+                  For questions about these Terms or to send a legal notice, contact us:
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
-                    <Mail className="w-5 h-5 text-cta mb-2" />
-                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Email</span>
-                    <a href="mailto:info@tarajglobal.com" className="text-sm font-semibold text-text-primary hover:text-primary hover:underline mt-1">
-                      info@tarajglobal.com
-                    </a>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
-                    <Phone className="w-5 h-5 text-cta mb-2" />
-                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Direct Phone</span>
-                    <a href="tel:+919665599442" className="text-sm font-semibold text-text-primary hover:text-primary hover:underline mt-1">
-                      +91-96655-99442
-                    </a>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
-                    <MapPin className="w-5 h-5 text-cta mb-2" />
-                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Headquarters</span>
-                    <address className="text-xs text-text-secondary not-italic mt-1 leading-relaxed">
-                      The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014, India
-                    </address>
-                  </div>
+                {/* Contact Details Table */}
+                <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-1/3 sm:w-1/4 border-r border-border">
+                          Item
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs">
+                          Detail
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border">
+                          Company
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary leading-relaxed">
+                          Taraj Global Solutions Private Limited, CIN [CIN]; registered office [address]
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border">
+                          Operating address
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary leading-relaxed">
+                          The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014, India
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border">
+                          General enquiries
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary leading-relaxed">
+                          <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+                          {" · "}
+                          <a href="tel:+919665599442" className="text-primary hover:underline font-medium">+91-96655-99442</a>
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border">
+                          Legal notices
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary leading-relaxed">
+                          <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border">
+                          Privacy and data requests
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary leading-relaxed">
+                          <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+                          {"; see our "}
+                          <Link to="/privacy" className="text-primary hover:underline font-medium">Privacy Policy</Link>
+                          {" for our Grievance Officer"}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
                 </div>
-
-                <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <span className="text-xs sm:text-sm text-text-secondary">
-                    Review our data protection framework in our <Link to="/privacy" className="text-accent font-semibold hover:underline">Privacy Policy</Link>.
-                  </span>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-black font-bold text-xs tracking-wider hover:bg-accent-light transition-colors shadow-sm shrink-0"
+                <p>
+                  Our data practices are described in our{" "}
+                  <a
+                    href="https://tarajglobal.com/privacy"
+                    className="text-primary font-medium hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <span>Contact Our Team</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
+                    Privacy Policy
+                  </a>.
+                </p>
               </section>
 
             </div>

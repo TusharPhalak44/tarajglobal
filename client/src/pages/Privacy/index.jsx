@@ -240,17 +240,42 @@ function Privacy() {
               <section id="introduction" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Globe className="w-5 h-5 text-primary shrink-0" />
-                  <span>1. Introduction &amp; Overview</span>
+                  <span>1.Who we are and what this policy covers</span>
                 </h2>
                 <p className="mb-4">
-                  Welcome to <strong>Taraj Global Solutions Private Limited</strong> (&quot;Taraj Global,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are a dedicated B2B Demand Generation, Account-Based Marketing (ABM), and Lead Intelligence partner providing data-driven marketing services through our official website located at <a href="https://tarajglobal.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">https://tarajglobal.com</a> (&quot;Website&quot;) and associated digital platforms.
+                  <strong>Taraj Global Solutions Private Limited</strong> (“Taraj Global”, “we”, “us”) is a B2B demand generation and lead generation agency based in Pune, India. We run campaigns for business clients, including lead generation (MQL, HQL, BANT and SQL programs), appointment generation, account-based marketing, content syndication, webinars, email marketing, B2B list building and database cleansing.
+                  <br />This policy applies to four groups of people:
+
                 </p>
-                <p className="mb-4">
-                  We are deeply committed to protecting the privacy, confidentiality, and security of individuals who visit our website, communicate with our team, or whose business contact information is processed as part of our enterprise B2B marketing campaigns.
-                </p>
-                <p>
-                  This Privacy Policy details how we collect, use, process, disclose, retain, and safeguard personal information, as well as the choices and rights available to you under applicable global data protection laws, including the <strong>General Data Protection Regulation (GDPR)</strong>, the <strong>California Consumer Privacy Act (CCPA / CPRA)</strong>, and other international data privacy regulations.
-                </p>
+                      <ul className="list-disc pl-6 space-y-3 marker:text-primary">
+                     <li>
+                       <strong className="font-bold text-text-primary">Website visitors:</strong>{" "}
+                       to tarajglobal.com and our related pages.
+                     </li>
+                   
+                     <li>
+                       <strong className="font-bold text-text-primary">Enquirers and clients:</strong>{" "}
+                       who contact us, book a call or buy our services.
+                     </li>
+                   
+                     <li>
+                       <strong className="font-bold text-text-primary">Job applicants:</strong>{" "}
+                       who apply through our Careers page.
+                     </li>
+                   
+                     <li>
+                       <strong className="font-bold text-text-primary">Business Contacts:</strong>{" "}
+                       business professionals whose work contact details we hold in our B2B
+                       database or process in a campaign.
+                     </li>
+                   </ul><br />
+                   <p className="mb-4">
+                    We work only in the B2B market. We do not market to consumers, and we do not collect personal details such as home addresses or private email addresses.
+         <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">
+  Our role in each activity
+</h2>
+                   </p>
+               
               </section>
 
               {/* 2. Information We Collect */}
