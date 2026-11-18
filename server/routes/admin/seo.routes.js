@@ -3,6 +3,8 @@ import { body } from 'express-validator'
 import { validate } from '../../middleware/validation.middleware.js'
 import { checkPermission } from '../../middleware/permission.middleware.js'
 import db from '../../config/db.js'
+import { invalidateBlogCache } from '../../services/blogSeoRenderer.js'
+import { updateStaticPrerenderFile } from '../../services/staticSeoUpdater.js'
 
 const router = express.Router()
 
@@ -88,12 +90,54 @@ router.get('/:entityType/:entityId', checkPermission('blog.edit'), async (req, r
   try {
     const { entityType, entityId } = req.params
 
+    const aliasMap = {
+      'who-we-are': ['who-we-are', 'about'],
+      'about': ['about', 'who-we-are'],
+      'careers': ['careers', 'career'],
+      'career': ['career', 'careers'],
+      'blog': ['blog', 'blogs'],
+      'contact': ['contact', 'contact-us'],
+      'privacy': ['privacy', 'privacy-policy'],
+      'terms': ['terms', 'terms-and-conditions'],
+      'cookies': ['cookies', 'cookie-policy'],
+    }
+    const candidateIds = (entityType === 'page' && aliasMap[entityId]) ? aliasMap[entityId] : [entityId]
+    const placeholders = candidateIds.map(() => '?').join(',')
+
     const [seoData] = await db.execute(
-      'SELECT * FROM seo_metadata WHERE entity_type = ? AND entity_id = ?',
-      [entityType, entityId]
+      `SELECT * FROM seo_metadata WHERE entity_type = ? AND entity_id IN (${placeholders}) ORDER BY updated_at DESC LIMIT 1`,
+      [entityType, ...candidateIds]
     )
 
     if (seoData.length === 0) {
+      if (entityType === 'blog') {
+        const isNumeric = !isNaN(entityId)
+        const [blogRows] = await db.execute(
+          isNumeric ? 'SELECT * FROM blogs WHERE id = ?' : 'SELECT * FROM blogs WHERE slug = ?',
+          [entityId]
+        )
+        if (blogRows.length > 0) {
+          const b = blogRows[0]
+          return res.json({
+            success: true,
+            data: {
+              entity_type: 'blog',
+              entity_id: String(b.id),
+              meta_title: b.seo_title || b.title,
+              meta_description: b.seo_description || b.excerpt || b.title,
+              meta_keywords: b.seo_keywords || '',
+              canonical_url: b.canonical_url || null,
+              og_title: b.og_title || b.seo_title || b.title,
+              og_description: b.og_description || b.seo_description || b.excerpt || b.title,
+              og_image: b.og_image || b.featured_image || b.image,
+              twitter_title: b.twitter_title || b.seo_title || b.title,
+              twitter_description: b.twitter_description || b.seo_description || b.excerpt,
+              twitter_image: b.twitter_image || b.og_image || b.featured_image,
+              robots: b.robots || 'index, follow'
+            }
+          })
+        }
+      }
       return res.json({ success: true, data: null })
     }
 
@@ -141,7 +185,7 @@ router.post('/:entityType/:entityId', [
     const clean = (val) => val === undefined ? null : val;
     const clean_meta_title = clean(meta_title);
     const clean_meta_description = clean(meta_description);
-    const clean_meta_keywords = clean(meta_keywords);
+    const clean_meta_keywords = clean(meta_keywords !== undefined ? meta_keywords : req.body.keywords);
     const clean_canonical_url = clean(canonical_url);
     const clean_og_title = clean(og_title);
     const clean_og_description = clean(og_description);
@@ -196,6 +240,70 @@ router.post('/:entityType/:entityId', [
       ])
     }
 
+    // If entity is blog, also sync to blogs table and invalidate cache
+    if (entityType === 'blog') {
+      try {
+        const isNumeric = !isNaN(entityId)
+        let blogSlug = null
+        let blogId = null
+
+        if (isNumeric) {
+          blogId = parseInt(entityId, 10)
+          const [bRows] = await db.execute('SELECT slug FROM blogs WHERE id = ?', [blogId])
+          if (bRows.length > 0) blogSlug = bRows[0].slug
+        } else {
+          blogSlug = entityId
+          const [bRows] = await db.execute('SELECT id FROM blogs WHERE slug = ?', [blogSlug])
+          if (bRows.length > 0) blogId = bRows[0].id
+        }
+
+        if (blogId) {
+          await db.execute(`
+            UPDATE blogs 
+            SET seo_title = COALESCE(?, seo_title),
+                seo_description = COALESCE(?, seo_description),
+                seo_keywords = COALESCE(?, seo_keywords),
+                canonical_url = COALESCE(?, canonical_url),
+                og_title = COALESCE(?, og_title),
+                og_description = COALESCE(?, og_description),
+                og_image = COALESCE(?, og_image),
+                twitter_title = COALESCE(?, twitter_title),
+                twitter_description = COALESCE(?, twitter_description),
+                twitter_image = COALESCE(?, twitter_image),
+                robots = COALESCE(?, robots),
+                updated_at = NOW()
+            WHERE id = ?
+          `, [
+            clean_meta_title, clean_meta_description, clean_meta_keywords, clean_canonical_url,
+            clean_og_title, clean_og_description, clean_og_image,
+            clean_twitter_title, clean_twitter_description, clean_twitter_image,
+            clean_robots, blogId
+          ])
+        }
+
+        invalidateBlogCache(entityId)
+        if (blogSlug) invalidateBlogCache(blogSlug)
+        if (blogId) invalidateBlogCache(blogId)
+      } catch (syncErr) {
+        console.warn('⚠️ [seo.routes] Error syncing blog table:', syncErr.message)
+      }
+    }
+
+    // Synchronize the physical prerendered file on disk (if present in dist)
+    updateStaticPrerenderFile(entityType, entityId, {
+      meta_title: clean_meta_title,
+      meta_description: clean_meta_description,
+      meta_keywords: clean_meta_keywords,
+      canonical_url: clean_canonical_url,
+      og_title: clean_og_title,
+      og_description: clean_og_description,
+      og_image: clean_og_image,
+      twitter_title: clean_twitter_title,
+      twitter_description: clean_twitter_description,
+      twitter_image: clean_twitter_image,
+      robots: clean_robots
+    })
+
     res.json({ success: true, message: 'SEO metadata saved successfully' })
   } catch (error) {
     import('fs').then(fs => fs.writeFileSync('error_log.txt', error.stack || error.toString()));
@@ -215,6 +323,10 @@ router.delete('/:entityType/:entityId', checkPermission('blog.edit'), async (req
       'DELETE FROM seo_metadata WHERE entity_type = ? AND entity_id = ?',
       [entityType, entityId]
     )
+
+    if (entityType === 'blog') {
+      invalidateBlogCache(entityId)
+    }
 
     res.json({ success: true, message: 'SEO metadata deleted successfully' })
   } catch (error) {

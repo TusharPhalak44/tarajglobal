@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -49,19 +50,21 @@ const fullFunnelSchema = {
 }
 
 const FullFunnelDemand = () => {
+  const { seoData } = useSEOData('page', 'full-funnel-demand', {
+    title: "B2B Demand Generation Services | Tech-Powered Sales-Ready Pipeline | TaRaj Global",
+    description: "Build verified, sales-ready B2B pipeline across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent scoring, multi-channel campaigns, and a 99.8% Data Accuracy SLA.",
+    keywords: "full funnel demand, full funnel demand generation, B2B demand generation, pipeline velocity, buying committee engagement, intent data demand, sales-ready leads, B2B pipeline growth, DemandFlow Bridge",
+    canonical: "/full-funnel-demand",
+    ogTitle: "B2B Demand Generation Services | Tech-Powered Sales-Ready Pipeline | TaRaj Global",
+    ogDescription: "Build verified, sales-ready B2B pipeline across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent scoring, multi-channel campaigns, and a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: fullFunnelSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Demand Generation Services | Tech-Powered Sales-Ready Pipeline | TaRaj Global"
-        description="Build verified, sales-ready B2B pipeline across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent scoring, multi-channel campaigns, and a 99.8% Data Accuracy SLA."
-        keywords="full funnel demand, full funnel demand generation, B2B demand generation, pipeline velocity, buying committee engagement, intent data demand, sales-ready leads, B2B pipeline growth, DemandFlow Bridge"
-        canonical="/full-funnel-demand"
-        ogTitle="B2B Demand Generation Services | Tech-Powered Sales-Ready Pipeline | TaRaj Global"
-        ogDescription="Build verified, sales-ready B2B pipeline across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent scoring, multi-channel campaigns, and a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={fullFunnelSchema}
-      />
+      <SEO {...seoData} schemaJson={fullFunnelSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

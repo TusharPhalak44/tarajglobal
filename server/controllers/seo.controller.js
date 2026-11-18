@@ -8,9 +8,24 @@ export const getSEOData = async (req, res) => {
   try {
     const { entityType, entityId } = req.params
 
+    const aliasMap = {
+      'who-we-are': ['who-we-are', 'about'],
+      'about': ['about', 'who-we-are'],
+      'careers': ['careers', 'career'],
+      'career': ['career', 'careers'],
+      'blog': ['blog', 'blogs'],
+      'contact': ['contact', 'contact-us'],
+      'privacy': ['privacy', 'privacy-policy'],
+      'terms': ['terms', 'terms-and-conditions'],
+      'cookies': ['cookies', 'cookie-policy'],
+    }
+
+    const candidateIds = (entityType === 'page' && aliasMap[entityId]) ? aliasMap[entityId] : [entityId]
+    const placeholders = candidateIds.map(() => '?').join(',')
+
     const [seoData] = await db.execute(
-      'SELECT * FROM seo_metadata WHERE entity_type = ? AND entity_id = ?',
-      [entityType, entityId]
+      `SELECT * FROM seo_metadata WHERE entity_type = ? AND entity_id IN (${placeholders}) ORDER BY updated_at DESC LIMIT 1`,
+      [entityType, ...candidateIds]
     )
 
     const [globalSettings] = await db.execute('SELECT * FROM seo_global_settings');
@@ -139,11 +154,22 @@ export const getSitemapXml = async (req, res) => {
   try {
     ;[staticPages] = await db.execute(`SELECT entity_id, updated_at, robots FROM seo_metadata WHERE entity_type = 'page'`)
     ;[blogs] = await db.execute(`
-      SELECT b.slug, b.updated_at
+      SELECT 
+        b.id,
+        b.slug,
+        b.canonical_url,
+        b.updated_at,
+        b.published_at,
+        b.created_at,
+        b.robots,
+        s.canonical_url AS s_canonical_url,
+        s.robots AS s_robots
       FROM blogs b
-      LEFT JOIN seo_metadata s ON s.entity_type = 'blog' AND s.entity_id = b.id
-      WHERE b.status = 'published' AND (s.robots IS NULL OR s.robots NOT LIKE '%noindex%')
-      ORDER BY b.updated_at DESC
+      LEFT JOIN seo_metadata s ON s.entity_type = 'blog' AND (s.entity_id = CAST(b.id AS CHAR) OR s.entity_id = b.slug COLLATE utf8mb4_unicode_ci)
+      WHERE (b.status = 'published' OR (b.status = 'scheduled' AND b.scheduled_at IS NOT NULL AND b.scheduled_at <= NOW()))
+        AND (b.robots IS NULL OR b.robots NOT LIKE '%noindex%')
+        AND (s.robots IS NULL OR s.robots NOT LIKE '%noindex%')
+      ORDER BY COALESCE(b.updated_at, b.published_at, b.created_at) DESC
     `)
   } catch (error) {
     // Still serve the static routes so crawlers never get an error page.
@@ -159,9 +185,24 @@ export const getSitemapXml = async (req, res) => {
     xml += urlEntry(`${domain}${path}`, isoDate(seo?.updated_at), route === 'home' || route === 'blog' ? 'daily' : 'weekly', routePriority(route))
   }
 
+  const seenUrls = new Set()
   for (const blog of blogs) {
     if (!blog.slug) continue
-    xml += urlEntry(`${domain}/blog/${blog.slug}`, isoDate(blog.updated_at), 'monthly', '0.6')
+    let loc = blog.canonical_url || blog.s_canonical_url
+    if (loc) {
+      loc = loc.trim()
+      if (!loc.startsWith('http://') && !loc.startsWith('https://')) {
+        loc = `${domain}${loc.startsWith('/') ? '' : '/'}${loc}`
+      }
+    } else {
+      loc = `${domain}/blog/${blog.slug}`
+    }
+
+    if (seenUrls.has(loc)) continue
+    seenUrls.add(loc)
+
+    const lastmod = isoDate(blog.updated_at || blog.published_at || blog.created_at)
+    xml += urlEntry(loc, lastmod, 'monthly', '0.7')
   }
 
   xml += '</urlset>'

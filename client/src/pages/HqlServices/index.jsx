@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 
 import HqlHero from './components/HqlHero'
 import WhatIsHqlService from './components/WhatIsHqlService'
@@ -67,19 +68,21 @@ const hqlSchema = {
 // ─── Main HQL Services Page Component ─────────────────────────────────────────
 
 export default function HqlServices() {
+  const { seoData } = useSEOData('page', 'hql-services', {
+    title: "High-Quality Leads (HQL) Services | Taraj Global",
+    description: "Accelerate your B2B sales pipeline with Taraj Global's High-Quality Leads (HQL) services. Verified decision-makers, custom discovery screening, 100% human-verified data, and guaranteed CPL delivery.",
+    keywords: "HQL services, High Quality Leads B2B, what is HQL, who is HQL for, business problems HQL solves, what does Taraj deliver, B2B lead qualification, MQL vs HQL, sales pipeline acceleration, verified B2B contacts, CPL lead generation, B2B intent data",
+    canonical: "/hql-services",
+    ogTitle: "High-Quality Leads (HQL) Services | Taraj Global",
+    ogDescription: "Engage vetted, high-intent B2B decision-makers with custom discovery answers, 100% phone-verified contacts, and zero bounce risk.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: hqlSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="High-Quality Leads (HQL) Services | Taraj Global"
-        description="Accelerate your B2B sales pipeline with Taraj Global's High-Quality Leads (HQL) services. Verified decision-makers, custom discovery screening, 100% human-verified data, and guaranteed CPL delivery."
-        keywords="HQL services, High Quality Leads B2B, what is HQL, who is HQL for, business problems HQL solves, what does Taraj deliver, B2B lead qualification, MQL vs HQL, sales pipeline acceleration, verified B2B contacts, CPL lead generation, B2B intent data"
-        canonical="/hql-services"
-        ogTitle="High-Quality Leads (HQL) Services | Taraj Global"
-        ogDescription="Engage vetted, high-intent B2B decision-makers with custom discovery answers, 100% phone-verified contacts, and zero bounce risk."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={hqlSchema}
-      />
+      <SEO {...seoData} schemaJson={hqlSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 0 — Hero with interactive qualification engine */}

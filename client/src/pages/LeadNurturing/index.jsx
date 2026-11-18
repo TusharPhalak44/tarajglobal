@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -66,19 +67,21 @@ const leadNurturingSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const LeadNurturing = () => {
+  const { seoData } = useSEOData('page', 'lead-nurturing', {
+    title: "B2B Lead Nurturing Services | Tech-Powered Lead Engagement & Reactivation | TaRaj Global",
+    description: "Re-engage and develop B2B leads into sales-ready opportunities across US, EMEA, and APAC. TaRaj Global combines behavioral scoring, AI-assisted intent signals, and a 99.8% Data Accuracy SLA.",
+    keywords: "B2B Lead Nurturing, B2B Lead Nurturing Services, Lead Nurturing Services, B2B Lead Nurturing Campaigns, Lead Nurturing Strategy, B2B Lead Nurturing Solutions, Lead Qualification, Lead Engagement, Marketing Qualified Leads, Sales Qualified Leads, Buyer Intent, Lead Scoring, B2B Demand Generation, B2B Lead Generation, Sales Pipeline, Prospect Engagement",
+    canonical: "/lead-nurturing",
+    ogTitle: "B2B Lead Nurturing Services | Tech-Powered Lead Engagement & Reactivation | TaRaj Global",
+    ogDescription: "Re-engage and develop B2B leads into sales-ready opportunities across US, EMEA, and APAC. TaRaj Global combines behavioral scoring, AI-assisted intent signals, and a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: leadNurturingSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Lead Nurturing Services | Tech-Powered Lead Engagement & Reactivation | TaRaj Global"
-        description="Re-engage and develop B2B leads into sales-ready opportunities across US, EMEA, and APAC. TaRaj Global combines behavioral scoring, AI-assisted intent signals, and a 99.8% Data Accuracy SLA."
-        keywords="B2B Lead Nurturing, B2B Lead Nurturing Services, Lead Nurturing Services, B2B Lead Nurturing Campaigns, Lead Nurturing Strategy, B2B Lead Nurturing Solutions, Lead Qualification, Lead Engagement, Marketing Qualified Leads, Sales Qualified Leads, Buyer Intent, Lead Scoring, B2B Demand Generation, B2B Lead Generation, Sales Pipeline, Prospect Engagement"
-        canonical="/lead-nurturing"
-        ogTitle="B2B Lead Nurturing Services | Tech-Powered Lead Engagement & Reactivation | TaRaj Global"
-        ogDescription="Re-engage and develop B2B leads into sales-ready opportunities across US, EMEA, and APAC. TaRaj Global combines behavioral scoring, AI-assisted intent signals, and a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={leadNurturingSchema}
-      />
+      <SEO {...seoData} schemaJson={leadNurturingSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

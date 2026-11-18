@@ -8,7 +8,7 @@ import { ROUTES, SERVICES, SITE_URL, DEFAULT_IMAGE } from './route-meta.mjs'
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../dist')
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 const navLinks = [
   ['/', 'Home'], ['/services', 'Services'], ['/careers', 'Careers'], ['/blog', 'Blog'],
@@ -60,12 +60,75 @@ function render(route, meta) {
     .replace('<div id="root"></div>', `<div id="root"></div>\n  ${noscript(meta)}`)
 }
 
+// 1. Fetch DB overrides if database is reachable
+let dbOverrides = {}
+try {
+  const dbModule = await import('../../server/config/db.js').catch(() => null)
+  if (dbModule?.default) {
+    const [pageRows] = await dbModule.default.execute("SELECT * FROM seo_metadata WHERE entity_type = 'page'")
+    for (const row of pageRows) {
+      if (row.entity_id) {
+        dbOverrides[row.entity_id] = row
+      }
+    }
+  }
+} catch (dbErr) {
+  // DB unavailable; fall back to static route-meta.mjs definitions
+}
+
+// 2. Prerender static routes
 let count = 0
-for (const [route, meta] of Object.entries(ROUTES)) {
+for (const [route, defaultMeta] of Object.entries(ROUTES)) {
+  const entityId = route === '/' ? 'home' : route.slice(1)
+  const dbRow = dbOverrides[entityId] || (entityId === 'who-we-are' ? dbOverrides['about'] : null)
+
+  const meta = {
+    ...defaultMeta,
+    title: dbRow?.meta_title || defaultMeta.title,
+    description: dbRow?.meta_description || defaultMeta.description,
+    canonical: dbRow?.canonical_url || `${SITE_URL}${route === '/' ? '/' : route}`,
+    robots: dbRow?.robots || 'index, follow, max-image-preview:large',
+    image: dbRow?.og_image || defaultMeta.image || DEFAULT_IMAGE,
+  }
+
   const html = render(route, meta)
   const outDir = route === '/' ? dist : path.join(dist, route.slice(1))
   fs.mkdirSync(outDir, { recursive: true })
   fs.writeFileSync(path.join(outDir, 'index.html'), html)
   count++
 }
-console.log(`prerender-meta: wrote ${count} route HTML files`)
+console.log(`prerender-meta: wrote ${count} static route HTML files`)
+
+// 3. Prerender published blogs if database is reachable
+try {
+  const { renderBlogHtml } = await import('../../server/services/blogSeoRenderer.js')
+  const dbModule = await import('../../server/config/db.js').catch(() => null)
+  if (dbModule?.default) {
+    const db = dbModule.default
+    const [blogs] = await db.execute(`
+      SELECT slug FROM blogs 
+      WHERE status = 'published' OR (status = 'scheduled' AND scheduled_at IS NOT NULL AND scheduled_at <= NOW())
+    `)
+
+    let blogCount = 0
+    for (const b of blogs) {
+      if (!b.slug) continue
+      const { statusCode, html } = await renderBlogHtml(b.slug)
+      if (statusCode === 200 && html) {
+        try {
+          const blogDir = path.join(dist, 'blog', b.slug)
+          fs.mkdirSync(blogDir, { recursive: true })
+          fs.writeFileSync(path.join(blogDir, 'index.html'), html, 'utf8')
+          blogCount++
+        } catch (writeErr) {
+          console.warn(`prerender-meta: skipped static file for '${b.slug}':`, writeErr.message)
+        }
+      }
+    }
+    console.log(`prerender-meta: wrote ${blogCount} published blog HTML files to dist/blog/:slug/index.html`)
+  }
+} catch (blogErr) {
+  console.log('prerender-meta notice: blog static prerender deferred to runtime server:', blogErr.message)
+}
+
+process.exit(0)

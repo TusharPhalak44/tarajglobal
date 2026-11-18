@@ -4,6 +4,7 @@ import { analyzeSEO } from '../../helpers/seoAnalyzer.js'
 import fs from 'fs'
 import path from 'path'
 import { formatAuthorName } from '../../utils/authorFormatter.js'
+import { invalidateBlogCache } from '../../services/blogSeoRenderer.js'
 
 // Helper function to calculate reading time
 export const calculateReadingTime = (content) => {
@@ -100,6 +101,7 @@ export const publishScheduledBlogs = async () => {
     `)
     if (result.affectedRows > 0) {
       console.log(`⏰ [Scheduler] Published ${result.affectedRows} scheduled blog post(s) whose scheduled time arrived.`)
+      invalidateBlogCache()
     }
     return result.affectedRows
   } catch (err) {
@@ -282,7 +284,8 @@ export const getBlogById = async (req, res) => {
 // @desc    Create new blog
 // @route   POST /api/admin/blogs
 export const createBlog = async (req, res) => {
-  try {    const {
+  try {
+    const {
       title,
       slug: customSlug,
       content,
@@ -297,13 +300,21 @@ export const createBlog = async (req, res) => {
       seo_description,
       seo_keywords,
       canonical_url,
+      og_title,
+      og_description,
+      og_image,
+      twitter_title,
+      twitter_description,
+      twitter_image,
+      robots,
       seo_score,
       seo_analysis,
       scheduled_at,
       published_at,
       publish_date,
       created_at
-    } = req.body    // Check which columns exist in the blogs table
+    } = req.body
+    // Check which columns exist in the blogs table
     const [columns] = await db.execute(`
       SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
       WHERE TABLE_NAME = 'blogs'
@@ -329,7 +340,8 @@ export const createBlog = async (req, res) => {
     // Calculate reading time if column exists
     let reading_time = null
     if (columnNames.includes('reading_time')) {
-      reading_time = calculateReadingTime(content)    }
+      reading_time = calculateReadingTime(content)
+    }
 
     // Build dynamic INSERT query based on available columns
     const insertColumns = ['title', 'content', 'excerpt']
@@ -511,6 +523,42 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('?')
     }
 
+    if (columnNames.includes('og_title') && og_title) {
+      insertColumns.push('og_title')
+      insertValues.push(og_title)
+      valuePlaceholders.push('?')
+    }
+    if (columnNames.includes('og_description') && og_description) {
+      insertColumns.push('og_description')
+      insertValues.push(og_description)
+      valuePlaceholders.push('?')
+    }
+    if (columnNames.includes('og_image') && og_image) {
+      insertColumns.push('og_image')
+      insertValues.push(og_image)
+      valuePlaceholders.push('?')
+    }
+    if (columnNames.includes('twitter_title') && twitter_title) {
+      insertColumns.push('twitter_title')
+      insertValues.push(twitter_title)
+      valuePlaceholders.push('?')
+    }
+    if (columnNames.includes('twitter_description') && twitter_description) {
+      insertColumns.push('twitter_description')
+      insertValues.push(twitter_description)
+      valuePlaceholders.push('?')
+    }
+    if (columnNames.includes('twitter_image') && twitter_image) {
+      insertColumns.push('twitter_image')
+      insertValues.push(twitter_image)
+      valuePlaceholders.push('?')
+    }
+    if (columnNames.includes('robots') && robots) {
+      insertColumns.push('robots')
+      insertValues.push(robots)
+      valuePlaceholders.push('?')
+    }
+
     if (columnNames.includes('reading_time')) {
       insertColumns.push('reading_time')
       insertValues.push(calculateReadingTime(content))
@@ -554,8 +602,74 @@ export const createBlog = async (req, res) => {
       valuePlaceholders.push('?')
     }
 
-    // Insert blog    const query = `INSERT INTO blogs (${insertColumns.join(', ')}) VALUES (${valuePlaceholders.join(', ')})`
-    const [result] = await db.execute(query, insertValues)    const blogId = result.insertId
+    // Insert blog
+    const query = `INSERT INTO blogs (${insertColumns.join(', ')}) VALUES (${valuePlaceholders.join(', ')})`
+    const [result] = await db.execute(query, insertValues)
+    const blogId = result.insertId
+
+    // Sync to seo_metadata table for both blogId and slug
+    try {
+      const cleanVal = (v) => (v === undefined || v === '' ? null : v)
+      const seoParams = [
+        cleanVal(seo_title),
+        cleanVal(seo_description),
+        cleanVal(seo_keywords),
+        cleanVal(canonical_url),
+        cleanVal(og_title),
+        cleanVal(og_description),
+        cleanVal(og_image),
+        cleanVal(twitter_title),
+        cleanVal(twitter_description),
+        cleanVal(twitter_image),
+        cleanVal(robots)
+      ]
+
+      await db.execute(`
+        INSERT INTO seo_metadata 
+        (entity_type, entity_id, meta_title, meta_description, meta_keywords, canonical_url, og_title, og_description, og_image, twitter_title, twitter_description, twitter_image, robots)
+        VALUES ('blog', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+          meta_title = VALUES(meta_title),
+          meta_description = VALUES(meta_description),
+          meta_keywords = VALUES(meta_keywords),
+          canonical_url = VALUES(canonical_url),
+          og_title = VALUES(og_title),
+          og_description = VALUES(og_description),
+          og_image = VALUES(og_image),
+          twitter_title = VALUES(twitter_title),
+          twitter_description = VALUES(twitter_description),
+          twitter_image = VALUES(twitter_image),
+          robots = VALUES(robots),
+          updated_at = NOW()
+      `, [String(blogId), ...seoParams])
+
+      if (slug) {
+        await db.execute(`
+          INSERT INTO seo_metadata 
+          (entity_type, entity_id, meta_title, meta_description, meta_keywords, canonical_url, og_title, og_description, og_image, twitter_title, twitter_description, twitter_image, robots)
+          VALUES ('blog', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          ON DUPLICATE KEY UPDATE
+            meta_title = VALUES(meta_title),
+            meta_description = VALUES(meta_description),
+            meta_keywords = VALUES(meta_keywords),
+            canonical_url = VALUES(canonical_url),
+            og_title = VALUES(og_title),
+            og_description = VALUES(og_description),
+            og_image = VALUES(og_image),
+            twitter_title = VALUES(twitter_title),
+            twitter_description = VALUES(twitter_description),
+            twitter_image = VALUES(twitter_image),
+            robots = VALUES(robots),
+            updated_at = NOW()
+        `, [slug, ...seoParams])
+      }
+    } catch (metaErr) {
+      console.warn('⚠️ [createBlog] Notice: seo_metadata sync:', metaErr.message)
+    }
+
+    // Invalidate SEO cache immediately
+    invalidateBlogCache(slug)
+    invalidateBlogCache(blogId)
 
     res.status(201).json({
       success: true,
@@ -590,6 +704,13 @@ export const updateBlog = async (req, res) => {
       seo_description,
       seo_keywords,
       canonical_url,
+      og_title,
+      og_description,
+      og_image,
+      twitter_title,
+      twitter_description,
+      twitter_image,
+      robots,
       seo_score,
       seo_analysis,
       scheduled_at,
@@ -739,6 +860,35 @@ export const updateBlog = async (req, res) => {
       values.push(canonical_url || null)
     }
 
+    if (og_title !== undefined) {
+      updates.push('og_title = ?')
+      values.push(og_title || null)
+    }
+    if (og_description !== undefined) {
+      updates.push('og_description = ?')
+      values.push(og_description || null)
+    }
+    if (og_image !== undefined) {
+      updates.push('og_image = ?')
+      values.push(og_image || null)
+    }
+    if (twitter_title !== undefined) {
+      updates.push('twitter_title = ?')
+      values.push(twitter_title || null)
+    }
+    if (twitter_description !== undefined) {
+      updates.push('twitter_description = ?')
+      values.push(twitter_description || null)
+    }
+    if (twitter_image !== undefined) {
+      updates.push('twitter_image = ?')
+      values.push(twitter_image || null)
+    }
+    if (robots !== undefined) {
+      updates.push('robots = ?')
+      values.push(robots || null)
+    }
+
     if (content !== undefined) {
       updates.push('reading_time = ?')
       values.push(calculateReadingTime(content))
@@ -790,7 +940,8 @@ export const updateBlog = async (req, res) => {
           seo_keywords: seo_keywords || currentBlog.seo_keywords,
           canonical_url: canonical_url || currentBlog.canonical_url
         }, req.user?.id || 1, 'Content updated')
-      } catch (revisionError) {      }
+      } catch (revisionError) {
+      }
     }
 
     // Update tags if provided
@@ -801,7 +952,8 @@ export const updateBlog = async (req, res) => {
           await db.execute('INSERT INTO blog_tags (blog_id, tag_id) VALUES (?, ?)', [id, tagId])
         }
         await db.execute('UPDATE tags SET post_count = (SELECT COUNT(*) FROM blog_tags WHERE tag_id = tags.id)')
-      } catch (tagErr) {      }
+      } catch (tagErr) {
+      }
     }
 
     // Safely update category post count if changed
@@ -814,7 +966,75 @@ export const updateBlog = async (req, res) => {
           await db.execute('UPDATE categories SET post_count = post_count + 1 WHERE id = ?', [category_id])
         }
       }
-    } catch (catErr) {    }
+    } catch (catErr) {
+    }
+
+    // Sync to seo_metadata table
+    try {
+      const cleanVal = (v, fallback) => (v !== undefined ? (v === '' ? null : v) : fallback || null)
+      const seoParams = [
+        cleanVal(seo_title, currentBlog.seo_title),
+        cleanVal(seo_description, currentBlog.seo_description),
+        cleanVal(seo_keywords, currentBlog.seo_keywords),
+        cleanVal(canonical_url, currentBlog.canonical_url),
+        cleanVal(og_title, currentBlog.og_title),
+        cleanVal(og_description, currentBlog.og_description),
+        cleanVal(og_image, currentBlog.og_image),
+        cleanVal(twitter_title, currentBlog.twitter_title),
+        cleanVal(twitter_description, currentBlog.twitter_description),
+        cleanVal(twitter_image, currentBlog.twitter_image),
+        cleanVal(robots, currentBlog.robots)
+      ]
+
+      await db.execute(`
+        INSERT INTO seo_metadata 
+        (entity_type, entity_id, meta_title, meta_description, meta_keywords, canonical_url, og_title, og_description, og_image, twitter_title, twitter_description, twitter_image, robots)
+        VALUES ('blog', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+          meta_title = VALUES(meta_title),
+          meta_description = VALUES(meta_description),
+          meta_keywords = VALUES(meta_keywords),
+          canonical_url = VALUES(canonical_url),
+          og_title = VALUES(og_title),
+          og_description = VALUES(og_description),
+          og_image = VALUES(og_image),
+          twitter_title = VALUES(twitter_title),
+          twitter_description = VALUES(twitter_description),
+          twitter_image = VALUES(twitter_image),
+          robots = VALUES(robots),
+          updated_at = NOW()
+      `, [String(id), ...seoParams])
+
+      if (slug) {
+        await db.execute(`
+          INSERT INTO seo_metadata 
+          (entity_type, entity_id, meta_title, meta_description, meta_keywords, canonical_url, og_title, og_description, og_image, twitter_title, twitter_description, twitter_image, robots)
+          VALUES ('blog', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          ON DUPLICATE KEY UPDATE
+            meta_title = VALUES(meta_title),
+            meta_description = VALUES(meta_description),
+            meta_keywords = VALUES(meta_keywords),
+            canonical_url = VALUES(canonical_url),
+            og_title = VALUES(og_title),
+            og_description = VALUES(og_description),
+            og_image = VALUES(og_image),
+            twitter_title = VALUES(twitter_title),
+            twitter_description = VALUES(twitter_description),
+            twitter_image = VALUES(twitter_image),
+            robots = VALUES(robots),
+            updated_at = NOW()
+        `, [slug, ...seoParams])
+      }
+    } catch (metaErr) {
+      console.warn('⚠️ [updateBlog] Notice: seo_metadata sync:', metaErr.message)
+    }
+
+    // Invalidate SEO cache immediately
+    invalidateBlogCache(slug)
+    if (currentBlog.slug && currentBlog.slug !== slug) {
+      invalidateBlogCache(currentBlog.slug)
+    }
+    invalidateBlogCache(id)
 
     res.json({
       success: true,
@@ -858,14 +1078,23 @@ export const deleteBlog = async (req, res) => {
     // Delete related records safely before deleting the blog
     try {
       await db.execute('DELETE FROM blog_tags WHERE blog_id = ?', [id])
-    } catch (tagErr) {    }
+    } catch (tagErr) {
+    }
 
     try {
       await db.execute('DELETE FROM blog_revisions WHERE blog_id = ?', [id])
-    } catch (revErr) {    }
+    } catch (revErr) {
+    }
 
     // Delete blog
     await db.execute('DELETE FROM blogs WHERE id = ?', [id])
+
+    // Cleanup seo_metadata and invalidate cache
+    try {
+      await db.execute('DELETE FROM seo_metadata WHERE entity_type = "blog" AND (entity_id = ? OR entity_id = ?)', [String(id), blog.slug])
+    } catch (seoErr) {}
+    invalidateBlogCache(blog.slug)
+    invalidateBlogCache(id)
 
     // Update category post count safely
     if (blog.category_id) {
@@ -874,13 +1103,15 @@ export const deleteBlog = async (req, res) => {
           'UPDATE categories SET post_count = GREATEST(0, post_count - 1) WHERE id = ?',
           [blog.category_id]
         )
-      } catch (catErr) {      }
+      } catch (catErr) {
+      }
     }
 
     // Update tag post counts safely
     try {
       await db.execute('UPDATE tags SET post_count = (SELECT COUNT(*) FROM blog_tags WHERE tag_id = tags.id)')
-    } catch (tagCountErr) {    }
+    } catch (tagCountErr) {
+    }
 
     res.json({
       success: true,
@@ -941,6 +1172,10 @@ export const updateBlogStatus = async (req, res) => {
       `UPDATE blogs SET status = ?, seo_score = ?, seo_analysis = ?, updated_at = NOW()${pubUpdate} WHERE id = ?`,
       [status, seoScore, typeof seoAnalysis === 'string' ? seoAnalysis : JSON.stringify(seoAnalysis), id]
     )
+
+    // Invalidate SEO cache immediately
+    invalidateBlogCache(currentBlog.slug)
+    invalidateBlogCache(id)
 
     res.json({
       success: true,

@@ -21,6 +21,7 @@ import {
 } from 'lucide-react'
 import Container from '@components/layout/Container'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 import { Link } from 'react-router-dom'
 
 const termsSchema = {
@@ -107,17 +108,19 @@ function Terms() {
     }
   }
 
+  const { seoData } = useSEOData('page', 'terms', {
+    title: "Terms of Service | Service Agreement | Taraj Global",
+    description: "Read the complete Terms of Service governing the use of Taraj Global's website, B2B demand generation, lead qualification, and digital solutions.",
+    keywords: "Taraj Global terms, terms and conditions, terms of service, B2B marketing service agreement, lead generation terms",
+    canonical: "/terms",
+    ogTitle: "Terms of Service | Taraj Global",
+    ogDescription: "Read the comprehensive Terms of Service and legal agreement for Taraj Global.",
+    schemaJson: termsSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="Terms of Service | Service Agreement | Taraj Global"
-        description="Read the complete Terms of Service governing the use of Taraj Global's website, B2B demand generation, lead qualification, and digital solutions."
-        keywords="Taraj Global terms, terms and conditions, terms of service, B2B marketing service agreement, lead generation terms"
-        canonical="/terms"
-        ogTitle="Terms of Service | Taraj Global"
-        ogDescription="Read the comprehensive Terms of Service and legal agreement for Taraj Global."
-        schemaJson={termsSchema}
-      />
+      <SEO {...seoData} schemaJson={termsSchema} />
 
       <div className="min-h-screen bg-background pt-8 sm:pt-10 pb-20 select-text">
         <Container>

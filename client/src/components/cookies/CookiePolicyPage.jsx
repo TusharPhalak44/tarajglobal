@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Container from '@components/layout/Container'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 
 const cookieSchema = {
   "@context": "https://schema.org",
@@ -12,6 +13,16 @@ const cookieSchema = {
 }
 
 const CookiePolicyPage = () => {
+  const { seoData } = useSEOData('page', 'cookies', {
+    title: "Cookie Policy | Tracking Technologies & Consent | Taraj Global",
+    description: "Learn about the cookies and tracking technologies used on Taraj Global's website. Manage your cookie consent preferences and privacy settings.",
+    keywords: "Taraj Global cookie policy, website cookies, tracking technologies, cookie preferences, GDPR cookie consent",
+    canonical: "/cookies",
+    ogTitle: "Cookie Policy | Taraj Global",
+    ogDescription: "Learn how we use cookies and manage your privacy preferences.",
+    schemaJson: cookieSchema,
+  })
+
   const cookieTypes = [
     {
       type: 'Necessary',
@@ -37,15 +48,7 @@ const CookiePolicyPage = () => {
 
   return (
     <>
-      <SEO
-        title="Cookie Policy | Tracking Technologies & Consent | Taraj Global"
-        description="Learn about the cookies and tracking technologies used on Taraj Global's website. Manage your cookie consent preferences and privacy settings."
-        keywords="Taraj Global cookie policy, website cookies, tracking technologies, cookie preferences, GDPR cookie consent"
-        canonical="/cookies"
-        ogTitle="Cookie Policy | Taraj Global"
-        ogDescription="Learn how we use cookies and manage your privacy preferences."
-        schemaJson={cookieSchema}
-      />
+      <SEO {...seoData} schemaJson={cookieSchema} />
       <div className="min-h-screen bg-background dark:bg-[#050505] pt-8 pb-16 md:pt-10 md:pb-24">
         <Container>
           <motion.div

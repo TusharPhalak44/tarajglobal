@@ -3,6 +3,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import compression from 'compression'
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 import 'dotenv/config'
 
@@ -12,6 +13,7 @@ const __dirname = path.dirname(__filename)
 // Import routes
 import authRoutes from './routes/auth.routes.js'
 import blogRoutes from './routes/blog.routes.js'
+import blogPageRoutes from './routes/blogPage.routes.js'
 import jobRoutes from './routes/job.routes.js'
 import categoryRoutes from './routes/category.routes.js'
 import authorRoutes from './routes/author.routes.js'
@@ -92,6 +94,37 @@ if (process.env.NODE_ENV !== 'production') {
   app.use('/uploads', (req, res) => {
     res.redirect(`https://tarajglobal.com/uploads${req.path}`)
   })
+}
+
+// Serve built assets if available (for direct backend or SSR access)
+const candidateDistPaths = [
+  path.resolve(__dirname, '../client/dist'),
+  path.resolve(process.cwd(), 'client', 'dist'),
+  path.resolve(process.cwd(), 'dist'),
+  path.resolve(__dirname, '../../client/dist'),
+  '/usr/share/nginx/html',
+]
+const resolvedDistPath = candidateDistPaths.find((p) => fs.existsSync(p))
+
+if (resolvedDistPath) {
+  const assetsDir = path.join(resolvedDistPath, 'assets')
+  if (fs.existsSync(assetsDir)) {
+    app.use('/assets', express.static(assetsDir, {
+      maxAge: '1y',
+      immutable: true,
+    }))
+  }
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(resolvedDistPath, 'index.html'))
+  })
+}
+
+// Dynamic server-rendered blog routes with author-provided SEO metadata
+app.use('/blog', blogPageRoutes)
+
+// Fallback static files if dist is present (excluding /blog which is handled dynamically)
+if (resolvedDistPath) {
+  app.use(express.static(resolvedDistPath, { index: false }))
 }
 
 // Chrome DevTools probe endpoint to avoid 404 and CSP warnings in console

@@ -174,6 +174,14 @@ const EditBlog = () => {
     meta_title: '',
     meta_description: '',
     focus_keyword: '',
+    canonical_url: '',
+    og_title: '',
+    og_description: '',
+    og_image: '',
+    twitter_title: '',
+    twitter_description: '',
+    twitter_image: '',
+    robots: 'index, follow',
     publish_date: '',
     publish_time: '',
     scheduled_date: '',
@@ -246,7 +254,15 @@ const EditBlog = () => {
           scheduled_time: sTime,
           meta_title: blogData.seo_title || '',
           meta_description: blogData.seo_description || '',
-          focus_keyword: blogData.seo_keywords || ''
+          focus_keyword: blogData.seo_keywords || '',
+          canonical_url: blogData.canonical_url || '',
+          og_title: blogData.og_title || '',
+          og_description: blogData.og_description || '',
+          og_image: blogData.og_image || '',
+          twitter_title: blogData.twitter_title || '',
+          twitter_description: blogData.twitter_description || '',
+          twitter_image: blogData.twitter_image || '',
+          robots: blogData.robots || 'index, follow'
         }
 
       setEditForm(initialForm)
@@ -454,7 +470,15 @@ const EditBlog = () => {
         seo_analysis: currentSeo || null,
         seo_title: editForm.meta_title || null,
         seo_description: editForm.meta_description || null,
-        seo_keywords: editForm.focus_keyword || null
+        seo_keywords: editForm.focus_keyword || null,
+        canonical_url: editForm.canonical_url || null,
+        og_title: editForm.og_title || null,
+        og_description: editForm.og_description || null,
+        og_image: editForm.og_image || null,
+        twitter_title: editForm.twitter_title || null,
+        twitter_description: editForm.twitter_description || null,
+        twitter_image: editForm.twitter_image || null,
+        robots: editForm.robots || null
       }
 
       await adminAPI.updateBlog(id, updateData)
@@ -1146,6 +1170,135 @@ const EditBlog = () => {
                   placeholder="Enter focus keyword"
                   className="admin-input w-full text-sm"
                 />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] mb-1.5">
+                    Canonical URL (Optional)
+                  </label>
+                  <input
+                    type="url"
+                    name="canonical_url"
+                    value={editForm.canonical_url}
+                    onChange={handleInputChange}
+                    placeholder="https://tarajglobal.com/blog/..."
+                    className="admin-input w-full text-sm font-mono"
+                  />
+                  <span className="text-[12px] text-[var(--admin-text-muted)] mt-1 block">
+                    Defaults to production blog URL
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-[var(--admin-text-primary)] mb-1.5">
+                    Search Engine Robots
+                  </label>
+                  <select
+                    name="robots"
+                    value={editForm.robots}
+                    onChange={handleInputChange}
+                    className="admin-select w-full text-sm"
+                  >
+                    <option value="index, follow">Index, Follow (Recommended)</option>
+                    <option value="noindex, nofollow">Noindex, Nofollow (Do not index)</option>
+                    <option value="index, nofollow">Index, Nofollow</option>
+                    <option value="noindex, follow">Noindex, Follow</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Social / Open Graph & Twitter Cards */}
+              <div className="p-4 rounded-xl bg-[var(--admin-bg-elevated)] border border-[var(--admin-border-subtle)] space-y-4">
+                <h4 className="text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider">
+                  Social Sharing & Open Graph Metadata
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase mb-1">
+                      Open Graph Title (og:title)
+                    </label>
+                    <input
+                      type="text"
+                      name="og_title"
+                      value={editForm.og_title}
+                      onChange={handleInputChange}
+                      placeholder="Defaults to SEO Title"
+                      className="admin-input w-full text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase mb-1">
+                      Twitter Card Title
+                    </label>
+                    <input
+                      type="text"
+                      name="twitter_title"
+                      value={editForm.twitter_title}
+                      onChange={handleInputChange}
+                      placeholder="Defaults to OG Title"
+                      className="admin-input w-full text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase mb-1">
+                      Open Graph Description (og:description)
+                    </label>
+                    <textarea
+                      name="og_description"
+                      value={editForm.og_description}
+                      onChange={handleInputChange}
+                      rows={2}
+                      placeholder="Defaults to SEO Description"
+                      className="admin-textarea w-full text-sm resize-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase mb-1">
+                      Twitter Card Description
+                    </label>
+                    <textarea
+                      name="twitter_description"
+                      value={editForm.twitter_description}
+                      onChange={handleInputChange}
+                      rows={2}
+                      placeholder="Defaults to OG Description"
+                      className="admin-textarea w-full text-sm resize-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase mb-1">
+                      Open Graph Image URL (og:image)
+                    </label>
+                    <input
+                      type="url"
+                      name="og_image"
+                      value={editForm.og_image}
+                      onChange={handleInputChange}
+                      placeholder="Defaults to Featured Image"
+                      className="admin-input w-full text-sm font-mono"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--admin-text-secondary)] uppercase mb-1">
+                      Twitter Card Image URL
+                    </label>
+                    <input
+                      type="url"
+                      name="twitter_image"
+                      value={editForm.twitter_image}
+                      onChange={handleInputChange}
+                      placeholder="Defaults to OG Image"
+                      className="admin-input w-full text-sm font-mono"
+                    />
+                  </div>
+                </div>
               </div>
 
               <div>

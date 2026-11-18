@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -67,19 +68,21 @@ const demandGenSchema = {
 }
 
 const DemandGeneration = () => {
+  const { seoData } = useSEOData('page', 'demand-generation', {
+    title: "B2B Demand Generation Services | Demand Generation Agency | Taraj Global",
+    description: "Taraj Global provides B2B demand generation services that help technology and SaaS companies reach target audiences, engage decision-makers, generate qualified leads, and build stronger sales pipelines.",
+    keywords: "B2B Demand Generation, B2B Demand Generation Services, Demand Generation Services, B2B Demand Generation Agency, Demand Generation Strategy, B2B Demand Generation Strategy, Demand Generation Campaigns, B2B Lead Generation, B2B Marketing, Account-Based Marketing, Lead Nurturing, Content Syndication, B2B Audience Targeting, Decision-Maker Engagement, Buyer Intent, Lead Qualification, MQL Generation, Sales Pipeline, Qualified B2B Leads, DemandFlow Bridge",
+    canonical: "/demand-generation",
+    ogTitle: "B2B Demand Generation Services | Demand Generation Agency | Taraj Global",
+    ogDescription: "Taraj Global provides B2B demand generation services that help technology and SaaS companies reach target audiences, engage decision-makers, generate qualified leads, and build stronger sales pipelines.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: demandGenSchema
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Demand Generation Services | Demand Generation Agency | Taraj Global"
-        description="Taraj Global provides B2B demand generation services that help technology and SaaS companies reach target audiences, engage decision-makers, generate qualified leads, and build stronger sales pipelines."
-        keywords="B2B Demand Generation, B2B Demand Generation Services, Demand Generation Services, B2B Demand Generation Agency, Demand Generation Strategy, B2B Demand Generation Strategy, Demand Generation Campaigns, B2B Lead Generation, B2B Marketing, Account-Based Marketing, Lead Nurturing, Content Syndication, B2B Audience Targeting, Decision-Maker Engagement, Buyer Intent, Lead Qualification, MQL Generation, Sales Pipeline, Qualified B2B Leads, DemandFlow Bridge"
-        canonical="/demand-generation"
-        ogTitle="B2B Demand Generation Services | Demand Generation Agency | Taraj Global"
-        ogDescription="Taraj Global provides B2B demand generation services that help technology and SaaS companies reach target audiences, engage decision-makers, generate qualified leads, and build stronger sales pipelines."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={demandGenSchema}
-      />
+      <SEO {...seoData} schemaJson={demandGenSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

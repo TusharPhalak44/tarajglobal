@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -66,19 +67,21 @@ const abmSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const Abm = () => {
+  const { seoData } = useSEOData('page', 'abm', {
+    title: "Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global",
+    description: "Engage high-value target accounts and full buying committees across US, EMEA, and APAC. TaRaj Global combines AI-assisted account scoring, intent telemetry, and a 99.8% Data Accuracy SLA.",
+    keywords: "account-based marketing services, account-based marketing, ABM services, enterprise lead generation, ABM agency, 1:1 ABM campaigns, target account list, buying committee engagement, intent data ABM, DemandFlow Bridge, enterprise pipeline growth",
+    canonical: "/abm",
+    ogTitle: "Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global",
+    ogDescription: "Engage high-value target accounts and full buying committees across US, EMEA, and APAC. TaRaj Global combines AI-assisted account scoring, intent telemetry, and a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: abmSchema
+  })
+
   return (
     <>
-      <SEO
-        title="Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global"
-        description="Engage high-value target accounts and full buying committees across US, EMEA, and APAC. TaRaj Global combines AI-assisted account scoring, intent telemetry, and a 99.8% Data Accuracy SLA."
-        keywords="account-based marketing services, account-based marketing, ABM services, enterprise lead generation, ABM agency, 1:1 ABM campaigns, target account list, buying committee engagement, intent data ABM, DemandFlow Bridge, enterprise pipeline growth"
-        canonical="/abm"
-        ogTitle="Account-Based Marketing (ABM) Services | Tech-Powered Enterprise Account Engagement | TaRaj Global"
-        ogDescription="Engage high-value target accounts and full buying committees across US, EMEA, and APAC. TaRaj Global combines AI-assisted account scoring, intent telemetry, and a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={abmSchema}
-      />
+      <SEO {...seoData} schemaJson={abmSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

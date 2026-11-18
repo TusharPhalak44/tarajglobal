@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -51,19 +52,21 @@ const abxSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const AccountBasedExperience = () => {
+  const { seoData } = useSEOData('page', 'account-based-experience', {
+    title: "Account-Based Experience (ABX) Services | Tech-Powered Unified Buyer Journeys | TaRaj Global",
+    description: "Orchestrate one consistent, personalized journey for every enterprise buying committee across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent signals, verified stakeholder data, and a 99.8% Data Accuracy SLA.",
+    keywords: "account based experience, ABX services, modern ABM, enterprise account engagement, buying committee orchestration, intent data ABX, B2B pipeline acceleration, DemandFlow Bridge",
+    canonical: "/account-based-experience",
+    ogTitle: "Account-Based Experience (ABX) Services | Tech-Powered Unified Buyer Journeys | TaRaj Global",
+    ogDescription: "Deliver personalized, synchronized buying experiences to your most important enterprise accounts. Accelerate consensus, deal velocity, and pipeline revenue.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: abxSchema
+  })
+
   return (
     <>
-      <SEO
-        title="Account-Based Experience (ABX) Services | Tech-Powered Unified Buyer Journeys | TaRaj Global"
-        description="Orchestrate one consistent, personalized journey for every enterprise buying committee across US, EMEA, and APAC. TaRaj Global combines AI-assisted intent signals, verified stakeholder data, and a 99.8% Data Accuracy SLA."
-        keywords="account based experience, ABX services, modern ABM, enterprise account engagement, buying committee orchestration, intent data ABX, B2B pipeline acceleration, DemandFlow Bridge"
-        canonical="/account-based-experience"
-        ogTitle="Account-Based Experience (ABX) Services | Tech-Powered Unified Buyer Journeys | TaRaj Global"
-        ogDescription="Deliver personalized, synchronized buying experiences to your most important enterprise accounts. Accelerate consensus, deal velocity, and pipeline revenue."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={abxSchema}
-      />
+      <SEO {...seoData} schemaJson={abxSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

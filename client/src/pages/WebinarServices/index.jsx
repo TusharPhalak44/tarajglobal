@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -64,19 +65,21 @@ const webinarSchema = {
 }
 
 const WebinarServices = () => {
+  const { seoData } = useSEOData('page', 'webinar-services', {
+    title: "B2B Webinar Services | Verified Registrations & Attendee-Qualified Pipeline | TaRaj Global",
+    description: "Fill B2B webinars with verified decision-makers and turn live engagement into sales-ready pipeline across US, EMEA, and APAC. TaRaj Global combines targeted promotion, attendee intelligence, and a 99.8% Data Accuracy SLA.",
+    keywords: "B2B Webinar Services, Webinar Services, B2B Webinar Marketing, Webinar Lead Generation, Webinar Lead Generation Services, B2B Webinar Campaigns, Webinar Marketing Services, B2B Demand Generation, B2B Lead Generation, Webinar Promotion, Webinar Audience Generation, Webinar Registrations, B2B Audience Targeting, Decision-Maker Engagement, Lead Qualification, Marketing Qualified Leads, MQL Generation, Buyer Intent, Sales Pipeline, DemandFlow Bridge",
+    canonical: "/webinar-services",
+    ogTitle: "B2B Webinar Services | Verified Registrations & Attendee-Qualified Pipeline | TaRaj Global",
+    ogDescription: "Fill B2B webinars with verified decision-makers and turn live engagement into sales-ready pipeline across US, EMEA, and APAC. TaRaj Global combines targeted promotion, attendee intelligence, and a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: webinarSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Webinar Services | Verified Registrations & Attendee-Qualified Pipeline | TaRaj Global"
-        description="Fill B2B webinars with verified decision-makers and turn live engagement into sales-ready pipeline across US, EMEA, and APAC. TaRaj Global combines targeted promotion, attendee intelligence, and a 99.8% Data Accuracy SLA."
-        keywords="B2B Webinar Services, Webinar Services, B2B Webinar Marketing, Webinar Lead Generation, Webinar Lead Generation Services, B2B Webinar Campaigns, Webinar Marketing Services, B2B Demand Generation, B2B Lead Generation, Webinar Promotion, Webinar Audience Generation, Webinar Registrations, B2B Audience Targeting, Decision-Maker Engagement, Lead Qualification, Marketing Qualified Leads, MQL Generation, Buyer Intent, Sales Pipeline, DemandFlow Bridge"
-        canonical="/webinar-services"
-        ogTitle="B2B Webinar Services | Verified Registrations & Attendee-Qualified Pipeline | TaRaj Global"
-        ogDescription="Fill B2B webinars with verified decision-makers and turn live engagement into sales-ready pipeline across US, EMEA, and APAC. TaRaj Global combines targeted promotion, attendee intelligence, and a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={webinarSchema}
-      />
+      <SEO {...seoData} schemaJson={webinarSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

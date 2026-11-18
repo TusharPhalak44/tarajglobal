@@ -87,17 +87,20 @@ const SEO = () => {
     try {
       setLoading(true)
       const response = await adminAPI.getSEO(selectedType, selectedId)
-      setSeoData(response.data?.data || response.data || {
-        meta_title: '',
-        meta_description: '',
-        keywords: '',
-        canonical_url: '',
-        og_title: '',
-        og_description: '',
-        og_image: '',
-        twitter_title: '',
-        twitter_description: '',
-        twitter_image: ''
+      const data = response.data?.data || response.data || {}
+      setSeoData({
+        meta_title: data.meta_title || '',
+        meta_description: data.meta_description || '',
+        keywords: data.meta_keywords || data.keywords || '',
+        meta_keywords: data.meta_keywords || data.keywords || '',
+        canonical_url: data.canonical_url || '',
+        robots: data.robots || 'index, follow, max-image-preview:large',
+        og_title: data.og_title || '',
+        og_description: data.og_description || '',
+        og_image: data.og_image || '',
+        twitter_title: data.twitter_title || '',
+        twitter_description: data.twitter_description || '',
+        twitter_image: data.twitter_image || ''
       })
     } catch (error) {
       console.error('Failed to fetch SEO data:', error)
@@ -105,7 +108,9 @@ const SEO = () => {
         meta_title: '',
         meta_description: '',
         keywords: '',
+        meta_keywords: '',
         canonical_url: '',
+        robots: 'index, follow, max-image-preview:large',
         og_title: '',
         og_description: '',
         og_image: '',
@@ -123,7 +128,11 @@ const SEO = () => {
 
     try {
       setSaving(true)
-      await adminAPI.saveSEO(selectedType, selectedId, seoData || {})
+      await adminAPI.saveSEO(selectedType, selectedId, {
+        ...seoData,
+        meta_keywords: seoData?.meta_keywords || seoData?.keywords || '',
+        robots: seoData?.robots || 'index, follow, max-image-preview:large'
+      })
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 3000)
     } catch (error) {
@@ -135,7 +144,15 @@ const SEO = () => {
   }
 
   const handleChange = (field, value) => {
-    setSeoData(prev => ({ ...prev, [field]: value }))
+    setSeoData(prev => {
+      const updated = { ...prev, [field]: value }
+      if (field === 'keywords') {
+        updated.meta_keywords = value
+      } else if (field === 'meta_keywords') {
+        updated.keywords = value
+      }
+      return updated
+    })
   }
 
   const currentTitle = seoData?.meta_title || (selectedType === 'page' ? STATIC_PAGES.find(p => p.id === selectedId)?.title : selectedId) || 'Taraj Global Solutions'
@@ -383,6 +400,37 @@ const SEO = () => {
                         className="admin-input w-full text-sm font-mono"
                       />
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold text-[var(--admin-text-primary)] uppercase tracking-wider mb-1.5">
+                      Robots Directives
+                    </label>
+                    <select
+                      value={['index, follow, max-image-preview:large', 'index, follow', 'noindex, nofollow', 'noindex, follow', 'index, nofollow'].includes(seoData?.robots) ? seoData?.robots : 'custom'}
+                      onChange={(e) => {
+                        if (e.target.value !== 'custom') {
+                          handleChange('robots', e.target.value)
+                        }
+                      }}
+                      className="admin-select w-full text-sm font-medium mb-2"
+                    >
+                      <option value="index, follow, max-image-preview:large">index, follow, max-image-preview:large (Standard - Recommended)</option>
+                      <option value="index, follow">index, follow</option>
+                      <option value="noindex, nofollow">noindex, nofollow (Hidden from search engines)</option>
+                      <option value="noindex, follow">noindex, follow (Do not index, follow links)</option>
+                      <option value="index, nofollow">index, nofollow (Index, do not follow links)</option>
+                      <option value="custom">Custom directive...</option>
+                    </select>
+                    {(!['index, follow, max-image-preview:large', 'index, follow', 'noindex, nofollow', 'noindex, follow', 'index, nofollow'].includes(seoData?.robots) || seoData?.robots === 'custom') && (
+                      <input
+                        type="text"
+                        value={seoData?.robots || ''}
+                        onChange={(e) => handleChange('robots', e.target.value)}
+                        placeholder="e.g., index, follow, max-snippet:-1"
+                        className="admin-input w-full text-sm font-mono"
+                      />
+                    )}
                   </div>
                 </div>
               )}

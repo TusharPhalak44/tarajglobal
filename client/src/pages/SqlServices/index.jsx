@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -67,19 +68,21 @@ const sqlSchema = {
 }
 
 const SqlServices = () => {
+  const { seoData } = useSEOData('page', 'sql-services', {
+    title: "SQL Lead Generation Services | Tech-Powered Sales Qualified Leads | TaRaj Global",
+    description: "Fill AE calendars with verified Sales Qualified Leads across US, EMEA, and APAC. TaRaj Global delivers sales-ready decision-makers verified via in-house tooling and a 99.8% Data Accuracy SLA.",
+    keywords: "Sales Qualified Leads services, SQL lead generation, B2B SQL generation, high-intent B2B leads, sales-ready leads, qualified discovery meetings, SaaS SQL pipeline, enterprise B2B leads, B2B sales pipeline, lead qualification services",
+    canonical: "/sql-services",
+    ogTitle: "SQL Lead Generation Services | Tech-Powered Sales Qualified Leads | TaRaj Global",
+    ogDescription: "Fill AE calendars with verified Sales Qualified Leads across US, EMEA, and APAC. TaRaj Global delivers sales-ready decision-makers verified via in-house tooling and a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: sqlSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="SQL Lead Generation Services | Tech-Powered Sales Qualified Leads | TaRaj Global"
-        description="Fill AE calendars with verified Sales Qualified Leads across US, EMEA, and APAC. TaRaj Global delivers sales-ready decision-makers verified via in-house tooling and a 99.8% Data Accuracy SLA."
-        keywords="Sales Qualified Leads services, SQL lead generation, B2B SQL generation, high-intent B2B leads, sales-ready leads, qualified discovery meetings, SaaS SQL pipeline, enterprise B2B leads, B2B sales pipeline, lead qualification services"
-        canonical="/sql-services"
-        ogTitle="SQL Lead Generation Services | Tech-Powered Sales Qualified Leads | TaRaj Global"
-        ogDescription="Fill AE calendars with verified Sales Qualified Leads across US, EMEA, and APAC. TaRaj Global delivers sales-ready decision-makers verified via in-house tooling and a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={sqlSchema}
-      />
+      <SEO {...seoData} schemaJson={sqlSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}
