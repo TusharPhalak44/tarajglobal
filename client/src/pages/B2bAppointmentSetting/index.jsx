@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -67,19 +68,21 @@ const appointmentSchema = {
 }
 
 const B2bAppointmentSetting = () => {
+  const { seoData } = useSEOData('page', 'b2b-appointment-setting', {
+    title: "B2B Appointment Setting Services | Verified Decision-Maker Meetings | TaRaj Global",
+    description: "Book qualified discovery meetings with verified decision-makers across US, EMEA, and APAC. TaRaj Global combines SDR expertise, AI-assisted intent signals, and a 99.8% Data Accuracy SLA.",
+    keywords: "B2B appointment setting, B2B appointment setting services, appointment setting services, B2B sales appointment setting, qualified sales meetings, B2B lead generation, sales appointment setting, B2B lead qualification, decision-maker appointment setting, sales qualified leads, B2B prospecting, buyer intent, B2B demand generation",
+    canonical: "/b2b-appointment-setting",
+    ogTitle: "B2B Appointment Setting Services | Verified Decision-Maker Meetings | TaRaj Global",
+    ogDescription: "Book qualified discovery meetings with verified decision-makers across US, EMEA, and APAC. TaRaj Global combines SDR expertise, AI-assisted intent signals, and a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: appointmentSchema
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Appointment Setting Services | Verified Decision-Maker Meetings | TaRaj Global"
-        description="Book qualified discovery meetings with verified decision-makers across US, EMEA, and APAC. TaRaj Global combines SDR expertise, AI-assisted intent signals, and a 99.8% Data Accuracy SLA."
-        keywords="B2B appointment setting, B2B appointment setting services, appointment setting services, B2B sales appointment setting, qualified sales meetings, B2B lead generation, sales appointment setting, B2B lead qualification, decision-maker appointment setting, sales qualified leads, B2B prospecting, buyer intent, B2B demand generation"
-        canonical="/b2b-appointment-setting"
-        ogTitle="B2B Appointment Setting Services | Verified Decision-Maker Meetings | TaRaj Global"
-        ogDescription="Book qualified discovery meetings with verified decision-makers across US, EMEA, and APAC. TaRaj Global combines SDR expertise, AI-assisted intent signals, and a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={appointmentSchema}
-      />
+      <SEO {...seoData} schemaJson={appointmentSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

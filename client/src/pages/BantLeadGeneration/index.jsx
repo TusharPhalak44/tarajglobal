@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -67,19 +68,21 @@ const bantSchema = {
 }
 
 const BantLeadGeneration = () => {
+  const { seoData } = useSEOData('page', 'bant-lead-generation', {
+    title: "BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Global",
+    description: "Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA",
+    keywords: "BANT lead generation services, BANT qualification, BANT qualified B2B leads, budget authority need timeline, B2B lead qualification criteria, sales-ready prospects, high-converting B2B leads, B2B lead generation",
+    canonical: "/bant-lead-generation",
+    ogTitle: "BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Global",
+    ogDescription: "Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: bantSchema
+  })
+
   return (
     <>
-      <SEO
-        title="BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Global"
-        description="Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA"
-        keywords="BANT lead generation services, BANT qualification, BANT qualified B2B leads, budget authority need timeline, B2B lead qualification criteria, sales-ready prospects, high-converting B2B leads, B2B lead generation"
-        canonical="/bant-lead-generation"
-        ogTitle="BANT Lead Generation Services | Tech-Powered B2B Qualification | TaRaj Global"
-        ogDescription="Accelerate enterprise B2B deal velocity across US, EMEA, and APAC. TaRaj Global delivers BANT-qualified decision-makers verified via custom in-house tooling and 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={bantSchema}
-      />
+      <SEO {...seoData} schemaJson={bantSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

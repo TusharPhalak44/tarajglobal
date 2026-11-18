@@ -684,22 +684,36 @@ function BlogDetails() {
 
   // ── LOADING STATE ──
   if (loading) {
+    const formattedSlugTitle = slug
+      ? slug
+          .split('-')
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ')
+      : 'Article'
+
     return (
-      <div className="min-h-screen bg-background pt-10 pb-20">
-        <Container>
-          <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
-            <div className="h-5 bg-slate-200 dark:bg-white/10 rounded w-1/4" />
-            <div className="h-12 bg-slate-200 dark:bg-white/10 rounded-2xl w-4/5" />
-            <div className="h-6 bg-slate-200 dark:bg-white/10 rounded w-1/2" />
-            <div className="h-80 bg-slate-200 dark:bg-white/10 rounded-3xl w-full" />
-            <div className="space-y-3 pt-6">
-              <div className="h-4 bg-slate-200 dark:bg-white/10 rounded w-full" />
-              <div className="h-4 bg-slate-200 dark:bg-white/10 rounded w-5/6" />
-              <div className="h-4 bg-slate-200 dark:bg-white/10 rounded w-3/4" />
+      <>
+        <SEO
+          title={`${formattedSlugTitle} | Taraj Global`}
+          description="Read this insightful B2B demand generation and pipeline growth article from Taraj Global."
+          canonical={`/blog/${slug || ''}`}
+        />
+        <div className="min-h-screen bg-background pt-10 pb-20">
+          <Container>
+            <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
+              <div className="h-5 bg-slate-200 dark:bg-white/10 rounded w-1/4" />
+              <div className="h-12 bg-slate-200 dark:bg-white/10 rounded-2xl w-4/5" />
+              <div className="h-6 bg-slate-200 dark:bg-white/10 rounded w-1/2" />
+              <div className="h-80 bg-slate-200 dark:bg-white/10 rounded-3xl w-full" />
+              <div className="space-y-3 pt-6">
+                <div className="h-4 bg-slate-200 dark:bg-white/10 rounded w-full" />
+                <div className="h-4 bg-slate-200 dark:bg-white/10 rounded w-5/6" />
+                <div className="h-4 bg-slate-200 dark:bg-white/10 rounded w-3/4" />
+              </div>
             </div>
-          </div>
-        </Container>
-      </div>
+          </Container>
+        </div>
+      </>
     )
   }
 
@@ -733,13 +747,17 @@ function BlogDetails() {
   return (
     <>
       <SEO
-        title={`${blog.title} | B2B Strategy & Insights | Taraj Global`}
-        description={blog.excerpt || blog.title}
-        keywords={blog.keywords || `${blog.title}, B2B demand generation, ABM insights, Taraj Global`}
-        canonical={`/blog/${slug}`}
-        ogTitle={blog.title}
-        ogDescription={blog.excerpt || blog.title}
-        ogImage={featuredImg}
+        title={blog.seo_title || blog.meta_title || blog.title}
+        description={blog.seo_description || blog.meta_description || blog.excerpt || blog.title}
+        keywords={blog.seo_keywords || blog.meta_keywords || blog.keywords || `${blog.title}, B2B demand generation, ABM insights, Taraj Global`}
+        canonical={blog.canonical_url || `/blog/${blog.slug || slug}`}
+        ogTitle={blog.og_title || blog.seo_title || blog.title}
+        ogDescription={blog.og_description || blog.seo_description || blog.excerpt || blog.title}
+        ogImage={blog.og_image || featuredImg}
+        twitterTitle={blog.twitter_title || blog.og_title || blog.seo_title || blog.title}
+        twitterDescription={blog.twitter_description || blog.og_description || blog.seo_description || blog.excerpt || blog.title}
+        twitterImage={blog.twitter_image || blog.og_image || featuredImg}
+        robots={blog.robots || 'index, follow'}
         ogType="article"
         schemaJson={articleSchema}
       />

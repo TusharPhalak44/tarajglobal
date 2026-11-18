@@ -1,6 +1,4 @@
-// Generates public/sitemap.xml and dist/sitemap.xml automatically from route-meta.mjs
-// This ensures that whenever routes, services, or website pages are added or updated,
-// the XML sitemap is kept in sync with the current build date and canonical URLs.
+// Generates public/sitemap.xml and dist/sitemap.xml automatically from route-meta.mjs and published blogs
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -23,7 +21,7 @@ const getPriorityAndFreq = (route) => {
   return { priority: '0.85', changefreq: 'monthly' }
 }
 
-export function generateSitemapXml() {
+export async function generateSitemapXml() {
   const canonicalRoutes = [
     // Primary Pages
     '/',
@@ -63,11 +61,64 @@ export function generateSitemapXml() {
   </url>\n`
   }
 
+  // Fetch published blogs if DB is reachable
+  try {
+    const dbModule = await import('../../server/config/db.js').catch(() => null)
+    if (dbModule?.default) {
+      const db = dbModule.default
+      const [blogs] = await db.execute(`
+        SELECT 
+          b.slug, 
+          b.canonical_url,
+          b.updated_at,
+          b.published_at,
+          b.created_at,
+          b.robots,
+          s.canonical_url AS s_canonical_url,
+          s.robots AS s_robots
+        FROM blogs b
+        LEFT JOIN seo_metadata s ON s.entity_type = 'blog' AND (s.entity_id = CAST(b.id AS CHAR) OR s.entity_id = b.slug COLLATE utf8mb4_unicode_ci)
+        WHERE (b.status = 'published' OR (b.status = 'scheduled' AND b.scheduled_at IS NOT NULL AND b.scheduled_at <= NOW()))
+          AND (b.robots IS NULL OR b.robots NOT LIKE '%noindex%')
+          AND (s.robots IS NULL OR s.robots NOT LIKE '%noindex%')
+        ORDER BY COALESCE(b.updated_at, b.published_at, b.created_at) DESC
+      `)
+
+      const seenUrls = new Set()
+      for (const blog of blogs) {
+        if (!blog.slug) continue
+        let loc = blog.canonical_url || blog.s_canonical_url
+        if (loc) {
+          loc = loc.trim()
+          if (!loc.startsWith('http://') && !loc.startsWith('https://')) {
+            loc = `${SITE_URL}${loc.startsWith('/') ? '' : '/'}${loc}`
+          }
+        } else {
+          loc = `${SITE_URL}/blog/${blog.slug}`
+        }
+
+        if (seenUrls.has(loc)) continue
+        seenUrls.add(loc)
+
+        const d = blog.updated_at || blog.published_at || blog.created_at || new Date()
+        const lastmod = new Date(d).toISOString().split('T')[0]
+        xml += `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>\n`
+      }
+    }
+  } catch {
+    // Dynamic sitemap served by Express will serve full list at runtime
+  }
+
   xml += '</urlset>\n'
   return xml
 }
 
-const xml = generateSitemapXml()
+const xml = await generateSitemapXml()
 
 // Write to public/sitemap.xml
 fs.mkdirSync(publicDir, { recursive: true })
@@ -80,3 +131,4 @@ if (fs.existsSync(distDir)) {
   console.log(`generate-sitemap: updated dist/sitemap.xml`)
 }
 
+process.exit(0)

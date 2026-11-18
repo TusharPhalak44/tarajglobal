@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -66,19 +67,21 @@ const mqlSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const MqlServices = () => {
+  const { seoData } = useSEOData('page', 'mql-services', {
+    title: "B2B MQL Lead Generation Services | TaRaj Global",
+    description: "Get verified Marketing Qualified Leads (MQLs) scored by AI against your ICP and routed straight into your CRM across US, EMEA, and APAC",
+    keywords: "MQL Services, MQL Lead Generation, Marketing Qualified Leads, B2B MQL Services, MQL Lead Generation Services, Marketing Qualified Lead Generation, B2B Lead Qualification, Qualified B2B Leads, Lead Scoring, Buyer Intent, B2B Demand Generation, DemandFlow Bridge",
+    canonical: "/mql-services",
+    ogTitle: "B2B MQL Lead Generation Services | TaRaj Global",
+    ogDescription: "Get verified Marketing Qualified Leads (MQLs) scored by AI against your ICP and routed straight into your CRM across US, EMEA, and APAC",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: mqlSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="B2B MQL Lead Generation Services | TaRaj Global"
-        description="Get verified Marketing Qualified Leads (MQLs) scored by AI against your ICP and routed straight into your CRM across US, EMEA, and APAC"
-        keywords="MQL Services, MQL Lead Generation, Marketing Qualified Leads, B2B MQL Services, MQL Lead Generation Services, Marketing Qualified Lead Generation, B2B Lead Qualification, Qualified B2B Leads, Lead Scoring, Buyer Intent, B2B Demand Generation, DemandFlow Bridge"
-        canonical="/mql-services"
-        ogTitle="B2B MQL Lead Generation Services | TaRaj Global"
-        ogDescription="Get verified Marketing Qualified Leads (MQLs) scored by AI against your ICP and routed straight into your CRM across US, EMEA, and APAC"
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={mqlSchema}
-      />
+      <SEO {...seoData} schemaJson={mqlSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

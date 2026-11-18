@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import Container from '@components/layout/Container'
 import SEO from '@components/common/SEO'
+import useSEOData from '@/hooks/useSEOData'
 import { Link } from 'react-router-dom'
 
 const privacySchema = {
@@ -98,17 +99,19 @@ function Privacy() {
     }
   }
 
+  const { seoData } = useSEOData('page', 'privacy', {
+    title: "Privacy Policy | Data Protection & Compliance | Taraj Global",
+    description: "Learn how Taraj Global collects, processes, and protects your personal data. Read our comprehensive Privacy Policy covering GDPR, CCPA, and enterprise B2B compliance.",
+    keywords: "Taraj Global privacy policy, B2B data protection, GDPR compliance, CCPA compliance, enterprise privacy policy, data security",
+    canonical: "/privacy",
+    ogTitle: "Privacy Policy | Taraj Global",
+    ogDescription: "Read Taraj Global's privacy commitments, data governance framework, and regulatory compliance standards.",
+    schemaJson: privacySchema,
+  })
+
   return (
     <>
-      <SEO
-        title="Privacy Policy | Data Protection & Compliance | Taraj Global"
-        description="Learn how Taraj Global collects, processes, and protects your personal data. Read our comprehensive Privacy Policy covering GDPR, CCPA, and enterprise B2B compliance."
-        keywords="Taraj Global privacy policy, B2B data protection, GDPR compliance, CCPA compliance, enterprise privacy policy, data security"
-        canonical="/privacy"
-        ogTitle="Privacy Policy | Taraj Global"
-        ogDescription="Read Taraj Global's privacy commitments, data governance framework, and regulatory compliance standards."
-        schemaJson={privacySchema}
-      />
+      <SEO {...seoData} schemaJson={privacySchema} />
 
       <div className="min-h-screen bg-background pt-8 sm:pt-10 pb-20 select-text">
         <Container>

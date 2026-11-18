@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -69,19 +70,21 @@ const syndicationSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const ContentSyndication = () => {
+  const { seoData } = useSEOData('page', 'content-syndication', {
+    title: "B2B Content Syndication Services | Verified Opt-In Leads on Guaranteed CPL | TaRaj Global",
+    description: "Syndicate whitepapers and research to verified decision-makers across US, EMEA, and APAC. TaRaj Global delivers opt-in, ICP-matched leads on guaranteed CPL with a 99.8% Data Accuracy SLA.",
+    keywords: "B2B content syndication, content syndication services, B2B lead syndication, whitepaper syndication, CPL content syndication, B2B lead generation, demand generation syndication, enterprise content distribution, verified reader leads, ABM content syndication",
+    canonical: "/content-syndication",
+    ogTitle: "B2B Content Syndication Services | Verified Opt-In Leads on Guaranteed CPL | TaRaj Global",
+    ogDescription: "Syndicate whitepapers and research to verified decision-makers across US, EMEA, and APAC. TaRaj Global delivers opt-in, ICP-matched leads on guaranteed CPL with a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: syndicationSchema
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Content Syndication Services | Verified Opt-In Leads on Guaranteed CPL | TaRaj Global"
-        description="Syndicate whitepapers and research to verified decision-makers across US, EMEA, and APAC. TaRaj Global delivers opt-in, ICP-matched leads on guaranteed CPL with a 99.8% Data Accuracy SLA."
-        keywords="B2B content syndication, content syndication services, B2B lead syndication, whitepaper syndication, CPL content syndication, B2B lead generation, demand generation syndication, enterprise content distribution, verified reader leads, ABM content syndication"
-        canonical="/content-syndication"
-        ogTitle="B2B Content Syndication Services | Verified Opt-In Leads on Guaranteed CPL | TaRaj Global"
-        ogDescription="Syndicate whitepapers and research to verified decision-makers across US, EMEA, and APAC. TaRaj Global delivers opt-in, ICP-matched leads on guaranteed CPL with a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={syndicationSchema}
-      />
+      <SEO {...seoData} schemaJson={syndicationSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

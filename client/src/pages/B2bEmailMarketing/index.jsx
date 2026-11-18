@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -66,19 +67,21 @@ const emailMarketingSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const B2bEmailMarketing = () => {
+  const { seoData } = useSEOData('page', 'b2b-email-marketing', {
+    title: "B2B Email Marketing Services | AI-Enhanced Verified-Data Email Outreach | TaRaj Global",
+    description: "Reach verified decision-makers across US, EMEA, and APAC with AI-enhanced B2B email outreach, custom deliverability engines, and a 99.8% Data Accuracy SLA.",
+    keywords: "B2B email marketing, B2B email marketing services, B2B email marketing agency, B2B email campaigns, B2B email outreach, B2B lead generation, targeted B2B email campaigns, B2B prospect outreach, email lead generation, B2B demand generation, qualified B2B leads, B2B sales outreach, personalized B2B email campaigns",
+    canonical: "/b2b-email-marketing",
+    ogTitle: "B2B Email Marketing Services | AI-Enhanced Verified-Data Email Outreach | TaRaj Global",
+    ogDescription: "Reach verified decision-makers across US, EMEA, and APAC with AI-enhanced B2B email outreach, custom deliverability engines, and a 99.8% Data Accuracy SLA.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: emailMarketingSchema
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Email Marketing Services | AI-Enhanced Verified-Data Email Outreach | TaRaj Global"
-        description="Reach verified decision-makers across US, EMEA, and APAC with AI-enhanced B2B email outreach, custom deliverability engines, and a 99.8% Data Accuracy SLA."
-        keywords="B2B email marketing, B2B email marketing services, B2B email marketing agency, B2B email campaigns, B2B email outreach, B2B lead generation, targeted B2B email campaigns, B2B prospect outreach, email lead generation, B2B demand generation, qualified B2B leads, B2B sales outreach, personalized B2B email campaigns"
-        canonical="/b2b-email-marketing"
-        ogTitle="B2B Email Marketing Services | AI-Enhanced Verified-Data Email Outreach | TaRaj Global"
-        ogDescription="Reach verified decision-makers across US, EMEA, and APAC with AI-enhanced B2B email outreach, custom deliverability engines, and a 99.8% Data Accuracy SLA."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={emailMarketingSchema}
-      />
+      <SEO {...seoData} schemaJson={emailMarketingSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

@@ -50,6 +50,7 @@ export const ensureSchema = async () => {
     await addColumnIfMissing('users', 'twitter_url', 'VARCHAR(500) NULL')
 
     // 3. Ensure columns on blogs
+    await addColumnIfMissing('blogs', 'author', 'VARCHAR(255) NULL')
     await addColumnIfMissing('blogs', 'created_by', 'INT NULL')
     await addColumnIfMissing('blogs', 'updated_by', 'INT NULL')
     await addColumnIfMissing('blogs', 'scheduled_at', 'DATETIME NULL')
@@ -59,6 +60,17 @@ export const ensureSchema = async () => {
     await addColumnIfMissing('blogs', 'reading_time', 'INT DEFAULT 1')
     await addColumnIfMissing('blogs', 'seo_score', 'INT DEFAULT 0')
     await addColumnIfMissing('blogs', 'seo_analysis', 'LONGTEXT')
+    await addColumnIfMissing('blogs', 'seo_title', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('blogs', 'seo_description', 'TEXT NULL')
+    await addColumnIfMissing('blogs', 'seo_keywords', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('blogs', 'canonical_url', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('blogs', 'og_title', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('blogs', 'og_description', 'TEXT NULL')
+    await addColumnIfMissing('blogs', 'og_image', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('blogs', 'twitter_title', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('blogs', 'twitter_description', 'TEXT NULL')
+    await addColumnIfMissing('blogs', 'twitter_image', 'VARCHAR(500) NULL')
+    await addColumnIfMissing('blogs', 'robots', "VARCHAR(255) NULL DEFAULT 'index, follow'")
 
     try {
       await db.execute(`
@@ -256,6 +268,40 @@ export const ensureSchema = async () => {
         INDEX idx_cta_utm_source (utm_source)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
     `)
+
+    // 16. Ensure seo_metadata table
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS seo_metadata (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        entity_type VARCHAR(50) NOT NULL,
+        entity_id VARCHAR(255) NOT NULL,
+        meta_title VARCHAR(255),
+        meta_description TEXT,
+        meta_keywords VARCHAR(500),
+        canonical_url VARCHAR(500),
+        og_title VARCHAR(255),
+        og_description TEXT,
+        og_image VARCHAR(500),
+        twitter_title VARCHAR(255),
+        twitter_description TEXT,
+        twitter_image VARCHAR(500),
+        robots VARCHAR(255),
+        structured_data JSON,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        UNIQUE KEY unique_entity (entity_type, entity_id),
+        INDEX idx_entity_type (entity_type),
+        INDEX idx_entity_id (entity_id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    `)
+
+    // 17. Seed default SEO metadata for pages if missing
+    try {
+      const { seedSeoMetadata } = await import('./seed-seo-metadata.js')
+      await seedSeoMetadata()
+    } catch (seedErr) {
+      console.warn('  ⚠️ SEO metadata seeding warning:', seedErr.message)
+    }
 
     console.log('✅ Database schema integrity verification completed successfully!')
   } catch (error) {

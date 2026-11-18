@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 import Hero from './components/Hero'
 import WhatIsPlatform from './components/WhatIsPlatform'
 import ConnectedEcosystem from './components/ConnectedEcosystem'
@@ -50,19 +51,21 @@ const DemandFlowBridge = () => {
     ],
   }
 
+  const { seoData } = useSEOData('page', 'demandflow-bridge', {
+    title: "DemandFlow Bridge | Unified Business Operations Platform | Taraj Global",
+    description: "Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations.",
+    keywords: "business operations platform, CRM and lead management, sales management platform, HRMS platform, client management, payroll management, business operations software, unified business platform, Taraj Global, DemandFlow Bridge",
+    canonical: "/demandflow-bridge",
+    ogImage: "/demandflow-admin.png",
+    schemaJson: jsonLd
+  })
+
   return (
     <div
       ref={pageRef}
       className="relative w-full bg-background min-h-screen selection:bg-primary/40 dark:bg-primary/20 selection:text-primary overflow-x-clip"
     >
-      <SEO
-        title="DemandFlow Bridge | Unified Business Operations Platform | Taraj Global"
-        description="Discover DemandFlow Bridge, Taraj Global's unified business operations platform connecting CRM, lead management, sales, client management, HRMS, payroll and operations."
-        keywords="business operations platform, CRM and lead management, sales management platform, HRMS platform, client management, payroll management, business operations software, unified business platform, Taraj Global, DemandFlow Bridge"
-        canonical="/demandflow-bridge"
-        ogImage="/demandflow-admin.png"
-        schemaJson={jsonLd}
-      />
+      <SEO {...seoData} schemaJson={jsonLd} />
 
       {/* 1. HERO */}
       <Hero />

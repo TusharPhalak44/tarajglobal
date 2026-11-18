@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -66,19 +67,21 @@ const listBuildingSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const B2bListBuilding = () => {
+  const { seoData } = useSEOData('page', 'b2b-list-building', {
+    title: "Custom B2B List Building Services | Verified Prospect Data, Built to Your ICP | TaRaj Global",
+    description: "Get custom-built B2B prospect lists matched to your ICP across US, EMEA, and APAC. Human-led research, AI-assisted verification, and a 99.8% Data Accuracy SLA, delivered CRM-ready.",
+    keywords: "B2B list building, B2B list building services, B2B prospect lists, B2B contact database, B2B lead list, verified B2B data, B2B email lists, B2B contact list building, B2B prospect data, targeted B2B lists, B2B data services, outbound prospect lists, ICP-matched lists, verified contact data",
+    canonical: "/b2b-list-building",
+    ogTitle: "Custom B2B List Building Services | Verified Prospect Data, Built to Your ICP | TaRaj Global",
+    ogDescription: "Get custom-built B2B prospect lists matched to your ICP across US, EMEA, and APAC. Human-led research, AI-assisted verification, and a 99.8% Data Accuracy SLA, delivered CRM-ready.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: listBuildingSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="Custom B2B List Building Services | Verified Prospect Data, Built to Your ICP | TaRaj Global"
-        description="Get custom-built B2B prospect lists matched to your ICP across US, EMEA, and APAC. Human-led research, AI-assisted verification, and a 99.8% Data Accuracy SLA, delivered CRM-ready."
-        keywords="B2B list building, B2B list building services, B2B prospect lists, B2B contact database, B2B lead list, verified B2B data, B2B email lists, B2B contact list building, B2B prospect data, targeted B2B lists, B2B data services, outbound prospect lists, ICP-matched lists, verified contact data"
-        canonical="/b2b-list-building"
-        ogTitle="Custom B2B List Building Services | Verified Prospect Data, Built to Your ICP | TaRaj Global"
-        ogDescription="Get custom-built B2B prospect lists matched to your ICP across US, EMEA, and APAC. Human-led research, AI-assisted verification, and a 99.8% Data Accuracy SLA, delivered CRM-ready."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={listBuildingSchema}
-      />
+      <SEO {...seoData} schemaJson={listBuildingSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

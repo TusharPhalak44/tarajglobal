@@ -40,6 +40,7 @@ import {
 } from 'lucide-react'
 import { AlbumModal } from './components/AlbumModal'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 import { publicAPI } from '@api/public.api'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import { FlowButton } from '@components/ui/FlowButton'
@@ -948,6 +949,15 @@ const CorporateFaqCard = ({ faq, index, isOpen, onToggle, onHover }) => {
 
 
 function Careers() {
+  const { seoData } = useSEOData('page', 'careers', {
+    title: "TaRaj Global Careers | B2B Sales & Marketing Jobs in Pune",
+    description: "Join TaRaj Global in Kharadi, Pune. Explore B2B sales development, demand generation and MarTech roles with fast promotion and uncapped incentives.",
+    keywords: "Taraj Global careers, B2B marketing jobs Pune, SDR jobs Pune, demand generation careers, lead generation specialist jobs, tech marketing jobs, B2B sales jobs Kharadi",
+    canonical: "/careers",
+    ogTitle: "TaRaj Global Careers | B2B Sales & Marketing Jobs in Pune",
+    ogDescription: "Join TaRaj Global in Kharadi, Pune. Explore B2B sales development, demand generation and MarTech roles with fast promotion and uncapped incentives.",
+    schemaJson: careersSchema
+  })
   const prefersReducedMotion = useReducedMotion()
   const jobsSectionRef = useRef(null)
   const heroRef = useRef(null)
@@ -1343,15 +1353,7 @@ function Careers() {
 
   return (
     <>
-      <SEO
-        title="TaRaj Global Careers | B2B Sales & Marketing Jobs in Pune"
-        description="Join TaRaj Global in Kharadi, Pune. Explore B2B sales development, demand generation and MarTech roles with fast promotion and uncapped incentives."
-        keywords="Taraj Global careers, B2B marketing jobs Pune, SDR jobs Pune, demand generation careers, lead generation specialist jobs, tech marketing jobs, B2B sales jobs Kharadi"
-        canonical="/careers"
-        ogTitle="TaRaj Global Careers | B2B Sales & Marketing Jobs in Pune"
-        ogDescription="Join TaRaj Global in Kharadi, Pune. Explore B2B sales development, demand generation and MarTech roles with fast promotion and uncapped incentives."
-        schemaJson={careersSchema}
-      />
+      <SEO {...seoData} schemaJson={careersSchema} />
 
       <div className="min-h-screen bg-[#F7F8FA] dark:bg-[#050505] text-[#111318] dark:text-[#F5F7FA] transition-colors duration-500 relative overflow-hidden">
 

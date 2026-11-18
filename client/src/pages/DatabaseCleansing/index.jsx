@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 
 import Hero from './components/Hero'
 import WhatIsService from './components/WhatIsService'
@@ -66,19 +67,21 @@ const databaseCleansingSchema = {
 // ─── Page Component ───────────────────────────────────────────────────────────
 
 const DatabaseCleansing = () => {
+  const { seoData } = useSEOData('page', 'database-cleansing', {
+    title: "B2B Database Cleansing Services | Taraj Global",
+    description: "Scrub, deduplicate, verify, and enrich your stale CRM databases. Boost email deliverability, protect sender score, and empower sales with accurate contact data.",
+    keywords: "database cleansing services, B2B data enrichment, CRM data hygiene, contact list cleaning, email bounce reduction, CRM deduplication, lead data validation, sales database refresh, SMTP verification",
+    canonical: "/database-cleansing",
+    ogTitle: "B2B Database Cleansing Services | Taraj Global",
+    ogDescription: "Protect your sender reputation and accelerate sales efficiency with automated CRM hygiene, fuzzy deduplication, live SMTP verification, and data enrichment.",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    schemaJson: databaseCleansingSchema,
+  })
+
   return (
     <>
-      <SEO
-        title="B2B Database Cleansing Services | Taraj Global"
-        description="Scrub, deduplicate, verify, and enrich your stale CRM databases. Boost email deliverability, protect sender score, and empower sales with accurate contact data."
-        keywords="database cleansing services, B2B data enrichment, CRM data hygiene, contact list cleaning, email bounce reduction, CRM deduplication, lead data validation, sales database refresh, SMTP verification"
-        canonical="/database-cleansing"
-        ogTitle="B2B Database Cleansing Services | Taraj Global"
-        ogDescription="Protect your sender reputation and accelerate sales efficiency with automated CRM hygiene, fuzzy deduplication, live SMTP verification, and data enrichment."
-        ogType="website"
-        twitterCard="summary_large_image"
-        schemaJson={databaseCleansingSchema}
-      />
+      <SEO {...seoData} schemaJson={databaseCleansingSchema} />
 
       <div className="min-h-screen bg-background">
         {/* Section 1 — Hero */}

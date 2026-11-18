@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SEO from '@components/common/SEO'
+import { useSEOData } from '@hooks/useSEOData'
 import ContactHero from '@components/sections/Contact/ContactHero'
 import GetInTouch from '@components/sections/Contact/GetInTouch'
 import ContactForm from '@components/sections/Contact/ContactForm'
@@ -38,18 +39,19 @@ const contactSchema = {
 
 function Contact() {
   const [showBooking, setShowBooking] = useState(false)
+  const { seoData } = useSEOData('page', 'contact', {
+    title: "Contact TaRaj Global | Book a B2B Strategy Call",
+    description: "Talk to TaRaj Global about B2B appointment setting, lead generation, content syndication, and ABM. Book a strategy call or send us a message.",
+    keywords: "contact Taraj Global, B2B lead generation consultation, demand generation agency contact, Pune B2B marketing agency, book B2B sales meeting",
+    canonical: "/contact",
+    ogTitle: "Contact TaRaj Global | Book a B2B Strategy Call",
+    ogDescription: "Talk to TaRaj Global about B2B appointment setting, lead generation, content syndication, and ABM. Book a strategy call or send us a message.",
+    schemaJson: contactSchema
+  })
 
   return (
     <>
-      <SEO
-        title="Contact TaRaj Global | Book a B2B Strategy Call"
-        description="Talk to TaRaj Global about B2B appointment setting, lead generation, content syndication, and ABM. Book a strategy call or send us a message."
-        keywords="contact Taraj Global, B2B lead generation consultation, demand generation agency contact, Pune B2B marketing agency, book B2B sales meeting"
-        canonical="/contact"
-        ogTitle="Contact TaRaj Global | Book a B2B Strategy Call"
-        ogDescription="Talk to TaRaj Global about B2B appointment setting, lead generation, content syndication, and ABM. Book a strategy call or send us a message."
-        schemaJson={contactSchema}
-      />
+      <SEO {...seoData} schemaJson={contactSchema} />
       <div className="min-h-screen bg-background">
         <ContactHero onBookMeeting={() => setShowBooking(true)} />
         <GetInTouch onBookMeeting={() => setShowBooking(true)} />
