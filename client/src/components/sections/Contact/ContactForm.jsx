@@ -317,39 +317,27 @@ const ContactForm = () => {
       <div className="container relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* ── Section Header (With Signature Brand Highlight Color) ── */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-4 sm:mb-5"
-        >
-         <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.16] uppercase !mb-4">
-  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-    SEND US A
-  </span>
-  <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
-    MESSAGE
-  </span>
-</h2>
-<h2 className="section-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase !mb-4">
-  <span className="block pb-1 sm:pb-1.5">
-    Tell Us About Your
-  </span>
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5">
+          {/* Badge */}
+          <div className="flex items-center justify-center mb-4">
+            <span className="text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+              SEND US A MESSAGE
+            </span>
+          </div>
 
-  <span
-    className="inline-block bg-clip-text text-transparent pt-0.5 leading-[1.28]"
-    style={{
-      backgroundImage: 'linear-gradient(90deg, #00A6FF 0%, #67E8F9 100%)'
-    }}
-  >
-    Pipeline Goals
-  </span>
-</h2>
+          {/* HEADING — styled like MQL Services without fading */}
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.24] text-text-primary dark:text-white whitespace-normal lg:whitespace-nowrap mb-4">
+            <span className="inline-block mr-3">
+              Tell Us About Your
+            </span>
+            <span className="inline-block bg-gradient-to-r from-primary to-cta bg-clip-text text-transparent pb-1 sm:pb-1.5">
+              Pipeline Goals
+            </span>
+          </h2>
           <p className="section-subtitle text-sm sm:text-sm md:text-base text-slate-600 dark:text-slate-400 !mb-0 font-normal">
             Share your target audience, volume, and timeline. A TaRaj Global specialist will reply with next steps.
           </p>
-        </motion.div>
+        </div>
 
         {/* ── Dual-Column Executive Glass Console ── */}
         <motion.div

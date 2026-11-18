@@ -1469,21 +1469,33 @@ function Careers() {
                 delay: prefersReducedMotion ? 0 : 0.85,
                 ease: 'easeOut',
               }}
-              className="flex flex-wrap items-center gap-4 sm:gap-5"
+              className="flex flex-col items-start gap-4"
             >
-              {/* FlowButton Components */}
-              <FlowButton
-                text="View Open Roles"
-                variant="primary"
-                onClick={scrollToJobs}
-              />
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+                {/* FlowButton Components */}
+                <FlowButton
+                  text="View Open Roles"
+                  variant="primary"
+                  onClick={scrollToJobs}
+                />
 
-              <FlowButton
-                text="Submit Your Resume"
-                variant="dark"
-                onClick={() => openModal()}
-              />
+                <FlowButton
+                  text="Submit Your Resume"
+                  variant="dark"
+                  onClick={() => openModal()}
+                />
+              </div>
 
+              <p className="text-sm sm:text-base font-medium text-[#4A5568] dark:text-white/90">
+                You can also share your resume at{" "}
+                <a
+                  href="mailto:hr@tarajglobal.com"
+                  className="font-bold text-[#00A6FF] hover:underline"
+                >
+                  hr@tarajglobal.com
+                </a>
+                .
+              </p>
             </motion.div>
 
           </div>

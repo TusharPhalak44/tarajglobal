@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Phone, Mail, Globe } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import FlowButton from '../../ui/FlowButton'
@@ -90,7 +90,7 @@ const GetInTouch = ({ onBookMeeting }) => {
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             className="get-in-touch-left flex items-center justify-center"
           >
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full max-w-[430px]">
 
               {/* Glow blob behind image */}
               <div
@@ -148,9 +148,9 @@ const GetInTouch = ({ onBookMeeting }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="get-in-touch-right flex items-center justify-center"
+            className="get-in-touch-right flex items-center justify-center w-full"
           >
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full max-w-[560px]">
 
               {/* Outer glow ring */}
               <motion.div
@@ -169,7 +169,7 @@ const GetInTouch = ({ onBookMeeting }) => {
 
               {/* Main card */}
               <div
-                className="relative rounded-3xl p-8 flex flex-col gap-6"
+                className="relative rounded-3xl p-6 sm:p-7 flex flex-col gap-5"
                 style={{
                   background: 'rgba(18,18,28,0.85)',
                   backdropFilter: 'blur(20px)',
@@ -199,35 +199,135 @@ const GetInTouch = ({ onBookMeeting }) => {
                   <p className="text-text-secondary text-sm">Our team typically replies within 2 hours during business hours.</p>
                 </div>
 
-                {/* Channel pills */}
-                <div className="flex flex-col gap-2">
-                  {[
-                    { icon: Mail, label: 'info@tarajglobal.com', color: '#00A6FF' },
-                    { icon: Phone, label: '+91 96655-99442', color: '#FF6D00' },
-                    { icon: MapPin, label: 'Pune, Maharashtra', color: '#72D669' },
-                    { icon: MapPin, label: 'The Space Business Complex, Office No 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014', color: '#72D669' },
-                  ].map((item, i) => {
-                    const Icon = item.icon
-                    return (
-                      <motion.div
-                        key={item.label}
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.7 + i * 0.1 }}
-                        className="flex items-center gap-3 rounded-xl px-4 py-2.5"
+                {/* 2-Column Split: HQ vs US per sketch */}
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                  }}
+                >
+                  {/* Header Row */}
+                  <div
+                    className="grid grid-cols-2 text-center"
+                    style={{
+                      borderBottom: '1px solid rgba(255,255,255,0.08)',
+                      background: 'rgba(255,255,255,0.03)',
+                    }}
+                  >
+                    <div
+                      className="py-2.5 px-3 flex items-center justify-center gap-1.5"
+                      style={{ borderRight: '1px solid rgba(255,255,255,0.08)' }}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-[#00A6FF]" />
+                      <span className="text-sm font-bold uppercase tracking-wider text-white">HQ</span>
+                    </div>
+                    <div className="py-2.5 px-3 flex items-center justify-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#A855F7]" />
+                      <span className="text-sm font-bold uppercase tracking-wider text-white">US</span>
+                    </div>
+                  </div>
+
+                  {/* Columns */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+                    {/* HQ Column */}
+                    <div className="p-3 sm:p-3.5 flex flex-col gap-2.5">
+                      {/* Email */}
+                      <a
+                        href="mailto:sales@tarajglobal.com"
+                        className="flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all hover:bg-white/5 hover:border-white/20 group"
                         style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
                       >
                         <div
                           className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                          style={{ background: `${item.color}20` }}
+                          style={{ background: '#00A6FF20' }}
                         >
-                          <Icon size={14} style={{ color: item.color }} />
+                          <Mail size={13} style={{ color: '#00A6FF' }} />
                         </div>
-                        <span className="text-sm text-text-secondary">{item.label}</span>
-                      </motion.div>
-                    )
-                  })}
+                        <span className="text-xs text-text-secondary group-hover:text-white truncate font-medium transition-colors">sales@tarajglobal.com</span>
+                      </a>
+
+                      {/* Phone */}
+                      <a
+                        href="tel:+919665599442"
+                        className="flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all hover:bg-white/5 hover:border-white/20 group"
+                        style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                      >
+                        <div
+                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: '#FF6D0020' }}
+                        >
+                          <Phone size={13} style={{ color: '#FF6D00' }} />
+                        </div>
+                        <span className="text-xs text-text-secondary group-hover:text-white font-medium transition-colors">+91 96655-99442</span>
+                      </a>
+
+                      {/* Address */}
+                      <div
+                        className="flex items-start gap-2.5 rounded-xl px-3 py-2 flex-1"
+                        style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                      >
+                        <div
+                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                          style={{ background: '#72D66920' }}
+                        >
+                          <MapPin size={13} style={{ color: '#72D669' }} />
+                        </div>
+                        <span className="text-xs text-text-secondary leading-relaxed font-medium">
+                          The Space Business Complex, Office No 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* US Column */}
+                    <div className="p-3 sm:p-3.5 flex flex-col gap-2.5">
+                      {/* Email */}
+                      <a
+                        href="mailto:sales@tarajglobal.com"
+                        className="flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all hover:bg-white/5 hover:border-white/20 group"
+                        style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                      >
+                        <div
+                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: '#00A6FF20' }}
+                        >
+                          <Mail size={13} style={{ color: '#00A6FF' }} />
+                        </div>
+                        <span className="text-xs text-text-secondary group-hover:text-white truncate font-medium transition-colors">sales@tarajglobal.com</span>
+                      </a>
+
+                      {/* Phone */}
+                      <a
+                        href="tel:+13464878307"
+                        className="flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all hover:bg-white/5 hover:border-white/20 group"
+                        style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                      >
+                        <div
+                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: '#FF6D0020' }}
+                        >
+                          <Phone size={13} style={{ color: '#FF6D00' }} />
+                        </div>
+                        <span className="text-xs text-text-secondary group-hover:text-white font-medium transition-colors">+1 346-487-8307</span>
+                      </a>
+
+                      {/* Address */}
+                      <div
+                        className="flex items-start gap-2.5 rounded-xl px-3 py-2 flex-1"
+                        style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                      >
+                        <div
+                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                          style={{ background: '#A855F720' }}
+                        >
+                          <Globe size={13} style={{ color: '#A855F7' }} />
+                        </div>
+                        <span className="text-xs text-text-secondary leading-relaxed font-medium">
+                          762, Fulton St, San Francisco, California 94115
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 {/* CTA button */}

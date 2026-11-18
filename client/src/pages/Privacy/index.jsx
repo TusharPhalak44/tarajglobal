@@ -18,7 +18,8 @@ import {
   Scale,
   Clock,
   ArrowRight,
-  ChevronDown
+  ChevronDown,
+  Info
 } from 'lucide-react'
 import Container from '@components/layout/Container'
 import SEO from '@components/common/SEO'
@@ -39,20 +40,24 @@ const privacySchema = {
 }
 
 const TOC_SECTIONS = [
-  { id: 'introduction', label: '1. Introduction & Overview' },
-  { id: 'information-we-collect', label: '2. Information We Collect' },
-  { id: 'how-we-use-information', label: '3. How We Use Information' },
-  { id: 'legal-basis', label: '4. Legal Basis for Processing' },
-  { id: 'b2b-data-practices', label: '5. B2B Intelligence & Demand Gen Practices' },
-  { id: 'information-sharing', label: '6. Information Sharing & Disclosure' },
-  { id: 'cookies-tracking', label: '7. Cookies & Tracking Technologies' },
-  { id: 'data-security', label: '8. Data Security & Storage' },
-  { id: 'data-retention', label: '9. Data Retention' },
-  { id: 'privacy-rights', label: '10. Your Privacy Rights (GDPR / CCPA)' },
-  { id: 'international-transfers', label: '11. International Data Transfers' },
-  { id: 'childrens-privacy', label: '12. Children\'s Privacy' },
-  { id: 'policy-changes', label: '13. Changes to This Privacy Policy' },
-  { id: 'contact-us', label: '14. Contact Information & Data Protection Officer' },
+  { id: 'Who we are and what this policy covers', label: '1. Who we are and what this policy covers' },
+  { id: 'Summary at a glance', label: '2. Summary at a glance' },
+  { id: 'Information we collect', label: '3.Information we collect' },
+  { id: 'Where we get business contact data', label: '4.Where we get business contact data' },
+  { id: 'How we use information and our legal bases', label: '5. How we use information and our legal bases' },
+  { id: 'B2B outreach and marketing communications', label: '6. B2B outreach and marketing communications' },
+  { id: 'Profiling, lead scoring and automated decisions', label: '7. Profiling, lead scoring and automated decisions' },
+  { id: 'Sharing and disclosure', label: '8. Sharing and disclosure' },
+  { id: ' Cookies and tracking technologies', label: '9.  Cookies and tracking technologies' },
+  { id: 'Security and breach notification', label: '10. Security and breach notification' },
+  { id: 'Data retention', label: '11. Data retention' },
+  { id: 'International data transfers', label: '12. International data transfers' },
+  { id: 'Your rights and how to use them', label: '13. Your rights and how to use them' },
+  { id: 'Additional notice for California residents', label: '14. Additional notice for California residents' },
+  { id: ' India: applicable law and Grievance Officer', label: '15.  India: applicable law and Grievance Officer' },
+  { id: ' Children, third-party links and changes to this policy', label: '16.  Children, third-party links and changes to this policy' },
+  { id: 'Contact us', label: '17. Contact us' },
+
 ]
 
 function Privacy() {
@@ -115,20 +120,18 @@ function Privacy() {
           {/* ══ Header / Hero Area ══════════════════════════════════════════ */}
           <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-primary/30 dark:bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-wider uppercase mb-4"
-            >
-              <Shield className="w-3.5 h-3.5 text-primary" />
-              <span>Enterprise Data Governance</span>
-            </motion.div>
-
+  initial={{ scale: 0.8, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.5 }}
+  className="inline-flex items-center gap-2 bg-primary/30 dark:bg-primary/10 text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-4"
+>
+  <span>Enterprise Data Governance</span>
+</motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight mb-4"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-text-primary tracking-tight mb-4"
             >
               Privacy Policy
             </motion.h1>
@@ -271,158 +274,677 @@ function Privacy() {
                    </ul><br />
                    <p className="mb-4">
                     We work only in the B2B market. We do not market to consumers, and we do not collect personal details such as home addresses or private email addresses.
-         <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4">
-  Our role in each activity
-</h2>
-                   </p>
-               
+                    </p>
+        <h3 className="text-base sm:text-lg font-bold text-primary mb-3">
+         Our role in each activity
+       </h3>
+       <p className="mb-4">
+        Our legal role depends on what we are doing. We set the role for each client campaign in the client contract.
+       </p>
+
+       {/* Roles in Activity Table */}
+       <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+         <table className="w-full text-left border-collapse text-xs sm:text-sm">
+           <thead>
+             <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+               <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[32%] min-w-[190px] border-r border-border">
+                 Activity
+               </th>
+               <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[30%] min-w-[170px] border-r border-border">
+                 Our role
+               </th>
+               <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[220px]">
+                 What it means for you
+               </th>
+             </tr>
+           </thead>
+           <tbody className="divide-y divide-border">
+             <tr className="hover:bg-primary/[0.03] transition-colors">
+               <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                 Running our website, handling enquiries, managing clients, recruiting
+               </td>
+               <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+                 Controller (Data Fiduciary under Indian law)
+               </td>
+               <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                 We decide why and how your data is used, and this policy is your main notice.
+               </td>
+             </tr>
+             <tr className="hover:bg-primary/[0.03] transition-colors">
+               <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                 Building and maintaining our own B2B database; programs we run under our own brand, such as content syndication and webinars
+               </td>
+               <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+                 Controller, sometimes jointly with the client
+               </td>
+               <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                 We are responsible for the notice, the legal basis and your rights. Where a client also uses your data, it is responsible for its own use.
+               </td>
+             </tr>
+             <tr className="hover:bg-primary/[0.03] transition-colors">
+               <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                 Campaigns where a client gives us its own contacts or tells us exactly whom to contact
+               </td>
+               <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+                 Processor (Data Processor) acting on the client’s instructions
+               </td>
+               <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                 The client’s privacy notice applies. We forward your request to the client and help it respond.
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </div>
               </section>
 
               {/* 2. Information We Collect */}
               <section id="information-we-collect" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Database className="w-5 h-5 text-primary shrink-0" />
-                  <span>2. Information We Collect</span>
+                  <span>2.  Summary at a glance</span>
                 </h2>
                 <p className="mb-4">
-                  We collect information that identifies, relates to, describes, or is reasonably capable of being associated with an identified or identifiable individual (&quot;Personal Information&quot;). We collect information through three primary channels:
+                  This table is a quick guide. The sections that follow are the full policy and prevail if anything differs.
                 </p>
 
-                <h3 className="text-lg font-bold text-text-primary mt-6 mb-2">A. Information You Voluntarily Provide to Us</h3>
-                <p className="mb-3">When you interact with our website, request a consultation, book a strategy call, or submit an inquiry, you may provide:</p>
-                <ul className="list-disc pl-6 space-y-1.5 mb-6 text-sm">
-                  <li><strong>Contact Identifiers:</strong> First and last name, business email address, phone number.</li>
-                  <li><strong>Professional Profile:</strong> Company name, job title, department, company size, and industry.</li>
-                  <li><strong>Inquiry Briefs &amp; Communications:</strong> Project requirements, volume expectations, messaging, and notes submitted via contact forms or strategy call bookings.</li>
-                  <li><strong>Job Application Records:</strong> Resumes, CVs, portfolio links, and employment background submitted via our Careers portal.</li>
-                </ul>
+                {/* Summary at a Glance Table */}
+                <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[32%] min-w-[200px] border-r border-border">
+                          Question
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[260px] border-r border-border">
+                          Short answer
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[14%] min-w-[80px]">
+                          Section
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          What do we hold about business professionals?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Work contact details, job role, employer data and how you interact with our campaigns.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          3
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Where does the data come from?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          You, public business sources, licensed data partners, clients, and event or content registrations.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          4
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Do we send marketing?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Yes, B2B only, relevant to your role, with an opt-out in every message. We follow each country’s rules and ask for consent where the law requires it.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          6
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Do we pass your details to clients?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Yes, when you register for or show interest in a client’s offer, or where the law and our contracts allow it. We tell you who receives them.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          8
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Do we sell personal data?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          We treat paid lead delivery to clients as a “sale” or “sharing” under US state privacy laws and let you opt out.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          8, 14
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Do we profile people?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Yes, for lead scoring and campaign targeting. No decision with a legal or similar effect is made by a machine alone.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          7
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Where is data processed?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          India, the United States and other places where our providers and clients operate, with safeguards.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          12
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          How do you opt out or use your rights?
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Use the unsubscribe link, or email <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>.
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
+                          6, 13
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-                <h3 className="text-lg font-bold text-text-primary mt-6 mb-2">B. Information Collected Automatically</h3>
-                <p className="mb-3">When you visit and navigate our Website, our servers and analytics tools automatically log standard device and telemetry data:</p>
-                <ul className="list-disc pl-6 space-y-1.5 mb-6 text-sm">
-                  <li><strong>Device &amp; Connection Data:</strong> IP address, browser type and version, operating system, device identifiers, and language settings.</li>
-                  <li><strong>Usage Metrics:</strong> Pages visited, dwell time, navigation paths, referring URLs, clickstream data, and interaction timestamps.</li>
-                  <li><strong>Cookies &amp; Local Storage:</strong> Session tokens and telemetry preferences stored via browser cookies.</li>
-                </ul>
-
-                <h3 className="text-lg font-bold text-text-primary mt-6 mb-2">C. B2B Business Intelligence &amp; Professional Contact Data</h3>
-                <p className="mb-3">As a specialized B2B provider, we process professionally relevant business contact information sourced from publicly available registries, verified business social profiles, corporate websites, and enterprise data partnerships:</p>
-                <ul className="list-disc pl-6 space-y-1.5 text-sm">
-                  <li>Business email address, business direct dial / office phone, work location, job title, and company firmographics.</li>
-                  <li><em>We do not intentionally collect or process sensitive personal data (e.g., government IDs, health records, biometric data, or racial/ethnic origin).</em></li>
-                </ul>
+               
               </section>
 
               {/* 3. How We Use Information */}
               <section id="how-we-use-information" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Eye className="w-5 h-5 text-primary shrink-0" />
-                  <span>3. How We Use Your Information</span>
+                  <span>3. Information we collect
+</span>
                 </h2>
-                <p className="mb-4">
-                  We process personal and business information strictly for legitimate commercial and business operations:
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
-                  <div className="p-3.5 rounded-xl bg-surface-elevated border border-border">
-                    <div className="font-semibold text-text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-success" />
-                      <span>Service Delivery</span>
-                    </div>
-                    <p className="text-xs text-text-secondary">
-                      Executing demand generation programs, B2B lead verification, ABM outreach, and appointment setting.
-                    </p>
+               <p className="mb-4 text-[#00A6FF]"> A. Website visitors</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                  <li>
+                    <strong className="font-bold text-text-primary">
+                      Device and connection data:
+                    </strong>{" "}
+                    IP address, browser type and version, operating system, device identifiers,
+                    language settings and approximate location derived from the IP address.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">
+                      Usage data:
+                    </strong>{" "}
+                    pages viewed, time on page, navigation paths, referring URLs, clicks and timestamps.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">
+                      Cookie and local storage data:
+                    </strong>{" "}
+                    identifiers and preferences, as described in Section 9.
+                  </li>
+                </ul><br />
+                <p className="mb-4 text-[#00A6FF]">B. Enquirers and clients</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                   <li>
+                     <strong className="font-bold text-text-primary">
+                       Contact and company details:
+                     </strong>{" "}
+                     name, business email, business phone, company name, job title, department,
+                     company size and industry.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">
+                       Enquiry content:
+                     </strong>{" "}
+                     project requirements, volumes, messages, call notes and meeting bookings.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">
+                       Commercial records:
+                     </strong>{" "}
+                     contracts, invoices and payment details of the client business, and our
+                     correspondence with you.
+                   </li>
+                 </ul>
+                 <p className="mb-4 text-[#00A6FF]"> C. Job applicants</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                     <li >
+                       <strong className="font-bold text-text-primary">
+                         Application details:
+                       </strong>{" "}
+                       name, contact details, CV or resume, portfolio links, employment and
+                       education history, assessment results, interview notes and references.
+                     </li>
+                   
+                     <li >
+                       We do not ask for sensitive details such as religion, health or caste,
+                       and ask you not to include them. We run background checks only after an
+                       offer, and only where the law allows.
+                     </li>
+                 </ul>
+                  <p className="mb-4 text-[#00A6FF]">D. Business Contacts</p>
+                  <p >
+                    These are professionals whose work details we hold to run B2B campaigns.
+                  </p>
+
+                  <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                    <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                      <thead>
+                        <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                          <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[35%] min-w-[180px] border-r border-border">
+                            Category
+                          </th>
+                          <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[280px]">
+                            Examples
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border">
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Identity and work contact
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            Name, business email, office or direct-dial phone, work location, LinkedIn or other business profile URL
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Professional profile
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            Job title, function, seniority, employer, department, tenure in role
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Company data
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            Industry, size, revenue band, technologies used, buying signals tied to the business
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Campaign interaction
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            Emails opened or clicked, content downloaded, webinars registered for or attended, forms submitted, answers to qualification questions (for example on budget, authority, need and timeline for a business purchase)
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Call and meeting records
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            Notes and, where lawful and with notice, recordings of qualification and appointment-setting calls
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Suppression records
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            Opt-outs, do-not-contact requests and bounced or invalid addresses
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface-elevated border border-border">
-                    <div className="font-semibold text-text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-success" />
-                      <span>Communications &amp; Scheduling</span>
-                    </div>
-                    <p className="text-xs text-text-secondary">
-                      Responding to inquiries, confirming strategy calls, sending proposals, and providing customer support.
-                    </p>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-surface-elevated border border-border">
-                    <div className="font-semibold text-text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-success" />
-                      <span>Platform Optimization</span>
-                    </div>
-                    <p className="text-xs text-text-secondary">
-                      Monitoring website performance, debugging technical errors, optimizing page load speeds, and enhancing UX.
-                    </p>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-surface-elevated border border-border">
-                    <div className="font-semibold text-text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-success" />
-                      <span>Security &amp; Legal Compliance</span>
-                    </div>
-                    <p className="text-xs text-text-secondary">
-                      Detecting fraudulent activities, protecting against cybersecurity threats, and fulfilling statutory requirements.
-                    </p>
-                  </div>
-                </div>
-              </section>
+                        <p>
+                            <strong className="font-bold text-white">
+                              What we do not collect:
+                            </strong>{" "}
+                            sensitive personal data (health, biometrics, race or ethnicity, political or
+                            religious beliefs, sexual orientation, government ID numbers, financial
+                            account details), personal or home contact details, or information about
+                            family or private life.
+                          </p>
+             </section>
 
               {/* 4. Legal Basis for Processing */}
               <section id="legal-basis" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Scale className="w-5 h-5 text-primary shrink-0" />
-                  <span>4. Legal Basis for Processing (GDPR Compliance)</span>
+                  <span>4.  Where we get business contact data</span>
                 </h2>
                 <p className="mb-4">
-                  For individuals located in the European Economic Area (EEA), the United Kingdom, or Switzerland, our legal basis for collecting and processing personal data depends on the context and purpose:
+                  We do not collect all Business Contact data from the people it describes. We obtain it from these types of source:
                 </p>
-                <ul className="list-disc pl-6 space-y-2 text-sm">
-                  <li><strong>Legitimate Interests (Article 6(1)(f) GDPR):</strong> When we process B2B business contact information to connect relevant technology solutions with enterprise decision-makers, provided such interests are balanced against your fundamental privacy rights.</li>
-                  <li><strong>Consent (Article 6(1)(a) GDPR):</strong> When you explicitly consent to receive newsletters, marketing communications, or accept non-essential cookies.</li>
-                  <li><strong>Performance of a Contract (Article 6(1)(b) GDPR):</strong> When processing is necessary to fulfill our service agreements and deliver client deliverables.</li>
-                  <li><strong>Legal Obligation (Article 6(1)(c) GDPR):</strong> When compliance with accounting, tax, or statutory disclosure laws is mandated.</li>
-                </ul>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                     <li >
+                       <strong className="font-bold text-text-primary">You:</strong>{" "}
+                       forms, registrations, call and meeting answers, and replies to our messages.
+                     </li>
+                   
+                     <li >
+                       <strong className="font-bold text-text-primary">Public business sources:</strong>{" "}
+                       company websites, business directories, professional networking profiles you have made visible for business use, press releases, conference speaker and exhibitor lists, and government or trade registries.
+                     </li>
+                   
+                     <li>
+                       <strong className="font-bold text-text-primary">Licensed data partners:</strong>{" "}
+                       commercial B2B data providers and verification services, under contracts that require them to have collected and shared the data lawfully.
+                     </li>
+                   
+                     <li>
+                       <strong className="font-bold text-text-primary">Clients:</strong>{" "}
+                       contact lists or leads a client gives us to run its campaign.
+                     </li>
+                   
+                     <li>
+                       <strong className="font-bold text-text-primary">Events and programs:</strong>{" "}
+                       registrations for webinars, content syndication, surveys and co-branded events.
+                     </li>
+                   </ul>
+            <br />
+                   <p className="mb-4 text-[#00A6FF]"> How we tell you</p>
+                   <p>When we first hold your details from a source other than you, we tell you at or before our first contact, and in any case within one month. Our first message states who we are, the categories of data we hold, the type of source, why we are contacting you, your right to object and opt out, and a link to this policy. You can ask us at any time to name the specific source of your data.</p>
+                   <p className="mb-4 text-[#00A6FF]">Our standards for data sources</p>
+                   <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                     <li>
+                       We use public information for business purposes only, and we respect the terms of the sites we use.
+                     </li>
+                   
+                     <li>
+                       We check each data partner before use and re-check it at least once a year. We keep records of how the data was collected and what notice the individuals received.
+                     </li>
+                   
+                     <li>
+                       We stop using a source, and delete data obtained from it, if it cannot show that the data was lawfully collected.
+                     </li>
+                   
+                     <li>
+                       We remove Business Contacts who have opted out from every list and campaign, and we keep a suppression record so they are not added again.
+                     </li>
+                   </ul>
               </section>
 
               {/* 5. B2B Intelligence Practices */}
               <section id="b2b-data-practices" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <UserCheck className="w-5 h-5 text-primary shrink-0" />
-                  <span>5. B2B Intelligence &amp; Demand Gen Practices</span>
+                  <span> 5. How we use information and our legal bases
+</span>
                 </h2>
                 <p className="mb-4">
-                  Taraj Global operates strictly within the B2B marketplace. We do not conduct consumer marketing (B2C). Our proprietary DemandFlow Bridge and qualification methodologies adhere to the following principles:
+                  We use personal data only for the purposes below. For people in the European Economic Area (EEA), the United Kingdom and Switzerland, the table also gives our legal basis under the GDPR and UK GDPR.
                 </p>
-                <ul className="list-disc pl-6 space-y-2 text-sm">
-                  <li><strong>Strict Business Relevancy:</strong> Outreach is limited to professional business personas based on verifiable corporate need and ICP alignment.</li>
-                  <li><strong>Immediate Opt-Out Mechanism:</strong> Every electronic communication includes a direct, one-click unsubscribe mechanism.</li>
-                  <li><strong>Data Hygiene &amp; Verification:</strong> Contact databases are regularly cleansed and validated to maintain accuracy and prevent outdated record retention.</li>
-                </ul>
+
+                <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[32%] min-w-[180px] border-r border-border">
+                          Purpose
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[28%] min-w-[160px] border-r border-border">
+                          Data used
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[260px]">
+                          Legal basis (GDPR / UK GDPR)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Run, secure and improve our website
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Website visitor data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Legitimate interests (security, performance); consent for non-essential cookies
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Respond to enquiries, book calls, send proposals
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Enquirer and client data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Steps before a contract; legitimate interests
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Deliver client campaigns: lead generation, appointment setting, ABM, content syndication, webinars
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Business Contact and campaign data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Contract (where we act as processor for a client); legitimate interests; consent where a program or local law requires it
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Build, verify, enrich and cleanse our B2B database
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Business Contact data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Legitimate interests
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Send B2B marketing and outreach
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Business Contact data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Legitimate interests, subject to the local email and phone rules in Section 6; consent where required
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Qualify and score leads
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Business Contact and campaign data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Legitimate interests
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Honour opt-outs and keep suppression lists
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Suppression records
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Legal obligation; legitimate interests
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Invoice, account, pay tax
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Client and supplier data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Legal obligation; contract
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Recruit staff
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Applicant data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Steps before a contract; legitimate interests; consent for talent-pool retention
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Prevent fraud, enforce rights, audits, corporate transactions
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Any data needed
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Legitimate interests; legal obligation
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p >
+                   <strong className="font-bold text-text-primary">
+                     Legitimate interests.
+                   </strong>{" "}
+                   Where we rely on them, we have recorded why our interest is lawful and necessary, and how we weigh it against your rights. Our interest is promoting relevant business solutions to the professionals likely to need them. A summary of this assessment is available on request, and you may object at any time (Section 13).
+                 </p>
+                 <p>
+                   <strong className="font-bold text-text-primary">
+                     India.
+                   </strong>{" "}
+                   Our processing in India is governed by the Information Technology Act, 2000
+                   and the SPDI Rules, 2011, and by the Digital Personal Data Protection Act,
+                   2023 (DPDP Act) and the DPDP Rules, 2025 as they come into force. The core
+                   consent, notice and data-fiduciary duties apply from May 2027. We are building
+                   our processes to meet them, and for Business Contacts in India we will give
+                   notice and request consent where the DPDP Act requires it. See Section 15.
+                 </p>
               </section>
 
               {/* 6. Information Sharing */}
               <section id="information-sharing" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Share2 className="w-5 h-5 text-primary shrink-0" />
-                  <span>6. Information Sharing &amp; Disclosure</span>
+                  <span>6. B2B outreach and marketing communications</span>
                 </h2>
                 <p className="mb-4">
-                  <strong>We do not sell, rent, or trade your personal information.</strong> We only share information under strict contractual safeguards in the following situations:
+                 Every message we send follows these rules:
                 </p>
-                <ul className="list-disc pl-6 space-y-2 text-sm">
-                  <li><strong>Trusted Service Providers:</strong> Sub-processors who provide cloud hosting (e.g., secure data centers), email delivery infrastructure, analytics, and CRM systems bound by confidentiality and Data Processing Agreements (DPAs).</li>
-                  <li><strong>Client Campaign Delivery:</strong> When you express interest in a client&apos;s solution or participate in a co-branded webinar or content syndication program.</li>
-                  <li><strong>Corporate Reorganization:</strong> In connection with a merger, acquisition, or sale of corporate assets with continuing privacy obligations.</li>
-                  <li><strong>Legal Requirements:</strong> When compelled by subpoena, court order, or governmental regulation to protect legal rights and physical safety.</li>
-                </ul>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                       <li>
+                      <strong className="font-bold text-text-primary">Business relevance only.</strong>{" "}
+                      We contact people about solutions that fit their professional role and company.
+                    </li>
+                  
+                    <li>
+                      <strong className="font-bold text-text-primary">Clear sender.</strong>{" "}
+                      Each message identifies Taraj Global (and the client we are working for, where relevant), gives a valid postal address and uses an honest subject line.
+                    </li>
+                  
+                    <li>
+                      <strong className="font-bold text-text-primary">Easy opt-out.</strong>{" "}
+                      Every email carries a one-click unsubscribe link, and you can also reply or write to info@tarajglobal.com. We process opt-outs immediately where automated, and in any case within five business days. We never charge for opting out or require more than your email address.
+                    </li>
+                  
+                    <li>
+                      <strong className="font-bold text-text-primary">Calls.</strong>{" "}
+                      We check national do-not-call registers before calling, state who we are and why we are calling, and record calls only where the law allows and after telling you.
+                    </li>
+                  </ul><br />
+                  <p className="mb-4 text-[#00A6FF]">How we apply local law</p>
+                  <p className="mb-4">Email and phone marketing are regulated separately from general data protection law, and the rules differ by country.</p>
+
+                  <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                    <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                      <thead>
+                        <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                          <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[30%] min-w-[160px] border-r border-border">
+                            Region
+                          </th>
+                          <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[280px]">
+                            How we approach outreach
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border">
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            EU / EEA
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            Rules differ by member state. In countries that require prior consent for B2B email (Germany is a common example), we send cold email only with consent. Elsewhere we rely on legitimate interests with a clear opt-out. We respect national call-suppression lists.
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            United Kingdom
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            We may email corporate subscribers (company addresses) with identification and an opt-out. Sole traders and some partnerships count as individuals and need consent. We screen against the TPS and CTPS for calls.
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            United States
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            We follow the CAN-SPAM Act: accurate sender information, a postal address and opt-outs honoured within 10 business days. For calls and texts we follow the TCPA and state rules, screen against do-not-call lists and do not use autodialled or prerecorded calls or texts to mobile numbers without the required consent.
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Canada
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            We follow CASL: we send commercial electronic messages only with express consent or valid implied consent, identify the sender and honour unsubscribes within 10 business days.
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            India
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            We follow TRAI rules for commercial communications, including the preference registry, and the DPDP Act when it applies.
+                          </td>
+                        </tr>
+                        <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                            Other countries
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            We follow the local law that applies to the recipient.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p className="mb-4"> If you opt out, we keep a minimal suppression record, such as your email address, so that we do not contact you again. We keep it because we have a legal and legitimate interest in honouring your request.
+ </p>
               </section>
 
               {/* 7. Cookies & Tracking */}
               <section id="cookies-tracking" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Eye className="w-5 h-5 text-primary shrink-0" />
-                  <span>7. Cookies &amp; Tracking Technologies</span>
+                  <span>7. Profiling, lead scoring and automated decisions</span>
                 </h2>
                 <p className="mb-4">
-                  Our website uses cookies, web beacons, and local storage to ensure smooth navigation, remember theme preferences (light/dark mode), and analyze aggregated website traffic.
+                 We profile Business Contacts to decide which professionals are relevant to which campaign. We match job role, seniority and company data against a client’s ideal customer profile, and we score leads using campaign engagement and qualification answers.
+
                 </p>
                 <p className="mb-4">
-                  You can manage your cookie preferences at any time using our dedicated <Link to="/cookies" className="text-accent font-semibold hover:underline">Cookies Policy</Link> page or by adjusting your browser settings to reject non-essential cookies.
+                This profiling decides whom we contact and which leads we pass to a client. It does not produce legal or similarly significant effects on you, and we make no decision of that kind by automated means alone. A person reviews how we set the scoring rules and can review an individual score if you ask.</p>
+                <p className="mb-4">
+                  You can object to profiling for marketing at any time, and that objection is absolute for direct marketing. See Section 13.
+
                 </p>
               </section>
 
@@ -430,158 +952,880 @@ function Privacy() {
               <section id="data-security" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Lock className="w-5 h-5 text-primary shrink-0" />
-                  <span>8. Data Security &amp; Storage</span>
+                  <span>8.Sharing and disclosure</span>
                 </h2>
+                <p className="mb-4 text-[#00A6FF]">Service providers (sub-processors)
+</p>
                 <p className="mb-4">
-                  We implement multi-layered administrative, technical, and physical safeguards to prevent unauthorized access, disclosure, alteration, or destruction of your personal data:
+                 <p>
+                    We use providers for cloud hosting, email delivery, CRM and sales engagement,
+                    data verification and enrichment, dialing and call recording, webinar hosting,
+                    analytics, support and professional advice. They process data only on our
+                    instructions under written agreements that require confidentiality and
+                    security. We keep a current list of sub-processors and provide it on request
+                    at{" "}
+                    <a
+                      href="mailto:info@tarajglobal.com"
+                      className="text-[#00A6FF] hover:underline"
+                    >
+                      info@tarajglobal.com
+                    </a>.
+                  </p>
                 </p>
-                <ul className="list-disc pl-6 space-y-1.5 text-sm mb-4">
-                  <li>256-bit TLS/SSL encryption for all data in transit across our web applications.</li>
-                  <li>AES-256 encrypted storage for confidential database entries and credentials.</li>
-                  <li>Role-based access control (RBAC) limiting data access solely to authorized personnel.</li>
-                  <li>Regular vulnerability scanning, code security reviews, and secure cloud backups.</li>
+                <p className="mb-4 text-[#00A6FF]">Clients: how we deliver leads</p>
+                <p className="mb-4">Delivering leads and contact data to clients is the core of our service, so we explain it plainly.</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                  <li>
+                    <strong className="font-bold text-text-primary">Content syndication and webinars.</strong>{" "}
+                    When you download a report, register for an event or ask for information, the form tells you which sponsor or client will receive your details. We pass your details only to the clients named at that point and, where the law requires it, only if you have agreed.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">Lead generation and appointment setting.</strong>{" "}
+                    We pass a client the details of professionals who confirmed interest or met the client’s qualification criteria, and who have been told that we will do so. We tell you which client receives them.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">List building and database services.</strong>{" "}
+                    We may deliver business contact records that match a client’s targeting criteria. We deliver them only where our legal basis and notice duties are met.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">What clients must do.</strong>{" "}
+                    Once a client receives your details for its own purposes, it becomes responsible for that use. Our contracts require clients to use leads only for the stated campaign, give you their own privacy notice and opt-out, respect your rights, protect the data and not resell it.
+                  </li>
+                </ul><br />
+                <p className="mb-4 text-[#00A6FF]">Sale and sharing under US privacy</p> 
+                <p>
+  Some US state laws, including California’s, treat disclosing personal
+  information for money or other valuable consideration as a “sale”, and
+  disclosing it for cross-context behavioural advertising as “sharing”.
+  Because clients pay for our campaigns, we treat lead delivery as a sale and
+  sharing for those laws. You can opt out at any time through the “Do Not Sell
+  or Share My Personal Information” link or by email to{" "}
+  <a
+    href="mailto:info@tarajglobal.com"
+    className="text-[#00A6FF] hover:underline"
+  >
+    info@tarajglobal.com
+  </a>
+  , or through a browser opt-out signal such as Global Privacy Control, which
+  we honour. We do not knowingly sell or share the personal information of
+  anyone under 16.
+</p>
+                <p className="mb-4 text-[#00A6FF]">Other disclosures</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                  <li>
+                    <strong className="font-bold text-text-primary">Corporate transactions:</strong>{" "}
+                    a merger, acquisition, financing or sale of assets, with the buyer bound to honour this policy.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">Legal reasons:</strong>{" "}
+                    a court order, a lawful request from authorities, or protecting our rights, safety and security or those of others.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">With your direction:</strong>{" "}
+                    where you ask us to share data or agree to it.
+                  </li>
+                
+                  <li>
+                    <strong className="font-bold text-text-primary">De-identified data:</strong>{" "}
+                    aggregated or anonymised information that does not identify you.
+                  </li>
                 </ul>
-                <p className="text-xs text-text-muted italic">
-                  While we employ rigorous industry-standard measures, please note that no electronic transmission over the internet or cloud repository can be guaranteed to be 100% impenetrable.
-                </p>
               </section>
 
               {/* 9. Data Retention */}
               <section id="data-retention" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Clock className="w-5 h-5 text-primary shrink-0" />
-                  <span>9. Data Retention</span>
+                  <span>9.Cookies and tracking technologies</span>
                 </h2>
                 <p>
-                  We retain personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, satisfy contractual commitments, resolve disputes, and comply with legal, tax, or statutory reporting obligations. When data is no longer required, it is securely deleted or anonymized.
+                  Our website uses cookies, web beacons and local storage. In the EEA, the UK and Switzerland we place non-essential cookies only after you opt in through our cookie banner. Elsewhere, you can still change your choices at any time.
                 </p>
+
+                <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[25%] min-w-[140px] border-r border-border">
+                          Type
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[45%] min-w-[240px] border-r border-border">
+                          Purpose
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[180px]">
+                          Consent
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Strictly necessary
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Page loading, security, remembering your cookie choices
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Not required
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Preferences
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Remembering settings such as light or dark mode
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Required in EEA, UK and Switzerland
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Analytics
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Measuring traffic and improving the site using [analytics tool name]
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Required in EEA, UK and Switzerland
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Marketing
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          [Delete this row if none are used]
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Required in EEA, UK and Switzerland
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                   You can manage your choices through the “Cookie settings” link in our footer,
+                   through your browser settings, or with a browser opt-out signal such as Global
+                   Privacy Control, which we treat as an opt-out of sale and sharing. A full list
+                   of cookies is in our{" "}
+                   <a
+                     href="https://tarajglobal.com/cookies"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="text-[#00A6FF] hover:underline"
+                   >
+                     Cookie Policy
+                   </a>.
+                 </p>
               </section>
 
               {/* 10. Your Privacy Rights */}
               <section id="privacy-rights" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Scale className="w-5 h-5 text-primary shrink-0" />
-                  <span>10. Your Privacy Rights (GDPR &amp; CCPA/CPRA)</span>
+                  <span>10.Security and breach notification,</span>
                 </h2>
                 <p className="mb-4">
-                  Depending on your geographic location and applicable jurisdiction, you possess specific legal rights regarding your personal information:
+                 We protect personal data with administrative, technical and physical safeguards that fit the risk, including:
                 </p>
-
-                <div className="space-y-3 mb-6">
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border">
-                    <h3 className="font-bold text-text-primary text-sm mb-1">Under GDPR (EEA &amp; UK Residents):</h3>
-                    <ul className="list-disc pl-5 space-y-1 text-xs text-text-secondary">
-                      <li><strong>Right to Access &amp; Portability:</strong> Request copies of the personal data we hold about you.</li>
-                      <li><strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete records.</li>
-                      <li><strong>Right to Erasure (&quot;Right to be Forgotten&quot;):</strong> Request deletion of your personal data.</li>
-                      <li><strong>Right to Object &amp; Restrict:</strong> Object to processing based on legitimate interests or direct marketing.</li>
-                      <li><strong>Right to Withdraw Consent:</strong> Withdraw consent at any time without affecting prior lawful processing.</li>
-                    </ul>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border">
-                    <h3 className="font-bold text-text-primary text-sm mb-1">Under CCPA / CPRA (California Residents):</h3>
-                    <ul className="list-disc pl-5 space-y-1 text-xs text-text-secondary">
-                      <li><strong>Right to Know:</strong> Know what categories and specific pieces of personal information are collected and shared.</li>
-                      <li><strong>Right to Delete:</strong> Request deletion of personal information collected from you.</li>
-                      <li><strong>Right to Opt-Out of Sale or Sharing:</strong> Submit a Do Not Sell or Share request (Taraj Global does not sell personal data).</li>
-                      <li><strong>Right to Non-Discrimination:</strong> Receive equal service and pricing without discrimination for exercising privacy rights.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <p className="text-sm">
-                  To exercise any of these statutory rights, please submit a request to our privacy team via email at{' '}
-                  <a href="mailto:info@tarajglobal.com" className="text-primary font-bold hover:underline">
-                    info@tarajglobal.com
-                  </a>
-                  . We will respond within thirty (30) days of identity verification.
-                </p>
+               <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                     <li>encryption in transit using TLS, and encryption at rest for databases and credentials;</li>
+                     <li>role-based access control and multi-factor authentication for systems that hold personal data;</li>
+                     <li>logging, regular vulnerability scanning and code review, and secured backups;</li>
+                     <li>confidentiality duties and privacy training for staff, and security review of our providers.</li>
+                </ul>
+                 <p>No system is completely secure, and we cannot guarantee absolute security.</p>
+                 <p>If a personal data breach occurs, we will investigate and contain it and notify the relevant authorities, clients and affected individuals within the time the law requires. This includes India’s CERT-In, EU and UK supervisory authorities, and, from May 2027, the Data Protection Board of India.
+               </p>
               </section>
 
               {/* 11. International Transfers */}
               <section id="international-transfers" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Server className="w-5 h-5 text-primary shrink-0" />
-                  <span>11. International Data Transfers</span>
+                  <span>11.  Data retention</span>
                 </h2>
                 <p>
-                  As an international organization, your information may be processed in servers located outside your country of residence, including India and the United States. Where cross-border data transfers occur, we implement Standard Contractual Clauses (SCCs) approved by the European Commission and enforce robust technical measures to guarantee data protection equivalence.
+                  We keep personal data only as long as needed for the purpose it was collected for, and then delete or anonymise it. These are our standard periods.
                 </p>
+
+                <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[35%] min-w-[180px] border-r border-border">
+                          Data
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[280px]">
+                          Retention
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Website logs and analytics
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          [14] months; cookies as listed in our Cookie Policy
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Enquiries that do not become clients
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          [24] months after last contact
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Client records, contracts and invoices
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Contract term plus the period the law requires for accounting and tax records (generally [8] years in India)
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Business Contact database records
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Verified at least every [12] months; deleted or anonymised if there has been no verification or engagement for [24] months
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Client campaign data
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          As the client contract says; returned or deleted within [60] days of campaign end
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Call recordings
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          [90] days, unless needed for a dispute or legal claim
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Opt-out and suppression records
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Kept for as long as needed so that we continue to honour the opt-out
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Unsuccessful job applications
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          [12] months; [24] months in a talent pool only if you agree
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Records needed for legal claims
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Until the matter is resolved and limitation periods have run
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </section>
 
               {/* 12. Children's Privacy */}
               <section id="childrens-privacy" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Shield className="w-5 h-5 text-primary shrink-0" />
-                  <span>12. Children&apos;s Privacy</span>
+                  <span>12.  International data transfers</span>
                 </h2>
                 <p>
-                  Our services and website are exclusively intended for adult enterprise professionals and businesses. We do not knowingly collect or solicit personal data from children under the age of eighteen (18). If we learn that we have inadvertently collected data from a child, we will promptly delete it.
-                </p>
+                  We are based in India, and our providers and clients operate in the United States, the EEA, the UK and other countries. Your data may therefore be processed outside your country.
+                </p><br />
+                <p>India has no EU or UK adequacy decision, so for personal data that originates in the EEA, UK or Switzerland we use these safeguards:</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                   <li>
+                     <strong className="font-bold text-text-primary">EEA:</strong>{" "}
+                     the European Commission’s Standard Contractual Clauses (2021/914), using the module that fits each transfer (controller to controller, controller to processor, or processor to sub-processor).
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">UK:</strong>{" "}
+                     the UK International Data Transfer Agreement or the UK Addendum to the SCCs.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">Switzerland:</strong>{" "}
+                     the SCCs with the Swiss addendum.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">United States:</strong>{" "}
+                     the EU-US, UK Extension and Swiss-US Data Privacy Framework where the recipient is certified, and otherwise the SCCs.
+                   </li>
+                 </ul>
+                 <p >
+                      We assess the law and practice of the destination country, add technical and
+                      organisational measures such as encryption and access controls where needed,
+                      and suspend a transfer if we cannot protect the data. You can request a copy
+                      of the relevant clauses by writing to{" "}
+                      <a
+                        href="mailto:info@tarajglobal.com"
+                        className="text-[#00A6FF] hover:underline"
+                      >
+                        info@tarajglobal.com
+                      </a>
+                      ; we may redact commercial terms.
+                    </p><br />
+                    <p>For personal data processed under India’s DPDP Act, we will transfer data abroad only as the Act and any restrictions notified by the Government of India allow.</p>
               </section>
 
               {/* 13. Changes to Policy */}
               <section id="policy-changes" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <AlertCircle className="w-5 h-5 text-primary shrink-0" />
-                  <span>13. Changes to This Privacy Policy</span>
+                  <span>13.Your rights and how to use them</span>
                 </h2>
                 <p>
-                  We may periodically revise this Privacy Policy to reflect modifications in our operational practices, technological enhancements, or evolving legal frameworks. All updates will be published on this page with an updated &quot;Last Updated&quot; timestamp. We encourage you to review this policy periodically.
+                 Which rights you have depends on where you live. We give the rights below to everyone we can reasonably identify, wherever they are, and we do not discriminate against you for using them.
                 </p>
+
+                <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[35%] min-w-[180px] border-r border-border">
+                          Region
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[280px]">
+                          Your rights
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          EEA, UK and Switzerland
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Access and a copy of your data; correction; erasure; restriction; portability; object to processing based on legitimate interests; object to direct marketing at any time (absolute right); withdraw consent at any time; not be subject to solely automated decisions with significant effects; complain to your supervisory authority
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          California and other US states with privacy laws
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Know and access the personal information we hold, its sources and recipients; delete; correct; opt out of sale and sharing; limit use of sensitive personal information (we do not use it); portability; non-discrimination; appeal a refusal where state law gives that right
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          India
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Under the DPDP Act from May 2027, and now where practical: access a summary of your data and the parties it is shared with; correction and erasure; grievance redressal; nominate another person to exercise your rights
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Elsewhere
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          The rights your local law gives you
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mb-4 text-[#00A6FF]">How to make a request</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                      <li>
+                        <strong className="font-bold text-text-primary">Email:</strong>{" "}
+                        <a href="mailto:info@tarajglobal.com" className="text-[#00A6FF] hover:underline">
+                          info@tarajglobal.com
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <strong className="font-bold text-text-primary">Web form:</strong>{" "}
+                        <a
+                          href="https://tarajglobal.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#00A6FF] hover:underline"
+                        >
+                          https://tarajglobal.com/
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <strong className="font-bold text-text-primary">Phone:</strong>{" "}
+                        <a href="tel:+919665599442" className="text-[#00A6FF] hover:underline">
+                          +91-96655-99442
+                        </a>
+                        {", "}
+                        <a href="tel:+13464878307" className="text-[#00A6FF] hover:underline">
+                          +1 346-487-8307
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <strong className="font-bold text-text-primary">Opt out of marketing:</strong>{" "}
+                        use the unsubscribe link in any email.
+                      </li>
+                    </ul>
+                <p className="mb-4 text-[#00A6FF]">What happens next</p>
+                <ul className="list-disc pl-6 space-y-3 marker:text-white">
+                   <li>
+                     <strong className="font-bold text-text-primary">Verification.</strong>{" "}
+                     We ask only for what we need to confirm you are who you say you are, usually a response from your work email address.
+                   </li>
+
+                <li>
+                  <strong className="font-bold text-text-primary">Timing.</strong>{" "}
+                  We confirm receipt within 10 business days and respond within one month (45 days for US state-law requests). If the request is complex we may extend the period as the law allows, and we will tell you why.
+                </li>
+              
+                <li>
+                  <strong className="font-bold text-text-primary">Cost.</strong>{" "}
+                  There is no charge, unless a request is clearly unfounded or excessive.
+                </li>
+              
+                <li>
+                  <strong className="font-bold text-text-primary">Authorised agents.</strong>{" "}
+                  You may use an agent, and we may ask for proof of their authority.
+                </li>
+              
+                <li>
+                  <strong className="font-bold text-text-primary">Client campaigns.</strong>{" "}
+                  Where we are a processor for a client, we will pass your request to the client and help it respond.
+                </li>
+              
+                <li>
+                  <strong className="font-bold text-text-primary">Appeals.</strong>{" "}
+                  If we refuse a request, we will explain why. You may appeal by replying to our decision, and we will answer within the time your state’s law requires.
+                </li>
+              </ul>
+                  <p className="mb-4 text-[#00A6FF]">Complaints</p>
+                  <p>Please contact us first so we can try to resolve your concern. You may also complain to your data protection authority, such as the Information Commissioner’s Office (UK), your EU national authority, or the California Privacy Protection Agency or state attorney general in the US. In India, you may take a complaint to our Grievance Officer (Section 15), and to the Data Protection Board of India once the relevant provisions apply.</p>
               </section>
 
               {/* 14. Contact Information */}
               <section id="contact-us" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Mail className="w-5 h-5 text-primary shrink-0" />
-                  <span>14. Contact Information &amp; Data Protection Officer</span>
+                  <span>14. Additional notice for California residents</span>
                 </h2>
-                <p className="mb-6">
-                  If you have questions, comments, or data rights requests regarding this Privacy Policy, please reach out to our legal and data protection team:
+                <p className="mb-4">
+                  California law requires us to describe the personal information we collected in the last 12 months. Business contact information of California residents is covered like any other personal information.
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
-                    <Mail className="w-5 h-5 text-cta mb-2" />
-                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Email</span>
-                    <a href="mailto:info@tarajglobal.com" className="text-sm font-semibold text-text-primary hover:text-primary hover:underline mt-1">
-                      info@tarajglobal.com
-                    </a>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
-                    <Phone className="w-5 h-5 text-cta mb-2" />
-                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Direct Phone</span>
-                    <a href="tel:+919665599442" className="text-sm font-semibold text-text-primary hover:text-primary hover:underline mt-1">
-                      +91-96655-99442
-                    </a>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-surface-elevated border border-border flex flex-col items-start">
-                    <MapPin className="w-5 h-5 text-cta mb-2" />
-                    <span className="text-xs font-mono font-bold text-text-muted uppercase">Headquarters</span>
-                    <address className="text-xs text-text-secondary not-italic mt-1 leading-relaxed">
-                      The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014, India
-                    </address>
-                  </div>
+                <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[18%] min-w-[140px] border-r border-border">
+                          Category
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[24%] min-w-[180px] border-r border-border">
+                          Examples
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[20%] min-w-[150px] border-r border-border">
+                          Source
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[18%] min-w-[140px] border-r border-border">
+                          Disclosed to
+                        </th>
+                        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[160px]">
+                          Sold or shared
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Identifiers
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Name, business email, business phone, IP address
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          You, public sources, data partners, clients
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Service providers; clients
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Yes (lead delivery)
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Professional or employment information
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Job title, employer, department, seniority, work location
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          You, public sources, data partners, clients
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Service providers; clients
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Yes (lead delivery)
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Internet or network activity
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Pages viewed, clicks, email and webinar engagement
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Your devices; our systems
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Service providers; clients (for campaign engagement)
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Yes for campaign engagement shared with clients; no for website analytics [confirm]
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Approximate geolocation
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Region derived from IP address
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Your devices
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Service providers
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          No
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Audio information
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Call recordings
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          You, on calls
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Service providers
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          No
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-primary/[0.03] transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                          Inferences
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Lead score, fit with a client’s target profile
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Derived by us
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+                          Service providers; clients
+                        </td>
+                        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                          Yes (lead delivery)
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-
-                <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <span className="text-xs text-text-secondary">
-                    Looking for our general service terms? Read our <Link to="/terms" className="text-accent font-semibold hover:underline">Terms of Service</Link>.
-                  </span>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-black font-bold text-xs uppercase tracking-wider hover:bg-accent-light transition-colors shadow-sm"
-                  >
-                    <span>Book Strategy Call</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
+                                     <p>
+                       <strong className="font-bold text-text-primary">Sensitive personal information.</strong>{" "}
+                       We do not collect it.
+                     </p>
+                     
+                     <p >
+                       <strong className="font-bold text-text-primary">Business purposes.</strong>{" "}
+                       We use and disclose this information for the purposes in Sections 5 and 8.
+                       We retain it for the periods in Section 11.
+                     </p>
+                     
+                     <p>
+                       <strong className="font-bold text-text-primary">Sale and sharing.</strong>{" "}
+                       We treat lead delivery to clients as a sale or sharing. You can opt out as
+                       described in Section 8. We honour opt-out preference signals, and we do not
+                       charge you or reduce service quality for using your rights.
+                     </p>
+                     
+                     <p>
+                       <strong className="font-bold text-text-primary">Data broker status.</strong>{" "}
+                       [Taraj Global is / is not registered as a data broker with the California
+                       Privacy Protection Agency. Confirm and complete before publication.]
+                     </p>
               </section>
 
+              {/* 15. Contact Information & Grievance Officer */}
+              <section id="contact-us" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+                <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
+                  <Mail className="w-5 h-5 text-primary shrink-0" />
+                  <span>15. India: applicable law and Grievance Officer</span>
+                </h2>
+                <p >
+  <strong className="font-bold text-text-primary">Current law.</strong>{" "}
+  We handle personal data in line with the Information Technology Act, 2000 and
+  the Information Technology (Reasonable Security Practices and Procedures and
+  Sensitive Personal Data or Information) Rules, 2011. We do not intentionally
+  collect sensitive personal data or information from Business Contacts.
+</p>
+
+<p >
+  <strong className="font-bold text-text-primary">DPDP Act.</strong>{" "}
+  The Digital Personal Data Protection Act, 2023 and the DPDP Rules, 2025 are
+  being phased in, and the core duties for data fiduciaries take effect from
+  May 2027. By then we will give a clear notice at or before collection, rely
+  on valid consent or a permitted legitimate use for each purpose, honour
+  correction, erasure and grievance requests, apply retention limits, protect
+  children’s data and report breaches to the Data Protection Board of India
+  and affected individuals.
+</p>
+
+<p >
+  <strong className="font-bold text-text-primary">Grievance Officer.</strong>{" "}
+  If you have a concern about how we handle your personal data, contact our
+  Grievance Officer:
+</p>
+
+<div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[30%] min-w-[140px] border-r border-border">
+          Detail
+        </th>
+        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[280px]">
+          Information
+        </th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border">
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+          Name
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          Tushar Phalak
+        </td>
+      </tr>
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+          Designation
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          Director of Growth and marketing
+        </td>
+      </tr>
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+          Email
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          <a href="mailto:tushar@tarajglobal.com" className="text-primary hover:underline font-medium">
+            tushar@tarajglobal.com
+          </a>
+        </td>
+      </tr>
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+          Address
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014, India
+        </td>
+      </tr>
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+          Hours
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          Mon–Fri, 10:00–18:00 EST
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<p>We acknowledge grievances within [two business days] and resolve them within one month of receipt.</p>
+               
+
+             
+              </section>
+                  {/* 16. Additional Information */}
+<section
+  id="additional-information"
+  className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28"
+>
+  <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
+    <Info className="w-5 h-5 text-primary shrink-0" />
+    <span>16. Children, third-party links and changes to this policy
+</span>
+  </h2>
+
+  <p>
+  <strong className="font-bold text-text-primary">Children.</strong>{" "}
+  Our services and website are for adult business professionals only. We do not
+  knowingly collect personal data from anyone under 18, and where a country
+  sets a different minimum age, we apply it. If we learn that we hold a child’s
+  data, we will delete it promptly.
+</p>
+
+<p>
+  <strong className="font-bold text-text-primary">Third-party links.</strong>{" "}
+  Our website and messages may link to other sites, such as client pages and
+  professional networks. Their privacy practices are their own, and this policy
+  does not cover them.
+</p>
+
+<p>
+  <strong className="font-bold text-text-primary">Changes.</strong>{" "}
+  We may update this policy as our practices or the law change. We will post
+  the new version on this page with a new “Last updated” date. For material
+  changes we will also notify you in a way the law requires, such as by email
+  to existing subscribers, before they take effect. Earlier versions are
+  available on request.
+</p>
+</section>
+
+{/* 17. Updates to This Privacy Policy */}
+<section
+  id="policy-updates"
+  className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28"
+>
+  <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
+    <FileText className="w-5 h-5 text-primary shrink-0" />
+    <span>17. Contact us
+</span>
+  </h2>
+
+ 
+  <div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+    <table className="w-full text-left border-collapse text-xs sm:text-sm">
+      <thead>
+        <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+          <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[35%] min-w-[180px] border-r border-border">
+            Role
+          </th>
+          <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[280px]">
+            Contact
+          </th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-border">
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            Company
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            Taraj Global Solutions Private Limited, registered office
+          </td>
+        </tr>
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            Operating address
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014, India
+          </td>
+        </tr>
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            Privacy team (all rights requests)
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+            {" · "}
+            <a href="tel:+919665599442" className="hover:text-primary transition-colors">+91-96655-99442</a>
+            {" / "}
+            <a href="tel:+13464878307" className="hover:text-primary transition-colors">+1 346-487-8307</a>
+          </td>
+        </tr>
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            Data Protection Email
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            <a href="mailto:dpo@tgstechinfo.com" className="text-primary hover:underline font-medium">dpo@tgstechinfo.com</a>
+          </td>
+        </tr>
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            Grievance Officer (India)
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            See Section 15
+          </td>
+        </tr>
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            EU representative email
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+          </td>
+        </tr>
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            UK representative
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+          </td>
+        </tr>
+        <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+            General enquiries
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<p>
+  Our general service terms are in our{" "}
+  (<a
+    href="https://tarajglobal.com/terms"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-primary hover:underline font-semibold"
+  >
+    Terms of Service
+  </a>)
+</p>
+</section>
             </div>
           </div>
         </Container>
