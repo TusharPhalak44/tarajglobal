@@ -355,7 +355,7 @@ export const renderBlogHtml = async (slug, isPreview = false, isDev = false) => 
 
   if (!blog) {
     const notFoundHtml = template
-      .replace(/<title>[\s\S]*?<\/title>/i, '')
+      .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
       .replace(/<meta[^>]*data-prerender[^>]*>\s*/gi, '')
       .replace(/<link[^>]*data-prerender[^>]*>\s*/gi, '')
       .replace(/<script[^>]*data-prerender[^>]*>[\s\S]*?<\/script>\s*/gi, '')
@@ -413,7 +413,7 @@ export const renderBlogHtml = async (slug, isPreview = false, isDev = false) => 
 
   // Strip existing homepage or template head tags
   const renderedHtml = template
-    .replace(/<title>[\s\S]*?<\/title>/i, '')
+    .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
     .replace(/<meta[^>]*data-prerender[^>]*>\s*/gi, '')
     .replace(/<link[^>]*data-prerender[^>]*>\s*/gi, '')
     .replace(/<script[^>]*data-prerender[^>]*>[\s\S]*?<\/script>\s*/gi, '')

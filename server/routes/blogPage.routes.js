@@ -1,11 +1,12 @@
 import express from 'express'
 import { renderBlogHtml } from '../services/blogSeoRenderer.js'
-import { publishScheduledBlogs } from '../controllers/admin/blog.controller.js'
+// import { publishScheduledBlogs } from '../controllers/admin/blog.controller.js'
 import { optionalAuthenticate } from '../middleware/auth.middleware.js'
 
 const router = express.Router()
 
 // Route handler for blog page rendering with server-side dynamic SEO metadata
+
 router.get('/:slug', optionalAuthenticate, async (req, res, next) => {
   try {
     const { slug } = req.params
@@ -15,13 +16,19 @@ router.get('/:slug', optionalAuthenticate, async (req, res, next) => {
       return next()
     }
 
-    // Check scheduled blogs before rendering
-    await publishScheduledBlogs().catch(() => {})
+    const isPreview =
+      req.query.preview === 'true' &&
+      Boolean(req.user?.id)
 
-    const isPreview = (req.query.preview === 'true' || req.query.preview === true) && Boolean(req.user?.id)
-    const isDev = req.headers['x-vite-dev'] === '1' || req.query.format === 'dev'
+    const isDev =
+      req.headers['x-vite-dev'] === '1' ||
+      req.query.format === 'dev'
 
-    const { statusCode, html } = await renderBlogHtml(slug, isPreview, isDev)
+    const { statusCode, html } = await renderBlogHtml(
+      slug,
+      isPreview,
+      isDev
+    )
 
     if (statusCode === 404) {
       return res
@@ -49,5 +56,6 @@ router.get('/:slug', optionalAuthenticate, async (req, res, next) => {
     next(error)
   }
 })
+
 
 export default router

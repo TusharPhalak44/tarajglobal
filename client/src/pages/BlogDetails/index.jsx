@@ -686,9 +686,9 @@ function BlogDetails() {
   if (loading) {
     const formattedSlugTitle = slug
       ? slug
-          .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ')
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
       : 'Article'
 
     return (
@@ -1393,42 +1393,42 @@ function BlogDetails() {
                         {/* Author Social Links */}
                         {((blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url) ||
                           (blog.author_twitter || blog.author_twitter_url || blog.twitter_url)) && (
-                          <div className="flex items-center gap-2.5 pt-2 flex-wrap">
-                            {(blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url) && (
-                              <a
-                                href={
-                                  (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url).startsWith('http')
-                                    ? (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url)
-                                    : `https://${blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url}`
-                                }
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0077B5]/10 text-[#0077B5] dark:text-[#38BDF8] border border-[#0077B5]/30 hover:bg-[#0077B5] hover:text-white transition-all shadow-2xs group"
-                                title="Connect on LinkedIn"
-                              >
-                                <Linkedin size={13} className="shrink-0 group-hover:scale-110 transition-transform" />
-                                <span>LinkedIn</span>
-                              </a>
-                            )}
+                            <div className="flex items-center gap-2.5 pt-2 flex-wrap">
+                              {(blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url) && (
+                                <a
+                                  href={
+                                    (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url).startsWith('http')
+                                      ? (blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url)
+                                      : `https://${blog.author_linkedin || blog.author_linkedin_url || blog.linkedin_url}`
+                                  }
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0077B5]/10 text-[#0077B5] dark:text-[#38BDF8] border border-[#0077B5]/30 hover:bg-[#0077B5] hover:text-white transition-all shadow-2xs group"
+                                  title="Connect on LinkedIn"
+                                >
+                                  <Linkedin size={13} className="shrink-0 group-hover:scale-110 transition-transform" />
+                                  <span>LinkedIn</span>
+                                </a>
+                              )}
 
-                            {(blog.author_twitter || blog.author_twitter_url || blog.twitter_url) && (
-                              <a
-                                href={
-                                  (blog.author_twitter || blog.author_twitter_url || blog.twitter_url).startsWith('http')
-                                    ? (blog.author_twitter || blog.author_twitter_url || blog.twitter_url)
-                                    : `https://${blog.author_twitter || blog.author_twitter_url || blog.twitter_url}`
-                                }
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/10 dark:bg-white/10 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-white/20 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all shadow-2xs group"
-                                title="Follow on Twitter / X"
-                              >
-                                <Twitter size={13} className="shrink-0 group-hover:scale-110 transition-transform" />
-                                <span>Twitter / X</span>
-                              </a>
-                            )}
-                          </div>
-                        )}
+                              {(blog.author_twitter || blog.author_twitter_url || blog.twitter_url) && (
+                                <a
+                                  href={
+                                    (blog.author_twitter || blog.author_twitter_url || blog.twitter_url).startsWith('http')
+                                      ? (blog.author_twitter || blog.author_twitter_url || blog.twitter_url)
+                                      : `https://${blog.author_twitter || blog.author_twitter_url || blog.twitter_url}`
+                                  }
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/10 dark:bg-white/10 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-white/20 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all shadow-2xs group"
+                                  title="Follow on Twitter / X"
+                                >
+                                  <Twitter size={13} className="shrink-0 group-hover:scale-110 transition-transform" />
+                                  <span>Twitter / X</span>
+                                </a>
+                              )}
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>

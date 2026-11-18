@@ -16,25 +16,29 @@ const navLinks = [
 ]
 
 function headTags(route, meta) {
-  const url = `${SITE_URL}${route === '/' ? '/' : route}`
+  const defaultUrl = `${SITE_URL}${route === '/' ? '/' : route}`
+  const url = meta.canonical || defaultUrl
   const image = meta.image || DEFAULT_IMAGE
+  const robots = meta.robots || 'index, follow, max-image-preview:large'
+
   return [
     `<title>${esc(meta.title)}</title>`,
-    `<meta data-prerender name="description" content="${esc(meta.description)}" />`,
-    `<link data-prerender rel="canonical" href="${url}" />`,
-    `<meta data-prerender name="robots" content="index, follow, max-image-preview:large" />`,
-    `<meta data-prerender property="og:type" content="website" />`,
-    `<meta data-prerender property="og:site_name" content="Taraj Global" />`,
-    `<meta data-prerender property="og:title" content="${esc(meta.title)}" />`,
-    `<meta data-prerender property="og:description" content="${esc(meta.description)}" />`,
-    `<meta data-prerender property="og:url" content="${url}" />`,
-    `<meta data-prerender property="og:image" content="${image}" />`,
-    `<meta data-prerender name="twitter:card" content="summary_large_image" />`,
-    `<meta data-prerender name="twitter:title" content="${esc(meta.title)}" />`,
-    `<meta data-prerender name="twitter:description" content="${esc(meta.description)}" />`,
-    `<meta data-prerender name="twitter:image" content="${image}" />`,
+    `<meta name="description" content="${esc(meta.description)}" />`,
+    `<link rel="canonical" href="${esc(url)}" />`,
+    `<meta name="robots" content="${esc(robots)}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="Taraj Global" />`,
+    `<meta property="og:title" content="${esc(meta.title)}" />`,
+    `<meta property="og:description" content="${esc(meta.description)}" />`,
+    `<meta property="og:url" content="${esc(url)}" />`,
+    `<meta property="og:image" content="${esc(image)}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${esc(meta.title)}" />`,
+    `<meta name="twitter:description" content="${esc(meta.description)}" />`,
+    `<meta name="twitter:image" content="${esc(image)}" />`,
   ].join('\n    ')
 }
+
 
 function noscript(meta) {
   const links = (list) => list.map(([href, label]) => `<li><a href="${href}">${esc(label)}</a></li>`).join('')
@@ -53,7 +57,7 @@ function noscript(meta) {
 
 function render(route, meta) {
   return template
-    .replace(/<title>[\s\S]*?<\/title>/, '')
+    .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
     .replace(/<meta[^>]*data-prerender[^>]*>\s*/g, '')
     .replace(/<link[^>]*data-prerender[^>]*>\s*/g, '')
     .replace('</head>', `    ${headTags(route, meta)}\n  </head>`)

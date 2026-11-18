@@ -23,7 +23,7 @@ db.getConnection()
       console.warn('⚠️  Scheduled blogs publisher check notice:', err.message)
     })
     setInterval(() => {
-      publishScheduledBlogs().catch(() => {})
+      publishScheduledBlogs().catch(() => { })
     }, 10000)
 
     // In local development, synchronize latest published posts from Live CMS
