@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Calendar, Clock, ArrowRight, User } from 'lucide-react'
 import { mediaUrl } from '@utils/media'
 import { formatAuthorName } from '@utils/formatAuthor'
+import { CATEGORIES_DATA, getBlogCategoryKey } from './categoryFaqs'
 
 const BlogCard = ({ blog, index, onReadMore }) => {
   const formatDate = (dateString) => {
@@ -29,9 +30,30 @@ const BlogCard = ({ blog, index, onReadMore }) => {
     return `${minutes} min read`
   }
 
-  const category = blog.category_name || 'B2B Strategy'
-  const authorName = formatAuthorName(blog.author_name || blog.author)
-  const authorPhoto = blog.author_photo || null
+  const trackKey = getBlogCategoryKey(blog)
+  const trackObj = CATEGORIES_DATA.find((c) => c.key === trackKey)
+  const category = trackObj ? trackObj.shortName : (blog.category_name || 'B2B Strategy')
+
+  const categoryBadgeColors = {
+    'thought-leadership': 'bg-[#00A6FF]/10 text-[#00A6FF] border-[#00A6FF]/25',
+    'sales-marketing': 'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/25',
+    'tech-ai': 'bg-[#FF6D00]/10 text-[#FF6D00] border-[#FF6D00]/25'
+  }
+  const badgeClass = (trackKey && categoryBadgeColors[trackKey])
+    ? categoryBadgeColors[trackKey]
+    : 'bg-[#00A6FF]/10 text-[#00A6FF] border-[#00A6FF]/20'
+
+  const authorName = formatAuthorName(blog.author || blog.author_name)
+
+  const resolveAuthorPhoto = (b, name) => {
+    if (b.author_photo) return mediaUrl(b.author_photo)
+    const lower = (name || '').toLowerCase()
+    if (lower.includes('hanmant') || lower.includes('dhotre')) return '/Hanmant-Dhotre.webp'
+    if (lower.includes('abhishek') || lower.includes('rikibe')) return '/Abhishek-Rikibe.webp'
+    if (lower.includes('tushar') || lower.includes('phalak')) return '/Tushar-Phalak-1.webp'
+    return null
+  }
+  const authorPhoto = resolveAuthorPhoto(blog, authorName)
   const fallbackImg = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80'
 
   const handleCardClick = () => {
@@ -74,7 +96,7 @@ const BlogCard = ({ blog, index, onReadMore }) => {
         <div>
           {/* Metadata Row: Category Badge + Date + Read Time */}
           <div className="flex items-center justify-between gap-2 text-xs mb-3.5 font-mono">
-            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-[#00A6FF]/10 text-[#00A6FF] border border-[#00A6FF]/20">
+            <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase border ${badgeClass}`}>
               {category}
             </span>
             <div className="flex items-center gap-3 text-text-tertiary">

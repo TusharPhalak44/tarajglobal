@@ -44,11 +44,11 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
   const getAcceptedTypes = () => {
     switch (mediaType) {
       case 'image':
-        return 'image/jpeg,image/jpg,image/png,image/webp,image/gif,image/svg+xml'
+        return 'image/jpeg,image/jpg,image/png,image/webp,image/gif,image/svg+xml,.jpg,.jpeg,.png,.webp,.gif,.svg'
       case 'video':
-        return 'video/mp4,video/webm,video/quicktime'
+        return 'video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov'
       case 'pdf':
-        return 'application/pdf'
+        return 'application/pdf,.pdf'
       default:
         return ''
     }
@@ -64,8 +64,16 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
       video: ['video/mp4', 'video/webm', 'video/quicktime'],
       pdf: ['application/pdf']
     }
+    const allowedExts = {
+      image: /\.(jpe?g|png|webp|gif|svg)$/i,
+      video: /\.(mp4|webm|mov)$/i,
+      pdf: /\.pdf$/i
+    }
 
-    if (!allowedTypes[mediaType].includes(file.type)) {
+    const hasValidType = file.type && allowedTypes[mediaType]?.includes(file.type)
+    const hasValidExt = allowedExts[mediaType]?.test(file.name || '')
+
+    if (!hasValidType && !hasValidExt) {
       const typeNames = {
         image: 'JPG, PNG, WEBP, GIF, SVG',
         video: 'MP4, WEBM, MOV',
@@ -157,13 +165,21 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
 
     if (mediaType === 'image') {
       const srcUrl = /^(data:|blob:)/i.test(previewUrl) ? previewUrl : mediaUrl(previewUrl)
+      const isGif = /\.gif($|\?)/i.test(previewUrl) || (fileName && /\.gif$/i.test(fileName))
       return (
-        <img
-          src={srcUrl}
-          alt="Preview"
-          className="w-full h-48 object-contain rounded-lg bg-background"
-          onError={(e) => handleImageFallback(e, FALLBACK_IMAGE)}
-        />
+        <div className="relative w-full h-48 rounded-lg overflow-hidden bg-background border border-border flex items-center justify-center">
+          <img
+            src={srcUrl}
+            alt="Preview"
+            className="w-full h-full object-contain"
+            onError={(e) => handleImageFallback(e, FALLBACK_IMAGE)}
+          />
+          {isGif && (
+            <span className="absolute top-2 right-2 px-2 py-0.5 rounded text-[11px] font-bold font-mono tracking-wider bg-purple-600 text-white shadow-md">
+              ANIMATED GIF
+            </span>
+          )}
+        </div>
       )
     }
 
@@ -208,7 +224,7 @@ const FeaturedMedia = ({ value, onChange, disabled = false }) => {
             className="appearance-none w-full bg-background border border-border rounded-lg px-4 py-2 pr-10 text-sm text-text-primary focus:outline-none focus:border-primary cursor-pointer"
             disabled={disabled || uploading}
           >
-            <option value="image">Image</option>
+            <option value="image">Image / Animated GIF (.gif)</option>
             <option value="video">Video</option>
             <option value="pdf">PDF</option>
           </select>

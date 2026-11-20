@@ -18,28 +18,36 @@ const storage = multer.diskStorage({
     cb(null, uploadDir)
   },
   filename: (req, file, cb) => {
-    // Use crypto + MIME type — never trust user-supplied originalname
-    // Use crypto + MIME type — never trust user-supplied originalname
+    // Use crypto + MIME type — fallback to sanitized original extension if MIME is generic
     const MIME_MAP = {
       'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp',
       'image/gif': 'gif', 'image/svg+xml': 'svg',
       'video/mp4': 'mp4', 'video/webm': 'webm', 'video/quicktime': 'mov',
       'application/pdf': 'pdf'
     }
-    const ext = MIME_MAP[file.mimetype] || 'bin'
+    let ext = MIME_MAP[file.mimetype]
+    if (!ext) {
+      const origExt = path.extname(file.originalname || '').toLowerCase().replace(/^\./, '')
+      if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov', 'pdf'].includes(origExt)) {
+        ext = origExt === 'jpeg' ? 'jpg' : origExt
+      } else {
+        ext = 'bin'
+      }
+    }
     cb(null, `${Date.now()}-${crypto.randomBytes(8).toString('hex')}.${ext}`)
   }
 })
 
 const upload = multer({
   storage,
-  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB for videos
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB for videos/gifs
   fileFilter: (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|webp|svg|gif|mp4|webm|mov|pdf/
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase())
+    const allowedTypes = /jpeg|jpg|png|webp|svg|gif|mp4|webm|mov|pdf/i
+    const extname = allowedTypes.test(path.extname(file.originalname || '').toLowerCase())
     const mimetype = file.mimetype.startsWith('image/') || 
                      file.mimetype.startsWith('video/') || 
-                     file.mimetype === 'application/pdf'
+                     file.mimetype === 'application/pdf' ||
+                     file.mimetype === 'application/octet-stream'
     
     if (extname && mimetype) {
       return cb(null, true)

@@ -77,12 +77,14 @@ const getBaseTemplate = (isDev = false) => {
           if (!cachedDevTemplate || stats.mtimeMs > devTemplateMtime) {
             cachedDevTemplate = fs.readFileSync(p, 'utf8')
             devTemplateMtime = stats.mtimeMs
+            htmlCache.clear()
           }
           return cachedDevTemplate
         } else {
           if (!cachedProdTemplate || stats.mtimeMs > prodTemplateMtime) {
             cachedProdTemplate = fs.readFileSync(p, 'utf8')
             prodTemplateMtime = stats.mtimeMs
+            htmlCache.clear()
           }
           return cachedProdTemplate
         }
@@ -340,6 +342,9 @@ export const resolveBlogSeoMetadata = (blog) => {
  * Render complete HTML for a blog post
  */
 export const renderBlogHtml = async (slug, isPreview = false, isDev = false) => {
+  // Always inspect template first to auto-invalidate cache if dist files were rebuilt
+  const template = getBaseTemplate(isDev)
+
   const cacheKey = `${slug.toLowerCase().trim()}:${isPreview ? 'preview' : 'live'}:${isDev ? 'dev' : 'prod'}`
 
   // Serve from cache if available and not preview
@@ -351,7 +356,6 @@ export const renderBlogHtml = async (slug, isPreview = false, isDev = false) => 
   }
 
   const blog = await fetchBlogWithSeo(slug, isPreview)
-  const template = getBaseTemplate(isDev)
 
   if (!blog) {
     const notFoundHtml = template
