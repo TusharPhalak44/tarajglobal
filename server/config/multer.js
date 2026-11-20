@@ -11,7 +11,6 @@ const MIME_TO_EXT = {
   'image/png': 'png',
   'image/gif': 'gif',
   'image/webp': 'webp',
-  'image/svg+xml': 'svg',
   'application/pdf': 'pdf',
   'application/msword': 'doc',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
@@ -37,25 +36,17 @@ const storage = multer.diskStorage({
     cb(null, uploadPath)
   },
   filename: (req, file, cb) => {
-    // Derive extension from MIME type or sanitized extension
-    let ext = MIME_TO_EXT[file.mimetype]
-    if (!ext) {
-      const origExt = path.extname(file.originalname || '').toLowerCase().replace(/^\./, '')
-      if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'pdf', 'doc', 'docx'].includes(origExt)) {
-        ext = origExt === 'jpeg' ? 'jpg' : origExt
-      } else {
-        ext = 'bin'
-      }
-    }
+    // Derive extension from MIME type only — never from originalname (path traversal risk)
+    const ext = MIME_TO_EXT[file.mimetype] || 'bin'
     const safeName = `${Date.now()}-${crypto.randomBytes(8).toString('hex')}.${ext}`
     cb(null, safeName)
   }
 })
 
 const fileFilter = (req, file, cb) => {
-  const allowedTypes = /jpeg|jpg|png|gif|webp|svg|pdf|doc|docx/i
-  const extname = allowedTypes.test(path.extname(file.originalname || '').toLowerCase())
-  const mimetype = allowedTypes.test(file.mimetype) || file.mimetype.startsWith('image/')
+  const allowedTypes = /jpeg|jpg|png|gif|webp|pdf|doc|docx/
+  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase())
+  const mimetype = allowedTypes.test(file.mimetype)
 
   if (extname && mimetype) {
     cb(null, true)

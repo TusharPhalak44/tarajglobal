@@ -52,8 +52,6 @@ app.use(helmet({
       imgSrc: ["'self'", "data:", "https:", "blob:"],
       connectSrc: [
         "'self'",
-        "http://localhost:*",
-        "http://127.0.0.1:*",
         "https://www.google-analytics.com",
         "https://www.google.com"
       ],
@@ -120,11 +118,6 @@ if (resolvedDistPath) {
       immutable: true,
     }))
   }
-  // Any unmatched /assets/* request must 404, never fallback to index.html
-  app.use('/assets', (req, res) => {
-    res.status(404).type('text/plain').send('Asset not found')
-  })
-
   app.get('/', (req, res) => {
     res.sendFile(path.join(resolvedDistPath, 'index.html'))
   })
@@ -135,14 +128,11 @@ app.use('/blog', blogPageRoutes)
 
 // Fallback static files if dist is present (excluding /blog which is handled dynamically)
 if (resolvedDistPath) {
-  app.use(express.static(resolvedDistPath, { index: 'index.html' }))
+  app.use(express.static(resolvedDistPath, { index: false }))
 }
 
 // Chrome DevTools probe endpoint to avoid 404 and CSP warnings in console
 app.get('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
-  res.setHeader('Content-Security-Policy', "default-src 'self' 'unsafe-inline' *; connect-src *")
   res.status(200).json({})
 })
 
@@ -167,29 +157,6 @@ app.use('/api/audience', audienceRoutes)
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' })
 })
-
-// Catch-all SPA handler for client routes accessed directly on the server (e.g. /blog, /about, /services, etc.)
-if (resolvedDistPath) {
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api') || req.path.startsWith('/uploads') || req.path.startsWith('/.well-known')) {
-      return next()
-    }
-    // Block serving HTML for missing static files / assets
-    if (path.extname(req.path) || req.path.startsWith('/assets/')) {
-      return res.status(404).type('text/plain').send('Not found')
-    }
-    const cleanPath = req.path.replace(/^\/+|\/+$/g, '')
-    const subRouteHtml = path.join(resolvedDistPath, cleanPath, 'index.html')
-    if (cleanPath && fs.existsSync(subRouteHtml)) {
-      return res.sendFile(subRouteHtml)
-    }
-    const mainHtml = path.join(resolvedDistPath, 'index.html')
-    if (fs.existsSync(mainHtml)) {
-      return res.sendFile(mainHtml)
-    }
-    next()
-  })
-}
 
 // Error handling middleware
 app.use(errorHandler)

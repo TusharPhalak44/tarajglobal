@@ -1,34 +1,12 @@
 import express from 'express'
-import path from 'path'
-import fs from 'fs'
-import { fileURLToPath } from 'url'
 import { renderBlogHtml } from '../services/blogSeoRenderer.js'
 // import { publishScheduledBlogs } from '../controllers/admin/blog.controller.js'
 import { optionalAuthenticate } from '../middleware/auth.middleware.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
 const router = express.Router()
 
-// Route handler for blog landing page (/blog or /blog/)
-router.get('/', (req, res, next) => {
-  const candidateMainPaths = [
-    path.resolve(process.cwd(), 'client/dist/index.html'),
-    path.resolve(process.cwd(), 'dist/index.html'),
-    path.resolve(__dirname, '../../client/dist/index.html'),
-    path.resolve(__dirname, '../client/dist/index.html'),
-    '/usr/share/nginx/html/index.html'
-  ]
-  const mainIndexPath = candidateMainPaths.find((p) => fs.existsSync(p))
-  if (mainIndexPath) {
-    return res.sendFile(mainIndexPath)
-  }
+// Route handler for blog page rendering with server-side dynamic SEO metadata
 
-  next()
-})
-
-// Route handler for blog article rendering with server-side dynamic SEO metadata
 router.get('/:slug', optionalAuthenticate, async (req, res, next) => {
   try {
     const { slug } = req.params
@@ -46,7 +24,6 @@ router.get('/:slug', optionalAuthenticate, async (req, res, next) => {
       req.headers['x-vite-dev'] === '1' ||
       req.query.format === 'dev'
 
-    // Always use renderBlogHtml to inject SEO metadata into current build assets
     const { statusCode, html } = await renderBlogHtml(
       slug,
       isPreview,

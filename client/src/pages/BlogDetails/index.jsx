@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import DOMPurify from 'dompurify'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
@@ -38,9 +38,6 @@ function BlogDetails() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [activeSection, setActiveSection] = useState('')
-  const tocContainerRef = useRef(null)
-  const tocItemRefs = useRef({})
-  const isClickScrollingRef = useRef(false)
 
   // Scroll reading progress
   const { scrollYProgress } = useScroll()
@@ -603,114 +600,6 @@ function BlogDetails() {
 
   const tableOfContents = processedArticle.toc
 
-  // Scrollspy: detect active heading as user scrolls through the blog content
-  useEffect(() => {
-    if (!tableOfContents || tableOfContents.length === 0) return
-
-    const handleScroll = () => {
-      if (isClickScrollingRef.current) return
-
-      const scrollPos = window.scrollY + 140
-
-      // If near bottom of the page, activate the last heading (e.g. FAQ)
-      const windowHeight = window.innerHeight
-      const fullHeight = document.documentElement.scrollHeight
-      if (window.scrollY + windowHeight >= fullHeight - 160) {
-        const lastItem = tableOfContents[tableOfContents.length - 1]
-        if (lastItem) {
-          setActiveSection(lastItem.id)
-          return
-        }
-      }
-
-      let currentActive = ''
-      for (let i = 0; i < tableOfContents.length; i++) {
-        const item = tableOfContents[i]
-        const el = document.getElementById(item.id)
-        if (el) {
-          const top = el.getBoundingClientRect().top + window.scrollY
-          if (top <= scrollPos) {
-            currentActive = item.id
-          } else {
-            break
-          }
-        }
-      }
-
-      if (currentActive) {
-        setActiveSection(currentActive)
-      } else if (tableOfContents.length > 0) {
-        setActiveSection(tableOfContents[0].id)
-      }
-    }
-
-    handleScroll()
-
-    let ticking = false
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleScroll()
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [tableOfContents])
-
-  // Auto-scroll the Table of Contents container so the active heading stays centered & visible
-  useEffect(() => {
-    if (!activeSection) return
-    const activeItemEl = tocItemRefs.current[activeSection]
-    const containerEl = tocContainerRef.current
-
-    if (activeItemEl && containerEl) {
-      const containerRect = containerEl.getBoundingClientRect()
-      const itemRect = activeItemEl.getBoundingClientRect()
-
-      const isAbove = itemRect.top < containerRect.top + 24
-      const isBelow = itemRect.bottom > containerRect.bottom - 24
-
-      if (isAbove || isBelow) {
-        const targetScrollTop =
-          activeItemEl.offsetTop - containerEl.offsetHeight / 2 + activeItemEl.offsetHeight / 2
-        containerEl.scrollTo({
-          top: Math.max(0, targetScrollTop),
-          behavior: 'smooth'
-        })
-      }
-    }
-  }, [activeSection])
-
-  const scrollToHeading = (e, headingId) => {
-    e.preventDefault()
-    const el = document.getElementById(headingId)
-    if (el) {
-      isClickScrollingRef.current = true
-      setActiveSection(headingId)
-
-      const headerOffset = 110
-      const elementPosition = el.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-
-      if (window.history.pushState) {
-        window.history.pushState(null, null, `#${headingId}`)
-      }
-
-      setTimeout(() => {
-        isClickScrollingRef.current = false
-      }, 700)
-    }
-  }
-
   // Estimated read time
   const estimateReadTime = (content) => {
     if (!content) return '5 min read'
@@ -1044,27 +933,17 @@ function BlogDetails() {
                         </span>
                         <span className="text-[#00A6FF] group-open:rotate-180 transition-transform">▼</span>
                       </summary>
-                      <nav className="mt-3 pt-3 border-t border-slate-100 dark:border-white/5 space-y-1">
-                        {tableOfContents.map((item, idx) => {
-                          const isActive = activeSection === item.id
-                          return (
-                            <a
-                              key={`mobile-toc-${item.id || idx}`}
-                              href={`#${item.id}`}
-                              onClick={(e) => scrollToHeading(e, item.id)}
-                              className={`flex items-start gap-2 text-xs py-1.5 px-2.5 rounded-xl leading-snug font-medium transition-all ${
-                                isActive
-                                  ? 'bg-[#00A6FF]/10 text-[#00A6FF] font-bold border-l-2 border-[#00A6FF]'
-                                  : 'text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF]'
-                              }`}
-                            >
-                              <span className={`font-mono text-[10px] shrink-0 mt-0.5 ${isActive ? 'text-[#00A6FF] font-bold' : 'text-text-tertiary'}`}>
-                                {String(idx + 1).padStart(2, '0')}.
-                              </span>
-                              <span>{item.title}</span>
-                            </a>
-                          )
-                        })}
+                      <nav className="mt-3 pt-3 border-t border-slate-100 dark:border-white/5 space-y-2">
+                        {tableOfContents.map((item, idx) => (
+                          <a
+                            key={`mobile-toc-${item.id || idx}`}
+                            href={`#${item.id}`}
+                            className="block text-xs text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] py-1 leading-snug font-medium"
+                          >
+                            <span className="font-mono text-[10px] text-text-tertiary mr-2">0{idx + 1}.</span>
+                            {item.title}
+                          </a>
+                        ))}
                       </nav>
                     </details>
                   </div>
@@ -1460,28 +1339,6 @@ function BlogDetails() {
                       html:not(.dark) .blog-article-content tbody tr:hover td {
                         background-color: #f0f9ff !important;
                       }
-                      .blog-article-content h1,
-                      .blog-article-content h2,
-                      .blog-article-content h3,
-                      .blog-article-content h4,
-                      .blog-article-content h5,
-                      .blog-article-content h6,
-                      #faq {
-                        scroll-margin-top: 110px;
-                      }
-                      .toc-scroll-container::-webkit-scrollbar {
-                        width: 4px;
-                      }
-                      .toc-scroll-container::-webkit-scrollbar-track {
-                        background: transparent;
-                      }
-                      .toc-scroll-container::-webkit-scrollbar-thumb {
-                        background: rgba(0, 166, 255, 0.25);
-                        border-radius: 4px;
-                      }
-                      .toc-scroll-container::-webkit-scrollbar-thumb:hover {
-                        background: rgba(0, 166, 255, 0.55);
-                      }
                     `}</style>
                     <div dangerouslySetInnerHTML={{ __html: processedArticle.html }} />
                   </div>
@@ -1596,64 +1453,26 @@ function BlogDetails() {
 
               {/* RIGHT: STICKY EDITORIAL SIDEBAR (Only rendered on desktop) */}
               {tableOfContents.length > 0 && (
-                <aside className="hidden lg:block lg:col-span-4 space-y-6 lg:sticky lg:top-24">
-                  <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#11141e] border border-slate-200/90 dark:border-white/10 shadow-xs flex flex-col">
-                    <div className="flex items-center justify-between gap-2 text-xs font-mono font-bold uppercase tracking-wider text-text-tertiary pb-3 mb-3 border-b border-slate-100 dark:border-white/5">
-                      <span className="flex items-center gap-2">
-                        <ListFilter size={14} className="text-[#00A6FF]" />
-                        <span>TABLE OF CONTENTS</span>
-                      </span>
-                      <span className="text-[11px] font-mono text-[#00A6FF] font-semibold bg-[#00A6FF]/10 px-2 py-0.5 rounded-full">
-                        {tableOfContents.length} Sections
-                      </span>
+                <aside className="hidden lg:block lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+                  <div className="p-6 rounded-3xl bg-white dark:bg-[#11141e] border border-slate-200/90 dark:border-white/10 shadow-xs">
+                    <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-text-tertiary pb-3 mb-4 border-b border-slate-100 dark:border-white/5">
+                      <ListFilter size={14} className="text-[#00A6FF]" />
+                      <span>TABLE OF CONTENTS</span>
                     </div>
-
-                    {/* Scrollable Container with auto-scroll and active item tracking */}
-                    <div
-                      ref={tocContainerRef}
-                      className="overflow-y-auto max-h-[calc(100vh-14rem)] pr-1.5 space-y-1 scroll-smooth toc-scroll-container"
-                      style={{
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: 'rgba(0, 166, 255, 0.3) transparent'
-                      }}
-                    >
-                      <nav className="space-y-1">
-                        {tableOfContents.map((item, idx) => {
-                          const isActive = activeSection === item.id
-                          const isSub = item.level === 'h3'
-                          return (
-                            <a
-                              key={item.id || idx}
-                              ref={(el) => {
-                                if (el) tocItemRefs.current[item.id] = el
-                              }}
-                              href={`#${item.id}`}
-                              onClick={(e) => scrollToHeading(e, item.id)}
-                              className={`group flex items-start gap-2.5 text-xs sm:text-[13px] leading-snug rounded-xl transition-all duration-200 py-1.5 px-2.5 ${
-                                isSub ? 'ml-3 text-[12px]' : ''
-                              } ${
-                                isActive
-                                  ? 'bg-[#00A6FF]/10 text-[#00A6FF] font-bold border-l-2 border-[#00A6FF] shadow-xs'
-                                  : 'text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] dark:hover:text-[#00A6FF] hover:bg-slate-50 dark:hover:bg-white/[0.03]'
-                              }`}
-                            >
-                              <span
-                                className={`font-mono text-[10px] shrink-0 transition-colors mt-0.5 ${
-                                  isActive
-                                    ? 'text-[#00A6FF] font-bold'
-                                    : 'text-text-tertiary group-hover:text-[#00A6FF]'
-                                }`}
-                              >
-                                {String(idx + 1).padStart(2, '0')}.
-                              </span>
-                              <span className="flex-1">
-                                {item.title}
-                              </span>
-                            </a>
-                          )
-                        })}
-                      </nav>
-                    </div>
+                    <nav className="space-y-2">
+                      {tableOfContents.map((item, idx) => (
+                        <a
+                          key={item.id || idx}
+                          href={`#${item.id}`}
+                          className="block text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] dark:hover:text-[#00A6FF] transition-colors py-1 leading-snug font-medium"
+                        >
+                          <span className="font-mono text-[10px] text-text-tertiary mr-2">
+                            0{idx + 1}.
+                          </span>
+                          {item.title}
+                        </a>
+                      ))}
+                    </nav>
                   </div>
                 </aside>
               )}

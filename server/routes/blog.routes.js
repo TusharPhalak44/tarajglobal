@@ -21,10 +21,10 @@ router.get('/', async (req, res) => {
         b.*,
         c.name as category_name,
         CASE
+          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
           WHEN a.name IS NOT NULL AND a.name != '' AND a.name NOT LIKE '%@%' THEN a.name
           WHEN b.author IS NOT NULL AND b.author != '' AND b.author NOT LIKE '%@%' THEN b.author
-          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
-          ELSE COALESCE(a.name, b.author, u.name)
+          ELSE COALESCE(u.name, a.name, b.author)
         END as author_name,
         COALESCE(u.avatar, a.profile_photo) as author_photo,
         COALESCE(u.bio, a.bio) as author_bio,
@@ -104,10 +104,10 @@ router.get('/:slug', optionalAuthenticate, async (req, res) => {
         c.name as category_name,
         c.slug as category_slug,
         CASE
+          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
           WHEN a.name IS NOT NULL AND a.name != '' AND a.name NOT LIKE '%@%' THEN a.name
           WHEN b.author IS NOT NULL AND b.author != '' AND b.author NOT LIKE '%@%' THEN b.author
-          WHEN u.name IS NOT NULL AND u.name != '' AND u.name NOT LIKE '%@%' THEN u.name
-          ELSE COALESCE(a.name, b.author, u.name)
+          ELSE COALESCE(u.name, a.name, b.author)
         END as author_name,
         COALESCE(a.slug, '') as author_slug,
         COALESCE(u.avatar, a.profile_photo) as author_photo,

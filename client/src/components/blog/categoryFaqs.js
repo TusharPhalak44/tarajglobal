@@ -16,7 +16,6 @@ export const CATEGORIES_DATA = [
     name: 'Thought Leadership Insights',
     shortName: 'Thought Leadership',
     authorRole: 'CEO authors',
-    authorNames: 'Hanmant Dhotre',
     subtitle: 'Executive strategy for predictable growth',
     accentColor: '#00A6FF',
     accentBorder: 'border-[#00A6FF]',
@@ -28,7 +27,6 @@ export const CATEGORIES_DATA = [
     name: 'Sales & Marketing Insights',
     shortName: 'Sales & Marketing',
     authorRole: 'Sales Director & Marketing Manager authors',
-    authorNames: 'Abhishek Rikibe & Wasim Attar',
     subtitle: 'Field-tested tactics for qualified pipeline',
     accentColor: '#10B981',
     accentBorder: 'border-emerald-500',
@@ -40,7 +38,6 @@ export const CATEGORIES_DATA = [
     name: 'B2B Tech & AI-Enabled Insights',
     shortName: 'B2B Tech & AI',
     authorRole: 'Tech Director authors',
-    authorNames: 'Tushar Phalak',
     subtitle: 'CRM, data and automation for revenue teams',
     accentColor: '#FF6D00',
     accentBorder: 'border-[#FF6D00]',
@@ -193,122 +190,64 @@ export const CATEGORY_FAQS = {
 }
 
 /**
- * Resolves which category key a blog belongs to strictly based on its author:
- * - 'thought-leadership': Hanmant Dhotre
- * - 'sales-marketing': Abhishek Rikibe, Wasim Attar
- * - 'tech-ai': Tushar / Tushar Phalak
- * Returns null if author does not belong to any of these three tracks.
- */
-export const getBlogCategoryKey = (blog) => {
-  if (!blog || typeof blog !== 'object') return null
-
-  const authorId = Number(blog.author_id)
-  const authorFields = [
-    blog.author_name,
-    blog.author,
-    blog.author_email,
-    blog.author_slug,
-    blog.author_table_name,
-    blog.user_name,
-    blog.user_email
-  ].filter(Boolean).join(' ').toLowerCase()
-
-  // 1. Thought Leadership Insights -> ONLY Hanmant Dhotre
-  if (
-    authorFields.includes('hanmant') ||
-    authorFields.includes('dhotre') ||
-    authorId === 6 ||
-    authorId === 8
-  ) {
-    return 'thought-leadership'
-  }
-
-  // 2. Sales & Marketing Insights -> ONLY Abhishek Rikibe and Wasim Attar
-  if (
-    authorFields.includes('abhishek') ||
-    authorFields.includes('rikibe') ||
-    authorFields.includes('wasim') ||
-    authorFields.includes('attar') ||
-    authorId === 5 ||
-    authorId === 10
-  ) {
-    return 'sales-marketing'
-  }
-
-  // 3. B2B Tech & AI-Enabled Insights -> ONLY Tushar / Tushar Phalak
-  if (
-    authorFields.includes('tushar') ||
-    authorFields.includes('phalak') ||
-    authorId === 9
-  ) {
-    return 'tech-ai'
-  }
-
-  return null
-}
-
-/**
- * Checks whether a blog matches a given category track key ('thought-leadership', 'sales-marketing', 'tech-ai') strictly by author.
- */
-export const isBlogMatchingCategory = (blog, categoryKey) => {
-  if (!blog || !categoryKey) return false
-  const targetKey = normalizeCategory(categoryKey)
-  if (!targetKey) return false
-  return getBlogCategoryKey(blog) === targetKey
-}
-
-/**
  * Normalizes any category string or blog object into one of the 3 category keys.
- * When passed a blog object (or if categoryName is an object representing a blog),
- * classification is strictly determined by author:
- * - Hanmant Dhotre -> 'thought-leadership'
- * - Abhishek Rikibe & Wasim Attar -> 'sales-marketing'
- * - Tushar / Tushar Phalak -> 'tech-ai'
+ * Handles variations from database, URL query params, admin input, or auto-categorization.
  */
 export const normalizeCategory = (categoryName = '', blog = null) => {
-  // If blog is passed as the second argument, or if categoryName itself is a blog object:
-  const blogObj = (blog && typeof blog === 'object')
-    ? blog
-    : (categoryName && typeof categoryName === 'object' ? categoryName : null)
+  const norm = String(categoryName || '').toLowerCase().trim()
 
-  if (blogObj) {
-    const authorCategory = getBlogCategoryKey(blogObj)
-    if (authorCategory) {
-      return authorCategory
-    }
-  }
-
-  // If a category string is provided, normalize it:
-  const norm = String(typeof categoryName === 'string' ? categoryName : '').toLowerCase().trim()
-
-  if (
-    norm === 'thought-leadership' ||
-    norm.includes('thought leadership') ||
-    norm.includes('thought and leader') ||
-    norm.includes('leadership')
-  ) {
+  if (norm === 'thought-leadership' || norm.includes('thought leadership') || norm.includes('leadership')) {
     return 'thought-leadership'
   }
-  if (
-    norm === 'sales-marketing' ||
-    norm.includes('sales & marketing') ||
-    norm.includes('sales and marketing') ||
-    norm.includes('sales') ||
-    norm.includes('marketing')
-  ) {
+  if (norm === 'sales-marketing' || norm.includes('sales') || norm.includes('marketing')) {
     return 'sales-marketing'
   }
-  if (
-    norm === 'tech-ai' ||
-    norm.includes('tech & ai') ||
-    norm.includes('tech and ai') ||
-    norm.includes('b2b tech') ||
-    norm.includes('ai-enabled') ||
-    norm.includes('ai enabled') ||
-    norm.includes('tech') ||
-    norm.includes('ai')
-  ) {
+  if (norm === 'tech-ai' || norm.includes('tech') || norm.includes('ai') || norm.includes('ai-enabled')) {
     return 'tech-ai'
+  }
+
+  // If category is generic (e.g. 'B2B Lead Generation', 'B2B Strategy') or blog metadata is present:
+  if (blog || norm) {
+    const text = [
+      norm,
+      blog?.title,
+      blog?.slug,
+      blog?.author,
+      blog?.author_name,
+      blog?.excerpt
+    ].filter(Boolean).join(' ').toLowerCase()
+
+    // 1. Tech & AI-Enabled Insights
+    if (
+      text.includes('ai') ||
+      text.includes('tech') ||
+      text.includes('data') ||
+      text.includes('enrichment') ||
+      text.includes('intent') ||
+      text.includes('automation') ||
+      text.includes('crm') ||
+      text.includes('tushar')
+    ) {
+      return 'tech-ai'
+    }
+
+    // 2. Thought Leadership Insights (CEO / Executive strategy / Growth / Predictable)
+    if (
+      text.includes('founder') ||
+      text.includes('ceo') ||
+      text.includes('dhotre') ||
+      text.includes('growth') ||
+      text.includes('2027') ||
+      text.includes('predictable') ||
+      text.includes('funding') ||
+      text.includes('executive') ||
+      text.includes('strategy')
+    ) {
+      return 'thought-leadership'
+    }
+
+    // 3. Sales & Marketing Insights
+    return 'sales-marketing'
   }
 
   return null

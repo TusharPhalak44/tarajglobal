@@ -18,8 +18,7 @@ import BlogCard from './BlogCard'
 import BlogFAQ from './BlogFAQ'
 import {
   CATEGORIES_DATA,
-  normalizeCategory,
-  isBlogMatchingCategory
+  normalizeCategory
 } from './categoryFaqs'
 import { publicAPI } from '@api/public.api'
 
@@ -125,13 +124,9 @@ const BlogListings = () => {
     }
   }
 
-  // Filter blogs based on selected category strictly by author:
-  // - Thought Leadership Insights -> ONLY Hanmant Dhotre
-  // - Sales & Marketing Insights -> ONLY Abhishek Rikibe and Wasim Attar
-  // - B2B Tech & AI-Enabled Insights -> ONLY Tushar / Tushar Phalak
-  // When no category is selected -> All articles
+  // Filter blogs based on selected category (matches category_name or category, or smart metadata)
   const filteredBlogs = selectedCategory
-    ? blogs.filter((blog) => isBlogMatchingCategory(blog, selectedCategory))
+    ? blogs.filter((blog) => normalizeCategory(blog.category_name || blog.category, blog) === selectedCategory)
     : blogs
 
   const activeCategoryObj = CATEGORIES_DATA.find((c) => c.key === selectedCategory)
