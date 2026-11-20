@@ -13,22 +13,12 @@ const router = express.Router()
 
 // Route handler for blog landing page (/blog or /blog/)
 router.get('/', (req, res, next) => {
-  const candidateBlogPaths = [
-    path.resolve(process.cwd(), 'client/dist/blog/index.html'),
-    path.resolve(process.cwd(), 'dist/blog/index.html'),
-    path.resolve(__dirname, '../../client/dist/blog/index.html'),
-    path.resolve(__dirname, '../client/dist/blog/index.html')
-  ]
-  const blogIndexPath = candidateBlogPaths.find((p) => fs.existsSync(p))
-  if (blogIndexPath) {
-    return res.sendFile(blogIndexPath)
-  }
-
   const candidateMainPaths = [
     path.resolve(process.cwd(), 'client/dist/index.html'),
     path.resolve(process.cwd(), 'dist/index.html'),
     path.resolve(__dirname, '../../client/dist/index.html'),
-    path.resolve(__dirname, '../client/dist/index.html')
+    path.resolve(__dirname, '../client/dist/index.html'),
+    '/usr/share/nginx/html/index.html'
   ]
   const mainIndexPath = candidateMainPaths.find((p) => fs.existsSync(p))
   if (mainIndexPath) {
@@ -56,24 +46,7 @@ router.get('/:slug', optionalAuthenticate, async (req, res, next) => {
       req.headers['x-vite-dev'] === '1' ||
       req.query.format === 'dev'
 
-    // If not preview or dev, prefer the statically prerendered blog file on disk matching current build assets
-    if (!isPreview && !isDev) {
-      const candidateStaticBlogPaths = [
-        path.resolve(process.cwd(), 'client/dist/blog', slug, 'index.html'),
-        path.resolve(process.cwd(), 'dist/blog', slug, 'index.html'),
-        path.resolve(__dirname, '../../client/dist/blog', slug, 'index.html'),
-        path.resolve(__dirname, '../client/dist/blog', slug, 'index.html')
-      ]
-      const staticBlogPath = candidateStaticBlogPaths.find((p) => fs.existsSync(p))
-      if (staticBlogPath) {
-        return res
-          .status(200)
-          .set('Content-Type', 'text/html; charset=utf-8')
-          .set('Cache-Control', 'public, max-age=60, stale-while-revalidate=300')
-          .sendFile(staticBlogPath)
-      }
-    }
-
+    // Always use renderBlogHtml to inject SEO metadata into current build assets
     const { statusCode, html } = await renderBlogHtml(
       slug,
       isPreview,

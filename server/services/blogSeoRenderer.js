@@ -62,6 +62,7 @@ const getBaseTemplate = (isDev = false) => {
     path.resolve(process.cwd(), 'client', 'dist', 'index.html'),
     path.resolve(process.cwd(), '..', 'client', 'dist', 'index.html'),
     path.resolve(__dirname, '..', '..', 'client', 'dist', 'index.html'),
+    path.resolve(process.cwd(), 'dist', 'index.html'),
     path.resolve('/usr/share/nginx/html/index.html'),
   ]
 
