@@ -6,6 +6,37 @@ import { ROUTES, SITE_URL, DEFAULT_IMAGE } from './scripts/route-meta.mjs'
 
 const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
+// Fast helper to fetch latest SEO metadata from local CMS API in development
+const fetchDbSeo = (entityId) => {
+  return new Promise((resolve) => {
+    import('http').then(({ default: http }) => {
+      const req = http.get(
+        `http://localhost:5001/api/seo/page/${encodeURIComponent(entityId)}`,
+        { timeout: 800 },
+        (res) => {
+          let data = ''
+          res.on('data', (chunk) => { data += chunk })
+          res.on('end', () => {
+            try {
+              const json = JSON.parse(data)
+              if (json?.success && json?.data) {
+                resolve(json.data)
+                return
+              }
+            } catch {}
+            resolve(null)
+          })
+        }
+      )
+      req.on('error', () => resolve(null))
+      req.on('timeout', () => {
+        req.destroy()
+        resolve(null)
+      })
+    }).catch(() => resolve(null))
+  })
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -147,31 +178,46 @@ export default defineConfig({
           }
 
           const targetRoute = aliasMap[cleanPath] || cleanPath
-          const meta = ROUTES[targetRoute]
-          if (!meta) return html
+          const entityId = targetRoute === '/' ? 'home' : targetRoute.replace(/^\/+/, '')
+          const dbMeta = await fetchDbSeo(entityId)
+          const fallbackMeta = ROUTES[targetRoute] || {}
 
-          const url = `${SITE_URL}${targetRoute === '/' ? '/' : targetRoute}`
-          const image = meta.image || DEFAULT_IMAGE
+          if (!dbMeta && !fallbackMeta.title) return html
+
+          const rawTitle = dbMeta?.meta_title || fallbackMeta.title || 'Taraj Global'
+          const title = rawTitle.includes('Taraj Global') || rawTitle.includes('TaRaj Global')
+            ? rawTitle
+            : `${rawTitle} | Taraj Global`
+
+          const description = dbMeta?.meta_description || fallbackMeta.description || ''
+          const url = dbMeta?.canonical_url || `${SITE_URL}${targetRoute === '/' ? '/' : targetRoute}`
+          const image = dbMeta?.og_image || fallbackMeta.image || DEFAULT_IMAGE
+          const robots = dbMeta?.robots || 'index, follow, max-image-preview:large'
+          const ogTitle = dbMeta?.og_title || rawTitle
+          const ogDescription = dbMeta?.og_description || description
+          const twitterTitle = dbMeta?.twitter_title || ogTitle
+          const twitterDescription = dbMeta?.twitter_description || ogDescription
+          const twitterImage = dbMeta?.twitter_image || image
 
           const headTags = [
-            `<title data-prerender>${esc(meta.title)}</title>`,
-            `<meta data-prerender name="description" content="${esc(meta.description)}" />`,
-            `<link data-prerender rel="canonical" href="${url}" />`,
-            `<meta data-prerender name="robots" content="index, follow, max-image-preview:large" />`,
+            `<title data-prerender>${esc(title)}</title>`,
+            `<meta data-prerender name="description" content="${esc(description)}" />`,
+            `<link data-prerender rel="canonical" href="${esc(url)}" />`,
+            `<meta data-prerender name="robots" content="${esc(robots)}" />`,
             `<meta data-prerender property="og:type" content="website" />`,
             `<meta data-prerender property="og:site_name" content="Taraj Global" />`,
-            `<meta data-prerender property="og:title" content="${esc(meta.title)}" />`,
-            `<meta data-prerender property="og:description" content="${esc(meta.description)}" />`,
-            `<meta data-prerender property="og:url" content="${url}" />`,
-            `<meta data-prerender property="og:image" content="${image}" />`,
+            `<meta data-prerender property="og:title" content="${esc(ogTitle)}" />`,
+            `<meta data-prerender property="og:description" content="${esc(ogDescription)}" />`,
+            `<meta data-prerender property="og:url" content="${esc(url)}" />`,
+            `<meta data-prerender property="og:image" content="${esc(image)}" />`,
             `<meta data-prerender name="twitter:card" content="summary_large_image" />`,
-            `<meta data-prerender name="twitter:title" content="${esc(meta.title)}" />`,
-            `<meta data-prerender name="twitter:description" content="${esc(meta.description)}" />`,
-            `<meta data-prerender name="twitter:image" content="${image}" />`,
+            `<meta data-prerender name="twitter:title" content="${esc(twitterTitle)}" />`,
+            `<meta data-prerender name="twitter:description" content="${esc(twitterDescription)}" />`,
+            `<meta data-prerender name="twitter:image" content="${esc(twitterImage)}" />`,
           ].join('\n    ')
 
           return html
-            .replace(/<title[\s\S]*?<\/title>/i, '')
+            .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
             .replace(/<meta[^>]*data-prerender[^>]*>\s*/gi, '')
             .replace(/<link[^>]*data-prerender[^>]*>\s*/gi, '')
             .replace('</head>', `    ${headTags}\n  </head>`)

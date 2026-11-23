@@ -4,6 +4,7 @@ import { validate } from '../../middleware/validation.middleware.js'
 import { checkPermission } from '../../middleware/permission.middleware.js'
 import db from '../../config/db.js'
 import { invalidateBlogCache } from '../../services/blogSeoRenderer.js'
+import { invalidatePageCache } from '../../services/pageSeoRenderer.js'
 import { updateStaticPrerenderFile } from '../../services/staticSeoUpdater.js'
 
 const router = express.Router()
@@ -287,6 +288,10 @@ router.post('/:entityType/:entityId', [
       } catch (syncErr) {
         console.warn('⚠️ [seo.routes] Error syncing blog table:', syncErr.message)
       }
+    }
+
+    if (entityType === 'page') {
+      invalidatePageCache(entityId)
     }
 
     // Synchronize the physical prerendered file on disk (if present in dist)

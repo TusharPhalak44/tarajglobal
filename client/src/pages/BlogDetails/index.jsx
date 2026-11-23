@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useRef, useCallback } from 'react'
 import DOMPurify from 'dompurify'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
@@ -38,6 +38,12 @@ function BlogDetails() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [activeSection, setActiveSection] = useState('')
+  const [articleProgress, setArticleProgress] = useState(0)
+  const [mobileTocOpen, setMobileTocOpen] = useState(false)
+  const tocNavRef = useRef(null)
+  const articleContainerRef = useRef(null)
+  const isManualClickScrollingRef = useRef(false)
+  const isHoveringTocRef = useRef(false)
 
   // Scroll reading progress
   const { scrollYProgress } = useScroll()
@@ -600,6 +606,171 @@ function BlogDetails() {
 
   const tableOfContents = processedArticle.toc
 
+  // Handle smooth scroll when clicking any Table of Contents link
+  const handleTocClick = useCallback((id) => {
+    const el = document.getElementById(id)
+    if (!el) return
+
+    isManualClickScrollingRef.current = true
+    setActiveSection(id)
+
+    // Smoothly scroll active item into view inside the TOC sidebar
+    if (tocNavRef.current) {
+      const itemEl = tocNavRef.current.querySelector(`[data-toc-id="${id}"]`)
+      if (itemEl) {
+        const targetScroll = itemEl.offsetTop - (tocNavRef.current.clientHeight / 2) + (itemEl.offsetHeight / 2)
+        tocNavRef.current.scrollTo({
+          top: Math.max(0, targetScroll),
+          behavior: 'smooth'
+        })
+      }
+    }
+
+    const offset = 100
+    const bodyRect = document.body.getBoundingClientRect().top
+    const elementRect = el.getBoundingClientRect().top
+    const offsetPosition = elementRect - bodyRect - offset
+
+    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+      window.lenis.scrollTo(offsetPosition, {
+        duration: 0.9,
+        onComplete: () => {
+          setTimeout(() => {
+            isManualClickScrollingRef.current = false
+          }, 100)
+        }
+      })
+    } else {
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+      setTimeout(() => {
+        isManualClickScrollingRef.current = false
+      }, 800)
+    }
+  }, [])
+
+  // Synchronized simultaneous scroll listener: tracks reading position & scrolls TOC in unison
+  useEffect(() => {
+    if (tableOfContents.length === 0) return
+
+    let rafId = null
+
+    const updateScrollAndToc = () => {
+      const articleEl = articleContainerRef.current
+      if (!articleEl) return
+
+      const headingElements = tableOfContents
+        .map((item) => ({
+          id: item.id,
+          el: document.getElementById(item.id)
+        }))
+        .filter((h) => h.el !== null)
+
+      if (headingElements.length === 0) return
+
+      const scrollY = window.scrollY
+      const NAVBAR_OFFSET = 120
+
+      // Overall article reading progress
+      const articleRect = articleEl.getBoundingClientRect()
+      const articleTop = articleRect.top + scrollY
+      const articleHeight = articleEl.offsetHeight
+      const scrollFromArticleTop = scrollY + NAVBAR_OFFSET - articleTop
+      const progress = Math.max(0, Math.min(1, scrollFromArticleTop / Math.max(1, articleHeight)))
+      setArticleProgress(progress)
+
+      // Identify active heading and interpolation fraction
+      const isBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 140
+      let activeIdx = 0
+      let sectionFraction = 0
+
+      if (isBottom) {
+        activeIdx = headingElements.length - 1
+        sectionFraction = 1
+      } else {
+        for (let i = 0; i < headingElements.length; i++) {
+          const headingRect = headingElements[i].el.getBoundingClientRect()
+          if (headingRect.top <= NAVBAR_OFFSET + 30) {
+            activeIdx = i
+          } else {
+            break
+          }
+        }
+
+        const currentHeadingEl = headingElements[activeIdx].el
+        const nextHeadingEl = headingElements[activeIdx + 1]?.el
+
+        if (nextHeadingEl) {
+          const currentTop = currentHeadingEl.getBoundingClientRect().top
+          const nextTop = nextHeadingEl.getBoundingClientRect().top
+          const dist = nextTop - currentTop
+          if (dist > 0) {
+            sectionFraction = Math.max(0, Math.min(1, (NAVBAR_OFFSET - currentTop) / dist))
+          }
+        }
+      }
+
+      const activeId = headingElements[activeIdx].id
+      setActiveSection(activeId)
+
+      // Simultaneous synchronized scrolling of the TOC container
+      if (!isManualClickScrollingRef.current && !isHoveringTocRef.current && tocNavRef.current) {
+        const container = tocNavRef.current
+        const maxScroll = container.scrollHeight - container.clientHeight
+
+        if (maxScroll > 0) {
+          const currentItemEl = container.querySelector(`[data-toc-id="${activeId}"]`)
+          const nextItemEl = headingElements[activeIdx + 1]
+            ? container.querySelector(`[data-toc-id="${headingElements[activeIdx + 1].id}"]`)
+            : null
+
+          let targetScrollTop = 0
+          if (currentItemEl) {
+            const currentCenter = currentItemEl.offsetTop + currentItemEl.offsetHeight / 2
+            let focalPoint = currentCenter
+
+            if (nextItemEl && sectionFraction > 0) {
+              const nextCenter = nextItemEl.offsetTop + nextItemEl.offsetHeight / 2
+              focalPoint = currentCenter + sectionFraction * (nextCenter - currentCenter)
+            }
+
+            targetScrollTop = focalPoint - container.clientHeight / 2
+          } else {
+            targetScrollTop = progress * maxScroll
+          }
+
+          container.scrollTop = Math.max(0, Math.min(maxScroll, targetScrollTop))
+        }
+      }
+    }
+
+    const handleScroll = () => {
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        updateScrollAndToc()
+      })
+    }
+
+    // Initial update
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    if (window.lenis) {
+      window.lenis.on('scroll', handleScroll)
+    }
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      window.removeEventListener('scroll', handleScroll)
+      if (window.lenis) {
+        window.lenis.off('scroll', handleScroll)
+      }
+    }
+  }, [tableOfContents, handleTocClick])
+
   // Estimated read time
   const estimateReadTime = (content) => {
     if (!content) return '5 min read'
@@ -925,7 +1096,11 @@ function BlogDetails() {
                 {/* Mobile Collapsible Table of Contents */}
                 {tableOfContents.length > 0 && (
                   <div className="lg:hidden mb-6 p-4 sm:p-5 rounded-2xl bg-surface border border-slate-200/90 dark:border-white/10 shadow-xs">
-                    <details className="group">
+                    <details
+                      className="group"
+                      open={mobileTocOpen}
+                      onToggle={(e) => setMobileTocOpen(e.currentTarget.open)}
+                    >
                       <summary className="flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-text-primary cursor-pointer list-none select-none">
                         <span className="flex items-center gap-2">
                           <ListFilter size={15} className="text-[#00A6FF]" />
@@ -933,23 +1108,44 @@ function BlogDetails() {
                         </span>
                         <span className="text-[#00A6FF] group-open:rotate-180 transition-transform">▼</span>
                       </summary>
-                      <nav className="mt-3 pt-3 border-t border-slate-100 dark:border-white/5 space-y-2">
-                        {tableOfContents.map((item, idx) => (
-                          <a
-                            key={`mobile-toc-${item.id || idx}`}
-                            href={`#${item.id}`}
-                            className="block text-xs text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] py-1 leading-snug font-medium"
-                          >
-                            <span className="font-mono text-[10px] text-text-tertiary mr-2">0{idx + 1}.</span>
-                            {item.title}
-                          </a>
-                        ))}
+                      {activeSection && (
+                        <div className="mt-2 text-[11px] text-[#00A6FF] font-mono flex items-center gap-1.5 truncate">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00A6FF] shrink-0 animate-pulse"></span>
+                          <span className="truncate">
+                            Current: {tableOfContents.find((t) => t.id === activeSection)?.title || activeSection}
+                          </span>
+                        </div>
+                      )}
+                      <nav className="mt-3 pt-3 border-t border-slate-100 dark:border-white/5 space-y-1 max-h-60 overflow-y-auto toc-scrollbar">
+                        {tableOfContents.map((item, idx) => {
+                          const isActive = activeSection === item.id
+                          const isH3 = item.level === 'h3'
+                          return (
+                            <a
+                              key={`mobile-toc-${item.id || idx}`}
+                              href={`#${item.id}`}
+                              onClick={(e) => {
+                                e.preventDefault()
+                                handleTocClick(item.id)
+                                setMobileTocOpen(false)
+                              }}
+                              className={`block text-xs py-1.5 px-2.5 rounded-lg transition-colors leading-snug font-medium cursor-pointer ${
+                                isActive
+                                  ? 'bg-[#00A6FF]/10 text-[#00A6FF] font-semibold border-l-2 border-[#00A6FF]'
+                                  : 'text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF]'
+                              } ${isH3 ? 'pl-5 text-[11px]' : ''}`}
+                            >
+                              <span className="font-mono text-[10px] text-text-tertiary mr-2">0{idx + 1}.</span>
+                              {item.title}
+                            </a>
+                          )
+                        })}
                       </nav>
                     </details>
                   </div>
                 )}
 
-                <article className="prose prose-slate dark:prose-invert max-w-none">
+                <article ref={articleContainerRef} className="prose prose-slate dark:prose-invert max-w-none">
 
                   {/* Executive Key Takeaway Card */}
                   <div className="p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/10 mb-8 shadow-xs not-prose">
@@ -1339,6 +1535,24 @@ function BlogDetails() {
                       html:not(.dark) .blog-article-content tbody tr:hover td {
                         background-color: #f0f9ff !important;
                       }
+                      /* Sleek custom scrollbar for TOC */
+                      .toc-scrollbar::-webkit-scrollbar {
+                        width: 4px;
+                      }
+                      .toc-scrollbar::-webkit-scrollbar-track {
+                        background: transparent;
+                      }
+                      .toc-scrollbar::-webkit-scrollbar-thumb {
+                        background: rgba(0, 166, 255, 0.25);
+                        border-radius: 9999px;
+                      }
+                      .toc-scrollbar::-webkit-scrollbar-thumb:hover {
+                        background: rgba(0, 166, 255, 0.6);
+                      }
+                      .toc-scrollbar {
+                        scrollbar-width: thin;
+                        scrollbar-color: rgba(0, 166, 255, 0.25) transparent;
+                      }
                     `}</style>
                     <div dangerouslySetInnerHTML={{ __html: processedArticle.html }} />
                   </div>
@@ -1434,7 +1648,7 @@ function BlogDetails() {
                   </div>
 
                   {/* ── FREQUENTLY ASKED QUESTIONS SECTION (UNIFIED WEBSITE UI) ── */}
-                  <div className="not-prose my-10 sm:my-12" id="faq">
+                  <div className="not-prose my-10 sm:my-12 scroll-mt-28" id="faq">
                     <BlogFAQ
                       categoryKey={blog.category_name}
                       faqs={processedArticle.faqs?.length > 0 ? processedArticle.faqs : null}
@@ -1453,25 +1667,68 @@ function BlogDetails() {
 
               {/* RIGHT: STICKY EDITORIAL SIDEBAR (Only rendered on desktop) */}
               {tableOfContents.length > 0 && (
-                <aside className="hidden lg:block lg:col-span-4 space-y-6 lg:sticky lg:top-28">
-                  <div className="p-6 rounded-3xl bg-white dark:bg-[#11141e] border border-slate-200/90 dark:border-white/10 shadow-xs">
-                    <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-text-tertiary pb-3 mb-4 border-b border-slate-100 dark:border-white/5">
-                      <ListFilter size={14} className="text-[#00A6FF]" />
-                      <span>TABLE OF CONTENTS</span>
+                <aside className="hidden lg:block lg:col-span-4 lg:sticky lg:top-28">
+                  <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#11141e] border border-slate-200/90 dark:border-white/10 shadow-xs flex flex-col max-h-[calc(100vh-8.5rem)]">
+                    <div className="pb-3 mb-3 border-b border-slate-100 dark:border-white/5 shrink-0">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-text-tertiary">
+                          <ListFilter size={14} className="text-[#00A6FF]" />
+                          <span>TABLE OF CONTENTS</span>
+                        </div>
+                        <span className="text-[10px] font-mono font-semibold text-[#00A6FF] px-2 py-0.5 rounded-full bg-[#00A6FF]/10">
+                          {activeSection
+                            ? `${Math.max(1, tableOfContents.findIndex((t) => t.id === activeSection) + 1)}/${tableOfContents.length}`
+                            : `${tableOfContents.length} SECTIONS`}
+                        </span>
+                      </div>
+                      {/* Simultaneous reading progress bar */}
+                      <div className="mt-2.5 w-full bg-slate-100 dark:bg-white/5 rounded-full h-1 overflow-hidden">
+                        <div
+                          className="bg-gradient-to-r from-[#00A6FF] to-[#00E5FF] h-1 rounded-full transition-all duration-150"
+                          style={{ width: `${Math.round(articleProgress * 100)}%` }}
+                        />
+                      </div>
                     </div>
-                    <nav className="space-y-2">
-                      {tableOfContents.map((item, idx) => (
-                        <a
-                          key={item.id || idx}
-                          href={`#${item.id}`}
-                          className="block text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] dark:hover:text-[#00A6FF] transition-colors py-1 leading-snug font-medium"
-                        >
-                          <span className="font-mono text-[10px] text-text-tertiary mr-2">
-                            0{idx + 1}.
-                          </span>
-                          {item.title}
-                        </a>
-                      ))}
+                    <nav
+                      ref={tocNavRef}
+                      data-lenis-prevent="true"
+                      onMouseEnter={() => {
+                        isHoveringTocRef.current = true
+                      }}
+                      onMouseLeave={() => {
+                        isHoveringTocRef.current = false
+                      }}
+                      className="space-y-1 overflow-y-auto pr-1.5 toc-scrollbar flex-1 -mr-1.5"
+                    >
+                      {tableOfContents.map((item, idx) => {
+                        const isActive = activeSection === item.id
+                        const isH3 = item.level === 'h3'
+                        return (
+                          <a
+                            key={item.id || idx}
+                            data-toc-id={item.id}
+                            href={`#${item.id}`}
+                            onClick={(e) => {
+                              e.preventDefault()
+                              handleTocClick(item.id)
+                            }}
+                            className={`group w-full text-left flex items-start gap-2.5 py-1.5 px-3 rounded-xl transition-all duration-200 cursor-pointer ${
+                              isActive
+                                ? 'bg-[#00A6FF]/10 text-[#00A6FF] dark:text-[#00A6FF] font-semibold border-l-2 border-[#00A6FF] shadow-xs'
+                                : 'text-text-secondary dark:text-[#A7ADB7] hover:text-[#00A6FF] dark:hover:text-[#00A6FF] hover:bg-slate-100/50 dark:hover:bg-white/[0.03] border-l-2 border-transparent'
+                            } ${isH3 ? 'pl-4 text-xs' : 'text-xs sm:text-sm'}`}
+                          >
+                            <span
+                              className={`font-mono text-[10px] shrink-0 mt-0.5 transition-colors ${
+                                isActive ? 'text-[#00A6FF] font-bold' : 'text-text-tertiary group-hover:text-[#00A6FF]'
+                              }`}
+                            >
+                              {String(idx + 1).padStart(2, '0')}.
+                            </span>
+                            <span className="leading-snug line-clamp-2">{item.title}</span>
+                          </a>
+                        )
+                      })}
                     </nav>
                   </div>
                 </aside>

@@ -58,8 +58,12 @@ function noscript(meta) {
 function render(route, meta) {
   return template
     .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
-    .replace(/<meta[^>]*data-prerender[^>]*>\s*/g, '')
-    .replace(/<link[^>]*data-prerender[^>]*>\s*/g, '')
+    .replace(/<meta[^>]*data-prerender[^>]*>\s*/gi, '')
+    .replace(/<link[^>]*data-prerender[^>]*>\s*/gi, '')
+    .replace(/<meta\s+name=["']description["'][^>]*>\s*/gi, '')
+    .replace(/<meta\s+property=["']og:[^"']+["'][^>]*>\s*/gi, '')
+    .replace(/<meta\s+name=["']twitter:[^"']+["'][^>]*>\s*/gi, '')
+    .replace(/<link\s+rel=["']canonical["'][^>]*>\s*/gi, '')
     .replace('</head>', `    ${headTags(route, meta)}\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root"></div>\n  ${noscript(meta)}`)
 }

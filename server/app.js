@@ -27,6 +27,7 @@ import analyticsRoutes from './routes/analytics.routes.js'
 import seoRoutes from './routes/seo.routes.js'
 import chatRoutes from './routes/chat.routes.js'
 import audienceRoutes from './routes/audience.routes.js'
+import pageSeoRoutes from './routes/pageSeo.routes.js'
 
 // Import middleware
 import { errorHandler } from './middleware/error.middleware.js'
@@ -118,15 +119,12 @@ if (resolvedDistPath) {
       immutable: true,
     }))
   }
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(resolvedDistPath, 'index.html'))
-  })
 }
 
 // Dynamic server-rendered blog routes with author-provided SEO metadata
 app.use('/blog', blogPageRoutes)
 
-// Fallback static files if dist is present (excluding /blog which is handled dynamically)
+// Fallback static files if dist is present (excluding HTML pages handled dynamically)
 if (resolvedDistPath) {
   app.use(express.static(resolvedDistPath, { index: false }))
 }
@@ -152,6 +150,9 @@ app.use('/api/analytics', analyticsLimiter, analyticsRoutes)
 app.use('/api/seo', seoRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/audience', audienceRoutes)
+
+// Dynamic server-rendered page routes with SEO metadata from database
+app.use(pageSeoRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => {
