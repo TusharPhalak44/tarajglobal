@@ -31,17 +31,21 @@ export const useSEOData = (entityType, entityId, defaultData = {}) => {
 
         if (response.data?.success && response.data?.data) {
           const fetched = response.data.data
+          const hasCmsTitle = Boolean(fetched.meta_title && fetched.meta_title.trim())
+          const cmsTitle = hasCmsTitle ? fetched.meta_title.trim() : defaultData.title
+
           // Merge fetched CMS metadata over default data
           setSeoData({
             ...defaultData,
-            title: fetched.meta_title || defaultData.title,
+            title: cmsTitle,
+            isFromCMS: hasCmsTitle,
             description: fetched.meta_description || defaultData.description,
             keywords: fetched.meta_keywords || defaultData.keywords,
             canonical: fetched.canonical_url || defaultData.canonical,
-            ogTitle: fetched.og_title || defaultData.ogTitle || fetched.meta_title || defaultData.title,
+            ogTitle: fetched.og_title || cmsTitle || defaultData.ogTitle || defaultData.title,
             ogDescription: fetched.og_description || defaultData.ogDescription || fetched.meta_description || defaultData.description,
             ogImage: fetched.og_image || defaultData.ogImage,
-            twitterTitle: fetched.twitter_title || fetched.og_title || defaultData.twitterTitle || defaultData.ogTitle,
+            twitterTitle: fetched.twitter_title || fetched.og_title || cmsTitle || defaultData.twitterTitle || defaultData.ogTitle,
             twitterDescription: fetched.twitter_description || fetched.og_description || defaultData.twitterDescription || defaultData.ogDescription,
             twitterImage: fetched.twitter_image || fetched.og_image || defaultData.twitterImage || defaultData.ogImage,
             twitterCard: defaultData.twitterCard || 'summary_large_image',

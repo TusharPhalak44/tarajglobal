@@ -36,10 +36,11 @@ const SEO = ({
   twitterImage,
   robots,
   noIndex = false,
-  schemaJson
+  schemaJson,
+  isFromCMS = false
 }) => {
   const fullTitle = title 
-    ? (title.includes('Taraj Global') ? title : `${title} | Taraj Global`)
+    ? (isFromCMS ? title : (title.includes('Taraj Global') || title.includes('TaRaj Global') ? title : `${title} | Taraj Global`))
     : DEFAULT_META.title
 
   const metaDescription = description || DEFAULT_META.description
