@@ -41,48 +41,55 @@ const privacySchema = {
 }
 
 const TOC_SECTIONS = [
-  { id: 'Who we are and what this policy covers', label: '1. Who we are and what this policy covers' },
-  { id: 'Summary at a glance', label: '2. Summary at a glance' },
-  { id: 'Information we collect', label: '3.Information we collect' },
-  { id: 'Where we get business contact data', label: '4.Where we get business contact data' },
-  { id: 'How we use information and our legal bases', label: '5. How we use information and our legal bases' },
-  { id: 'B2B outreach and marketing communications', label: '6. B2B outreach and marketing communications' },
-  { id: 'Profiling, lead scoring and automated decisions', label: '7. Profiling, lead scoring and automated decisions' },
-  { id: 'Sharing and disclosure', label: '8. Sharing and disclosure' },
-  { id: ' Cookies and tracking technologies', label: '9.  Cookies and tracking technologies' },
-  { id: 'Security and breach notification', label: '10. Security and breach notification' },
-  { id: 'Data retention', label: '11. Data retention' },
-  { id: 'International data transfers', label: '12. International data transfers' },
-  { id: 'Your rights and how to use them', label: '13. Your rights and how to use them' },
-  { id: 'Additional notice for California residents', label: '14. Additional notice for California residents' },
-  { id: ' India: applicable law and Grievance Officer', label: '15.  India: applicable law and Grievance Officer' },
-  { id: ' Children, third-party links and changes to this policy', label: '16.  Children, third-party links and changes to this policy' },
-  { id: 'Contact us', label: '17. Contact us' },
-
+  { id: 'who-we-are', label: '1. Who we are and what this policy covers' },
+  { id: 'summary-at-a-glance', label: '2. Summary at a glance' },
+  { id: 'information-we-collect', label: '3. Information we collect' },
+  { id: 'where-we-get-business-contact-data', label: '4. Where we get business contact data' },
+  { id: 'how-we-use-information', label: '5. How we use information and our legal bases' },
+  { id: 'b2b-outreach', label: '6. B2B outreach and marketing communications' },
+  { id: 'profiling-lead-scoring', label: '7. Profiling, lead scoring and automated decisions' },
+  { id: 'sharing-disclosure', label: '8. Sharing and disclosure' },
+  { id: 'cookies-tracking', label: '9. Cookies and tracking technologies' },
+  { id: 'security-breach-notification', label: '10. Security and breach notification' },
+  { id: 'data-retention', label: '11. Data retention' },
+  { id: 'international-transfers', label: '12. International data transfers' },
+  { id: 'your-rights', label: '13. Your rights and how to use them' },
+  { id: 'california-notice', label: '14. Additional notices for California, Germany and the Gulf region' },
+  { id: 'india-dpdp', label: '15. India: applicable law and Grievance Officer' },
+  { id: 'children-changes', label: '16. Children, third-party links and changes to this policy' },
+  { id: 'contact-us', label: '17. Contact us' },
 ]
 
 function Privacy() {
-  const [activeSection, setActiveSection] = useState('introduction')
+  const [activeSection, setActiveSection] = useState('who-we-are')
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 180
+      const scrollPosition = window.scrollY + 200
+      let currentId = TOC_SECTIONS[0]?.id || ''
 
       for (const section of TOC_SECTIONS) {
         const el = document.getElementById(section.id)
         if (el) {
-          const top = el.offsetTop
-          const height = el.offsetHeight
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section.id)
-            break
+          const rect = el.getBoundingClientRect()
+          const top = rect.top + window.scrollY
+          if (scrollPosition >= top) {
+            currentId = section.id
           }
         }
       }
+
+      // Check if user has scrolled near bottom of page
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
+        currentId = TOC_SECTIONS[TOC_SECTIONS.length - 1]?.id || currentId
+      }
+
+      setActiveSection(currentId)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -243,7 +250,7 @@ function Privacy() {
             <div className="lg:col-span-8 space-y-8 text-text-secondary leading-relaxed text-sm sm:text-base">
 
               {/* 1. Introduction & Overview */}
-              <section id="introduction" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              <section id="who-we-are" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Globe className="w-5 h-5 text-primary shrink-0" />
                   <span>1.Who we are and what this policy covers</span>
@@ -340,8 +347,8 @@ function Privacy() {
        </div>
               </section>
 
-              {/* 2. Information We Collect */}
-              <section id="information-we-collect" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 2. Summary at a glance */}
+              <section id="summary-at-a-glance" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Database className="w-5 h-5 text-primary shrink-0" />
                   <span>2.  Summary at a glance</span>
@@ -449,7 +456,12 @@ function Privacy() {
                           How do you opt out or use your rights?
                         </td>
                         <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
-                          Use the unsubscribe link, or email <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>.
+                          Use the unsubscribe link, or email <a
+                            href="mailto:privacy@tarajglobal.com"
+                            className="text-primary hover:underline font-medium"
+                          >
+                            privacy@tarajglobal.com
+                          </a>.
                         </td>
                         <td className="py-3.5 px-4 sm:px-6 font-mono font-semibold text-text-primary align-top leading-relaxed">
                           6, 13
@@ -462,8 +474,8 @@ function Privacy() {
                
               </section>
 
-              {/* 3. How We Use Information */}
-              <section id="how-we-use-information" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 3. Information We Collect */}
+              <section id="information-we-collect" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Eye className="w-5 h-5 text-primary shrink-0" />
                   <span>3. Information we collect
@@ -614,8 +626,8 @@ function Privacy() {
                           </p>
              </section>
 
-              {/* 4. Legal Basis for Processing */}
-              <section id="legal-basis" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 4. Where We Get Business Contact Data */}
+              <section id="where-we-get-business-contact-data" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Scale className="w-5 h-5 text-primary shrink-0" />
                   <span>4.  Where we get business contact data</span>
@@ -672,8 +684,8 @@ function Privacy() {
                    </ul>
               </section>
 
-              {/* 5. B2B Intelligence Practices */}
-              <section id="b2b-data-practices" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 5. How We Use Information */}
+              <section id="how-we-use-information" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <UserCheck className="w-5 h-5 text-primary shrink-0" />
                   <span> 5. How we use information and our legal bases
@@ -831,8 +843,8 @@ function Privacy() {
                  </p>
               </section>
 
-              {/* 6. Information Sharing */}
-              <section id="information-sharing" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 6. B2B Outreach and Marketing Communications */}
+              <section id="b2b-outreach" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Share2 className="w-5 h-5 text-primary shrink-0" />
                   <span>6. B2B outreach and marketing communications</span>
@@ -853,7 +865,14 @@ function Privacy() {
                   
                     <li>
                       <strong className="font-bold text-text-primary">Easy opt-out.</strong>{" "}
-                      Every email carries a one-click unsubscribe link, and you can also reply or write to info@tarajglobal.com. We process opt-outs immediately where automated, and in any case within five business days. We never charge for opting out or require more than your email address.
+                      Every email carries a one-click unsubscribe link, and you can also reply or write to{" "}
+                      <a
+                        href="mailto:privacy@tarajglobal.com"
+                        className="text-primary font-medium hover:underline"
+                      >
+                        privacy@tarajglobal.com
+                      </a>
+                      . We process opt-outs immediately where automated, and in any case within five business days. We never charge for opting out or require more than your email address.
                     </li>
                   
                     <li>
@@ -882,7 +901,7 @@ function Privacy() {
                             EU / EEA
                           </td>
                           <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
-                            Rules differ by member state. In countries that require prior consent for B2B email (Germany is a common example), we send cold email only with consent. Elsewhere we rely on legitimate interests with a clear opt-out. We respect national call-suppression lists.
+                           Rules differ by member state. In countries that require prior consent for B2B email (Germany is a common example, under Section 7 of the UWG; see Section 14), we send cold email only with consent. Elsewhere we rely on legitimate interests with a clear opt-out. We respect national call-suppression lists.
                           </td>
                         </tr>
                         <tr className="hover:bg-primary/[0.03] transition-colors">
@@ -917,6 +936,17 @@ function Privacy() {
                             We follow TRAI rules for commercial communications, including the preference registry, and the DPDP Act when it applies.
                           </td>
                         </tr>
+
+                           <tr className="hover:bg-primary/[0.03] transition-colors">
+                          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+                        Gulf (UAE, Saudi Arabia, Qatar, Bahrain, Oman, Kuwait)
+                          </td>
+                          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+                            We contact people only after they opt in, include an opt-out in every message and keep a suppression record. See Section 14.
+                          </td>
+                        </tr>
+
+
                         <tr className="hover:bg-primary/[0.03] transition-colors">
                           <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
                             Other countries
@@ -933,8 +963,8 @@ function Privacy() {
  </p>
               </section>
 
-              {/* 7. Cookies & Tracking */}
-              <section id="cookies-tracking" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 7. Profiling, Lead Scoring and Automated Decisions */}
+              <section id="profiling-lead-scoring" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Eye className="w-5 h-5 text-primary shrink-0" />
                   <span>7. Profiling, lead scoring and automated decisions</span>
@@ -951,8 +981,8 @@ function Privacy() {
                 </p>
               </section>
 
-              {/* 8. Data Security */}
-              <section id="data-security" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 8. Sharing and Disclosure */}
+              <section id="sharing-disclosure" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Lock className="w-5 h-5 text-primary shrink-0" />
                   <span>8.Sharing and disclosure</span>
@@ -968,11 +998,11 @@ function Privacy() {
                     security. We keep a current list of sub-processors and provide it on request
                     at{" "}
                     <a
-                      href="mailto:info@tarajglobal.com"
-                      className="text-[#00A6FF] hover:underline"
-                    >
-                      info@tarajglobal.com
-                    </a>.
+                       href="mailto:privacy@tarajglobal.com"
+                       className="text-[#00A6FF] hover:underline"
+                     >
+                       privacy@tarajglobal.com
+                     </a>.
                   </p>
                 </p>
                 <p className="mb-4 text-[#00A6FF]">Clients: how we deliver leads</p>
@@ -1000,22 +1030,22 @@ function Privacy() {
                 </ul><br />
                 <p className="mb-4 text-[#00A6FF]">Sale and sharing under US privacy</p> 
                 <p>
-  Some US state laws, including California’s, treat disclosing personal
-  information for money or other valuable consideration as a “sale”, and
-  disclosing it for cross-context behavioural advertising as “sharing”.
-  Because clients pay for our campaigns, we treat lead delivery as a sale and
-  sharing for those laws. You can opt out at any time through the “Do Not Sell
-  or Share My Personal Information” link or by email to{" "}
-  <a
-    href="mailto:info@tarajglobal.com"
-    className="text-[#00A6FF] hover:underline"
-  >
-    info@tarajglobal.com
-  </a>
-  , or through a browser opt-out signal such as Global Privacy Control, which
-  we honour. We do not knowingly sell or share the personal information of
-  anyone under 16.
-</p>
+                    Some US state laws, including California’s, treat disclosing personal
+                    information for money or other valuable consideration as a “sale”, and
+                    disclosing it for cross-context behavioural advertising as “sharing”.
+                    Because clients pay for our campaigns, we treat lead delivery as a sale and
+                    sharing for those laws. You can opt out at any time through the “Do Not Sell
+                    or Share My Personal Information” link or by email to{" "}
+                       <a
+                    href="mailto:privacy@tarajglobal.com"
+                    className="text-[#00A6FF] hover:underline"
+                  >
+                    privacy@tarajglobal.com
+                  </a>
+                      , or through a browser opt-out signal such as Global Privacy Control, which
+                      we honour. We do not knowingly sell or share the personal information of
+                      anyone under 16.
+                    </p>
                 <p className="mb-4 text-[#00A6FF]">Other disclosures</p>
                 <ul className="list-disc pl-6 space-y-3 marker:text-white">
                   <li>
@@ -1040,8 +1070,8 @@ function Privacy() {
                 </ul>
               </section>
 
-              {/* 9. Data Retention */}
-              <section id="data-retention" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 9. Cookies and Tracking Technologies */}
+              <section id="cookies-tracking" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Clock className="w-5 h-5 text-primary shrink-0" />
                   <span>9.Cookies and tracking technologies</span>
@@ -1129,8 +1159,8 @@ function Privacy() {
                  </p>
               </section>
 
-              {/* 10. Your Privacy Rights */}
-              <section id="privacy-rights" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 10. Security and Breach Notification */}
+              <section id="security-breach-notification" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Scale className="w-5 h-5 text-primary shrink-0" />
                   <span>10.Security and breach notification,</span>
@@ -1149,8 +1179,8 @@ function Privacy() {
                </p>
               </section>
 
-              {/* 11. International Transfers */}
-              <section id="international-transfers" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 11. Data Retention */}
+              <section id="data-retention" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Server className="w-5 h-5 text-primary shrink-0" />
                   <span>11.  Data retention</span>
@@ -1249,8 +1279,8 @@ function Privacy() {
                 </div>
               </section>
 
-              {/* 12. Children's Privacy */}
-              <section id="childrens-privacy" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 12. International Data Transfers */}
+              <section id="international-transfers" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Shield className="w-5 h-5 text-primary shrink-0" />
                   <span>12.  International data transfers</span>
@@ -1285,19 +1315,19 @@ function Privacy() {
                       organisational measures such as encryption and access controls where needed,
                       and suspend a transfer if we cannot protect the data. You can request a copy
                       of the relevant clauses by writing to{" "}
-                      <a
-                        href="mailto:info@tarajglobal.com"
-                        className="text-[#00A6FF] hover:underline"
-                      >
-                        info@tarajglobal.com
-                      </a>
+                     <a
+                         href="mailto:dpo@tarajglobal.com"
+                         className="text-[#00A6FF] hover:underline"
+                       >
+                         dpo@tarajglobal.com
+                       </a>
                       ; we may redact commercial terms.
                     </p><br />
                     <p>For personal data processed under India’s DPDP Act, we will transfer data abroad only as the Act and any restrictions notified by the Government of India allow.</p>
               </section>
 
-              {/* 13. Changes to Policy */}
-              <section id="policy-changes" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 13. Your Rights and How to Use Them */}
+              <section id="your-rights" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <AlertCircle className="w-5 h-5 text-primary shrink-0" />
                   <span>13.Your rights and how to use them</span>
@@ -1356,14 +1386,17 @@ function Privacy() {
                 </div>
                 <p className="mb-4 text-[#00A6FF]">How to make a request</p>
                 <ul className="list-disc pl-6 space-y-3 marker:text-white">
-                      <li>
+                     <li>
                         <strong className="font-bold text-text-primary">Email:</strong>{" "}
-                        <a href="mailto:info@tarajglobal.com" className="text-[#00A6FF] hover:underline">
-                          info@tarajglobal.com
+                        <a
+                          href="mailto:privacy@tarajglobal.com"
+                          className="text-[#00A6FF] hover:underline"
+                        >
+                          privacy@tarajglobal.com
                         </a>
                       </li>
                     
-                      <li>
+                      {/* <li>
                         <strong className="font-bold text-text-primary">Web form:</strong>{" "}
                         <a
                           href="https://tarajglobal.com/"
@@ -1373,16 +1406,16 @@ function Privacy() {
                         >
                           https://tarajglobal.com/
                         </a>
-                      </li>
+                      </li> */}
                     
                       <li>
                         <strong className="font-bold text-text-primary">Phone:</strong>{" "}
                         <a href="tel:+919665599442" className="text-[#00A6FF] hover:underline">
-                          +91-96655-99442
+                        IN - +91 96655-99442
                         </a>
                         {", "}
                         <a href="tel:+13464878307" className="text-[#00A6FF] hover:underline">
-                          +1 346-487-8307
+                          / US - +1 346-487-8307
                         </a>
                       </li>
                     
@@ -1427,12 +1460,13 @@ function Privacy() {
                   <p>Please contact us first so we can try to resolve your concern. You may also complain to your data protection authority, such as the Information Commissioner’s Office (UK), your EU national authority, or the California Privacy Protection Agency or state attorney general in the US. In India, you may take a complaint to our Grievance Officer (Section 15), and to the Data Protection Board of India once the relevant provisions apply.</p>
               </section>
 
-              {/* 14. Contact Information */}
-              <section id="contact-us" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 14. Additional Notice for California, Germany and the Gulf Region */}
+              <section id="california-notice" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Mail className="w-5 h-5 text-primary shrink-0" />
-                  <span>14. Additional notice for California residents</span>
+                  <span>14. Additional notices for California, Germany and the Gulf region</span>
                 </h2>
+                <p className="mb-4">These notices add to the rest of this policy. If they differ from it, the notice for your location applies to you.</p>
                 <p className="mb-4">
                   California law requires us to describe the personal information we collected in the last 12 months. Business contact information of California residents is covered like any other personal information.
                 </p>
@@ -1580,17 +1614,385 @@ function Privacy() {
                        We treat lead delivery to clients as a sale or sharing. You can opt out as
                        described in Section 8. We honour opt-out preference signals, and we do not
                        charge you or reduce service quality for using your rights.
-                     </p>
+                     </p><br />
                      
-                     <p>
-                       <strong className="font-bold text-text-primary">Data broker status.</strong>{" "}
-                       [Taraj Global is / is not registered as a data broker with the California
-                       Privacy Protection Agency. Confirm and complete before publication.]
-                     </p>
+                    <p className="mb-4 text-[#00A6FF]">California residents: your rights under the CCPA</p>
+                    <p>California law gives you these rights over your personal information, including your business contact details:</p>
+                     
+                     <ul className="list-disc pl-6 space-y-2 marker:text-white">
+  <li>
+    <strong className="font-bold text-text-primary">Know and access.</strong>{" "}
+    Ask what personal information we collected about you, where it came from,
+    why we use it and who received it, and ask for a copy of the specific
+    information we hold. You can ask about periods longer than the last 12
+    months if we still hold the data.
+  </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">Delete.</strong>{" "}
+    Ask us to delete personal information we collected from you, subject to
+    legal exceptions.
+  </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">Correct.</strong>{" "}
+    Ask us to correct inaccurate information.
+  </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">
+      Opt out of sale and sharing.
+    </strong>{" "}
+    Tell us to stop selling or sharing your personal information. We do not
+    knowingly sell or share the personal information of anyone under 16.
+  </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">
+      Limit sensitive information.
+    </strong>{" "}
+    We do not collect sensitive personal information, so there is nothing to
+    limit.
+  </li>
+
+  <li>
+    <strong className="font-bold text-text-primary">No retaliation.</strong>{" "}
+    We will not refuse service, charge different prices or give lower quality
+    because you used your rights.
+  </li>
+</ul>
+<p>
+  <strong className="font-bold text-text-primary">How to make a request.</strong>{" "}
+  Email{" "}
+  <a
+    href="mailto:privacy@tarajglobal.com"
+    className="text-[#00A6FF] hover:underline"
+  >
+    privacy@tarajglobal.com
+  </a>
+  , or call IN{" "}
+  <a
+    href="tel:+919665599442"
+    className="text-[#00A6FF] hover:underline"
+  >
+    +91 96655-99442
+  </a>{" "}
+  or US{" "}
+  <a
+    href="tel:+13464878307"
+    className="text-[#00A6FF] hover:underline"
+  >
+    +1 346-487-8307
+  </a>.
+</p>
+
+<>
+  <p>
+    <strong className="font-bold text-text-primary">Opt-out link.</strong>{" "}
+    Use the{" "}
+    <a
+      href="mailto:privacy@tarajglobal.com?subject=Do%20Not%20Sell%20or%20Share%20My%20Personal%20Information"
+      className="text-[#00A6FF] hover:underline"
+    >
+      “Do Not Sell or Share My Personal Information”
+    </a>{" "}
+    link in our website footer.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Verification and agents.</strong>{" "}
+    We ask only for what we need to confirm it is you, such as your name,
+    business email and employer. You may use an authorised agent. We will ask
+    for your written permission and may check your identity with you directly.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Timing.</strong>{" "}
+    We confirm your request within 10 business days and respond within 45 days.
+    If we need up to 45 more days, we will tell you why.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Shine the Light.</strong>{" "}
+    Once a year, you can ask which categories of personal information we shared
+    with third parties for their direct marketing. Email us at{" "}
+    <a
+      href="mailto:privacy@tarajglobal.com"
+      className="text-[#00A6FF] hover:underline"
+    >
+      privacy@tarajglobal.com
+    </a>.
+  </p>
+</>
+<br />
+
+<p className="mb-4 text-[#00A6FF]">California Delete Act and DROP standards</p>
+<p>California’s Delete Act lets California residents ask registered data brokers to delete their personal information with one request through the Delete Request and Opt-out Platform (DROP), run by the California Privacy Protection Agency. We are not currently registered as a data broker in California. We still handle California residents’ deletion and opt-out requests to the same standard. When a California resident asks us to delete their information or opt out of sale or sharing, we:</p>
+
+<ul className="list-disc pl-6 marker:text-white">
+  <li>
+    <p>  
+        Process the request within 45 days. 
+    </p>
+  </li>
+  <li>
+    <p>
+        Delete matching personal information, subject to exceptions the law allows.
+    </p>
+  </li>
+  <li>
+    <p>
+        Treat a request we cannot verify as an opt-out of sale and sharing.
+    </p>
+  </li>
+  <li>
+    <p>
+        Tell our service providers and contractors to delete it too.
+    </p>
+  </li>
+  <li>
+    <p>
+        Keep a suppression record so your details are not added back to our database or lead lists.
+    </p>
+  </li>
+  <li>
+    <p>
+        Do not sell or share new information about you after a deletion unless you ask us to or the law allows it.
+    </p>
+  </li>
+</ul>
+<p>You can contact us directly at any time, including if you have already used DROP. Using DROP or contacting us does not limit your other rights under the CCPA.</p>
+<br />
+<p className="mb-4 text-[#00A6FF]">Germany: GDPR, BDSG and UWG</p>
+
+<>
+  <p>
+    <strong className="font-bold text-text-primary">Laws that apply.</strong>{" "}
+    For people in Germany, we follow the GDPR, the Federal Data Protection Act
+    (BDSG), Section 7 of the Act Against Unfair Competition (UWG) for advertising,
+    and Section 25 of the TDDDG for cookies and similar technologies.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Email marketing needs prior consent.</strong>{" "}
+    A business email address does not remove the need for consent under the UWG.
+    We send marketing email to people in Germany only after they give prior
+    express consent, for example by ticking an unticked box. We confirm sign-ups
+    with a confirmation email (double opt-in) and keep a record of when, how and
+    to what you agreed.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Existing customers.</strong>{" "}
+    We email existing customers about similar services without fresh consent
+    only where Section 7(3) UWG allows it. That means we obtained the address
+    in connection with a sale, told them at the time and in every message that
+    they can object, and they have not objected.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Phone calls.</strong>{" "}
+    We call business contacts in Germany only where there is at least presumed
+    consent based on their business interests, and we stop as soon as you ask.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Clients.</strong>{" "}
+    We pass a German contact to a client for email follow-up only if their
+    consent covers that client.
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Cookies.</strong>{" "}
+    We set non-essential cookies only after you consent (Section 9).
+  </p>
+
+  <p>
+    <strong className="font-bold text-text-primary">Rights and complaints.</strong>{" "}
+    Your GDPR rights in Section 13 apply, including the right to object to
+    direct marketing at any time. You may complain to the data protection
+    authority of your German federal state or to the Federal Commissioner
+    (BfDI). Our EU representative is listed in Section 17. You can also contact
+    our Data Protection Officer at{" "}
+    <a
+      href="mailto:dpo@tarajglobal.com"
+      className="text-[#00A6FF] hover:underline"
+    >
+      dpo@tarajglobal.com
+    </a>.
+  </p>
+</> <br />
+<p className="mb-4 text-[#00A6FF]">Gulf region: UAE, Saudi Arabia, Qatar, Bahrain, Oman and Kuwait</p>
+
+<p>We are based in Pune, India and do not operate a branch in the Gulf. When we process business contact details of people in these countries, we follow local data protection law where it applies to us. Across the whole region we use the same consent-first approach.
+</p>
+
+{/* Gulf Region Data Protection Table */}
+<div className="overflow-x-auto w-full my-6 rounded-xl border border-border bg-surface-alt/40 dark:bg-white/[0.02]">
+  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr className="border-b border-border bg-surface-elevated/70 dark:bg-white/[0.04]">
+        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[22%] min-w-[150px] border-r border-border">
+          Country or zone
+        </th>
+        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs w-[38%] min-w-[240px] border-r border-border">
+          Main law
+        </th>
+        <th className="py-3 px-4 sm:px-6 font-bold text-text-primary uppercase tracking-wider text-xs min-w-[260px]">
+          What it means for you
+        </th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border">
+      {/* UAE (mainland) */}
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+          UAE (mainland)
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+          Federal Decree-Law No. 45 of 2021 (PDPL)
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          We use a lawful basis (usually consent for marketing), limit use to stated purposes, secure the data and honour your rights.
+        </td>
+      </tr>
+
+      {/* UAE free zones */}
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+          UAE free zones
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+          DIFC Data Protection Law No. 5 of 2020; ADGM Data Protection Regulations 2021
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          If you are in DIFC or ADGM, we honour objections to direct marketing and your other rights under that regime.
+        </td>
+      </tr>
+
+      {/* Saudi Arabia */}
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+          Saudi Arabia
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+          Personal Data Protection Law, its Implementing Regulations, and the Regulations on Transfer of Personal Data outside the Kingdom
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          We market to you only with your consent, honour withdrawal, and transfer data abroad only as the transfer rules allow.
+        </td>
+      </tr>
+
+      {/* Qatar */}
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+          Qatar
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+          Law No. 13 of 2016 (Personal Data Privacy Protection)
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          We send electronic marketing only with your prior consent and include an opt-out in every message.
+        </td>
+      </tr>
+
+      {/* Bahrain */}
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+          Bahrain
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+          Law No. 30 of 2018 (Personal Data Protection Law)
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          We market only with consent and honour access, correction and objection requests.
+        </td>
+      </tr>
+
+      {/* Oman */}
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+          Oman
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+          Personal Data Protection Law (Royal Decree 6/2022) and its Executive Regulations
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          We rely on consent, honour your rights and follow the transfer controls.
+        </td>
+      </tr>
+
+      {/* Kuwait */}
+      <tr className="hover:bg-primary/[0.03] transition-colors">
+        <td className="py-3.5 px-4 sm:px-6 font-semibold text-text-primary align-top border-r border-border leading-relaxed">
+          Kuwait
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top border-r border-border leading-relaxed">
+          CITRA Data Privacy Protection Regulation (Decision No. 26 of 2024)
+        </td>
+        <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+          There is no general data protection law. The regulation covers licensed service providers, but we apply the same consent-first practice.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ul className="list-disc pl-6 marker:text-white">
+  <li>
+    <p>
+      <strong className="font-bold text-text-primary">Marketing.</strong>{" "}
+      We contact people in these countries for marketing only after they opt in,
+      include an opt-out in every message and keep a suppression record.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <strong className="font-bold text-text-primary">Your rights.</strong>{" "}
+      You can ask us to give you access to, correct or delete your data,
+      withdraw consent, or stop marketing. Email{" "}
+      <a
+        href="mailto:privacy@tarajglobal.com"
+        className="text-[#00A6FF] hover:underline"
+      >
+        privacy@tarajglobal.com
+      </a>{" "}
+      and see Section 13 for timing.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <strong className="font-bold text-text-primary">Transfers.</strong>{" "}
+      We transfer data to India and other countries under the safeguards in
+      Section 12 and, where local law requires, any approval or notification.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <strong className="font-bold text-text-primary">Complaints.</strong>{" "}
+      Contact us first. You may also complain to your local authority, such as
+      the UAE Data Office, the DIFC or ADGM Commissioner, SDAIA (Saudi Arabia),
+      Qatar’s Ministry of Transport and Communications, Bahrain’s Personal
+      Data Protection Authority, or Oman’s Ministry of Transport,
+      Communications and Information Technology.
+    </p>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
               </section>
 
-              {/* 15. Contact Information & Grievance Officer */}
-              <section id="contact-us" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
+              {/* 15. India: Applicable Law and Grievance Officer */}
+              <section id="india-dpdp" className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28">
                 <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
                   <Mail className="w-5 h-5 text-primary shrink-0" />
                   <span>15. India: applicable law and Grievance Officer</span>
@@ -1685,9 +2087,9 @@ function Privacy() {
 
              
               </section>
-                  {/* 16. Additional Information */}
+                  {/* 16. Children, Third-Party Links and Changes to This Policy */}
 <section
-  id="additional-information"
+  id="children-changes"
   className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28"
 >
   <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
@@ -1721,9 +2123,9 @@ function Privacy() {
 </p>
 </section>
 
-{/* 17. Updates to This Privacy Policy */}
+{/* 17. Contact Us */}
 <section
-  id="policy-updates"
+  id="contact-us"
   className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28"
 >
   <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4 flex items-center gap-2.5">
@@ -1767,7 +2169,12 @@ function Privacy() {
             Privacy team (all rights requests)
           </td>
           <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
-            <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+            <a
+              href="mailto:privacy@tarajglobal.com"
+              className="text-primary hover:underline font-medium"
+            >
+              privacy@tarajglobal.com
+            </a>
             {" · "}
             <a href="tel:+919665599442" className="hover:text-primary transition-colors">+91-96655-99442</a>
             {" / "}
@@ -1779,9 +2186,29 @@ function Privacy() {
             Data Protection Email
           </td>
           <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
-            <a href="mailto:dpo@tgstechinfo.com" className="text-primary hover:underline font-medium">dpo@tgstechinfo.com</a>
+            <a
+            href="mailto:dpo@tarajglobal.com"
+            className="text-primary hover:underline font-medium"
+          >
+            dpo@tarajglobal.com
+          </a>
           </td>
         </tr>
+
+           <tr className="hover:bg-primary/[0.03] transition-colors">
+          <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
+          Legal notices
+          </td>
+          <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
+            <a
+              href="mailto:legal@tarajglobal.com"
+              className="text-primary hover:underline font-medium"
+            >
+              legal@tarajglobal.com
+            </a>
+          </td>
+        </tr>
+
         <tr className="hover:bg-primary/[0.03] transition-colors">
           <td className="py-3.5 px-4 sm:px-6 font-medium text-text-primary align-top border-r border-border leading-relaxed">
             Grievance Officer (India)
@@ -1795,7 +2222,12 @@ function Privacy() {
             EU representative email
           </td>
           <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
-            <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+            <a
+               href="mailto:dpo@tarajglobal.com"
+               className="text-primary hover:underline font-medium"
+             >
+               dpo@tarajglobal.com
+             </a>
           </td>
         </tr>
         <tr className="hover:bg-primary/[0.03] transition-colors">
@@ -1803,7 +2235,12 @@ function Privacy() {
             UK representative
           </td>
           <td className="py-3.5 px-4 sm:px-6 text-text-secondary align-top leading-relaxed">
-            <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+           <a
+              href="mailto:dpo@tarajglobal.com"
+              className="text-primary hover:underline font-medium"
+            >
+              dpo@tarajglobal.com
+            </a>
           </td>
         </tr>
         <tr className="hover:bg-primary/[0.03] transition-colors">

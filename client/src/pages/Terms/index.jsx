@@ -39,54 +39,58 @@ const termsSchema = {
 }
 
 const TOC_SECTIONS = [
-  { id: 'about-our-website', label: '1. About Our Website' },
-  { id: 'eligibility', label: '2. Eligibility' },
+  { id: 'about-these-terms', label: '1. About these Terms' },
+  { id: 'who-may-use', label: '2. Who may use the Website' },
   { id: 'acceptable-use', label: '3. Acceptable Use' },
   { id: 'intellectual-property', label: '4. Intellectual Property' },
-  { id: 'third-party-content', label: '5. Third-Party Content' },
-  { id: 'user-submitted-information', label: '6. User-Submitted Information' },
-  { id: 'lead-generation-inquiries', label: '7. Lead Generation and Business Inquiries' },
+  { id: 'submissions-feedback', label: '5. Your submissions and feedback' },
+  { id: 'enquiries-meetings-services', label: '6. Enquiries, meetings and our services' },
+  { id: 'results-website-content', label: '7. Results and Website content' },
   { id: 'downloadable-resources', label: '8. Downloadable Resources' },
   { id: 'webinars-events', label: '9. Webinars and Events' },
-  { id: 'newsletters-marketing', label: '10. Newsletters and Marketing Communications' },
-  { id: 'accuracy-of-information', label: '11. Accuracy of Information' },
-  { id: 'no-professional-advice', label: '12. No Professional Advice' },
-  { id: 'third-party-services-links', label: '13. Third-Party Services and Links' },
-  { id: 'website-availability', label: '14. Website Availability' },
-  { id: 'disclaimer-warranties', label: '15. Disclaimer of Warranties' },
-  { id: 'limitation-of-liability', label: '16. Limitation of Liability' },
-  { id: 'indemnification', label: '17. Indemnification' },
-  { id: 'privacy', label: '18. Privacy' },
-  { id: 'cookies', label: '19. Cookies' },
-  { id: 'changes-to-terms', label: '20. Changes to These Terms' },
-  { id: 'governing-law', label: '21. Governing Law' },
-  { id: 'severability', label: '22. Severability' },
-  { id: 'entire-agreement', label: '23. Entire Agreement' },
-  { id: 'contact-us', label: '24. Contact Us' },
+  { id: 'marketing-communications', label: '10. Marketing communications' },
+  { id: 'third-party-services-links', label: '11. Third-party services and links' },
+  { id: 'availability-website', label: '12. Availability of the Website' },
+  { id: 'disclaimer-warranties', label: '13. Disclaimer of warranties' },
+  { id: 'limitation-of-liability', label: '14. Limitation of liability' },
+  { id: 'indemnification', label: '15. Indemnification' },
+  { id: 'privacy-cookies', label: '16. Privacy and cookies' },
+  { id: 'changes-to-terms', label: '17. Changes to these Terms' },
+  { id: 'governing-law-disputes', label: '18. Governing law and disputes' },
+  { id: 'general-terms', label: '19. General terms' },
+  { id: 'contact-us', label: '20. Contact Us' },
 ]
 
 function Terms() {
-  const [activeSection, setActiveSection] = useState('about-our-website')
+  const [activeSection, setActiveSection] = useState('about-these-terms')
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 180
+      const scrollPosition = window.scrollY + 200
+      let currentId = TOC_SECTIONS[0]?.id || ''
 
       for (const section of TOC_SECTIONS) {
         const el = document.getElementById(section.id)
         if (el) {
-          const top = el.offsetTop
-          const height = el.offsetHeight
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section.id)
-            break
+          const rect = el.getBoundingClientRect()
+          const top = rect.top + window.scrollY
+          if (scrollPosition >= top) {
+            currentId = section.id
           }
         }
       }
+
+      // Check if user has scrolled near bottom of page
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
+        currentId = TOC_SECTIONS[TOC_SECTIONS.length - 1]?.id || currentId
+      }
+
+      setActiveSection(currentId)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -236,9 +240,9 @@ function Terms() {
             {/* ── Main Terms Content Body (Span 8) ─────────────────────────── */}
             <div className="lg:col-span-8 space-y-6 text-text-secondary leading-relaxed text-sm sm:text-base">
 
-              {/* 1. About Our Website */}
+              {/* 1. About these Terms */}
               <section
-                id="about-our-website"
+                id="about-these-terms"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -285,9 +289,9 @@ function Terms() {
        </ul>
               </section>
 
-              {/* 2. Eligibility */}
+              {/* 2. Who may use the Website */}
               <section
-                id="eligibility"
+                id="who-may-use"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -373,13 +377,19 @@ function Terms() {
                 </ul><br />
                 <h2>Infringement notices</h2><br />
                 <p className= "mb4">
-                  If you believe content on the Website infringes your intellectual property rights, email <strong>info@tarajglobal.com</strong> with: a description of your work; where the material appears on the Website; your contact details; a statement that you believe in good faith that the use is not authorised; and a statement that your notice is accurate and that you are the rights holder or authorised to act for them. We will review it and respond promptly.
+                  If you believe content on the Website infringes your intellectual property rights, email{" "}
+                   <a
+                     href="mailto:legal@tarajglobal.com"
+                     className="text-primary font-medium hover:underline"
+                   >
+                     legal@tarajglobal.com
+                   </a>{" "}with: a description of your work; where the material appears on the Website; your contact details; a statement that you believe in good faith that the use is not authorised; and a statement that your notice is accurate and that you are the rights holder or authorised to act for them. We will review it and respond promptly.
                 </p>
               </section>
 
-              {/* 5. Third-Party Content */}
+              {/* 5. Your submissions and feedback */}
               <section
-                id="third-party-content"
+                id="submissions-feedback"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -391,35 +401,35 @@ function Terms() {
                   </h2>
                 </div>
               <ul className=" pl-5 space-y-3 text-sm sm:text-base text-text-secondary leading-relaxed marker:text-primary">
-  <li>
-    <strong className="font-bold text-text-primary">Forms and messages:</strong>{" "}
-    We handle personal data you submit through forms, chat or email under our
-    Privacy Policy. The licence below does not apply to that personal data.
-  </li>
-
-  <li>
-    <strong className="font-bold text-text-primary">Feedback:</strong>{" "}
-    Suggestions, ideas and comments about the Website or our services (“Feedback”)
-    are not confidential or proprietary, unless we agree otherwise in writing.
-    You keep ownership of your Feedback, and you grant us a worldwide, perpetual,
-    irrevocable, royalty-free, non-exclusive licence to use, copy, modify,
-    publish and otherwise exploit it for any purpose, without payment. We will
-    not name you publicly as its source without your permission.
-  </li>
-
-  <li>
-    <strong className="font-bold text-text-primary">What you submit:</strong>{" "}
-    You confirm that the information you give us is accurate, current and
-    complete, and that you are authorised to give it. Please do not submit
-    sensitive data such as health information, government ID numbers or
-    payment card details.
-  </li>
-</ul>
+                   <li>
+                     <strong className="font-bold text-text-primary">Forms and messages:</strong>{" "}
+                     We handle personal data you submit through forms, chat or email under our
+                     Privacy Policy. The licence below does not apply to that personal data.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">Feedback:</strong>{" "}
+                     Suggestions, ideas and comments about the Website or our services (“Feedback”)
+                     are not confidential or proprietary, unless we agree otherwise in writing.
+                     You keep ownership of your Feedback, and you grant us a worldwide, perpetual,
+                     irrevocable, royalty-free, non-exclusive licence to use, copy, modify,
+                     publish and otherwise exploit it for any purpose, without payment. We will
+                     not name you publicly as its source without your permission.
+                   </li>
+                 
+                   <li>
+                     <strong className="font-bold text-text-primary">What you submit:</strong>{" "}
+                     You confirm that the information you give us is accurate, current and
+                     complete, and that you are authorised to give it. Please do not submit
+                     sensitive data such as health information, government ID numbers or
+                     payment card details.
+                   </li>
+                 </ul>
               </section>
 
-              {/* 6. User-Submitted Information */}
+              {/* 6. Enquiries, meetings and our services */}
               <section
-                id="user-submitted-information"
+                id="enquiries-meetings-services"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -464,9 +474,9 @@ function Terms() {
               </ul>
               </section>
 
-              {/* 7. Lead Generation and Business Inquiries */}
+              {/* 7. Results and Website content */}
               <section
-                id="lead-generation-inquiries"
+                id="results-website-content"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -596,9 +606,9 @@ function Terms() {
                   </p>
               </section>
 
-              {/* 10. Newsletters and Marketing Communications */}
+              {/* 10. Marketing communications */}
               <section
-                id="newsletters-marketing"
+                id="marketing-communications"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -611,13 +621,7 @@ function Terms() {
                 </div>
                 <p>
                     <strong className="font-bold text-text-primary">Newsletters and updates:</strong>{" "}
-                    If you subscribe to our newsletter or give us your business email address
-                    for marketing, we may send you emails about our services, industry insights
-                    and events. Where the law requires consent, such as under the GDPR, UK PECR
-                    or Canada’s CASL, we rely on the consent you give. Where the law allows us
-                    to contact business professionals about relevant offers without prior
-                    consent, we may do so. Every marketing message identifies us and includes
-                    an unsubscribe option.
+                     If you subscribe to our newsletter or give us your business email address for marketing, we may send you emails about our services, industry insights and events. Where the law requires consent, such as under the GDPR, UK PECR, Canada’s CASL, Germany’s UWG or Gulf data protection laws, we rely on the consent you give. Where the law allows us to contact business professionals about relevant offers without prior consent, we may do so. Every marketing message identifies us and includes an unsubscribe option.
                   </p>
                   
                   <p>
@@ -628,7 +632,7 @@ function Terms() {
                       href="mailto:privacy@tarajglobal.com"
                       className="text-primary font-medium hover:underline"
                     >
-                      info@tarajglobal.com
+                      privacy@tarajglobal.com
                     </a>
                     . We act on opt-outs promptly and keep a suppression record so we do not
                     contact you again. We may still send service messages about your enquiry
@@ -636,9 +640,9 @@ function Terms() {
                   </p>
               </section>
 
-              {/* 11. Accuracy of Information */}
+              {/* 11. Third-party services and links */}
               <section
-                id="accuracy-of-information"
+                id="third-party-services-links"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -655,9 +659,9 @@ function Terms() {
                 </p>
               </section>
 
-              {/* 12. No Professional Advice */}
+              {/* 12. Availability of the Website */}
               <section
-                id="no-professional-advice"
+                id="availability-website"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -674,9 +678,9 @@ function Terms() {
                 </p>
               </section>
 
-              {/* 13. Third-Party Services and Links */}
+              {/* 13. Disclaimer of warranties */}
               <section
-                id="third-party-services-links"
+                id="disclaimer-warranties"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -697,9 +701,9 @@ function Terms() {
                 </p>
               </section>
 
-              {/* 14. Website Availability */}
+              {/* 14. Limitation of liability */}
               <section
-                id="website-availability"
+                id="limitation-of-liability"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -719,9 +723,9 @@ function Terms() {
                 <p className="mb-4">Liability for paid services is governed by the MSA or SOW and not by this section.</p>
               </section>
 
-              {/* 15. Disclaimer of Warranties */}
+              {/* 15. Indemnification */}
               <section
-                id="disclaimer-warranties"
+                id="indemnification"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -753,9 +757,9 @@ function Terms() {
                 <p>We will tell you promptly about any claim and give you reasonable help at your cost. You may not settle a claim in a way that admits fault for us or imposes obligations on us without our written consent.</p>
               </section>
 
-              {/* 16. Limitation of Liability */}
+              {/* 16. Privacy and cookies */}
               <section
-                id="limitation-of-liability"
+                id="privacy-cookies"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -792,9 +796,9 @@ function Terms() {
                 
               </section>
 
-              {/* 17. Indemnification */}
+              {/* 17. Changes to these Terms */}
               <section
-                id="indemnification"
+                id="changes-to-terms"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -814,9 +818,9 @@ function Terms() {
 </p>
               </section>
 
-              {/* 18. Privacy */}
+              {/* 18. Governing law and disputes */}
               <section
-                id="privacy"
+                id="governing-law-disputes"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -856,9 +860,9 @@ function Terms() {
 </ul>
               </section>
 
-              {/* 19. Cookies */}
+              {/* 19. General terms */}
               <section
-                id="cookies"
+                id="general-terms"
                 className="bg-surface rounded-2xl border border-border p-6 sm:p-8 scroll-mt-28 shadow-sm transition-all duration-200 hover:border-primary/20"
               >
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border/50">
@@ -999,7 +1003,12 @@ function Terms() {
                           Legal notices
                         </td>
                         <td className="py-3.5 px-4 sm:px-6 text-text-secondary leading-relaxed">
-                          <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+                         <a
+                             href="mailto:legal@tarajglobal.com"
+                             className="text-primary hover:underline font-medium"
+                           >
+                             legal@tarajglobal.com
+                           </a>
                         </td>
                       </tr>
                       <tr className="hover:bg-primary/[0.03] transition-colors">
@@ -1007,7 +1016,12 @@ function Terms() {
                           Privacy and data requests
                         </td>
                         <td className="py-3.5 px-4 sm:px-6 text-text-secondary leading-relaxed">
-                          <a href="mailto:info@tarajglobal.com" className="text-primary hover:underline font-medium">info@tarajglobal.com</a>
+                          <a
+                              href="mailto:privacy@tarajglobal.com"
+                              className="text-primary hover:underline font-medium"
+                            >
+                              privacy@tarajglobal.com
+                            </a>
                           {"; see our "}
                           <Link to="/privacy" className="text-primary hover:underline font-medium">Privacy Policy</Link>
                           {" for our Grievance Officer"}
