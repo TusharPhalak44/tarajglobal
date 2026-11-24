@@ -303,14 +303,6 @@ export const ensureSchema = async () => {
       console.warn('  ⚠️ SEO metadata seeding warning:', seedErr.message)
     }
 
-    // 18. Seed categories and categorize blogs
-    try {
-      const { seedCategories } = await import('./seed-categories.js')
-      await seedCategories()
-    } catch (catErr) {
-      console.warn('  ⚠️ Categories seeding warning:', catErr.message)
-    }
-
     console.log('✅ Database schema integrity verification completed successfully!')
   } catch (error) {
     console.error('❌ Schema integrity check failed:', error.message)
