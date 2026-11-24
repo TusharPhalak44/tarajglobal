@@ -115,7 +115,7 @@ export async function syncLiveCMS() {
           featured_image = VALUES(featured_image),
           author = VALUES(author),
           author_id = VALUES(author_id),
-          category_id = VALUES(category_id),
+          category_id = COALESCE(blogs.category_id, VALUES(category_id)),
           status = VALUES(status),
           reading_time = VALUES(reading_time),
           published_at = VALUES(published_at),
