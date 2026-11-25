@@ -313,9 +313,9 @@ export const renderPageHtml = async (urlPath) => {
   }
 
   // 2. Resolve final SEO properties (database overrides take highest precedence)
-  const metaTitle = (dbMeta?.meta_title || defaultMeta.title || '').trim()
-  const pageTitle = metaTitle
-    ? (metaTitle.includes('Taraj Global') || metaTitle.includes('TaRaj Global') ? metaTitle : `${metaTitle} | Taraj Global`)
+  const isFromCMS = Boolean(dbMeta?.meta_title && dbMeta.meta_title.trim())
+  const pageTitle = isFromCMS
+    ? dbMeta.meta_title.trim()
     : defaultMeta.title
 
   const metaDescription = (dbMeta?.meta_description || defaultMeta.description || '').trim()

@@ -1,4 +1,5 @@
 import express from 'express'
+import crypto from 'crypto'
 import { body } from 'express-validator'
 import { validate } from '../middleware/validation.middleware.js'
 import { authenticate, authorize } from '../middleware/auth.middleware.js'
@@ -8,6 +9,7 @@ import nodemailer from 'nodemailer'
 import db from '../config/db.js'
 import notificationHelper from '../helpers/notificationHelper.js'
 import emailService from '../services/email.service.js'
+import benchmarkService from '../services/benchmark.service.js'
 import { formLimiter } from '../middleware/rateLimit.middleware.js'
 import {
   validate24HourAdvance,
@@ -28,31 +30,38 @@ const router = express.Router()
 
 // Helper functions to dynamically fetch current environment settings
 const getTransporter = () => {
+  const host = process.env.EMAIL_HOST || 'smtp.hostinger.com'
+  const port = parseInt(process.env.EMAIL_PORT || '465', 10)
+  const isSecure = port === 465 || String(process.env.EMAIL_PORT).trim() === '465' || process.env.EMAIL_SECURE === 'true'
+  const pass = emailService.getSmtpPassword ? emailService.getSmtpPassword() : (process.env.EMAIL_PASSWORD || process.env.SMTP_PASSWORD)
   return nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.EMAIL_PORT || '587', 10),
-    secure: process.env.EMAIL_PORT === '465',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS
-    },
+    host,
+    port,
+    secure: isSecure,
+    auth: pass ? {
+      user: process.env.EMAIL_USER || 'info@tarajglobal.com',
+      pass
+    } : undefined,
     tls: {
-      rejectUnauthorized: process.env.NODE_ENV === 'production'
+      rejectUnauthorized: process.env.NODE_ENV !== 'production' ? false : true
     }
   })
 }
 
-const getAdminEmail = () => process.env.ADMIN_EMAIL || process.env.EMAIL_USER
+const getAdminEmail = () => process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'info@tarajglobal.com'
 const getFromEmail = () => {
   const addr = process.env.EMAIL_FROM || process.env.EMAIL_USER || 'info@tarajglobal.com'
   return `"TaRaj Global" <${addr}>`
 }
 
 const logEmailError = (label, err) => {
-  if (err?.message?.includes('550-5.4.5') || err?.message?.includes('Daily user sending limit exceeded')) {
-    console.error(`❌ GMAIL DAILY SENDING LIMIT EXCEEDED [${label}]: Google has blocked outgoing emails on account (${getFromEmail()}) with error 550-5.4.5. Please update EMAIL_USER & EMAIL_PASSWORD in server/.env with another Gmail account or domain SMTP.`)
+  const safeMsg = String(err?.message || err || '').replace(/pass(?:word)?\s*[:=]\s*\S+/gi, 'password=***')
+  if (err?.code === 'EAUTH' || safeMsg.includes('530') || safeMsg.includes('535') || safeMsg.includes('Authentication failed') || safeMsg.includes('Authentication required')) {
+    console.error(`❌ SMTP AUTHENTICATION FAILED [${label}]: Invalid credentials or authentication failed on ${process.env.EMAIL_HOST || 'smtp.hostinger.com'}. Please verify mailbox password for ${process.env.EMAIL_USER || 'info@tarajglobal.com'} in Hostinger.`)
+  } else if (safeMsg.includes('550-5.4.5') || safeMsg.includes('Daily user sending limit exceeded')) {
+    console.error(`❌ SMTP SENDING LIMIT EXCEEDED [${label}]: Sending limit exceeded on account (${getFromEmail()}).`)
   } else {
-    console.error(`❌ Email send failed [${label}]:`, err?.message || err)
+    console.error(`❌ Email send failed [${label}]:`, safeMsg)
   }
 }
 
@@ -219,16 +228,33 @@ router.post('/meeting', formLimiter, [
       bookingId: bookingResult.bookingId
     })
 
-    // Dispatch confirmation and admin emails concurrently in background without blocking client
-    const activeTransporter = getTransporter()
+    // Dispatch confirmation, admin emails, and Benchmark sync concurrently in background without blocking client
+    const pass = emailService.getSmtpPassword ? emailService.getSmtpPassword() : (process.env.EMAIL_PASSWORD || process.env.SMTP_PASSWORD)
+    const emailPromises = []
+    if (pass) {
+      const activeTransporter = getTransporter()
+      emailPromises.push(
+        activeTransporter.sendMail(userMailOptions)
+          .then(() => console.log('User confirmation email sent successfully to:', email))
+          .catch((emailError) => logEmailError('User Booking Confirmation', emailError)),
+        activeTransporter.sendMail(adminMailOptions)
+          .then(() => console.log('Admin notification email sent successfully to:', getAdminEmail()))
+          .catch((adminEmailError) => logEmailError('Admin Booking Notification', adminEmailError))
+      )
+    } else {
+      console.warn('⚠️ [Booking Email] Skipping booking confirmation emails: process.env.EMAIL_PASSWORD is not set in the server environment.')
+    }
+
     Promise.allSettled([
-      activeTransporter.sendMail(userMailOptions)
-        .then(() => console.log('User confirmation email sent successfully to:', email))
-        .catch((emailError) => logEmailError('User Booking Confirmation', emailError)),
-      activeTransporter.sendMail(adminMailOptions)
-        .then(() => console.log('Admin notification email sent successfully to:', getAdminEmail()))
-        .catch((adminEmailError) => logEmailError('Admin Booking Notification', adminEmailError))
-    ]).catch((err) => console.error('Meeting email background error:', err))
+      ...emailPromises,
+      benchmarkService.syncLead({
+        name: fullName,
+        email,
+        phone,
+        company,
+        source: 'Consultation Meeting Booking'
+      }).catch((bErr) => console.warn('[Benchmark] Meeting sync notice:', bErr.message))
+    ]).catch((err) => console.error('Meeting background error:', err))
   } catch (error) {
     console.error('Booking error:', error)
     res.status(500).json({ 
@@ -666,6 +692,16 @@ router.post('/', formLimiter, [
       
       // Send confirmation email to the user
       await emailService.sendLeadConfirmation({ name, email, subject, message })
+
+      // Synchronize lead with Benchmark Email marketing list
+      benchmarkService.syncLead({
+        name,
+        email,
+        phone,
+        company,
+        source: leadSource || 'Website Contact Form',
+        pageUrl
+      }).catch(bErr => console.warn('[Benchmark] Contact lead sync notice:', bErr.message))
     } catch (notificationError) {
       console.error('Failed to create notification or send email:', notificationError)
     }
@@ -736,9 +772,47 @@ router.delete('/:id', authenticate, authorize('admin'), async (req, res) => {
 // @route   POST /api/contact/webhook/calendly
 // @desc    Handle official Calendly webhook events (invitee.created, invitee.canceled)
 //          Sends premium branded emails to both client & admin on each event.
-// @access  Public (Idempotent synchronization)
+// @access  Public (Protected via signature/secret)
 router.post('/webhook/calendly', async (req, res) => {
   try {
+    // Webhook authentication to prevent email spoofing & spam relay
+    const webhookKey = process.env.CALENDLY_WEBHOOK_SIGNING_KEY
+    if (!webhookKey) {
+      console.warn('⚠️ [Calendly Webhook] CALENDLY_WEBHOOK_SIGNING_KEY is not configured in .env. Webhook rejected.')
+      return res.status(401).json({ success: false, message: 'Webhook signing key not configured.' })
+    }
+
+    const secretParam = req.query?.secret || req.headers['x-webhook-secret']
+    const signatureHeader = req.headers['calendly-webhook-signature']
+    let isAuthorized = false
+
+    if (secretParam && secretParam === webhookKey) {
+      isAuthorized = true
+    } else if (signatureHeader) {
+      try {
+        const parts = signatureHeader.split(',')
+        const timestamp = parts.find(p => p.startsWith('t='))?.split('=')[1]
+        const signature = parts.find(p => p.startsWith('v1='))?.split('=')[1]
+        if (timestamp && signature) {
+          const age = Math.abs(Date.now() / 1000 - parseInt(timestamp, 10))
+          if (age <= 300) {
+            const rawBody = JSON.stringify(req.body)
+            const payloadToSign = `${timestamp}.${rawBody}`
+            const expectedSig = crypto.createHmac('sha256', webhookKey).update(payloadToSign).digest('hex')
+            if (signature.length === expectedSig.length && crypto.timingSafeEqual(Buffer.from(signature, 'hex'), Buffer.from(expectedSig, 'hex'))) {
+              isAuthorized = true
+            }
+          }
+        }
+      } catch (err) {
+        isAuthorized = false
+      }
+    }
+
+    if (!isAuthorized) {
+      return res.status(401).json({ success: false, message: 'Invalid or missing webhook signature.' })
+    }
+
     const eventType = req.body?.event
     const payload = req.body?.payload
 

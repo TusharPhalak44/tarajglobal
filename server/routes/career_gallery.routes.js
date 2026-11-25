@@ -9,7 +9,7 @@ const router = express.Router()
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const [events] = await db.execute('SELECT * FROM career_events ORDER BY created_at ASC')
+    const [events] = await db.execute("SELECT * FROM career_events WHERE id != 'monthly-performers-8137' ORDER BY num ASC, created_at ASC")
     const [photos] = await db.execute('SELECT * FROM career_event_photos ORDER BY created_at ASC')
 
     // Format events to match ALBUMS_DATA structure
@@ -160,6 +160,7 @@ router.delete('/:id', authenticate, authorize('admin'), async (req, res) => {
     const { id } = req.params
 
     const [result] = await db.execute('DELETE FROM career_events WHERE id = ?', [id])
+    await db.execute('DELETE FROM career_gallery WHERE id = ?', [id]).catch(() => {})
     
     if (result.affectedRows === 0) {
       return res.status(404).json({ success: false, message: 'Event not found' })

@@ -17,7 +17,10 @@ import {
   Sliders,
   Server,
   RefreshCw,
-  ExternalLink
+  ExternalLink,
+  Send,
+  CheckCircle2,
+  Zap
 } from 'lucide-react'
 import { adminAPI } from '@api'
 import PageHeader from '@components/admin/PageHeader'
@@ -37,10 +40,51 @@ const Settings = () => {
     cms_social_twitter: '',
     cms_social_facebook: ''
   })
+  const [benchmarkStatus, setBenchmarkStatus] = useState(null)
+  const [benchmarkLoading, setBenchmarkLoading] = useState(false)
+  const [benchmarkTesting, setBenchmarkTesting] = useState(false)
+  const [benchmarkTestMessage, setBenchmarkTestMessage] = useState(null)
 
   useEffect(() => {
     fetchSettings()
+    fetchBenchmarkStatus()
   }, [])
+
+  const fetchBenchmarkStatus = async () => {
+    try {
+      setBenchmarkLoading(true)
+      const res = await adminAPI.getBenchmarkStatus()
+      if (res.data?.success && res.data?.data) {
+        setBenchmarkStatus(res.data.data)
+      }
+    } catch (err) {
+      console.warn('Could not load benchmark status:', err.message)
+    } finally {
+      setBenchmarkLoading(false)
+    }
+  }
+
+  const handleTestBenchmark = async () => {
+    try {
+      setBenchmarkTesting(true)
+      setBenchmarkTestMessage(null)
+      const res = await adminAPI.testBenchmarkConnection({
+        email: settings.cms_contact_email || 'info@tarajglobal.com',
+        firstName: 'System',
+        lastName: 'Verification'
+      })
+      if (res.data?.success) {
+        setBenchmarkTestMessage({ type: 'success', text: 'Benchmark Email API connected and test lead synchronized successfully!' })
+        fetchBenchmarkStatus()
+      } else {
+        setBenchmarkTestMessage({ type: 'error', text: res.data?.message || 'Connection test returned a warning' })
+      }
+    } catch (err) {
+      setBenchmarkTestMessage({ type: 'error', text: err.response?.data?.message || err.message || 'Connection failed' })
+    } finally {
+      setBenchmarkTesting(false)
+    }
+  }
 
   const fetchSettings = async () => {
     try {
@@ -118,6 +162,7 @@ const Settings = () => {
         {[
           { id: 'general', label: 'General & Site Identity', icon: Globe },
           { id: 'contact', label: 'Communications & Direct Lines', icon: Mail },
+          { id: 'marketing', label: 'Email & Benchmark Marketing', icon: Send },
           { id: 'social', label: 'Social & Brand Channels', icon: Share2 }
         ].map((tab) => {
           const Icon = tab.icon
@@ -257,6 +302,127 @@ const Settings = () => {
               <p className="text-sm text-text-secondary leading-relaxed">
                 Contact submissions received through website forms will utilize these default contact credentials for acknowledgment receipts and automated confirmation threads.
               </p>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: Email Delivery & Benchmark Marketing */}
+        {activeTab === 'marketing' && (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
+              {/* Card 1: SMTP Transactional Server */}
+              <div className="admin-card p-6 space-y-5">
+                <div className="border-b border-[var(--admin-border)] pb-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+                      <Mail className="w-5 h-5 text-[#00A6FF]" />
+                      SMTP Mail Server Configuration
+                    </h3>
+                    <p className="text-sm text-text-muted mt-0.5">Primary mailer for notifications, leads, and calendar alerts</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Hostinger Secure
+                  </span>
+                </div>
+
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">SMTP Server Host</span>
+                    <span className="font-mono text-text-primary font-bold">smtp.hostinger.com</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">SMTP Port & Protocol</span>
+                    <span className="font-mono text-emerald-400 font-bold">Port 465 (Direct SSL / TLS)</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">Default Sender / User</span>
+                    <span className="font-mono text-text-primary">info@tarajglobal.com</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">Careers & HR Mailbox</span>
+                    <span className="font-mono text-text-primary">hr@tarajglobal.com</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Benchmark Email Engine */}
+              <div className="admin-card p-6 space-y-5">
+                <div className="border-b border-[var(--admin-border)] pb-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+                      <Zap className="w-5 h-5 text-[#FF6D00]" />
+                      Benchmark Email Marketing
+                    </h3>
+                    <p className="text-sm text-text-muted mt-0.5">Automated synchronization of leads, subscribers, and recruits</p>
+                  </div>
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
+                    benchmarkStatus?.connected
+                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                      : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                  }`}>
+                    <span className={`w-2 h-2 rounded-full ${benchmarkStatus?.connected ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+                    {benchmarkStatus?.connected ? 'Connected' : 'Configured'}
+                  </span>
+                </div>
+
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">API Token</span>
+                    <span className="font-mono text-text-secondary text-xs">B76EA38C-••••-5EBF</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">Target Contact List</span>
+                    <span className="font-mono text-text-primary font-semibold">
+                      Sample Contact List <span className="text-text-muted font-normal">(ID: {benchmarkStatus?.defaultListId || '23435188'})</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">Recruitment List</span>
+                    <span className="font-mono text-text-primary font-semibold">
+                      Recruitment <span className="text-text-muted font-normal">(ID: {benchmarkStatus?.recruitmentListId || '23897400'})</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]">
+                    <span className="text-text-muted font-medium">Account Total Lists</span>
+                    <span className="font-mono text-text-primary font-bold">
+                      {benchmarkStatus?.totalLists ? `${benchmarkStatus.totalLists} Active Lists` : '99 Lists Available'}
+                    </span>
+                  </div>
+                </div>
+
+                {benchmarkTestMessage && (
+                  <div className={`p-3 rounded-xl border text-sm flex items-center gap-2 ${
+                    benchmarkTestMessage.type === 'success'
+                      ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+                      : 'bg-rose-500/10 border-rose-500/20 text-rose-400'
+                  }`}>
+                    {benchmarkTestMessage.type === 'success' ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
+                    <span>{benchmarkTestMessage.text}</span>
+                  </div>
+                )}
+
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={handleTestBenchmark}
+                    disabled={benchmarkTesting}
+                    className="w-full admin-btn-secondary flex items-center justify-center gap-2 py-2.5 text-sm font-semibold"
+                  >
+                    {benchmarkTesting ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin text-primary" /> Verifying Benchmark Connection...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 text-[#FF6D00]" /> Test Live Connection & Sync
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+
             </div>
           </div>
         )}

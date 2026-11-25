@@ -4,8 +4,12 @@ import db from './config/db.js'
 import ensureSchema from './database/migrations/ensure-schema.js'
 import { syncLiveCMS } from './scripts/syncLiveCMS.js'
 import { publishScheduledBlogs } from './controllers/admin/blog.controller.js'
+import { verifySmtpEnvironment } from './services/email.service.js'
 
 const PORT = process.env.PORT || 5001
+
+// Verify SMTP configuration securely from process environment on startup
+verifySmtpEnvironment()
 
 // Test database connection & ensure critical tables exist
 db.getConnection()

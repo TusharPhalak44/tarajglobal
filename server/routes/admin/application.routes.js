@@ -16,6 +16,11 @@ router.get('/', checkPermission('job.view'), applicationController.getAllApplica
 // @access  Private
 router.get('/:id', checkPermission('job.view'), applicationController.getApplicationById)
 
+// @route   GET /api/admin/applications/:id/resume
+// @desc    Download applicant resume
+// @access  Private
+router.get('/:id/resume', checkPermission('job.view'), applicationController.downloadResume)
+
 // @route   DELETE /api/admin/applications/:id
 // @desc    Delete application
 // @access  Private

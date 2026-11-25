@@ -8,7 +8,14 @@ import { validate } from '../middleware/validation.middleware.js'
 import { authenticate } from '../middleware/auth.middleware.js'
 import * as authController from '../controllers/auth.controller.js'
 
-// Multer storage for avatars
+const AVATAR_MIME_MAP = {
+  'image/jpeg': 'jpg',
+  'image/png': 'png',
+  'image/webp': 'webp',
+  'image/gif': 'gif'
+}
+
+// Multer storage for avatars with strict extension derivation
 const avatarStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = 'uploads/avatars'
@@ -18,8 +25,9 @@ const avatarStorage = multer.diskStorage({
     cb(null, uploadDir)
   },
   filename: (req, file, cb) => {
+    const ext = AVATAR_MIME_MAP[file.mimetype] || 'jpg'
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, uniqueSuffix + path.extname(file.originalname).toLowerCase())
+    cb(null, `${uniqueSuffix}.${ext}`)
   }
 })
 
@@ -27,10 +35,13 @@ const avatarUpload = multer({
   storage: avatarStorage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
+    const ext = path.extname(file.originalname).toLowerCase().replace('.', '')
+    const isExtValid = ['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(ext)
+    const isMimeValid = Boolean(AVATAR_MIME_MAP[file.mimetype])
+    if (isExtValid && isMimeValid) {
       return cb(null, true)
     }
-    cb(new Error('Only image files (JPG, PNG, WebP, GIF) are allowed for avatars'))
+    cb(new Error('Only raster image files (JPG, PNG, WebP, GIF) are allowed for avatars'))
   }
 })
 

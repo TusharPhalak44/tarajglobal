@@ -1,5 +1,15 @@
 import db from '../../config/db.js'
+import path from 'path'
+import fs from 'fs'
 import { sendNewApplicationNotification } from '../../services/email.service.js'
+
+const formatApplicationWithUrl = (app) => {
+  if (!app) return app
+  return {
+    ...app,
+    resume_url: app.resume_path ? `/api/admin/applications/${app.id}/resume` : null
+  }
+}
 
 const applicationController = {
   // Get all applications with filtering and pagination
@@ -40,7 +50,7 @@ const applicationController = {
       res.json({
         success: true,
         data: {
-          applications,
+          applications: applications.map(formatApplicationWithUrl),
           pagination: {
             page: parseInt(page),
             limit: parseInt(limit),
@@ -68,7 +78,7 @@ const applicationController = {
         return res.status(404).json({ success: false, message: 'Application not found' })
       }
 
-      res.json({ success: true, data: applications[0] })
+      res.json({ success: true, data: formatApplicationWithUrl(applications[0]) })
     } catch (error) {
       console.error('Get application by ID error:', error)
       res.status(500).json({ success: false, message: 'Internal server error' })
@@ -179,6 +189,46 @@ const applicationController = {
       res.json({ success: true, message: 'Bulk action completed' })
     } catch (error) {
       console.error('Bulk application action error:', error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+    }
+  },
+
+  // Securely download candidate resume with access control and path verification
+  downloadResume: async (req, res) => {
+    try {
+      const { id } = req.params
+      const [applications] = await db.execute('SELECT resume_path, first_name, last_name FROM job_applications WHERE id = ?', [id])
+      if (applications.length === 0 || !applications[0].resume_path) {
+        return res.status(404).json({ success: false, message: 'Resume not found' })
+      }
+
+      const rawPath = applications[0].resume_path
+      const resolvedPath = path.resolve(process.cwd(), rawPath)
+      const allowedBase = path.resolve(process.cwd(), 'uploads', 'resumes')
+
+      // Path traversal prevention: verify the file is strictly within uploads/resumes
+      if (!resolvedPath.startsWith(allowedBase)) {
+        return res.status(403).json({ success: false, message: 'Access denied: invalid file path' })
+      }
+
+      if (!fs.existsSync(resolvedPath)) {
+        return res.status(404).json({ success: false, message: 'Resume file does not exist on disk' })
+      }
+
+      const ext = path.extname(resolvedPath).toLowerCase()
+      const mimeMap = {
+        '.pdf': 'application/pdf',
+        '.doc': 'application/msword',
+        '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      }
+      const contentType = mimeMap[ext] || 'application/octet-stream'
+      const safeFilename = `${applications[0].first_name}_${applications[0].last_name}_Resume${ext}`.replace(/[^a-zA-Z0-9._-]/g, '_')
+
+      res.setHeader('Content-Type', contentType)
+      res.setHeader('Content-Disposition', `attachment; filename="${safeFilename}"`)
+      return res.sendFile(resolvedPath)
+    } catch (error) {
+      console.error('Download resume error:', error)
       res.status(500).json({ success: false, message: 'Internal server error' })
     }
   }

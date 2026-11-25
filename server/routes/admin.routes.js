@@ -24,6 +24,7 @@ import settingsRoutes from './admin/settings.routes.js'
 import seoRoutes from './admin/seo.routes.js'
 import cmsRoutes from './admin/cms.routes.js'
 import footerRoutes from './admin/footer.routes.js'
+import benchmarkRoutes from './admin/benchmark.routes.js'
 
 const guardWrites = (permission) => (req, res, next) =>
   req.method === 'GET' ? next() : checkPermission(permission)(req, res, next)
@@ -45,5 +46,6 @@ router.use('/settings', settingsRoutes)
 router.use('/seo', seoRoutes)
 router.use('/cms', guardWrites('cms.edit'), cmsRoutes)
 router.use('/footer', guardWrites('cms.edit'), footerRoutes)
+router.use('/benchmark', benchmarkRoutes)
 
 export default router

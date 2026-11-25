@@ -732,7 +732,7 @@ export const updateBlog = async (req, res) => {
 
     // RBAC: Standard user can ONLY edit their own blogs!
     if (req.user && req.user.role === 'user') {
-      if (currentBlog.created_by && currentBlog.created_by !== req.user.id) {
+      if (!currentBlog.created_by || currentBlog.created_by !== req.user.id) {
         return res.status(403).json({
           success: false,
           message: 'Access denied. You can only edit your own blogs.'

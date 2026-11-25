@@ -37,7 +37,7 @@ export const checkPermission = (permissionName) => {
           'blog.create', 'blog.edit', 'blog.view', 
           'media.upload', 'media.view', 
           'job.view', 'job.create', 'job.edit',
-          'cms.view', 'analytics.view'
+          'cms.view'
         ]
         if (allowedPermissions.includes(permissionName)) {
           return next()

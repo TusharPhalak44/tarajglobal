@@ -304,11 +304,11 @@ The CMS reuses the existing design system:
    JWT_REFRESH_SECRET=your_refresh_secret
    JWT_EXPIRE=7d
    JWT_REFRESH_EXPIRE=30d
-   SMTP_HOST=smtp.gmail.com
-   SMTP_PORT=587
-   SMTP_USER=your_email@gmail.com
-   SMTP_PASS=your_app_password
-   SMTP_FROM=your_email@gmail.com
+   EMAIL_HOST=smtp.hostinger.com
+   EMAIL_PORT=465
+   EMAIL_USER=info@tarajglobal.com
+   EMAIL_PASSWORD=your_mailbox_password
+   EMAIL_FROM=info@tarajglobal.com
    CLIENT_URL=http://localhost:3000
    ```
 

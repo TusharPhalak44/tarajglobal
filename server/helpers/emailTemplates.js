@@ -137,13 +137,17 @@ const renderEmailShell = ({
 /**
  * Reusable Specification Row Table for High-Tech Spec Sheet
  */
-const renderSpecRow = (label, value, isHighlight = false, isDel = false) => {
+const renderSpecRow = (label, value, isHighlight = false, isDel = false, customColor = null) => {
+  const textColor = customColor || (isHighlight ? '#0284C7' : '#0F172A')
+  const fontWeight = (isHighlight || customColor) ? '800' : '600'
+  const bgStyle = isHighlight ? 'background-color: #F0F9FF;' : ''
+
   return `
     <tr>
       <td style="padding: 10px 14px; font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.8px; width: 140px; border-bottom: 1px solid #EDF2F7; vertical-align: middle;">
         ${esc(label)}
       </td>
-      <td style="padding: 10px 14px; font-size: 14px; ${isHighlight ? 'font-weight: 800; color: #0284C7; background-color: #F0F9FF;' : 'font-weight: 600; color: #0F172A;'} border-bottom: 1px solid #EDF2F7; vertical-align: middle;">
+      <td style="padding: 10px 14px; font-size: 14px; font-weight: ${fontWeight}; color: ${textColor}; ${bgStyle} border-bottom: 1px solid #EDF2F7; vertical-align: middle;">
         ${isDel ? `<del style="color: #94A3B8;">${esc(value)}</del>` : esc(value)}
       </td>
     </tr>
@@ -607,11 +611,11 @@ export const renderLeadNotificationEmail = ({
       ${renderSpecRow('Email', email)}
       ${renderSpecRow('Company', company || 'Not provided')}
       ${renderSpecRow('Phone', phone || 'Not provided')}
-      ${cta_button ? renderSpecRow('🎯 Originating CTA', `<strong style="color: #00A6FF;">${esc(cta_button)}</strong>`) : ''}
-      ${cta_section ? renderSpecRow('📍 Origin Section', `<strong style="color: #FF6D00;">${esc(cta_section)}</strong>`) : ''}
-      ${source_page ? renderSpecRow('📄 Origin Page', esc(source_page)) : ''}
-      ${utm_campaign ? renderSpecRow('🏷️ UTM Campaign', esc(utm_campaign)) : ''}
-      ${utm_source || utm_medium ? renderSpecRow('📡 Channel / Medium', esc(`${utm_source || 'direct'} / ${utm_medium || 'cta_button'}`)) : ''}
+      ${cta_button ? renderSpecRow('🎯 Originating CTA', cta_button, false, false, '#00A6FF') : ''}
+      ${cta_section ? renderSpecRow('📍 Origin Section', cta_section, false, false, '#FF6D00') : ''}
+      ${source_page ? renderSpecRow('📄 Origin Page', source_page) : ''}
+      ${utm_campaign ? renderSpecRow('🏷️ UTM Campaign', utm_campaign) : ''}
+      ${utm_source || utm_medium ? renderSpecRow('📡 Channel / Medium', `${utm_source || 'direct'} / ${utm_medium || 'cta_button'}`) : ''}
       ${renderSpecRow('Lead Source', source || 'contact_form')}
       ${page_url && !cta_button ? renderSpecRow('Landing Page', page_url) : ''}
     </table>

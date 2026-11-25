@@ -19,6 +19,16 @@ const esc = (s) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;')
 
+// Sanitize HTML content rendered inside <noscript> to prevent breakout and script injection
+const sanitizeNoscriptContent = (content) => {
+  if (!content) return ''
+  return String(content)
+    .replace(/<\s*script\b[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '') // strip executable scripts
+    .replace(/<\s*\/?\s*noscript\b[^>]*>/gi, '') // strip noscript tags so it cannot break out of container
+    .replace(/\bon\w+\s*=\s*(?:'[^']*'|"[^"]*"|[^\s>]+)/gi, '') // strip inline event handlers
+    .replace(/javascript\s*:/gi, '') // strip javascript: URI schemes
+}
+
 // In-memory HTML cache with TTL
 const htmlCache = new Map()
 const CACHE_TTL_MS = 10 * 60 * 1000 // 10 minutes
@@ -208,10 +218,11 @@ export const fetchBlogWithSeo = async (slug, isPreview = false) => {
  * Build resolved SEO metadata object with proper fallback hierarchy
  */
 export const resolveBlogSeoMetadata = (blog) => {
-  const baseTitle = (blog.seo_title || blog.s_meta_title || blog.title || '').trim()
-  const pageTitle = baseTitle
-    ? (baseTitle.includes('Taraj Global') ? baseTitle : `${baseTitle} | Taraj Global`)
-    : 'B2B Strategy & Insights | Taraj Global'
+  const isFromCMS = Boolean((blog.seo_title || blog.s_meta_title) && (blog.seo_title || blog.s_meta_title).trim())
+  const rawTitle = (blog.seo_title || blog.s_meta_title || blog.title || '').trim()
+  const pageTitle = isFromCMS
+    ? rawTitle
+    : (rawTitle ? (rawTitle.includes('Taraj Global') ? rawTitle : `${rawTitle} | Taraj Global`) : 'B2B Strategy & Insights | Taraj Global')
 
   const metaDescription = (
     blog.seo_description ||
@@ -404,7 +415,7 @@ export const renderBlogHtml = async (slug, isPreview = false, isDev = false) => 
         <p><strong>Published:</strong> ${esc(new Date(blog.published_at || blog.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }))} | <strong>Author:</strong> ${esc(blog.author_name || 'Taraj Global')}</p>
       </header>
       <div class="excerpt"><p>${esc(blog.excerpt || '')}</p></div>
-      <section class="content">${blog.content || ''}</section>
+      <section class="content">${sanitizeNoscriptContent(blog.content)}</section>
       <footer>
         <p><a href="/contact">Schedule a B2B strategy discussion with Taraj Global</a></p>
       </footer>

@@ -919,6 +919,7 @@ function BlogDetails() {
     <>
       <SEO
         title={blog.seo_title || blog.meta_title || blog.title}
+        isFromCMS={Boolean(blog.seo_title || blog.meta_title)}
         description={blog.seo_description || blog.meta_description || blog.excerpt || blog.title}
         keywords={blog.seo_keywords || blog.meta_keywords || blog.keywords || `${blog.title}, B2B demand generation, ABM insights, Taraj Global`}
         canonical={blog.canonical_url || `/blog/${blog.slug || slug}`}

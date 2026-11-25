@@ -22,10 +22,17 @@ export const saveAvatarIfBase64 = (avatarData) => {
     const matches = avatarData.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/)
     if (!matches || matches.length !== 3) return avatarData
 
-    const mimeType = matches[1]
+    const mimeType = matches[1].toLowerCase()
     const base64Data = matches[2]
-    const ext = mimeType.split('/')[1] || 'png'
-    const cleanExt = ext === 'jpeg' ? 'jpg' : ext.split('+')[0]
+    const allowedMimes = {
+      'image/jpeg': 'jpg',
+      'image/png': 'png',
+      'image/webp': 'webp',
+      'image/gif': 'gif'
+    }
+    const cleanExt = allowedMimes[mimeType]
+    if (!cleanExt) return avatarData // Reject non-raster images (such as SVG)
+
     const filename = `${Date.now()}-${Math.round(Math.random() * 1e9)}.${cleanExt}`
     const filePath = path.join(uploadDir, filename)
 
@@ -151,11 +158,11 @@ export const login = async (req, res) => {
 // ── Register ───────────────────────────────────────────────────────────────
 export const register = async (req, res) => {
   try {
-    if (process.env.NODE_ENV === 'production' && process.env.ALLOW_PUBLIC_REGISTRATION === 'false') {
-      return res.status(403).json({ success: false, message: 'Registration is disabled. Ask an administrator for an account.' })
+    if (process.env.ALLOW_PUBLIC_REGISTRATION !== 'true') {
+      return res.status(403).json({ success: false, message: 'Public registration is disabled. Ask an administrator for an account.' })
     }
 
-    const { name, email, password, role = 'user', bio = '', linkedin_url = '', twitter_url = '' } = req.body
+    const { name, email, password, bio = '', linkedin_url = '', twitter_url = '' } = req.body
 
     const existing = await User.findByEmail(email)
     if (existing) {
@@ -171,7 +178,9 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
-    const effectiveRole = ['admin', 'super_admin', 'editor', 'user'].includes(role) ? role : 'user'
+    // Public self-registration ALWAYS creates a standard 'user' role.
+    // Privileged roles (admin, editor, etc.) can only be assigned by administrators in Admin panel.
+    const effectiveRole = 'user'
 
     const userId = await User.create({
       name,

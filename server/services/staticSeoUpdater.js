@@ -73,9 +73,7 @@ export const updateStaticPrerenderFile = (entityType, entityId, meta = {}) => {
 
         // Thoroughly replace ALL existing <title> tags to eliminate duplicates
         if (meta.meta_title) {
-          const formattedTitle = meta.meta_title.includes('Taraj Global') || meta.meta_title.includes('TaRaj Global')
-            ? meta.meta_title
-            : `${meta.meta_title} | Taraj Global`
+          const formattedTitle = meta.meta_title.trim()
 
           html = html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
           html = html.replace('</head>', `  <title data-prerender>${esc(formattedTitle)}</title>\n</head>`)

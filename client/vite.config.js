@@ -184,10 +184,10 @@ export default defineConfig({
 
           if (!dbMeta && !fallbackMeta.title) return html
 
-          const rawTitle = dbMeta?.meta_title || fallbackMeta.title || 'Taraj Global'
-          const title = rawTitle.includes('Taraj Global') || rawTitle.includes('TaRaj Global')
-            ? rawTitle
-            : `${rawTitle} | Taraj Global`
+          const isFromDb = Boolean(dbMeta?.meta_title && dbMeta.meta_title.trim())
+          const title = isFromDb
+            ? dbMeta.meta_title.trim()
+            : (fallbackMeta.title || 'Taraj Global')
 
           const description = dbMeta?.meta_description || fallbackMeta.description || ''
           const url = dbMeta?.canonical_url || `${SITE_URL}${targetRoute === '/' ? '/' : targetRoute}`

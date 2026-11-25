@@ -157,22 +157,36 @@ export async function syncLiveCMS() {
       const galRes = await fetchJson('https://tarajglobal.com/api/career-gallery')
       const liveGal = galRes?.data || []
       for (const item of liveGal) {
-        if (!item.id || !item.title) continue
+        if (!item.id || !item.title || item.id === 'monthly-performers-8137') continue
         await db.execute(
           `INSERT INTO career_gallery (id, num, title, tag, image, count, description)
            VALUES (?, ?, ?, ?, ?, ?, ?)
            ON DUPLICATE KEY UPDATE title = VALUES(title), tag = VALUES(tag), image = VALUES(image), count = VALUES(count), description = VALUES(description)`,
-          [item.id, item.num || '01', item.title, item.tag || null, item.image || null, item.count || '20+ Photos', item.description || null]
+          [item.id, item.num || '01', item.title, item.tag || null, item.image || item.cover || null, item.count || item.stats || '20+ Photos', item.description || item.desc || null]
+        )
+
+        // Also ensure career_events is in sync
+        await db.execute(
+          `INSERT INTO career_events (id, num, title, tag, category, quarter, description, color)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+           ON DUPLICATE KEY UPDATE title = VALUES(title), tag = VALUES(tag), category = VALUES(category), quarter = VALUES(quarter), description = VALUES(description), color = VALUES(color)`,
+          [item.id, item.num || '01', item.title, item.tag || 'Life at Taraj', item.category || 'Culture', item.quarter || '', item.desc || item.description || '', item.color || '#00A6FF']
         )
       }
     } catch (galErr) {
       console.warn('Notice: gallery sync note:', galErr.message)
     }
 
-    // 5. Clean up bogus mock careers in local database so clean fallback or live jobs show
+    // 5. Clean up bogus mock careers and obsolete gallery records
     try {
       await db.execute(
         `DELETE FROM careers WHERE title IN ('MM', 'fgbvf', 'dcrfc', 'ddddddddddddddddd', 'drtgss')`
+      )
+      await db.execute(
+        `DELETE FROM career_gallery WHERE id = 'monthly-performers-8137'`
+      )
+      await db.execute(
+        `DELETE FROM career_events WHERE id = 'monthly-performers-8137'`
       )
     } catch (delErr) {
       // ignore

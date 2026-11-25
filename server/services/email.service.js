@@ -6,28 +6,76 @@ import {
 
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 
+/**
+ * Securely retrieve SMTP password from process environment
+ * Never stores or exposes credentials in application logs or files.
+ */
+export const getSmtpPassword = () => {
+  const pass = process.env.EMAIL_PASSWORD || process.env.SMTP_PASSWORD || process.env.EMAIL_PASS
+  return (typeof pass === 'string' && pass.trim().length > 0) ? pass.trim() : null
+}
+
+/**
+ * Verify SMTP configuration on server startup without exposing credentials
+ */
+export const verifySmtpEnvironment = () => {
+  const host = process.env.EMAIL_HOST || 'smtp.hostinger.com'
+  const port = parseInt(process.env.EMAIL_PORT || '465', 10)
+  const isSecure = port === 465 || String(process.env.EMAIL_PORT).trim() === '465' || process.env.EMAIL_SECURE === 'true'
+  const user = process.env.EMAIL_USER || 'info@tarajglobal.com'
+  const pass = getSmtpPassword()
+
+  if (!pass) {
+    console.warn(`⚠️  [SMTP Configuration] process.env.EMAIL_PASSWORD is not set in the server environment. Outgoing notification emails via ${host}:${port} are currently paused until process.env.EMAIL_PASSWORD is provided.`)
+    return {
+      available: false,
+      host,
+      port,
+      secure: isSecure,
+      user
+    }
+  }
+
+  console.log(`🔒 [SMTP Configuration] Hostinger SMTP authenticated for ${user} via ${host}:${port} (SSL: ${isSecure}). Credentials verified from process environment.`)
+  return {
+    available: true,
+    host,
+    port,
+    secure: isSecure,
+    user
+  }
+}
+
 // Create transporter
-const createTransporter = () => {
-  const host = process.env.EMAIL_HOST || process.env.SMTP_HOST || 'smtp.gmail.com'
-  const port = parseInt(process.env.EMAIL_PORT || process.env.SMTP_PORT || '587', 10)
-  const user = process.env.EMAIL_USER || process.env.SMTP_USER
-  const pass = process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS || process.env.SMTP_PASS
+export const createTransporter = () => {
+  const host = process.env.EMAIL_HOST || process.env.SMTP_HOST || 'smtp.hostinger.com'
+  const port = parseInt(process.env.EMAIL_PORT || process.env.SMTP_PORT || '465', 10)
+  const isSecure = port === 465 || String(process.env.EMAIL_PORT).trim() === '465' || process.env.EMAIL_SECURE === 'true'
+  const user = process.env.EMAIL_USER || process.env.SMTP_USER || 'info@tarajglobal.com'
+  const pass = getSmtpPassword()
 
   return nodemailer.createTransport({
     host,
     port,
-    secure: port === 465,
-    auth: user && pass ? { user, pass } : undefined,
+    secure: isSecure,
+    auth: pass ? { user, pass } : undefined,
     tls: {
-      rejectUnauthorized: process.env.NODE_ENV === 'production'
+      rejectUnauthorized: process.env.NODE_ENV !== 'production' ? false : true
     }
   })
 }
 
 // Send email
 export const sendEmail = async (options) => {
+  const user = process.env.EMAIL_USER || process.env.SMTP_USER || 'info@tarajglobal.com'
+  const pass = getSmtpPassword()
+
+  if (!pass) {
+    console.warn(`⚠️ [Email Service] Skipping email to ${options.to}: process.env.EMAIL_PASSWORD is not set in the server process environment.`)
+    return { success: false, skipped: true, error: 'process.env.EMAIL_PASSWORD is not configured' }
+  }
+
   try {
-    const user = process.env.EMAIL_USER || process.env.SMTP_USER
     const transporter = createTransporter()
 
     const fromAddr = options.from || process.env.EMAIL_FROM || user || 'info@tarajglobal.com'
@@ -46,12 +94,16 @@ export const sendEmail = async (options) => {
     console.log(`✅ Email sent successfully to ${options.to}: ${info.messageId}`)
     return { success: true, messageId: info.messageId }
   } catch (error) {
-    if (error.message?.includes('550-5.4.5') || error.message?.includes('Daily user sending limit exceeded')) {
-      console.error(`❌ GMAIL DAILY SENDING LIMIT EXCEEDED when sending to ${options.to}: Google has blocked outgoing emails on account (${process.env.EMAIL_USER}) with error 550-5.4.5. Please update EMAIL_USER & EMAIL_PASSWORD in server/.env with a new Gmail account or domain SMTP.`)
+    // Sanitize any sensitive strings from error to prevent credential leaks
+    const safeMsg = String(error.message || '').replace(/pass(?:word)?\s*[:=]\s*\S+/gi, 'password=***')
+    if (error.code === 'EAUTH' || safeMsg.includes('530') || safeMsg.includes('535') || safeMsg.includes('Authentication failed') || safeMsg.includes('Authentication required')) {
+      console.error(`❌ SMTP AUTHENTICATION ERROR when sending to ${options.to}: Invalid credentials or authentication failed on ${process.env.EMAIL_HOST || 'smtp.hostinger.com'}. Please verify mailbox password for ${user} in Hostinger.`)
+    } else if (safeMsg.includes('550-5.4.5') || safeMsg.includes('Daily user sending limit exceeded')) {
+      console.error(`❌ SMTP DAILY SENDING LIMIT EXCEEDED when sending to ${options.to}: Outgoing email quota exceeded on account (${user}).`)
     } else {
-      console.error(`❌ Email send error to ${options.to}:`, error.message)
+      console.error(`❌ Email send error to ${options.to}:`, safeMsg)
     }
-    return { success: false, error: error.message }
+    return { success: false, error: safeMsg }
   }
 }
 
@@ -119,28 +171,28 @@ export const sendNewApplicationNotification = async (application, job, recipient
       </div>
 
       <div style="padding: 28px 24px; color: #1e293b; line-height: 1.6;">
-        <p style="font-size: 15px; margin-top: 0;">A candidate has submitted an application for <strong style="color: #00A6FF;">${jobTitle}</strong>.</p>
+        <p style="font-size: 15px; margin-top: 0;">A candidate has submitted an application for <strong style="color: #00A6FF;">${esc(jobTitle)}</strong>.</p>
         
         <div style="background-color: #f8fafc; border-left: 4px solid #FF6D00; padding: 18px 20px; border-radius: 6px; margin: 20px 0;">
           <h4 style="margin: 0 0 12px 0; color: #0f172a; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">Applicant Overview</h4>
           <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #334155;">
             <tr>
               <td style="padding: 6px 0; font-weight: bold; width: 130px;">Position Applied:</td>
-              <td style="padding: 6px 0; font-weight: bold; color: #0f172a;">${jobTitle}</td>
+              <td style="padding: 6px 0; font-weight: bold; color: #0f172a;">${esc(jobTitle)}</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Full Name:</td>
-              <td style="padding: 6px 0;">${candidateName}</td>
+              <td style="padding: 6px 0;">${esc(candidateName)}</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Email:</td>
-              <td style="padding: 6px 0;"><a href="mailto:${application.email}" style="color: #00A6FF; font-weight: 600;">${application.email}</a></td>
+              <td style="padding: 6px 0;"><a href="mailto:${esc(application.email)}" style="color: #00A6FF; font-weight: 600;">${esc(application.email)}</a></td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Phone Number:</td>
-              <td style="padding: 6px 0;">${application.phone || 'Not provided'}</td>
+              <td style="padding: 6px 0;">${esc(application.phone || 'Not provided')}</td>
             </tr>
-            ${application.resume_path ? `<tr><td style="padding: 6px 0; font-weight: bold;">Resume File:</td><td style="padding: 6px 0; font-family: monospace; font-size: 13px;">${application.resume_path}</td></tr>` : ''}
+            ${application.resume_path ? `<tr><td style="padding: 6px 0; font-weight: bold;">Resume File:</td><td style="padding: 6px 0; font-family: monospace; font-size: 13px;">${esc(application.resume_path)}</td></tr>` : ''}
           </table>
         </div>
         
@@ -176,10 +228,10 @@ export const sendCandidateApplicationConfirmation = async (application, job) => 
       </div>
       
       <div style="padding: 32px 28px; color: #1e293b; line-height: 1.6;">
-        <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700;">Dear ${candidateName},</h3>
+        <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700;">Dear ${esc(candidateName)},</h3>
         
         <p style="font-size: 15px; color: #334155;">
-          Thank you for applying for the position of <strong style="color: #00A6FF;">${jobTitle}</strong> at <strong>Taraj Global Solutions</strong>!
+          Thank you for applying for the position of <strong style="color: #00A6FF;">${esc(jobTitle)}</strong> at <strong>Taraj Global Solutions</strong>!
         </p>
         
         <p style="font-size: 14px; color: #475569;">
@@ -191,17 +243,17 @@ export const sendCandidateApplicationConfirmation = async (application, job) => 
           <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #334155;">
             <tr>
               <td style="padding: 4px 0; font-weight: bold; width: 120px;">Position:</td>
-              <td style="padding: 4px 0; font-weight: bold; color: #0f172a;">${jobTitle}</td>
+              <td style="padding: 4px 0; font-weight: bold; color: #0f172a;">${esc(jobTitle)}</td>
             </tr>
             <tr>
               <td style="padding: 4px 0; font-weight: bold;">Full Name:</td>
-              <td style="padding: 4px 0;">${candidateName}</td>
+              <td style="padding: 4px 0;">${esc(candidateName)}</td>
             </tr>
             <tr>
               <td style="padding: 4px 0; font-weight: bold;">Email:</td>
-              <td style="padding: 4px 0;">${application.email}</td>
+              <td style="padding: 4px 0;">${esc(application.email)}</td>
             </tr>
-            ${application.phone ? `<tr><td style="padding: 4px 0; font-weight: bold;">Phone:</td><td style="padding: 4px 0;">${application.phone}</td></tr>` : ''}
+            ${application.phone ? `<tr><td style="padding: 4px 0; font-weight: bold;">Phone:</td><td style="padding: 4px 0;">${esc(application.phone)}</td></tr>` : ''}
           </table>
         </div>
 

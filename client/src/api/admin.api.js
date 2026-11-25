@@ -79,6 +79,11 @@ export const adminAPI = {
   getSettings: () => api.get('/admin/settings'),
   updateSettings: (data) => api.put('/admin/settings', data),
 
+  // Benchmark Email
+  getBenchmarkStatus: () => api.get('/admin/benchmark/status'),
+  getBenchmarkLists: () => api.get('/admin/benchmark/lists'),
+  testBenchmarkConnection: (data) => api.post('/admin/benchmark/test', data),
+
   // Notifications
   getNotifications: (params) => api.get('/admin/notifications', { params }),
   markNotificationRead: (id) => api.patch(`/admin/notifications/${id}/read`),

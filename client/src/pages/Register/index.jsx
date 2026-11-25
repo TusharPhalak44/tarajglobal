@@ -40,7 +40,7 @@ function Register() {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'admin',
+    role: 'user',
     bio: '',
     linkedin_url: '',
     twitter_url: ''
@@ -266,25 +266,7 @@ function Register() {
                 </div>
               </div>
 
-              {/* Role Selection */}
-              <div>
-                <label className="block text-xs font-medium text-[#A1A1AA] mb-1.5">
-                  Account Type / Role
-                </label>
-                <div className="relative">
-                  <Shield className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#71717A]" />
-                  <select
-                    name="role"
-                    value={form.role}
-                    onChange={handleChange}
-                    className="admin-select pl-9 text-xs w-full"
-                    disabled={loading}
-                  >
-                    <option value="admin">Administrator (Full Workspace & Publishing)</option>
-                    <option value="user">Content Creator / Author (Blog Writer)</option>
-                  </select>
-                </div>
-              </div>
+
 
               {/* Password & Confirm Password */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

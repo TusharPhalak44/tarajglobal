@@ -16,10 +16,10 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Sample data matching a real Calendly booking
+// Sample data matching a real booking preview
 const sampleData = {
-  fullName: 'Saee Kulkarni',
-  email: 'saeekulkarni953@gmail.com',
+  fullName: 'Partner Client',
+  email: 'client@example.com',
   company: 'Enterprise Partner',
   phone: '+91 98765 43210',
   displayDate: 'Thursday, October 29, 2026',

@@ -6,8 +6,8 @@ const router = express.Router()
 
 // @route   GET /api/admin/leads
 // @desc    Get all leads
-// @access  Private
-router.get('/', checkPermission('analytics.view'), async (req, res) => {
+// @access  Private (Restricted to Leads Management)
+router.get('/', checkPermission('lead.manage'), async (req, res) => {
   try {
     const { status, assigned_to, search, page = 1, limit = 20 } = req.query
     const offset = (page - 1) * limit
@@ -60,8 +60,8 @@ router.get('/', checkPermission('analytics.view'), async (req, res) => {
 
 // @route   PATCH /api/admin/leads/:id/status
 // @desc    Update lead status
-// @access  Private
-router.patch('/:id/status', checkPermission('analytics.view'), async (req, res) => {
+// @access  Private (Restricted to Leads Management)
+router.patch('/:id/status', checkPermission('lead.manage'), async (req, res) => {
   try {
     const { status, assigned_to } = req.body
     

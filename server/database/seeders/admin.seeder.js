@@ -9,6 +9,7 @@
 
 import bcrypt from 'bcrypt'
 import mysql from 'mysql2/promise'
+import crypto from 'crypto'
 import 'dotenv/config'
 
 const db = await mysql.createConnection({
@@ -19,9 +20,9 @@ const db = await mysql.createConnection({
   port:     process.env.DB_PORT     || 3306,
 })
 
-const ADMIN_NAME     = 'Admin'
-const ADMIN_EMAIL    = 'admin@tarajglobal.com'
-const ADMIN_PASSWORD = 'Admin@123'
+const ADMIN_NAME     = process.env.ADMIN_SEED_NAME || 'Admin'
+const ADMIN_EMAIL    = process.env.ADMIN_SEED_EMAIL || process.env.ADMIN_EMAIL || 'admin@tarajglobal.com'
+const ADMIN_PASSWORD = process.env.ADMIN_SEED_PASSWORD || crypto.randomBytes(12).toString('hex')
 
 try {
   // Check if admin already exists

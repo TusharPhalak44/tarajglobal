@@ -218,6 +218,14 @@ router.delete('/:id', async (req, res) => {
     if (existing.length === 0) {
       return res.status(404).json({ success: false, message: 'User not found' })
     }
+
+    // Hierarchy protection: Only super_admin can delete another admin or super_admin
+    if (existing[0].role === 'super_admin' && req.user.role !== 'super_admin') {
+      return res.status(403).json({ success: false, message: 'Access denied. Only Super Administrators can delete Super Admin accounts.' })
+    }
+    if (existing[0].role === 'admin' && req.user.role !== 'super_admin') {
+      return res.status(403).json({ success: false, message: 'Access denied. Only Super Administrators can delete Administrator accounts.' })
+    }
     
     // Protect last administrator from deletion
     if (['admin', 'super_admin'].includes(existing[0].role)) {
@@ -300,13 +308,24 @@ router.post('/:id/reset-password', [
 ], validate, async (req, res) => {
   try {
     const { new_password } = req.body
+    const targetId = parseInt(req.params.id)
+
+    const [targetRows] = await db.execute('SELECT id, role FROM users WHERE id = ?', [targetId])
+    if (targetRows.length === 0) {
+      return res.status(404).json({ success: false, message: 'User not found' })
+    }
+
+    // Only super_admin can reset an admin or super_admin password
+    if (['admin', 'super_admin'].includes(targetRows[0].role) && req.user.role !== 'super_admin') {
+      return res.status(403).json({ success: false, message: 'Access denied. Only Super Administrators can reset an Administrator password.' })
+    }
     
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(new_password, salt)
     
     await db.execute(
       'UPDATE users SET password = ? WHERE id = ?',
-      [hashedPassword, req.params.id]
+      [hashedPassword, targetId]
     )
     
     res.json({ success: true, message: 'Password reset successfully' })

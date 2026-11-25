@@ -22,9 +22,14 @@ export const errorHandler = (err, req, res, next) => {
     error = { message, statusCode: 400 }
   }
 
-  res.status(error.statusCode || 500).json({
+  const statusCode = error.statusCode || 500
+  const message = (process.env.NODE_ENV === 'production' && statusCode === 500)
+    ? 'An unexpected internal server error occurred'
+    : (error.message || 'Server Error')
+
+  res.status(statusCode).json({
     success: false,
-    message: error.message || 'Server Error',
+    message,
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
   })
 }

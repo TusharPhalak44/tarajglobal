@@ -1,175 +1,158 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Target, Zap, Database, Layers } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Target, Zap, Database, Layers, Mail } from 'lucide-react'
+import { SERVICES_MENU_DATA } from '@/constants/siteNavigation'
 
-const PILLARS = [
-  {
-    id: 'lead-generation',
-    // num: '01',
-    heading: 'Lead Generation',
-    tagline: 'Intent-driven buyer discovery, qualification frameworks (BANT, HQL, SQL), and confirmed C-suite appointment delivery.',
-    icon: Target,
-    services: [
-      {
-        // num: '02',
-        line1: 'HQL',
-        line2: 'Services',
-        route: '/hql-services',
-        tag: 'High-Quality Leads',
-        image: '/hql.png',
-      },
-      {
-        // num: '01',
-        line1: 'MQL',
-        line2: 'Services',
-        route: '/mql-services',
-        tag: 'Marketing Qualified',
-        image: '/mql.png',
-      },
+const ICON_LOOKUP = {
+  Target,
+  Layers,
+  Mail,
+  Database,
+  Zap,
+}
 
-      {
-        // num: '03',
-        line1: 'BANT',
-        line2: 'Services',
-        route: '/bant-lead-generation',
-        tag: 'Budget & Authority',
-        image: '/bant.png',
-      },
-      {
-        // num: '04',
-        line1: 'SQL',
-        line2: 'Services',
-        route: '/sql-services',
-        tag: 'Sales Qualified',
-        image: '/sql-lead-qualification-journey.jpg',
-      },
-      {
-        // num: '05',
-        line1: 'Appointment',
-        line2: 'Setting',
-        route: '/b2b-appointment-setting',
-        tag: 'Confirmed Meetings',
-        image: '/appointment-setting.png',
-      },
-    ],
+const SERVICE_META = {
+  '/mql-services': {
+    line1: 'MQL',
+    line2: 'Services',
+    tag: 'Marketing Qualified',
+    image: '/mql.png',
   },
-  {
-    id: 'demand-abm',
-    // num: '02',
-    heading: 'Demand & ABM',
-    tagline: 'Account-Based Marketing, full-lifecycle Account-Based Experience (ABX), and full-funnel demand orchestration.',
-    icon: Zap,
-    services: [
-      {
-        // num: '01',
-        line1: 'Account-Based',
-        line2: 'Marketing (ABM)',
-        route: '/abm',
-        tag: 'Target Accounts',
-        image: '/abm.avif',
-      },
-      {
-        // num: '02',
-        line1: 'Account Based',
-        line2: 'Experience (ABX)',
-        route: '/account-based-experience',
-        tag: 'Omnichannel ABX',
-        image: '/demandflow-personalization.png',
-      },
-      {
-        // num: '03',
-        line1: 'Full Funnel',
-        line2: 'Demand',
-        route: '/full-funnel-demand',
-        tag: 'End-to-End Pipeline',
-        image: '/demandflow-tracking.png',
-      },
+  '/hql-services': {
+    line1: 'HQL',
+    line2: 'Services',
+    tag: 'High-Quality Leads',
+    image: '/hql.png',
+  },
+  '/bant-lead-generation': {
+    line1: 'BANT',
+    line2: 'Services',
+    tag: 'Budget & Authority',
+    image: '/bant.png',
+  },
+  '/sql-services': {
+    line1: 'SQL',
+    line2: 'Services',
+    tag: 'Sales Qualified',
+    image: '/sql-lead-qualification-journey.jpg',
+  },
+  '/b2b-appointment-setting': {
+    line1: 'Appointment',
+    line2: 'Generation',
+    tag: 'Confirmed Meetings',
+    image: '/appointment-setting.png',
+  },
+  '/full-funnel-demand': {
+    line1: 'Full Funnel',
+    line2: 'Demand',
+    tag: 'End-to-End Pipeline',
+    image: '/demandflow-tracking.png',
+  },
+  '/abm': {
+    line1: 'Account-Based',
+    line2: 'Marketing',
+    tag: 'Target Accounts',
+    image: '/abm.avif',
+  },
+  '/account-based-experience': {
+    line1: 'Account Based',
+    line2: 'Experience',
+    tag: 'Omnichannel ABX',
+    image: '/demandflow-personalization.png',
+  },
+  '/lead-nurturing': {
+    line1: 'Lead',
+    line2: 'Nurturing',
+    tag: 'Multi-Stage Cadences',
+    image: '/lead%20nurturing.png',
+  },
+  '/b2b-email-marketing': {
+    line1: 'Email',
+    line2: 'Marketing',
+    tag: 'Outbound Outreach',
+    image: '/email-service.jpg',
+  },
+  '/content-syndication': {
+    line1: 'Content',
+    line2: 'Syndication',
+    tag: 'Whitepaper Reach',
+    image: '/content%20syndication.png',
+  },
+  '/webinar-services': {
+    line1: 'Webinar',
+    line2: 'Services',
+    tag: 'Audience Acquisition',
+    image: '/webinar.png',
+  },
+  '/b2b-list-building': {
+    line1: 'B2B List',
+    line2: 'Building',
+    tag: 'Custom ICP Contacts',
+    image: '/b2b-list-building.png',
+  },
+  '/database-cleansing': {
+    line1: 'Database',
+    line2: 'Cleansing',
+    tag: 'Verification & Hygiene',
+    image: '/database%20cleansing.png',
+  },
+  '/demandflow-bridge': {
+    line1: 'DemandFlow',
+    line2: 'Bridge',
+    tag: 'Middleware Integration',
+    image: '/demandflow-personalization.png',
+  },
+  'https://tgstechinfo.com/': {
+    line1: 'TGS Tech',
+    line2: 'Info',
+    tag: 'Tech Media Hub',
+    image: '/saas-audience.jpg',
+  },
+}
 
-    ],
-  },
-  {
-    id: 'channels-programs',
-    // num: '03',
-    heading: 'Channels & Programs',
-    tagline: 'Multi-touch outbound email cadences, whitepaper content syndication, event acceleration, and continuous lead nurturing.',
-    icon: Layers,
-    services: [
-      {
-        // num: '01',
-        line1: 'Email',
-        line2: 'Marketing',
-        route: '/b2b-email-marketing',
-        tag: 'Outbound Outreach',
-        image: '/email-service.jpg',
-      },
-      {
-        // num: '02',
-        line1: 'Content',
-        line2: 'Syndication',
-        route: '/content-syndication',
-        tag: 'Whitepaper Reach',
-        image: '/content%20syndication.png',
-      },
-      {
-        // num: '03',
-        line1: 'Webinar',
-        line2: 'Services',
-        route: '/webinar-services',
-        tag: 'Audience Acquisition',
-        image: '/webinar.png',
-      },
-      {
-        // num: '03',
-        line1: 'Lead Nurturing',
-        line2: 'Services',
-        route: '/lead-nurturing',
-        tag: 'Audience Acquisition',
-        image: '/lead%20nurturing.png',
-      },
-    ],
-  },
+// Dynamically derived from single-source-of-truth SERVICES_MENU_DATA to always stay perfectly in sync
+const PILLARS = SERVICES_MENU_DATA.map((cat, pIdx) => {
+  const id = cat.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+  return {
+    id,
+    num: String(pIdx + 1).padStart(2, '0'),
+    heading: cat.title,
+    tagline: cat.desc,
+    icon: ICON_LOOKUP[cat.iconType] || Target,
+    accent: cat.accent,
+    services: cat.items.map((item, sIdx) => {
+      const meta = SERVICE_META[item.path] || {}
+      const words = item.name.trim().split(/\s+/)
+      const defaultLine1 = words[0] || item.name
+      const defaultLine2 = words.slice(1).join(' ') || ''
 
-  {
-    id: 'data-operations',
-    // num: '04',
-    heading: 'Data & Operations',
-    tagline: 'Custom prospect research, automated CRM hygiene, and real-time middleware delivery enforcing a 99.8% Data Accuracy SLA.',
-    icon: Database,
-    services: [
-      {
-        // num: '01',
-        line1: 'B2B List',
-        line2: 'Building',
-        route: '/b2b-list-building',
-        tag: 'Custom ICP Contacts',
-        image: '/b2b-list-building.png',
-      },
-      {
-        // num: '02',
-        line1: 'Database',
-        line2: 'Cleansing',
-        route: '/database-cleansing',
-        tag: 'Verification & Hygiene',
-        image: '/database%20cleansing.png',
-      },
-      {
-        // num: '03',
-        line1: 'DemandFlow',
-        line2: 'Bridge',
-        route: '/demandflow-bridge',
-        tag: 'Middleware Integration',
-        image: '/demandflow-personalization.png',
-      },
-    ],
-  },
-]
+      return {
+        num: String(sIdx + 1).padStart(2, '0'),
+        line1: meta.line1 || defaultLine1,
+        line2: meta.line2 || defaultLine2,
+        route: item.path,
+        tag: meta.tag || item.desc || 'Specialized Service',
+        image: meta.image || '/services.png',
+        isExternal: Boolean(item.isExternal || item.path?.startsWith('http')),
+      }
+    }),
+  }
+})
 
 export default function ReferenceCoreServices() {
   const navigate = useNavigate()
-  const [activeFilter, setActiveFilter] = useState('lead-generation')
+  const [activeFilter, setActiveFilter] = useState(PILLARS[0]?.id || 'services')
 
   const filteredPillars = PILLARS.filter((p) => p.id === activeFilter)
+
+  const handleCardClick = (card) => {
+    if (card.isExternal || card.route.startsWith('http')) {
+      window.open(card.route, '_blank', 'noopener,noreferrer')
+    } else {
+      navigate(card.route)
+    }
+  }
 
   return (
     <section
@@ -204,12 +187,12 @@ export default function ReferenceCoreServices() {
             </h2>
 
             <p className="text-sm sm:text-base text-white/70 leading-relaxed font-normal lg:max-w-md lg:pb-1">
-              Structured into four strategic pillars: Lead Generation, Channels & Programs, Demand & ABM/ABX, and Data & Operations to engineer predictable pipeline velocity for enterprise B2B teams.
+              Structured into four strategic pillars: Services, Program, Channels & Data Solution, and Products & Publications to engineer predictable pipeline velocity for enterprise B2B teams.
             </p>
           </div>
         </div>
 
-        {/* ══════════ 3 PILLAR FILTER PILLS (LEAD GEN, DEMAND & ABM, DATA & OPERATIONS) ══════════ */}
+        {/* ══════════ PILLAR FILTER PILLS ══════════ */}
         <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-3 mb-12">
           {PILLARS.map((pillar) => {
             const isActive = activeFilter === pillar.id
@@ -235,7 +218,7 @@ export default function ReferenceCoreServices() {
           })}
         </div>
 
-        {/* ══════════ 3 PILLAR GROUPS (CARDS FORMAT) ══════════ */}
+        {/* ══════════ PILLAR GROUPS (CARDS FORMAT) ══════════ */}
         <div className="space-y-16">
           {filteredPillars.map((pillar) => {
             const Icon = pillar.icon
@@ -271,56 +254,64 @@ export default function ReferenceCoreServices() {
 
                 {/* ── Services Grid for this Pillar ── */}
                 <div className={`grid gap-4 ${pillar.services.length <= 2
-                  ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 max-w-2xl'
+                  ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl'
                   : pillar.services.length === 3
                     ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-4xl'
-                    : pillar.services.length === 6
-                      ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6'
+                    : pillar.services.length === 4
+                      ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 max-w-6xl'
                       : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5'
                   }`}>
-                  {pillar.services.map((card, idx) => (
-                    <motion.div
-                      key={card.route + idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: idx * 0.05 }}
-                      onClick={() => navigate(card.route)}
-                      className="group relative rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0B0F17]/80 hover:bg-slate-50 dark:hover:bg-surface dark:bg-[#0E141F] hover:border-[#FF6D00] dark:hover:border-[#FF6D00] p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer hover:-translate-y-2 shadow-md shadow-slate-200/50 dark:shadow-xl overflow-hidden min-h-[320px]"
-                    >
-                      {/* Top: Number & Tag */}
-                      <div className="relative z-10 flex items-center justify-between gap-1">
-                        <span className="font-mono text-xs font-black text-text-secondary dark:text-slate-400 dark:text-white/40 group-hover:text-[#FF6D00] transition-colors">
-                          {card.num}
-                        </span>
-                        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-white/60 border border-slate-200/60 dark:border-white/5 truncate max-w-[120px]">
-                          {card.tag}
-                        </span>
-                      </div>
+                  {pillar.services.map((card, idx) => {
+                    const isExternal = card.isExternal || card.route.startsWith('http')
 
-                      {/* Title (2 lines) */}
-                      <div className="relative z-10 my-3">
-                        <h4 className="text-sm sm:text-base font-black uppercase text-slate-900 dark:text-text-primary dark:text-white tracking-tight leading-tight group-hover:text-[#FF6D00] transition-colors">
-                          <div>{card.line1}</div>
-                          <div>{card.line2}</div>
-                        </h4>
-                      </div>
-
-                      {/* Lower Portion: Visual Artwork */}
-                      <div className="relative w-full h-32 rounded-xl overflow-hidden mt-auto border border-slate-200/80 dark:border-white/5 bg-background dark:bg-slate-950">
-                        <div
-                          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
-                          style={{ backgroundImage: `url(${card.image})` }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent dark:from-[#0B0F17] dark:via-[#0B0F17]/40 dark:to-transparent" />
-
-                        {/* Bottom Circular Arrow Icon */}
-                        <div className="absolute bottom-2.5 left-2.5 w-7 h-7 rounded-full border border-border dark:border-white/30 bg-background dark:bg-black/60 backdrop-blur-sm flex items-center justify-center group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00] transition-all">
-                          <ArrowRight className="w-3.5 h-3.5 text-text-primary dark:text-white group-hover:text-black transition-colors" />
+                    return (
+                      <motion.div
+                        key={card.route + idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: idx * 0.05 }}
+                        onClick={() => handleCardClick(card)}
+                        className="group relative rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0B0F17]/80 hover:bg-slate-50 dark:hover:bg-surface dark:bg-[#0E141F] hover:border-[#FF6D00] dark:hover:border-[#FF6D00] p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer hover:-translate-y-2 shadow-md shadow-slate-200/50 dark:shadow-xl overflow-hidden min-h-[320px]"
+                      >
+                        {/* Top: Number & Tag */}
+                        <div className="relative z-10 flex items-center justify-between gap-1">
+                          <span className="font-mono text-xs font-black text-text-secondary dark:text-slate-400 dark:text-white/40 group-hover:text-[#FF6D00] transition-colors">
+                            {card.num}
+                          </span>
+                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-white/60 border border-slate-200/60 dark:border-white/5 truncate max-w-[120px]">
+                            {card.tag}
+                          </span>
                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
+
+                        {/* Title (2 lines) */}
+                        <div className="relative z-10 my-3">
+                          <h4 className="text-sm sm:text-base font-black uppercase text-slate-900 dark:text-text-primary dark:text-white tracking-tight leading-tight group-hover:text-[#FF6D00] transition-colors">
+                            <div>{card.line1}</div>
+                            <div>{card.line2}</div>
+                          </h4>
+                        </div>
+
+                        {/* Lower Portion: Visual Artwork */}
+                        <div className="relative w-full h-32 rounded-xl overflow-hidden mt-auto border border-slate-200/80 dark:border-white/5 bg-background dark:bg-slate-950">
+                          <div
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
+                            style={{ backgroundImage: `url(${card.image})` }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent dark:from-[#0B0F17] dark:via-[#0B0F17]/40 dark:to-transparent" />
+
+                          {/* Bottom Circular Arrow Icon */}
+                          <div className="absolute bottom-2.5 left-2.5 w-7 h-7 rounded-full border border-border dark:border-white/30 bg-background dark:bg-black/60 backdrop-blur-sm flex items-center justify-center group-hover:border-[#FF6D00] group-hover:bg-[#FF6D00] transition-all">
+                            {isExternal ? (
+                              <ArrowUpRight className="w-3.5 h-3.5 text-text-primary dark:text-white group-hover:text-black transition-colors" />
+                            ) : (
+                              <ArrowRight className="w-3.5 h-3.5 text-text-primary dark:text-white group-hover:text-black transition-colors" />
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )
+                  })}
                 </div>
               </div>
             )

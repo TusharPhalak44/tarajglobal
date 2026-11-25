@@ -1,5 +1,7 @@
 import db from '../config/db.js'
+import crypto from 'crypto'
 import { sendChatLeadNotification } from '../services/email.service.js'
+import benchmarkService from '../services/benchmark.service.js'
 import notificationHelper from '../helpers/notificationHelper.js'
 
 // Knowledge base responses for bot auto-reply
@@ -87,7 +89,7 @@ function generateContextualBotResponse(transcript = [], latestMessage = '', sess
 
   // If communication is off-topic, unnecessary, or vague after multiple turns:
   if (isNonsenseOrOffTopic || (userTurnCount > 6 && !allUserText.match(/lead|service|b2b|marketing|price|cost|company|taraj|contact|phone|email|job|career|bant|abm/i))) {
-    return `Thank you for reaching out to **Taraj Global**! 🏢\n\nTo ensure you receive prompt and accurate assistance for your inquiry, please contact our team directly:\n\n📧 **Email:** info@tarajglobal.com | tgs.admin001@gmail.com\n📞 **Phone:** +91 96655-99442\n📍 **Office:** The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014\n\nOur representatives will be happy to assist you!`
+    return `Thank you for reaching out to **Taraj Global**! 🏢\n\nTo ensure you receive prompt and accurate assistance for your inquiry, please contact our team directly:\n\n📧 **Email:** info@tarajglobal.com\n📞 **Phone:** +91 96655-99442\n📍 **Office:** The Space Business Complex, Office No. 512 to 517, Grant Rd, Kharadi, Pune, Maharashtra 411014\n\nOur representatives will be happy to assist you!`
   }
 
   // 2. Extract Key Business Topics & Requirements from Transcript History
@@ -220,8 +222,8 @@ const chatController = {
         return res.status(400).json({ success: false, message: 'First name, last name, and email are required.' })
       }
 
-      const id = 'cs_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7)
-      const session_token = 'token_' + Date.now() + '_' + Math.random().toString(36).substring(2, 10)
+      const id = 'cs_' + Date.now() + '_' + crypto.randomBytes(4).toString('hex')
+      const session_token = 'token_' + Date.now() + '_' + crypto.randomBytes(12).toString('hex')
 
       try {
         await db.execute(
@@ -247,10 +249,19 @@ const chatController = {
 
       const sessionData = { id, session_token, first_name, last_name, email, phone, cta_button, cta_section, source_page }
 
-      // Asynchronously send Email Notification to tgs.admin001@gmail.com
+      // Asynchronously send Email Notification to admin
       sendChatLeadNotification(sessionData).catch(err => {
         console.error('Failed to send chat lead email notification:', err.message)
       })
+
+      // Sync chatbot lead to Benchmark Email
+      benchmarkService.syncLead({
+        firstName: first_name,
+        lastName: last_name,
+        email,
+        phone,
+        source: 'Website Chatbot'
+      }).catch(err => console.warn('[Benchmark] Chatbot sync notice:', err.message))
 
       // In-app admin notification
       try {

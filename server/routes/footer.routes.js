@@ -48,10 +48,20 @@ router.get('/', async (req, res) => {
       }
     })
   } catch (error) {
-    console.error('Error fetching footer data:', error)
-    res.status(500).json({
-      success: false,
-      message: 'Failed to fetch footer data'
+    console.warn('⚠️ [Footer] DB fetch failed, returning fallback footer data:', error.message)
+    res.json({
+      success: true,
+      data: {
+        settings: {
+          cert_image_url: '/footerimage.png',
+          copyright_text: '© {year} Taraj Global Solutions Private Limited. All rights reserved.'
+        },
+        sections: [],
+        links: {},
+        offices: [],
+        contactItems: [],
+        socialLinks: []
+      }
     })
   }
 })

@@ -3,13 +3,21 @@ import db from '../config/db.js'
 import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
+import crypto from 'crypto'
 import emailService from '../services/email.service.js'
+import benchmarkService from '../services/benchmark.service.js'
 import notificationHelper from '../helpers/notificationHelper.js'
 import { formLimiter } from '../middleware/rateLimit.middleware.js'
 
 const router = express.Router()
 
-// Configure multer for file uploads
+const RESUME_MIME_MAP = {
+  'application/pdf': 'pdf',
+  'application/msword': 'doc',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx'
+}
+
+// Configure multer for file uploads with safe random naming
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = 'uploads/resumes'
@@ -19,8 +27,9 @@ const storage = multer.diskStorage({
     cb(null, uploadDir)
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, 'resume-' + uniqueSuffix + path.extname(file.originalname))
+    const ext = RESUME_MIME_MAP[file.mimetype] || 'pdf'
+    const safeName = `resume-${Date.now()}-${crypto.randomBytes(8).toString('hex')}.${ext}`
+    cb(null, safeName)
   }
 })
 
@@ -28,14 +37,15 @@ const upload = multer({
   storage: storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
   fileFilter: (req, file, cb) => {
-    const allowedTypes = /pdf|doc|docx/
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase())
-    const mimetype = allowedTypes.test(file.mimetype) || file.mimetype === 'application/msword' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    const ext = path.extname(file.originalname).toLowerCase().replace('.', '')
+    const isExtValid = ['pdf', 'doc', 'docx'].includes(ext)
+    const isMimeValid = Boolean(RESUME_MIME_MAP[file.mimetype])
     
-    if (extname || mimetype) {
+    // Require BOTH valid extension and valid MIME type
+    if (isExtValid && isMimeValid) {
       return cb(null, true)
     }
-    cb(new Error('Only PDF, DOC, and DOCX files are allowed'))
+    cb(new Error('Only valid PDF, DOC, and DOCX files are allowed for resumes.'))
   }
 })
 
@@ -163,6 +173,16 @@ router.post('/job-application', formLimiter, upload.single('resume'), async (req
     } catch (candidateEmailError) {
       console.error('Failed to send candidate confirmation email:', candidateEmailError.message)
     }
+
+    // 4. Synchronize applicant with Benchmark Email Recruitment list
+    benchmarkService.syncLead({
+      firstName: first_name,
+      lastName: last_name,
+      email,
+      phone,
+      jobTitle: job_title,
+      source: 'Careers Application'
+    }).catch(bErr => console.warn('[Benchmark] Candidate sync notice:', bErr.message))
 
     res.status(201).json({
       success: true,

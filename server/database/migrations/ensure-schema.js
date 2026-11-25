@@ -303,6 +303,14 @@ export const ensureSchema = async () => {
       console.warn('  ⚠️ SEO metadata seeding warning:', seedErr.message)
     }
 
+    // 18. Ensure Career Gallery tables and populate career_gallery if needed
+    try {
+      const { migrateCareerGallery } = await import('./create-career-gallery.js')
+      await migrateCareerGallery()
+    } catch (galleryErr) {
+      console.warn('  ⚠️ Career gallery migration warning:', galleryErr.message)
+    }
+
     console.log('✅ Database schema integrity verification completed successfully!')
   } catch (error) {
     console.error('❌ Schema integrity check failed:', error.message)
