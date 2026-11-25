@@ -28,6 +28,11 @@ const createNotification = async (notificationData) => {
       entity_id = null
     } = notificationData
 
+    const validTypes = ['info', 'success', 'warning', 'error']
+    const safeType = validTypes.includes(type) ? type : 'info'
+    const safeActionUrl = action_url || notificationData.link || null
+    const safeEntityType = entity_type || (!validTypes.includes(type) ? type : null)
+
     const insertQuery = `
       INSERT INTO notifications (
         user_id,
@@ -46,9 +51,9 @@ const createNotification = async (notificationData) => {
       user_id,
       title,
       message,
-      type,
-      action_url,
-      entity_type,
+      safeType,
+      safeActionUrl,
+      safeEntityType,
       entity_id
     ])
 

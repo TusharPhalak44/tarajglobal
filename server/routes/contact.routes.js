@@ -661,17 +661,20 @@ router.post('/', formLimiter, [
       }
     }
     
-    // Notify admins about new lead and send email
+    // 1. Create in-app admin notification (independent operation)
     try {
       await notificationHelper.notifyAdmins({
         title: '🎯 New Lead Received',
         message: `${name} submitted form${ctaButton ? ` via "${ctaButton}"` : ''} in ${ctaSection || 'website'}${sourcePage ? ` (${sourcePage})` : ''}`,
         type: 'lead',
         link: '/admin/leads'
-      })
-      
-      // Also send email notification to admin with full attribution
-      await emailService.sendLeadNotification(
+      });
+    } catch (error) {
+      console.error('[Notification] Admin notification failed:', error.message);
+    }
+    // 2. Send admin email independently
+    try {
+      const adminResult = await emailService.sendLeadNotification(
         {
           name,
           email,
@@ -685,25 +688,39 @@ router.post('/', formLimiter, [
           source_page: sourcePage,
           utm_campaign: utmCampaign,
           utm_source: utmSource,
-          utm_medium: utmMedium,
+          utm_medium: utmMedium
         },
         getAdminEmail()
-      )
-      
-      // Send confirmation email to the user
-      await emailService.sendLeadConfirmation({ name, email, subject, message })
-
-      // Synchronize lead with Benchmark Email marketing list
-      benchmarkService.syncLead({
+      );
+      console.log('[Contact] Admin email result:', adminResult.success ? 'success' : 'failed');
+    } catch (error) {
+      console.error('[Contact] Admin email failed:', error.message);
+    }
+    // 3. Send customer confirmation independently
+    try {
+      const confirmationResult = await emailService.sendLeadConfirmation({
+        name,
+        email,
+        subject,
+        message
+      });
+      console.log('[Contact] Customer confirmation result:', confirmationResult.success ? 'success' : 'failed');
+    } catch (error) {
+      console.error('[Contact] Customer confirmation failed:', error.message);
+    }
+    // 4. Synchronize with Benchmark independently
+    try {
+      const benchmarkResult = await benchmarkService.syncLead({
         name,
         email,
         phone,
         company,
         source: leadSource || 'Website Contact Form',
         pageUrl
-      }).catch(bErr => console.warn('[Benchmark] Contact lead sync notice:', bErr.message))
-    } catch (notificationError) {
-      console.error('Failed to create notification or send email:', notificationError)
+      });
+      console.log('[Contact] Benchmark sync:', benchmarkResult.success ? 'success' : 'not completed');
+    } catch (error) {
+      console.warn('[Benchmark] Contact sync failed:', error.message);
     }
     
     res.status(201).json({ 

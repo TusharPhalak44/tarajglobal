@@ -29,9 +29,20 @@ const BlogCard = ({ blog, index, onReadMore }) => {
     return `${minutes} min read`
   }
 
-  const category = blog.category_name || 'B2B Strategy'
   const authorName = formatAuthorName(blog.author_name || blog.author)
-  const authorPhoto = blog.author_photo || null
+  const authorPhoto = blog.author_photo || (
+    authorName === 'Hanmant Dhotre' ? '/Hanmant-Dhotre.webp' :
+    authorName === 'Tushar Phalak' ? '/Tushar-Phalak-1.webp' :
+    null
+  )
+  const category = blog.category_name && !['uncategorized', 'general', 'blog'].includes(blog.category_name.toLowerCase())
+    ? blog.category_name
+    : (
+      authorName === 'Hanmant Dhotre' ? 'Thought Leadership' :
+      authorName === 'Tushar Phalak' ? 'Sales & Marketing' :
+      authorName === 'Wasim Attar' ? 'B2B Tech & AI' :
+      'B2B Strategy'
+    )
   const fallbackImg = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80'
 
   const handleCardClick = () => {

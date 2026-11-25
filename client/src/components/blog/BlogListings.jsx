@@ -18,7 +18,8 @@ import BlogCard from './BlogCard'
 import BlogFAQ from './BlogFAQ'
 import {
   CATEGORIES_DATA,
-  normalizeCategory
+  normalizeCategory,
+  matchesCategoryAuthor
 } from './categoryFaqs'
 import { publicAPI } from '@api/public.api'
 
@@ -124,10 +125,22 @@ const BlogListings = () => {
     }
   }
 
-  // Filter blogs based on selected category (matches category_name or category, or smart metadata)
-  const filteredBlogs = selectedCategory
-    ? blogs.filter((blog) => normalizeCategory(blog.category_name || blog.category, blog) === selectedCategory)
-    : blogs
+  // Sort helper to ensure recent/latest articles come first
+  const sortRecentBlogs = (list) => {
+    return [...list].sort((a, b) => {
+      const dateA = new Date(a.published_at || a.created_at || 0).getTime()
+      const dateB = new Date(b.published_at || b.created_at || 0).getTime()
+      return dateB - dateA
+    })
+  }
+
+  // Filter blogs based on selected author category button strictly (no mixed blogs)
+  const filteredBlogs = React.useMemo(() => {
+    const list = selectedCategory
+      ? blogs.filter((blog) => matchesCategoryAuthor(blog, selectedCategory))
+      : blogs
+    return sortRecentBlogs(list)
+  }, [blogs, selectedCategory])
 
   const activeCategoryObj = CATEGORIES_DATA.find((c) => c.key === selectedCategory)
 
@@ -225,8 +238,8 @@ const BlogListings = () => {
                     type="button"
                     onClick={() => handleCategoryClick(cat.key)}
                     aria-pressed={isActive}
-                    title={isActive ? `Active filter: ${cat.name} (Click to show all)` : `Click to filter: ${cat.name}`}
-                    className={`group relative p-4 sm:p-5 rounded-2xl sm:rounded-[22px] border text-left cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden outline-none min-h-[168px] sm:min-h-[178px] ${
+                    title={isActive ? `Active filter: ${cat.name} (Click to show all)` : `Click to filter: ${cat.name} by ${cat.author}`}
+                    className={`group relative p-4 sm:p-5 rounded-2xl sm:rounded-[22px] border text-left cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden outline-none min-h-[175px] sm:min-h-[185px] ${
                       isActive ? theme.activeBorder : theme.border
                     } ${theme.bg} shadow-lg hover:-translate-y-1`}
                   >
@@ -242,7 +255,7 @@ const BlogListings = () => {
                       <div className={`absolute bottom-4 right-4 w-14 h-14 rounded-full bg-gradient-to-tl ${theme.cornerGlow} blur-sm`} />
                     </div>
 
-                    {/* Top Row: Squircle Gradient Icon + FILTER VIEW + Arrow Circle */}
+                    {/* Top Row: Squircle Gradient Icon + FILTER VIEW / ACTIVE + Arrow Circle */}
                     <div className="relative z-10 flex items-center justify-between w-full mb-2.5">
                       {/* Gradient Squircle Icon */}
                       <div
@@ -251,10 +264,12 @@ const BlogListings = () => {
                         <IconComponent size={18} className="text-white" strokeWidth={2.2} />
                       </div>
 
-                      {/* Right Action: FILTER VIEW + Circle Arrow */}
+                      {/* Right Action: FILTER VIEW / ACTIVE + Circle Arrow */}
                       <div className="flex items-center gap-1.5 sm:gap-2">
-                        <span className="text-[10px] font-mono tracking-widest text-slate-300/80 uppercase font-bold group-hover:text-white transition-colors">
-                          FILTER VIEW
+                        <span className={`text-[10px] font-mono tracking-widest uppercase font-bold transition-colors ${
+                          isActive ? 'text-white font-extrabold' : 'text-slate-300/80 group-hover:text-white'
+                        }`}>
+                          {isActive ? 'ACTIVE' : 'FILTER VIEW'}
                         </span>
                         <div
                           className={`w-7 h-7 rounded-full bg-white/[0.08] border border-white/15 flex items-center justify-center text-slate-200 transition-all duration-300 group-hover:scale-110 ${theme.arrowHover}`}
@@ -264,8 +279,18 @@ const BlogListings = () => {
                       </div>
                     </div>
 
-                    {/* Middle Content: Title + Subtitle (Completely Visible, No Truncation) */}
+                    {/* Middle Content: Author Tag + Title + Subtitle */}
                     <div className="relative z-10 flex-1 flex flex-col justify-center my-auto">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[11px] font-mono font-bold tracking-wider uppercase text-slate-200">
+                          {cat.author}
+                        </span>
+                        {cat.authorBadge && (
+                          <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-white/10 text-slate-300 uppercase">
+                            {cat.authorBadge}
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug group-hover:text-white transition-colors">
                         {cat.name}
                       </h3>
@@ -277,6 +302,9 @@ const BlogListings = () => {
                     {/* Bottom Row: Accent Color Pill Dash */}
                     <div className="relative z-10 pt-3 mt-auto flex items-center justify-between">
                       <div className={`w-8 h-1 rounded-full ${theme.pillColor}`} />
+                      <span className="text-[10px] font-mono text-slate-400 group-hover:text-slate-200 transition-colors">
+                        {isActive ? 'Click to show all' : `Recent ${cat.author} blogs`}
+                      </span>
                     </div>
                   </button>
                 )
@@ -291,7 +319,10 @@ const BlogListings = () => {
                 className="pt-2 flex items-center justify-center gap-2"
               >
                 <span className="text-xs font-mono text-text-tertiary">
-                  Filtering by: <strong className="text-text-primary dark:text-white">{activeCategoryObj?.name}</strong>
+                  Filtering by:{' '}
+                  <strong className="text-text-primary dark:text-white">
+                    {activeCategoryObj?.name} ({activeCategoryObj?.author} · {activeCategoryObj?.authorBadge})
+                  </strong>
                 </span>
                 <button
                   type="button"
@@ -299,7 +330,7 @@ const BlogListings = () => {
                   className="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#00A6FF] hover:underline cursor-pointer bg-[#00A6FF]/10 px-2 py-0.5 rounded-md"
                 >
                   <X size={12} />
-                  <span>Show All ({blogs.length})</span>
+                  <span>Show All Recent ({blogs.length})</span>
                 </button>
               </motion.div>
             )}
@@ -317,7 +348,9 @@ const BlogListings = () => {
             <div>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#00A6FF]">
-                  {selectedCategory ? `CATEGORY: ${activeCategoryObj?.name}` : 'ALL ARTICLES & PLAYBOOKS'}
+                  {selectedCategory
+                    ? `${activeCategoryObj?.author.toUpperCase()} (${activeCategoryObj?.authorBadge.toUpperCase()}) — RECENT BLOGS`
+                    : 'ALL RECENT ARTICLES & PLAYBOOKS'}
                 </span>
                 {selectedCategory && (
                   <button
@@ -331,17 +364,25 @@ const BlogListings = () => {
                 )}
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-text-primary dark:text-text-primary dark:text-white tracking-tight mt-1">
-                {selectedCategory ? activeCategoryObj?.name : 'Explore Our Knowledge Hub'}
+                {selectedCategory
+                  ? `${activeCategoryObj?.name} by ${activeCategoryObj?.author}`
+                  : 'Explore Our Knowledge Hub'}
               </h2>
             </div>
             {!loading && !error && (
-              <div className="font-mono text-xs text-text-tertiary">
-                Showing{' '}
-                <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold">
-                  {filteredBlogs.length > 0 ? startIndex + 1 : 0}–{Math.min(startIndex + POSTS_PER_PAGE, filteredBlogs.length)}
-                </span>{' '}
-                of <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold">{filteredBlogs.length}</span> {filteredBlogs.length === 1 ? 'Article' : 'Articles'}
-                {selectedCategory && blogs.length > 0 && ` (of ${blogs.length} total)`}
+              <div className="flex flex-col sm:items-end gap-1">
+                <div className="font-mono text-xs text-text-tertiary">
+                  Showing{' '}
+                  <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold">
+                    {filteredBlogs.length > 0 ? startIndex + 1 : 0}–{Math.min(startIndex + POSTS_PER_PAGE, filteredBlogs.length)}
+                  </span>{' '}
+                  of <span className="text-text-primary dark:text-text-primary dark:text-white font-semibold">{filteredBlogs.length}</span> {filteredBlogs.length === 1 ? 'Article' : 'Articles'}
+                  {selectedCategory && blogs.length > 0 && ` (by ${activeCategoryObj?.author})`}
+                </div>
+                <div className="text-[11px] font-mono text-[#00A6FF] flex items-center gap-1">
+                  <Clock size={11} />
+                  <span>Sorted: Recent & Latest First</span>
+                </div>
               </div>
             )}
           </div>
@@ -386,17 +427,17 @@ const BlogListings = () => {
           {!loading && !error && filteredBlogs.length === 0 && selectedCategory && (
             <div className="p-16 text-center rounded-3xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 max-w-xl mx-auto my-10">
               <h3 className="text-lg font-bold text-text-primary dark:text-text-primary dark:text-white mb-2">
-                No articles published under "{activeCategoryObj?.name}" yet
+                No articles published by {activeCategoryObj?.author} yet
               </h3>
               <p className="text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] mb-6 leading-relaxed">
-                Our editorial team is currently preparing playbooks for this track. You can clear the filter to view all articles or explore other categories.
+                {activeCategoryObj?.author} is currently preparing playbooks for this track. You can clear the filter to view all recent articles.
               </p>
               <button
                 type="button"
                 onClick={handleClearFilter}
                 className="px-5 py-2.5 rounded-xl bg-[#00A6FF] text-white text-xs font-bold hover:bg-[#0088D6] transition-all cursor-pointer shadow-md shadow-[#00A6FF]/25"
               >
-                View All Articles ({blogs.length})
+                View All Recent Articles ({blogs.length})
               </button>
             </div>
           )}
@@ -407,6 +448,11 @@ const BlogListings = () => {
               <h3 className="text-lg font-bold text-text-primary dark:text-text-primary dark:text-white mb-2">
                 No articles published yet
               </h3>
+              <p className="text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] mb-6 leading-relaxed">
+                Stay tuned as our research team prepares new demand generation playbooks.
+              </p>
+            </div>
+          )}
               <p className="text-xs sm:text-sm text-text-secondary dark:text-[#A7ADB7] mb-6 leading-relaxed">
                 Stay tuned as our research team prepares new demand generation playbooks.
               </p>

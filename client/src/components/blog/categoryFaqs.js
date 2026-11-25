@@ -1,8 +1,10 @@
 // Category-wise FAQs and metadata for TaRaj Global B2B Blog
-// Categories:
-// 1. Thought Leadership Insights (CEO authors)
-// 2. Sales & Marketing Insights (Sales Director & Marketing Manager authors)
-// 3. B2B Tech & AI-Enabled Insights (Tech Director authors)
+// Author Mapping:
+// 1. Thought Leadership Insights -> Hanmant Dhotre (Founder & CEO / Admin)
+// 2. Sales & Marketing Insights   -> Tushar Phalak (Director of Growth & Marketing / Author)
+// 3. B2B Tech & AI-Enabled Insights -> Wasim Attar (B2B Tech & AI Strategist / Author)
+
+import { formatAuthorName } from '@utils/formatAuthor'
 
 export const CATEGORY_KEYS = {
   THOUGHT_LEADERSHIP: 'thought-leadership',
@@ -15,8 +17,10 @@ export const CATEGORIES_DATA = [
     key: 'thought-leadership',
     name: 'Thought Leadership Insights',
     shortName: 'Thought Leadership',
-    authorRole: 'CEO authors',
-    subtitle: 'Executive strategy for predictable growth',
+    author: 'Hanmant Dhotre',
+    authorBadge: 'Admin',
+    authorRole: 'Founder & CEO (Admin)',
+    subtitle: 'Executive strategy & market intelligence by Hanmant Dhotre',
     accentColor: '#00A6FF',
     accentBorder: 'border-[#00A6FF]',
     accentGlow: 'shadow-[#00A6FF]/20',
@@ -26,8 +30,10 @@ export const CATEGORIES_DATA = [
     key: 'sales-marketing',
     name: 'Sales & Marketing Insights',
     shortName: 'Sales & Marketing',
-    authorRole: 'Sales Director & Marketing Manager authors',
-    subtitle: 'Field-tested tactics for qualified pipeline',
+    author: 'Tushar Phalak',
+    authorBadge: 'Author',
+    authorRole: 'Director of Growth & Marketing (Author)',
+    subtitle: 'Field-tested pipeline & ABM playbooks by Tushar Phalak',
     accentColor: '#10B981',
     accentBorder: 'border-emerald-500',
     accentGlow: 'shadow-emerald-500/20',
@@ -37,14 +43,137 @@ export const CATEGORIES_DATA = [
     key: 'tech-ai',
     name: 'B2B Tech & AI-Enabled Insights',
     shortName: 'B2B Tech & AI',
-    authorRole: 'Tech Director authors',
-    subtitle: 'CRM, data and automation for revenue teams',
+    author: 'Wasim Attar',
+    authorBadge: 'Author',
+    authorRole: 'B2B Tech & AI Strategist (Author)',
+    subtitle: 'CRM, data engineering & AI architecture by Wasim Attar',
     accentColor: '#FF6D00',
     accentBorder: 'border-[#FF6D00]',
     accentGlow: 'shadow-[#FF6D00]/20',
     iconBg: 'bg-[#FF6D00]/10 text-[#FF6D00]'
   }
 ]
+
+/**
+ * Checks whether a blog post belongs to a given category track based strictly on author mapping:
+ * - 'thought-leadership' -> Hanmant Dhotre (Admin) ONLY
+ * - 'sales-marketing'   -> Tushar Phalak (Author) ONLY
+ * - 'tech-ai'           -> Wasim Attar (Author) ONLY
+ */
+export const matchesCategoryAuthor = (blog, categoryKey) => {
+  if (!blog || !categoryKey) return true
+
+  const authorFormatted = formatAuthorName(blog.author_name || blog.author || '').toLowerCase().trim()
+  const rawAuthor = String(blog.author || '').toLowerCase().trim()
+  const rawAuthorName = String(blog.author_name || '').toLowerCase().trim()
+  const rawEmail = String(blog.author_email || blog.email || '').toLowerCase().trim()
+  const rawSlug = String(blog.author_slug || '').toLowerCase().trim()
+  const createdByName = String(blog.created_by_name || '').toLowerCase().trim()
+
+  const combinedAuthorText = `${authorFormatted} ${rawAuthor} ${rawAuthorName} ${rawEmail} ${rawSlug} ${createdByName}`
+  const catText = String(blog.category_name || blog.category || '').toLowerCase().trim()
+
+  if (categoryKey === 'thought-leadership') {
+    // Exclude other authors strictly
+    if (
+      combinedAuthorText.includes('tushar') ||
+      combinedAuthorText.includes('phalak') ||
+      combinedAuthorText.includes('wasim') ||
+      combinedAuthorText.includes('attar') ||
+      combinedAuthorText.includes('atarwasim')
+    ) {
+      return false
+    }
+
+    // Match Hanmant Dhotre or Admin
+    if (
+      combinedAuthorText.includes('hanmant') ||
+      combinedAuthorText.includes('dhotre') ||
+      combinedAuthorText.includes('admin') ||
+      combinedAuthorText.includes('founder') ||
+      combinedAuthorText.includes('ceo') ||
+      catText.includes('thought') ||
+      catText.includes('leadership')
+    ) {
+      return true
+    }
+
+    // Fallback: Default unassigned/general posts from Admin belong to Hanmant Dhotre
+    if (!rawAuthor && !rawAuthorName && !catText.includes('sales') && !catText.includes('marketing') && !catText.includes('tech') && !catText.includes('ai')) {
+      return true
+    }
+
+    return false
+  }
+
+  if (categoryKey === 'sales-marketing') {
+    // Exclude Hanmant/Admin and Wasim strictly
+    if (
+      combinedAuthorText.includes('wasim') ||
+      combinedAuthorText.includes('attar') ||
+      combinedAuthorText.includes('atarwasim') ||
+      combinedAuthorText.includes('hanmant') ||
+      combinedAuthorText.includes('dhotre') ||
+      combinedAuthorText.includes('admin')
+    ) {
+      return false
+    }
+
+    // Strictly match Tushar Phalak
+    if (
+      combinedAuthorText.includes('tushar') ||
+      combinedAuthorText.includes('phalak')
+    ) {
+      return true
+    }
+
+    // Fallback: Sales & Marketing category without conflicting author
+    if (
+      (catText.includes('sales') || catText.includes('marketing')) &&
+      !combinedAuthorText.includes('admin') &&
+      !combinedAuthorText.includes('hanmant')
+    ) {
+      return true
+    }
+
+    return false
+  }
+
+  if (categoryKey === 'tech-ai') {
+    // Exclude Hanmant/Admin and Tushar strictly
+    if (
+      combinedAuthorText.includes('tushar') ||
+      combinedAuthorText.includes('phalak') ||
+      combinedAuthorText.includes('hanmant') ||
+      combinedAuthorText.includes('dhotre') ||
+      combinedAuthorText.includes('admin')
+    ) {
+      return false
+    }
+
+    // Strictly match Wasim Attar
+    if (
+      combinedAuthorText.includes('wasim') ||
+      combinedAuthorText.includes('attar') ||
+      combinedAuthorText.includes('atarwasim')
+    ) {
+      return true
+    }
+
+    // Fallback: Tech & AI category without conflicting author
+    if (
+      (catText.includes('tech') || catText.includes('ai') || catText.includes('crm') || catText.includes('data')) &&
+      !combinedAuthorText.includes('admin') &&
+      !combinedAuthorText.includes('hanmant')
+    ) {
+      return true
+    }
+
+    return false
+  }
+
+  return false
+}
 
 export const CATEGORY_FAQS = {
   'thought-leadership': {
@@ -53,19 +182,19 @@ export const CATEGORY_FAQS = {
     eyebrow: 'SOMETHING ON YOUR MIND?',
     title: 'FREQUENTLY ASKED',
     highlightTitle: 'QUESTIONS',
-    subtext: 'Answers about our executive perspectives on B2B revenue strategy and growth.',
+    subtext: 'Executive perspectives on B2B revenue strategy and growth authored by Hanmant Dhotre, Founder & CEO.',
     faqs: [
       {
         id: 'faq-tl-1',
         num: '01',
-        question: 'What is B2B thought leadership?',
-        answer: 'B2B thought leadership is expert-led content that shares an original point of view on strategy, markets, and buyer behavior, helping revenue leaders make better decisions. Ours is written by TaRaj Global’s CEOs.'
+        question: 'What is B2B thought leadership at TaRaj Global?',
+        answer: 'B2B thought leadership is expert-led content that shares an original point of view on strategy, markets, and buyer behavior, helping revenue leaders make better decisions. Ours is authored by Hanmant Dhotre, Founder & CEO at TaRaj Global.'
       },
       {
         id: 'faq-tl-2',
         num: '02',
-        question: 'What topics do the CEO-authored articles cover?',
-        answer: 'They cover B2B revenue strategy, go-to-market planning, pipeline predictability, and demand generation trends across the US, EMEA, and APAC.'
+        question: 'What topics do Hanmant Dhotre’s articles cover?',
+        answer: 'They cover B2B revenue strategy, go-to-market planning, pipeline predictability, and demand generation trends across the US, EMEA, and APAC markets.'
       },
       {
         id: 'faq-tl-3',
@@ -76,8 +205,8 @@ export const CATEGORY_FAQS = {
       {
         id: 'faq-tl-4',
         num: '04',
-        question: 'How is thought leadership different from the sales and marketing playbooks?',
-        answer: 'Thought leadership explains why and where the market is heading. The sales and marketing insights show how to execute, with steps, checklists, and benchmarks.'
+        question: 'How is thought leadership different from sales and marketing playbooks?',
+        answer: 'Thought leadership explains why and where the market is heading. The sales and marketing insights show how to execute tactical campaigns with steps, checklists, and benchmarks.'
       },
       {
         id: 'faq-tl-5',
@@ -100,7 +229,7 @@ export const CATEGORY_FAQS = {
     eyebrow: 'SOMETHING ON YOUR MIND?',
     title: 'FREQUENTLY ASKED',
     highlightTitle: 'QUESTIONS',
-    subtext: 'Answers about our B2B sales and marketing playbooks, from qualification to outreach.',
+    subtext: 'B2B sales and marketing playbooks authored by Tushar Phalak, Director of Growth & Marketing.',
     faqs: [
       {
         id: 'faq-sm-1',
@@ -124,7 +253,7 @@ export const CATEGORY_FAQS = {
         id: 'faq-sm-4',
         num: '04',
         question: 'Who writes the sales and marketing articles?',
-        answer: 'Our Sales Director and Marketing Manager write them, based on the campaigns and qualification workflows their teams run every day.'
+        answer: 'Our Director of Growth and Marketing, Tushar Phalak, writes them based on the campaigns and qualification workflows our teams run every day.'
       },
       {
         id: 'faq-sm-5',
@@ -147,13 +276,13 @@ export const CATEGORY_FAQS = {
     eyebrow: 'SOMETHING ON YOUR MIND?',
     title: 'FREQUENTLY ASKED',
     highlightTitle: 'QUESTIONS',
-    subtext: 'Answers about CRM, data, and AI in B2B lead generation.',
+    subtext: 'Deep dives into CRM architecture, data engineering, and AI automation authored by Wasim Attar.',
     faqs: [
       {
         id: 'faq-ta-1',
         num: '01',
         question: 'What topics do the B2B tech and AI insights cover?',
-        answer: 'They cover CRM architecture, data enrichment and verification, intent data, automation, and AI-assisted targeting and scoring, including integration with Salesforce, HubSpot, Apollo, and Outreach.'
+        answer: 'They cover CRM architecture, data enrichment and verification, intent data, automation, and AI-assisted targeting and scoring, authored by Wasim Attar.'
       },
       {
         id: 'faq-ta-2',
@@ -191,9 +320,14 @@ export const CATEGORY_FAQS = {
 
 /**
  * Normalizes any category string or blog object into one of the 3 category keys.
- * Handles variations from database, URL query params, admin input, or auto-categorization.
  */
 export const normalizeCategory = (categoryName = '', blog = null) => {
+  if (blog) {
+    if (matchesCategoryAuthor(blog, 'thought-leadership')) return 'thought-leadership'
+    if (matchesCategoryAuthor(blog, 'sales-marketing')) return 'sales-marketing'
+    if (matchesCategoryAuthor(blog, 'tech-ai')) return 'tech-ai'
+  }
+
   const norm = String(categoryName || '').toLowerCase().trim()
 
   if (norm === 'thought-leadership' || norm.includes('thought leadership') || norm.includes('leadership')) {
@@ -206,51 +340,7 @@ export const normalizeCategory = (categoryName = '', blog = null) => {
     return 'tech-ai'
   }
 
-  // If category is generic (e.g. 'B2B Lead Generation', 'B2B Strategy') or blog metadata is present:
-  if (blog || norm) {
-    const text = [
-      norm,
-      blog?.title,
-      blog?.slug,
-      blog?.author,
-      blog?.author_name,
-      blog?.excerpt
-    ].filter(Boolean).join(' ').toLowerCase()
-
-    // 1. Tech & AI-Enabled Insights
-    if (
-      text.includes('ai') ||
-      text.includes('tech') ||
-      text.includes('data') ||
-      text.includes('enrichment') ||
-      text.includes('intent') ||
-      text.includes('automation') ||
-      text.includes('crm') ||
-      text.includes('tushar')
-    ) {
-      return 'tech-ai'
-    }
-
-    // 2. Thought Leadership Insights (CEO / Executive strategy / Growth / Predictable)
-    if (
-      text.includes('founder') ||
-      text.includes('ceo') ||
-      text.includes('dhotre') ||
-      text.includes('growth') ||
-      text.includes('2027') ||
-      text.includes('predictable') ||
-      text.includes('funding') ||
-      text.includes('executive') ||
-      text.includes('strategy')
-    ) {
-      return 'thought-leadership'
-    }
-
-    // 3. Sales & Marketing Insights
-    return 'sales-marketing'
-  }
-
-  return null
+  return 'thought-leadership'
 }
 
 /**
@@ -264,4 +354,3 @@ export const getCategoryFaq = (categoryNameOrKey = '') => {
 
 // Flat list of all default FAQs for backwards compatibility
 export const DEFAULT_BLOG_FAQS = CATEGORY_FAQS['thought-leadership'].faqs
-
